@@ -9,17 +9,18 @@
 #include "sysmon.h"
 
 #include <stdio.h>
-#include "misc/os/ptask.h"
-#include "misc/os/idle.h"
+#include "../../lvgl/misc/os/ptask.h"
+#include "../../lvgl/misc/os/idle.h"
 #include "lvgl/lv_objx/lv_chart.h"
 #include "lvgl/lv_app/lv_app_util/lv_app_notice.h"
-#include "hal/systick/systick.h"
 
 /*********************
  *      DEFINES
  *********************/
-#define CPU_LABEL_COLOR "FF0000"
-#define MEM_LABEL_COLOR "0000FF"
+#define CPU_LABEL_COLOR     "FF0000"
+#define MEM_LABEL_COLOR     "0000FF"
+#define CHART_POINT_NUM     100
+#define REFR_TIME    500
 
 /**********************
  *      TYPEDEFS
@@ -44,8 +45,8 @@ static lv_chart_dl_t * mem_dl;
 static lv_obj_t * label;
 static lv_style_t style_cbtn;
 
-static uint8_t mem_pct[LV_APP_SYSMON_PNUM];
-static uint8_t cpu_pct[LV_APP_SYSMON_PNUM];
+static uint8_t mem_pct[CHART_POINT_NUM];
+static uint8_t cpu_pct[CHART_POINT_NUM];
 #if USE_DYN_MEM != 0  && DM_CUSTOM == 0
 static  dm_mon_t mem_mon;
 #endif
@@ -63,7 +64,7 @@ static  dm_mon_t mem_mon;
  */
 void sysmon_init(void)
 {
-    ptask_create(sysmon_task, LV_APP_SYSMON_REFR_TIME, PTASK_PRIO_LOW, NULL);
+    ptask_create(sysmon_task, REFR_TIME, PTASK_PRIO_LOW, NULL);
 
     memset(mem_pct, 0, sizeof(mem_pct));
     memset(cpu_pct, 0, sizeof(cpu_pct));
@@ -82,7 +83,7 @@ void sysmon_init(void)
     chart = lv_chart_create(win, NULL);
     lv_obj_set_size(chart, LV_HOR_RES / 2, LV_VER_RES / 2);
     lv_obj_set_pos(chart, LV_DPI / 10, LV_DPI / 10);
-    lv_chart_set_pnum(chart, LV_APP_SYSMON_PNUM);
+    lv_chart_set_pnum(chart, CHART_POINT_NUM);
     lv_chart_set_range(chart, 0, 100);
     lv_chart_set_type(chart, LV_CHART_LINE);
     lv_chart_set_dl_width(chart, 2 * LV_DOWNSCALE);
@@ -126,7 +127,7 @@ static void sysmon_task(void * param)
 {
     /*Shift out the oldest data*/
     uint16_t i;
-    for(i = 1; i < LV_APP_SYSMON_PNUM; i++) {
+    for(i = 1; i < CHART_POINT_NUM; i++) {
         mem_pct[i - 1] = mem_pct[i];
         cpu_pct[i - 1] = cpu_pct[i];
     }
@@ -146,8 +147,8 @@ static void sysmon_task(void * param)
 #endif
 
     /*Add the CPU and memory data*/
-    cpu_pct[LV_APP_SYSMON_PNUM - 1] = cpu_busy;
-    mem_pct[LV_APP_SYSMON_PNUM - 1] = mem_used_pct;
+    cpu_pct[CHART_POINT_NUM - 1] = cpu_busy;
+    mem_pct[CHART_POINT_NUM - 1] = mem_used_pct;
 
     /*Refresh the and windows*/
     sysmon_refr();
@@ -160,14 +161,14 @@ static void sysmon_refr(void)
 {
     if(win == NULL) return;
     char buf_long[256];
-    sprintf(buf_long, "%c%s CPU: %d %%%c\n\n",TXT_RECOLOR_CMD, CPU_LABEL_COLOR, cpu_pct[LV_APP_SYSMON_PNUM - 1], TXT_RECOLOR_CMD);
+    sprintf(buf_long, "%c%s CPU: %d %%%c\n\n",TXT_RECOLOR_CMD, CPU_LABEL_COLOR, cpu_pct[CHART_POINT_NUM - 1], TXT_RECOLOR_CMD);
 
 #if USE_DYN_MEM != 0  && DM_CUSTOM == 0
     sprintf(buf_long, "%s%c%s MEMORY: %d %%%c\nTotal: %d bytes\nUsed: %d bytes\nFree: %d bytes\nFrag: %d %%",
                   buf_long,
                   TXT_RECOLOR_CMD,
                   MEM_LABEL_COLOR,
-                  mem_pct[LV_APP_SYSMON_PNUM - 1],
+                  mem_pct[CHART_POINT_NUM - 1],
                   TXT_RECOLOR_CMD,
                   (int)mem_mon.size_total,
                   (int)mem_mon.size_total - mem_mon.size_free, mem_mon.size_free, mem_mon.pct_frag);
@@ -177,8 +178,8 @@ static void sysmon_refr(void)
 #endif
     lv_label_set_text(label, buf_long);
 
-    lv_chart_set_next(chart, mem_dl, mem_pct[LV_APP_SYSMON_PNUM - 1]);
-    lv_chart_set_next(chart, cpu_dl, cpu_pct[LV_APP_SYSMON_PNUM - 1]);
+    lv_chart_set_next(chart, mem_dl, mem_pct[CHART_POINT_NUM - 1]);
+    lv_chart_set_next(chart, cpu_dl, cpu_pct[CHART_POINT_NUM - 1]);
 }
 
 static lv_action_res_t win_close_action(lv_obj_t * btn, lv_dispi_t * dispi)

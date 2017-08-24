@@ -23,6 +23,7 @@
 #define TERMINAL_NO_INPUT    0   /*Do not create Text are and Keyboard*/
 #define TERMINAL_WIDTH       (LV_HOR_RES / 2)
 #define TERMINAL_HEIGHT      (LV_VER_RES)
+#define TERMINAL_LOG_LENGTH  512        /*Characters*/
 
 /**********************
  *      TYPEDEFS
@@ -41,7 +42,7 @@ static void kb_del(void);
  *  STATIC VARIABLES
  **********************/
 static lv_obj_t * holder;
-static char txt_log[LV_APP_TERMINAL_LENGTH + 1];
+static char txt_log[TERMINAL_LOG_LENGTH + 1];
 static lv_obj_t * label;
 static lv_obj_t * ta;
 static lv_obj_t * clr_btn;
@@ -109,13 +110,13 @@ void terminal_add(const char * txt_in)
        uint16_t old_len = strlen(txt_log);
 
        /*If the data is longer then the terminal ax size show the last part of data*/
-       if(txt_len > LV_APP_TERMINAL_LENGTH) {
-           txt_in += (txt_len - LV_APP_TERMINAL_LENGTH);
-           txt_len = LV_APP_TERMINAL_LENGTH;
+       if(txt_len > TERMINAL_LOG_LENGTH) {
+           txt_in += (txt_len - TERMINAL_LOG_LENGTH);
+           txt_len = TERMINAL_LOG_LENGTH;
            old_len = 0;
        }
        /*If the text become too long 'forget' the oldest lines*/
-       else if(old_len + txt_len > LV_APP_TERMINAL_LENGTH) {
+       else if(old_len + txt_len > TERMINAL_LOG_LENGTH) {
            uint16_t new_start;
            for(new_start = 0; new_start < old_len; new_start++) {
                if(txt_log[new_start] == '\n') {
@@ -131,7 +132,7 @@ void terminal_add(const char * txt_in)
            /* If it wasn't able to make enough space on line breaks
             * simply forget the oldest characters*/
            if(new_start == old_len) {
-               new_start = old_len - (LV_APP_TERMINAL_LENGTH - txt_len);
+               new_start = old_len - (TERMINAL_LOG_LENGTH - txt_len);
            }
            /*Move the remaining text to the beginning*/
            uint16_t j;
