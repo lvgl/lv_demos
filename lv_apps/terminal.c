@@ -32,10 +32,10 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static lv_action_res_t ta_rel_action(lv_obj_t * ta, lv_dispi_t * dispi);
-static lv_action_res_t clr_rel_action(lv_obj_t * btn, lv_dispi_t * dispi);
-static lv_action_res_t kb_ok_action(lv_obj_t * kb, lv_dispi_t * dispi);
-static lv_action_res_t kb_close_action(lv_obj_t * kb, lv_dispi_t * dispi);
+static lv_action_res_t ta_rel_action(lv_obj_t * ta);
+static lv_action_res_t clr_rel_action(lv_obj_t * btn);
+static lv_action_res_t kb_ok_action(lv_obj_t * kb);
+static lv_action_res_t kb_close_action(lv_obj_t * kb);
 static void kb_del(void);
 
 /**********************
@@ -162,10 +162,9 @@ void terminal_add(const char * txt_in)
 /**
  * Called when the Text area is released to open a keyboard
  * @param ta pointer to the text area
- * @param dispi pointer to the caller display input
  * @return LV_ACTION_RES_OK because the text area is not deleted
  */
-static lv_action_res_t ta_rel_action(lv_obj_t * ta, lv_dispi_t * dispi)
+static lv_action_res_t ta_rel_action(lv_obj_t * ta)
 {
     /*Create a keyboard if not created yet*/
     if(keyboard == NULL) {
@@ -184,10 +183,9 @@ static lv_action_res_t ta_rel_action(lv_obj_t * ta, lv_dispi_t * dispi)
 /**
  * Called when the Clear button is released to clear the text of the terminal
  * @param btn pointer to the clear button
- * @param dispi pointer to the caller display input
  * @return LV_ACTION_RES_OK because the button is not deleted
  */
-static lv_action_res_t clr_rel_action(lv_obj_t * btn, lv_dispi_t * dispi)
+static lv_action_res_t clr_rel_action(lv_obj_t * btn)
 {
     txt_log[0] = '\0';
     lv_label_set_text_static(label, txt_log);   /*Refresh the text*/
@@ -199,10 +197,9 @@ static lv_action_res_t clr_rel_action(lv_obj_t * btn, lv_dispi_t * dispi)
  * Called when the 'Ok' button of the keyboard in the window
  * is pressed to write to the Terminal
  * @param kb pointer to the Keyboard
- * @param dispi Pointer to the caller display input
  * @return LV_ACTION_RES_INV because the keyboard is deleted
  */
-static lv_action_res_t kb_ok_action(lv_obj_t * kb, lv_dispi_t * dispi)
+static lv_action_res_t kb_ok_action(lv_obj_t * kb)
 {
     const char * ta_txt = lv_ta_get_txt(ta);
     if(txt_log[0] != '\0') terminal_add("\n");
@@ -216,10 +213,9 @@ static lv_action_res_t kb_ok_action(lv_obj_t * kb, lv_dispi_t * dispi)
 /**
  * Called when the 'Close' button of the keyboard is pressed
  * @param kb pointer to the Keyboard
- * @param dispi Pointer to the caller display input
  * @return LV_ACTION_RES_INV because the keyboard is deleted
  */
-static lv_action_res_t kb_close_action(lv_obj_t * kb, lv_dispi_t * dispi)
+static lv_action_res_t kb_close_action(lv_obj_t * kb)
 {
     lv_ta_set_text(ta, "");
     kb_del();

@@ -13,7 +13,6 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-#include "lvgl/lv_app/lv_app.h"
 
 /*********************
  *      DEFINES
