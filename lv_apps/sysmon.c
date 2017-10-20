@@ -9,10 +9,13 @@
 //#include "sysmon.h"
 //
 //#include <stdio.h>
+//#include "lvgl/lvgl.h"
 //#include "misc/os/ptask.h"
 //#include "misc/os/idle.h"
+//#include "misc/gfx/text.h"
+//
 //#include "lvgl/lv_objx/lv_chart.h"
-//#include "lvgl/lv_app/lv_app_util/lv_app_notice.h"
+//
 //
 ///*********************
 // *      DEFINES
@@ -32,7 +35,7 @@
 //
 //static void sysmon_task(void * param);
 //static void sysmon_refr(void);
-//static lv_action_res_t win_close_action(lv_obj_t * btn, LV_INDEV_t * indev_proc);
+//static lv_action_res_t win_close_action(lv_obj_t * btn);
 //
 ///**********************
 // *  STATIC VARIABLES
@@ -69,8 +72,8 @@
 //    memset(mem_pct, 0, sizeof(mem_pct));
 //    memset(cpu_pct, 0, sizeof(cpu_pct));
 //
-//    lv_style_get(LV_STYLE_BTN_REL, &style_cbtn);
-//    style_cbtn.font = font_get(FONT_SYMBOL_30);
+//    lv_style_copy(&style_cbtn, lv_style_get(LV_STYLE_BUTTON_ON_RELEASED));
+//    style_cbtn.text.font = font_get(FONT_SYMBOL_30);
 //
 //    win = lv_win_create(lv_scr_act(), NULL);
 //    lv_win_set_styles_cbtn(win, &style_cbtn, &style_cbtn);
@@ -86,7 +89,7 @@
 //    lv_chart_set_pnum(chart, CHART_POINT_NUM);
 //    lv_chart_set_range(chart, 0, 100);
 //    lv_chart_set_type(chart, LV_CHART_LINE);
-//    lv_chart_set_dl_width(chart, 2 * LV_DOWNSCALE);
+//    lv_chart_set_dl_width(chart, 2 << LV_ANTIALIAS);
 //    cpu_dl =  lv_chart_add_data_line(chart, COLOR_RED);
 //    mem_dl =  lv_chart_add_data_line(chart, COLOR_BLUE);
 //
@@ -182,7 +185,7 @@
 //    lv_chart_set_next(chart, cpu_dl, cpu_pct[CHART_POINT_NUM - 1]);
 //}
 //
-//static lv_action_res_t win_close_action(lv_obj_t * btn, LV_INDEV_t * indev_proc)
+//static lv_action_res_t win_close_action(lv_obj_t * btn)
 //{
 //    sysmon_close();
 //    return LV_ACTION_RES_INV;

@@ -66,13 +66,13 @@
 // */
 //void files_open(const char * path, const char * filter, void (*ok_action)(const char *))
 //{
-//    lv_style_get(LV_STYLE_BTN_REL, &style_list_img);
+//    lv_style_get(LV_STYLE_BUTTON_ON_RELEASED, &style_list_img);
 //    style_list_img.font = font_get(LV_IMG_DEF_SYMBOL_FONT);
 //
-//    lv_style_get(LV_STYLE_BTN_REL, &style_cbtn_rel);
+//    lv_style_get(LV_STYLE_BUTTON_ON_RELEASED, &style_cbtn_rel);
 //    style_cbtn_rel.font = font_get(LV_IMG_DEF_SYMBOL_FONT);
 //
-//    lv_style_get(LV_STYLE_BTN_PR, &style_cbtn_pr);
+//    lv_style_get(LV_STYLE_BUTTON_ON_PRESSED, &style_cbtn_pr);
 //    style_cbtn_pr.font = font_get(LV_IMG_DEF_SYMBOL_FONT);
 //
 //    /*Save the parameters*/
@@ -133,7 +133,7 @@
 //    fsel_list = lv_list_create(fsel_win, NULL);
 //    lv_obj_set_width(fsel_list, lv_win_get_width(fsel_win));
 //    lv_list_set_style_img(fsel_list, &style_list_img);
-//    lv_obj_set_style(lv_page_get_scrl(fsel_list), lv_style_get(LV_STYLE_TRANSP_TIGHT, NULL));
+//    lv_obj_set_style(lv_page_get_scrl(fsel_list), lv_style_get(LV_STYLE_TRANSPARENT_TIGHT, NULL));
 //    lv_obj_set_drag_parent(fsel_list, true);
 //    lv_obj_set_drag_parent(lv_page_get_scrl(fsel_list), true);
 //    lv_cont_set_fit(fsel_list, false, true);

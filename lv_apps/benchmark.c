@@ -68,13 +68,13 @@
 // */
 //void bechmark_open(void)
 //{
-//    lv_style_get(LV_STYLE_BTN_INA, &style_value_l);
+//    lv_style_get(LV_STYLE_BUTTON_INACTIVE, &style_value_l);
 //    style_value_l.ccolor = COLOR_BLACK;
-//    lv_style_get(LV_STYLE_BTN_REL, &style_btn_rel);
-//    lv_style_get(LV_STYLE_BTN_PR, &style_btn_pr);
-//    lv_style_get(LV_STYLE_BTN_TREL, &style_btn_trel);
-//    lv_style_get(LV_STYLE_BTN_TPR, &style_btn_tpr);
-//    lv_style_get(LV_STYLE_BTN_INA, &style_btn_ina);
+//    lv_style_get(LV_STYLE_BUTTON_ON_RELEASED, &style_btn_rel);
+//    lv_style_get(LV_STYLE_BUTTON_ON_PRESSED, &style_btn_pr);
+//    lv_style_get(LV_STYLE_BUTTON_ON_RELEASED, &style_btn_trel);
+//    lv_style_get(LV_STYLE_BUTTON_ON_PRESSED, &style_btn_tpr);
+//    lv_style_get(LV_STYLE_BUTTON_INACTIVE, &style_btn_ina);
 //    lv_style_get(LV_STYLE_PLAIN, &style_wp);
 //    style_wp.ccolor = COLOR_RED;
 //
@@ -93,7 +93,7 @@
 //    holder_page = lv_page_create(lv_scr_act(), NULL);
 //    lv_obj_set_size(holder_page, LV_HOR_RES, LV_VER_RES);
 //
-//    lv_obj_set_style(lv_page_get_scrl(holder_page), lv_style_get(LV_STYLE_TRANSP, NULL));
+//    lv_obj_set_style(lv_page_get_scrl(holder_page), lv_style_get(LV_STYLE_TRANSPARENT, NULL));
 //
 //    lv_img_create_file("app_bm_wp", img_benchmark_bg);
 //
