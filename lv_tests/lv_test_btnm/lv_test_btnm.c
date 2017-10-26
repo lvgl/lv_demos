@@ -8,8 +8,10 @@
  *********************/
 #include <stdio.h>  /*For printf in the action*/
 
-#include "lvgl/lvgl.h"
 #include "lv_test_btnm.h"
+
+#if USE_LV_BTNM != 0
+
 /*********************
  *      DEFINES
  *********************/
@@ -84,3 +86,5 @@ static lv_action_res_t btnm_action(lv_obj_t * btnm, const char * txt)
 
     return LV_ACTION_RES_OK;
 }
+
+#endif /*USE_LV_BTNM*/

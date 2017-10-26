@@ -15,6 +15,8 @@ extern "C" {
  *********************/
 #include "lvgl/lvgl.h"
 
+#if USE_LV_BTNM != 0
+
 /*********************
  *      DEFINES
  *********************/
@@ -31,6 +33,7 @@ extern "C" {
  *      MACROS
  **********************/
 
+#endif /*USE_LV_BTNM*/
 
 #ifdef __cplusplus
 } /* extern "C" */

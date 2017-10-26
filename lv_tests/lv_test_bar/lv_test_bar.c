@@ -8,6 +8,8 @@
  *********************/
 #include "lv_test_bar.h"
 
+#if USE_LV_BAR != 0
+
 /*********************
  *      DEFINES
  *********************/
@@ -65,7 +67,7 @@ void lv_test_bar_1(void)
     bar_indic.body.color_gradient = COLOR_MARRON;
     bar_indic.body.shadow.color = COLOR_RED;
     bar_indic.body.shadow.width = 20 << LV_ANTIALIAS;
-    bar_indic.body.padding.vertical = 10 << LV_ANTIALIAS;       /*Make the indicator thinner*/
+    bar_indic.body.padding.ver = 10 << LV_ANTIALIAS;       /*Make the indicator thinner*/
 
     lv_obj_t * bar4 = lv_bar_create(lv_scr_act(), bar2);
     lv_obj_align_scale(bar4, bar2, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
@@ -83,3 +85,5 @@ void lv_test_bar_1(void)
 /**********************
  *   STATIC FUNCTIONS
  **********************/
+
+#endif /*USE_LV_BAR*/
