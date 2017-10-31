@@ -63,7 +63,7 @@
 // */
 //void terminal_init(void)
 //{
-//    lv_style_copy(&style_bg, lv_style_get(LV_STYLE_PRETTY));
+//    lv_style_copy(&style_bg, &lv_style_pretty);
 //    style_bg.body.color_main = COLOR_MAKE(0x30, 0x30, 0x30);
 //    style_bg.body.color_gradient = COLOR_MAKE(0x30, 0x30, 0x30);
 //    style_bg.body.border.color = COLOR_WHITE;
@@ -71,7 +71,7 @@
 //
 //    holder = lv_page_create(lv_scr_act(), NULL);
 //    lv_obj_set_style(holder, &style_bg);
-//    lv_obj_set_style(lv_page_get_scrl(holder), lv_style_get(LV_STYLE_TRANSPARENT));
+//    lv_obj_set_style(lv_page_get_scrl(holder), &lv_style_transp);
 //    lv_obj_set_size(holder, TERMINAL_WIDTH, TERMINAL_HEIGHT);
 //    lv_page_set_sb_mode(holder, LV_PAGE_SB_MODE_AUTO);
 //

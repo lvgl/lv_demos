@@ -49,7 +49,7 @@ void lv_test_btn_1(void)
      * GOAL: A button in toggle released state */
     lv_obj_t * btn2 = lv_btn_create(lv_scr_act(), NULL);
     lv_obj_align_scale(btn2, btn1, LV_ALIGN_OUT_BOTTOM_MID, 0, 20);
-    lv_btn_set_state(btn2, LV_BTN_STATE_ON_RELEASED);
+    lv_btn_set_state(btn2, LV_BTN_STATE_TGL_RELEASED);
 
     /* Default toggle button
      * GOAL: A button which van be toggled */
@@ -68,7 +68,7 @@ void lv_test_btn_1(void)
     /* Test styles and copy
      * GOAL: Same as 'btn4' but different style in states */
     static lv_style_t style_rel;
-    lv_style_copy(&style_rel, lv_style_get(LV_STYLE_PRETTY));
+    lv_style_copy(&style_rel, &lv_style_pretty);
     style_rel.body.color_main = COLOR_ORANGE;
     style_rel.body.color_gradient = COLOR_BLACK;
     style_rel.body.border.color = COLOR_RED;
@@ -76,7 +76,7 @@ void lv_test_btn_1(void)
     style_rel.body.shadow.width = 10 << LV_ANTIALIAS;
 
     static lv_style_t style_pr;
-    lv_style_copy(&style_pr,  lv_style_get(LV_STYLE_PRETTY));
+    lv_style_copy(&style_pr,  &lv_style_pretty);
     style_pr.body.empty = 1;
     style_pr.body.border.color = COLOR_RED;
     style_pr.body.border.width = 4 << LV_ANTIALIAS;
@@ -84,23 +84,20 @@ void lv_test_btn_1(void)
     /*Skip 'tpr' because it will be let the same*/
 
     static lv_style_t style_tpr;
-    lv_style_copy(&style_tpr, lv_style_get(LV_STYLE_PRETTY));
+    lv_style_copy(&style_tpr, &lv_style_pretty);
     style_tpr.body.empty = 1;
     style_tpr.body.border.color = COLOR_RED;
     style_tpr.body.border.width = 4 << LV_ANTIALIAS;
 
     static lv_style_t style_ina;
-    lv_style_copy(&style_ina, lv_style_get(LV_STYLE_PRETTY));
+    lv_style_copy(&style_ina, &lv_style_pretty);
     style_ina.body.color_main = COLOR_SILVER;
     style_ina.body.color_gradient = COLOR_GRAY;
     style_ina.body.border.color = COLOR_RED;
 
     lv_obj_t * btn5 = lv_btn_create(lv_scr_act(), btn4);
     lv_obj_align_scale(btn5, btn4, LV_ALIGN_OUT_BOTTOM_MID, 0, 20);
-    lv_btn_set_style(btn5, LV_BTN_STATE_OFF_RELEASED, &style_rel);
-    lv_btn_set_style(btn5, LV_BTN_STATE_OFF_PRESSED, &style_pr);
-    lv_btn_set_style(btn5, LV_BTN_STATE_ON_PRESSED, &style_tpr);
-    lv_btn_set_style(btn5, LV_BTN_STATE_INACTIVE, &style_ina);
+    lv_btn_set_styles(btn5, &style_rel, &style_pr, NULL, &style_tpr, &style_ina);
     lv_btn_set_toggle(btn5, true);
 
     /* Test style copy and inactive state

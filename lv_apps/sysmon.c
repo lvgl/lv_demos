@@ -72,7 +72,7 @@
 //    memset(mem_pct, 0, sizeof(mem_pct));
 //    memset(cpu_pct, 0, sizeof(cpu_pct));
 //
-//    lv_style_copy(&style_cbtn, lv_style_get(LV_STYLE_BUTTON_ON_RELEASED));
+//    lv_style_copy(&style_cbtn, &lv_style_btn_on_released);
 //    style_cbtn.text.font = font_get(FONT_SYMBOL_30);
 //
 //    win = lv_win_create(lv_scr_act(), NULL);

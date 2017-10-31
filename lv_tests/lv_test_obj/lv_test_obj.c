@@ -39,12 +39,12 @@ void lv_test_object_1(void)
 {
     /* Create a default object and set LV_STYLE_PRETTY_COLOR style */
     lv_obj_t * obj1 = lv_obj_create(lv_scr_act(), NULL);
-    lv_obj_set_style(obj1, lv_style_get(LV_STYLE_PLAIN_COLOR));
+    lv_obj_set_style(obj1, &lv_style_plain_color);
 
 
     /*Create an object and set a user create style for it*/
     static lv_style_t style_obj2;
-    lv_style_copy(&style_obj2, lv_style_get(LV_STYLE_PRETTY));
+    lv_style_copy(&style_obj2, &lv_style_pretty);
     style_obj2.body.color_main = COLOR_RED;
     style_obj2.body.color_gradient = COLOR_BLACK;
     style_obj2.body.radius = 0;
@@ -61,7 +61,7 @@ void lv_test_object_1(void)
     /*Test drag, drag_parent, drag throw and copy*/
     lv_obj_t *obj3_parent = lv_obj_create(lv_scr_act(), NULL);
     lv_obj_align_scale(obj3_parent, obj2, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
-    lv_obj_set_style(obj3_parent, lv_style_get(LV_STYLE_PRETTY));
+    lv_obj_set_style(obj3_parent, &lv_style_pretty);
     lv_obj_set_drag(obj3_parent, true);
     lv_obj_set_drag_throw(obj3_parent, true);
 
@@ -73,7 +73,7 @@ void lv_test_object_1(void)
     /*Create a parent and 3 objects on it. Hide the parent but move 2 children to the screen*/
     lv_obj_t *obj4_parent = lv_obj_create(lv_scr_act(), NULL);
     lv_obj_set_pos(obj4_parent, lv_obj_get_x(obj1) + LV_SCALE(10), lv_obj_get_y(obj1) + lv_obj_get_height(obj1) + LV_SCALE(20));
-    lv_obj_set_style(obj4_parent, lv_style_get(LV_STYLE_PRETTY_COLOR));
+    lv_obj_set_style(obj4_parent, &lv_style_pretty_color);
     lv_obj_set_hidden(obj4_parent, true); /*Hide this and all children objects*/
 
     lv_obj_t *obj4_1 = lv_obj_create(obj4_parent, obj2);

@@ -42,7 +42,7 @@ void lv_test_cont_1(void)
     /* Create a default object*/
     lv_obj_t * cont1 = lv_cont_create(lv_scr_act(), NULL);
     lv_obj_set_pos_scale(cont1, 10, 10);
-    lv_obj_set_style(cont1, lv_style_get(LV_STYLE_PRETTY));
+    lv_obj_set_style(cont1, &lv_style_pretty);
 
     /*Test fit wit adding two labels*/
     lv_obj_t * cont2 = lv_cont_create(lv_scr_act(), cont1);
@@ -70,7 +70,7 @@ void lv_test_cont_1(void)
 
     /*Set a new style with new padding*/
     static lv_style_t cont4_style;
-    lv_style_copy(&cont4_style, lv_style_get(LV_STYLE_PRETTY_COLOR));
+    lv_style_copy(&cont4_style, &lv_style_pretty_color);
     cont4_style.body.padding.hor = 20 << LV_ANTIALIAS;
     cont4_style.body.padding.ver = 40 << LV_ANTIALIAS;
     cont4_style.body.padding.inner = 1 << LV_ANTIALIAS;
@@ -92,7 +92,7 @@ void lv_test_cont_2(void)
 
     /*Create a new style with big paddings*/
     static lv_style_t cont4_style;
-    lv_style_copy(&cont4_style, lv_style_get(LV_STYLE_PRETTY_COLOR));
+    lv_style_copy(&cont4_style, &lv_style_pretty_color);
     cont4_style.body.padding.hor = 10 << LV_ANTIALIAS;
     cont4_style.body.padding.ver = 20 << LV_ANTIALIAS;
     cont4_style.body.padding.inner = 1 << LV_ANTIALIAS;
@@ -100,7 +100,7 @@ void lv_test_cont_2(void)
     /* Create a main container*/
     lv_obj_t * cont_main = lv_cont_create(lv_scr_act(), NULL);
     lv_obj_set_pos_scale(cont_main, 50, 50);
-    lv_obj_set_style(cont_main, lv_style_get(LV_STYLE_PRETTY));
+    lv_obj_set_style(cont_main, &lv_style_pretty);
     lv_cont_set_fit(cont_main, true, true);
     lv_cont_set_layout(cont_main, LV_CONT_LAYOUT_ROW_M);
 

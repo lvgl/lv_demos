@@ -74,19 +74,19 @@ void lv_test_label_1(void)
     /* Test copying and styling dynamic label
      * GOAL: Same as 'label2' but with background */
     lv_obj_t * label5 = lv_label_create(lv_scr_act(), label2);
-    lv_obj_set_style(label5, lv_style_get(LV_STYLE_PRETTY_COLOR));
+    lv_obj_set_style(label5, &lv_style_pretty_color);
     lv_obj_align_scale(label5, label2, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
     /* Test copying and styling static label
      * GOAL: Same as 'label3' but with background */
     lv_obj_t * label6 = lv_label_create(lv_scr_act(), label3);
-    lv_obj_set_style(label6, lv_style_get(LV_STYLE_PRETTY_COLOR));
+    lv_obj_set_style(label6, &lv_style_pretty_color);
     lv_obj_align_scale(label6, label3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
     /* Test copying and styling array label
      * GOAL: Same as 'label4' but with background */
     lv_obj_t * label7 = lv_label_create(lv_scr_act(), label4);
-    lv_obj_set_style(label7, lv_style_get(LV_STYLE_PRETTY_COLOR));
+    lv_obj_set_style(label7, &lv_style_pretty_color);
     lv_obj_align_scale(label7, label4, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 }
 
@@ -98,14 +98,14 @@ void lv_test_label_2(void)
     /* LV_LABEL_LONG_EXPAND (default)
      * GOAL: A label with a long line*/
     lv_obj_t * label1 = lv_label_create(lv_scr_act(), NULL);
-    lv_obj_set_style(label1, lv_style_get(LV_STYLE_PLAIN_COLOR));    /*Set a background to clearly see the label size*/
+    lv_obj_set_style(label1, &lv_style_plain_color);    /*Set a background to clearly see the label size*/
     lv_label_set_text(label1, "This is a very long line which is not broken.");
     lv_label_set_long_mode(label1, LV_LABEL_LONG_EXPAND);
 
     /* LV_LABEL_LONG_BERAK (set width and test line break)
      * GOAL: the words are wrapped into multiple lines */
     lv_obj_t * label2 = lv_label_create(lv_scr_act(), NULL);
-    lv_obj_set_style(label2, lv_style_get(LV_STYLE_PLAIN_COLOR));
+    lv_obj_set_style(label2, &lv_style_plain_color);
     lv_label_set_text(label2, "This is a long line and a VeryVeryLongWordToWrap.\n"
                               "A new line and a lot of spaces:                        . Can you see them?");
     lv_label_set_long_mode(label2, LV_LABEL_LONG_BREAK);
@@ -115,7 +115,7 @@ void lv_test_label_2(void)
     /* LV_LABEL_LONG_ROLL (set size and test rolling)
      * GOAL: the text is rolled in both directions*/
     lv_obj_t * label3 = lv_label_create(lv_scr_act(), NULL);
-    lv_obj_set_style(label3, lv_style_get(LV_STYLE_PLAIN_COLOR));
+    lv_obj_set_style(label3, &lv_style_plain_color);
     lv_label_set_text(label3, "This is a text to roll\nin both\ndirections:\nhorizontally and vertically");
     lv_label_set_long_mode(label3, LV_LABEL_LONG_ROLL);
     lv_obj_align_scale(label3, label2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
@@ -124,11 +124,11 @@ void lv_test_label_2(void)
     /* LV_LABEL_LONG_SCROLL (create a parent and label on it)
      * GOAL: the text is scrolled in both directions */
     lv_obj_t * bg1 = lv_obj_create(lv_scr_act(), NULL);
-    lv_obj_set_style(bg1, lv_style_get(LV_STYLE_PRETTY));
+    lv_obj_set_style(bg1, &lv_style_pretty);
     lv_obj_align_scale(bg1, label3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
     lv_obj_t * label4 = lv_label_create(bg1, NULL);
-    lv_obj_set_style(label4, lv_style_get(LV_STYLE_PLAIN_COLOR));
+    lv_obj_set_style(label4, &lv_style_plain_color);
     lv_label_set_text(label4, "This is a text to roll\nin both\ndirections:\nhorizontally and vertically");
     lv_label_set_long_mode(label4, LV_LABEL_LONG_SCROLL);
 

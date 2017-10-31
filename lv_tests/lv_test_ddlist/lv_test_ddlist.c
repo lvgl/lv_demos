@@ -58,8 +58,8 @@ void lv_test_ddlist_1(void)
     /*Copy the previous drop down list and modify its style*/
     lv_obj_t * ddlist3 = lv_ddlist_create(lv_scr_act(), ddlist2);
     lv_obj_align_scale(ddlist3, ddlist2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
-    lv_ddlist_set_selected_style(ddlist3, lv_style_get(LV_STYLE_PLAIN_COLOR));
-    lv_obj_set_style(ddlist3, lv_style_get(LV_STYLE_PRETTY_COLOR));
+    lv_ddlist_set_selected_style(ddlist3, &lv_style_plain_color);
+    lv_obj_set_style(ddlist3, &lv_style_pretty_color);
 
 }
 

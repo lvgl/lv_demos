@@ -23,7 +23,7 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static lv_action_res_t btnm_action(lv_obj_t * btnm, const char * txt);
+static lv_res_t btnm_action(lv_obj_t * btnm, const char * txt);
 
 /**********************
  *  STATIC VARIABLES
@@ -53,13 +53,13 @@ void lv_test_btnm_1(void)
     /* Test map, size and position. Also try some features.
      * GOAL: A button matrix with default buttons.  */
     static lv_style_t rel;
-    lv_style_copy(&rel, lv_style_get(LV_STYLE_BUTTON_ON_RELEASED));
+    lv_style_copy(&rel, &lv_style_btn_on_released);
     rel.body.color_main = COLOR_RED;
     rel.body.color_gradient = COLOR_BLACK;
     rel.text.color = COLOR_YELLOW;
 
     static lv_style_t pr;
-    lv_style_copy(&pr, lv_style_get(LV_STYLE_BUTTON_ON_RELEASED));
+    lv_style_copy(&pr, &lv_style_btn_on_released);
     pr.body.color_main = COLOR_ORANGE;
     pr.body.color_gradient = COLOR_BLACK;
     pr.text.color = COLOR_WHITE;
@@ -71,20 +71,19 @@ void lv_test_btnm_1(void)
     lv_obj_align(btnm2, btnm1, LV_ALIGN_OUT_BOTTOM_MID, 0, 20);
     lv_btnm_set_toggle(btnm2, true, 2);
     lv_btnm_set_action(btnm2, btnm_action);
-    lv_btnm_set_button_style(btnm2, LV_BTN_STATE_OFF_RELEASED, &rel);
-    lv_btnm_set_button_style(btnm2, LV_BTN_STATE_OFF_PRESSED, &pr);
+    lv_btnm_set_button_style(btnm2, &rel, &pr, NULL, NULL, NULL);
 }
 
 /**********************
  *   STATIC FUNCTIONS
  **********************/
 
-static lv_action_res_t btnm_action(lv_obj_t * btnm, const char * txt)
+static lv_res_t btnm_action(lv_obj_t * btnm, const char * txt)
 {
     /* On PC */
      printf("%s\n", txt);
 
-    return LV_ACTION_RES_OK;
+    return LV_RES_OK;
 }
 
 #endif /*USE_LV_BTNM*/
