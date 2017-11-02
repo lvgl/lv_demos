@@ -50,7 +50,7 @@ void lv_test_object_1(void)
     style_obj2.body.radius = 0;
     style_obj2.body.border.color = COLOR_WHITE;
     style_obj2.body.border.width = 4 << LV_ANTIALIAS;
-    style_obj2.opa = OPA_50;
+    style_obj2.body.opa = OPA_50;
     style_obj2.body.shadow.width = 10 << LV_ANTIALIAS;
 
     lv_obj_t *obj2 = lv_obj_create(lv_scr_act(), NULL);
