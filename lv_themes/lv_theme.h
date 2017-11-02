@@ -23,6 +23,7 @@ extern "C" {
  **********************/
 typedef struct {
     lv_style_t *bg;
+    lv_style_t *panel;
 
     struct {
         struct {
@@ -85,6 +86,17 @@ typedef struct {
 
     struct {
         lv_style_t *bg;
+        struct {
+            lv_style_t *rel;
+            lv_style_t *pr;
+            lv_style_t *trel;
+            lv_style_t *tpr;
+            lv_style_t *ina;
+        }bullet;
+    }cb;
+
+    struct {
+        lv_style_t *bg;
         lv_style_t *rel;
         lv_style_t *pr;
         lv_style_t *trel;
@@ -141,7 +153,7 @@ typedef struct {
 /**********************
  *  GLOBAL PROTOTYPES
  **********************/
-void lv_theme_alien_init(font_t *font_sm, font_t *font_md, font_t *font_lg);
+void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t *font_lg);
 lv_theme_t * lv_theme_get_alien(void) ;
 
 /**********************
