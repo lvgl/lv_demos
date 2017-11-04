@@ -42,11 +42,11 @@ void lv_test_gauge_1(void)
     /* Create a default object*/
     lv_obj_t *gauge1 = lv_gauge_create(lv_scr_act(), NULL);
     lv_obj_set_pos_scale(gauge1, 10, 10);
-    lv_bar_set_value(gauge1, 75);
+    lv_gauge_set_value(gauge1, 0, 75);
 
     /*Copy the previous gauge and set smaller size for it*/
     lv_obj_t *gauge2 = lv_gauge_create(lv_scr_act(), gauge1);
-    lv_obj_set_size_scale(gauge2, 100, 100);
+    lv_obj_set_size(gauge2, LV_DPI,  LV_DPI);
     lv_obj_align_scale(gauge2, gauge1, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
 
     /*Copy the first gauge add more needles and set new style*/
@@ -65,9 +65,8 @@ void lv_test_gauge_1(void)
     lv_obj_t *gauge3 = lv_gauge_create(lv_scr_act(), gauge1);
     lv_obj_align_scale(gauge3, gauge1, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
     lv_obj_set_style(gauge3, &style3);
-    lv_lmeter_set_scale(gauge3, 270, 41);
-    lv_gauge_set_label_count(gauge3, 5);
-    lv_gauge_set_needle_num(gauge3, 3, needle_colors);
+    lv_gauge_set_scale(gauge3, 270, 41, 5);
+    lv_gauge_set_needle_count(gauge3, 3, needle_colors);
     lv_gauge_set_value(gauge3, 0, 20);
     lv_gauge_set_value(gauge3, 1, 40);
     lv_gauge_set_value(gauge3, 2, 60);

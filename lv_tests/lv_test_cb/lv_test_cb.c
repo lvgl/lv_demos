@@ -88,8 +88,7 @@ void lv_test_cb_1(void)
 
     /*Copy the previous check box and apply the new styles*/
     lv_obj_t *cb3 = lv_cb_create(lv_scr_act(), cb2);
-    lv_obj_t *bullet3 = lv_cb_get_bullet(cb3);
-    lv_btn_set_styles(bullet3, &cb3_styles[LV_BTN_STATE_RELEASED], &cb3_styles[LV_BTN_STATE_PRESSED],
+    lv_cb_set_style_bullet(cb3, &cb3_styles[LV_BTN_STATE_RELEASED], &cb3_styles[LV_BTN_STATE_PRESSED],
                                &cb3_styles[LV_BTN_STATE_TGL_RELEASED], &cb3_styles[LV_BTN_STATE_TGL_PRESSED],
                                &cb3_styles[LV_BTN_STATE_INACTIVE]);
     lv_obj_align_scale(cb3, cb2, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);

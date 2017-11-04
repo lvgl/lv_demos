@@ -46,7 +46,7 @@ void lv_theme_create_test_screen(lv_theme_t *th)
     //lv_obj_set_style(scr, th->bg);
 
     lv_obj_t *tv = lv_tabview_create(scr, NULL);
-    lv_btnm_set_button_style(lv_tabview_get_tabs(tv), th->tab.rel, th->tab.pr, th->tab.trel, th->tab.tpr, NULL);
+    lv_btnm_set_style_btn(lv_tabview_get_tabs(tv), th->tab.rel, th->tab.pr, th->tab.trel, th->tab.tpr, NULL);
     lv_obj_set_style(lv_tabview_get_indic(tv), th->tab.indic);
     lv_obj_set_style(tv, th->bg);
     lv_obj_set_size(tv, LV_HOR_RES, LV_VER_RES);
@@ -63,18 +63,18 @@ void lv_theme_create_test_screen(lv_theme_t *th)
     lv_cont_set_layout(h, LV_CONT_LAYOUT_COL_M);
 
     lv_obj_t *btn = lv_btn_create(h, NULL);
-    lv_btn_set_styles(btn, th->btn.sm.rel, th->btn.sm.pr, th->btn.sm.trel, th->btn.sm.tpr, th->btn.sm.ina);
+    lv_btn_set_style(btn, th->btn.sm.rel, th->btn.sm.pr, th->btn.sm.trel, th->btn.sm.tpr, th->btn.sm.ina);
     lv_cont_set_fit(btn, true, true);
     lv_obj_t *btn_label = lv_label_create(btn, NULL);
     lv_label_set_text(btn_label, "Small");
 
     btn = lv_btn_create(h, btn);
-    lv_btn_set_styles(btn, th->btn.md.rel, th->btn.md.pr, th->btn.md.trel, th->btn.md.tpr, th->btn.md.ina);
+    lv_btn_set_style(btn, th->btn.md.rel, th->btn.md.pr, th->btn.md.trel, th->btn.md.tpr, th->btn.md.ina);
     btn_label = lv_label_create(btn, NULL);
     lv_label_set_text(btn_label, "Medium");
 
     btn = lv_btn_create(h, btn);
-    lv_btn_set_styles(btn, th->btn.lg.rel, th->btn.lg.pr, th->btn.lg.trel, th->btn.lg.tpr, th->btn.lg.ina);
+    lv_btn_set_style(btn, th->btn.lg.rel, th->btn.lg.pr, th->btn.lg.trel, th->btn.lg.tpr, th->btn.lg.ina);
     btn_label = lv_label_create(btn, NULL);
     lv_label_set_text(btn_label, "Large");
 
@@ -97,23 +97,19 @@ void lv_theme_create_test_screen(lv_theme_t *th)
 //    lv_btn_set_styles(lv_cb_get_bullet(cb), th->cb);
 
     h = lv_cont_create(tab1, h);
+
     lv_obj_t *sw = lv_sw_create(h, NULL);
-    lv_obj_set_style(sw, th->sw.bg);
-    lv_bar_set_indicator_style(sw, th->sw.indic);
-    lv_slider_set_knob_style(sw, th->sw.knob);
+    lv_sw_set_style(sw, th->sw.bg, th->sw.indic, th->sw.knob);
 
     sw = lv_sw_create(h, sw);
-    lv_bar_set_value(sw, 1);
+    lv_sw_set_on(sw);
 
     lv_obj_t *bar = lv_bar_create(h, NULL);
-    lv_obj_set_style(bar, th->bar.bg);
-    lv_bar_set_indicator_style(bar, th->bar.indic);
+    lv_bar_set_style(bar, th->bar.bg, th->bar.indic);
     lv_bar_set_value(bar, 70);
 
     lv_obj_t *slider = lv_slider_create(h, NULL);
-    lv_obj_set_style(slider, th->slider.bg);
-    lv_bar_set_indicator_style(slider, th->slider.indic);
-    lv_slider_set_knob_style(slider, th->slider.knob);
+    lv_slider_set_style(slider, th->slider.bg, th->slider.indic, th->slider.knob);
     lv_obj_set_height(slider, LV_DPI / 2);
     lv_bar_set_value(slider, 70);
 
@@ -123,16 +119,15 @@ void lv_theme_create_test_screen(lv_theme_t *th)
     lv_ta_set_one_line(ta, true);
 
     lv_obj_t *cb = lv_cb_create(h, NULL);
-    lv_btn_set_styles(lv_cb_get_bullet(cb), th->cb.bullet.rel, th->cb.bullet.pr, th->cb.bullet.trel, th->cb.bullet.tpr, th->cb.bullet.ina);
-    lv_btn_set_styles(cb, th->cb.bg, th->cb.bg, th->cb.bg, th->cb.bg, th->cb.bg);
+    lv_cb_set_style_bullet(cb, th->cb.bullet.rel, th->cb.bullet.pr, th->cb.bullet.trel, th->cb.bullet.tpr, th->cb.bullet.ina);
+    lv_cb_set_style_bg(cb, th->cb.bg);
     cb = lv_cb_create(h, cb);
     lv_btn_set_state(cb, LV_BTN_STATE_TGL_RELEASED);
 
 
     lv_obj_t * list = lv_list_create(tab1, NULL);
-    lv_list_set_btn_styles(list, th->list.rel, th->list.pr, th->list.trel, th->list.tpr, th->list.ina);
-    lv_obj_set_style(lv_page_get_scrl(list), &lv_style_transp_tight);
-    lv_page_set_style_sb(list, th->list.sb);
+    lv_list_set_style_btn(list, th->list.rel, th->list.pr, th->list.trel, th->list.tpr, th->list.ina);
+    lv_page_set_style(list, NULL, &lv_style_transp_tight, th->list.sb);
     lv_list_add(list, symbol_gps, "GPS", NULL);
     lv_list_add(list, symbol_wifi, "WiFi", NULL);
     lv_list_add(list, symbol_call, "Call", NULL);
@@ -143,6 +138,7 @@ void lv_theme_create_test_screen(lv_theme_t *th)
     lv_list_add(list, symbol_copy, "Copy", NULL);
 
 
+    return;
 
     static const char *btnm_str[] = {"1", "2", "3", "\n", "4", "5", "6", "\n", "7", "8", "9", "\n", symbol_close, "0", symbol_ok, ""};
 

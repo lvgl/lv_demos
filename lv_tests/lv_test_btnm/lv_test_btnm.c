@@ -71,7 +71,7 @@ void lv_test_btnm_1(void)
     lv_obj_align(btnm2, btnm1, LV_ALIGN_OUT_BOTTOM_MID, 0, 20);
     lv_btnm_set_toggle(btnm2, true, 2);
     lv_btnm_set_action(btnm2, btnm_action);
-    lv_btnm_set_button_style(btnm2, &rel, &pr, NULL, NULL, NULL);
+    lv_btnm_set_style_btn(btnm2, &rel, &pr, NULL, NULL, NULL);
 }
 
 /**********************

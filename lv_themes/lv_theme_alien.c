@@ -113,8 +113,8 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
 
     def.text.color = COLOR_HEX3(0xDDD);
     def.text.font = font_sm;
-    def.text.space_letter = 1 << LV_ANTIALIAS;
-    def.text.space_line = 2 << LV_ANTIALIAS;
+    def.text.letter_space = 1 << LV_ANTIALIAS;
+    def.text.line_space = 2 << LV_ANTIALIAS;
 
     def.image.color = COLOR_HEX3(0xDDD);
     def.image.intense = OPA_TRANSP;
@@ -348,8 +348,8 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
     lv_style_copy(&list_rel, &def);
     list_rel.body.empty = 1;
     list_rel.body.border.width = 1 << LV_ANTIALIAS;
-    list_rel.body.border.color = color_hsv_to_rgb(hue, 42, 45);
-    list_rel.body.border.opa = OPA_40;
+    list_rel.body.border.color = color_hsv_to_rgb(hue, 50, 85);
+    list_rel.body.border.opa = OPA_70;
     list_rel.text.color = color_hsv_to_rgb(hue, 10, 94);
     list_rel.text.font = font_sm;
 

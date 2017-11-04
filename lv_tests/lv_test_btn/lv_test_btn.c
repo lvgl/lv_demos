@@ -41,32 +41,28 @@ static void width_dec(lv_obj_t * btn);
  */
 void lv_test_btn_1(void)
 {
-    /* Default object
-     * GOAL: A button which looks well */
+    /* Create a button which looks well */
     lv_obj_t * btn1 = lv_btn_create(lv_scr_act(), NULL);
 
-    /* Default button manually set to toggles state
-     * GOAL: A button in toggle released state */
+    /* Create a default button manually set to toggled state*/
     lv_obj_t * btn2 = lv_btn_create(lv_scr_act(), NULL);
     lv_obj_align_scale(btn2, btn1, LV_ALIGN_OUT_BOTTOM_MID, 0, 20);
     lv_btn_set_state(btn2, LV_BTN_STATE_TGL_RELEASED);
 
-    /* Default toggle button
-     * GOAL: A button which van be toggled */
+    /* Create a button which can be toggled */
     lv_obj_t * btn3 = lv_btn_create(lv_scr_act(), NULL);
     lv_obj_align_scale(btn3, btn2, LV_ALIGN_OUT_BOTTOM_MID, 0, 20);
     lv_btn_set_toggle(btn3, true);
 
-    /* Test actions
-     * GOAL: Press: increase width, Release: decrease width, Long press: delete */
+    /* Test actions:
+     * Press: increase width, Release: decrease width, Long press: delete */
     lv_obj_t * btn4 = lv_btn_create(lv_scr_act(), NULL);
     lv_obj_align_scale(btn4, btn1, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
     lv_btn_set_action(btn4, LV_BTN_ACTION_PRESS, width_inc);
     lv_btn_set_action(btn4, LV_BTN_ACTION_RELEASE, width_dec);
     lv_btn_set_action(btn4,  LV_BTN_ACTION_LONG_PRESS, lv_obj_del);
 
-    /* Test styles and copy
-     * GOAL: Same as 'btn4' but different style in states */
+    /* Test styles and copy. Same as 'btn4' but different styles */
     static lv_style_t style_rel;
     lv_style_copy(&style_rel, &lv_style_pretty);
     style_rel.body.color_main = COLOR_ORANGE;
@@ -95,16 +91,26 @@ void lv_test_btn_1(void)
     style_ina.body.color_gradient = COLOR_GRAY;
     style_ina.body.border.color = COLOR_RED;
 
+    /*Create styled button*/
     lv_obj_t * btn5 = lv_btn_create(lv_scr_act(), btn4);
     lv_obj_align_scale(btn5, btn4, LV_ALIGN_OUT_BOTTOM_MID, 0, 20);
-    lv_btn_set_styles(btn5, &style_rel, &style_pr, NULL, &style_tpr, &style_ina);
+    lv_btn_set_style(btn5, &style_rel, &style_pr, NULL, &style_tpr, &style_ina);
     lv_btn_set_toggle(btn5, true);
 
-    /* Test style copy and inactive state
-     * GOAL: Non-default inactive style and no actions called*/
+    /* Test style copy and inactive state*/
     lv_obj_t * btn6 = lv_btn_create(lv_scr_act(), btn5);
     lv_obj_align_scale(btn6, btn5, LV_ALIGN_OUT_BOTTOM_MID, 0, 20);
     lv_btn_set_state(btn6, LV_BTN_STATE_INACTIVE);
+
+    /*Test horizontal fit and default layout (CENTER)*/
+    lv_obj_t * btn7 = lv_btn_create(lv_scr_act(), NULL);
+    lv_btn_set_fit(btn7, true, false);
+    lv_obj_t *label = lv_label_create(btn7, NULL);
+    lv_label_set_text(label, "A quite long text");
+    label = lv_label_create(btn7, NULL);
+    lv_label_set_text(label, "Short text");
+    lv_obj_align_scale(btn7, btn4, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
+
 }
 
 
