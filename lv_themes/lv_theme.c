@@ -46,8 +46,9 @@ void lv_theme_create_test_screen(lv_theme_t *th)
     //lv_obj_set_style(scr, th->bg);
 
     lv_obj_t *tv = lv_tabview_create(scr, NULL);
-    lv_btnm_set_style_btn(lv_tabview_get_tabs(tv), th->tab.rel, th->tab.pr, th->tab.trel, th->tab.tpr, NULL);
-    lv_obj_set_style(lv_tabview_get_indic(tv), th->tab.indic);
+    lv_btnm_set_style_btn(lv_tabview_get_tabs(tv), th->tabview.tab.rel, th->tabview.tab.pr,
+                                                   th->tabview.tab.trel, th->tabview.tab.tpr, NULL);
+    lv_obj_set_style(lv_tabview_get_indic(tv), th->tabview.indic);
     lv_obj_set_style(tv, th->bg);
     lv_obj_set_size(tv, LV_HOR_RES, LV_VER_RES);
     lv_obj_t *tab1 = lv_tabview_add_tab(tv, "Tab 1");
@@ -64,11 +65,23 @@ void lv_theme_create_test_screen(lv_theme_t *th)
 
     lv_obj_t *btn = lv_btn_create(h, NULL);
     lv_btn_set_style(btn, th->btn.sm.rel, th->btn.sm.pr, th->btn.sm.trel, th->btn.sm.tpr, th->btn.sm.ina);
-    lv_cont_set_fit(btn, true, true);
+    lv_btn_set_fit(btn, true, true);
+    lv_btn_set_toggle(btn, true);
     lv_obj_t *btn_label = lv_label_create(btn, NULL);
     lv_label_set_text(btn_label, "Small");
 
     btn = lv_btn_create(h, btn);
+    lv_btn_toggle(btn);
+    btn_label = lv_label_create(btn, NULL);
+    lv_label_set_text(btn_label, "Toggled");
+
+    btn = lv_btn_create(h, btn);
+    lv_btn_set_state(btn, LV_BTN_STATE_INACTIVE);
+    btn_label = lv_label_create(btn, NULL);
+    lv_label_set_text(btn_label, "Inactive");
+
+    btn = lv_btn_create(h, btn);
+    lv_btn_set_state(btn, LV_BTN_STATE_RELEASED);
     lv_btn_set_style(btn, th->btn.md.rel, th->btn.md.pr, th->btn.md.trel, th->btn.md.tpr, th->btn.md.ina);
     btn_label = lv_label_create(btn, NULL);
     lv_label_set_text(btn_label, "Medium");
@@ -90,11 +103,6 @@ void lv_theme_create_test_screen(lv_theme_t *th)
     lv_label_set_text(label, "Large");
     lv_obj_set_style(label, th->label.lg);
     lv_obj_set_protect(label, LV_PROTECT_FOLLOW);
-
-   // lv_obj_align_scale(kb, NULL, LV_ALIGN_IN_TOP_RIGHT, 10, 10);
-
-//    lv_obj_t *cb = lv_cb_create(scr, NULL);
-//    lv_btn_set_styles(lv_cb_get_bullet(cb), th->cb);
 
     h = lv_cont_create(tab1, h);
 
@@ -125,9 +133,14 @@ void lv_theme_create_test_screen(lv_theme_t *th)
     lv_btn_set_state(cb, LV_BTN_STATE_TGL_RELEASED);
 
 
-    lv_obj_t * list = lv_list_create(tab1, NULL);
-    lv_list_set_style_btn(list, th->list.rel, th->list.pr, th->list.trel, th->list.tpr, th->list.ina);
-    lv_page_set_style(list, NULL, &lv_style_transp_tight, th->list.sb);
+    lv_obj_t *ddlist = lv_ddlist_create(h, NULL);
+    lv_ddlist_set_style(ddlist, th->ddlist.bg, th->ddlist.sb, th->ddlist.sel);
+
+    h = lv_cont_create(tab1, h);
+
+    lv_obj_t * list = lv_list_create(h, NULL);
+    lv_list_set_style_btn(list, th->list.btn.rel, th->list.btn.pr, th->list.btn.trel, th->list.btn.tpr, th->list.btn.ina);
+    lv_page_set_style(list, th->list.bg, &lv_style_transp_tight, th->list.sb);
     lv_list_add(list, symbol_gps, "GPS", NULL);
     lv_list_add(list, symbol_wifi, "WiFi", NULL);
     lv_list_add(list, symbol_call, "Call", NULL);
@@ -137,6 +150,11 @@ void lv_theme_create_test_screen(lv_theme_t *th)
     lv_list_add(list, symbol_cut, "Cut", NULL);
     lv_list_add(list, symbol_copy, "Copy", NULL);
 
+
+    lv_obj_t *roller = lv_roller_create(h, NULL);
+    lv_ddlist_set_style(roller, th->roller.bg, NULL, th->roller.sel);
+    lv_ddlist_set_options(roller, "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday");
+    lv_obj_set_height(roller, LV_DPI);
 
     return;
 

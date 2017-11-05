@@ -98,7 +98,7 @@ void lv_test_page_2(void)
     scrl.body.shadow.width = 15 << LV_ANTIALIAS;
     scrl.text.color = COLOR_SILVER;
 
-    sb.body.padding.hor = 5 << LV_ANTIALIAS;
+    sb.body.padding.hor = (-10) << LV_ANTIALIAS;    /*Out of the page*/
     sb.body.padding.ver = 10 << LV_ANTIALIAS;
     sb.body.padding.inner = 10 << LV_ANTIALIAS;
     sb.body.color_main = COLOR_WHITE;
@@ -123,19 +123,19 @@ void lv_test_page_2(void)
 
     /*Copy 'page1' and set scrollbar ON*/
     lv_obj_t *page2 = lv_page_create(lv_scr_act(), page1);
-    lv_obj_align(page2, page1, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
+    lv_obj_align_scale(page2, page1, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     label = lv_label_create(page2, label);
     lv_page_set_sb_mode(page2, LV_PAGE_SB_MODE_ON);
 
     /*Copy 'page1' and set scrollbar AUTO*/
     lv_obj_t *page3 = lv_page_create(lv_scr_act(), page1);
-    lv_obj_align(page3, page2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
+    lv_obj_align_scale(page3, page2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     label = lv_label_create(page3, label);
     lv_page_set_sb_mode(page3, LV_PAGE_SB_MODE_AUTO);
 
     /*Copy 'page1' and set scrollbar DRAG*/
     lv_obj_t *page4 = lv_page_create(lv_scr_act(), page1);
-    lv_obj_align(page4, page3, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
+    lv_obj_align_scale(page4, page3, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     label = lv_label_create(page4, label);
     lv_page_set_sb_mode(page4, LV_PAGE_SB_MODE_DRAG);
 

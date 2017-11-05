@@ -49,7 +49,7 @@ void lv_test_ddlist_1(void)
      * Open it by default without animation.*/
     lv_obj_t * ddlist2 = lv_ddlist_create(lv_scr_act(), NULL);
     lv_obj_align_scale(ddlist2, ddlist1, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
-    lv_ddlist_set_options_str(ddlist2, "First\nSecond\nThird\nForth\nFifth\nSixth");
+    lv_ddlist_set_options(ddlist2, "First\nSecond\nThird\nForth\nFifth\nSixth");
     lv_ddlist_set_fix_height(ddlist2, 100 << LV_ANTIALIAS);
     lv_ddlist_set_selected(ddlist2, 2);
     lv_ddlist_set_anim_time(ddlist2, 100);

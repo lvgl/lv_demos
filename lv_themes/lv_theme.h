@@ -24,7 +24,7 @@ extern "C" {
 typedef struct {
     lv_style_t *bg;
     lv_style_t *panel;
-
+#if USE_LV_BTN != 0
     struct {
         struct {
             lv_style_t *rel;
@@ -50,40 +50,84 @@ typedef struct {
             lv_style_t *ina;
         }lg;
     }btn;
+#endif
 
+#if USE_LV_LABEL != 0
     struct {
         lv_style_t *sm;
         lv_style_t *md;
         lv_style_t *lg;
     }label;
+#endif
 
+#if USE_LV_BAR != 0
     struct {
         lv_style_t *bg;
         lv_style_t *indic;
     }bar;
+#endif
 
+#if USE_LV_SLIDER != 0
     struct {
         lv_style_t *bg;
         lv_style_t *indic;
         lv_style_t *knob;
     }slider;
+#endif
 
+#if USE_LV_SW != 0
     struct {
         lv_style_t *bg;
         lv_style_t *indic;
         lv_style_t *knob;
     }sw;
+#endif
 
+#if USE_LV_PAGE != 0
+    struct {
+        lv_style_t *bg;
+        lv_style_t *scrl;
+        lv_style_t *sb;
+    }page;
+#endif
+
+#if USE_LV_TA != 0
     struct {
         lv_style_t *area;
         lv_style_t *oneline;
         lv_style_t *sb;
     }ta;
+#endif
 
+#if USE_LV_LIST
+    struct {
+        lv_style_t *bg;
+        lv_style_t *sb;
+        struct {
+            lv_style_t *rel;
+            lv_style_t *pr;
+            lv_style_t *trel;
+            lv_style_t *tpr;
+            lv_style_t *ina;
+        }btn;
+    }list;
+#endif
+
+#if USE_LV_DDLIST != 0
+    struct {
+        lv_style_t *bg;
+        lv_style_t *sel;
+        lv_style_t *sb;
+    }ddlist;
+#endif
+
+#if USE_LV_CHART != 0
     struct {
         lv_style_t *bg;
     }chart;
+#endif
 
+#if USE_LV_CB != 0
     struct {
         lv_style_t *bg;
         struct {
@@ -94,7 +138,9 @@ typedef struct {
             lv_style_t *ina;
         }bullet;
     }cb;
+#endif
 
+#if USE_LV_BTNM != 0
     struct {
         lv_style_t *bg;
         lv_style_t *rel;
@@ -102,40 +148,38 @@ typedef struct {
         lv_style_t *trel;
         lv_style_t *tpr;
     }btnm;
+#endif
 
+#if USE_LV_TABVIEW != 0
     struct {
+        lv_style_t *bg;
+        lv_style_t *sb;
         lv_style_t *indic;
-        lv_style_t *rel;
-        lv_style_t *pr;
-        lv_style_t *trel;
-        lv_style_t *tpr;
-    }tab;
+        struct {
+            lv_style_t *rel;
+            lv_style_t *pr;
+            lv_style_t *trel;
+            lv_style_t *tpr;
+        }tab;
+    }tabview;
+#endif
 
+#if USE_LV_MBOX != 0
     struct {
         lv_style_t *bg;
         lv_style_t *rel;
         lv_style_t *pr;
     }mbox;
+#endif
 
-    struct {
-        lv_style_t *rel;
-        lv_style_t *pr;
-        lv_style_t *trel;
-        lv_style_t *tpr;
-        lv_style_t *ina;
-        lv_style_t *sb;
-    }list;
-
-    struct {
-        lv_style_t *bg;
-        lv_style_t *sel;
-    }ddlist;
-
+#if USE_LV_ROLLER != 0
     struct {
         lv_style_t *bg;
         lv_style_t *sel;
     }roller;
+#endif
 
+#if USE_LV_WIN != 0
     struct {
         lv_style_t *bg;
         lv_style_t *header;
@@ -148,6 +192,7 @@ typedef struct {
             lv_style_t *scrl;
         }cont;
     }win;
+#endif
 }lv_theme_t;
 
 /**********************

@@ -30,6 +30,7 @@ static lv_style_t def;
 static lv_style_t bg;
 
 static lv_style_t panel;        /*General fancy background (for e.g. chart or ta)*/
+static lv_style_t sb;
 
 static lv_style_t label_sm;
 static lv_style_t label_md;
@@ -60,6 +61,19 @@ static lv_style_t sw_bg;
 static lv_style_t sw_indic;
 static lv_style_t sw_knob;
 
+static lv_style_t list_bg;
+static lv_style_t list_rel;
+static lv_style_t list_pr;
+static lv_style_t list_trel;
+static lv_style_t list_tpr;
+static lv_style_t list_ina;
+
+static lv_style_t ddlist_bg;
+static lv_style_t ddlist_sel;
+
+static lv_style_t roller_bg;
+static lv_style_t roller_sel;
+
 static lv_style_t cb_bg;
 static lv_style_t cb_rel;
 static lv_style_t cb_pr;
@@ -67,21 +81,11 @@ static lv_style_t cb_trel;
 static lv_style_t cb_tpr;
 static lv_style_t cb_ina;
 
-static lv_style_t ta_sb;
-
 static lv_style_t tab_rel;
 static lv_style_t tab_pr;
 static lv_style_t tab_trel;
 static lv_style_t tab_tpr;
 static lv_style_t tab_indic;
-
-static lv_style_t list_rel;
-static lv_style_t list_pr;
-static lv_style_t list_trel;
-static lv_style_t list_tpr;
-static lv_style_t list_ina;
-static lv_style_t list_sb;
-
 
 /**********************
  *      MACROS
@@ -140,13 +144,27 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
     panel.body.border.opa = OPA_60;
     panel.text.color = color_hsv_to_rgb(hue, 8, 96);
 
+    /*Scrollbar*/
+    lv_style_copy(&sb, &def);
+    sb.body.opa = OPA_50;
+    sb.body.radius = LV_RADIUS_CIRCLE;
+    sb.body.border.color = COLOR_SILVER;
+    sb.body.border.opa = OPA_40;
+    sb.body.border.width = 1 << LV_ANTIALIAS;
+    sb.body.color_main = color_hsv_to_rgb(hue, 33, 92);
+    sb.body.color_gradient = color_hsv_to_rgb(hue, 33, 92);
+    sb.body.padding.hor = 3 << LV_ANTIALIAS;
+    sb.body.padding.ver = 3 << LV_ANTIALIAS;
+    sb.body.padding.inner = LV_DPI / 10;      /*Scrollbar width*/
+
     /*Buttons*/
+#if USE_LV_BTN != 0
     lv_style_copy(&btn_sm_rel, &def);
     btn_sm_rel.glass = 0;
     btn_sm_rel.body.empty = 1;
     btn_sm_rel.body.radius = LV_RADIUS_CIRCLE;
     btn_sm_rel.body.border.width = 3 << LV_ANTIALIAS;
-    btn_sm_rel.body.border.color = color_hsv_to_rgb(hue, 81, 91);
+    btn_sm_rel.body.border.color = color_hsv_to_rgb(hue, 70, 90);
     btn_sm_rel.body.border.opa = OPA_80;
     btn_sm_rel.body.padding.hor = LV_DPI / 4;
     btn_sm_rel.body.padding.ver = LV_DPI / 6;
@@ -163,6 +181,32 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
     btn_sm_pr.text.font = font_sm;
     btn_sm_pr.text.color = color_hsv_to_rgb(hue, 10, 100);
 
+    lv_style_copy(&btn_sm_trel, &btn_sm_pr);
+    btn_sm_trel.body.opa = OPA_COVER;
+    btn_sm_trel.body.empty = 0;
+    btn_sm_trel.body.color_main = color_hsv_to_rgb(hue, 50, 60);
+    btn_sm_trel.body.color_gradient = color_hsv_to_rgb(hue, 50, 60);
+    btn_sm_trel.body.border.opa = OPA_60;
+    btn_sm_trel.body.border.color = color_hsv_to_rgb(hue, 80, 90);
+    btn_sm_trel.text.font = font_sm;
+    btn_sm_trel.text.color = color_hsv_to_rgb(hue, 0, 100);
+
+    lv_style_copy(&btn_sm_tpr, &btn_sm_trel);
+    btn_sm_tpr.body.opa = OPA_COVER;
+    btn_sm_tpr.body.empty = 0;
+    btn_sm_tpr.body.color_main = color_hsv_to_rgb(hue, 50, 50);
+    btn_sm_tpr.body.color_gradient = color_hsv_to_rgb(hue, 50, 50);
+    btn_sm_tpr.body.border.opa = OPA_60;
+    btn_sm_tpr.body.border.color = color_hsv_to_rgb(hue, 80, 70);
+    btn_sm_tpr.text.font = font_sm;
+    btn_sm_tpr.text.color = color_hsv_to_rgb(hue, 10, 90);
+
+    lv_style_copy(&btn_sm_ina, &btn_sm_rel);
+    btn_sm_ina.body.border.opa = OPA_60;
+    btn_sm_ina.body.border.color = color_hsv_to_rgb(hue, 10, 50);
+    btn_sm_ina.text.font = font_sm;
+    btn_sm_ina.text.color = color_hsv_to_rgb(hue, 10, 90);
+
     lv_style_copy(&btn_md_rel, &btn_sm_rel);
     btn_md_rel.body.padding.hor = LV_DPI / 3;
     btn_md_rel.body.padding.ver = LV_DPI / 5;
@@ -174,6 +218,24 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
     btn_md_pr.body.padding.ver = LV_DPI / 5;
     btn_md_pr.body.padding.inner = LV_DPI / 8;
     btn_md_pr.text.font = font_md;
+
+    lv_style_copy(&btn_md_trel, &btn_sm_trel);
+    btn_md_trel.body.padding.hor = LV_DPI / 3;
+    btn_md_trel.body.padding.ver = LV_DPI / 5;
+    btn_md_trel.body.padding.inner = LV_DPI / 8;
+    btn_md_trel.text.font = font_md;
+
+    lv_style_copy(&btn_md_tpr, &btn_sm_tpr);
+    btn_md_tpr.body.padding.hor = LV_DPI / 3;
+    btn_md_tpr.body.padding.ver = LV_DPI / 5;
+    btn_md_tpr.body.padding.inner = LV_DPI / 8;
+    btn_md_tpr.text.font = font_md;
+
+    lv_style_copy(&btn_md_ina, &btn_sm_ina);
+    btn_md_ina.body.padding.hor = LV_DPI / 3;
+    btn_md_ina.body.padding.ver = LV_DPI / 5;
+    btn_md_ina.body.padding.inner = LV_DPI / 8;
+    btn_md_ina.text.font = font_md;
 
     lv_style_copy(&btn_lg_rel, &btn_sm_rel);
     btn_lg_rel.body.padding.hor = LV_DPI / 2;
@@ -187,7 +249,27 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
     btn_lg_pr.body.padding.inner = LV_DPI / 6;
     btn_lg_pr.text.font = font_lg;
 
+    lv_style_copy(&btn_lg_trel, &btn_sm_trel);
+    btn_lg_trel.body.padding.hor = LV_DPI / 2;
+    btn_lg_trel.body.padding.ver = LV_DPI / 4;
+    btn_lg_trel.body.padding.inner = LV_DPI / 6;
+    btn_lg_trel.text.font = font_lg;
+
+    lv_style_copy(&btn_lg_tpr, &btn_sm_tpr);
+    btn_lg_tpr.body.padding.hor = LV_DPI / 2;
+    btn_lg_tpr.body.padding.ver = LV_DPI / 4;
+    btn_lg_tpr.body.padding.inner = LV_DPI / 6;
+    btn_lg_tpr.text.font = font_lg;
+
+    lv_style_copy(&btn_lg_ina, &btn_sm_ina);
+    btn_lg_ina.body.padding.hor = LV_DPI / 2;
+    btn_lg_ina.body.padding.ver = LV_DPI / 4;
+    btn_lg_ina.body.padding.inner = LV_DPI / 6;
+    btn_lg_ina.text.font = font_lg;
+#endif
+
     /*Labels*/
+#if USE_LV_LABEL != 0
     lv_style_copy(&label_sm, &def);
     label_sm.text.font = font_sm;
     label_sm.text.color = color_hsv_to_rgb(hue, 8, 96);
@@ -197,8 +279,10 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
 
     lv_style_copy(&label_lg, &label_sm);
     label_lg.text.font = font_lg;
+#endif
 
     /*Bar*/
+#if USE_LV_BAR
     lv_style_copy(&bar_bg, &def);
     bar_bg.body.opa = OPA_30;
     bar_bg.body.radius = LV_RADIUS_CIRCLE;
@@ -219,10 +303,12 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
     bar_indic.body.padding.hor = 0;
     bar_indic.body.padding.ver = 0;
     bar_indic.body.shadow.width = LV_DPI / 8;
-    bar_indic.body.color_main = color_hsv_to_rgb(hue, 40, 82);
-    bar_indic.body.color_gradient = color_hsv_to_rgb(hue, 40, 82);
+    bar_indic.body.color_main = color_hsv_to_rgb(hue, 40, 80);
+    bar_indic.body.color_gradient = color_hsv_to_rgb(hue, 40, 80);
+#endif
 
     /*Slider knob*/
+#if USE_LV_SLIDER != 0
     lv_style_copy(&slider_knob, &def);
     slider_knob.body.opa = OPA_60;
     slider_knob.body.radius = LV_RADIUS_CIRCLE;
@@ -231,8 +317,10 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
     slider_knob.body.border.width = 1 << LV_ANTIALIAS;
     slider_knob.body.border.color = COLOR_GRAY;
     slider_knob.body.border.opa = OPA_50;
+#endif
 
     /*Switch*/
+#if USE_LV_SW != 0
     lv_style_copy(&sw_bg, &bar_bg);
     sw_bg.body.opa = OPA_COVER;
     sw_bg.body.padding.ver = -2  << LV_ANTIALIAS;
@@ -249,8 +337,10 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
 
     lv_style_copy(&sw_knob, &slider_knob);
     sw_knob.body.opa = OPA_80;
+#endif
 
     /*Check box*/
+#if USE_LV_CB != 0
     lv_style_copy(&cb_rel, &bg);
     cb_rel.body.radius = LV_RADIUS_CIRCLE;
     cb_rel.body.border.width = 1 << LV_ANTIALIAS;
@@ -288,18 +378,66 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
     cb_ina.body.border.color = COLOR_GRAY;
     cb_ina.body.color_main = COLOR_SILVER;
     cb_ina.body.color_gradient = COLOR_SILVER;
+#endif
 
-    /*Text area*/
-    lv_style_copy(&ta_sb, &def);
-    ta_sb.body.opa = OPA_50;
-    ta_sb.body.radius = LV_DPI / 10;
-    ta_sb.body.color_main = COLOR_HEX3(0xeee);
-    ta_sb.body.color_gradient = COLOR_HEX3(0xeee);
-    ta_sb.body.border.color = COLOR_HEX3(0xfff);
-    ta_sb.body.border.width = 1 << LV_ANTIALIAS;
-    ta_sb.body.border.opa = OPA_80;
+    /*List*/
+#if USE_LV_LIST != 0
+    lv_style_copy(&list_rel, &def);
+    list_rel.body.empty = 1;
+    list_rel.body.border.width = 1 << LV_ANTIALIAS;
+    list_rel.body.border.color = color_hsv_to_rgb(hue, 50, 85);
+    list_rel.body.border.opa = OPA_COVER;
+    list_rel.text.color = color_hsv_to_rgb(hue, 10, 94);
+    list_rel.text.font = font_sm;
 
-    /*Tabs*/
+    lv_style_copy(&list_pr, &list_rel);
+    list_pr.body.empty = 0;
+    list_pr.body.opa = OPA_COVER;
+    list_pr.body.color_main = color_hsv_to_rgb(hue, 34, 41);
+    list_pr.body.color_gradient = color_hsv_to_rgb(hue, 34, 41);
+    list_pr.text.color = color_hsv_to_rgb(hue, 7, 96);
+
+    lv_style_copy(&list_trel, &list_rel);
+    lv_style_copy(&list_tpr, &list_pr);
+    lv_style_copy(&list_ina, &def);
+
+    lv_style_copy(&list_bg, &list_rel);
+    list_bg.body.padding.hor = 0;
+    list_bg.body.padding.ver = 0;
+#endif
+
+    /*Drop down list*/
+#if USE_LV_DDLIST != 0
+    lv_style_copy(&ddlist_bg, &panel);
+    ddlist_bg.text.line_space = LV_DPI / 10;
+
+    lv_style_copy(&ddlist_sel, &panel);
+    ddlist_sel.body.color_main = color_hsv_to_rgb(hue, 45, 40);
+    ddlist_sel.body.color_gradient = color_hsv_to_rgb(hue, 45, 40);
+    ddlist_sel.body.opa = OPA_COVER;
+    ddlist_sel.body.radius = 0;
+#endif
+
+    /*Roller*/
+#if USE_LV_ROLLER != 0
+    lv_style_copy(&roller_bg, &ddlist_bg);
+    roller_bg.text.line_space = LV_DPI / 6;
+    roller_bg.body.radius = LV_DPI / 20;
+    roller_bg.body.color_main = COLOR_HEX3(0x222);
+    roller_bg.body.color_gradient = COLOR_HEX3(0x999);
+    roller_bg.body.border.opa = OPA_30;
+    roller_bg.text.opa = OPA_70;
+    roller_bg.text.color = color_hsv_to_rgb(hue, 15, 100);
+    roller_bg.body.shadow.width = LV_DPI / 20;
+    roller_bg.body.shadow.color = COLOR_HEX3(0x444);
+
+    lv_style_copy(&roller_sel, &panel);
+    roller_sel.body.empty = 1;
+    roller_sel.body.radius = 0;
+#endif
+
+    /*Tabview*/
+#if USE_LV_TABVIEW != 0
     lv_style_copy(&tab_rel, &def);
     tab_rel.body.color_main = COLOR_HEX3(0x666);
     tab_rel.body.color_gradient = COLOR_HEX3(0x666);
@@ -341,37 +479,9 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
 
     lv_style_copy(&tab_indic, &def);
     tab_indic.body.border.width = 0;
-    tab_indic.body.color_main = color_hsv_to_rgb(hue, 90, 87);
-    tab_indic.body.color_gradient = color_hsv_to_rgb(hue, 90, 87);
-
-    /*List*/
-    lv_style_copy(&list_rel, &def);
-    list_rel.body.empty = 1;
-    list_rel.body.border.width = 1 << LV_ANTIALIAS;
-    list_rel.body.border.color = color_hsv_to_rgb(hue, 50, 85);
-    list_rel.body.border.opa = OPA_70;
-    list_rel.text.color = color_hsv_to_rgb(hue, 10, 94);
-    list_rel.text.font = font_sm;
-
-    lv_style_copy(&list_pr, &list_rel);
-    list_pr.body.empty = 0;
-    list_pr.body.opa = OPA_COVER;
-    list_pr.body.color_main = color_hsv_to_rgb(hue, 34, 41);
-    list_pr.body.color_gradient = color_hsv_to_rgb(hue, 34, 41);
-    list_pr.text.color = color_hsv_to_rgb(hue, 7, 96);
-
-    lv_style_copy(&list_trel, &list_rel);
-    lv_style_copy(&list_tpr, &list_pr);
-    lv_style_copy(&list_ina, &def);
-
-    lv_style_copy(&list_sb, &def);
-    list_sb.body.opa = OPA_50;
-    list_sb.body.radius = LV_RADIUS_CIRCLE;
-    list_sb.body.border.color = COLOR_BLACK;
-    list_sb.body.border.opa = OPA_COVER;
-    list_sb.body.border.width = 1 << LV_ANTIALIAS;
-    list_sb.body.color_main = color_hsv_to_rgb(hue, 33, 92);
-    list_sb.body.color_gradient = color_hsv_to_rgb(hue, 33, 92);
+    tab_indic.body.color_main = color_hsv_to_rgb(hue, 80, 87);
+    tab_indic.body.color_gradient = color_hsv_to_rgb(hue, 80, 87);
+#endif
 
     /*For backward compatibility initialize all theme elements with a default style */
     uint16_t i;
@@ -416,24 +526,31 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
     theme.cb.bullet.trel = &cb_trel;
     theme.cb.bullet.tpr = &cb_tpr;
     theme.cb.bullet.ina = &cb_ina;
+    theme.page.bg = &panel;
+    theme.page.scrl = &lv_style_transp_fit;
+    theme.page.sb = &sb;
     theme.ta.area = &panel;
     theme.ta.oneline = &panel;
-    theme.ta.sb = &ta_sb;
+    theme.ta.sb = &sb;
+    theme.ddlist.bg = &ddlist_bg;
+    theme.ddlist.sel = &ddlist_sel;
+    theme.ddlist.sb = &sb;
+    theme.roller.bg = &roller_bg;
+    theme.roller.sel = &roller_sel;
     theme.chart.bg = &panel;
-    theme.tab.rel = &tab_rel;
-    theme.tab.pr = &tab_pr;
-    theme.tab.trel = &tab_trel;
-    theme.tab.tpr = &tab_tpr;
-    theme.tab.indic = &tab_indic;
+    theme.tabview.tab.rel = &tab_rel;
+    theme.tabview.tab.pr = &tab_pr;
+    theme.tabview.tab.trel = &tab_trel;
+    theme.tabview.tab.tpr = &tab_tpr;
+    theme.tabview.indic = &tab_indic;
     theme.mbox.bg = &panel;
-    theme.list.rel = &list_rel;
-    theme.list.pr = &list_pr;
-    theme.list.trel = &list_trel;
-    theme.list.tpr = &list_tpr;
-    theme.list.ina = &list_ina;
-    theme.list.sb = &list_sb;
-    theme.ddlist.bg = &panel;
-    theme.roller.bg = &panel;
+    theme.list.sb = &sb;
+    theme.list.bg = &list_bg;
+    theme.list.btn.rel = &list_rel;
+    theme.list.btn.pr = &list_pr;
+    theme.list.btn.trel = &list_trel;
+    theme.list.btn.tpr = &list_tpr;
+    theme.list.btn.ina = &list_ina;
 }
 
 
