@@ -128,8 +128,8 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
 
     /*Background*/
     lv_style_copy(&bg, &def);
-    bg.body.color_main = COLOR_HEX3(0x444);
-    bg.body.color_gradient = color_hsv_to_rgb(hue, 97, 14);
+    bg.body.color_main = COLOR_HEX3(0x333);
+    bg.body.color_gradient =  COLOR_HEX3(0x333);
     bg.body.border.width = 0;
     bg.body.border.opa = OPA_70;
     bg.body.shadow.color = COLOR_SILVER;
@@ -342,7 +342,7 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
     /*Check box*/
 #if USE_LV_CB != 0
     lv_style_copy(&cb_rel, &bg);
-    cb_rel.body.radius = LV_RADIUS_CIRCLE;
+    cb_rel.body.radius = LV_DPI / 20;
     cb_rel.body.border.width = 1 << LV_ANTIALIAS;
     cb_rel.body.border.color = COLOR_GRAY;
     cb_rel.body.color_main = COLOR_WHITE;
@@ -429,7 +429,7 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
     roller_bg.text.opa = OPA_70;
     roller_bg.text.color = color_hsv_to_rgb(hue, 15, 100);
     roller_bg.body.shadow.width = LV_DPI / 20;
-    roller_bg.body.shadow.color = COLOR_HEX3(0x444);
+    roller_bg.body.shadow.color = COLOR_HEX3(0x111);
 
     lv_style_copy(&roller_sel, &panel);
     roller_sel.body.empty = 1;
