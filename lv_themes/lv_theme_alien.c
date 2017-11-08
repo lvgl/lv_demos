@@ -153,9 +153,9 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
     sb.body.border.width = 1 << LV_ANTIALIAS;
     sb.body.color_main = color_hsv_to_rgb(hue, 33, 92);
     sb.body.color_gradient = color_hsv_to_rgb(hue, 33, 92);
-    sb.body.padding.hor = 3 << LV_ANTIALIAS;
-    sb.body.padding.ver = 3 << LV_ANTIALIAS;
-    sb.body.padding.inner = LV_DPI / 10;      /*Scrollbar width*/
+    sb.body.padding.hor = 1 << LV_ANTIALIAS;
+    sb.body.padding.ver = 1 << LV_ANTIALIAS;
+    sb.body.padding.inner = LV_DPI / 15;      /*Scrollbar width*/
 
     /*Buttons*/
 #if USE_LV_BTN != 0
