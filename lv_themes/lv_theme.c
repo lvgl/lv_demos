@@ -107,7 +107,7 @@ void lv_theme_create_test_screen(lv_theme_t *th)
     h = lv_cont_create(tab1, h);
 
     lv_obj_t *sw = lv_sw_create(h, NULL);
-    lv_sw_set_style(sw, th->sw.bg, th->sw.indic, th->sw.knob);
+    lv_sw_set_style(sw, th->sw.bg, th->sw.indic, th->sw.knob, th->sw.knob);
 
     sw = lv_sw_create(h, sw);
     lv_sw_set_on(sw);
