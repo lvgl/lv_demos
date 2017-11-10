@@ -141,14 +141,14 @@ void lv_theme_create_test_screen(lv_theme_t *th)
     lv_obj_t * list = lv_list_create(h, NULL);
     lv_list_set_style_btn(list, th->list.btn.rel, th->list.btn.pr, th->list.btn.trel, th->list.btn.tpr, th->list.btn.ina);
     lv_page_set_style(list, th->list.bg, &lv_style_transp_tight, th->list.sb);
-    lv_list_add(list, symbol_gps, "GPS", NULL);
-    lv_list_add(list, symbol_wifi, "WiFi", NULL);
-    lv_list_add(list, symbol_call, "Call", NULL);
-    lv_list_add(list, symbol_bell, "Bell", NULL);
-    lv_list_add(list, symbol_file, "File", NULL);
-    lv_list_add(list, symbol_edit, "Edit", NULL);
-    lv_list_add(list, symbol_cut, "Cut", NULL);
-    lv_list_add(list, symbol_copy, "Copy", NULL);
+    lv_list_add(list, SYMBOL_GPS, "GPS", NULL);
+    lv_list_add(list, SYMBOL_WIFI, "WiFi", NULL);
+    lv_list_add(list, SYMBOL_CALL, "Call", NULL);
+    lv_list_add(list, SYMBOL_BELL, "Bell", NULL);
+    lv_list_add(list, SYMBOL_FILE, "File", NULL);
+    lv_list_add(list, SYMBOL_EDIT, "Edit", NULL);
+    lv_list_add(list, SYMBOL_CUT, "Cut", NULL);
+    lv_list_add(list, SYMBOL_COPY, "Copy", NULL);
 
 
     lv_obj_t *roller = lv_roller_create(h, NULL);
@@ -158,7 +158,7 @@ void lv_theme_create_test_screen(lv_theme_t *th)
 
     return;
 
-    static const char *btnm_str[] = {"1", "2", "3", "\n", "4", "5", "6", "\n", "7", "8", "9", "\n", symbol_close, "0", symbol_ok, ""};
+    static const char *btnm_str[] = {"1", "2", "3", "\n", "4", "5", "6", "\n", "7", "8", "9", "\n", SYMBOL_CLOSE, "0", SYMBOL_OK, ""};
 
     lv_obj_t *kb = lv_btnm_create(tab1, NULL);
     lv_obj_set_size(kb, LV_HOR_RES / 3, LV_VER_RES / 2);

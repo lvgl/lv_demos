@@ -29,9 +29,9 @@ static lv_res_t btnm_action(lv_obj_t * btnm, const char * txt);
  *  STATIC VARIABLES
  **********************/
 #if TXT_UTF8 != 0
-static const char * btnm_map[] = {"One line", "\n", "\212", "\204üŰöŐ", "\221éÉ","\n", "\214", "\202Left", ""};
+static const char * btnm_map[] = {"One line", "\n", "\212", "\242Ina", "\204üŰöŐ", "\221éÉ","\n", "\214", "\202Left", ""};
 #else
-static const char * btnm_map[] = {"One line", "\n", "\212", "\204long", "\221short","\n", "\214", "\202Left", ""};
+static const char * btnm_map[] = {"One line", "\n", "\212", "\242Ina", "\204long", "\221short","\n", "\214", "\202Left", ""};
 #endif
 /**********************
  *      MACROS
@@ -67,11 +67,15 @@ void lv_test_btnm_1(void)
 
     lv_obj_t * btnm2 = lv_btnm_create(lv_scr_act(), NULL);
     lv_btnm_set_map(btnm2, btnm_map);
-    lv_obj_set_size_scale(btnm2, 200, 100);
-    lv_obj_align(btnm2, btnm1, LV_ALIGN_OUT_BOTTOM_MID, 0, 20);
+    lv_obj_set_size(btnm2, LV_HOR_RES / 2, LV_VER_RES / 3);
+    lv_obj_align(btnm2, btnm1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
     lv_btnm_set_toggle(btnm2, true, 2);
     lv_btnm_set_action(btnm2, btnm_action);
     lv_btnm_set_style_btn(btnm2, &rel, &pr, NULL, NULL, NULL);
+
+
+    lv_obj_t * btnm3 = lv_btnm_create(lv_scr_act(), btnm2);
+    lv_obj_align(btnm3, btnm1, LV_ALIGN_OUT_BOTTOM_RIGHT, 0, 20);
 }
 
 /**********************

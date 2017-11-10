@@ -93,7 +93,7 @@ void files_open(const char * path, const char * filter, void (*ok_action)(const 
     fsel_win = lv_win_create(lv_scr_act(), NULL);
     lv_obj_set_size(fsel_win, LV_HOR_RES, LV_VER_RES);
 
-    lv_win_add_cbtn(fsel_win, symbol_close, fsel_close_action);
+    lv_win_add_cbtn(fsel_win, SYMBOL_CLOSE, fsel_close_action);
     lv_win_set_styles_cbtn(fsel_win, &style_cbtn_rel, &style_cbtn_pr);
 
     fsel_refr(); /*Refresh the list*/
@@ -146,14 +146,14 @@ static void fsel_refr(void)
         for(i = 0; drv[i] != '\0'; i++) {
             buf[0] = drv[i];
             buf[1] = '\0';
-            liste = lv_list_add(fsel_list, symbol_drive, buf, fsel_drv_action);
+            liste = lv_list_add(fsel_list, SYMBOL_DRIVE, buf, fsel_drv_action);
             /*Add long press action to choose the driver as a folder*/
             if(fsel_filter[0] == '/') lv_btn_set_action(liste, LV_BTN_ACTION_LONG_PRESS, fsel_drv_lpr_action);
         }
     }
     /*List the files/folders with fs interface*/
     else {
-        liste = lv_list_add(fsel_list, symbol_up, "Up", fsel_up_action);
+        liste = lv_list_add(fsel_list, SYMBOL_UP, "Up", fsel_up_action);
 
         fs_readdir_t rd;
         res = fs_readdir_init(&rd, fsel_path);
@@ -164,7 +164,7 @@ static void fsel_refr(void)
 
         /*At not first page add prev. page button */
         if(fsel_file_cnt != 0) {
-            liste = lv_list_add(fsel_list, symbol_left, "Previous page", fsel_prev_action);
+            liste = lv_list_add(fsel_list, SYMBOL_LEFT, "Previous page", fsel_prev_action);
         }
 
         char fn[FILES_FN_LENGTH_MAX];
@@ -185,7 +185,7 @@ static void fsel_refr(void)
         while(res == FS_RES_OK && fn[0] != '\0') {
             if(fn[0] == '/') { /*Add a folder*/
                 lv_obj_t * liste;
-                liste = lv_list_add(fsel_list, symbol_directory, &fn[1], fsel_folder_action);
+                liste = lv_list_add(fsel_list, SYMBOL_DIRECTORY, &fn[1], fsel_folder_action);
                 /*Add long press action to choose a folder*/
                 if(fsel_filter[0] == '/') lv_btn_set_action(liste, LV_BTN_ACTION_LONG_PRESS, fsel_folder_lpr_action);
 
@@ -196,7 +196,7 @@ static void fsel_refr(void)
             else if(fsel_filter[0] == '\0' || /*No filtering or ...*/
                     (strcmp(fs_get_ext(fn), fsel_filter) == 0 && /*.. the filter matches*/
                      fsel_filter[0] != '/')) {
-                liste = lv_list_add(fsel_list, symbol_file, fn, fsel_file_action);
+                liste = lv_list_add(fsel_list, SYMBOL_FILE, fn, fsel_file_action);
                 fsel_file_cnt ++;
                 file_cnt ++;
             }
@@ -206,7 +206,7 @@ static void fsel_refr(void)
 
             /*Show only LV_APP_FSEL_MAX_FILE elements and add a Next page button*/
             if(fsel_file_cnt != 0 && fsel_file_cnt % FILES_PAGE_SIZE == 0) {
-                liste = lv_list_add(fsel_list, symbol_right, "Next page", fsel_next_action);
+                liste = lv_list_add(fsel_list, SYMBOL_RIGHT, "Next page", fsel_next_action);
                 break;
             }
         }

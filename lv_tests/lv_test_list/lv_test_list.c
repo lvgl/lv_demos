@@ -53,17 +53,17 @@ void lv_test_list_1(void)
     lv_img_create_file("icon", img_flower_icon);
     list2 = lv_list_create(lv_scr_act(), NULL);
     lv_obj_align_scale(list2, list1, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
-    lv_list_add(list2, symbol_file, "File", NULL);
-    lv_list_add(list2, symbol_directory, "Directory", NULL);
+    lv_list_add(list2, SYMBOL_FILE, "File", NULL);
+    lv_list_add(list2, SYMBOL_DIRECTORY, "Directory", NULL);
     lv_list_add(list2, "U:icon", "Image icon", NULL);
     lv_obj_set_width_scale(list2, 100);
 
     list3 = lv_list_create(lv_scr_act(), list2);
     lv_obj_align_scale(list3, list2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     lv_list_add(list3, "", "No icon", NULL);
-    lv_list_add(list3, symbol_close, "", NULL);
-    lv_list_add(list3, symbol_up, "Up", NULL);
-    lv_list_add(list3, symbol_down, "Down", NULL);
+    lv_list_add(list3, SYMBOL_CLOSE, "", NULL);
+    lv_list_add(list3, SYMBOL_UP, "Up", NULL);
+    lv_list_add(list3, SYMBOL_DOWN, "Down", NULL);
 
     static lv_style_t sb;
     static lv_style_t bg;
@@ -86,13 +86,13 @@ void lv_test_list_1(void)
     lv_btn_set_action(btn_up, LV_BTN_ACTION_RELEASE, list_move);
     lv_obj_set_free_num(btn_up, 0);
     lv_obj_t *label = lv_label_create(btn_up, NULL);
-    lv_label_set_text(label, symbol_up);
+    lv_label_set_text(label, SYMBOL_UP);
 
     lv_obj_t *btn_down = lv_btn_create(lv_scr_act(), btn_up);
     lv_obj_align_scale(btn_down, btn_up, LV_ALIGN_OUT_RIGHT_MID, 10, 0);
     lv_obj_set_free_num(btn_down, 1);
     label = lv_label_create(btn_down, NULL);
-    lv_label_set_text(label, symbol_down);
+    lv_label_set_text(label, SYMBOL_DOWN);
 
 }
 
