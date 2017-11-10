@@ -161,13 +161,14 @@ void lv_theme_create_test_screen(lv_theme_t *th)
     lv_ddlist_set_options(roller, "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday");
     lv_obj_set_height(roller, LV_DPI);
 
-    return;
 
     static const char *btnm_str[] = {"1", "2", "3", "\n", "4", "5", "6", "\n", "7", "8", "9", "\n", SYMBOL_CLOSE, "0", SYMBOL_OK, ""};
 
-    lv_obj_t *kb = lv_btnm_create(tab1, NULL);
-    lv_obj_set_size(kb, LV_HOR_RES / 3, LV_VER_RES / 2);
-    lv_btnm_set_map(kb, btnm_str);
+    lv_obj_t *btnm = lv_btnm_create(tab1, NULL);
+    lv_obj_set_size(btnm, LV_HOR_RES / 3, LV_VER_RES / 2);
+    lv_btnm_set_map(btnm, btnm_str);
+    lv_btnm_set_style(btnm, th->btnm.bg);
+    lv_btnm_set_style_btn(btnm, th->btnm.btn.rel, th->btnm.btn.pr, NULL, NULL, NULL);
 
 }
 
