@@ -73,7 +73,7 @@ void lv_test_mbox_1(void)
     btnh.text.color = COLOR_WHITE;
 
     static lv_style_t btn_rel;
-    lv_style_copy(&btn_rel, &lv_style_btn_off_released);
+    lv_style_copy(&btn_rel, &lv_style_btn_released);
     btn_rel.body.empty = 1;
     btn_rel.body.border.color = COLOR_WHITE;
 

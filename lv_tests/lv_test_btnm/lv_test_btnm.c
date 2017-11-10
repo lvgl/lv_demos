@@ -53,13 +53,13 @@ void lv_test_btnm_1(void)
     /* Test map, size and position. Also try some features.
      * GOAL: A button matrix with default buttons.  */
     static lv_style_t rel;
-    lv_style_copy(&rel, &lv_style_btn_on_released);
+    lv_style_copy(&rel, &lv_style_btn_tgl_released);
     rel.body.color_main = COLOR_RED;
     rel.body.color_gradient = COLOR_BLACK;
     rel.text.color = COLOR_YELLOW;
 
     static lv_style_t pr;
-    lv_style_copy(&pr, &lv_style_btn_on_released);
+    lv_style_copy(&pr, &lv_style_btn_tgl_released);
     pr.body.color_main = COLOR_ORANGE;
     pr.body.color_gradient = COLOR_BLACK;
     pr.text.color = COLOR_WHITE;

@@ -66,10 +66,10 @@ static lv_style_t style_cbtn_pr;
  */
 void files_open(const char * path, const char * filter, void (*ok_action)(const char *))
 {
-    lv_style_copy(&style_cbtn_rel, &lv_style_btn_off_released);
+    lv_style_copy(&style_cbtn_rel, &lv_style_btn_released);
   //  style_cbtn_rel.font = font_get(LV_IMG_DEF_SYMBOL_FONT);
 
-    lv_style_copy(&style_cbtn_pr, &lv_style_btn_off_pressed);
+    lv_style_copy(&style_cbtn_pr, &lv_style_btn_pressed);
   //  style_cbtn_pr.font = font_get(LV_IMG_DEF_SYMBOL_FONT);
 
     /*Save the parameters*/

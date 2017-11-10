@@ -58,7 +58,7 @@ void lv_test_sw_1(void)
     indic.body.padding.ver = 8 << LV_ANTIALIAS;
 
     lv_obj_t *sw2 = lv_sw_create(lv_scr_act(), sw1);
-    lv_sw_set_style(sw2, &bg, &indic, &lv_style_btn_off_pressed, &lv_style_btn_on_pressed);
+    lv_sw_set_style(sw2, &bg, &indic, &lv_style_btn_pressed, &lv_style_btn_tgl_pressed);
     lv_sw_set_on(sw2);
     lv_obj_align_scale(sw2, sw1, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
 

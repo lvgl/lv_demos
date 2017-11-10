@@ -94,8 +94,21 @@ static lv_style_t tab_indic;
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
+
+/**
+ * Initalize the alien theme
+ * @param hue [0..360] hue value from HSV color space to define the theme's base color
+ * @param font_sm pointer to a small font (NULL to use the default)
+ * @param font_md pointer to a medium font (NULL to use the default)
+ * @param font_lg pointer to a large font (NULL to use the default)
+ */
 void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t *font_lg)
 {
+
+    if(font_sm == NULL) font_sm = FONT_DEFAULT;
+    if(font_md == NULL) font_md = FONT_DEFAULT;
+    if(font_lg == NULL) font_lg = FONT_DEFAULT;
+
     /*Background*/
     lv_style_copy(&def, &lv_style_plain);
     def.body.opa = OPA_COVER;
@@ -494,6 +507,8 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
     /*Fill the theme with style pointers*/
     theme.bg = &bg;
     theme.panel = &panel;
+
+#if USE_LV_BTN
     theme.btn.sm.rel = &btn_sm_rel;
     theme.btn.sm.pr = &btn_sm_pr;
     theme.btn.sm.trel = &btn_sm_trel;
@@ -509,41 +524,73 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
     theme.btn.lg.trel = &btn_lg_trel;
     theme.btn.lg.tpr =  &btn_lg_tpr;
     theme.btn.lg.ina =  &btn_lg_ina;
+#endif
+
+#if USE_LV_LABEL
     theme.label.sm = &label_sm;
     theme.label.md = &label_md;
     theme.label.lg = &label_lg;
+#endif
+
+#if USE_LV_BAR
     theme.bar.bg = &bar_bg;
     theme.bar.indic = &bar_indic;
+#endif
+
+#if USE_LV_SLIDER
     theme.slider.bg = &bar_bg;
     theme.slider.indic = &bar_indic;
     theme.slider.knob = &slider_knob;
+#endif
+
+#if USE_LV_SW
     theme.sw.bg = &sw_bg;
     theme.sw.indic = &sw_indic;
-    theme.sw.knob = &sw_knob;
+    theme.sw.knob_off = &sw_knob;
+    theme.sw.knob_on = &sw_knob;
+#endif
+
+#if USE_LV_CHART
+    theme.chart.bg = &panel;
+#endif
+
+#if USE_LV_CB
     theme.cb.bg = &cb_bg;
     theme.cb.bullet.rel = &cb_rel;
     theme.cb.bullet.pr = &cb_pr;
     theme.cb.bullet.trel = &cb_trel;
     theme.cb.bullet.tpr = &cb_tpr;
     theme.cb.bullet.ina = &cb_ina;
+#endif
+
+#if USE_LV_BTNM
+
+
+#endif
+
+#if USE_LV_KB
+
+
+#endif
+
+#if USE_LV_MBOX
+    theme.mbox.bg = &panel;
+
+#endif
+
+#if USE_LV_PAGE
     theme.page.bg = &panel;
     theme.page.scrl = &lv_style_transp_fit;
     theme.page.sb = &sb;
+#endif
+
+#if USE_LV_TA
     theme.ta.area = &panel;
     theme.ta.oneline = &panel;
     theme.ta.sb = &sb;
-    theme.ddlist.bg = &ddlist_bg;
-    theme.ddlist.sel = &ddlist_sel;
-    theme.ddlist.sb = &sb;
-    theme.roller.bg = &roller_bg;
-    theme.roller.sel = &roller_sel;
-    theme.chart.bg = &panel;
-    theme.tabview.tab.rel = &tab_rel;
-    theme.tabview.tab.pr = &tab_pr;
-    theme.tabview.tab.trel = &tab_trel;
-    theme.tabview.tab.tpr = &tab_tpr;
-    theme.tabview.indic = &tab_indic;
-    theme.mbox.bg = &panel;
+#endif
+
+#if USE_LV_LIST
     theme.list.sb = &sb;
     theme.list.bg = &list_bg;
     theme.list.btn.rel = &list_rel;
@@ -551,9 +598,36 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
     theme.list.btn.trel = &list_trel;
     theme.list.btn.tpr = &list_tpr;
     theme.list.btn.ina = &list_ina;
+#endif
+
+#if USE_LV_DDLIST
+    theme.ddlist.bg = &ddlist_bg;
+    theme.ddlist.sel = &ddlist_sel;
+    theme.ddlist.sb = &sb;
+#endif
+
+#if USE_LV_ROLLER
+    theme.roller.bg = &roller_bg;
+    theme.roller.sel = &roller_sel;
+#endif
+
+#if USE_LV_TABVIEW
+    theme.tabview.tab.rel = &tab_rel;
+    theme.tabview.tab.pr = &tab_pr;
+    theme.tabview.tab.trel = &tab_trel;
+    theme.tabview.tab.tpr = &tab_tpr;
+    theme.tabview.indic = &tab_indic;
+#endif
+
+#if USE_LV_WIN
+
+#endif
 }
 
-
+/**
+ * Get a pointer to the theme
+ * @return pointer to the theme
+ */
 lv_theme_t * lv_theme_get_alien(void)
 {
     return &theme;

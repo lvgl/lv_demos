@@ -32,6 +32,11 @@
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
+
+/**
+ * Create a test screen with a lot objects and apply the given theme on them
+ * @param th pointer to a theme
+ */
 void lv_theme_create_test_screen(lv_theme_t *th)
 {
 
@@ -107,7 +112,7 @@ void lv_theme_create_test_screen(lv_theme_t *th)
     h = lv_cont_create(tab1, h);
 
     lv_obj_t *sw = lv_sw_create(h, NULL);
-    lv_sw_set_style(sw, th->sw.bg, th->sw.indic, th->sw.knob, th->sw.knob);
+    lv_sw_set_style(sw, th->sw.bg, th->sw.indic, th->sw.knob_off, th->sw.knob_on);
 
     sw = lv_sw_create(h, sw);
     lv_sw_set_on(sw);
@@ -128,7 +133,7 @@ void lv_theme_create_test_screen(lv_theme_t *th)
 
     lv_obj_t *cb = lv_cb_create(h, NULL);
     lv_cb_set_style_bullet(cb, th->cb.bullet.rel, th->cb.bullet.pr, th->cb.bullet.trel, th->cb.bullet.tpr, th->cb.bullet.ina);
-    lv_cb_set_style_bg(cb, th->cb.bg);
+    lv_cb_set_style(cb, th->cb.bg);
     cb = lv_cb_create(h, cb);
     lv_btn_set_state(cb, LV_BTN_STATE_TGL_RELEASED);
 

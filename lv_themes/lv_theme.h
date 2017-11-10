@@ -79,8 +79,64 @@ typedef struct {
     struct {
         lv_style_t *bg;
         lv_style_t *indic;
-        lv_style_t *knob;
+        lv_style_t *knob_off;
+        lv_style_t *knob_on;
     }sw;
+#endif
+
+#if USE_LV_CHART != 0
+    struct {
+        lv_style_t *bg;
+    }chart;
+#endif
+
+#if USE_LV_CB != 0
+    struct {
+        lv_style_t *bg;
+        struct {
+            lv_style_t *rel;
+            lv_style_t *pr;
+            lv_style_t *trel;
+            lv_style_t *tpr;
+            lv_style_t *ina;
+        }bullet;
+    }cb;
+#endif
+
+#if USE_LV_BTNM != 0
+    struct {
+        lv_style_t *bg;
+        struct {
+            lv_style_t *rel;
+            lv_style_t *pr;
+            lv_style_t *trel;
+            lv_style_t *tpr;
+            lv_style_t *ina;
+        } btn;
+    }btnm;
+#endif
+
+#if USE_LV_KB != 0
+    struct {
+        lv_style_t *bg;
+        struct {
+            lv_style_t *rel;
+            lv_style_t *pr;
+            lv_style_t *trel;
+            lv_style_t *tpr;
+            lv_style_t *ina;
+        } btn;
+    }kb;
+#endif
+
+#if USE_LV_MBOX != 0
+    struct {
+        lv_style_t *bg;
+        struct {
+            lv_style_t *rel;
+            lv_style_t *pr;
+        }btn;
+    }mbox;
 #endif
 
 #if USE_LV_PAGE != 0
@@ -121,33 +177,11 @@ typedef struct {
     }ddlist;
 #endif
 
-#if USE_LV_CHART != 0
+#if USE_LV_ROLLER != 0
     struct {
         lv_style_t *bg;
-    }chart;
-#endif
-
-#if USE_LV_CB != 0
-    struct {
-        lv_style_t *bg;
-        struct {
-            lv_style_t *rel;
-            lv_style_t *pr;
-            lv_style_t *trel;
-            lv_style_t *tpr;
-            lv_style_t *ina;
-        }bullet;
-    }cb;
-#endif
-
-#if USE_LV_BTNM != 0
-    struct {
-        lv_style_t *bg;
-        lv_style_t *rel;
-        lv_style_t *pr;
-        lv_style_t *trel;
-        lv_style_t *tpr;
-    }btnm;
+        lv_style_t *sel;
+    }roller;
 #endif
 
 #if USE_LV_TABVIEW != 0
@@ -162,21 +196,6 @@ typedef struct {
             lv_style_t *tpr;
         }tab;
     }tabview;
-#endif
-
-#if USE_LV_MBOX != 0
-    struct {
-        lv_style_t *bg;
-        lv_style_t *rel;
-        lv_style_t *pr;
-    }mbox;
-#endif
-
-#if USE_LV_ROLLER != 0
-    struct {
-        lv_style_t *bg;
-        lv_style_t *sel;
-    }roller;
 #endif
 
 #if USE_LV_WIN != 0
@@ -198,13 +217,16 @@ typedef struct {
 /**********************
  *  GLOBAL PROTOTYPES
  **********************/
-void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t *font_lg);
-lv_theme_t * lv_theme_get_alien(void) ;
+
+/**
+ * Create a test screen with a lot objects and apply the given theme on them
+ * @param th pointer to a theme
+ */
+void lv_theme_create_test_screen(lv_theme_t *th);
 
 /**********************
  *    MACROS
  **********************/
-
 
 #ifdef __cplusplus
 } /* extern "C" */
