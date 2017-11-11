@@ -75,6 +75,18 @@ typedef struct {
     }slider;
 #endif
 
+#if USE_LV_LMETER != 0
+    struct {
+        lv_style_t *bg;
+    }lmeter;
+#endif
+
+#if USE_LV_GAUGE != 0
+    struct {
+        lv_style_t *bg;
+    }gauge;
+#endif
+
 #if USE_LV_SW != 0
     struct {
         lv_style_t *bg;

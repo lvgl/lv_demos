@@ -111,10 +111,16 @@ void lv_theme_create_test_screen(lv_theme_t *th)
 
     h = lv_cont_create(tab1, h);
 
-    lv_obj_t *sw = lv_sw_create(h, NULL);
+    lv_obj_t *sw_h = lv_cont_create(h, NULL);
+    lv_cont_set_style(sw_h, &lv_style_transp);
+    lv_cont_set_fit(sw_h, false, true);
+    lv_obj_set_width(sw_h, LV_HOR_RES / 4);
+    lv_cont_set_layout(sw_h, LV_CONT_LAYOUT_PRETTY);
+
+    lv_obj_t *sw = lv_sw_create(sw_h, NULL);
     lv_sw_set_style(sw, th->sw.bg, th->sw.indic, th->sw.knob_off, th->sw.knob_on);
 
-    sw = lv_sw_create(h, sw);
+    sw = lv_sw_create(sw_h, sw);
     lv_sw_set_on(sw);
 
     lv_obj_t *bar = lv_bar_create(h, NULL);
@@ -140,6 +146,18 @@ void lv_theme_create_test_screen(lv_theme_t *th)
 
     lv_obj_t *ddlist = lv_ddlist_create(h, NULL);
     lv_ddlist_set_style(ddlist, th->ddlist.bg, th->ddlist.sb, th->ddlist.sel);
+    lv_ddlist_open(ddlist, false);
+    lv_ddlist_set_selected(ddlist, 1);
+
+
+    static const char *btnm_str[] = {"1", "2", "3", SYMBOL_OK, SYMBOL_CLOSE, ""};
+
+    lv_obj_t *btnm = lv_btnm_create(h, NULL);
+    lv_obj_set_size(btnm,LV_HOR_RES / 4, 2 * LV_DPI / 3);
+    lv_btnm_set_map(btnm, btnm_str);
+    lv_btnm_set_style(btnm, th->btnm.bg);
+    lv_btnm_set_style_btn(btnm, th->btnm.btn.rel, th->btnm.btn.pr, NULL, NULL, NULL);
+    ((lv_btnm_ext_t *) btnm->ext_attr)->btn_id_pressed = 3; /*Hack to show a button pressed*/
 
     h = lv_cont_create(tab1, h);
 
@@ -155,20 +173,15 @@ void lv_theme_create_test_screen(lv_theme_t *th)
     lv_list_add(list, SYMBOL_CUT, "Cut", NULL);
     lv_list_add(list, SYMBOL_COPY, "Copy", NULL);
 
-
     lv_obj_t *roller = lv_roller_create(h, NULL);
     lv_ddlist_set_style(roller, th->roller.bg, NULL, th->roller.sel);
     lv_ddlist_set_options(roller, "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday");
     lv_obj_set_height(roller, LV_DPI);
 
-
-    static const char *btnm_str[] = {"1", "2", "3", "\n", "4", "5", "6", "\n", "7", "8", "9", "\n", SYMBOL_CLOSE, "0", SYMBOL_OK, ""};
-
-    lv_obj_t *btnm = lv_btnm_create(tab1, NULL);
-    lv_obj_set_size(btnm, LV_HOR_RES / 3, LV_VER_RES / 2);
-    lv_btnm_set_map(btnm, btnm_str);
-    lv_btnm_set_style(btnm, th->btnm.bg);
-    lv_btnm_set_style_btn(btnm, th->btnm.btn.rel, th->btnm.btn.pr, NULL, NULL, NULL);
+    lv_obj_t *gauge = lv_gauge_create(h, NULL);
+    lv_gauge_set_style(gauge, th->gauge.bg);
+    lv_gauge_set_value(gauge, 0, 40);
+    lv_obj_set_size(gauge, 3 * LV_DPI / 2, 3 * LV_DPI / 2);
 
 }
 

@@ -36,6 +36,8 @@ static lv_style_t btn_lg_rel, btn_lg_pr, btn_lg_trel, btn_lg_tpr, btn_lg_ina;
 static lv_style_t bar_bg, bar_indic;
 static lv_style_t slider_knob;
 static lv_style_t sw_bg, sw_indic, sw_knob;
+static lv_style_t lmeter_bg;
+static lv_style_t gauge_bg;
 static lv_style_t list_bg, list_rel, list_pr, list_trel, list_tpr, list_ina;
 static lv_style_t ddlist_bg, ddlist_sel;
 static lv_style_t roller_bg, roller_sel;
@@ -85,7 +87,7 @@ static void basic_init(void)
     def.image.color = COLOR_HEX3(0xDDD);
     def.image.intense = OPA_TRANSP;
 
-    def.line.color = COLOR_HEX(0xDDD);
+    def.line.color = COLOR_HEX3(0xDDD);
     def.line.width = 1 << LV_ANTIALIAS;
 
     /*Background*/
@@ -296,7 +298,7 @@ static void bar_init(void)
     bar_indic.body.border.opa = OPA_70;
     bar_indic.body.padding.hor = 0;
     bar_indic.body.padding.ver = 0;
-    bar_indic.body.shadow.width = LV_DPI / 8;
+    bar_indic.body.shadow.width = LV_DPI / 12;
     bar_indic.body.color_main = color_hsv_to_rgb(_hue, 40, 80);
     bar_indic.body.color_gradient = color_hsv_to_rgb(_hue, 40, 80);
 
@@ -348,6 +350,41 @@ static void sw_init(void)
     theme.sw.indic = &sw_indic;
     theme.sw.knob_off = &sw_knob;
     theme.sw.knob_on = &sw_knob;
+#endif
+}
+
+
+static void lmeter_init(void)
+{
+#if USE_LV_LMETER != 0
+    lv_style_copy(&lmeter_bg, &def);
+    lmeter_bg.body.color_main = color_hsv_to_rgb(_hue, 10, 70);
+    lmeter_bg.body.color_gradient = color_hsv_to_rgb(_hue, 80, 80);
+    lmeter_bg.body.padding.hor = LV_DPI / 8;         /*Scale line length*/
+    lmeter_bg.line.color = COLOR_HEX3(0x555);
+    lmeter_bg.line.width = 2 << LV_ANTIALIAS;
+
+    theme.lmeter.bg = &lmeter_bg;
+
+#endif
+}
+
+static void gauge_init(void)
+{
+#if USE_LV_GAUGE != 0
+    lv_style_copy(&gauge_bg, &def);
+    gauge_bg.body.color_main = color_hsv_to_rgb(_hue, 10, 70);
+    gauge_bg.body.color_gradient = color_hsv_to_rgb(_hue, 80, 80);
+    gauge_bg.body.padding.hor = LV_DPI / 12;         /*Scale line length*/
+    gauge_bg.body.padding.ver = LV_DPI / 10;        /*Needle center size*/
+    gauge_bg.body.padding.inner = LV_DPI / 8;      /*Label - scale distance*/
+    gauge_bg.body.border.color = COLOR_HEX3(0x777);
+    gauge_bg.line.color = COLOR_HEX3(0x555);
+    gauge_bg.line.width = 2 << LV_ANTIALIAS;
+    gauge_bg.text.color = color_hsv_to_rgb(_hue, 10, 90);
+
+
+    theme.gauge.bg = &gauge_bg;
 #endif
 }
 
@@ -657,6 +694,8 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
     bar_init();
     slider_init();
     sw_init();
+    lmeter_init();
+    gauge_init();
     chart_init();
     cb_init();
     btnm_init();
