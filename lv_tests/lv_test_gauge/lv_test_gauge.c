@@ -46,12 +46,13 @@ void lv_test_gauge_1(void)
 
     /*Copy the previous gauge and set smaller size for it*/
     lv_obj_t *gauge2 = lv_gauge_create(lv_scr_act(), gauge1);
-    lv_obj_set_size(gauge2, LV_DPI,  LV_DPI);
+    lv_obj_set_size(gauge2, 2 * lv_obj_get_width(gauge1) / 3,  2 * lv_obj_get_height(gauge1) / 3);
     lv_obj_align_scale(gauge2, gauge1, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
 
     /*Copy the first gauge add more needles and set new style*/
     static color_t needle_colors[3] = {COLOR_BLUE, COLOR_PURPLE, COLOR_TEAL};
 
+    /*Create a styled gauge*/
     static lv_style_t style3;
     lv_style_copy(&style3, &lv_style_pretty);
     style3.body.color_main = COLOR_GREEN;
