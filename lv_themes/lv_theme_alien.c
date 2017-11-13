@@ -33,6 +33,8 @@ static lv_style_t label_sm, label_md, label_lg;
 static lv_style_t btn_sm_rel, btn_sm_pr, btn_sm_trel, btn_sm_tpr, btn_sm_ina;
 static lv_style_t btn_md_rel, btn_md_pr,  btn_md_trel, btn_md_tpr, btn_md_ina;
 static lv_style_t btn_lg_rel, btn_lg_pr, btn_lg_trel, btn_lg_tpr, btn_lg_ina;
+static lv_style_t img_light, img_dark;
+static lv_style_t line_decor;
 static lv_style_t bar_bg, bar_indic;
 static lv_style_t slider_knob;
 static lv_style_t sw_bg, sw_indic, sw_knob;
@@ -307,6 +309,32 @@ static void bar_init(void)
 #endif
 }
 
+static void img_init(void)
+{
+#if USE_LV_IMG != 0
+    lv_style_copy(&img_light, &def);
+    img_light.image.color = color_hsv_to_rgb(_hue, 15, 85);
+    img_light.image.intense = OPA_80;
+
+    lv_style_copy(&img_dark, &def);
+    img_light.image.color = color_hsv_to_rgb(_hue, 85, 65);
+    img_light.image.intense = OPA_80;
+
+    theme.img.light = &img_light;
+    theme.img.dark = &img_dark;
+#endif
+}
+
+static void line_init(void)
+{
+#if USE_LV_LINE != 0
+    lv_style_copy(&line_decor, &def);
+    line_decor.line.color = color_hsv_to_rgb(_hue, 50, 90);
+    line_decor.line.width = 1 << LV_ANTIALIAS;
+
+    theme.line.decor = &line_decor;
+#endif
+}
 
 static void slider_init(void)
 {
@@ -692,6 +720,8 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
     btn_init();
     label_init();
     bar_init();
+    img_init();
+    line_init();
     slider_init();
     sw_init();
     lmeter_init();
