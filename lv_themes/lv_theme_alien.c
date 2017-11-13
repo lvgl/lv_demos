@@ -463,8 +463,8 @@ static void btnm_init(void)
     btnm_rel.text.font = _font_md;
 
     lv_style_copy(&btnm_pr, &lv_style_plain);
-    btnm_pr.body.color_main = color_hsv_to_rgb(_hue, 40, 80);
-    btnm_pr.body.color_gradient = color_hsv_to_rgb(_hue, 40, 80);
+    btnm_pr.body.color_main = color_hsv_to_rgb(_hue, 40, 70);
+    btnm_pr.body.color_gradient = color_hsv_to_rgb(_hue, 40, 70);
     btnm_pr.body.radius = LV_DPI / 4;
     btnm_pr.text.color = color_hsv_to_rgb(_hue, 40, 40);
     btnm_pr.text.font = _font_md;

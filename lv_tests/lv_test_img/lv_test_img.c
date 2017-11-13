@@ -1,0 +1,97 @@
+/**
+ * @file lv_test_img.c
+ *
+ */
+
+/*********************
+ *      INCLUDES
+ *********************/
+#include "lv_test_img.h"
+
+#if USE_LV_IMG != 0
+
+/*********************
+ *      DEFINES
+ *********************/
+LV_IMG_DECLARE(img_flower_icon);
+
+/**********************
+ *      TYPEDEFS
+ **********************/
+
+/**********************
+ *  STATIC PROTOTYPES
+ **********************/
+
+/**********************
+ *  STATIC VARIABLES
+ **********************/
+
+/**********************
+ *      MACROS
+ **********************/
+
+/**********************
+ *   GLOBAL FUNCTIONS
+ **********************/
+
+/**
+ * Create a default object and test the basic functions
+ */
+void lv_test_img_1(void)
+{
+
+    /*Create an image file in the RAM file system*/
+    lv_img_create_file("pic1", img_flower_icon);
+
+    /*Create an image object with the newly created file*/
+    lv_obj_t *img1 = lv_img_create(lv_scr_act(), NULL);
+    lv_img_set_file(img1, "U:/pic1");
+    lv_obj_set_pos_scale(img1, 10, 10);
+
+    /*Copy the previous image but set upscale*/
+    lv_obj_t *img2 = lv_img_create(lv_scr_act(), img1);
+    lv_img_set_upscale(img2, true);
+    lv_obj_align(img2, img1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
+
+    /*Copy the previous image and set a redish style*/
+    static lv_style_t style;
+    lv_style_copy(&style, &lv_style_plain);
+    style.image.color = COLOR_RED;
+    style.image.intense = OPA_70;
+
+    lv_obj_t *img3 = lv_img_create(lv_scr_act(), img2);
+    lv_img_set_style(img3, &style);
+    lv_obj_align(img3, img2, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
+
+    /*Copy the previous image and test the mozic feature*/
+    lv_obj_t *img4 = lv_img_create(lv_scr_act(), img3);
+    lv_obj_set_size_scale(img4, 100, 100);
+    lv_obj_align(img4, img3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
+
+    /*Test symbol drawing*/
+    lv_obj_t *img5 = lv_img_create(lv_scr_act(), NULL);
+    lv_img_set_file(img5, SYMBOL_SETTINGS SYMBOL_OK);
+    lv_obj_align(img5, img4, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
+
+
+
+    /*Test not RAM FS images*/
+#if USE_LINUXFS != 0
+    /*
+     * In misc_conf.h set LINUXFS_ROOT_DIR  to  "./"
+     * */
+
+    lv_obj_t *img_fs = lv_img_create(lv_scr_act(), NULL);
+    lv_img_set_file(img_fs, "L:examples/lv_tests/lv_test_img/img_flower_icon.bin");
+    lv_obj_align(img_fs, img1, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
+#endif
+
+
+}
+
+/**********************
+ *   STATIC FUNCTIONS
+ **********************/
+
+#endif /*USE_LV_IMG*/
