@@ -13,6 +13,9 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
+#include "lv_conf.h"
+
+#if USE_LV_THEME_ALIEN
 
 /*********************
  *      DEFINES
@@ -44,6 +47,7 @@ lv_theme_t * lv_theme_get_alien(void);
  *      MACROS
  **********************/
 
+#endif
 
 #ifdef __cplusplus
 } /* extern "C" */
