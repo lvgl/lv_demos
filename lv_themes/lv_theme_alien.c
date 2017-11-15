@@ -502,14 +502,14 @@ static void btnm_init(void)
 #if USE_LV_BTNM
     lv_style_copy(&btnm_bg, &lv_style_transp_tight);
     btnm_bg.body.border.width = 1 << LV_ANTIALIAS;
-    btnm_bg.body.border.color = color_hsv_to_rgb(_hue, 80, 80);
+    btnm_bg.body.border.color = color_hsv_to_rgb(_hue, 80, 60);
     btnm_bg.body.border.opa = OPA_COVER;
     btnm_bg.body.radius = LV_DPI / 4;
 
     lv_style_copy(&btnm_rel, &lv_style_plain);
     btnm_rel.body.empty = 1;
     btnm_rel.body.radius = LV_DPI / 4;
-    btnm_rel.text.color = color_hsv_to_rgb(_hue, 80, 80);
+    btnm_rel.text.color = color_hsv_to_rgb(_hue, 40, 60);
     btnm_rel.text.font = _font_md;
 
     lv_style_copy(&btnm_pr, &lv_style_plain);
@@ -640,13 +640,14 @@ static void roller_init(void)
     roller_bg.body.color_gradient = COLOR_HEX3(0x999);
     roller_bg.body.border.opa = OPA_30;
     roller_bg.text.opa = OPA_70;
-    roller_bg.text.color = color_hsv_to_rgb(_hue, 15, 100);
+    roller_bg.text.color = color_hsv_to_rgb(_hue, 20, 70);
     roller_bg.body.shadow.width = LV_DPI / 20;
     roller_bg.body.shadow.color = COLOR_HEX3(0x111);
 
     lv_style_copy(&roller_sel, &panel);
     roller_sel.body.empty = 1;
     roller_sel.body.radius = 0;
+    roller_sel.text.color = color_hsv_to_rgb(_hue, 45, 80);
 
     theme.roller.bg = &roller_bg;
     theme.roller.sel = &roller_sel;

@@ -145,7 +145,7 @@ void lv_theme_create_test_screen(lv_theme_t *th)
 
     lv_obj_t *bar = lv_bar_create(h, NULL);
     lv_bar_set_style(bar, LV_BAR_STYLE_BG, th->bar.bg);
-    lv_bar_set_style(bar, LV_BAR_STYLE_INDIC, th->bar.bg);
+    lv_bar_set_style(bar, LV_BAR_STYLE_INDIC, th->bar.indic);
     lv_bar_set_value(bar, 70);
 
     lv_obj_t *slider = lv_slider_create(h, NULL);

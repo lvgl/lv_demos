@@ -51,6 +51,7 @@ void lv_test_roller_1(void)
     bg.body.shadow.width = 5 << LV_ANTIALIAS;
     bg.text.line_space = 10 << LV_ANTIALIAS;
     bg.text.opa = OPA_60;
+    bg.text.color = COLOR_GRAY;
 
     lv_obj_t *roller2 = lv_roller_create(lv_scr_act(), NULL);
     lv_obj_set_size_scale(roller2, 80, 120);
@@ -59,7 +60,7 @@ void lv_test_roller_1(void)
     lv_roller_set_anim_time(roller2, 500);
     lv_roller_set_style(roller2, LV_ROLLER_STYLE_BG, &bg);
     lv_roller_set_style(roller2, LV_ROLLER_STYLE_SELECTED, &lv_style_plain);
-//    lv_roller_set_selected(roller2, 4, true);
+    lv_roller_set_selected(roller2, 4, true);
 
     lv_obj_t *roller3 = lv_roller_create(lv_scr_act(), roller2);
     lv_obj_align_scale(roller3, roller2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
