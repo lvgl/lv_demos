@@ -47,7 +47,7 @@ void lv_test_btn_1(void)
     /* Create a default button manually set to toggled state*/
     lv_obj_t * btn2 = lv_btn_create(lv_scr_act(), NULL);
     lv_obj_align_scale(btn2, btn1, LV_ALIGN_OUT_BOTTOM_MID, 0, 20);
-    lv_btn_set_state(btn2, LV_BTN_STATE_TGL_RELEASED);
+    lv_btn_set_state(btn2, LV_BTN_STATE_TGL_REL);
 
     /* Create a button which can be toggled */
     lv_obj_t * btn3 = lv_btn_create(lv_scr_act(), NULL);
@@ -94,13 +94,16 @@ void lv_test_btn_1(void)
     /*Create styled button*/
     lv_obj_t * btn5 = lv_btn_create(lv_scr_act(), btn4);
     lv_obj_align_scale(btn5, btn4, LV_ALIGN_OUT_BOTTOM_MID, 0, 20);
-    lv_btn_set_style(btn5, &style_rel, &style_pr, NULL, &style_tpr, &style_ina);
+    lv_btn_set_style(btn5, LV_BTN_STYLE_REL, &style_rel);
+    lv_btn_set_style(btn5, LV_BTN_STYLE_PR, &style_pr);
+    lv_btn_set_style(btn5, LV_BTN_STYLE_TGL_PR, &style_tpr);
+    lv_btn_set_style(btn5, LV_BTN_STYLE_INA, &style_ina);
     lv_btn_set_toggle(btn5, true);
 
     /* Test style copy and inactive state*/
     lv_obj_t * btn6 = lv_btn_create(lv_scr_act(), btn5);
     lv_obj_align_scale(btn6, btn5, LV_ALIGN_OUT_BOTTOM_MID, 0, 20);
-    lv_btn_set_state(btn6, LV_BTN_STATE_INACTIVE);
+    lv_btn_set_state(btn6, LV_BTN_STATE_INA);
 
     /*Test horizontal fit and default layout (CENTER)*/
     lv_obj_t * btn7 = lv_btn_create(lv_scr_act(), NULL);

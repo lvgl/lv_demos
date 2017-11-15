@@ -73,6 +73,10 @@ typedef struct {
     }line;
 #endif
 
+#if USE_LV_LED != 0
+    lv_style_t *led;
+#endif
+
 #if USE_LV_BAR != 0
     struct {
         lv_style_t *bg;
@@ -183,6 +187,7 @@ typedef struct {
 #if USE_LV_LIST
     struct {
         lv_style_t *bg;
+        lv_style_t *scrl;
         lv_style_t *sb;
         struct {
             lv_style_t *rel;
@@ -215,6 +220,7 @@ typedef struct {
         lv_style_t *sb;
         lv_style_t *indic;
         struct {
+            lv_style_t *bg;
             lv_style_t *rel;
             lv_style_t *pr;
             lv_style_t *trel;

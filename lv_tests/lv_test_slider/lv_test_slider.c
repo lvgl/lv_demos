@@ -79,7 +79,9 @@ void lv_test_slider_1(void)
 
     lv_obj_t * slider4 = lv_slider_create(lv_scr_act(), slider2);
     lv_obj_align_scale(slider4, slider2, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
-    lv_slider_set_style(slider4, &slider_bg, &slider_indic, &slider_knob);
+    lv_slider_set_style(slider4, LV_SLIDER_STYLE_BG, &slider_bg);
+    lv_slider_set_style(slider4, LV_SLIDER_STYLE_INDIC, &slider_indic);
+    lv_slider_set_style(slider4, LV_SLIDER_STYLE_KNOB, &slider_knob);
 
     /* Copy 'slider4' but set its size to be vertical*/
     lv_obj_t * slider5 = lv_slider_create(lv_scr_act(), slider4);

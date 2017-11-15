@@ -71,7 +71,8 @@ void lv_test_btnm_1(void)
     lv_obj_align(btnm2, btnm1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
     lv_btnm_set_toggle(btnm2, true, 2);
     lv_btnm_set_action(btnm2, btnm_action);
-    lv_btnm_set_style_btn(btnm2, &rel, &pr, NULL, NULL, NULL);
+    lv_btnm_set_style(btnm2, LV_BTNM_STYLE_BTN_REL, &rel);
+    lv_btnm_set_style(btnm2, LV_BTNM_STYLE_BTN_PR, &pr);
 
 
     lv_obj_t * btnm3 = lv_btnm_create(lv_scr_act(), btnm2);

@@ -112,7 +112,9 @@ void lv_test_page_2(void)
     lv_page_set_scrl_layout(page1, LV_CONT_LAYOUT_COL_L);
     lv_page_set_sb_mode(page1, LV_PAGE_SB_MODE_OFF);
     lv_page_set_release_action(page1, page_rel_action);
-    lv_page_set_style(page1, &bg, &scrl, &sb);
+    lv_page_set_style(page1, LV_PAGE_STYLE_BG, &bg);
+    lv_page_set_style(page1, LV_PAGE_STYLE_SCRL, &scrl);
+    lv_page_set_style(page1, LV_PAGE_STYLE_SB, &sb);
 
     lv_obj_t * label = lv_label_create(page1, NULL);
     lv_label_set_text(label, "First line of a text\n"

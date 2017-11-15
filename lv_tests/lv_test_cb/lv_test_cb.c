@@ -55,48 +55,50 @@ void lv_test_cb_1(void)
 
     /*Create styles for a round bullet*/
     static lv_style_t cb3_styles[LV_BTN_STATE_NUM];
-    lv_style_copy(&cb3_styles[LV_BTN_STATE_RELEASED], &lv_style_plain);
-    cb3_styles[LV_BTN_STATE_RELEASED].body.radius = LV_RADIUS_CIRCLE;
-    cb3_styles[LV_BTN_STATE_RELEASED].body.border.width = 1 << LV_ANTIALIAS;
-    cb3_styles[LV_BTN_STATE_RELEASED].body.border.color = COLOR_GRAY;
-    cb3_styles[LV_BTN_STATE_RELEASED].body.color_main = COLOR_WHITE;
-    cb3_styles[LV_BTN_STATE_RELEASED].body.color_gradient = COLOR_SILVER;
+    lv_style_copy(&cb3_styles[LV_BTN_STATE_REL], &lv_style_plain);
+    cb3_styles[LV_BTN_STATE_REL].body.radius = LV_DPI / 20;
+    cb3_styles[LV_BTN_STATE_REL].body.border.width = 1 << LV_ANTIALIAS;
+    cb3_styles[LV_BTN_STATE_REL].body.border.color = COLOR_GRAY;
+    cb3_styles[LV_BTN_STATE_REL].body.color_main = COLOR_WHITE;
+    cb3_styles[LV_BTN_STATE_REL].body.color_gradient = COLOR_SILVER;
 
-    lv_style_copy(&cb3_styles[LV_BTN_STATE_PRESSED], &cb3_styles[LV_BTN_STATE_RELEASED]);
-    cb3_styles[LV_BTN_STATE_PRESSED].body.color_main = COLOR_SILVER;
-    cb3_styles[LV_BTN_STATE_PRESSED].body.color_gradient = COLOR_GRAY;
+    lv_style_copy(&cb3_styles[LV_BTN_STATE_PR], &cb3_styles[LV_BTN_STATE_REL]);
+    cb3_styles[LV_BTN_STATE_PR].body.color_main = COLOR_SILVER;
+    cb3_styles[LV_BTN_STATE_PR].body.color_gradient = COLOR_GRAY;
 
-    lv_style_copy(&cb3_styles[LV_BTN_STATE_TGL_RELEASED], &cb3_styles[LV_BTN_STATE_RELEASED]);
-    cb3_styles[LV_BTN_STATE_TGL_RELEASED].body.border.width = 4 << LV_ANTIALIAS;
-    cb3_styles[LV_BTN_STATE_TGL_RELEASED].body.border.color = COLOR_WHITE;
-    cb3_styles[LV_BTN_STATE_TGL_RELEASED].body.border.opa = OPA_70;
-    cb3_styles[LV_BTN_STATE_TGL_RELEASED].body.color_main = COLOR_GRAY;
-    cb3_styles[LV_BTN_STATE_TGL_RELEASED].body.color_gradient = COLOR_BLACK;
+    lv_style_copy(&cb3_styles[LV_BTN_STATE_TGL_REL], &cb3_styles[LV_BTN_STATE_REL]);
+    cb3_styles[LV_BTN_STATE_TGL_REL].body.border.width = 4 << LV_ANTIALIAS;
+    cb3_styles[LV_BTN_STATE_TGL_REL].body.border.color = COLOR_WHITE;
+    cb3_styles[LV_BTN_STATE_TGL_REL].body.border.opa = OPA_70;
+    cb3_styles[LV_BTN_STATE_TGL_REL].body.color_main = COLOR_GRAY;
+    cb3_styles[LV_BTN_STATE_TGL_REL].body.color_gradient = COLOR_BLACK;
 
-    lv_style_copy(&cb3_styles[LV_BTN_STATE_TGL_PRESSED], &cb3_styles[LV_BTN_STATE_TGL_RELEASED]);
-    cb3_styles[LV_BTN_STATE_TGL_PRESSED].body.border.color = COLOR_SILVER;
-    cb3_styles[LV_BTN_STATE_TGL_PRESSED].body.border.opa = OPA_70;
-    cb3_styles[LV_BTN_STATE_TGL_PRESSED].body.color_main = COLOR_GRAY;
-    cb3_styles[LV_BTN_STATE_TGL_PRESSED].body.color_gradient = COLOR_BLACK;
+    lv_style_copy(&cb3_styles[LV_BTN_STATE_TGL_PR], &cb3_styles[LV_BTN_STATE_TGL_REL]);
+    cb3_styles[LV_BTN_STATE_TGL_PR].body.border.color = COLOR_SILVER;
+    cb3_styles[LV_BTN_STATE_TGL_PR].body.border.opa = OPA_70;
+    cb3_styles[LV_BTN_STATE_TGL_PR].body.color_main = COLOR_GRAY;
+    cb3_styles[LV_BTN_STATE_TGL_PR].body.color_gradient = COLOR_BLACK;
 
-    lv_style_copy(&cb3_styles[LV_BTN_STATE_INACTIVE], &cb3_styles[LV_BTN_STATE_TGL_RELEASED]);
-    cb3_styles[LV_BTN_STATE_INACTIVE].body.border.width = 1 << LV_ANTIALIAS;
-    cb3_styles[LV_BTN_STATE_INACTIVE].body.border.color = COLOR_GRAY;
-    cb3_styles[LV_BTN_STATE_INACTIVE].body.color_main = COLOR_SILVER;
-    cb3_styles[LV_BTN_STATE_INACTIVE].body.color_gradient = COLOR_SILVER;
+    lv_style_copy(&cb3_styles[LV_BTN_STATE_INA], &cb3_styles[LV_BTN_STATE_TGL_REL]);
+    cb3_styles[LV_BTN_STATE_INA].body.border.width = 1 << LV_ANTIALIAS;
+    cb3_styles[LV_BTN_STATE_INA].body.border.color = COLOR_GRAY;
+    cb3_styles[LV_BTN_STATE_INA].body.color_main = COLOR_SILVER;
+    cb3_styles[LV_BTN_STATE_INA].body.color_gradient = COLOR_SILVER;
 
 
     /*Copy the previous check box and apply the new styles*/
     lv_obj_t *cb3 = lv_cb_create(lv_scr_act(), cb2);
-    lv_cb_set_style_bullet(cb3, &cb3_styles[LV_BTN_STATE_RELEASED], &cb3_styles[LV_BTN_STATE_PRESSED],
-                               &cb3_styles[LV_BTN_STATE_TGL_RELEASED], &cb3_styles[LV_BTN_STATE_TGL_PRESSED],
-                               &cb3_styles[LV_BTN_STATE_INACTIVE]);
+    lv_cb_set_style(cb3, LV_CB_STYLE_RELEASED, &cb3_styles[LV_BTN_STATE_REL]);
+    lv_cb_set_style(cb3, LV_CB_STYLE_PRESSED, &cb3_styles[LV_BTN_STATE_PR]);
+    lv_cb_set_style(cb3, LV_CB_STYLE_TGL_RELEASED, &cb3_styles[LV_BTN_STATE_TGL_REL]);
+    lv_cb_set_style(cb3, LV_CB_STYLE_TGL_PRESSED, &cb3_styles[LV_BTN_STATE_TGL_PR]);
+    lv_cb_set_style(cb3, LV_CB_STYLE_INACTIVE, &cb3_styles[LV_BTN_STATE_INA]);
     lv_obj_align_scale(cb3, cb2, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
 
     /*Copy the previous check box and set it to INACTIVE*/
     lv_obj_t *cb4 = lv_cb_create(lv_scr_act(), cb3);
     lv_obj_align_scale(cb4, cb3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
-    lv_btn_set_state(cb4, LV_BTN_STATE_INACTIVE);
+    lv_btn_set_state(cb4, LV_BTN_STATE_INA);
 
 }
 

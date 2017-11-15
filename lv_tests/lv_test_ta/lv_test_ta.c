@@ -145,7 +145,9 @@ void lv_test_ta_2(void)
 
 
     ta2_1 = lv_ta_create(lv_scr_act(), NULL);
-    lv_ta_set_style(ta2_1, &bg, &sb, &cur);
+    lv_ta_set_style(ta2_1, LV_TA_STYLE_BG, &bg);
+    lv_ta_set_style(ta2_1, LV_TA_STYLE_SB, &sb);
+    lv_ta_set_style(ta2_1, LV_TA_STYLE_CURSOR, &cur);
     lv_ta_set_cursor_type(ta2_1, LV_TA_CURSOR_LINE);
 #if TXT_UTF8 != 0
     lv_ta_set_text(ta2_1, "Some UTF-8 characters "
@@ -240,10 +242,10 @@ static lv_res_t cursor_move(lv_obj_t *btn)
             break;
 
         case 4:
-            lv_ta_del(ta2_1);
-            lv_ta_del(ta2_2);
-            lv_ta_del(ta2_3);
-            lv_ta_del(ta2_4);
+            lv_ta_del_char(ta2_1);
+            lv_ta_del_char(ta2_2);
+            lv_ta_del_char(ta2_3);
+            lv_ta_del_char(ta2_4);
             break;
     }
 

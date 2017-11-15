@@ -39,6 +39,7 @@ static lv_style_t btn_md_rel, btn_md_pr,  btn_md_trel, btn_md_tpr, btn_md_ina;
 static lv_style_t btn_lg_rel, btn_lg_pr, btn_lg_trel, btn_lg_tpr, btn_lg_ina;
 static lv_style_t img_light, img_dark;
 static lv_style_t line_decor;
+static lv_style_t led;
 static lv_style_t bar_bg, bar_indic;
 static lv_style_t slider_knob;
 static lv_style_t sw_bg, sw_indic, sw_knob;
@@ -333,10 +334,27 @@ static void line_init(void)
 {
 #if USE_LV_LINE != 0
     lv_style_copy(&line_decor, &def);
-    line_decor.line.color = color_hsv_to_rgb(_hue, 50, 90);
+    line_decor.line.color = color_hsv_to_rgb(_hue, 50, 50);
     line_decor.line.width = 1 << LV_ANTIALIAS;
 
     theme.line.decor = &line_decor;
+#endif
+}
+
+static void led_init(void)
+{
+#if USE_LV_LED != 0
+    lv_style_copy(&led, &lv_style_pretty_color);
+    led.body.shadow.width = LV_DPI / 10;
+    led.body.radius = LV_RADIUS_CIRCLE;
+    led.body.border.width= LV_DPI / 30;
+    led.body.border.opa = OPA_30;
+    led.body.color_main = COLOR_MAKE(0xb5, 0x0f, 0x04);
+    led.body.color_gradient = COLOR_MAKE(0x50, 0x07, 0x02);
+    led.body.border.color = COLOR_MAKE(0xfa, 0x0f, 0x00);
+    led.body.shadow.color = COLOR_MAKE(0xb5, 0x0f, 0x04);
+
+    theme.led = &led;
 #endif
 }
 
@@ -585,6 +603,7 @@ static void list_init(void)
 
     theme.list.sb = &sb;
     theme.list.bg = &list_bg;
+    theme.list.scrl = &lv_style_transp_tight;
     theme.list.btn.rel = &list_rel;
     theme.list.btn.pr = &list_pr;
     theme.list.btn.trel = &list_trel;
@@ -680,12 +699,15 @@ static void tabview_init(void)
     tab_indic.body.border.width = 0;
     tab_indic.body.color_main = color_hsv_to_rgb(_hue, 80, 87);
     tab_indic.body.color_gradient = color_hsv_to_rgb(_hue, 80, 87);
+    tab_indic.body.padding.inner = LV_DPI / 10; /*Indicator height*/
 
+    theme.tabview.bg = &bg;
+    theme.tabview.indic = &tab_indic;
+    theme.tabview.tab.bg = &lv_style_transp_tight;
     theme.tabview.tab.rel = &tab_rel;
     theme.tabview.tab.pr = &tab_pr;
     theme.tabview.tab.trel = &tab_trel;
     theme.tabview.tab.tpr = &tab_tpr;
-    theme.tabview.indic = &tab_indic;
 #endif
 }
 
@@ -726,6 +748,7 @@ void lv_theme_alien_init(uint16_t hue, font_t *font_sm, font_t *font_md, font_t 
     bar_init();
     img_init();
     line_init();
+    led_init();
     slider_init();
     sw_init();
     lmeter_init();

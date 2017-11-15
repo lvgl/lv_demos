@@ -69,7 +69,8 @@ void lv_test_ddlist_1(void)
 
     lv_obj_t * ddlist3 = lv_ddlist_create(lv_scr_act(), ddlist2);
     lv_obj_align_scale(ddlist3, ddlist2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
-    lv_ddlist_set_style(ddlist3, &ddlist3_style, NULL, &lv_style_plain_color);
+    lv_ddlist_set_style(ddlist3, LV_DDLIST_STYLE_BG, &ddlist3_style);
+    lv_ddlist_set_style(ddlist3, LV_DDLIST_STYLE_SELECTED, &lv_style_plain_color);
 }
 
 /**********************

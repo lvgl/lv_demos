@@ -75,7 +75,8 @@ void lv_test_list_1(void)
     bg.body.padding.hor = 20 << LV_ANTIALIAS;
 
     list4 = lv_list_create(lv_scr_act(), list3);
-    lv_list_set_style(list4, &bg, NULL, &sb);
+    lv_list_set_style(list4, LV_LIST_STYLE_BG, &bg);
+    lv_list_set_style(list4, LV_LIST_STYLE_SB, &sb);
     lv_obj_align_scale(list4, list3, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     lv_obj_set_width_scale(list4, 200);
 

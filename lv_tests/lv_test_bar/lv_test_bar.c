@@ -72,7 +72,8 @@ void lv_test_bar_1(void)
 
     lv_obj_t * bar4 = lv_bar_create(lv_scr_act(), bar2);
     lv_obj_align_scale(bar4, bar2, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
-    lv_bar_set_style(bar4, &bar_bg, &bar_indic);
+    lv_bar_set_style(bar4, LV_BAR_STYLE_BG, &bar_bg);
+    lv_bar_set_style(bar4, LV_BAR_STYLE_INDIC, &bar_indic);
 
     /* Copy 'bar4' but set its size to be vertical*/
     lv_obj_t * bar5 = lv_bar_create(lv_scr_act(), bar4);

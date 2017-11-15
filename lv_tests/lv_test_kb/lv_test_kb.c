@@ -83,9 +83,9 @@ void lv_test_kb_2(void)
     rel.text.color = COLOR_NAVY;
     lv_style_copy(&pr, &lv_style_plain_color);
 
-    lv_kb_set_style(kb1, &bg);
-    lv_kb_set_style_btn(kb1, &rel, &pr, NULL, NULL, NULL);
-
+    lv_kb_set_style(kb1, LV_KB_STYLE_BG, &bg);
+    lv_kb_set_style(kb1, LV_KB_STYLE_BTN_REL, &rel);
+    lv_kb_set_style(kb1, LV_KB_STYLE_BTN_PR, &pr);
 }
 
 /**********************
