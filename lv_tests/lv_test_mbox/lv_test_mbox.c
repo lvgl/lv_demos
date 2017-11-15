@@ -6,10 +6,7 @@
 /*********************
  *      INCLUDES
  *********************/
-#include <stdio.h>  /*For printf in the action*/
-
 #include "lv_test_mbox.h"
-
 #if USE_LV_MBOX != 0
 
 /*********************
@@ -23,7 +20,7 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static lv_res_t mbox_action(lv_obj_t *btn);
+static lv_res_t mbox_action(lv_obj_t *btn, const char *txt);
 
 /**********************
  *  STATIC VARIABLES
@@ -36,15 +33,15 @@ static lv_res_t mbox_action(lv_obj_t *btn);
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
+
 /**
- * Create a default object and test the basic functions
+ * Create message boxes to test their functionalities
  */
 void lv_test_mbox_1(void)
 {
     /* Default object */
     lv_obj_t *mbox1 = lv_mbox_create(lv_scr_act(), NULL);
     lv_obj_set_pos_scale(mbox1, 10, 10);
-
 
     /*Add buttons and modify text*/
     static const char * btns2[] = {"Ok", "Cancel", ""};
@@ -73,7 +70,7 @@ void lv_test_mbox_1(void)
     btn_bg.text.color = COLOR_WHITE;
 
     static lv_style_t btn_rel;
-    lv_style_copy(&btn_rel, &lv_style_btn_released);
+    lv_style_copy(&btn_rel, &lv_style_btn_rel);
     btn_rel.body.empty = 1;
     btn_rel.body.border.color = COLOR_WHITE;
 
@@ -82,6 +79,7 @@ void lv_test_mbox_1(void)
     lv_mbox_set_style(mbox3, LV_MBOX_STYLE_BTN_BG,  &btn_bg);
     lv_mbox_set_style(mbox3, LV_MBOX_STYLE_BTN_REL, &btn_rel);
     lv_obj_align_scale(mbox3, mbox1, LV_ALIGN_OUT_RIGHT_TOP, 10, 0);
+    lv_mbox_set_action(mbox3, mbox_action);
 
     /*Copy with styles and set button width*/
     lv_obj_t *mbox4 = lv_mbox_create(lv_scr_act(), mbox3);
@@ -89,7 +87,7 @@ void lv_test_mbox_1(void)
                             "manually broken into multiple lines");
 
     static const char * btns3[] = {"Ok", "Cancel", "Third", ""};
-    lv_mbox_set_btns(mbox4, btns3, NULL);
+    lv_mbox_set_btns(mbox4, btns3, mbox_action);
     lv_obj_align_scale(mbox4, mbox3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
 }
 
@@ -97,11 +95,11 @@ void lv_test_mbox_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-static lv_res_t mbox_action(lv_obj_t *btn)
+static lv_res_t mbox_action(lv_obj_t *btn, const char *txt)
 {
     lv_obj_t *mbox = lv_mbox_get_from_btn(btn);
 
-    lv_mbox_set_text(mbox, "Short text");
+    lv_mbox_set_text(mbox, txt);
 
     return LV_RES_OK;
 }

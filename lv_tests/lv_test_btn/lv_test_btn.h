@@ -29,6 +29,11 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
+/**
+ * Create buttons to test their functionalities
+ */
+void lv_test_btn_1(void);
+
 /**********************
  *      MACROS
  **********************/

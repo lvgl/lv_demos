@@ -29,6 +29,11 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
+/**
+ * Create lines to test their functionalities
+ */
+void lv_test_line_1(void);
+
 /**********************
  *      MACROS
  **********************/

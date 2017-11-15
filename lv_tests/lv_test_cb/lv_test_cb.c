@@ -35,13 +35,12 @@
  **********************/
 
 /**
- * Create a default object and test the basic functions
+ * Create check boxes to test their functionalities
  */
 void lv_test_cb_1(void)
 {
     /* Create a default object*/
     lv_obj_t * cb1 = lv_cb_create(lv_scr_act(), NULL);
-
 
     /*Create an other check box and set its text*/
     lv_obj_t * cb2 = lv_cb_create(lv_scr_act(), NULL);
@@ -51,7 +50,6 @@ void lv_test_cb_1(void)
     lv_cb_set_text(cb2, "UTF8-text: üŰ öŐ íÍ");
 #endif
     lv_obj_align_scale(cb2, cb1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
-
 
     /*Create styles for a round bullet*/
     static lv_style_t cb3_styles[LV_BTN_STATE_NUM];
@@ -99,7 +97,6 @@ void lv_test_cb_1(void)
     lv_obj_t *cb4 = lv_cb_create(lv_scr_act(), cb3);
     lv_obj_align_scale(cb4, cb3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
     lv_btn_set_state(cb4, LV_BTN_STATE_INA);
-
 }
 
 

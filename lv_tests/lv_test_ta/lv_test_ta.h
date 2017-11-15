@@ -29,6 +29,16 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
+/**
+ * Create text areas to test their basic functionalities
+ */
+void lv_test_ta_1(void);
+
+/**
+ * Test cursor modes
+ */
+void lv_test_ta_2(void);
+
 /**********************
  *      MACROS
 **********************/

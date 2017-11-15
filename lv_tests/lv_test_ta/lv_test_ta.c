@@ -40,7 +40,7 @@ static lv_obj_t *ta2_4;
  **********************/
 
 /**
- * Create a default object and test the basic functions
+ * Create text areas to test their basic functionalities
  */
 void lv_test_ta_1(void)
 {
@@ -109,6 +109,9 @@ void lv_test_ta_1(void)
 
 }
 
+/**
+ * Test cursor modes
+ */
 void lv_test_ta_2(void)
 {
 

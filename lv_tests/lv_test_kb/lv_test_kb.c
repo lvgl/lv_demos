@@ -23,7 +23,6 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static lv_res_t kb_action(lv_obj_t * kb, const char * txt);
 
 /**********************
  *  STATIC VARIABLES
@@ -52,6 +51,9 @@ void lv_test_kb_1(void)
     lv_kb_set_ta(kb1, ta);
 }
 
+/**
+ * Create a styles keyboard
+ */
 void lv_test_kb_2(void)
 {
 
@@ -91,13 +93,5 @@ void lv_test_kb_2(void)
 /**********************
  *   STATIC FUNCTIONS
  **********************/
-
-static lv_res_t kb_action(lv_obj_t * kb, const char * txt)
-{
-    /* On PC */
-     printf("%s\n", txt);
-
-    return LV_RES_OK;
-}
 
 #endif /*USE_LV_KB*/

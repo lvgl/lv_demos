@@ -35,7 +35,7 @@
  **********************/
 
 /**
- * Create a default object and test the basic functions
+ * Create labels with dynamic, static and array texts
  */
 void lv_test_label_1(void)
 {
@@ -87,7 +87,7 @@ void lv_test_label_1(void)
 }
 
 /**
- * Test long modes
+ * Test label long modes
  */
 void lv_test_label_2(void)
 {
@@ -150,12 +150,11 @@ void lv_test_label_2(void)
     lv_obj_t * label6 = lv_label_create(lv_scr_act(), label5);
     lv_label_set_long_mode(label6, LV_LABEL_LONG_EXPAND);
     lv_obj_align_scale(label6, label5, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
-
 }
 
 
 /**
- * Test insert and cut
+ * Test text insert and cut
  */
 void lv_test_label_3(void)
 {

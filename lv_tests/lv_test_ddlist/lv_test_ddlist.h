@@ -29,6 +29,11 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
+/**
+ * Create drop down lists to test their functionalities
+ */
+void lv_test_ddlist_1(void);
+
 /**********************
  *      MACROS
  **********************/

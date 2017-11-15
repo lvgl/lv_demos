@@ -29,6 +29,16 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
+/**
+ * Create pages to test their basic functionalities
+ */
+void lv_test_page_1(void);
+
+/**
+ * Test styling, scrollbar modes, layout and action
+ */
+void lv_test_page_2(void);
+
 /**********************
  *      MACROS
  **********************/

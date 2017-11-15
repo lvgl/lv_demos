@@ -35,7 +35,7 @@
  **********************/
 
 /**
- * Create a default object and test the basic functions
+ * Create sliders to test their functionalities
  */
 void lv_test_slider_1(void)
 {

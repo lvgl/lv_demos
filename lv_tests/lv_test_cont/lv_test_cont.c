@@ -35,7 +35,7 @@
  **********************/
 
 /**
- * Create a default object and test the basic functions
+ * Create containers to test their  basic functionalities
  */
 void lv_test_cont_1(void)
 {
@@ -64,7 +64,6 @@ void lv_test_cont_1(void)
     lv_cont_set_layout(cont3, LV_CONT_LAYOUT_COL_L);
 
     lv_obj_align_scale(cont3, cont2, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
-
 
 
     /*Set a new style with new padding*/

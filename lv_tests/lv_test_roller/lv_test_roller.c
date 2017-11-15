@@ -35,7 +35,7 @@
  **********************/
 
 /**
- * Create a default object and test the basic functions
+ * Create rollers to test their functionalities
  */
 void lv_test_roller_1(void)
 {

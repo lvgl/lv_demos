@@ -29,6 +29,11 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
+/**
+ * Create sliders to test their functionalities
+ */
+void lv_test_slider_1(void);
+
 /**********************
  *      MACROS
  **********************/

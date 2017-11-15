@@ -37,7 +37,7 @@
  **********************/
 
 /**
- * Create a default object and test the basic functions
+ * Create drop down lists to test their functionalities
  */
 void lv_test_ddlist_1(void)
 {

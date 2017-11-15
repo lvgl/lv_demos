@@ -29,6 +29,10 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
+/**
+ * Create gauges to test their functionalities
+ */
+void lv_test_gauge_1(void);
 /**********************
  *      MACROS
  **********************/

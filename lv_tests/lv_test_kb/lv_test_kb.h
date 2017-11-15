@@ -29,6 +29,16 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
+/**
+ * Create a default object and test the basic functions
+ */
+void lv_test_kb_1(void);
+
+/**
+ * Create a styles keyboard
+ */
+void lv_test_kb_2(void);
+
 /**********************
  *      MACROS
  **********************/

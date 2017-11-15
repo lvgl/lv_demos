@@ -28,6 +28,10 @@ extern "C" {
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
+/**
+ * Create line meters to test their functionalities
+ */
+void lv_test_lmeter_1(void);
 
 /**********************
  *      MACROS

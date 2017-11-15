@@ -36,7 +36,7 @@ LV_IMG_DECLARE(img_flower_icon);
  **********************/
 
 /**
- * Create a default object and test the basic functions
+ * Create images to test their functionalities
  */
 void lv_test_img_1(void)
 {

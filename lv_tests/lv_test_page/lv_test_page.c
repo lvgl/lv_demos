@@ -36,7 +36,7 @@ static lv_res_t page_rel_action(lv_obj_t *page);
  **********************/
 
 /**
- * Create a default object and test the basic functions
+ * Create pages to test their basic functionalities
  */
 void lv_test_page_1(void)
 {

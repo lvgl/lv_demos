@@ -259,6 +259,11 @@ void lv_theme_create_test_screen(lv_theme_t *th);
  *    MACROS
  **********************/
 
+/**********************
+ *     POST INCLUDE
+ *********************/
+#include "lv_theme_alien.h"
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif

@@ -27,6 +27,11 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
+/**
+ * Create base objects to test their functionalities
+ */
+void lv_test_object_1(void);
+
 /**********************
  *      MACROS
  **********************/

@@ -29,6 +29,11 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
+/**
+ * Create check boxes to test their functionalities
+ */
+void lv_test_cb_1(void);
+
 /**********************
  *      MACROS
  **********************/

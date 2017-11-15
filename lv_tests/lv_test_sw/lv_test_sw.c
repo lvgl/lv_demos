@@ -7,7 +7,6 @@
  *      INCLUDES
  *********************/
 #include <stdio.h>  /*For printf in the action*/
-
 #include "lv_test_sw.h"
 
 #if USE_LV_SW != 0
@@ -36,8 +35,9 @@ static lv_res_t sw_action(lv_obj_t *sw);
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
+
 /**
- * Create a default object and test the basic functions
+ * Create switches to test their functionalities
  */
 void lv_test_sw_1(void)
 {
@@ -60,8 +60,8 @@ void lv_test_sw_1(void)
     lv_obj_t *sw2 = lv_sw_create(lv_scr_act(), sw1);
     lv_sw_set_style(sw2, LV_SW_STYLE_BG, &bg);
     lv_sw_set_style(sw2, LV_SW_STYLE_INDIC, &indic);
-    lv_sw_set_style(sw2, LV_SW_STYLE_KNOB_OFF, &lv_style_btn_pressed);
-    lv_sw_set_style(sw2, LV_SW_STYLE_KNOB_ON, &lv_style_btn_tgl_pressed);
+    lv_sw_set_style(sw2, LV_SW_STYLE_KNOB_OFF, &lv_style_btn_pr);
+    lv_sw_set_style(sw2, LV_SW_STYLE_KNOB_ON, &lv_style_btn_tgl_pr);
 
     lv_sw_set_on(sw2);
     lv_obj_align_scale(sw2, sw1, LV_ALIGN_OUT_RIGHT_MID, 20, 0);

@@ -29,6 +29,11 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
+/**
+ * Create tab views to test their functionalities
+ */
+void lv_test_tabview_1(void);
+
 /**********************
  *      MACROS
  **********************/

@@ -35,7 +35,7 @@
  **********************/
 
 /**
- * Create a default object and test the basic functions
+ * Create tab views to test their functionalities
  */
 void lv_test_tabview_1(void)
 {

@@ -35,7 +35,7 @@
  **********************/
 
 /**
- * Create a default object and test the basic functions
+ * Create gauges to test their functionalities
  */
 void lv_test_gauge_1(void)
 {

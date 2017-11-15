@@ -29,6 +29,11 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
+/**
+ * Create switches to test their functionalities
+ */
+void lv_test_sw_1(void);
+
 /**********************
  *      MACROS
  **********************/

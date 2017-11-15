@@ -33,7 +33,7 @@
  **********************/
 
 /**
- * Create a default object and test the basic functions
+ * Create base objects to test their functionalities
  */
 void lv_test_object_1(void)
 {

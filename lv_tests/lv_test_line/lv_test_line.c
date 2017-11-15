@@ -35,7 +35,7 @@
  **********************/
 
 /**
- * Create a default object and test the basic functions
+ * Create lines to test their functionalities
  */
 void lv_test_line_1(void)
 {

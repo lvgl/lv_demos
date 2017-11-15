@@ -29,6 +29,11 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
+/**
+ * Create message boxes to test their functionalities
+ */
+void lv_test_mbox_1(void);
+
 /**********************
  *      MACROS
  **********************/

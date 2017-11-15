@@ -29,6 +29,11 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
+/**
+ * Create rollers to test their functionalities
+ */
+void lv_test_roller_1(void);
+
 /**********************
  *      MACROS
  **********************/

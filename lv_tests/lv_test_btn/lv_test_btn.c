@@ -21,8 +21,8 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static void width_inc(lv_obj_t * btn);
-static void width_dec(lv_obj_t * btn);
+static lv_res_t width_inc(lv_obj_t * btn);
+static lv_res_t width_dec(lv_obj_t * btn);
 
 /**********************
  *  STATIC VARIABLES
@@ -37,7 +37,7 @@ static void width_dec(lv_obj_t * btn);
  **********************/
 
 /**
- * Create a default object and test the basic functions
+ * Create buttons to test their functionalities
  */
 void lv_test_btn_1(void)
 {
@@ -125,18 +125,20 @@ void lv_test_btn_1(void)
  * Increase the width of the button.
  * @param btn pointer to a button object
  */
-static void width_inc(lv_obj_t * btn)
+static lv_res_t width_inc(lv_obj_t * btn)
 {
-    lv_obj_set_width(btn, lv_obj_get_width(btn) + 10);
+    lv_obj_set_width(btn, lv_obj_get_width(btn) + (10 << LV_ANTIALIAS));
+    return LV_RES_OK;
 }
 
 /**
  * Decrease the width of the button.
  * @param btn pointer to a button object
  */
-static void width_dec(lv_obj_t * btn)
+static lv_res_t width_dec(lv_obj_t * btn)
 {
-    lv_obj_set_width(btn, lv_obj_get_width(btn) - 10);
+    lv_obj_set_width(btn, lv_obj_get_width(btn) - (10 << LV_ANTIALIAS));
+    return LV_RES_OK;
 }
 
 #endif /*USE_LV_BTN*/
