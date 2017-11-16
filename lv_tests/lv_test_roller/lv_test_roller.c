@@ -59,7 +59,7 @@ void lv_test_roller_1(void)
     lv_obj_align_scale(roller2, roller1, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     lv_roller_set_anim_time(roller2, 500);
     lv_roller_set_style(roller2, LV_ROLLER_STYLE_BG, &bg);
-    lv_roller_set_style(roller2, LV_ROLLER_STYLE_SELECTED, &lv_style_plain);
+    lv_roller_set_style(roller2, LV_ROLLER_STYLE_SEL, &lv_style_plain);
     lv_roller_set_selected(roller2, 4, true);
 
     lv_obj_t *roller3 = lv_roller_create(lv_scr_act(), roller2);

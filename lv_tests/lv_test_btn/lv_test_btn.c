@@ -58,9 +58,9 @@ void lv_test_btn_1(void)
      * Press: increase width, Release: decrease width, Long press: delete */
     lv_obj_t * btn4 = lv_btn_create(lv_scr_act(), NULL);
     lv_obj_align_scale(btn4, btn1, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
-    lv_btn_set_action(btn4, LV_BTN_ACTION_PRESS, width_inc);
-    lv_btn_set_action(btn4, LV_BTN_ACTION_RELEASE, width_dec);
-    lv_btn_set_action(btn4,  LV_BTN_ACTION_LONG_PRESS, lv_obj_del);
+    lv_btn_set_action(btn4, LV_BTN_ACTION_PR, width_inc);
+    lv_btn_set_action(btn4, LV_BTN_ACTION_REL, width_dec);
+    lv_btn_set_action(btn4,  LV_BTN_ACTION_LONG_PR, lv_obj_del);
 
     /* Test styles and copy. Same as 'btn4' but different styles */
     static lv_style_t style_rel;

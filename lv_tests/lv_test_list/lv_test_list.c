@@ -84,7 +84,7 @@ void lv_test_list_1(void)
     /*Add list up/down buttons*/
     lv_obj_t *btn_up = lv_btn_create(lv_scr_act(), NULL);
     lv_obj_align_scale(btn_up, list1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
-    lv_btn_set_action(btn_up, LV_BTN_ACTION_RELEASE, list_move);
+    lv_btn_set_action(btn_up, LV_BTN_ACTION_REL, list_move);
     lv_obj_set_free_num(btn_up, 0);
     lv_obj_t *label = lv_label_create(btn_up, NULL);
     lv_label_set_text(label, SYMBOL_UP);
