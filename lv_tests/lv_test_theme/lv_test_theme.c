@@ -113,6 +113,11 @@ static void create_tab1(lv_theme_t * th, lv_obj_t *parent)
     lv_label_set_text(label, "Hint");
     lv_obj_set_style(label, th->label.hint);
 
+    static const char *btnm_str[] = {"1", "2", "3", SYMBOL_OK, SYMBOL_CLOSE, ""};
+    lv_obj_t *btnm = lv_btnm_create(h, NULL);
+    lv_obj_set_size(btnm,LV_HOR_RES / 4, 2 * LV_DPI / 3);
+    lv_btnm_set_map(btnm, btnm_str);
+    ((lv_btnm_ext_t *) btnm->ext_attr)->btn_id_pr = 3; /*Hack to show a button pressed*/
 
 
     h = lv_cont_create(parent, h);
@@ -132,7 +137,6 @@ static void create_tab1(lv_theme_t * th, lv_obj_t *parent)
     lv_bar_set_value(bar, 70);
 
     lv_obj_t *slider = lv_slider_create(h, NULL);
-    lv_obj_set_height(slider, LV_DPI / 2);
     lv_bar_set_value(slider, 70);
 
     lv_obj_t *line = lv_line_create(h, NULL);
@@ -154,14 +158,6 @@ static void create_tab1(lv_theme_t * th, lv_obj_t *parent)
     lv_obj_t *ddlist = lv_ddlist_create(h, NULL);
     lv_ddlist_open(ddlist, false);
     lv_ddlist_set_selected(ddlist, 1);
-
-
-    static const char *btnm_str[] = {"1", "2", "3", SYMBOL_OK, SYMBOL_CLOSE, ""};
-
-    lv_obj_t *btnm = lv_btnm_create(h, NULL);
-    lv_obj_set_size(btnm,LV_HOR_RES / 4, 2 * LV_DPI / 3);
-    lv_btnm_set_map(btnm, btnm_str);
-    ((lv_btnm_ext_t *) btnm->ext_attr)->btn_id_pr = 3; /*Hack to show a button pressed*/
 
     h = lv_cont_create(parent, h);
 

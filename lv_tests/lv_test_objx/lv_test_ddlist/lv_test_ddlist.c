@@ -51,10 +51,11 @@ void lv_test_ddlist_1(void)
     lv_obj_align_scale(ddlist2, ddlist1, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
     lv_ddlist_set_options(ddlist2, "First\nSecond\nThird\nForth\nFifth\nSixth");
     lv_ddlist_set_fix_height(ddlist2, LV_DPI);
-    lv_ddlist_set_fix_width(ddlist2, LV_DPI * 2);
     lv_ddlist_set_selected(ddlist2, 2);
     lv_ddlist_set_anim_time(ddlist2, 100);
     lv_ddlist_open(ddlist2, false);
+    lv_ddlist_set_hor_fit(ddlist2, false);
+    lv_obj_set_width(ddlist2, LV_DPI * 2);
 
     /*Copy the previous drop down list and modify its style*/
     static lv_style_t ddlist3_style;

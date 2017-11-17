@@ -110,7 +110,7 @@ void lv_test_page_2(void)
     lv_obj_set_size(page1, LV_DPI, LV_DPI * 2);
     lv_page_set_scrl_fit(page1, true, true);
     lv_page_set_scrl_layout(page1, LV_LAYOUT_COL_L);
-    lv_page_set_sb_mode(page1, LV_PAGE_SB_MODE_OFF);
+    lv_page_set_sb_mode(page1, LV_SB_MODE_OFF);
     lv_page_set_release_action(page1, page_rel_action);
     lv_page_set_style(page1, LV_PAGE_STYLE_BG, &bg);
     lv_page_set_style(page1, LV_PAGE_STYLE_SCRL, &scrl);
@@ -127,19 +127,19 @@ void lv_test_page_2(void)
     lv_obj_t *page2 = lv_page_create(lv_scr_act(), page1);
     lv_obj_align_scale(page2, page1, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     label = lv_label_create(page2, label);
-    lv_page_set_sb_mode(page2, LV_PAGE_SB_MODE_ON);
+    lv_page_set_sb_mode(page2, LV_SB_MODE_ON);
 
     /*Copy 'page1' and set scrollbar AUTO*/
     lv_obj_t *page3 = lv_page_create(lv_scr_act(), page1);
     lv_obj_align_scale(page3, page2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     label = lv_label_create(page3, label);
-    lv_page_set_sb_mode(page3, LV_PAGE_SB_MODE_AUTO);
+    lv_page_set_sb_mode(page3, LV_SB_MODE_AUTO);
 
     /*Copy 'page1' and set scrollbar DRAG*/
     lv_obj_t *page4 = lv_page_create(lv_scr_act(), page1);
     lv_obj_align_scale(page4, page3, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     label = lv_label_create(page4, label);
-    lv_page_set_sb_mode(page4, LV_PAGE_SB_MODE_DRAG);
+    lv_page_set_sb_mode(page4, LV_SB_MODE_DRAG);
 
 
 }

@@ -66,7 +66,8 @@ void lv_test_win_1(void)
     lv_obj_align(win3, NULL, LV_ALIGN_IN_BOTTOM_LEFT, 0, 0);
     lv_win_set_style(win3, LV_WIN_STYLE_HEADER, &header);
     lv_win_set_style(win3, LV_WIN_STYLE_BTN_REL, &lv_style_transp);
-    lv_win_set_style(win3, LV_WIN_STYLE_CONTENT, &lv_style_plain_color);
+    lv_win_set_style(win3, LV_WIN_STYLE_CONTENT_BG, &lv_style_plain_color);
+    lv_win_set_style(win3, LV_WIN_STYLE_CONTENT_SCRL, &lv_style_plain);
     lv_win_set_style(win3, LV_WIN_STYLE_BG, &lv_style_plain_color);
     lv_win_set_btn_size(win3, LV_DPI / 3);
 
