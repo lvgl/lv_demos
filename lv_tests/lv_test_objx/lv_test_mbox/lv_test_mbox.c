@@ -46,7 +46,7 @@ void lv_test_mbox_1(void)
     /*Add buttons and modify text*/
     static const char * btns2[] = {"Ok", "Cancel", ""};
     lv_obj_t *mbox2 = lv_mbox_create(lv_scr_act(), NULL);
-    lv_mbox_set_btns(mbox2, btns2, NULL);
+    lv_mbox_add_btns(mbox2, btns2, NULL);
     lv_mbox_set_text(mbox2, "Message");
     lv_obj_align_scale(mbox2, mbox1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
 
@@ -58,8 +58,8 @@ void lv_test_mbox_1(void)
     bg.body.padding.hor = 20 << LV_ANTIALIAS;
     bg.body.padding.ver = 20 << LV_ANTIALIAS;
     bg.body.padding.inner = 20 << LV_ANTIALIAS;
-    bg.body.color_main = COLOR_BLACK;
-    bg.body.color_gradient = COLOR_MARRON;
+    bg.body.main_color = COLOR_BLACK;
+    bg.body.gradient_color = COLOR_MARRON;
     bg.text.color = COLOR_WHITE;
 
     btn_bg.body.padding.hor = 10 << LV_ANTIALIAS;
@@ -87,7 +87,7 @@ void lv_test_mbox_1(void)
                             "manually broken into multiple lines");
 
     static const char * btns3[] = {"Ok", "Cancel", "Third", ""};
-    lv_mbox_set_btns(mbox4, btns3, mbox_action);
+    lv_mbox_add_btns(mbox4, btns3, mbox_action);
     lv_obj_align_scale(mbox4, mbox3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
 }
 

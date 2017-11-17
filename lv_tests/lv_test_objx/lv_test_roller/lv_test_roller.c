@@ -46,8 +46,8 @@ void lv_test_roller_1(void)
 
     static lv_style_t bg;
     lv_style_copy(&bg, &lv_style_pretty);
-    bg.body.color_main = COLOR_GRAY;
-    bg.body.color_gradient = COLOR_WHITE;
+    bg.body.main_color = COLOR_GRAY;
+    bg.body.gradient_color = COLOR_WHITE;
     bg.body.shadow.width = 5 << LV_ANTIALIAS;
     bg.text.line_space = 10 << LV_ANTIALIAS;
     bg.text.opa = OPA_60;
@@ -64,8 +64,7 @@ void lv_test_roller_1(void)
 
     lv_obj_t *roller3 = lv_roller_create(lv_scr_act(), roller2);
     lv_obj_align_scale(roller3, roller2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
-    lv_roller_set_hor_fit(roller3, false);
-    lv_obj_set_width_scale(roller3, 150);
+    lv_roller_set_fix_width(roller3, LV_DPI);
 
 }
 

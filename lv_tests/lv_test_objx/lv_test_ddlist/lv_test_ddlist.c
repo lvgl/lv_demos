@@ -50,7 +50,8 @@ void lv_test_ddlist_1(void)
     lv_obj_t * ddlist2 = lv_ddlist_create(lv_scr_act(), NULL);
     lv_obj_align_scale(ddlist2, ddlist1, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
     lv_ddlist_set_options(ddlist2, "First\nSecond\nThird\nForth\nFifth\nSixth");
-    lv_ddlist_set_fix_height(ddlist2, 100 << LV_ANTIALIAS);
+    lv_ddlist_set_fix_height(ddlist2, LV_DPI);
+    lv_ddlist_set_fix_width(ddlist2, LV_DPI * 2);
     lv_ddlist_set_selected(ddlist2, 2);
     lv_ddlist_set_anim_time(ddlist2, 100);
     lv_ddlist_open(ddlist2, false);
@@ -58,8 +59,8 @@ void lv_test_ddlist_1(void)
     /*Copy the previous drop down list and modify its style*/
     static lv_style_t ddlist3_style;
     lv_style_copy(&ddlist3_style, &lv_style_pretty);
-    ddlist3_style.body.color_main = COLOR_GRAY;
-    ddlist3_style.body.color_gradient = COLOR_BLACK;
+    ddlist3_style.body.main_color = COLOR_GRAY;
+    ddlist3_style.body.gradient_color = COLOR_BLACK;
     ddlist3_style.body.padding.hor = 20 << LV_ANTIALIAS;
     ddlist3_style.body.padding.ver = 30 << LV_ANTIALIAS;
 

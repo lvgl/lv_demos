@@ -124,7 +124,7 @@ void lv_test_ta_2(void)
     lv_style_copy(&cur, &lv_style_pretty);
 
 
-    bg.body.color_main = COLOR_BLACK;
+    bg.body.main_color = COLOR_BLACK;
     bg.body.padding.hor = 10 << LV_ANTIALIAS;
     bg.body.padding.ver = 10 << LV_ANTIALIAS;
     bg.text.color = COLOR_BLUE;
@@ -133,14 +133,14 @@ void lv_test_ta_2(void)
 
     sb.body.padding.hor = 3 << LV_ANTIALIAS;
     sb.body.padding.inner = 10 << LV_ANTIALIAS;
-    sb.body.color_main = COLOR_WHITE;
-    sb.body.color_gradient = COLOR_WHITE;
+    sb.body.main_color = COLOR_WHITE;
+    sb.body.gradient_color = COLOR_WHITE;
     sb.body.opa = OPA_70;
 
     cur.body.padding.hor = 2 << LV_ANTIALIAS;
     cur.body.padding.ver = 4 << LV_ANTIALIAS;
-    cur.body.color_main = COLOR_RED;
-    cur.body.color_gradient = COLOR_YELLOW;
+    cur.body.main_color = COLOR_RED;
+    cur.body.gradient_color = COLOR_YELLOW;
     cur.body.border.color = COLOR_ORANGE;
     cur.body.opa = OPA_70;
     cur.text.color = COLOR_WHITE;
@@ -151,7 +151,7 @@ void lv_test_ta_2(void)
     lv_ta_set_style(ta2_1, LV_TA_STYLE_BG, &bg);
     lv_ta_set_style(ta2_1, LV_TA_STYLE_SB, &sb);
     lv_ta_set_style(ta2_1, LV_TA_STYLE_CURSOR, &cur);
-    lv_ta_set_cursor_type(ta2_1, LV_TA_CURSOR_LINE);
+    lv_ta_set_cursor_type(ta2_1, LV_CURSOR_LINE);
 #if TXT_UTF8 != 0
     lv_ta_set_text(ta2_1, "Some UTF-8 characters "
                           "űőabcŰŐABC\n"
@@ -163,15 +163,15 @@ void lv_test_ta_2(void)
 #endif
     ta2_2 = lv_ta_create(lv_scr_act(), ta2_1);
     lv_obj_align_scale(ta2_2, ta2_1, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
-    lv_ta_set_cursor_type(ta2_2, LV_TA_CURSOR_BLOCK);
+    lv_ta_set_cursor_type(ta2_2, LV_CURSOR_BLOCK);
 
     ta2_3 = lv_ta_create(lv_scr_act(), ta2_1);
     lv_obj_align_scale(ta2_3, ta2_2, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
-    lv_ta_set_cursor_type(ta2_3, LV_TA_CURSOR_OUTLINE);
+    lv_ta_set_cursor_type(ta2_3, LV_CURSOR_OUTLINE);
 
     ta2_4 = lv_ta_create(lv_scr_act(), ta2_1);
     lv_obj_align_scale(ta2_4, ta2_3, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
-    lv_ta_set_cursor_type(ta2_4, LV_TA_CURSOR_UNDERLINE);
+    lv_ta_set_cursor_type(ta2_4, LV_CURSOR_UNDERLINE);
 
     lv_obj_t *btn = lv_btn_create(lv_scr_act(), NULL);
     lv_obj_align_scale(btn, ta2_1, LV_ALIGN_OUT_RIGHT_MID, 10, 0);

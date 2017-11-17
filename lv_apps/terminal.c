@@ -64,8 +64,8 @@
 //void terminal_init(void)
 //{
 //    lv_style_copy(&style_bg, &lv_style_pretty);
-//    style_bg.body.color_main = COLOR_MAKE(0x30, 0x30, 0x30);
-//    style_bg.body.color_gradient = COLOR_MAKE(0x30, 0x30, 0x30);
+//    style_bg.body.main_color = COLOR_MAKE(0x30, 0x30, 0x30);
+//    style_bg.body.gradient_color = COLOR_MAKE(0x30, 0x30, 0x30);
 //    style_bg.body.border.color = COLOR_WHITE;
 //    style_bg.text.color = COLOR_MAKE(0xE0, 0xE0, 0xE0);
 //

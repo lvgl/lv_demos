@@ -60,12 +60,12 @@ void lv_test_slider_1(void)
      * (like 'slider2' on its left but dark bg, thin red indicator with big light)*/
     static lv_style_t slider_bg;
     lv_style_copy(&slider_bg, &lv_style_pretty);
-    slider_bg.body.color_main = COLOR_BLACK;
+    slider_bg.body.main_color = COLOR_BLACK;
 
     static lv_style_t slider_indic;
     lv_style_copy(&slider_indic, &lv_style_pretty);
-    slider_indic.body.color_main = COLOR_RED;
-    slider_indic.body.color_gradient = COLOR_MARRON;
+    slider_indic.body.main_color = COLOR_RED;
+    slider_indic.body.gradient_color = COLOR_MARRON;
     slider_indic.body.shadow.color = COLOR_RED;
     slider_indic.body.shadow.width = 10 << LV_ANTIALIAS;
     slider_indic.body.padding.ver = 0 << LV_ANTIALIAS;

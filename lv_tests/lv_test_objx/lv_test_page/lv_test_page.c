@@ -86,13 +86,13 @@ void lv_test_page_2(void)
     lv_style_copy(&scrl, &lv_style_pretty);
     lv_style_copy(&sb, &lv_style_pretty);
 
-    bg.body.color_main = COLOR_SILVER;
-    bg.body.color_gradient = COLOR_GRAY;
+    bg.body.main_color = COLOR_SILVER;
+    bg.body.gradient_color = COLOR_GRAY;
     bg.body.padding.hor = 5 << LV_ANTIALIAS;
     bg.body.padding.ver = 20 << LV_ANTIALIAS;
 
-    scrl.body.color_main = COLOR_BLUE;
-    scrl.body.color_gradient = COLOR_NAVY;
+    scrl.body.main_color = COLOR_BLUE;
+    scrl.body.gradient_color = COLOR_NAVY;
     scrl.body.padding.hor = 3 << LV_ANTIALIAS;
     scrl.body.padding.ver = 3 << LV_ANTIALIAS;
     scrl.body.shadow.width = 15 << LV_ANTIALIAS;
@@ -101,15 +101,15 @@ void lv_test_page_2(void)
     sb.body.padding.hor = (-10) << LV_ANTIALIAS;    /*Out of the page*/
     sb.body.padding.ver = 10 << LV_ANTIALIAS;
     sb.body.padding.inner = 10 << LV_ANTIALIAS;
-    sb.body.color_main = COLOR_WHITE;
-    sb.body.color_gradient = COLOR_WHITE;
+    sb.body.main_color = COLOR_WHITE;
+    sb.body.gradient_color = COLOR_WHITE;
     sb.body.opa = OPA_70;
 
     /* Create a page with new style, layout, fit, action and scrollbar OFF*/
     lv_obj_t * page1 = lv_page_create(lv_scr_act(), NULL);
     lv_obj_set_size(page1, LV_DPI, LV_DPI * 2);
     lv_page_set_scrl_fit(page1, true, true);
-    lv_page_set_scrl_layout(page1, LV_CONT_LAYOUT_COL_L);
+    lv_page_set_scrl_layout(page1, LV_LAYOUT_COL_L);
     lv_page_set_sb_mode(page1, LV_PAGE_SB_MODE_OFF);
     lv_page_set_release_action(page1, page_rel_action);
     lv_page_set_style(page1, LV_PAGE_STYLE_BG, &bg);

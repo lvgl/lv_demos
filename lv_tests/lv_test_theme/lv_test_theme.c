@@ -67,7 +67,7 @@ void lv_test_theme_1(lv_theme_t *th)
  **********************/
 static void create_tab1(lv_theme_t * th, lv_obj_t *parent)
 {
-    lv_page_set_scrl_layout(parent, LV_CONT_LAYOUT_PRETTY);
+    lv_page_set_scrl_layout(parent, LV_LAYOUT_PRETTY);
 
     static lv_style_t h_style;
     lv_style_copy(&h_style, &lv_style_transp);
@@ -78,18 +78,18 @@ static void create_tab1(lv_theme_t * th, lv_obj_t *parent)
     lv_obj_t *h = lv_cont_create(parent, NULL);
     lv_obj_set_style(h, &h_style);
     lv_cont_set_fit(h, true, true);
-    lv_cont_set_layout(h, LV_CONT_LAYOUT_COL_M);
+    lv_cont_set_layout(h, LV_LAYOUT_COL_M);
 
     lv_obj_t *btn = lv_btn_create(h, NULL);
-    lv_btn_set_style(btn, LV_BTN_STYLE_REL, th->btn.sm.rel);
-    lv_btn_set_style(btn, LV_BTN_STYLE_PR, th->btn.sm.pr);
-    lv_btn_set_style(btn, LV_BTN_STYLE_TGL_REL, th->btn.sm.tgl_rel);
-    lv_btn_set_style(btn, LV_BTN_STYLE_TGL_PR, th->btn.sm.tgl_pr);
-    lv_btn_set_style(btn, LV_BTN_STYLE_INA, th->btn.sm.ina);
+    lv_btn_set_style(btn, LV_BTN_STYLE_REL, th->btn.rel);
+    lv_btn_set_style(btn, LV_BTN_STYLE_PR, th->btn.pr);
+    lv_btn_set_style(btn, LV_BTN_STYLE_TGL_REL, th->btn.tgl_rel);
+    lv_btn_set_style(btn, LV_BTN_STYLE_TGL_PR, th->btn.tgl_pr);
+    lv_btn_set_style(btn, LV_BTN_STYLE_INA, th->btn.ina);
     lv_btn_set_fit(btn, true, true);
     lv_btn_set_toggle(btn, true);
     lv_obj_t *btn_label = lv_label_create(btn, NULL);
-    lv_label_set_text(btn_label, "Small");
+    lv_label_set_text(btn_label, "Button");
 
     btn = lv_btn_create(h, btn);
     lv_btn_toggle(btn);
@@ -101,33 +101,19 @@ static void create_tab1(lv_theme_t * th, lv_obj_t *parent)
     btn_label = lv_label_create(btn, NULL);
     lv_label_set_text(btn_label, "Inactive");
 
-    btn = lv_btn_create(h, btn);
-    lv_btn_set_state(btn, LV_BTN_STATE_REL);
-
-    btn_label = lv_label_create(btn, NULL);
-    lv_label_set_text(btn_label, "Medium");
-
-    btn = lv_btn_create(h, btn);
-    lv_btn_set_style(btn, LV_BTN_STYLE_REL, th->btn.lg.rel);
-    lv_btn_set_style(btn, LV_BTN_STYLE_PR, th->btn.lg.pr);
-    lv_btn_set_style(btn, LV_BTN_STYLE_TGL_REL, th->btn.lg.tgl_rel);
-    lv_btn_set_style(btn, LV_BTN_STYLE_TGL_PR, th->btn.lg.tgl_pr);
-    lv_btn_set_style(btn, LV_BTN_STYLE_INA, th->btn.lg.ina);
-    btn_label = lv_label_create(btn, NULL);
-    lv_label_set_text(btn_label, "Large");
-
     lv_obj_t *label = lv_label_create(h, NULL);
-    lv_label_set_text(label, "Small");
-    lv_obj_set_style(label, th->label.sm);
+    lv_label_set_text(label, "Primary");
+    lv_obj_set_style(label, th->label.prim);
 
     label = lv_label_create(h, NULL);
-    lv_label_set_text(label, "Medium");
-    lv_obj_set_style(label, th->label.md);
+    lv_label_set_text(label, "Secondary");
+    lv_obj_set_style(label, th->label.sec);
 
     label = lv_label_create(h, NULL);
-    lv_label_set_text(label, "Large");
-    lv_obj_set_style(label, th->label.lg);
-    lv_obj_set_protect(label, LV_PROTECT_FOLLOW);
+    lv_label_set_text(label, "Hint");
+    lv_obj_set_style(label, th->label.hint);
+
+
 
     h = lv_cont_create(parent, h);
 
@@ -135,7 +121,7 @@ static void create_tab1(lv_theme_t * th, lv_obj_t *parent)
     lv_cont_set_style(sw_h, &lv_style_transp);
     lv_cont_set_fit(sw_h, false, true);
     lv_obj_set_width(sw_h, LV_HOR_RES / 4);
-    lv_cont_set_layout(sw_h, LV_CONT_LAYOUT_PRETTY);
+    lv_cont_set_layout(sw_h, LV_LAYOUT_PRETTY);
 
     lv_obj_t *sw = lv_sw_create(sw_h, NULL);
 
@@ -218,7 +204,7 @@ static void create_tab2(lv_theme_t * th, lv_obj_t *parent)
     lv_obj_t *ta = lv_ta_create(parent, NULL);
     lv_obj_set_size(ta, w / 3, LV_VER_RES / 4);
     lv_obj_align(ta, NULL, LV_ALIGN_IN_TOP_RIGHT, 0, 0);
-    lv_ta_set_cursor_type(ta, LV_TA_CURSOR_BLOCK);
+    lv_ta_set_cursor_type(ta, LV_CURSOR_BLOCK);
 
     lv_obj_t *kb = lv_kb_create(parent, NULL);
     lv_obj_set_size(kb, w / 2, LV_VER_RES / 3);
@@ -274,7 +260,7 @@ static void create_tab3(lv_theme_t * th, lv_obj_t *parent)
     static const char * mbox_btn_map[] = {"\211", "\222Got it!", "\211", ""};
     lv_obj_t *mbox = lv_mbox_create(parent, NULL);
     lv_mbox_set_text(mbox, "Click on the window or the page to bring it to the foreground");
-    lv_mbox_set_btns(mbox, mbox_btn_map, NULL);
+    lv_mbox_add_btns(mbox, mbox_btn_map, NULL);
     lv_obj_set_top(mbox, true);
 }
 

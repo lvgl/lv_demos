@@ -53,8 +53,8 @@ void lv_test_lmeter_1(void)
     /*Create a styled line meter*/
     static lv_style_t style3;
     lv_style_copy(&style3, &lv_style_pretty);
-    style3.body.color_main = COLOR_GREEN;
-    style3.body.color_gradient = COLOR_RED;
+    style3.body.main_color = COLOR_GREEN;
+    style3.body.gradient_color = COLOR_RED;
     style3.body.padding.hor = 4 << LV_ANTIALIAS;
     style3.body.border.color= COLOR_GRAY;       /*Means the needle middle*/
     style3.line.width = 2 << LV_ANTIALIAS;

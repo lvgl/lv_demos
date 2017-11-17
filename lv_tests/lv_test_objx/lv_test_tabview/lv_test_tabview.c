@@ -81,15 +81,15 @@ void lv_test_tabview_1(void)
     lv_style_copy(&tgl_pr, &lv_style_plain);
     lv_style_copy(&indic, &lv_style_plain);
 
-    rel.body.color_main = COLOR_SILVER;
-    pr.body.color_main = COLOR_GRAY;
-    tgl_rel.body.color_main = COLOR_RED;
-    tgl_pr.body.color_main = COLOR_MARRON;
-    indic.body.color_main = COLOR_ORANGE;
-    indic.body.color_gradient = COLOR_ORANGE;
+    rel.body.main_color = COLOR_SILVER;
+    pr.body.main_color = COLOR_GRAY;
+    tgl_rel.body.main_color = COLOR_RED;
+    tgl_pr.body.main_color = COLOR_MARRON;
+    indic.body.main_color = COLOR_ORANGE;
+    indic.body.gradient_color = COLOR_ORANGE;
     indic.body.padding.inner = LV_DPI / 16;
-    tab_bg.body.color_main = COLOR_SILVER;
-    tab_bg.body.color_gradient = COLOR_GREEN;
+    tab_bg.body.main_color = COLOR_SILVER;
+    tab_bg.body.gradient_color = COLOR_GREEN;
     tab_bg.text.color = COLOR_YELLOW;
 
     /*Apply the styles*/

@@ -55,8 +55,8 @@ void lv_test_gauge_1(void)
     /*Create a styled gauge*/
     static lv_style_t style3;
     lv_style_copy(&style3, &lv_style_pretty);
-    style3.body.color_main = COLOR_GREEN;
-    style3.body.color_gradient = COLOR_RED;
+    style3.body.main_color = COLOR_GREEN;
+    style3.body.gradient_color = COLOR_RED;
     style3.body.padding.hor = 6 << LV_ANTIALIAS;
     style3.body.padding.inner = 10 << LV_ANTIALIAS;
     style3.body.padding.ver = 8 << LV_ANTIALIAS;
