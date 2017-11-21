@@ -1,5 +1,5 @@
-#include "img_conf.h" 
-#if USE_IMG_FLOWER_ICON != 0 
+#include "lv_conf.h"
+#if USE_IMG_FLOWER_ICON || LV_IMAGE_ENABLE_ALL
 
 #include <stdint.h> 
 #include "misc/gfx/color.h"

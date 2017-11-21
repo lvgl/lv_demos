@@ -65,7 +65,7 @@ void lv_test_bar_1(void)
     static lv_style_t bar_indic;
     lv_style_copy(&bar_indic, &lv_style_pretty);
     bar_indic.body.main_color = COLOR_RED;
-    bar_indic.body.gradient_color = COLOR_MARRON;
+    bar_indic.body.grad_color = COLOR_MARRON;
     bar_indic.body.shadow.color = COLOR_RED;
     bar_indic.body.shadow.width = 20 << LV_ANTIALIAS;
     bar_indic.body.padding.ver = 10 << LV_ANTIALIAS;       /*Make the indicator thinner*/

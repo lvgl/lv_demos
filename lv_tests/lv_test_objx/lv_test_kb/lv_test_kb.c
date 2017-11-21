@@ -72,7 +72,7 @@ void lv_test_kb_2(void)
 
     lv_style_copy(&bg, &lv_style_plain_color);
     bg.body.main_color = COLOR_NAVY;
-    bg.body.gradient_color = COLOR_NAVY;
+    bg.body.grad_color = COLOR_NAVY;
     bg.body.padding.hor = 0;
     bg.body.padding.ver = 10 << LV_ANTIALIAS;
     bg.body.padding.inner = 0;
@@ -80,8 +80,8 @@ void lv_test_kb_2(void)
     lv_style_copy(&rel, &lv_style_plain);
     rel.body.border.width = 1 << LV_ANTIALIAS;
     rel.body.main_color = COLOR_WHITE;
-    rel.body.gradient_color = COLOR_SILVER;
-    rel.body.gradient_color = COLOR_SILVER;
+    rel.body.grad_color = COLOR_SILVER;
+    rel.body.grad_color = COLOR_SILVER;
     rel.text.color = COLOR_NAVY;
     lv_style_copy(&pr, &lv_style_plain_color);
 

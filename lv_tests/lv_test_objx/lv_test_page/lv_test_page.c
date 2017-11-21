@@ -87,12 +87,12 @@ void lv_test_page_2(void)
     lv_style_copy(&sb, &lv_style_pretty);
 
     bg.body.main_color = COLOR_SILVER;
-    bg.body.gradient_color = COLOR_GRAY;
+    bg.body.grad_color = COLOR_GRAY;
     bg.body.padding.hor = 5 << LV_ANTIALIAS;
     bg.body.padding.ver = 20 << LV_ANTIALIAS;
 
     scrl.body.main_color = COLOR_BLUE;
-    scrl.body.gradient_color = COLOR_NAVY;
+    scrl.body.grad_color = COLOR_NAVY;
     scrl.body.padding.hor = 3 << LV_ANTIALIAS;
     scrl.body.padding.ver = 3 << LV_ANTIALIAS;
     scrl.body.shadow.width = 15 << LV_ANTIALIAS;
@@ -102,7 +102,7 @@ void lv_test_page_2(void)
     sb.body.padding.ver = 10 << LV_ANTIALIAS;
     sb.body.padding.inner = 10 << LV_ANTIALIAS;
     sb.body.main_color = COLOR_WHITE;
-    sb.body.gradient_color = COLOR_WHITE;
+    sb.body.grad_color = COLOR_WHITE;
     sb.body.opa = OPA_70;
 
     /* Create a page with new style, layout, fit, action and scrollbar OFF*/

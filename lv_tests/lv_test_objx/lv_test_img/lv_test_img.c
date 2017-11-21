@@ -83,7 +83,7 @@ void lv_test_img_1(void)
      * */
 
     lv_obj_t *img_fs = lv_img_create(lv_scr_act(), NULL);
-    lv_img_set_file(img_fs, "L:examples/lv_tests/lv_test_img/img_flower_icon.bin");
+    lv_img_set_file(img_fs, "L:lv_examples/lv_tests/lv_test_img/img_flower_icon.bin");
     lv_obj_align(img_fs, img1, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
 #endif
 

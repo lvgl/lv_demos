@@ -59,7 +59,7 @@ void lv_test_mbox_1(void)
     bg.body.padding.ver = 20 << LV_ANTIALIAS;
     bg.body.padding.inner = 20 << LV_ANTIALIAS;
     bg.body.main_color = COLOR_BLACK;
-    bg.body.gradient_color = COLOR_MARRON;
+    bg.body.grad_color = COLOR_MARRON;
     bg.text.color = COLOR_WHITE;
 
     btn_bg.body.padding.hor = 10 << LV_ANTIALIAS;
@@ -70,7 +70,7 @@ void lv_test_mbox_1(void)
     btn_bg.text.color = COLOR_WHITE;
 
     static lv_style_t btn_rel;
-    lv_style_copy(&btn_rel, &lv_style_btn_released);
+    lv_style_copy(&btn_rel, &lv_style_btn_rel);
     btn_rel.body.empty = 1;
     btn_rel.body.border.color = COLOR_WHITE;
 

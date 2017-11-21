@@ -47,7 +47,7 @@ void lv_test_roller_1(void)
     static lv_style_t bg;
     lv_style_copy(&bg, &lv_style_pretty);
     bg.body.main_color = COLOR_GRAY;
-    bg.body.gradient_color = COLOR_WHITE;
+    bg.body.grad_color = COLOR_WHITE;
     bg.body.shadow.width = 5 << LV_ANTIALIAS;
     bg.text.line_space = 10 << LV_ANTIALIAS;
     bg.text.opa = OPA_60;

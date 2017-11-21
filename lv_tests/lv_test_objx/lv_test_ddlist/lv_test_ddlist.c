@@ -61,7 +61,7 @@ void lv_test_ddlist_1(void)
     static lv_style_t ddlist3_style;
     lv_style_copy(&ddlist3_style, &lv_style_pretty);
     ddlist3_style.body.main_color = COLOR_GRAY;
-    ddlist3_style.body.gradient_color = COLOR_BLACK;
+    ddlist3_style.body.grad_color = COLOR_BLACK;
     ddlist3_style.body.padding.hor = 20 << LV_ANTIALIAS;
     ddlist3_style.body.padding.ver = 30 << LV_ANTIALIAS;
 

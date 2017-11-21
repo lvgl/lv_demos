@@ -134,13 +134,13 @@ void lv_test_ta_2(void)
     sb.body.padding.hor = 3 << LV_ANTIALIAS;
     sb.body.padding.inner = 10 << LV_ANTIALIAS;
     sb.body.main_color = COLOR_WHITE;
-    sb.body.gradient_color = COLOR_WHITE;
+    sb.body.grad_color = COLOR_WHITE;
     sb.body.opa = OPA_70;
 
     cur.body.padding.hor = 2 << LV_ANTIALIAS;
     cur.body.padding.ver = 4 << LV_ANTIALIAS;
     cur.body.main_color = COLOR_RED;
-    cur.body.gradient_color = COLOR_YELLOW;
+    cur.body.grad_color = COLOR_YELLOW;
     cur.body.border.color = COLOR_ORANGE;
     cur.body.opa = OPA_70;
     cur.text.color = COLOR_WHITE;

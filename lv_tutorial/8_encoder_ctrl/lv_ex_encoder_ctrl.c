@@ -94,7 +94,7 @@ void lv_ex_encoder_ctrl(void)
     /* Create a dark plain style for a message box's background*/
     lv_style_copy(&style_mbox_bg, &lv_style_plain);
     style_mbox_bg.body.main_color = COLOR_BLACK;
-    style_mbox_bg.body.gradient_color= COLOR_BLACK;
+    style_mbox_bg.body.grad_color= COLOR_BLACK;
     style_mbox_bg.body.opa = OPA_50;
 
     /*Create a demo GUI*/
@@ -165,26 +165,26 @@ static void gui_create(void)
 static void enc_create(void)
 {
     /*Next button*/
-    lv_obj_t * btn = lv_btn_create(lv_scr_act(), NULL);
+    lv_obj_t * btn = lv_btn_create(lv_scr_cur(), NULL);
     lv_btn_set_action(btn, LV_BTN_ACTION_REL, enc_next);
     lv_cont_set_fit(btn, true, true);
     lv_obj_t * l = lv_label_create(btn, NULL);
     lv_label_set_text(l, ">");
 
     /*Increment button*/
-    btn = lv_btn_create(lv_scr_act(), btn);
+    btn = lv_btn_create(lv_scr_cur(), btn);
     lv_btn_set_action(btn, LV_BTN_ACTION_REL, enc_dec);
     l = lv_label_create(btn, NULL);
     lv_label_set_text(l, "-");
 
     /*Decrement button*/
-    btn = lv_btn_create(lv_scr_act(), btn);
+    btn = lv_btn_create(lv_scr_cur(), btn);
     lv_btn_set_action(btn, LV_BTN_ACTION_REL, enc_inc);
     l = lv_label_create(btn, NULL);
     lv_label_set_text(l, "+");
 
     /*Select button*/
-    btn = lv_btn_create(lv_scr_act(), btn);
+    btn = lv_btn_create(lv_scr_cur(), btn);
     lv_btn_set_action(btn, LV_BTN_ACTION_REL, enc_sel);
     l = lv_label_create(btn, NULL);
     lv_label_set_text(l, "!");

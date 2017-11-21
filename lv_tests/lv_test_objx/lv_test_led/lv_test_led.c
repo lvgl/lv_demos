@@ -51,7 +51,7 @@ void lv_test_led_1(void)
     style.body.border.width= 3 << LV_ANTIALIAS;
     style.body.border.opa = OPA_30;
     style.body.main_color = COLOR_MAKE(0xb5, 0x0f, 0x04);
-    style.body.gradient_color = COLOR_MAKE(0x50, 0x07, 0x02);
+    style.body.grad_color = COLOR_MAKE(0x50, 0x07, 0x02);
     style.body.border.color = COLOR_MAKE(0xfa, 0x0f, 0x00);
     style.body.shadow.color = COLOR_MAKE(0xb5, 0x0f, 0x04);
 

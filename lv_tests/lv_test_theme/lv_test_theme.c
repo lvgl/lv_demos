@@ -58,7 +58,7 @@ void lv_test_theme_1(lv_theme_t *th)
    create_tab2(th, tab2);
    create_tab3(th, tab3);
 
-   lv_tabview_set_current_tab(tv, 2, false);
+//   lv_tabview_set_current_tab(tv, 2, false);
 
 }
 
@@ -77,6 +77,7 @@ static void create_tab1(lv_theme_t * th, lv_obj_t *parent)
 
     lv_obj_t *h = lv_cont_create(parent, NULL);
     lv_obj_set_style(h, &h_style);
+    lv_obj_set_click(h, false);
     lv_cont_set_fit(h, true, true);
     lv_cont_set_layout(h, LV_LAYOUT_COL_M);
 
@@ -117,8 +118,7 @@ static void create_tab1(lv_theme_t * th, lv_obj_t *parent)
     lv_obj_t *btnm = lv_btnm_create(h, NULL);
     lv_obj_set_size(btnm,LV_HOR_RES / 4, 2 * LV_DPI / 3);
     lv_btnm_set_map(btnm, btnm_str);
-    ((lv_btnm_ext_t *) btnm->ext_attr)->btn_id_pr = 3; /*Hack to show a button pressed*/
-
+    ((lv_btnm_ext_t *) btnm->ext_attr)->btn_id_tgl = 3; /*Hack to show a button pressed*/
 
     h = lv_cont_create(parent, h);
 
@@ -162,8 +162,13 @@ static void create_tab1(lv_theme_t * th, lv_obj_t *parent)
     h = lv_cont_create(parent, h);
 
     lv_obj_t * list = lv_list_create(h, NULL);
-    lv_list_add(list, SYMBOL_GPS,  "GPS",  NULL);
+    lv_obj_t *list_btn;
+    list_btn = lv_list_add(list, SYMBOL_GPS,  "GPS",  NULL);
+    lv_btn_set_toggle(list_btn, true);
     lv_list_add(list, SYMBOL_WIFI, "WiFi", NULL);
+    lv_list_add(list, SYMBOL_GPS, "GPS", NULL);
+    lv_list_add(list, SYMBOL_AUDIO, "Audio", NULL);
+    lv_list_add(list, SYMBOL_VIDEO, "Video", NULL);
     lv_list_add(list, SYMBOL_CALL, "Call", NULL);
     lv_list_add(list, SYMBOL_BELL, "Bell", NULL);
     lv_list_add(list, SYMBOL_FILE, "File", NULL);
@@ -185,6 +190,7 @@ static void create_tab2(lv_theme_t * th, lv_obj_t *parent)
     cord_t w = lv_page_get_scrl_width(parent);
 
     lv_obj_t *chart = lv_chart_create(parent, NULL);
+    lv_obj_set_size(chart, w / 3, LV_VER_RES / 3);
     lv_chart_series_t * s1 = lv_chart_add_series(chart, COLOR_RED);
     lv_chart_set_next(chart, s1, 30);
     lv_chart_set_next(chart, s1, 20);
@@ -203,8 +209,8 @@ static void create_tab2(lv_theme_t * th, lv_obj_t *parent)
     lv_ta_set_cursor_type(ta, LV_CURSOR_BLOCK);
 
     lv_obj_t *kb = lv_kb_create(parent, NULL);
-    lv_obj_set_size(kb, w / 2, LV_VER_RES / 3);
-    lv_obj_align(kb, ta, LV_ALIGN_OUT_BOTTOM_RIGHT, 0, LV_DPI / 4);
+    lv_obj_set_size(kb, 2 * w / 3, LV_VER_RES / 3);
+    lv_obj_align(kb, ta, LV_ALIGN_OUT_BOTTOM_RIGHT, 0, LV_DPI / 2);
     lv_kb_set_ta(kb, ta);
 }
 

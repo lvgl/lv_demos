@@ -66,7 +66,7 @@ void lv_test_btn_1(void)
     static lv_style_t style_rel;
     lv_style_copy(&style_rel, &lv_style_pretty);
     style_rel.body.main_color = COLOR_ORANGE;
-    style_rel.body.gradient_color = COLOR_BLACK;
+    style_rel.body.grad_color = COLOR_BLACK;
     style_rel.body.border.color = COLOR_RED;
     style_rel.body.shadow.color = COLOR_MARRON;
     style_rel.body.shadow.width = 10 << LV_ANTIALIAS;
@@ -88,7 +88,7 @@ void lv_test_btn_1(void)
     static lv_style_t style_ina;
     lv_style_copy(&style_ina, &lv_style_pretty);
     style_ina.body.main_color = COLOR_SILVER;
-    style_ina.body.gradient_color = COLOR_GRAY;
+    style_ina.body.grad_color = COLOR_GRAY;
     style_ina.body.border.color = COLOR_RED;
 
     /*Create styled button*/

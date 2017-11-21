@@ -7,6 +7,7 @@
  *      INCLUDES
  *********************/
 #include "lv_test_group.h"
+#include "lvgl/lv_hal/lv_hal_indev.h"
 
 /*********************
  *      DEFINES
@@ -19,11 +20,13 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
+static bool win_btn_get(lv_indev_data_t *data);
 static lv_res_t win_btn_acion(lv_obj_t *btn);
 
 /**********************
  *  STATIC VARIABLES
  **********************/
+static uint32_t last_key;
 static lv_group_t *g;
 static lv_obj_t *win;
 
@@ -42,6 +45,14 @@ void lv_test_group_1(void)
 {
 
     g = lv_group_create();
+
+    /*A keyboard will be simulated*/
+    lv_indev_drv_t win_btn_drv;
+    win_btn_drv.name = "sim_kb";
+    win_btn_drv.type = LV_INDEV_TYPE_KEYPAD;
+    win_btn_drv.get_data = win_btn_get;
+    lv_indev_t *kb_in = lv_indev_register(&win_btn_drv);
+    lv_indev_set_group(kb_in, g);
 
     /*Create a window to hold all the objects*/
     static lv_style_t win_style;
@@ -71,13 +82,19 @@ void lv_test_group_1(void)
     win_btn = lv_win_add_btn(win, SYMBOL_LEFT, win_btn_acion);
     lv_obj_set_free_num(win_btn, LV_GROUP_KEY_LEFT);
 
+#if TXT_UTF8 == 0
     win_btn = lv_win_add_btn(win, "a", win_btn_acion);
     lv_obj_set_free_num(win_btn, 'a');
+#else
+    win_btn = lv_win_add_btn(win, "Ű", win_btn_acion);
+    lv_obj_set_free_num(win_btn, 0xB0C5);               /*UTF-8 code of 'Ű'*/
+#endif
 
 
     lv_obj_t *obj;
 
     obj = lv_obj_create(win, NULL);
+    lv_obj_set_style(obj, &lv_style_plain_color);
     lv_group_add_obj(g, obj);
 
     obj = lv_label_create(win, NULL);
@@ -96,6 +113,7 @@ void lv_test_group_1(void)
     lv_group_add_obj(g, obj);
 
     obj = lv_slider_create(win, NULL);
+    lv_slider_set_range(obj, 0, 10);
     lv_group_add_obj(g, obj);
 
     obj = lv_sw_create(win, NULL);
@@ -108,14 +126,15 @@ void lv_test_group_1(void)
     lv_group_add_obj(g, obj);
 
     obj = lv_btnm_create(win, NULL);
-    lv_obj_set_size(obj, LV_HOR_RES / 4, LV_VER_RES / 6);
+    lv_obj_set_size(obj, LV_HOR_RES / 2, LV_VER_RES / 3);
     lv_group_add_obj(g, obj);
 
     lv_obj_t *ta = lv_ta_create(win, NULL);
+    lv_ta_set_cursor_type(ta, LV_CURSOR_NONE);
     lv_group_add_obj(g, ta);
 
     obj = lv_kb_create(win, NULL);
-    lv_obj_set_size(obj, LV_HOR_RES / 2, LV_VER_RES / 4);
+    lv_obj_set_size(obj, lv_win_get_width(win), LV_VER_RES / 2);
     lv_kb_set_ta(obj, ta);
     lv_group_add_obj(g, obj);
 
@@ -176,25 +195,27 @@ void lv_test_group_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
+static bool win_btn_get(lv_indev_data_t *data)
+{
+    if(last_key) {
+        data->state = LV_INDEV_EVENT_PR;
+        data->key = last_key;
+        last_key = 0;
+    } else {
+        data->state = LV_INDEV_EVENT_REL;
+    }
+
+    return false;
+}
+
 
 static lv_res_t win_btn_acion(lv_obj_t *btn)
 {
-    uint8_t c = lv_obj_get_free_num(btn);
+    LV_OBJ_FREE_NUM_TYPE c = lv_obj_get_free_num(btn);
 
-    if(c == LV_GROUP_KEY_NEXT) {
-        lv_group_focus_next(g);
-        lv_win_focus(win, lv_group_get_focused(g), 200);
-        return LV_RES_OK;
-    }
+    lv_win_focus(win, lv_group_get_focused(g), 200);
 
-    if(c == LV_GROUP_KEY_PREV) {
-        lv_group_focus_prev(g);
-        lv_win_focus(win, lv_group_get_focused(g), 200);
-        return LV_RES_OK;
-    }
-
-
-    lv_group_send(g, c);
+    last_key = c;
 
 
     return LV_RES_OK;

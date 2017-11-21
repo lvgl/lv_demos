@@ -48,7 +48,6 @@ void lv_test_tabview_1(void)
     /*Copy the first tabview and add some texts*/
     lv_obj_t *tv2 = lv_tabview_create(lv_scr_act(), tv1);
     lv_obj_align(tv2, NULL, LV_ALIGN_IN_TOP_RIGHT, 0, 0);
-    lv_tabview_set_btn_height(tv2, LV_DPI / 2);
 
     lv_obj_t *tab = lv_tabview_get_tab(tv2, 0);
     lv_obj_t *label = lv_label_create(tab, NULL);
@@ -86,10 +85,10 @@ void lv_test_tabview_1(void)
     tgl_rel.body.main_color = COLOR_RED;
     tgl_pr.body.main_color = COLOR_MARRON;
     indic.body.main_color = COLOR_ORANGE;
-    indic.body.gradient_color = COLOR_ORANGE;
+    indic.body.grad_color = COLOR_ORANGE;
     indic.body.padding.inner = LV_DPI / 16;
     tab_bg.body.main_color = COLOR_SILVER;
-    tab_bg.body.gradient_color = COLOR_GREEN;
+    tab_bg.body.grad_color = COLOR_GREEN;
     tab_bg.text.color = COLOR_YELLOW;
 
     /*Apply the styles*/
