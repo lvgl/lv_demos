@@ -83,7 +83,7 @@ void demo_init(void)
 
     write_create(tab1);
     list_create(tab2);
-//    chart_create(tab3);
+    chart_create(tab3);
 
 
 }
@@ -192,7 +192,7 @@ static void chart_create(lv_obj_t *parent)
     style_bar.body.radius = LV_RADIUS_CIRCLE;
     style_bar.body.border.color = COLOR_WHITE;
     style_bar.body.opa = OPA_60;
-    style_bar.body.padding.hor = LV_DPI / 6;
+    style_bar.body.padding.hor = 0;
     style_bar.body.padding.ver = LV_DPI / 6;
 
     lv_style_copy(&style_indic, &lv_style_pretty);
@@ -214,8 +214,7 @@ static void chart_create(lv_obj_t *parent)
     lv_slider_set_style(slider, LV_SLIDER_STYLE_INDIC, &style_indic);
     lv_slider_set_style(slider, LV_SLIDER_STYLE_KNOB, &style_knob);
     lv_obj_set_size(slider, lv_obj_get_width(parent) / 2, LV_DPI / 2);
-    lv_obj_align(slider, chart, LV_ALIGN_OUT_BOTTOM_MID, 0, LV_DPI / 2); /*Align below the slider*/
+    lv_obj_align(slider, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, - LV_DPI / 4); /*Align below the slider*/
     // lv_slider_set_action(slider, slider_action);
     lv_bar_set_range(slider, 0, 255);
-       // lv_bar_set_value(slider, chart_end);
 }
