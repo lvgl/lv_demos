@@ -48,7 +48,6 @@ void lv_test_group_1(void)
 
     /*A keyboard will be simulated*/
     lv_indev_drv_t win_btn_drv;
-    win_btn_drv.name = "sim_kb";
     win_btn_drv.type = LV_INDEV_TYPE_KEYPAD;
     win_btn_drv.get_data = win_btn_get;
     lv_indev_t *kb_in = lv_indev_register(&win_btn_drv);

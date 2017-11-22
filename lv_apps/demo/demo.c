@@ -45,11 +45,10 @@ void demo_init(void)
     lv_obj_set_width(wp, LV_HOR_RES * 3);
     lv_obj_set_protect(wp, LV_PROTECT_POS);
 
-
     static lv_style_t style_tv_btn_bg;
     lv_style_copy(&style_tv_btn_bg, &lv_style_plain);
-    style_tv_btn_bg.body.main_color = COLOR_HEX(0x4980b8);
-    style_tv_btn_bg.body.grad_color = COLOR_HEX(0x4980b8);
+    style_tv_btn_bg.body.main_color = COLOR_HEX(0x487fb7);
+    style_tv_btn_bg.body.grad_color = COLOR_HEX(0x487fb7);
 
     static lv_style_t style_tv_btn_rel;
     lv_style_copy(&style_tv_btn_rel, &lv_style_btn_rel);
@@ -68,11 +67,13 @@ void demo_init(void)
 
     lv_obj_t *tv = lv_tabview_create(lv_scr_act(), NULL);
     lv_obj_set_parent(wp, ((lv_tabview_ext_t *) tv->ext_attr)->content);
+    lv_obj_set_pos_scale(wp, 0, -5);
 
     lv_obj_t *tab1 = lv_tabview_add_tab(tv, "Write");
     lv_page_set_style(tab1, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
     lv_obj_t *tab2 = lv_tabview_add_tab(tv, "List");
     lv_obj_t *tab3 = lv_tabview_add_tab(tv, "Chart");
+
     lv_tabview_set_style(tv, LV_TABVIEW_STYLE_BTN_BG, &style_tv_btn_bg);
     lv_tabview_set_style(tv, LV_TABVIEW_STYLE_INDIC, &lv_style_plain);
     lv_tabview_set_style(tv, LV_TABVIEW_STYLE_BTN_REL, &style_tv_btn_rel);
@@ -82,7 +83,7 @@ void demo_init(void)
 
     write_create(tab1);
     list_create(tab2);
-    chart_create(tab3);
+//    chart_create(tab3);
 
 
 }
