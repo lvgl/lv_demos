@@ -22,10 +22,14 @@
 static void write_create(lv_obj_t *parent);
 static void list_create(lv_obj_t *parent);
 static void chart_create(lv_obj_t *parent);
+static lv_res_t slider_action(lv_obj_t *slider);
+static lv_res_t list_btn_action(lv_obj_t *slider);
 
 /**********************
  *  STATIC VARIABLES
  **********************/
+static lv_obj_t *chart;
+static lv_obj_t *ta;
 LV_IMG_DECLARE(img_bubble_pattern);
 
 /**********************
@@ -42,7 +46,7 @@ void demo_init(void)
     lv_obj_t *wp = lv_img_create(lv_scr_act(), NULL);
     lv_img_set_upscale(wp, true);
     lv_img_set_file(wp, "U:/bg");
-    lv_obj_set_width(wp, LV_HOR_RES * 3);
+    lv_obj_set_width(wp, LV_HOR_RES * 4);
     lv_obj_set_protect(wp, LV_PROTECT_POS);
 
     static lv_style_t style_tv_btn_bg;
@@ -64,7 +68,6 @@ void demo_init(void)
     style_tv_btn_pr.body.border.width = 0;
     style_tv_btn_pr.text.color = COLOR_GRAY;
 
-
     lv_obj_t *tv = lv_tabview_create(lv_scr_act(), NULL);
     lv_obj_set_parent(wp, ((lv_tabview_ext_t *) tv->ext_attr)->content);
     lv_obj_set_pos_scale(wp, 0, -5);
@@ -84,8 +87,6 @@ void demo_init(void)
     write_create(tab1);
     list_create(tab2);
     chart_create(tab3);
-
-
 }
 
 
@@ -128,9 +129,10 @@ static void write_create(lv_obj_t *parent)
      style_kb_pr.body.border.width = 1 << LV_ANTIALIAS;
      style_kb_pr.body.border.color = COLOR_SILVER;
 
-     lv_obj_t *ta = lv_ta_create(parent, NULL);
+     ta = lv_ta_create(parent, NULL);
      lv_obj_set_size(ta, lv_page_get_scrl_width(parent), lv_obj_get_height(parent) / 2);
      lv_ta_set_style(ta, LV_TA_STYLE_BG, &style_ta);
+     lv_ta_set_text(ta, "");
 
 
      lv_obj_t *kb = lv_kb_create(parent, NULL);
@@ -148,17 +150,44 @@ static void list_create(lv_obj_t *parent)
     lv_page_set_scrl_height(parent, lv_obj_get_height(parent));
     lv_page_set_sb_mode(parent, LV_SB_MODE_OFF);
 
+    /*Create styles for the buttons*/
+    static lv_style_t style_btn_rel;
+    static lv_style_t style_btn_pr;
+    lv_style_copy(&style_btn_rel, &lv_style_btn_rel);
+    style_btn_rel.body.main_color = COLOR_HEX3(0x333);
+    style_btn_rel.body.grad_color = COLOR_BLACK;
+    style_btn_rel.body.border.color = COLOR_SILVER;
+    style_btn_rel.body.border.width = 1 << LV_AA;
+    style_btn_rel.body.border.opa = OPA_50;
+    style_btn_rel.body.radius = 0;
+
+    lv_style_copy(&style_btn_pr, &style_btn_rel);
+    style_btn_pr.body.main_color = COLOR_MAKE(0x55, 0x96, 0xd8);
+    style_btn_pr.body.grad_color = COLOR_MAKE(0x37, 0x62, 0x90);
+    style_btn_pr.text.color = COLOR_MAKE(0xbb, 0xd5, 0xf1);
+
     lv_obj_t *list = lv_list_create(parent, NULL);
+    lv_obj_set_height(list, 2 * lv_obj_get_height(parent) / 3);
+    lv_list_set_style(list, LV_LIST_STYLE_BG, &lv_style_transp_tight);
+    lv_list_set_style(list, LV_LIST_STYLE_SCRL, &lv_style_transp_tight);
+    lv_list_set_style(list, LV_LIST_STYLE_BTN_REL, &style_btn_rel);
+    lv_list_set_style(list, LV_LIST_STYLE_BTN_PR, &style_btn_pr);
     lv_obj_align(list, NULL, LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 4);
 
-    lv_list_add(list, SYMBOL_FILE, "New", NULL);
-    lv_list_add(list, SYMBOL_DIRECTORY, "Open", NULL);
-    lv_list_add(list, SYMBOL_TRASH, "Delete", NULL);
-    lv_list_add(list, SYMBOL_EDIT, "Edit", NULL);
-    lv_list_add(list, SYMBOL_SAVE, "Save", NULL);
-    lv_list_add(list, SYMBOL_WIFI, "WiFi", NULL);
-    lv_list_add(list, SYMBOL_GPS, "GPS", NULL);
+    lv_list_add(list, SYMBOL_FILE, "New", list_btn_action);
+    lv_list_add(list, SYMBOL_DIRECTORY, "Open", list_btn_action);
+    lv_list_add(list, SYMBOL_TRASH, "Delete", list_btn_action);
+    lv_list_add(list, SYMBOL_EDIT, "Edit", list_btn_action);
+    lv_list_add(list, SYMBOL_SAVE, "Save", list_btn_action);
+    lv_list_add(list, SYMBOL_WIFI, "WiFi", list_btn_action);
+    lv_list_add(list, SYMBOL_GPS, "GPS", list_btn_action);
 
+
+    lv_obj_t *mbox= lv_mbox_create(parent, NULL);
+    lv_mbox_set_text(mbox, "Click on a button and its text will be copied to the Text area ");
+    static const char * mbox_btns[] = {"Got it", ""};
+    lv_mbox_add_btns(mbox, mbox_btns, NULL);    /*The default action is close*/
+    lv_obj_align(mbox, parent, LV_ALIGN_IN_TOP_MID, 0, LV_DPI);
 }
 
 static void chart_create(lv_obj_t *parent)
@@ -173,13 +202,23 @@ static void chart_create(lv_obj_t *parent)
     style_chart.body.radius = 0;
     style_chart.line.color = COLOR_GRAY;
 
-    lv_obj_t *chart = lv_chart_create(parent, NULL);
+    chart = lv_chart_create(parent, NULL);
     lv_obj_set_size(chart, 2 * lv_obj_get_width(parent) / 3, lv_obj_get_height(parent) / 2);
     lv_obj_align(chart, NULL,  LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 4);
     lv_chart_set_type(chart, LV_CHART_TYPE_COLUMN);
     lv_chart_set_style(chart, &style_chart);
+    lv_chart_set_series_opa(chart, OPA_70);
     lv_chart_series_t *ser1;
     ser1 = lv_chart_add_series(chart, COLOR_RED);
+    lv_chart_set_next(chart, ser1, 40);
+    lv_chart_set_next(chart, ser1, 30);
+    lv_chart_set_next(chart, ser1, 47);
+    lv_chart_set_next(chart, ser1, 59);
+    lv_chart_set_next(chart, ser1, 59);
+    lv_chart_set_next(chart, ser1, 31);
+    lv_chart_set_next(chart, ser1, 55);
+    lv_chart_set_next(chart, ser1, 70);
+    lv_chart_set_next(chart, ser1, 82);
 
     /*Create a bar, an indicator and a knob style*/
     static lv_style_t style_bar;
@@ -215,6 +254,35 @@ static void chart_create(lv_obj_t *parent)
     lv_slider_set_style(slider, LV_SLIDER_STYLE_KNOB, &style_knob);
     lv_obj_set_size(slider, lv_obj_get_width(parent) / 2, LV_DPI / 2);
     lv_obj_align(slider, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, - LV_DPI / 4); /*Align below the slider*/
-    // lv_slider_set_action(slider, slider_action);
-    lv_bar_set_range(slider, 0, 255);
+    lv_slider_set_action(slider, slider_action);
+    lv_slider_set_range(slider, 10, 1000);
+    lv_slider_set_value(slider, 700);
+    slider_action(slider);          /*Simulate a user value set the refresh the chart*/
+}
+
+/**
+ * Called when a new value on the slider on the Chart tab is set
+ * @param slider pointer to the slider
+ * @return LV_RES_OK because the slider is not deleted in the function
+ */
+static lv_res_t slider_action(lv_obj_t *slider)
+{
+    int16_t v = lv_slider_get_value(slider);
+    v = 1000 * 100 / v; /*Convert to range modify values linearly*/
+    lv_chart_set_range(chart, 0, v);
+
+    return LV_RES_OK;
+}
+
+/**
+ * Called when a a list button is clicked on the List tab
+ * @param btn pointer to a list button
+ * @return LV_RES_OK because the button is not deleted in the function
+ */
+static lv_res_t list_btn_action(lv_obj_t *btn)
+{
+    lv_ta_add_char(ta, '\n');
+    lv_ta_add_text(ta, lv_list_get_btn_text(btn));
+
+    return LV_RES_OK;
 }
