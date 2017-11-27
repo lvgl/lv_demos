@@ -10,9 +10,9 @@
 //
 //#include <stdio.h>
 //#include "lvgl/lvgl.h"
-//#include "misc/os/ptask.h"
+//#include "misc/os/lv_task.h"
 //#include "misc/os/idle.h"
-//#include "misc/gfx/text.h"
+//#include "../lv_misc/lv_text.h"
 //
 //#include "lvgl/lv_objx/lv_chart.h"
 //
@@ -67,7 +67,7 @@
 // */
 //void sysmon_init(void)
 //{
-//    ptask_create(sysmon_task, REFR_TIME, PTASK_PRIO_LOW, NULL);
+//    lv_task_create(sysmon_task, REFR_TIME, LV_TASK_PRIO_LOW, NULL);
 //
 //    memset(mem_pct, 0, sizeof(mem_pct));
 //    memset(cpu_pct, 0, sizeof(cpu_pct));
@@ -90,8 +90,8 @@
 //    lv_chart_set_range(chart, 0, 100);
 //    lv_chart_set_type(chart, LV_CHART_LINE);
 //    lv_chart_set_dl_width(chart, 2 << LV_ANTIALIAS);
-//    cpu_dl =  lv_chart_add_data_line(chart, COLOR_RED);
-//    mem_dl =  lv_chart_add_data_line(chart, COLOR_BLUE);
+//    cpu_dl =  lv_chart_add_data_line(chart, LV_COLOR_RED);
+//    mem_dl =  lv_chart_add_data_line(chart, LV_COLOR_BLUE);
 //
 //    memcpy(cpu_dl->points, cpu_pct, sizeof(cpu_pct));
 //    memcpy(mem_dl->points, mem_pct, sizeof(mem_pct));
@@ -140,7 +140,7 @@
 //#if USE_IDLE != 0   /*Use the more precise idle module if enabled*/
 //    cpu_busy = 100 - idle_get();
 //#else
-//    cpu_busy = 100 - ptask_get_idle();
+//    cpu_busy = 100 - lv_task_get_idle();
 //#endif
 //
 //    uint8_t mem_used_pct = 0;
@@ -164,20 +164,20 @@
 //{
 //    if(win == NULL) return;
 //    char buf_long[256];
-//    sprintf(buf_long, "%c%s CPU: %d %%%c\n\n",TXT_RECOLOR_CMD, CPU_LABEL_COLOR, cpu_pct[CHART_POINT_NUM - 1], TXT_RECOLOR_CMD);
+//    sprintf(buf_long, "%c%s CPU: %d %%%c\n\n",TXT_RELV_COLOR_CMD, CPU_LABEL_COLOR, cpu_pct[CHART_POINT_NUM - 1], TXT_RELV_COLOR_CMD);
 //
 //#if USE_DYN_MEM != 0  && DM_CUSTOM == 0
 //    sprintf(buf_long, "%s%c%s MEMORY: %d %%%c\nTotal: %d bytes\nUsed: %d bytes\nFree: %d bytes\nFrag: %d %%",
 //                  buf_long,
-//                  TXT_RECOLOR_CMD,
+//                  TXT_RELV_COLOR_CMD,
 //                  MEM_LABEL_COLOR,
 //                  mem_pct[CHART_POINT_NUM - 1],
-//                  TXT_RECOLOR_CMD,
+//                  TXT_RELV_COLOR_CMD,
 //                  (int)mem_mon.size_total,
 //                  (int)mem_mon.size_total - mem_mon.size_free, mem_mon.size_free, mem_mon.pct_frag);
 //
 //#else
-//    sprintf(buf_long, "%s%c%s MEMORY: N/A%c", buf_long, TXT_RECOLOR_CMD, MEM_LABEL_COLOR, TXT_RECOLOR_CMD);
+//    sprintf(buf_long, "%s%c%s MEMORY: N/A%c", buf_long, TXT_RELV_COLOR_CMD, MEM_LABEL_COLOR, TXT_RELV_COLOR_CMD);
 //#endif
 //    lv_label_set_text(label, buf_long);
 //

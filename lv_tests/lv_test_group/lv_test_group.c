@@ -49,7 +49,7 @@ void lv_test_group_1(void)
     /*A keyboard will be simulated*/
     lv_indev_drv_t win_btn_drv;
     win_btn_drv.type = LV_INDEV_TYPE_KEYPAD;
-    win_btn_drv.get_data = win_btn_get;
+    win_btn_drv.read_fp = win_btn_get;
     lv_indev_t *kb_in = lv_indev_register(&win_btn_drv);
     lv_indev_set_group(kb_in, g);
 
@@ -162,14 +162,14 @@ void lv_test_group_1(void)
     lv_lmeter_set_value(obj, 60);
     lv_group_add_obj(g, obj);
 
-    static color_t needle_color[] = {COLOR_RED};
+    static lv_color_t needle_color[] = {LV_COLOR_RED};
     obj = lv_gauge_create(win, NULL);
     lv_gauge_set_needle_count(obj, 1, needle_color);
     lv_gauge_set_value(obj, 0, 80);
     lv_group_add_obj(g, obj);
 
     obj = lv_chart_create(win, NULL);
-    lv_chart_series_t * ser = lv_chart_add_series(obj, COLOR_RED);
+    lv_chart_series_t * ser = lv_chart_add_series(obj, LV_COLOR_RED);
     lv_chart_set_next(obj, ser, 40);
     lv_chart_set_next(obj, ser, 30);
     lv_chart_set_next(obj, ser, 35);

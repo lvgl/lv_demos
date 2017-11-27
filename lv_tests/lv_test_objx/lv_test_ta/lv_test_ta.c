@@ -124,26 +124,26 @@ void lv_test_ta_2(void)
     lv_style_copy(&cur, &lv_style_pretty);
 
 
-    bg.body.main_color = COLOR_BLACK;
+    bg.body.main_color = LV_COLOR_BLACK;
     bg.body.padding.hor = 10 << LV_ANTIALIAS;
     bg.body.padding.ver = 10 << LV_ANTIALIAS;
-    bg.text.color = COLOR_BLUE;
+    bg.text.color = LV_COLOR_BLUE;
     bg.text.letter_space = 4 << LV_ANTIALIAS;
     bg.text.line_space = 10 << LV_ANTIALIAS;
 
     sb.body.padding.hor = 3 << LV_ANTIALIAS;
     sb.body.padding.inner = 10 << LV_ANTIALIAS;
-    sb.body.main_color = COLOR_WHITE;
-    sb.body.grad_color = COLOR_WHITE;
-    sb.body.opa = OPA_70;
+    sb.body.main_color = LV_COLOR_WHITE;
+    sb.body.grad_color = LV_COLOR_WHITE;
+    sb.body.opa = LV_OPA_70;
 
     cur.body.padding.hor = 2 << LV_ANTIALIAS;
     cur.body.padding.ver = 4 << LV_ANTIALIAS;
-    cur.body.main_color = COLOR_RED;
-    cur.body.grad_color = COLOR_YELLOW;
-    cur.body.border.color = COLOR_ORANGE;
-    cur.body.opa = OPA_70;
-    cur.text.color = COLOR_WHITE;
+    cur.body.main_color = LV_COLOR_RED;
+    cur.body.grad_color = LV_COLOR_YELLOW;
+    cur.body.border.color = LV_COLOR_ORANGE;
+    cur.body.opa = LV_OPA_70;
+    cur.text.color = LV_COLOR_WHITE;
     cur.line.width = 4 << LV_ANTIALIAS;
 
 

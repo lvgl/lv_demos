@@ -57,8 +57,8 @@ void lv_test_img_1(void)
     /*Copy the previous image and set a redish style*/
     static lv_style_t style;
     lv_style_copy(&style, &lv_style_plain);
-    style.image.color = COLOR_RED;
-    style.image.intense = OPA_70;
+    style.image.color = LV_COLOR_RED;
+    style.image.intense = LV_OPA_70;
 
     lv_obj_t *img3 = lv_img_create(lv_scr_act(), img2);
     lv_img_set_style(img3, &style);

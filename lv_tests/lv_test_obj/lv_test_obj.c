@@ -45,12 +45,12 @@ void lv_test_object_1(void)
     /*Create an object and set a user create style for it*/
     static lv_style_t style_obj2;
     lv_style_copy(&style_obj2, &lv_style_pretty);
-    style_obj2.body.main_color = COLOR_RED;
-    style_obj2.body.grad_color = COLOR_BLACK;
+    style_obj2.body.main_color = LV_COLOR_RED;
+    style_obj2.body.grad_color = LV_COLOR_BLACK;
     style_obj2.body.radius = 0;
-    style_obj2.body.border.color = COLOR_WHITE;
+    style_obj2.body.border.color = LV_COLOR_WHITE;
     style_obj2.body.border.width = 4 << LV_ANTIALIAS;
-    style_obj2.body.opa = OPA_50;
+    style_obj2.body.opa = LV_OPA_50;
     style_obj2.body.shadow.width = 10 << LV_ANTIALIAS;
 
     lv_obj_t *obj2 = lv_obj_create(lv_scr_act(), NULL);

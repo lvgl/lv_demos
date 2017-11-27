@@ -39,7 +39,7 @@
  */
 void lv_test_line_1(void)
 {
-    static const point_t p[] = {{5, 5}, {60, 30}, {80, 10}};
+    static const lv_point_t p[] = {{5, 5}, {60, 30}, {80, 10}};
 
     /* Create a default object*/
     lv_obj_t *line1 = lv_line_create(lv_scr_act(), NULL);
@@ -60,7 +60,7 @@ void lv_test_line_1(void)
     static lv_style_t style;
     lv_style_copy(&style, &lv_style_plain);
 
-    style.line.color = COLOR_RED;
+    style.line.color = LV_COLOR_RED;
     style.line.width = 3 << LV_ANTIALIAS;
 
     lv_obj_t *line4 = lv_line_create(lv_scr_act(), line3);

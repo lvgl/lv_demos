@@ -14,8 +14,8 @@
 // *      DEFINES
 // *********************/
 //#define SHADOW_WIDTH    (LV_DPI / 8)
-//#define IMG_RECOLOR     OPA_30
-//#define OPACITY         OPA_60
+//#define IMG_RECOLOR     LV_OPA_30
+//#define OPACITY         LV_OPA_60
 //
 ///**********************
 // *      TYPEDEFS
@@ -69,20 +69,20 @@
 //void bechmark_open(void)
 //{
 //    lv_style_get(LV_STYLE_BUTTON_INACTIVE, &style_value_l);
-//    style_value_l.ccolor = COLOR_BLACK;
+//    style_value_l.ccolor = LV_COLOR_BLACK;
 //    lv_style_get(LV_STYLE_BUTTON_ON_RELEASED, &style_btn_rel);
 //    lv_style_get(LV_STYLE_BUTTON_ON_PRESSED, &style_btn_pr);
 //    lv_style_get(LV_STYLE_BUTTON_ON_RELEASED, &style_btn_trel);
 //    lv_style_get(LV_STYLE_BUTTON_ON_PRESSED, &style_btn_tpr);
 //    lv_style_get(LV_STYLE_BUTTON_INACTIVE, &style_btn_ina);
 //    lv_style_get(LV_STYLE_PLAIN, &style_wp);
-//    style_wp.ccolor = COLOR_RED;
+//    style_wp.ccolor = LV_COLOR_RED;
 //
-//    style_btn_rel.opa = OPA_COVER;
-//    style_btn_pr.opa  = OPA_COVER;
-//    style_btn_trel.opa =OPA_COVER;
-//    style_btn_tpr.opa = OPA_COVER;
-//    style_btn_ina.opa = OPA_COVER;
+//    style_btn_rel.opa = LV_OPA_COVER;
+//    style_btn_pr.opa  = LV_OPA_COVER;
+//    style_btn_trel.opa =LV_OPA_COVER;
+//    style_btn_tpr.opa = LV_OPA_COVER;
+//    style_btn_ina.opa = LV_OPA_COVER;
 //
 //    style_btn_rel.swidth =  0;
 //    style_btn_pr.swidth  =  0;
@@ -208,7 +208,7 @@
 //{
 //
 //    if(lv_btn_get_state(btn) == LV_BTN_STATE_TREL) style_wp.img_recolor = IMG_RECOLOR;
-//    else style_wp.img_recolor = OPA_TRANSP;
+//    else style_wp.img_recolor = LV_OPA_TRANSP;
 //
 //    lv_obj_refr_style(wp);
 //
@@ -259,11 +259,11 @@
 //        style_btn_tpr.opa = OPACITY;
 //        style_btn_ina.opa = OPACITY;
 //    } else {
-//        style_btn_rel.opa = OPA_COVER;
-//        style_btn_pr.opa  = OPA_COVER;
-//        style_btn_trel.opa =OPA_COVER;
-//        style_btn_tpr.opa = OPA_COVER;
-//        style_btn_ina.opa = OPA_COVER;
+//        style_btn_rel.opa = LV_OPA_COVER;
+//        style_btn_pr.opa  = LV_OPA_COVER;
+//        style_btn_trel.opa =LV_OPA_COVER;
+//        style_btn_tpr.opa = LV_OPA_COVER;
+//        style_btn_ina.opa = LV_OPA_COVER;
 //    }
 //
 //    lv_style_refr_objs(&style_btn_rel);
@@ -278,7 +278,7 @@
 //
 ///*Exceptionally store the data because the big array would be bothering*/
 //
-//#if COLOR_DEPTH == 8
+//#if LV_COLOR_DEPTH == 8
 //static const color_int_t img_benchmark_bg[] = {
 ///*HEADER
 //   Width = 40
@@ -329,9 +329,9 @@
 //0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0,
 //0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 //};
-//#endif /*COLOR_DEPTH*/
+//#endif /*LV_COLOR_DEPTH*/
 //
-//#if COLOR_DEPTH == 16
+//#if LV_COLOR_DEPTH == 16
 //static const color_int_t img_benchmark_bg[] = {
 ///*HEADER
 //   Width = 40
@@ -382,9 +382,9 @@
 //0, 0, 0, 0, 4258, 6371, 6339, 4226, 4226, 2145, 2145, 4226, 4258, 4226, 32, 0, 32, 32, 32, 32, 0, 32, 0, 32, 32, 32, 2145, 8452, 8452, 4258, 4226, 4226, 4258, 8484, 8452, 8484, 4226, 0, 0, 0,
 //0, 0, 0, 0, 32, 4226, 4258, 6339, 4226, 4226, 4226, 4226, 2145, 32, 32, 0, 0, 32, 32, 32, 0, 0, 0, 0, 32, 2113, 2113, 2145, 4226, 4226, 4226, 4226, 6339, 6371, 4226, 2145, 32, 0, 0, 0,
 //};
-//#endif /*COLOR_DEPTH == 16*/
+//#endif /*LV_COLOR_DEPTH == 16*/
 //
-//#if COLOR_DEPTH == 24
+//#if LV_COLOR_DEPTH == 24
 //static const color_int_t img_benchmark_bg[] = {
 ///*HEADER
 //   Width = 40
@@ -436,5 +436,5 @@
 //197379, 197379, 131586, 197379, 1381653, 1973790, 1579032, 1184274, 1052688, 921102, 855309, 1052688, 1447446, 1052688, 328965, 131586, 328965, 460551, 460551, 328965, 131586, 263172, 197379, 328965, 460551, 460551, 921102, 2236962, 2105376, 1447446, 1118481, 1250067, 1513239, 2434341, 2302755, 2565927, 1052688, 131586, 131586, 131586,
 //197379, 131586, 131586, 131586, 328965, 1052688, 1447446, 1644825, 1250067, 1052688, 1184274, 1052688, 855309, 394758, 263172, 197379, 131586, 263172, 328965, 263172, 197379, 131586, 197379, 197379, 263172, 592137, 657930, 921102, 1118481, 1250067, 1118481, 1118481, 1710618, 1973790, 1250067, 855309, 263172, 131586, 197379, 131586,
 //};
-//#endif /*COLOR_DEPTH == 24*/
+//#endif /*LV_COLOR_DEPTH == 24*/
 //

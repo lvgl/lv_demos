@@ -57,10 +57,10 @@ void lv_test_win_1(void)
 
     static lv_style_t header;
     lv_style_copy(&header, &lv_style_plain);
-    header.body.main_color = COLOR_RED;
-    header.body.grad_color = COLOR_MARRON;
+    header.body.main_color = LV_COLOR_RED;
+    header.body.grad_color = LV_COLOR_MARRON;
     header.body.padding.inner = 0;
-    header.text.color = COLOR_WHITE;
+    header.text.color = LV_COLOR_WHITE;
 
     lv_obj_t *win3 = lv_win_create(lv_scr_act(), win2);
     lv_obj_align(win3, NULL, LV_ALIGN_IN_BOTTOM_LEFT, 0, 0);

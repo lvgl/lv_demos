@@ -101,10 +101,10 @@
 //    style_new.radius = LV_RADIUS_CIRCLE;               /*Fully round corners*/
 //    style_new.swidth = 8;                              /*8 px shadow*/
 //    style_new.bwidth = 2;                              /*2 px border width*/
-//    style_new.mcolor = COLOR_WHITE;                    /*White main color*/
-//    style_new.gcolor = color_mix(COLOR_BLUE, COLOR_WHITE, OPA_40);     /*light blue gradient color*/
-//    style_new.scolor = COLOR_MAKE(0xa0, 0xa0, 0xa0);    /*Light gray shadow color*/
-//    style_new.ccolor = color_mix(COLOR_BLUE, COLOR_WHITE, OPA_90);  /*Blue content color (text color)*/
+//    style_new.mcolor = LV_COLOR_WHITE;                    /*White main color*/
+//    style_new.gcolor = color_mix(LV_COLOR_BLUE, LV_COLOR_WHITE, LV_OPA_40);     /*light blue gradient color*/
+//    style_new.scolor = LV_COLOR_MAKE(0xa0, 0xa0, 0xa0);    /*Light gray shadow color*/
+//    style_new.ccolor = color_mix(LV_COLOR_BLUE, LV_COLOR_WHITE, LV_OPA_90);  /*Blue content color (text color)*/
 //    style_new.letter_space = 10;                       /*10 px letter space*/
 //    style_new.txt_align = LV_TXT_ALIGN_MID;            /*Middel text align*/
 //
@@ -131,11 +131,11 @@
 //    style_led.swidth = 15;
 //    style_led.radius = LV_RADIUS_CIRCLE;
 //    style_led.bwidth = 3;
-//    style_led.bopa = OPA_30;
-//    style_led.mcolor = COLOR_MAKE(0xb5, 0x0f, 0x04);
-//    style_led.gcolor = COLOR_MAKE(0x50, 0x07, 0x02);
-//    style_led.bcolor = COLOR_MAKE(0xfa, 0x0f, 0x00);
-//    style_led.scolor = COLOR_MAKE(0xb5, 0x0f, 0x04);
+//    style_led.bopa = LV_OPA_30;
+//    style_led.mcolor = LV_COLOR_MAKE(0xb5, 0x0f, 0x04);
+//    style_led.gcolor = LV_COLOR_MAKE(0x50, 0x07, 0x02);
+//    style_led.bcolor = LV_COLOR_MAKE(0xfa, 0x0f, 0x00);
+//    style_led.scolor = LV_COLOR_MAKE(0xb5, 0x0f, 0x04);
 //
 //    /*Create a LED and switch it ON*/
 //    lv_obj_t * led1  = lv_led_create(lv_scr_act(), NULL);

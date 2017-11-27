@@ -58,21 +58,21 @@ void lv_test_mbox_1(void)
     bg.body.padding.hor = 20 << LV_ANTIALIAS;
     bg.body.padding.ver = 20 << LV_ANTIALIAS;
     bg.body.padding.inner = 20 << LV_ANTIALIAS;
-    bg.body.main_color = COLOR_BLACK;
-    bg.body.grad_color = COLOR_MARRON;
-    bg.text.color = COLOR_WHITE;
+    bg.body.main_color = LV_COLOR_BLACK;
+    bg.body.grad_color = LV_COLOR_MARRON;
+    bg.text.color = LV_COLOR_WHITE;
 
     btn_bg.body.padding.hor = 10 << LV_ANTIALIAS;
     btn_bg.body.padding.ver = 5 << LV_ANTIALIAS;
     btn_bg.body.padding.inner = 40 << LV_ANTIALIAS;
     btn_bg.body.empty = 1;
-    btn_bg.body.border.color = COLOR_WHITE;
-    btn_bg.text.color = COLOR_WHITE;
+    btn_bg.body.border.color = LV_COLOR_WHITE;
+    btn_bg.text.color = LV_COLOR_WHITE;
 
     static lv_style_t btn_rel;
     lv_style_copy(&btn_rel, &lv_style_btn_rel);
     btn_rel.body.empty = 1;
-    btn_rel.body.border.color = COLOR_WHITE;
+    btn_rel.body.border.color = LV_COLOR_WHITE;
 
     lv_obj_t *mbox3 = lv_mbox_create(lv_scr_act(), mbox2);
     lv_mbox_set_style(mbox3, LV_MBOX_STYLE_BG, &bg);

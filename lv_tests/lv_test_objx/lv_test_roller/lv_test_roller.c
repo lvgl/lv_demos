@@ -46,12 +46,12 @@ void lv_test_roller_1(void)
 
     static lv_style_t bg;
     lv_style_copy(&bg, &lv_style_pretty);
-    bg.body.main_color = COLOR_GRAY;
-    bg.body.grad_color = COLOR_WHITE;
+    bg.body.main_color = LV_COLOR_GRAY;
+    bg.body.grad_color = LV_COLOR_WHITE;
     bg.body.shadow.width = 5 << LV_ANTIALIAS;
     bg.text.line_space = 10 << LV_ANTIALIAS;
-    bg.text.opa = OPA_60;
-    bg.text.color = COLOR_GRAY;
+    bg.text.opa = LV_OPA_60;
+    bg.text.color = LV_COLOR_GRAY;
 
     lv_obj_t *roller2 = lv_roller_create(lv_scr_act(), NULL);
     lv_obj_set_size_scale(roller2, 80, 120);

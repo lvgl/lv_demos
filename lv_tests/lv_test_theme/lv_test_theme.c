@@ -118,7 +118,7 @@ static void create_tab1(lv_theme_t * th, lv_obj_t *parent)
     lv_obj_t *btnm = lv_btnm_create(h, NULL);
     lv_obj_set_size(btnm,LV_HOR_RES / 4, 2 * LV_DPI / 3);
     lv_btnm_set_map(btnm, btnm_str);
-    ((lv_btnm_ext_t *) btnm->ext_attr)->btn_id_tgl = 3; /*Hack to show a button pressed*/
+    lv_btnm_set_toggle(btnm, true, 3);
 
     h = lv_cont_create(parent, h);
 
@@ -140,7 +140,7 @@ static void create_tab1(lv_theme_t * th, lv_obj_t *parent)
     lv_bar_set_value(slider, 70);
 
     lv_obj_t *line = lv_line_create(h, NULL);
-    static const point_t line_p[] = {{0,0},{LV_HOR_RES / 5, 0}};
+    static const lv_point_t line_p[] = {{0,0},{LV_HOR_RES / 5, 0}};
     lv_line_set_points(line, line_p, 2);
     lv_line_set_style(line, th->line.decor);
 
@@ -187,11 +187,11 @@ static void create_tab1(lv_theme_t * th, lv_obj_t *parent)
 
 static void create_tab2(lv_theme_t * th, lv_obj_t *parent)
 {
-    cord_t w = lv_page_get_scrl_width(parent);
+    lv_coord_t w = lv_page_get_scrl_width(parent);
 
     lv_obj_t *chart = lv_chart_create(parent, NULL);
     lv_obj_set_size(chart, w / 3, LV_VER_RES / 3);
-    lv_chart_series_t * s1 = lv_chart_add_series(chart, COLOR_RED);
+    lv_chart_series_t * s1 = lv_chart_add_series(chart, LV_COLOR_RED);
     lv_chart_set_next(chart, s1, 30);
     lv_chart_set_next(chart, s1, 20);
     lv_chart_set_next(chart, s1, 10);
@@ -245,19 +245,19 @@ static void create_tab3(lv_theme_t * th, lv_obj_t *parent)
     lv_obj_align(page, win, LV_ALIGN_IN_TOP_RIGHT,  LV_DPI, LV_DPI);
 
     label = lv_label_create(page, NULL);
-    lv_label_set_text(label, "Lorem ipsum dolor sit amet, repudiare voluptatibus pri cu. "
-                             "Ei mundi pertinax posidonium eum, cum tempor maiorum at, "
-                             "mea fuisset assentior ad. Usu cu suas civibus iudicabit. "
-                             "Eum eu congue tempor facilisi. Tale hinc unum te vim. "
+    lv_label_set_text(label, "Lorem ipsum dolor sit amet, repudiare voluptatibus pri cu.\n"
+                             "Ei mundi pertinax posidonium eum, cum tempor maiorum at,\n"
+                             "mea fuisset assentior ad. Usu cu suas civibus iudicabit.\n"
+                             "Eum eu congue tempor facilisi. Tale hinc unum te vim.\n"
                              "Te cum populo animal eruditi, labitur inciderint at nec.\n\n"
-                             "Eius corpora et quo. Everti voluptaria instructior est id, "
-                             "vel in falli primis. Mea ei porro essent admodum, "
-                             "his ei malis quodsi, te quis aeterno his. "
-                             "Qui tritani recusabo reprehendunt ne, "
+                             "Eius corpora et quo. Everti voluptaria instructior est id,\n"
+                             "vel in falli primis. Mea ei porro essent admodum,\n"
+                             "his ei malis quodsi, te quis aeterno his.\n"
+                             "Qui tritani recusabo reprehendunt ne,\n"
                              "per duis explicari at. Simul mediocritatem mei et.");
-    lv_label_set_long_mode(label, LV_LABEL_LONG_BREAK);
-    lv_obj_set_width(label, lv_page_get_scrl_width(page));
-
+    //lv_label_set_long_mode(label, LV_LABEL_LONG_BREAK);
+    //lv_obj_set_width(label, lv_page_get_scrl_width(page));
+    lv_page_set_scrl_fit(page, true, true);
 
     static const char * mbox_btn_map[] = {"\211", "\222Got it!", "\211", ""};
     lv_obj_t *mbox = lv_mbox_create(parent, NULL);

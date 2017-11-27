@@ -49,11 +49,11 @@ void lv_test_led_1(void)
     style.body.shadow.width = 10 << LV_ANTIALIAS;
     style.body.radius = LV_RADIUS_CIRCLE;
     style.body.border.width= 3 << LV_ANTIALIAS;
-    style.body.border.opa = OPA_30;
-    style.body.main_color = COLOR_MAKE(0xb5, 0x0f, 0x04);
-    style.body.grad_color = COLOR_MAKE(0x50, 0x07, 0x02);
-    style.body.border.color = COLOR_MAKE(0xfa, 0x0f, 0x00);
-    style.body.shadow.color = COLOR_MAKE(0xb5, 0x0f, 0x04);
+    style.body.border.opa = LV_OPA_30;
+    style.body.main_color = LV_COLOR_MAKE(0xb5, 0x0f, 0x04);
+    style.body.grad_color = LV_COLOR_MAKE(0x50, 0x07, 0x02);
+    style.body.border.color = LV_COLOR_MAKE(0xfa, 0x0f, 0x00);
+    style.body.shadow.color = LV_COLOR_MAKE(0xb5, 0x0f, 0x04);
 
     lv_obj_t * led2 = lv_led_create(lv_scr_act(), NULL);
     lv_led_set_style(led2, &style);

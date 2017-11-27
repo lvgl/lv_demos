@@ -65,16 +65,16 @@ void lv_test_btn_1(void)
     /* Test styles and copy. Same as 'btn4' but different styles */
     static lv_style_t style_rel;
     lv_style_copy(&style_rel, &lv_style_pretty);
-    style_rel.body.main_color = COLOR_ORANGE;
-    style_rel.body.grad_color = COLOR_BLACK;
-    style_rel.body.border.color = COLOR_RED;
-    style_rel.body.shadow.color = COLOR_MARRON;
+    style_rel.body.main_color = LV_COLOR_ORANGE;
+    style_rel.body.grad_color = LV_COLOR_BLACK;
+    style_rel.body.border.color = LV_COLOR_RED;
+    style_rel.body.shadow.color = LV_COLOR_MARRON;
     style_rel.body.shadow.width = 10 << LV_ANTIALIAS;
 
     static lv_style_t style_pr;
     lv_style_copy(&style_pr,  &lv_style_pretty);
     style_pr.body.empty = 1;
-    style_pr.body.border.color = COLOR_RED;
+    style_pr.body.border.color = LV_COLOR_RED;
     style_pr.body.border.width = 4 << LV_ANTIALIAS;
 
     /*Skip 'tpr' because it will be let the same*/
@@ -82,14 +82,14 @@ void lv_test_btn_1(void)
     static lv_style_t style_tpr;
     lv_style_copy(&style_tpr, &lv_style_pretty);
     style_tpr.body.empty = 1;
-    style_tpr.body.border.color = COLOR_RED;
+    style_tpr.body.border.color = LV_COLOR_RED;
     style_tpr.body.border.width = 4 << LV_ANTIALIAS;
 
     static lv_style_t style_ina;
     lv_style_copy(&style_ina, &lv_style_pretty);
-    style_ina.body.main_color = COLOR_SILVER;
-    style_ina.body.grad_color = COLOR_GRAY;
-    style_ina.body.border.color = COLOR_RED;
+    style_ina.body.main_color = LV_COLOR_SILVER;
+    style_ina.body.grad_color = LV_COLOR_GRAY;
+    style_ina.body.border.color = LV_COLOR_RED;
 
     /*Create styled button*/
     lv_obj_t * btn5 = lv_btn_create(lv_scr_act(), btn4);

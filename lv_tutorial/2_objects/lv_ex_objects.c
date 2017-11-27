@@ -163,14 +163,14 @@
 //    lv_chart_set_dl_width(chart, 3 << LV_ANTIALIAS);                 /*Set the line width (Compensates anti-aliasing if enabled)*/
 //
 //    /*Add a RED data line and set some points*/
-//    lv_chart_dl_t * dl1 = lv_chart_add_data_line(chart, COLOR_RED);
+//    lv_chart_dl_t * dl1 = lv_chart_add_data_line(chart, LV_COLOR_RED);
 //    lv_chart_set_next(chart, dl1, 10);
 //    lv_chart_set_next(chart, dl1, 25);
 //    lv_chart_set_next(chart, dl1, 45);
 //    lv_chart_set_next(chart, dl1, 80);
 //
 //    /*Add a BLUE data line and set some points*/
-//    lv_chart_dl_t * dl2 = lv_chart_add_data_line(chart, COLOR_MAKE(0x40, 0x70, 0xC0));
+//    lv_chart_dl_t * dl2 = lv_chart_add_data_line(chart, LV_COLOR_MAKE(0x40, 0x70, 0xC0));
 //    lv_chart_set_next(chart, dl2, 10);
 //    lv_chart_set_next(chart, dl2, 25);
 //    lv_chart_set_next(chart, dl2, 45);

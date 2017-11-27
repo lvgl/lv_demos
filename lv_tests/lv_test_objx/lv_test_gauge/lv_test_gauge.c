@@ -50,17 +50,17 @@ void lv_test_gauge_1(void)
     lv_obj_align_scale(gauge2, gauge1, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
 
     /*Copy the first gauge add more needles and set new style*/
-    static color_t needle_colors[3] = {COLOR_BLUE, COLOR_PURPLE, COLOR_TEAL};
+    static lv_color_t needle_colors[3] = {LV_COLOR_BLUE, LV_COLOR_PURPLE, LV_COLOR_TEAL};
 
     /*Create a styled gauge*/
     static lv_style_t style3;
     lv_style_copy(&style3, &lv_style_pretty);
-    style3.body.main_color = COLOR_GREEN;
-    style3.body.grad_color = COLOR_RED;
+    style3.body.main_color = LV_COLOR_GREEN;
+    style3.body.grad_color = LV_COLOR_RED;
     style3.body.padding.hor = 6 << LV_ANTIALIAS;
     style3.body.padding.inner = 10 << LV_ANTIALIAS;
     style3.body.padding.ver = 8 << LV_ANTIALIAS;
-    style3.body.border.color= COLOR_GRAY;
+    style3.body.border.color= LV_COLOR_GRAY;
     style3.line.width = 2 << LV_ANTIALIAS;
 
     lv_obj_t *gauge3 = lv_gauge_create(lv_scr_act(), gauge1);

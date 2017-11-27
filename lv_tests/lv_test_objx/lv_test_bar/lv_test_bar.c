@@ -60,13 +60,13 @@ void lv_test_bar_1(void)
      * (like 'bar2' on its left but dark bg, thin red indicator with big light)*/
     static lv_style_t bar_bg;
     lv_style_copy(&bar_bg, &lv_style_pretty);
-    bar_bg.body.main_color = COLOR_BLACK;
+    bar_bg.body.main_color = LV_COLOR_BLACK;
 
     static lv_style_t bar_indic;
     lv_style_copy(&bar_indic, &lv_style_pretty);
-    bar_indic.body.main_color = COLOR_RED;
-    bar_indic.body.grad_color = COLOR_MARRON;
-    bar_indic.body.shadow.color = COLOR_RED;
+    bar_indic.body.main_color = LV_COLOR_RED;
+    bar_indic.body.grad_color = LV_COLOR_MARRON;
+    bar_indic.body.shadow.color = LV_COLOR_RED;
     bar_indic.body.shadow.width = 20 << LV_ANTIALIAS;
     bar_indic.body.padding.ver = 10 << LV_ANTIALIAS;       /*Make the indicator thinner*/
 

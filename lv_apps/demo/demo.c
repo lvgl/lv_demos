@@ -51,8 +51,8 @@ void demo_init(void)
 
     static lv_style_t style_tv_btn_bg;
     lv_style_copy(&style_tv_btn_bg, &lv_style_plain);
-    style_tv_btn_bg.body.main_color = COLOR_HEX(0x487fb7);
-    style_tv_btn_bg.body.grad_color = COLOR_HEX(0x487fb7);
+    style_tv_btn_bg.body.main_color = LV_COLOR_HEX(0x487fb7);
+    style_tv_btn_bg.body.grad_color = LV_COLOR_HEX(0x487fb7);
 
     static lv_style_t style_tv_btn_rel;
     lv_style_copy(&style_tv_btn_rel, &lv_style_btn_rel);
@@ -62,11 +62,11 @@ void demo_init(void)
     static lv_style_t style_tv_btn_pr;
     lv_style_copy(&style_tv_btn_pr, &lv_style_btn_pr);
     style_tv_btn_pr.body.radius = 0;
-    style_tv_btn_pr.body.opa = OPA_50;
-    style_tv_btn_pr.body.main_color = COLOR_WHITE;
-    style_tv_btn_pr.body.grad_color = COLOR_WHITE;
+    style_tv_btn_pr.body.opa = LV_OPA_50;
+    style_tv_btn_pr.body.main_color = LV_COLOR_WHITE;
+    style_tv_btn_pr.body.grad_color = LV_COLOR_WHITE;
     style_tv_btn_pr.body.border.width = 0;
-    style_tv_btn_pr.text.color = COLOR_GRAY;
+    style_tv_btn_pr.text.color = LV_COLOR_GRAY;
 
     lv_obj_t *tv = lv_tabview_create(lv_scr_act(), NULL);
     lv_obj_set_parent(wp, ((lv_tabview_ext_t *) tv->ext_attr)->content);
@@ -98,15 +98,15 @@ static void write_create(lv_obj_t *parent)
 {
      static lv_style_t style_ta;
      lv_style_copy(&style_ta, &lv_style_pretty);
-     style_ta.body.opa = OPA_30;
+     style_ta.body.opa = LV_OPA_30;
      style_ta.body.radius = 0;
-     style_ta.text.color = COLOR_WHITE;
+     style_ta.text.color = LV_COLOR_WHITE;
 
      static lv_style_t style_kb;
      lv_style_copy(&style_kb, &lv_style_plain);
-     style_kb.body.opa = OPA_70;
-     style_kb.body.main_color = COLOR_HEX3(0x333);
-     style_kb.body.grad_color = COLOR_HEX3(0x333);
+     style_kb.body.opa = LV_OPA_70;
+     style_kb.body.main_color = LV_COLOR_HEX3(0x333);
+     style_kb.body.grad_color = LV_COLOR_HEX3(0x333);
      style_kb.body.padding.hor = 0;
      style_kb.body.padding.ver = 0;
      style_kb.body.padding.inner = 0;
@@ -116,24 +116,23 @@ static void write_create(lv_obj_t *parent)
      style_kb_rel.body.empty = 1;
      style_kb_rel.body.radius = 0;
      style_kb_rel.body.border.width = 1 << LV_ANTIALIAS;
-     style_kb_rel.body.border.color = COLOR_SILVER;
-     style_kb_rel.body.border.opa = OPA_50;
-     style_kb_rel.text.color = COLOR_WHITE;
+     style_kb_rel.body.border.color = LV_COLOR_SILVER;
+     style_kb_rel.body.border.opa = LV_OPA_50;
+     style_kb_rel.text.color = LV_COLOR_WHITE;
 
      static lv_style_t style_kb_pr;
      lv_style_copy(&style_kb_pr, &lv_style_plain);
      style_kb_pr.body.radius = 0;
-     style_kb_pr.body.opa = OPA_50;
-     style_kb_pr.body.main_color = COLOR_WHITE;
-     style_kb_pr.body.grad_color = COLOR_WHITE;
+     style_kb_pr.body.opa = LV_OPA_50;
+     style_kb_pr.body.main_color = LV_COLOR_WHITE;
+     style_kb_pr.body.grad_color = LV_COLOR_WHITE;
      style_kb_pr.body.border.width = 1 << LV_ANTIALIAS;
-     style_kb_pr.body.border.color = COLOR_SILVER;
+     style_kb_pr.body.border.color = LV_COLOR_SILVER;
 
      ta = lv_ta_create(parent, NULL);
      lv_obj_set_size(ta, lv_page_get_scrl_width(parent), lv_obj_get_height(parent) / 2);
      lv_ta_set_style(ta, LV_TA_STYLE_BG, &style_ta);
      lv_ta_set_text(ta, "");
-
 
      lv_obj_t *kb = lv_kb_create(parent, NULL);
      lv_obj_set_size(kb, lv_page_get_scrl_width(parent), lv_obj_get_height(parent) / 2);
@@ -154,17 +153,17 @@ static void list_create(lv_obj_t *parent)
     static lv_style_t style_btn_rel;
     static lv_style_t style_btn_pr;
     lv_style_copy(&style_btn_rel, &lv_style_btn_rel);
-    style_btn_rel.body.main_color = COLOR_HEX3(0x333);
-    style_btn_rel.body.grad_color = COLOR_BLACK;
-    style_btn_rel.body.border.color = COLOR_SILVER;
+    style_btn_rel.body.main_color = LV_COLOR_HEX3(0x333);
+    style_btn_rel.body.grad_color = LV_COLOR_BLACK;
+    style_btn_rel.body.border.color = LV_COLOR_SILVER;
     style_btn_rel.body.border.width = 1 << LV_AA;
-    style_btn_rel.body.border.opa = OPA_50;
+    style_btn_rel.body.border.opa = LV_OPA_50;
     style_btn_rel.body.radius = 0;
 
     lv_style_copy(&style_btn_pr, &style_btn_rel);
-    style_btn_pr.body.main_color = COLOR_MAKE(0x55, 0x96, 0xd8);
-    style_btn_pr.body.grad_color = COLOR_MAKE(0x37, 0x62, 0x90);
-    style_btn_pr.text.color = COLOR_MAKE(0xbb, 0xd5, 0xf1);
+    style_btn_pr.body.main_color = LV_COLOR_MAKE(0x55, 0x96, 0xd8);
+    style_btn_pr.body.grad_color = LV_COLOR_MAKE(0x37, 0x62, 0x90);
+    style_btn_pr.text.color = LV_COLOR_MAKE(0xbb, 0xd5, 0xf1);
 
     lv_obj_t *list = lv_list_create(parent, NULL);
     lv_obj_set_height(list, 2 * lv_obj_get_height(parent) / 3);
@@ -198,18 +197,18 @@ static void chart_create(lv_obj_t *parent)
 
     static lv_style_t style_chart;
     lv_style_copy(&style_chart, &lv_style_pretty);
-    style_chart.body.opa = OPA_60;
+    style_chart.body.opa = LV_OPA_60;
     style_chart.body.radius = 0;
-    style_chart.line.color = COLOR_GRAY;
+    style_chart.line.color = LV_COLOR_GRAY;
 
     chart = lv_chart_create(parent, NULL);
     lv_obj_set_size(chart, 2 * lv_obj_get_width(parent) / 3, lv_obj_get_height(parent) / 2);
     lv_obj_align(chart, NULL,  LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 4);
     lv_chart_set_type(chart, LV_CHART_TYPE_COLUMN);
     lv_chart_set_style(chart, &style_chart);
-    lv_chart_set_series_opa(chart, OPA_70);
+    lv_chart_set_series_opa(chart, LV_OPA_70);
     lv_chart_series_t *ser1;
-    ser1 = lv_chart_add_series(chart, COLOR_RED);
+    ser1 = lv_chart_add_series(chart, LV_COLOR_RED);
     lv_chart_set_next(chart, ser1, 40);
     lv_chart_set_next(chart, ser1, 30);
     lv_chart_set_next(chart, ser1, 47);
@@ -226,26 +225,26 @@ static void chart_create(lv_obj_t *parent)
     static lv_style_t style_knob;
 
     lv_style_copy(&style_bar, &lv_style_pretty);
-    style_bar.body.main_color =  COLOR_BLACK;
-    style_bar.body.grad_color =  COLOR_GRAY;
+    style_bar.body.main_color =  LV_COLOR_BLACK;
+    style_bar.body.grad_color =  LV_COLOR_GRAY;
     style_bar.body.radius = LV_RADIUS_CIRCLE;
-    style_bar.body.border.color = COLOR_WHITE;
-    style_bar.body.opa = OPA_60;
+    style_bar.body.border.color = LV_COLOR_WHITE;
+    style_bar.body.opa = LV_OPA_60;
     style_bar.body.padding.hor = 0;
     style_bar.body.padding.ver = LV_DPI / 6;
 
     lv_style_copy(&style_indic, &lv_style_pretty);
-    style_indic.body.grad_color =  COLOR_MARRON;
-    style_indic.body.main_color =  COLOR_RED;
+    style_indic.body.grad_color =  LV_COLOR_MARRON;
+    style_indic.body.main_color =  LV_COLOR_RED;
     style_indic.body.radius = LV_RADIUS_CIRCLE;
     style_indic.body.shadow.width = LV_DPI / 10;
-    style_indic.body.shadow.color = COLOR_RED;
+    style_indic.body.shadow.color = LV_COLOR_RED;
     style_indic.body.padding.hor = LV_DPI / 30;
     style_indic.body.padding.ver = LV_DPI / 30;
 
     lv_style_copy(&style_knob, &lv_style_pretty);
     style_knob.body.radius = LV_RADIUS_CIRCLE;
-    style_knob.body.opa = OPA_70;
+    style_knob.body.opa = LV_OPA_70;
 
     /*Create a second slider*/
     lv_obj_t *slider = lv_slider_create(parent, NULL);

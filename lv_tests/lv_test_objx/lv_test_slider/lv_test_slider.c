@@ -60,13 +60,13 @@ void lv_test_slider_1(void)
      * (like 'slider2' on its left but dark bg, thin red indicator with big light)*/
     static lv_style_t slider_bg;
     lv_style_copy(&slider_bg, &lv_style_pretty);
-    slider_bg.body.main_color = COLOR_BLACK;
+    slider_bg.body.main_color = LV_COLOR_BLACK;
 
     static lv_style_t slider_indic;
     lv_style_copy(&slider_indic, &lv_style_pretty);
-    slider_indic.body.main_color = COLOR_RED;
-    slider_indic.body.grad_color = COLOR_MARRON;
-    slider_indic.body.shadow.color = COLOR_RED;
+    slider_indic.body.main_color = LV_COLOR_RED;
+    slider_indic.body.grad_color = LV_COLOR_MARRON;
+    slider_indic.body.shadow.color = LV_COLOR_RED;
     slider_indic.body.shadow.width = 20 << LV_ANTIALIAS;
     slider_indic.body.padding.ver = 0 << LV_ANTIALIAS;
     slider_indic.body.padding.hor = 0 << LV_ANTIALIAS;
@@ -74,7 +74,7 @@ void lv_test_slider_1(void)
     static lv_style_t slider_knob;
     lv_style_copy(&slider_knob, &lv_style_pretty);
     slider_knob.body.radius = LV_RADIUS_CIRCLE;
-    slider_knob.body.border.color = COLOR_BLUE;
+    slider_knob.body.border.color = LV_COLOR_BLUE;
     slider_knob.body.empty = 1;
 
     lv_obj_t * slider4 = lv_slider_create(lv_scr_act(), slider2);

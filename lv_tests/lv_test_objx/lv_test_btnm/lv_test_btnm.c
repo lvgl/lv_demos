@@ -54,15 +54,15 @@ void lv_test_btnm_1(void)
      * GOAL: A button matrix with default buttons.  */
     static lv_style_t rel;
     lv_style_copy(&rel, &lv_style_btn_tgl_rel);
-    rel.body.main_color = COLOR_RED;
-    rel.body.grad_color = COLOR_BLACK;
-    rel.text.color = COLOR_YELLOW;
+    rel.body.main_color = LV_COLOR_RED;
+    rel.body.grad_color = LV_COLOR_BLACK;
+    rel.text.color = LV_COLOR_YELLOW;
 
     static lv_style_t pr;
     lv_style_copy(&pr, &lv_style_btn_tgl_rel);
-    pr.body.main_color = COLOR_ORANGE;
-    pr.body.grad_color = COLOR_BLACK;
-    pr.text.color = COLOR_WHITE;
+    pr.body.main_color = LV_COLOR_ORANGE;
+    pr.body.grad_color = LV_COLOR_BLACK;
+    pr.text.color = LV_COLOR_WHITE;
 
 
     lv_obj_t * btnm2 = lv_btnm_create(lv_scr_act(), NULL);

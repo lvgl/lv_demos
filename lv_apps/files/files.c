@@ -9,7 +9,7 @@
 //#include "lvgl/lvgl.h"
 //#include "files.h"
 //#include <stdio.h>
-//#include "misc/gfx/fonts/symbol_def.h"
+//#include "../lv_misc/lv_fonts/symbol_def.h"
 //
 ///*********************
 // *      DEFINES
@@ -134,14 +134,14 @@
 //    lv_obj_set_drag_parent(lv_page_get_scrl(fsel_list), true);
 //    lv_cont_set_fit(fsel_list, false, true);
 //
-//    fs_res_t res = FS_RES_OK;
+//    lv_fs_res_t res = FS_RES_OK;
 //    lv_obj_t * liste;
 //
 //    /*At empty path show the drivers */
 //    if(fsel_path[0] == '\0') {
 //        char drv[16];
 //        char buf[2];
-//        fs_get_letters(drv);
+//        lv_fs_get_letters(drv);
 //        uint8_t i;
 //        for(i = 0; drv[i] != '\0'; i++) {
 //            buf[0] = drv[i];
@@ -155,8 +155,8 @@
 //    else {
 //        liste = lv_list_add(fsel_list, SYMBOL_UP, "Up", fsel_up_action);
 //
-//        fs_readdir_t rd;
-//        res = fs_readdir_init(&rd, fsel_path);
+//        lv_fs_readdir_t rd;
+//        res = lv_fs_readdir_init(&rd, fsel_path);
 //        if(res != FS_RES_OK) {
 //            /*Can't read the path*/
 //            return;
@@ -172,10 +172,10 @@
 //        /*Read the files from the previous pages*/
 //        uint16_t file_cnt = 0;
 //        while(file_cnt <= fsel_file_cnt) {
-//            res = fs_readdir(&rd, fn);
+//            res = lv_fs_readdir(&rd, fn);
 //            if(res != FS_RES_OK){
 //                /*Can't read the path */
-//                fs_readdir_close(&rd);
+//                lv_fs_readdir_close(&rd);
 //                return;
 //            }
 //            file_cnt ++;
@@ -194,7 +194,7 @@
 //            }
 //            /*Add a file if it is not filtered*/
 //            else if(fsel_filter[0] == '\0' || /*No filtering or ...*/
-//                    (strcmp(fs_get_ext(fn), fsel_filter) == 0 && /*.. the filter matches*/
+//                    (strcmp(lv_fs_get_ext(fn), fsel_filter) == 0 && /*.. the filter matches*/
 //                     fsel_filter[0] != '/')) {
 //                liste = lv_list_add(fsel_list, SYMBOL_FILE, fn, fsel_file_action);
 //                fsel_file_cnt ++;
@@ -202,7 +202,7 @@
 //            }
 //
 //            /*Get the next element*/
-//            res = fs_readdir(&rd, fn);
+//            res = lv_fs_readdir(&rd, fn);
 //
 //            /*Show only LV_APP_FSEL_MAX_FILE elements and add a Next page button*/
 //            if(fsel_file_cnt != 0 && fsel_file_cnt % FILES_PAGE_SIZE == 0) {
@@ -212,7 +212,7 @@
 //        }
 //
 //        /*Close the read directory*/
-//        fs_readdir_close(&rd);
+//        lv_fs_readdir_close(&rd);
 //    }
 //
 //    /*Focus to the top of the list*/
@@ -239,7 +239,7 @@
 // */
 //static lv_res_t fsel_up_action(lv_obj_t * up)
 //{
-//    fs_up(fsel_path);
+//    lv_fs_up(fsel_path);
 //    fsel_file_cnt = 0;
 //    fsel_refr();
 //    return LV_RES_INV;

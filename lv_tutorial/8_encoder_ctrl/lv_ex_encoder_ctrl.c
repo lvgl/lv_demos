@@ -93,9 +93,9 @@ void lv_ex_encoder_ctrl(void)
 
     /* Create a dark plain style for a message box's background*/
     lv_style_copy(&style_mbox_bg, &lv_style_plain);
-    style_mbox_bg.body.main_color = COLOR_BLACK;
-    style_mbox_bg.body.grad_color= COLOR_BLACK;
-    style_mbox_bg.body.opa = OPA_50;
+    style_mbox_bg.body.main_color = LV_COLOR_BLACK;
+    style_mbox_bg.body.grad_color= LV_COLOR_BLACK;
+    style_mbox_bg.body.opa = LV_OPA_50;
 
     /*Create a demo GUI*/
     gui_create();
