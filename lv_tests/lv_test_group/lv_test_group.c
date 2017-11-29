@@ -56,7 +56,7 @@ void lv_test_group_1(void)
     lv_indev_drv_t kb_drv;
     kb_drv.type = LV_INDEV_TYPE_KEYPAD;
     kb_drv.read_fp = win_btn_get;
-    lv_indev_t *win_kb_indev = lv_indev_register(&kb_drv);
+    lv_indev_t *win_kb_indev = lv_indev_drv_register(&kb_drv);
     lv_indev_set_group(win_kb_indev, g);
 
 #if ADD_KEYBOARD
