@@ -9,6 +9,12 @@
 #include "lv_test_group.h"
 #include "lvgl/lv_hal/lv_hal_indev.h"
 
+#define ADD_KEYBOARD   0
+
+#if ADD_KEYBOARD
+#include "lv_drivers/indev/keyboard.h"
+#endif
+
 /*********************
  *      DEFINES
  *********************/
@@ -47,12 +53,18 @@ void lv_test_group_1(void)
     g = lv_group_create();
 
     /*A keyboard will be simulated*/
-    lv_indev_drv_t win_btn_drv;
-    win_btn_drv.type = LV_INDEV_TYPE_KEYPAD;
-    win_btn_drv.read_fp = win_btn_get;
-    lv_indev_t *kb_in = lv_indev_register(&win_btn_drv);
-    lv_indev_set_group(kb_in, g);
+    lv_indev_drv_t kb_drv;
+    kb_drv.type = LV_INDEV_TYPE_KEYPAD;
+    kb_drv.read_fp = win_btn_get;
+    lv_indev_t *win_kb_indev = lv_indev_register(&kb_drv);
+    lv_indev_set_group(win_kb_indev, g);
 
+#if ADD_KEYBOARD
+    kb_drv.type = LV_INDEV_TYPE_KEYPAD;
+    kb_drv.read_fp = keyboard_read;
+    lv_indev_t *kb_indev = lv_indev_register(&kb_drv);
+    lv_indev_set_group(kb_indev, g);
+#endif
     /*Create a window to hold all the objects*/
     static lv_style_t win_style;
     lv_style_copy(&win_style, &lv_style_transp);
@@ -197,11 +209,11 @@ void lv_test_group_1(void)
 static bool win_btn_get(lv_indev_data_t *data)
 {
     if(last_key) {
-        data->state = LV_INDEV_EVENT_PR;
+        data->state = LV_INDEV_STATE_PR;
         data->key = last_key;
         last_key = 0;
     } else {
-        data->state = LV_INDEV_EVENT_REL;
+        data->state = LV_INDEV_STATE_REL;
     }
 
     return false;
