@@ -93,7 +93,7 @@ void lv_test_group_1(void)
     win_btn = lv_win_add_btn(win, SYMBOL_LEFT, win_btn_acion);
     lv_obj_set_free_num(win_btn, LV_GROUP_KEY_LEFT);
 
-#if TXT_UTF8 == 0
+#if LV_TXT_UTF8 == 0
     win_btn = lv_win_add_btn(win, "a", win_btn_acion);
     lv_obj_set_free_num(win_btn, 'a');
 #else

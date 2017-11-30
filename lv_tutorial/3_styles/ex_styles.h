@@ -1,10 +1,10 @@
 /**
- * @file lv_ex_objects.h
+ * @file ex_styles.h
  *
  */
 
-#ifndef LV_EX_OBJECTS_H
-#define LV_EX_OBJECTS_H
+#ifndef EX_STYLES_H
+#define EX_STYLES_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,8 +13,6 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-#include "../../lv_conf.h"
-#if USE_LV_EXAMPLE != 0
 
 /*********************
  *      DEFINES
@@ -27,16 +25,14 @@ extern "C" {
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
-void lv_ex_objects(void);
+void ex_styles(void);
 
 /**********************
  *      MACROS
  **********************/
 
-#endif /*USE_LV_EXAMPLE != 0*/
-
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
 
-#endif /*LV_OBJ_USAGE_H*/
+#endif /*EX_STYLES_H*/

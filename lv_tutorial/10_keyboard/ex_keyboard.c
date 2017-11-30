@@ -33,7 +33,7 @@
 /*********************
  *      INCLUDES
  *********************/
-#include "lv_ex_encoder_ctrl.h"
+#include "ex_keyboard.h"
 #if USE_LV_EXAMPLE != 0
 
 #include "lvgl/lvgl.h"

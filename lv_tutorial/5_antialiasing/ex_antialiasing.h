@@ -1,10 +1,10 @@
 /**
- * @file style_usage.h
+ * @file ex_antialiasing.h
  *
  */
 
-#ifndef STYLE_USAGE_H
-#define STYLE_USAGE_H
+#ifndef EX_ANTIALIASING_H
+#define EX_ANTIALIASING_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,8 +13,6 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-#include "../../lv_conf.h"
-#if USE_LV_EXAMPLE != 0
 
 /*********************
  *      DEFINES
@@ -27,16 +25,14 @@ extern "C" {
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
-void lv_ex_styles(void);
+void ex_themes(void);
 
 /**********************
  *      MACROS
  **********************/
 
-#endif /*USE_LV_EXAMPLE != 0*/
-
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
 
-#endif /*LV_HELLO_WORLD_H*/
+#endif /*EX_ANTIALIASING_H*/

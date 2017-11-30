@@ -73,21 +73,6 @@ void lv_test_img_1(void)
     lv_obj_t *img5 = lv_img_create(lv_scr_act(), NULL);
     lv_img_set_file(img5, SYMBOL_SETTINGS SYMBOL_OK);
     lv_obj_align(img5, img4, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
-
-
-
-    /*Test not RAM FS images*/
-#if USE_LINUXFS != 0
-    /*
-     * In misc_conf.h set LINUXFS_ROOT_DIR  to  "./"
-     * */
-
-    lv_obj_t *img_fs = lv_img_create(lv_scr_act(), NULL);
-    lv_img_set_file(img_fs, "L:lv_examples/lv_tests/lv_test_img/img_flower_icon.bin");
-    lv_obj_align(img_fs, img1, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
-#endif
-
-
 }
 
 /**********************

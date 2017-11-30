@@ -139,7 +139,7 @@ void lv_test_label_2(void)
     lv_label_set_body_draw(label5, true);
     lv_label_set_long_mode(label5, LV_LABEL_LONG_DOT);
     lv_obj_set_size_scale(label5, 100, 60);
-#if TXT_UTF8 == 0
+#if LV_TXT_UTF8 == 0
     lv_label_set_text(label5, "Dots: abcdefghijklmnopqrs");
 #else
     lv_label_set_text(label5, "Dots: aáeéiíoóuúAÁEÉIÍOÓUÚ");
@@ -166,13 +166,13 @@ void lv_test_label_3(void)
     lv_label_ins_text(label1, 0, "I will ");
     lv_label_ins_text(label1, LV_LABEL_POS_LAST, " feature");
 
-#if TXT_UTF8
+#if LV_TXT_UTF8
     lv_label_ins_text(label1, 7, "(UTF-8: aÁoÓ) ");
 #endif
 
     lv_obj_t * label2 = lv_label_create(lv_scr_act(), NULL);
     lv_obj_align_scale(label2, label1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
-#if TXT_UTF8 == 0
+#if LV_TXT_UTF8 == 0
     lv_label_set_text(label2, "Characters to delete: abcd ABCD");
 #else
     lv_label_set_text(label2, "Characters to delete: abcd aÁ uÚ üŰ");
@@ -209,8 +209,7 @@ void lv_test_label_4(void)
     lv_label_set_recolor(label3, true);
     lv_obj_align_scale(label3, label1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
-#if TXT_UTF8 != 0
-
+#if LV_TXT_UTF8 != 0
     /* Test UTF-8 support with LV_LABEL_LONG_BREAK, new lines and recolor
      * GOAL: the word "red" is red*/
     lv_obj_t * label4 = lv_label_create(lv_scr_act(), NULL);

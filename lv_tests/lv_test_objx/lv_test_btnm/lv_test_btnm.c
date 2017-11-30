@@ -28,7 +28,7 @@ static lv_res_t btnm_action(lv_obj_t * btnm, const char * txt);
 /**********************
  *  STATIC VARIABLES
  **********************/
-#if TXT_UTF8 != 0
+#if LV_TXT_UTF8 != 0
 static const char * btnm_map[] = {"One line", "\n", "\212", "\242Ina", "\204üŰöŐ", "\221éÉ","\n", "\214", "\202Left", ""};
 #else
 static const char * btnm_map[] = {"One line", "\n", "\212", "\242Ina", "\204long", "\221short","\n", "\214", "\202Left", ""};
