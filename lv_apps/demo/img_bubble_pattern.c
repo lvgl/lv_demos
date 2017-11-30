@@ -1,6 +1,3 @@
-#include "../../../lv_conf.h"
-#if USE_IMG_BUBBLE_PATTERN || LV_IMAGE_ENABLE_ALL
-
 #include <stdint.h> 
 #include "lvgl/lv_misc/lv_color.h"
 
@@ -1492,6 +1489,3 @@ const color_int_t img_bubble_pattern[] = {
 #error "img_bubble_pattern: Color depth mismatch"
 
 #endif	/*Color depth check*/
-
-
-#endif	/*Image enable*/

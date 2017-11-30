@@ -8,7 +8,7 @@
  * using 'lv_group'.
  *
  * Be sure in lv_conf.h:
- * - LV_OBJ_GROUP   1   to enable groups
+ * - LV_GROUP   1   to enable groups
  * - LV_APP_ENABLE  0   to disable applications because they might bother now
  *
  * lv_group:

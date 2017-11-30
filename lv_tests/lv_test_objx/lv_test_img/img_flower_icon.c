@@ -1,6 +1,3 @@
-#include "../../../../lv_conf.h"
-#if USE_IMG_FLOWER_ICON || LV_IMAGE_ENABLE_ALL
-
 #include <stdint.h> 
 #include "lvgl/lv_misc/lv_color.h"
 
@@ -167,4 +164,3 @@ const color_int_t img_flower_icon[] = {
 #else
 #error "img_flower_icon: Color depth mismatch"
 #endif	/*Color depth check*/
-#endif	/*Image enable*/
