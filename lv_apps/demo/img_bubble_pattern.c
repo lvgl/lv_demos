@@ -3,7 +3,7 @@
 
 #if LV_COLOR_DEPTH == 24
 
-const color_int_t img_bubble_pattern[] = {
+const lv_color_int_t img_bubble_pattern[] = {
 /*HEADER
    Width = 235
    Height = 480
@@ -497,7 +497,7 @@ const color_int_t img_bubble_pattern[] = {
 
 #elif LV_COLOR_DEPTH == 16
 
-const color_int_t img_bubble_pattern[] = {
+const lv_color_int_t img_bubble_pattern[] = {
 /*HEADER
    Width = 235
    Height = 480
@@ -992,7 +992,7 @@ const color_int_t img_bubble_pattern[] = {
 
 #elif LV_COLOR_DEPTH == 8
 
-const color_int_t img_bubble_pattern[] = {
+const lv_color_int_t img_bubble_pattern[] = {
 /*HEADER
    Width = 235
    Height = 480

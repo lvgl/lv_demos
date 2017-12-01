@@ -3,7 +3,7 @@
 
 #if LV_COLOR_DEPTH == 24
 
-const color_int_t img_flower_icon[] = {
+const lv_color_int_t img_flower_icon[] = {
 /*HEADER
    Width = 40
    Height = 40
@@ -56,7 +56,7 @@ const color_int_t img_flower_icon[] = {
 };
 #elif LV_COLOR_DEPTH == 16
 
-const color_int_t img_flower_icon[] = {
+const lv_color_int_t img_flower_icon[] = {
 /*HEADER
    Width = 40
    Height = 40
@@ -109,7 +109,7 @@ const color_int_t img_flower_icon[] = {
 };
 #elif LV_COLOR_DEPTH == 8
 
-const color_int_t img_flower_icon[] = {
+const lv_color_int_t img_flower_icon[] = {
 /*HEADER
    Width = 40
    Height = 40

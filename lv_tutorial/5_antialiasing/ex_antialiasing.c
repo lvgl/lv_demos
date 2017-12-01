@@ -71,7 +71,6 @@ void ex_antialiasing(void)
 {
     lv_obj_t *label;
 
-
     static lv_style_t style1;
     lv_style_copy(&style1, &lv_style_btn_rel);
     style1.body.radius = 20;
