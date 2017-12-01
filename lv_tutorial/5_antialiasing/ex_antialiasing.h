@@ -25,7 +25,12 @@ extern "C" {
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
-void ex_themes(void);
+
+/**
+ * Create object to see how they change from the anti aliasing
+ * Modify LV_ANTIALIAS and LV_FONT_ANTIALIAS to see what is changing
+ */
+void ex_antialiasing(void);
 
 /**********************
  *      MACROS
