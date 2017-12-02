@@ -33,8 +33,8 @@ $(LV_EXAMPLES_PATH)/lv_apps/files/files.o \
 $(LV_EXAMPLES_PATH)/lv_apps/demo/demo.o \
 $(LV_EXAMPLES_PATH)/lv_apps/demo/img_bubble_pattern.o \
 $(LV_EXAMPLES_PATH)/lv_tutorial/10_keyboard/ex_keyboard.o \
-$(LV_EXAMPLES_PATH)/lv_tutorial/8_animations/lv_ex_animations.o \
-$(LV_EXAMPLES_PATH)/lv_tutorial/9_responsive/lv_ex_responsive.o \
+$(LV_EXAMPLES_PATH)/lv_tutorial/8_animations/ex_animations.o \
+$(LV_EXAMPLES_PATH)/lv_tutorial/9_responsive/ex_responsive.o \
 $(LV_EXAMPLES_PATH)/lv_tutorial/0_porting/ex_porting.o \
 $(LV_EXAMPLES_PATH)/lv_tutorial/3_styles/ex_styles.o \
 $(LV_EXAMPLES_PATH)/lv_tutorial/5_antialiasing/ex_antialiasing.o \
