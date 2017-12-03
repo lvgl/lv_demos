@@ -134,7 +134,7 @@
 //    lv_obj_set_drag_parent(lv_page_get_scrl(fsel_list), true);
 //    lv_cont_set_fit(fsel_list, false, true);
 //
-//    lv_fs_res_t res = FS_RES_OK;
+//    lv_fs_res_t res = LV_FS_RES_OK;
 //    lv_obj_t * liste;
 //
 //    /*At empty path show the drivers */
@@ -157,7 +157,7 @@
 //
 //        lv_fs_readdir_t rd;
 //        res = lv_fs_readdir_init(&rd, fsel_path);
-//        if(res != FS_RES_OK) {
+//        if(res != LV_FS_RES_OK) {
 //            /*Can't read the path*/
 //            return;
 //        }
@@ -173,7 +173,7 @@
 //        uint16_t file_cnt = 0;
 //        while(file_cnt <= fsel_file_cnt) {
 //            res = lv_fs_readdir(&rd, fn);
-//            if(res != FS_RES_OK){
+//            if(res != LV_FS_RES_OK){
 //                /*Can't read the path */
 //                lv_fs_readdir_close(&rd);
 //                return;
@@ -182,7 +182,7 @@
 //        }
 //
 //        /*Add list elements from the files and folders*/
-//        while(res == FS_RES_OK && fn[0] != '\0') {
+//        while(res == LV_FS_RES_OK && fn[0] != '\0') {
 //            if(fn[0] == '/') { /*Add a folder*/
 //                lv_obj_t * liste;
 //                liste = lv_list_add(fsel_list, SYMBOL_DIRECTORY, &fn[1], fsel_folder_action);

@@ -146,7 +146,7 @@ void ex_image(void)
  * @param file_p pointer to a FILE* variable
  * @param fn name of the file.
  * @param mode element of 'fs_mode_t' enum or its 'OR' connection (e.g. FS_MODE_WR | FS_MODE_RD)
- * @return FS_RES_OK: no error, the file is opened
+ * @return LV_FS_RES_OK: no error, the file is opened
  *         any error from lv_fs_res_t enum
  */
 static lv_fs_res_t pcfs_open (void * file_p, const char * fn, lv_fs_mode_t mode)
@@ -164,7 +164,7 @@ static lv_fs_res_t pcfs_open (void * file_p, const char * fn, lv_fs_mode_t mode)
     sprintf(buf, "./%s", fn);
 
     pc_file_t f = fopen(buf, flags);
-    if((int)f <= 0) return FS_RES_UNKNOWN;
+    if((int)f <= 0) return LV_FS_RES_UNKNOWN;
     else {
         fseek(f, 0, SEEK_SET);
 
@@ -174,21 +174,21 @@ static lv_fs_res_t pcfs_open (void * file_p, const char * fn, lv_fs_mode_t mode)
         *fp = f;
     }
 
-    return FS_RES_OK;
+    return LV_FS_RES_OK;
 }
 
 
 /**
  * Close an opened file
  * @param file_p pointer to a FILE* variable. (opened with lv_ufs_open)
- * @return FS_RES_OK: no error, the file is read
+ * @return LV_FS_RES_OK: no error, the file is read
  *         any error from lv__fs_res_t enum
  */
 static lv_fs_res_t pcfs_close (void * file_p)
 {
     pc_file_t *fp = file_p;         /*Just avoid the confusing casings*/
     fclose(*fp);
-    return FS_RES_OK;
+    return LV_FS_RES_OK;
 }
 
 /**
@@ -197,41 +197,41 @@ static lv_fs_res_t pcfs_close (void * file_p)
  * @param buf pointer to a memory block where to store the read data
  * @param btr number of Bytes To Read
  * @param br the real number of read bytes (Byte Read)
- * @return FS_RES_OK: no error, the file is read
+ * @return LV_FS_RES_OK: no error, the file is read
  *         any error from lv__fs_res_t enum
  */
 static lv_fs_res_t pcfs_read (void * file_p, void * buf, uint32_t btr, uint32_t * br)
 {
     pc_file_t *fp = file_p;         /*Just avoid the confusing casings*/
     *br = fread(buf, 1, btr, *fp);
-    return FS_RES_OK;
+    return LV_FS_RES_OK;
 }
 
 /**
  * Set the read write pointer. Also expand the file size if necessary.
  * @param file_p pointer to a FILE* variable. (opened with lv_ufs_open )
  * @param pos the new position of read write pointer
- * @return FS_RES_OK: no error, the file is read
+ * @return LV_FS_RES_OK: no error, the file is read
  *         any error from lv__fs_res_t enum
  */
 static lv_fs_res_t pcfs_seek (void * file_p, uint32_t pos)
 {
     pc_file_t *fp = file_p;         /*Just avoid the confusing casings*/
     fseek(*fp, pos, SEEK_SET);
-    return FS_RES_OK;
+    return LV_FS_RES_OK;
 }
 
 /**
  * Give the position of the read write pointer
  * @param file_p pointer to a FILE* variable.
  * @param pos_p pointer to to store the result
- * @return FS_RES_OK: no error, the file is read
+ * @return LV_FS_RES_OK: no error, the file is read
  *         any error from lv__fs_res_t enum
  */
 static lv_fs_res_t pcfs_tell (void * file_p, uint32_t * pos_p)
 {
     pc_file_t *fp = file_p;         /*Just avoid the confusing casings*/
     *pos_p = ftell(*fp);
-    return FS_RES_OK;
+    return LV_FS_RES_OK;
 }
 
