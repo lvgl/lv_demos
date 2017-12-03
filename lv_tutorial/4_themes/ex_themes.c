@@ -4,6 +4,10 @@
  */
 
 /*
+ * -------------------------------------------------------------
+ * See how the customize with themes much faster and simpler
+ * --------------------------------------------------------------
+ *
  * To set up styles you need some deeper knowledge about graphics library and
  * requires to be a designer a little bit. In addition it takes quite much time.
  *

@@ -4,6 +4,10 @@
  */
 
 /*
+ * ------------------------------------------------
+ * Learn how to create GUI elements on the screen
+ * ------------------------------------------------
+ *
  * The basic building blocks (components or widgets) in LittlevGL are the graphical objects.
  * For example:
  *  - Buttons

@@ -5,7 +5,8 @@
 
 /*
  * If you have ported the LittlevGL you are ready to create content on your display.
- * You will create only "Hello world!" label and align it to the middle.
+ *
+ * Now will create only a "Hello world!" label and align it to the middle.
  */
 
 /*********************

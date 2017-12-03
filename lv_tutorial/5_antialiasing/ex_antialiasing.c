@@ -4,6 +4,10 @@
  */
 
 /*
+ * --------------------------------------------------------------
+ * Learn how to make the drawings smoother with anti aliasing
+ * --------------------------------------------------------------
+ *
  * The graphics library support 2 types of anti aliasing:
  * 1. Full screen anti aliasing:
  *   - Everything is rendered in double size and the filtered (smoothed) to the real size

@@ -6,12 +6,14 @@
 /*
  * WELCOME TO THE LITTLEVGL TUTORIAL
  *
+ *-------------------------------------------------------------------------------
  * Now you will learn how to port the Littlev Graphics Library to your system
+ * ------------------------------------------------------------------------------
  *
- * - Before start download or clone the lvgl folder: https://github.com/littlevgl/lvgl.git
- * - Copy 'lvgl' into your project folder
- * - Copy 'lvgl/lv_conf_templ.h' and 'lv_conf.h' next to 'lvgl' and remove the first and last #if and  #endif
- * - To initialize the library your main.c should look like this file
+ * 1. Before start download or clone the lvgl folder: https://github.com/littlevgl/lvgl.git
+ * 2. Copy 'lvgl' into your project folder
+ * 3. Copy 'lvgl/lv_conf_templ.h' and 'lv_conf.h' next to 'lvgl' and remove the first and last #if and  #endif
+ * 4. To initialize the library your main.c should look like this file
  *
  *Here are some info about the drawing modes in the library:
  *

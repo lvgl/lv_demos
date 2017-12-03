@@ -4,6 +4,10 @@
  */
 
 /*
+ * --------------------------------------------------
+ * Learn how to modify the appearance of the objects
+ * --------------------------------------------------
+ *
  * The appearance of the graphical objects can be customized by styles.
  * A style is simple 'lv_style_t' variable which is initialized with colors and other parameters.
  * Objects save the address of this variable so it has to be 'static or 'global'.
