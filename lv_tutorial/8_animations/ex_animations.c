@@ -110,9 +110,6 @@ void ex_animations(void)
     lv_style_copy(&btn3_style, lv_btn_get_style(btn3, LV_BTN_STYLE_REL));
     lv_btn_set_style(btn3, LV_BTN_STATE_REL, &btn3_style);
 
-    btn3_style.text.font;
-
-    printf("offset: %d\n", offsetof(lv_style_t, text.font));
     /*Animate the new style*/
     lv_style_anim_t sa;
     sa.style_anim = &btn3_style;            /*This style will be animated*/
