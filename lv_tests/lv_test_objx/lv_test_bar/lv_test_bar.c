@@ -42,6 +42,7 @@ void lv_test_bar_1(void)
     /* Create a default object*/
     lv_obj_t * bar1 = lv_bar_create(lv_scr_act(), NULL);
     lv_obj_set_pos_scale(bar1, 10, 10);
+    lv_bar_set_value(bar1, 40);
 
     /* Modify size and position, range and set to 75 % */
     lv_obj_t * bar2 = lv_bar_create(lv_scr_act(), NULL);
