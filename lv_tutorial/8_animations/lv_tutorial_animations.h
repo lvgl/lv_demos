@@ -1,10 +1,10 @@
 /**
- * @file lv_tutorial_antiamation.h
+ * @file lv_tutorial_animation.h
  *
  */
 
 #ifndef LV_TUTORIAL_ANIMATION_H
-#define LV_TUTORIAL_ANTMATION_H
+#define LV_TUTORIAL_ANIMATION_H
 
 #ifdef __cplusplus
 extern "C" {

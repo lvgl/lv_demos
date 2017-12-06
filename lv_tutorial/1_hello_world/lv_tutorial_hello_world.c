@@ -4,9 +4,13 @@
  */
 
 /*
+ *-------------------------------------------------------------------------------
+ * Create your first object: a "Hello world" label
+ * ------------------------------------------------------------------------------
+ *
  * If you have ported the LittlevGL you are ready to create content on your display.
  *
- * Now will create only a "Hello world!" label and align it to the middle.
+ * Now you will create a "Hello world!" label and align it to the middle.
  */
 
 /*********************

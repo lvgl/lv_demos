@@ -1,5 +1,5 @@
 /**
- * @file lv_tutorial_antialiasing.h
+ * @file lv_tutorial_animation.h
  *
  */
 

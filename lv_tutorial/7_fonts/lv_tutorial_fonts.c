@@ -8,8 +8,6 @@
  * How to add new fonts (even Unicode) to the graphic library
  * --------------------------------------------------------------
  *
- *
- *
  * BUILT-IN FONTS
  * - There are several built in font in the library which can be enabled in lv_conf.h
  * - For example: font_dejavu_20, font_dejavu_40
