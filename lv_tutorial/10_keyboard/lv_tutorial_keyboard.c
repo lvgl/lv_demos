@@ -1,41 +1,32 @@
 /**
- * @file lv_ex_encoder_ctrl.c
+ * @file lv_tutorial_keyboard.h
  *
  */
 
 /*
- * Create a simple GUI to demonstrate how to control it with an encoder
- * using 'lv_group'.
+ * -------------------------------------------
+ * Learn how to use a keyboard/keypad device
+ * -------------------------------------------
  *
- * Be sure in lv_conf.h:
- * - LV_GROUP   1   to enable groups
- * - LV_APP_ENABLE  0   to disable applications because they might bother now
+ * You need two things to use keypad/keyboard:
  *
- * lv_group:
- * - you can create groups and add object to them
- * - it can be a focused object within a group
- * - the style of the focused object will be automatically modified
- * - different style modifier functions can be applied in each groups
- * - you can focus on the next or previous object (lv_group_focus_next/prev)
- * - letters can be sent to the focused object to do something (lv_group_send):
- *    - LV_GROUP_KEY_RIGHT/UP: increment action in the object
- *    - LV_GROUP_KEY_LEFT/DOWN: decrement action in the object
- *    - LV_GROUP_KEY_ENTER: ok or select action in the object
- *    - LV_GROUP_KEY_ESC: close or back action action in the object
- *    - or any character for example to a text area
+ * INPUT DEVICE DRIVER
+ * - Similarly to touchpad you need to register an 'lv_indev_drv_t' driver
+ * - For control keys you should use LV_GROUP_KEY_... from lv_group.h (e.g. LV_GROUP_KEY_NEXT)
  *
- * The encoder is replaced by 4 button on the screen:
- * - [>] Next (lv_group_focus_next): focus on the next object in the group (simulates encoder press)
- * - [+] IncrementNext (LV_GROUP_KEY_RIGHT): increment signal to the object (simulates rotate right)
- * - [-] DecrementNext (LV_GROUP_KEY_LEFT): increment signal to the object (simulates rotate left)
- * - [!] SelectNext (LV_GROUP_KEY_ENTER): Select something (simulates encoder long press or an 'Select' button)
+ * OBJECT GROUP
+ * - You can iterate through objects in a group (like using 'tab' on PC)
+ * - Firstly you need to create an object group: lv_group_t *g = lv_group_create();
+ * - And add object to it: lv_group_add_obj(g, btn1);
+ * - Then you can send data to the object in focus: lv_group_send_data(g, 'a');
+ *                                                  lv_group_send_data(g, LV_GROUP_UP);
+ * - Or focus on the next/prev. object:  lv_group_focus_next(g);
+ *
  */
 /*********************
  *      INCLUDES
  *********************/
-#include "ex_keyboard.h"
-#if USE_LV_EXAMPLE != 0
-
+#include "lv_tutorial_keyboard.h"
 #include "lvgl/lvgl.h"
 
 /*********************
@@ -50,19 +41,17 @@
  *  STATIC PROTOTYPES
  **********************/
 static void gui_create(void);
-static void enc_create(void);
-static lv_res_t mbox_yes_action(lv_obj_t * btn);
-static lv_res_t mbox_no_action(lv_obj_t * btn);
+static void kaypad_create(void);
+static lv_res_t mbox_action(lv_obj_t * btn, const char *txt);
 static lv_res_t enable_action(lv_obj_t * btn);
-static lv_res_t enc_next(lv_obj_t * btn);
-static lv_res_t enc_inc(lv_obj_t * btn);
-static lv_res_t enc_dec(lv_obj_t * btn);
-static lv_res_t enc_sel(lv_obj_t * btn);
+static lv_res_t kb_next(lv_obj_t * btn);
+static lv_res_t kb_inc(lv_obj_t * btn);
+static lv_res_t kb_dec(lv_obj_t * btn);
+static lv_res_t kb_sel(lv_obj_t * btn);
 
 /**********************
  *  STATIC VARIABLES
  **********************/
-static lv_obj_t * scr;              /*The screen for the demo*/
 static lv_obj_t * btn_enable;       /*An enable button*/
 static lv_style_t style_mbox_bg;    /*Black bg. style with opacity*/
 static lv_group_t * g;              /*An Object Group*/
@@ -78,20 +67,13 @@ static lv_group_t * g;              /*An Object Group*/
 /**
  * Create a simple GUI to demonstrate encoder control capability
  */
-void lv_ex_encoder_ctrl(void)
+void lv_tutorial_keyboard(void)
 {
-    /* Create a Page screen (to make it scrollable)
-     * and use Pretty layout to make the content responsive.
-     * See the 'responsive' example for more information */
-    scr = lv_page_create(NULL, NULL);
-    lv_cont_set_layout(lv_page_get_scrl(scr), LV_LAYOUT_PRETTY);
-    lv_page_set_sb_mode(scr, LV_SB_MODE_AUTO);
-    lv_scr_load(scr);
 
     /*Create an object group for objects to focus*/
     g = lv_group_create();
 
-    /* Create a dark plain style for a message box's background*/
+    /* Create a dark plain style for a message box's background (modal)*/
     lv_style_copy(&style_mbox_bg, &lv_style_plain);
     style_mbox_bg.body.main_color = LV_COLOR_BLACK;
     style_mbox_bg.body.grad_color= LV_COLOR_BLACK;
@@ -101,7 +83,7 @@ void lv_ex_encoder_ctrl(void)
     gui_create();
 
     /*Create virtual encoder*/
-    enc_create();
+    kaypad_create();
 }
 
 /**********************
@@ -113,21 +95,18 @@ void lv_ex_encoder_ctrl(void)
  */
 static void gui_create(void)
 {
-    /*Create a title*/
-    lv_obj_t * title = lv_label_create(scr, NULL);
-    lv_label_set_text(title, "Encoder control");
-    lv_obj_set_protect(title, LV_PROTECT_FOLLOW);   /*Make a line break in the layout*/
-
     /*Create a drop down list*/
-    lv_obj_t * ddlist = lv_ddlist_create(scr, NULL);
+    lv_obj_t * ddlist = lv_ddlist_create(lv_scr_act(), NULL);
     lv_ddlist_set_options(ddlist, "Low\nMedium\nHigh");
+    lv_obj_set_pos(ddlist, LV_DPI / 4, LV_DPI / 4);
     lv_group_add_obj(g, ddlist);                    /*Add the object to the group*/
 
-    /*Create a holder an check boxes on it*/
-    lv_obj_t * holder = lv_cont_create(scr, NULL);   /*Create a transparent holder*/
+    /*Create a holder and check boxes on it*/
+    lv_obj_t * holder = lv_cont_create(lv_scr_act(), NULL);   /*Create a transparent holder*/
     lv_cont_set_fit(holder, true, true);
     lv_cont_set_layout(holder, LV_LAYOUT_COL_L);
     lv_obj_set_style(holder, &lv_style_transp);
+    lv_obj_align(holder, ddlist, LV_ALIGN_OUT_RIGHT_TOP, LV_DPI / 4, 0);
 
     lv_obj_t * cb = lv_cb_create(holder, NULL);     /*First check box*/
     lv_cb_set_text(cb, "Red");
@@ -140,19 +119,20 @@ static void gui_create(void)
     lv_cb_set_text(cb, "Blue");
 
     /*Create a sliders*/
-    lv_obj_t * slider = lv_slider_create(scr, NULL);
-    lv_obj_set_size_scale(slider, 180, 30);
+    lv_obj_t * slider = lv_slider_create(lv_scr_act(), NULL);
+    lv_obj_set_size(slider, LV_DPI, LV_DPI / 3);
+    lv_obj_align(slider, holder, LV_ALIGN_OUT_RIGHT_TOP, LV_DPI / 4, 0);
     lv_bar_set_range(slider, 0, 20);
     lv_group_add_obj(g, slider);                    /*Add to the group*/
 
     /*Create a button*/
-    btn_enable = lv_btn_create(scr, NULL);
+    btn_enable = lv_btn_create(lv_scr_act(), NULL);
     lv_btn_set_action(btn_enable, LV_BTN_ACTION_REL, enable_action);
     lv_cont_set_fit(btn_enable, true, true);
     lv_group_add_obj(g, btn_enable);                /*Add to the group*/
     lv_obj_t * l = lv_label_create(btn_enable, NULL);
-    lv_label_set_text(l, "Enable");
-    lv_obj_set_protect(btn_enable, LV_PROTECT_FOLLOW); /*Make a line break in the layout*/
+    lv_label_set_text(l, "Message");
+    lv_obj_align(btn_enable, slider, LV_ALIGN_OUT_BOTTOM_MID, 0, LV_DPI / 2);
 }
 
 /**
@@ -162,32 +142,36 @@ static void gui_create(void)
  * - [-] Decrement: increment signal to the object (simulates rotate left)
  * - [!] Select: Select something (simulates encoder long press or an 'Select' button)
  */
-static void enc_create(void)
+static void kaypad_create(void)
 {
     /*Next button*/
-    lv_obj_t * btn = lv_btn_create(lv_scr_cur(), NULL);
-    lv_btn_set_action(btn, LV_BTN_ACTION_REL, enc_next);
-    lv_cont_set_fit(btn, true, true);
-    lv_obj_t * l = lv_label_create(btn, NULL);
+    lv_obj_t * btn_next = lv_btn_create(lv_scr_act(), NULL);
+    lv_btn_set_action(btn_next, LV_BTN_ACTION_REL, kb_next);
+    lv_btn_set_fit(btn_next, true, true);
+    lv_obj_t * l = lv_label_create(btn_next, NULL);
     lv_label_set_text(l, ">");
+    lv_obj_align(btn_next, NULL, LV_ALIGN_IN_BOTTOM_LEFT, LV_DPI / 4, - LV_DPI / 4);
 
     /*Increment button*/
-    btn = lv_btn_create(lv_scr_cur(), btn);
-    lv_btn_set_action(btn, LV_BTN_ACTION_REL, enc_dec);
-    l = lv_label_create(btn, NULL);
+    lv_obj_t * btn_inc = lv_btn_create(lv_scr_act(), btn_next);
+    lv_btn_set_action(btn_inc, LV_BTN_ACTION_REL, kb_dec);
+    l = lv_label_create(btn_inc, NULL);
     lv_label_set_text(l, "-");
+    lv_obj_align(btn_inc, btn_next, LV_ALIGN_OUT_RIGHT_MID, LV_DPI / 4, 0);
 
     /*Decrement button*/
-    btn = lv_btn_create(lv_scr_cur(), btn);
-    lv_btn_set_action(btn, LV_BTN_ACTION_REL, enc_inc);
-    l = lv_label_create(btn, NULL);
+    lv_obj_t * btn_dec = lv_btn_create(lv_scr_act(), btn_next);
+    lv_btn_set_action(btn_dec, LV_BTN_ACTION_REL, kb_inc);
+    l = lv_label_create(btn_dec, NULL);
     lv_label_set_text(l, "+");
+    lv_obj_align(btn_dec, btn_inc, LV_ALIGN_OUT_RIGHT_MID, LV_DPI / 4, 0);
 
     /*Select button*/
-    btn = lv_btn_create(lv_scr_cur(), btn);
-    lv_btn_set_action(btn, LV_BTN_ACTION_REL, enc_sel);
-    l = lv_label_create(btn, NULL);
+    lv_obj_t * btn_sel = lv_btn_create(lv_scr_act(), btn_next);
+    lv_btn_set_action(btn_sel, LV_BTN_ACTION_REL, kb_sel);
+    l = lv_label_create(btn_sel, NULL);
     lv_label_set_text(l, "!");
+    lv_obj_align(btn_sel, btn_dec, LV_ALIGN_OUT_RIGHT_MID, LV_DPI / 4, 0);
 }
 
 /**
@@ -202,27 +186,27 @@ static lv_res_t enable_action(lv_obj_t * btn)
     if(lv_btn_get_state(btn) == LV_BTN_STATE_REL) {
         /* Create a dark screen sized bg. with opacity to show
          * the other objects are not available now*/
-        lv_obj_t * bg = lv_obj_create(scr, NULL);
+        lv_obj_t * bg = lv_obj_create(lv_scr_act(), NULL);
         lv_obj_set_protect(bg, LV_PROTECT_PARENT);          /*The page screen move it to scrollable area*/
-        lv_obj_set_parent(bg, scr);                         /*So movi it back ater protected*/
+        lv_obj_set_parent(bg, lv_scr_act());                         /*So movi it back ater protected*/
         lv_obj_set_style(bg, &style_mbox_bg);
         lv_obj_set_size(bg, LV_HOR_RES, LV_VER_RES);
         lv_obj_set_pos(bg, 0, 0);
         lv_obj_set_click(bg, false);                        /*For test disable click there fore buttons under it remain  clickable*/
 
-//        /*Create a message box*/
-//        lv_obj_t * mbox = lv_mbox_create(bg, NULL);
-//        lv_mbox_set_text(mbox, "Really Enable the outputs?");
-//        lv_group_add_obj(g, mbox);          /*Add to he group*/
-//
-//        /*Add two buttons*/
-//        lv_mbox_add_btn(mbox, "Yes", mbox_yes_action);
-//        lv_mbox_add_btn(mbox, "No", mbox_no_action);
-//
-//        lv_obj_align(mbox, NULL, LV_ALIGN_CENTER, 0, - LV_DPI / 2);
+        /*Create a message box*/
+        lv_obj_t * mbox = lv_mbox_create(bg, NULL);
+        lv_mbox_set_text(mbox, "Really Enable the outputs?");
+        lv_group_add_obj(g, mbox);          /*Add to he group*/
+
+        /*Add two buttons*/
+        static const char * btns[] = {"Yes", "No", ""};
+        lv_mbox_add_btns(mbox, btns, mbox_action);
+
+        lv_obj_align(mbox, NULL, LV_ALIGN_CENTER, 0, - LV_DPI / 2);
 
         /*Focus on the new message box, can freeze focus on it*/
-//        lv_group_focus_obj(mbox);
+        lv_group_focus_obj(mbox);
         lv_group_focus_freeze(g, true);
     }
     /*Disable is not dangerous so just change the button state*/
@@ -233,37 +217,20 @@ static lv_res_t enable_action(lv_obj_t * btn)
 }
 
 /**
- * Called when the message box's 'Yes' button is released
+ * Called when a message box button is clicked
  * @param btn pointer to the 'Yes' button
- * @param indev_proc pointer to the caller display input or NULL if the encoder used
  * @return LV_ACTION_RES_INV: because the button along with the message box will be deleted
  */
-static lv_res_t mbox_yes_action(lv_obj_t * btn)
+static lv_res_t mbox_action(lv_obj_t * btn, const char *txt)
 {
     lv_group_focus_freeze(g, false);        /*Release the freeze*/
     lv_obj_t * mbox = lv_mbox_get_from_btn(btn);
     lv_obj_del(lv_obj_get_parent(mbox));    /*Delete the black background. (it will delete the mbox too)*/
+
 
     /*Mark the enabled state by toggling the button*/
-    lv_btn_set_state(btn_enable, LV_BTN_STATE_TGL_REL);
-
-    /* In a real case you can add some specific actions here
-     * to really enable something */
-
-    return LV_RES_INV;
-}
-
-/**
- * Called when the message box's 'No' button is released
- * @param btn pointer to the 'No' button
- * @param indev_proc pointer to the caller display input or NULL if the encoder used
- * @return LV_ACTION_RES_INV: because the button along with the message box will be deleted
- */
-static lv_res_t mbox_no_action(lv_obj_t * btn)
-{
-    lv_group_focus_freeze(g, false);        /*Release the freeze*/
-    lv_obj_t * mbox = lv_mbox_get_from_btn(btn);
-    lv_obj_del(lv_obj_get_parent(mbox));    /*Delete the black background. (it will delete the mbox too)*/
+    if(strcmp(txt, "No") == 0)  lv_btn_set_state(btn_enable, LV_BTN_STATE_REL);
+    else if(strcmp(txt, "Yes") == 0)  lv_btn_set_state(btn_enable, LV_BTN_STATE_TGL_REL);
 
     return LV_RES_INV;
 }
@@ -274,7 +241,7 @@ static lv_res_t mbox_no_action(lv_obj_t * btn)
  * @param indev_proc pointer to the caller display input
  * @return LV_RES_OK: because the button is not deleted
  */
-static lv_res_t enc_next(lv_obj_t * btn)
+static lv_res_t kb_next(lv_obj_t * btn)
 {
     /*Focus on the next object in the group*/
     lv_group_focus_next(g);
@@ -288,11 +255,11 @@ static lv_res_t enc_next(lv_obj_t * btn)
  * @param indev_proc pointer to the caller display input
  * @return LV_RES_OK: because the button is not deleted
  */
-static lv_res_t enc_inc(lv_obj_t * btn)
+static lv_res_t kb_inc(lv_obj_t * btn)
 {
     /* Send RIGHT key when rotate to right.
      * It will trigger an increment like action in the object */
-    lv_group_send(g, LV_GROUP_KEY_RIGHT);
+    lv_group_send_data(g, LV_GROUP_KEY_RIGHT);
     return LV_RES_OK;
 }
 
@@ -302,11 +269,11 @@ static lv_res_t enc_inc(lv_obj_t * btn)
  * @param indev_proc pointer to the caller display input
  * @return LV_RES_OK: because the button is not deleted
  */
-static lv_res_t enc_dec(lv_obj_t * btn)
+static lv_res_t kb_dec(lv_obj_t * btn)
 {
     /* Send LEFT key when rotate to left.
      * It will trigger a decrement like action in the object */
-    lv_group_send(g, LV_GROUP_KEY_LEFT);
+    lv_group_send_data(g, LV_GROUP_KEY_LEFT);
 
     return LV_RES_OK;
 }
@@ -316,13 +283,11 @@ static lv_res_t enc_dec(lv_obj_t * btn)
  * @param indev_proc pointer to the caller display input
  * @return LV_RES_OK: because the button is not deleted
  */
-static lv_res_t enc_sel(lv_obj_t * btn)
+static lv_res_t kb_sel(lv_obj_t * btn)
 {
     /* Send ENTER key.
      * It will trigger an 'OK' or 'Select' action in the object */
-    lv_group_send(g, LV_GROUP_KEY_ENTER);
+    lv_group_send_data(g, LV_GROUP_KEY_ENTER);
 
     return LV_RES_OK;
 }
-
-#endif /*USE_LV_EXAMPLE != 0*/

@@ -1,10 +1,10 @@
 /**
- * @file lv_ex_encoder_ctrl.h
+ * @file lv_tutorial_keyboard.h
  *
  */
 
-#ifndef LV_EX_ENCODER_CTRL_H
-#define LV_EX_ENCODER_CTRL_H
+#ifndef LV_TUTORIAL_KEYBOARD_H
+#define LV_TUTORIAL_KEYBOARD_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,8 +13,6 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-#include "../../../lv_conf.h"
-#if USE_LV_EXAMPLE != 0
 
 /*********************
  *      DEFINES
@@ -27,16 +25,15 @@ extern "C" {
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
-void lv_ex_encoder_ctrl(void);
+void lv_tutorial_keyboard(void);
 
 /**********************
  *      MACROS
  **********************/
 
-#endif /*USE_LV_EXAMPLE != 0*/
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
 
-#endif /*ENCODER_CTRL_H*/
+#endif /*LV_TUTORIAL_KEYBOARD_H*/
