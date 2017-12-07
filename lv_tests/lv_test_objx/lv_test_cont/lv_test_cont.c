@@ -41,7 +41,7 @@ void lv_test_cont_1(void)
 {
     /* Create a default object*/
     lv_obj_t * cont1 = lv_cont_create(lv_scr_act(), NULL);
-    lv_obj_set_pos_scale(cont1, 10, 10);
+    lv_obj_set_pos(cont1, 10, 10);
     lv_cont_set_style(cont1, &lv_style_pretty);
 
     /*Test fit wit adding two labels*/
@@ -53,9 +53,9 @@ void lv_test_cont_1(void)
 
     lv_obj_t * obj2_2 = lv_label_create(cont2, NULL);
     lv_label_set_text(obj2_2, "A longer text");
-    lv_obj_set_pos_scale(obj2_2, 80, 30);
+    lv_obj_set_pos(obj2_2, 80, 30);
 
-    lv_obj_align_scale(cont2, cont1, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
+    lv_obj_align(cont2, cont1, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
 
     /*Test layout and fit togother*/
     lv_obj_t * cont3 = lv_cont_create(lv_scr_act(), cont2);
@@ -63,22 +63,22 @@ void lv_test_cont_1(void)
     lv_label_create(cont3, obj2_2);
     lv_cont_set_layout(cont3, LV_LAYOUT_COL_L);
 
-    lv_obj_align_scale(cont3, cont2, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
+    lv_obj_align(cont3, cont2, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
 
 
     /*Set a new style with new padding*/
     static lv_style_t cont4_style;
     lv_style_copy(&cont4_style, &lv_style_pretty_color);
-    cont4_style.body.padding.hor = 20 << LV_ANTIALIAS;
-    cont4_style.body.padding.ver = 40 << LV_ANTIALIAS;
-    cont4_style.body.padding.inner = 1 << LV_ANTIALIAS;
+    cont4_style.body.padding.hor = 20;
+    cont4_style.body.padding.ver = 40;
+    cont4_style.body.padding.inner = 1;
 
     lv_obj_t * cont4 = lv_cont_create(lv_scr_act(), cont3);
     lv_label_create(cont4, obj2_1);
     lv_label_create(cont4, obj2_2);
     lv_cont_set_style(cont4, &cont4_style);
 
-    lv_obj_align_scale(cont4, cont3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
+    lv_obj_align(cont4, cont3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
 
 }
 
@@ -91,13 +91,13 @@ void lv_test_cont_2(void)
     /*Create a new style with big paddings*/
     static lv_style_t cont4_style;
     lv_style_copy(&cont4_style, &lv_style_pretty_color);
-    cont4_style.body.padding.hor = 10 << LV_ANTIALIAS;
-    cont4_style.body.padding.ver = 20 << LV_ANTIALIAS;
-    cont4_style.body.padding.inner = 1 << LV_ANTIALIAS;
+    cont4_style.body.padding.hor = 10;
+    cont4_style.body.padding.ver = 20;
+    cont4_style.body.padding.inner = 1;
 
     /* Create a main container*/
     lv_obj_t * cont_main = lv_cont_create(lv_scr_act(), NULL);
-    lv_obj_set_pos_scale(cont_main, 50, 50);
+    lv_obj_set_pos(cont_main, 50, 50);
     lv_cont_set_style(cont_main, &lv_style_pretty);
     lv_cont_set_fit(cont_main, true, true);
     lv_cont_set_layout(cont_main, LV_LAYOUT_ROW_M);

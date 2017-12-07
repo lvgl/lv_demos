@@ -80,14 +80,14 @@ void lv_test_ta_1(void)
     lv_ta_add_char(ta2, ' ');
 #endif
 
-    lv_obj_align_scale(ta2, ta1, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
+    lv_obj_align(ta2, ta1, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
 
     /*Test password mode and one line*/
     lv_obj_t *ta3 = lv_ta_create(lv_scr_act(), NULL);
     lv_ta_set_pwd_mode(ta3, true);
     lv_ta_set_one_line(ta3, true);
 
-    lv_obj_align_scale(ta3, ta2, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
+    lv_obj_align(ta3, ta2, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
     lv_ta_set_text(ta3, "a A");
     lv_ta_set_cursor_pos(ta3, 1);
     lv_ta_add_char(ta3, 'b');
@@ -105,7 +105,7 @@ void lv_test_ta_1(void)
     lv_obj_t *ta4 = lv_ta_create(lv_scr_act(), NULL);
     lv_ta_set_one_line(ta4, true);
     lv_ta_set_text(ta4, lv_ta_get_text(ta3));
-    lv_obj_align_scale(ta4, ta3, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
+    lv_obj_align(ta4, ta3, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
 
 }
 
@@ -125,26 +125,26 @@ void lv_test_ta_2(void)
 
 
     bg.body.main_color = LV_COLOR_BLACK;
-    bg.body.padding.hor = 10 << LV_ANTIALIAS;
-    bg.body.padding.ver = 10 << LV_ANTIALIAS;
+    bg.body.padding.hor = 10;
+    bg.body.padding.ver = 10;
     bg.text.color = LV_COLOR_BLUE;
-    bg.text.letter_space = 4 << LV_ANTIALIAS;
-    bg.text.line_space = 10 << LV_ANTIALIAS;
+    bg.text.letter_space = 4;
+    bg.text.line_space = 10;
 
-    sb.body.padding.hor = 3 << LV_ANTIALIAS;
-    sb.body.padding.inner = 10 << LV_ANTIALIAS;
+    sb.body.padding.hor = 3;
+    sb.body.padding.inner = 10;
     sb.body.main_color = LV_COLOR_WHITE;
     sb.body.grad_color = LV_COLOR_WHITE;
     sb.body.opa = LV_OPA_70;
 
-    cur.body.padding.hor = 2 << LV_ANTIALIAS;
-    cur.body.padding.ver = 4 << LV_ANTIALIAS;
+    cur.body.padding.hor = 2;
+    cur.body.padding.ver = 4;
     cur.body.main_color = LV_COLOR_RED;
     cur.body.grad_color = LV_COLOR_YELLOW;
     cur.body.border.color = LV_COLOR_ORANGE;
     cur.body.opa = LV_OPA_70;
     cur.text.color = LV_COLOR_WHITE;
-    cur.line.width = 4 << LV_ANTIALIAS;
+    cur.line.width = 4;
 
 
     ta2_1 = lv_ta_create(lv_scr_act(), NULL);
@@ -162,44 +162,44 @@ void lv_test_ta_2(void)
 
 #endif
     ta2_2 = lv_ta_create(lv_scr_act(), ta2_1);
-    lv_obj_align_scale(ta2_2, ta2_1, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
+    lv_obj_align(ta2_2, ta2_1, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
     lv_ta_set_cursor_type(ta2_2, LV_CURSOR_BLOCK);
 
     ta2_3 = lv_ta_create(lv_scr_act(), ta2_1);
-    lv_obj_align_scale(ta2_3, ta2_2, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
+    lv_obj_align(ta2_3, ta2_2, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
     lv_ta_set_cursor_type(ta2_3, LV_CURSOR_OUTLINE);
 
     ta2_4 = lv_ta_create(lv_scr_act(), ta2_1);
-    lv_obj_align_scale(ta2_4, ta2_3, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
+    lv_obj_align(ta2_4, ta2_3, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
     lv_ta_set_cursor_type(ta2_4, LV_CURSOR_UNDERLINE);
 
     lv_obj_t *btn = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_align_scale(btn, ta2_1, LV_ALIGN_OUT_RIGHT_MID, 10, 0);
+    lv_obj_align(btn, ta2_1, LV_ALIGN_OUT_RIGHT_MID, 10, 0);
     lv_obj_set_free_num(btn, 0);
     lv_btn_set_action(btn, LV_BTN_ACTION_REL, cursor_move);
     lv_obj_t *label = lv_label_create(btn, NULL);
     lv_label_set_text(label, "Up");
 
     btn = lv_btn_create(lv_scr_act(), btn);
-    lv_obj_align_scale(btn, btn, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
+    lv_obj_align(btn, btn, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
     lv_obj_set_free_num(btn, 1);
     label = lv_label_create(btn, NULL);
     lv_label_set_text(label, "Down");
 
     btn = lv_btn_create(lv_scr_act(), btn);
-    lv_obj_align_scale(btn, btn, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
+    lv_obj_align(btn, btn, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
     lv_obj_set_free_num(btn, 2);
     label = lv_label_create(btn, NULL);
     lv_label_set_text(label, "Left");
 
     btn = lv_btn_create(lv_scr_act(), btn);
-    lv_obj_align_scale(btn, btn, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
+    lv_obj_align(btn, btn, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
     lv_obj_set_free_num(btn, 3);
     label = lv_label_create(btn, NULL);
     lv_label_set_text(label, "Right");
 
     btn = lv_btn_create(lv_scr_act(), btn);
-    lv_obj_align_scale(btn, btn, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
+    lv_obj_align(btn, btn, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
     lv_obj_set_free_num(btn, 4);
     label = lv_label_create(btn, NULL);
     lv_label_set_text(label, "Del");

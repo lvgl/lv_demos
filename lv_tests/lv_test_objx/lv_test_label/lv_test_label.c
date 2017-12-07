@@ -45,13 +45,13 @@ void lv_test_label_1(void)
     /* Set label text to "I'm testing\nthe labels" */
     lv_obj_t * label2 = lv_label_create(lv_scr_act(), NULL);
     lv_label_set_text(label2, "I'm testing\nthe labels");
-    lv_obj_align_scale(label2, label1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
+    lv_obj_align(label2, label1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
     /* Set a static array as text and modify a letter later (Goal is "STATic text")*/
     static char label_static_text[] =  {"static text"};
     lv_obj_t * label3 = lv_label_create(lv_scr_act(), NULL);
     lv_label_set_static_text(label3, label_static_text);
-    lv_obj_align_scale(label3, label2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
+    lv_obj_align(label3, label2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     label_static_text[0] = 'S';         /*Randomly modify letters*/
     label_static_text[1] = 'T';
     label_static_text[2] = 'A';
@@ -65,24 +65,24 @@ void lv_test_label_1(void)
     array_text[2] = 'c';    /*Not need to be '\0' terminated*/
     lv_obj_t * label4 = lv_label_create(lv_scr_act(), NULL);
     lv_label_set_array_text(label4, array_text, sizeof(array_text));
-    lv_obj_align_scale(label4, label3, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
+    lv_obj_align(label4, label3, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
 
     /* Copy 'label2' (dynamic) and set style and background*/
     lv_obj_t * label5 = lv_label_create(lv_scr_act(), label2);
     lv_obj_set_style(label5, &lv_style_pretty_color);
-    lv_obj_align_scale(label5, label2, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
+    lv_obj_align(label5, label2, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
     lv_label_set_body_draw(label5, true);
 
     /* Copy 'label3' (static) and set style and background*/
     lv_obj_t * label6 = lv_label_create(lv_scr_act(), label3);
     lv_obj_set_style(label6, &lv_style_pretty_color);
-    lv_obj_align_scale(label6, label3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
+    lv_obj_align(label6, label3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
     lv_label_set_body_draw(label6, true);
 
     /* Copy 'label4' (array) and set style and background*/
     lv_obj_t * label7 = lv_label_create(lv_scr_act(), label4);
     lv_obj_set_style(label7, &lv_style_pretty_color);
-    lv_obj_align_scale(label7, label4, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
+    lv_obj_align(label7, label4, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
     lv_label_set_body_draw(label7, true);
 }
 
@@ -107,8 +107,8 @@ void lv_test_label_2(void)
     lv_label_set_text(label2, "This is a long line and a VeryVeryLongWordToWrap.\n"
                               "A new line and a lot of spaces:                        . Can you see them?");
     lv_label_set_long_mode(label2, LV_LABEL_LONG_BREAK);
-    lv_obj_align_scale(label2, label1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
-    lv_obj_set_width_scale(label2, 100);
+    lv_obj_align(label2, label1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
+    lv_obj_set_width(label2, 100);
 
     /* LV_LABEL_LONG_ROLL (set size and test rolling)
      * GOAL: the text is rolled in both directions*/
@@ -117,14 +117,14 @@ void lv_test_label_2(void)
     lv_obj_set_style(label3, &lv_style_plain_color);
     lv_label_set_text(label3, "Long line to roll!");
     lv_label_set_long_mode(label3, LV_LABEL_LONG_ROLL);
-    lv_obj_align_scale(label3, label2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
-    lv_obj_set_size_scale(label3, 100, 50);
+    lv_obj_align(label3, label2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
+    lv_obj_set_size(label3, 100, 50);
 
     /* LV_LABEL_LONG_SCROLL (create a parent and label on it)
      * GOAL: the text is scrolled in both directions */
     lv_obj_t * bg1 = lv_obj_create(lv_scr_act(), NULL);
     lv_obj_set_style(bg1, &lv_style_pretty);
-    lv_obj_align_scale(bg1, label3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
+    lv_obj_align(bg1, label3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
     lv_obj_t * label4 = lv_label_create(bg1, NULL);
     lv_obj_set_style(label4, &lv_style_plain_color);
@@ -138,18 +138,18 @@ void lv_test_label_2(void)
     lv_obj_set_style(label5, &lv_style_plain_color);
     lv_label_set_body_draw(label5, true);
     lv_label_set_long_mode(label5, LV_LABEL_LONG_DOT);
-    lv_obj_set_size_scale(label5, 100, 60);
+    lv_obj_set_size(label5, 100, 60);
 #if LV_TXT_UTF8 == 0
     lv_label_set_text(label5, "Dots: abcdefghijklmnopqrs");
 #else
     lv_label_set_text(label5, "Dots: aáeéiíoóuúAÁEÉIÍOÓUÚ");
 #endif
-    lv_obj_align_scale(label5, bg1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
+    lv_obj_align(label5, bg1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
     /*Restore dots*/
     lv_obj_t * label6 = lv_label_create(lv_scr_act(), label5);
     lv_label_set_long_mode(label6, LV_LABEL_LONG_EXPAND);
-    lv_obj_align_scale(label6, label5, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
+    lv_obj_align(label6, label5, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 }
 
 
@@ -160,7 +160,7 @@ void lv_test_label_3(void)
 {
     /*Test inserting*/
     lv_obj_t * label1 = lv_label_create(lv_scr_act(), NULL);
-    lv_obj_set_pos_scale(label1, 10, 10);
+    lv_obj_set_pos(label1, 10, 10);
     lv_label_set_text(label1, "Test insert");
     lv_label_ins_text(label1, 4, " the");
     lv_label_ins_text(label1, 0, "I will ");
@@ -171,7 +171,7 @@ void lv_test_label_3(void)
 #endif
 
     lv_obj_t * label2 = lv_label_create(lv_scr_act(), NULL);
-    lv_obj_align_scale(label2, label1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
+    lv_obj_align(label2, label1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 #if LV_TXT_UTF8 == 0
     lv_label_set_text(label2, "Characters to delete: abcd ABCD");
 #else
@@ -200,14 +200,14 @@ void lv_test_label_4(void)
      * GOAL: same as 'label1' but in one line*/
     lv_obj_t * label2 = lv_label_create(lv_scr_act(), label1);
     lv_label_set_no_break(label2, true);
-    lv_obj_align_scale(label2, label1, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
+    lv_obj_align(label2, label1, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
 
     /* Test recoloring
      * GOAL: the word "red" is red*/
     lv_obj_t * label3 = lv_label_create(lv_scr_act(), NULL);
     lv_label_set_text(label3, "This is a #ff0000 red# word");
     lv_label_set_recolor(label3, true);
-    lv_obj_align_scale(label3, label1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
+    lv_obj_align(label3, label1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
 #if LV_TXT_UTF8 != 0
     /* Test UTF-8 support with LV_LABEL_LONG_BREAK, new lines and recolor
@@ -218,8 +218,8 @@ void lv_test_label_4(void)
                               "Recolor UTF-8: #ff0000 öŐ##00ff00 üŰ##0000ff éÉ#");
     lv_label_set_recolor(label4, true);
     lv_label_set_long_mode(label4, LV_LABEL_LONG_BREAK);
-    lv_obj_set_width_scale(label4, 100);
-    lv_obj_align_scale(label4, label3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
+    lv_obj_set_width(label4, 100);
+    lv_obj_align(label4, label3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
 #endif
 }

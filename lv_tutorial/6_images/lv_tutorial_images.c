@@ -100,8 +100,9 @@ void lv_tutorial_image(void)
 
     lv_obj_t *img_src = lv_img_create(lv_scr_act(), NULL);  /*Crate an image object*/
     lv_img_set_file(img_src, "U:/red_flower");              /*Set the created file as image (a red fl   ower)*/
-    lv_obj_set_pos(img_src, 10 << LV_AA, 10 << LV_AA);      /*Set the positions*/
-
+    lv_obj_set_pos(img_src, 10, 10);      /*Set the positions*/
+    lv_obj_set_click(img_src, true);
+    lv_obj_set_drag(img_src, true);
 #if PC_FILES
     /*************************
      * IMAGE FROM BBINARY FILE
@@ -132,7 +133,9 @@ void lv_tutorial_image(void)
     lv_img_set_file(img_bin, "P:/lv_examples/lv_tutorial/6_images/img_blue_flower_24.bin");
 #endif
 
-    lv_obj_align(img_bin, img_src, LV_ALIGN_OUT_RIGHT_TOP, 20 << LV_AA, 0);     /*Align next to the s'ource image'*/
+    lv_obj_align(img_bin, img_src, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);     /*Align next to the s'ource image'*/
+    lv_obj_set_click(img_bin, true);
+    lv_obj_set_drag(img_bin, true);
 #endif
 
 }

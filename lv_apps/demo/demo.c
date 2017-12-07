@@ -70,7 +70,7 @@ void demo_init(void)
 
     lv_obj_t *tv = lv_tabview_create(lv_scr_act(), NULL);
     lv_obj_set_parent(wp, ((lv_tabview_ext_t *) tv->ext_attr)->content);
-    lv_obj_set_pos_scale(wp, 0, -5);
+    lv_obj_set_pos(wp, 0, -5);
 
     lv_obj_t *tab1 = lv_tabview_add_tab(tv, "Write");
     lv_page_set_style(tab1, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
@@ -115,7 +115,7 @@ static void write_create(lv_obj_t *parent)
      lv_style_copy(&style_kb_rel, &lv_style_plain);
      style_kb_rel.body.empty = 1;
      style_kb_rel.body.radius = 0;
-     style_kb_rel.body.border.width = 1 << LV_ANTIALIAS;
+     style_kb_rel.body.border.width = 1;
      style_kb_rel.body.border.color = LV_COLOR_SILVER;
      style_kb_rel.body.border.opa = LV_OPA_50;
      style_kb_rel.text.color = LV_COLOR_WHITE;
@@ -126,7 +126,7 @@ static void write_create(lv_obj_t *parent)
      style_kb_pr.body.opa = LV_OPA_50;
      style_kb_pr.body.main_color = LV_COLOR_WHITE;
      style_kb_pr.body.grad_color = LV_COLOR_WHITE;
-     style_kb_pr.body.border.width = 1 << LV_ANTIALIAS;
+     style_kb_pr.body.border.width = 1;
      style_kb_pr.body.border.color = LV_COLOR_SILVER;
 
      ta = lv_ta_create(parent, NULL);
@@ -156,7 +156,7 @@ static void list_create(lv_obj_t *parent)
     style_btn_rel.body.main_color = LV_COLOR_HEX3(0x333);
     style_btn_rel.body.grad_color = LV_COLOR_BLACK;
     style_btn_rel.body.border.color = LV_COLOR_SILVER;
-    style_btn_rel.body.border.width = 1 << LV_AA;
+    style_btn_rel.body.border.width = 1;
     style_btn_rel.body.border.opa = LV_OPA_50;
     style_btn_rel.body.radius = 0;
 
@@ -180,7 +180,6 @@ static void list_create(lv_obj_t *parent)
     lv_list_add(list, SYMBOL_SAVE, "Save", list_btn_action);
     lv_list_add(list, SYMBOL_WIFI, "WiFi", list_btn_action);
     lv_list_add(list, SYMBOL_GPS, "GPS", list_btn_action);
-
 
     lv_obj_t *mbox= lv_mbox_create(parent, NULL);
     lv_mbox_set_text(mbox, "Click on a button and its text will be copied to the Text area ");

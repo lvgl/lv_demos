@@ -49,13 +49,13 @@ void lv_test_cb_1(void)
 #else
     lv_cb_set_text(cb2, "UTF8-text: üŰ öŐ íÍ");
 #endif
-    lv_obj_align_scale(cb2, cb1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
+    lv_obj_align(cb2, cb1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
 
     /*Create styles for a round bullet*/
     static lv_style_t cb3_styles[LV_BTN_STATE_NUM];
     lv_style_copy(&cb3_styles[LV_BTN_STATE_REL], &lv_style_plain);
     cb3_styles[LV_BTN_STATE_REL].body.radius = LV_DPI / 20;
-    cb3_styles[LV_BTN_STATE_REL].body.border.width = 1 << LV_ANTIALIAS;
+    cb3_styles[LV_BTN_STATE_REL].body.border.width = 1;
     cb3_styles[LV_BTN_STATE_REL].body.border.color = LV_COLOR_GRAY;
     cb3_styles[LV_BTN_STATE_REL].body.main_color = LV_COLOR_WHITE;
     cb3_styles[LV_BTN_STATE_REL].body.grad_color = LV_COLOR_SILVER;
@@ -65,7 +65,7 @@ void lv_test_cb_1(void)
     cb3_styles[LV_BTN_STATE_PR].body.grad_color = LV_COLOR_GRAY;
 
     lv_style_copy(&cb3_styles[LV_BTN_STATE_TGL_REL], &cb3_styles[LV_BTN_STATE_REL]);
-    cb3_styles[LV_BTN_STATE_TGL_REL].body.border.width = 4 << LV_ANTIALIAS;
+    cb3_styles[LV_BTN_STATE_TGL_REL].body.border.width = 4;
     cb3_styles[LV_BTN_STATE_TGL_REL].body.border.color = LV_COLOR_WHITE;
     cb3_styles[LV_BTN_STATE_TGL_REL].body.border.opa = LV_OPA_70;
     cb3_styles[LV_BTN_STATE_TGL_REL].body.main_color = LV_COLOR_GRAY;
@@ -78,7 +78,7 @@ void lv_test_cb_1(void)
     cb3_styles[LV_BTN_STATE_TGL_PR].body.grad_color = LV_COLOR_BLACK;
 
     lv_style_copy(&cb3_styles[LV_BTN_STATE_INA], &cb3_styles[LV_BTN_STATE_TGL_REL]);
-    cb3_styles[LV_BTN_STATE_INA].body.border.width = 1 << LV_ANTIALIAS;
+    cb3_styles[LV_BTN_STATE_INA].body.border.width = 1;
     cb3_styles[LV_BTN_STATE_INA].body.border.color = LV_COLOR_GRAY;
     cb3_styles[LV_BTN_STATE_INA].body.main_color = LV_COLOR_SILVER;
     cb3_styles[LV_BTN_STATE_INA].body.grad_color = LV_COLOR_SILVER;
@@ -91,11 +91,11 @@ void lv_test_cb_1(void)
     lv_cb_set_style(cb3, LV_CB_STYLE_BOX_TGL_REL, &cb3_styles[LV_BTN_STATE_TGL_REL]);
     lv_cb_set_style(cb3, LV_CB_STYLE_BOX_TGL_PR, &cb3_styles[LV_BTN_STATE_TGL_PR]);
     lv_cb_set_style(cb3, LV_CB_STYLE_BOX_INA, &cb3_styles[LV_BTN_STATE_INA]);
-    lv_obj_align_scale(cb3, cb2, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
+    lv_obj_align(cb3, cb2, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
 
     /*Copy the previous check box and set it to INACTIVE*/
     lv_obj_t *cb4 = lv_cb_create(lv_scr_act(), cb3);
-    lv_obj_align_scale(cb4, cb3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
+    lv_obj_align(cb4, cb3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
     lv_btn_set_state(cb4, LV_BTN_STATE_INA);
 }
 

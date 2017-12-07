@@ -49,18 +49,18 @@ void lv_test_object_1(void)
     style_obj2.body.grad_color = LV_COLOR_BLACK;
     style_obj2.body.radius = 0;
     style_obj2.body.border.color = LV_COLOR_WHITE;
-    style_obj2.body.border.width = 4 << LV_ANTIALIAS;
+    style_obj2.body.border.width = 4;
     style_obj2.body.opa = LV_OPA_50;
-    style_obj2.body.shadow.width = 10 << LV_ANTIALIAS;
+    style_obj2.body.shadow.width = 10;
 
     lv_obj_t *obj2 = lv_obj_create(lv_scr_act(), NULL);
-    lv_obj_set_size_scale(obj2, 30, 30);
-    lv_obj_align_scale(obj2, obj1, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
+    lv_obj_set_size(obj2, 30, 30);
+    lv_obj_align(obj2, obj1, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
     lv_obj_set_style(obj2, &style_obj2);
 
     /*Test drag, drag_parent, drag throw and copy*/
     lv_obj_t *obj3_parent = lv_obj_create(lv_scr_act(), NULL);
-    lv_obj_align_scale(obj3_parent, obj2, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
+    lv_obj_align(obj3_parent, obj2, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
     lv_obj_set_style(obj3_parent, &lv_style_pretty);
     lv_obj_set_drag(obj3_parent, true);
     lv_obj_set_drag_throw(obj3_parent, true);
@@ -77,20 +77,20 @@ void lv_test_object_1(void)
     lv_obj_set_hidden(obj4_parent, true); /*Hide this and all children objects*/
 
     lv_obj_t *obj4_1 = lv_obj_create(obj4_parent, obj2);
-    lv_obj_set_pos_scale(obj4_1, 10, 10);
+    lv_obj_set_pos(obj4_1, 10, 10);
 
     lv_obj_t *obj4_2 = lv_obj_create(obj4_parent, obj2);
-    lv_obj_set_pos_scale(obj4_2, 20, 20);
+    lv_obj_set_pos(obj4_2, 20, 20);
 
     lv_obj_t *obj4_3 = lv_obj_create(obj4_parent, obj2);
-    lv_obj_set_pos_scale(obj4_3, 30, 30);
+    lv_obj_set_pos(obj4_3, 30, 30);
 
     /*Move two children to the screen (now they will be visible)*/
     lv_obj_set_parent(obj4_2, lv_scr_act());
-    lv_obj_align_scale(obj4_2, obj4_parent, LV_ALIGN_OUT_RIGHT_MID, 10, 0);
+    lv_obj_align(obj4_2, obj4_parent, LV_ALIGN_OUT_RIGHT_MID, 10, 0);
 
     lv_obj_set_parent(obj4_3, lv_scr_act());
-    lv_obj_align_scale(obj4_3, obj4_parent, LV_ALIGN_OUT_RIGHT_MID, 20, 5);
+    lv_obj_align(obj4_3, obj4_parent, LV_ALIGN_OUT_RIGHT_MID, 20, 5);
 }
 
 

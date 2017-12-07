@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include "lv_test_stress.h"
 
-#if LV_NO_ANIM == 0
+#if USE_LV_ANIMATION
 
 /*********************
  *      DEFINES
@@ -61,11 +61,11 @@ void lv_test_stress_1(void)
     lv_obj_set_style(all_obj_h, &lv_style_pretty);
 
     alloc_ta = lv_ta_create(lv_scr_act(), NULL);
-    lv_obj_align(alloc_ta, all_obj_h, LV_ALIGN_OUT_RIGHT_TOP, 10 << LV_AA, 10 << LV_AA);
+    lv_obj_align(alloc_ta, all_obj_h, LV_ALIGN_OUT_RIGHT_TOP, 10 , 10 );
     lv_obj_set_height(alloc_ta, LV_VER_RES / 4);
 
     alloc_label = lv_label_create(lv_scr_act(), NULL);
-    lv_obj_align(alloc_label, alloc_ta, LV_ALIGN_OUT_BOTTOM_LEFT, 0 << LV_AA, 20 << LV_AA);
+    lv_obj_align(alloc_label, alloc_ta, LV_ALIGN_OUT_BOTTOM_LEFT, 0 , 20 );
 
 
     /*Add style animation to the ta*/
@@ -118,32 +118,32 @@ static void obj_mem_leak_tester(void * param)
     switch(state) {
         case 0:
             obj = lv_obj_create(all_obj_h, NULL);
-            lv_obj_set_pos(obj, 10 << LV_AA, 5 << LV_AA);
+            lv_obj_set_pos(obj, 10 , 5 );
             a.playback = 1;
             a.repeat = 1;
             a.fp = (lv_anim_fp_t)lv_obj_set_x;
             a.var = obj;
-            a.start = 10 << LV_AA;
-            a.end = 100 << LV_AA;
+            a.start = 10 ;
+            a.end = 100 ;
             lv_anim_create(&a);
             break;
         case 1:
             obj = lv_btn_create(all_obj_h, NULL);
-            lv_obj_set_pos(obj, 60 << LV_AA, 5 << LV_AA);
+            lv_obj_set_pos(obj, 60 , 5 );
             a.playback = 0;
             a.repeat = 1;
             a.fp = (lv_anim_fp_t)lv_obj_set_x;
             a.var = obj;
-            a.start = 150 << LV_AA;
-            a.end = 200 << LV_AA;
+            a.start = 150 ;
+            a.end = 200 ;
             lv_anim_create(&a);
             obj = lv_label_create(obj, NULL);
             lv_label_set_text(obj, "Button");
             break;
         case 2:     /*Page tests container too*/
             page = lv_page_create(all_obj_h, NULL);
-            lv_obj_set_pos(page, 10 << LV_AA, 60 << LV_AA);
-            lv_obj_set_size(page, lv_obj_get_width(all_obj_h) - (20 << LV_AA), 3 * LV_VER_RES / 4);
+            lv_obj_set_pos(page, 10 , 60 );
+            lv_obj_set_size(page, lv_obj_get_width(all_obj_h) - (20 ), 3 * LV_VER_RES / 4);
             lv_page_set_scrl_layout(page, LV_LAYOUT_PRETTY);
             break;
         case 3:
@@ -181,7 +181,7 @@ static void obj_mem_leak_tester(void * param)
             break;
         case 15: /*Wait a little to see the previous results*/
             obj = lv_list_create(all_obj_h, NULL);
-            lv_obj_set_pos(obj, 40 << LV_AA, 50 << LV_AA);
+            lv_obj_set_pos(obj, 40 , 50 );
             lv_list_add(obj, SYMBOL_OK, "List 1", NULL);
             lv_list_add(obj, SYMBOL_OK, "List 2", NULL);
             lv_list_add(obj, SYMBOL_OK, "List 3", NULL);
@@ -196,7 +196,7 @@ static void obj_mem_leak_tester(void * param)
             lv_win_add_btn(obj, SYMBOL_OK, NULL);
             lv_win_set_style(obj, LV_WIN_STYLE_BG, &lv_style_pretty);
             lv_obj_set_size(obj, LV_HOR_RES / 3, LV_VER_RES / 3);
-            lv_obj_set_pos(obj, 20 << LV_AA, 100 << LV_AA);
+            lv_obj_set_pos(obj, 20 , 100 );
             break;
         case 17:
             obj = lv_tabview_create(all_obj_h, NULL);
@@ -205,7 +205,7 @@ static void obj_mem_leak_tester(void * param)
             lv_tabview_add_tab(obj, "tab3");
             lv_tabview_set_style(obj, LV_TABVIEW_STYLE_BG, &lv_style_pretty);
             lv_obj_set_size(obj, LV_HOR_RES / 3, LV_VER_RES / 3);
-            lv_obj_set_pos(obj, 50 << LV_AA, 140 << LV_AA);
+            lv_obj_set_pos(obj, 50 , 140 );
             break;
         case 18:
             obj = lv_mbox_create(all_obj_h, NULL);

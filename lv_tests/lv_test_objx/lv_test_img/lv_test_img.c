@@ -47,7 +47,7 @@ void lv_test_img_1(void)
     /*Create an image object with the newly created file*/
     lv_obj_t *img1 = lv_img_create(lv_scr_act(), NULL);
     lv_img_set_file(img1, "U:/pic1");
-    lv_obj_set_pos_scale(img1, 10, 10);
+    lv_obj_set_pos(img1, 10, 10);
 
     /*Copy the previous image but set upscale*/
     lv_obj_t *img2 = lv_img_create(lv_scr_act(), img1);
@@ -66,7 +66,7 @@ void lv_test_img_1(void)
 
     /*Copy the previous image and test the mozic feature*/
     lv_obj_t *img4 = lv_img_create(lv_scr_act(), img3);
-    lv_obj_set_size_scale(img4, 100, 100);
+    lv_obj_set_size(img4, 100, 100);
     lv_obj_align(img4, img3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
     /*Test symbol drawing*/

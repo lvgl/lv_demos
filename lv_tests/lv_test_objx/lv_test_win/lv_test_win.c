@@ -51,7 +51,7 @@ void lv_test_win_1(void)
     lv_win_add_btn(win2, SYMBOL_EDIT, NULL);
 
     lv_obj_t *label = lv_label_create(win2, NULL);
-    lv_obj_set_pos_scale(label, 10, 10);
+    lv_obj_set_pos(label, 10, 10);
     lv_label_set_text(label, "Long\n\n\ntext\n\n\nto\n\n\nsee\n\n\nthe\n\n\nscrollbars");
 
 
@@ -72,7 +72,7 @@ void lv_test_win_1(void)
     lv_win_set_btn_size(win3, LV_DPI / 3);
 
     label = lv_label_create(win3, NULL);
-    lv_obj_set_pos_scale(label, 10, 10);
+    lv_obj_set_pos(label, 10, 10);
     lv_label_set_text(label, "Styled window\n\nThe content background has\ndifferent color");
 
     lv_obj_t *win4 = lv_win_create(lv_scr_act(), win3);

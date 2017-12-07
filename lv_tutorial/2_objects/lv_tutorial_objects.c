@@ -146,7 +146,7 @@ void lv_tutorial_objects(void)
     lv_obj_t * chart = lv_chart_create(lv_scr_act(), NULL);                         /*Create the chart*/
     lv_obj_set_size(chart, lv_obj_get_width(scr) / 2, lv_obj_get_width(scr) / 4);   /*Set the size*/
     lv_obj_align(chart, slider, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 50);                   /*Align below the slider*/
-    lv_chart_set_series_width(chart, 3 << LV_AA);                                   /*Set the line width (Compensates anti aliasing if enabled)*/
+    lv_chart_set_series_width(chart, 3);                                            /*Set the line width*/
 
     /*Add a RED data series and set some points*/
     lv_chart_series_t * dl1 = lv_chart_add_series(chart, LV_COLOR_RED);

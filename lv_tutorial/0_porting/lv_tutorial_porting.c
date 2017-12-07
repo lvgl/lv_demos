@@ -56,9 +56,10 @@
 static void ex_disp_flush(int32_t x1, int32_t y1, int32_t x2, int32_t y2, const lv_color_t * color_p);
 static void ex_disp_map(int32_t x1, int32_t y1, int32_t x2, int32_t y2, const lv_color_t * color_p);
 static void ex_disp_fill(int32_t x1, int32_t y1, int32_t x2, int32_t y2,  lv_color_t color);
+#if USE_LV_GPU
 static void ex_mem_blend(lv_color_t * dest, const lv_color_t * src, uint32_t length, lv_opa_t opa);
 static void ex_mem_fill(lv_color_t * dest, uint32_t length, lv_color_t color);
-
+#endif
 static bool ex_tp_read(lv_indev_data_t *data);
 
 /**********************
@@ -108,9 +109,11 @@ void lv_turorial_porting(void)
     disp_drv.disp_fill = ex_disp_fill;              /*Used in unbuffered mode (LV_VDB_SIZE == 0  in lv_conf.h)*/
     disp_drv.disp_map = ex_disp_map;                /*Used in unbuffered mode (LV_VDB_SIZE == 0  in lv_conf.h)*/
 
+#if USE_LV_GPU
     /*Optionally add functions to access the GPU. (Only in buffered mode, LV_VDB_SIZE != 0)*/
     disp_drv.mem_blend = ex_mem_blend;              /*Blend two color array using opacity*/
     disp_drv.mem_fill = ex_mem_fill;                /*Fill a memory array with a color*/
+#endif
 
     /*Finally register the driver*/
     lv_disp_drv_register(&disp_drv);
@@ -191,6 +194,8 @@ static void ex_disp_fill(int32_t x1, int32_t y1, int32_t x2, int32_t y2,  lv_col
     }
 }
 
+#if USE_LV_GPU
+
 /* If your MCU has hardware accelerator (GPU) then you can use it to blend to memories using opacity
  * It can be used only in buffered mode (LV_VDB_SIZE != 0 in lv_conf.h)*/
 static void ex_mem_blend(lv_color_t * dest, const lv_color_t * src, uint32_t length, lv_opa_t opa)
@@ -215,6 +220,8 @@ static void ex_mem_fill(lv_color_t * dest, uint32_t length, lv_color_t color)
     }
 }
 
+#endif
+
 /* Read the touchpad and store it in 'data'
  * REaturn false if no more data read; true for ready again */
 static bool ex_tp_read(lv_indev_data_t *data)
@@ -226,5 +233,4 @@ static bool ex_tp_read(lv_indev_data_t *data)
 
     return false;   /*false: no more data to read because we are no buffering*/
 }
-
 

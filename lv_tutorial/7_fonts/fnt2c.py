@@ -239,7 +239,13 @@ def makeWidthsTable(config, glyphs):
             width_map_s += "\n    "
         
         i = (i + 1) % 8 
-        width_map_s += '%2d, ' % (glyph_found.xadvance)
+        
+        width_even = glyph_found.xadvance
+        print width_even
+        if width_even % 2: 
+            print "even"
+            width_even += 1
+        width_map_s += '%2d, ' % (width_even)
 
             
     width_map_s += "\n};\n"

@@ -43,30 +43,25 @@ void lv_test_line_1(void)
 
     /* Create a default object*/
     lv_obj_t *line1 = lv_line_create(lv_scr_act(), NULL);
-    lv_obj_set_pos_scale(line1, 10, 10);
+    lv_obj_set_pos(line1, 10, 10);
     lv_line_set_points(line1, p, 3);
 
-    /*Test upscale*/
-    lv_obj_t *line2 = lv_line_create(lv_scr_act(), line1);
-    lv_line_set_upscale(line2, true);
-    lv_obj_align_scale(line2, line1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
-
     /*Test y invert*/
-    lv_obj_t *line3 = lv_line_create(lv_scr_act(), line2);
-    lv_line_set_y_invert(line3, true);
-    lv_obj_align_scale(line3, line2, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
+    lv_obj_t *line2 = lv_line_create(lv_scr_act(), line1);
+    lv_line_set_y_invert(line2, true);
+    lv_obj_align(line2, line1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
 
     /*Test styling*/
     static lv_style_t style;
     lv_style_copy(&style, &lv_style_plain);
 
     style.line.color = LV_COLOR_RED;
-    style.line.width = 3 << LV_ANTIALIAS;
+    style.line.width = 3;
 
-    lv_obj_t *line4 = lv_line_create(lv_scr_act(), line3);
-    lv_line_set_style(line4, &style);
-    lv_line_set_y_invert(line4, true);
-    lv_obj_align_scale(line4, line3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
+    lv_obj_t *line3 = lv_line_create(lv_scr_act(), line2);
+    lv_line_set_style(line3, &style);
+    lv_line_set_y_invert(line3, true);
+    lv_obj_align(line3, line2, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
 }
 
 

@@ -88,19 +88,19 @@ void lv_test_page_2(void)
 
     bg.body.main_color = LV_COLOR_SILVER;
     bg.body.grad_color = LV_COLOR_GRAY;
-    bg.body.padding.hor = 5 << LV_ANTIALIAS;
-    bg.body.padding.ver = 20 << LV_ANTIALIAS;
+    bg.body.padding.hor = 5;
+    bg.body.padding.ver = 20;
 
     scrl.body.main_color = LV_COLOR_BLUE;
     scrl.body.grad_color = LV_COLOR_NAVY;
-    scrl.body.padding.hor = 3 << LV_ANTIALIAS;
-    scrl.body.padding.ver = 3 << LV_ANTIALIAS;
-    scrl.body.shadow.width = 15 << LV_ANTIALIAS;
+    scrl.body.padding.hor = 3;
+    scrl.body.padding.ver = 3;
+    scrl.body.shadow.width = 15;
     scrl.text.color = LV_COLOR_SILVER;
 
-    sb.body.padding.hor = (-10) << LV_ANTIALIAS;    /*Out of the page*/
-    sb.body.padding.ver = 10 << LV_ANTIALIAS;
-    sb.body.padding.inner = 10 << LV_ANTIALIAS;
+    sb.body.padding.hor = -10;    /*Out of the page*/
+    sb.body.padding.ver = 10;
+    sb.body.padding.inner = 10;
     sb.body.main_color = LV_COLOR_WHITE;
     sb.body.grad_color = LV_COLOR_WHITE;
     sb.body.opa = LV_OPA_70;
@@ -125,19 +125,19 @@ void lv_test_page_2(void)
 
     /*Copy 'page1' and set scrollbar ON*/
     lv_obj_t *page2 = lv_page_create(lv_scr_act(), page1);
-    lv_obj_align_scale(page2, page1, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
+    lv_obj_align(page2, page1, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     label = lv_label_create(page2, label);
     lv_page_set_sb_mode(page2, LV_SB_MODE_ON);
 
     /*Copy 'page1' and set scrollbar AUTO*/
     lv_obj_t *page3 = lv_page_create(lv_scr_act(), page1);
-    lv_obj_align_scale(page3, page2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
+    lv_obj_align(page3, page2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     label = lv_label_create(page3, label);
     lv_page_set_sb_mode(page3, LV_SB_MODE_AUTO);
 
     /*Copy 'page1' and set scrollbar DRAG*/
     lv_obj_t *page4 = lv_page_create(lv_scr_act(), page1);
-    lv_obj_align_scale(page4, page3, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
+    lv_obj_align(page4, page3, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     label = lv_label_create(page4, label);
     lv_page_set_sb_mode(page4, LV_SB_MODE_DRAG);
 

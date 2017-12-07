@@ -43,11 +43,11 @@ void lv_test_kb_1(void)
 {
 
     lv_obj_t *ta = lv_ta_create(lv_scr_act(), NULL);
-    lv_obj_align_scale(ta, NULL, LV_ALIGN_IN_TOP_MID, 0, 30);
+    lv_obj_align(ta, NULL, LV_ALIGN_IN_TOP_MID, 0, 30);
 
     /* Default object*/
     lv_obj_t *kb1 = lv_kb_create(lv_scr_act(), NULL);
-    lv_obj_align_scale(kb1, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, 0);
+    lv_obj_align(kb1, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, 0);
     lv_kb_set_ta(kb1, ta);
 }
 
@@ -58,12 +58,12 @@ void lv_test_kb_2(void)
 {
 
     lv_obj_t *ta = lv_ta_create(lv_scr_act(), NULL);
-    lv_obj_align_scale(ta, NULL, LV_ALIGN_IN_TOP_MID, 0, 30);
+    lv_obj_align(ta, NULL, LV_ALIGN_IN_TOP_MID, 0, 30);
 
     /* Default object*/
     lv_obj_t *kb1 = lv_kb_create(lv_scr_act(), NULL);
     lv_obj_set_size(kb1, LV_HOR_RES / 2, LV_VER_RES / 4);
-    lv_obj_align_scale(kb1, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, 0);
+    lv_obj_align(kb1, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, 0);
     lv_kb_set_ta(kb1, ta);
 
     static lv_style_t bg;
@@ -74,11 +74,11 @@ void lv_test_kb_2(void)
     bg.body.main_color = LV_COLOR_NAVY;
     bg.body.grad_color = LV_COLOR_NAVY;
     bg.body.padding.hor = 0;
-    bg.body.padding.ver = 10 << LV_ANTIALIAS;
+    bg.body.padding.ver = 10;
     bg.body.padding.inner = 0;
 
     lv_style_copy(&rel, &lv_style_plain);
-    rel.body.border.width = 1 << LV_ANTIALIAS;
+    rel.body.border.width = 1;
     rel.body.main_color = LV_COLOR_WHITE;
     rel.body.grad_color = LV_COLOR_SILVER;
     rel.body.grad_color = LV_COLOR_SILVER;
