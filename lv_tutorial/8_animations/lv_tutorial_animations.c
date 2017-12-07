@@ -26,6 +26,8 @@
 #include "lv_tutorial_animations.h"
 #include "lvgl/lvgl.h"
 
+#if LV_NO_ANIM == 0
+
 /*********************
  *      DEFINES
  *********************/
@@ -128,4 +130,6 @@ void lv_tutorial_animations(void)
 /**********************
  *   STATIC FUNCTIONS
  **********************/
+
+#endif
 

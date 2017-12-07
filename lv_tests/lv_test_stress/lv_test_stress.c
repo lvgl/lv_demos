@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include "lv_test_stress.h"
 
+#if LV_NO_ANIM == 0
+
 /*********************
  *      DEFINES
  *********************/
@@ -391,7 +393,6 @@ static void alloc_free_tester(void * param)
     }
 
     state ++;
-
-
 }
+#endif
 
