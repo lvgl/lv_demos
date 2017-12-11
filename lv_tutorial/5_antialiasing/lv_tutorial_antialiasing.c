@@ -14,15 +14,8 @@
  *   - It results smooth image but need more computation resources and memory (VDB)
  *   - Only available in buffered mode (lv_conf.h   LV_VDB_SIZE != 0)
  *   - You can enable it in lv_conf.h: LV_ANTIALIAS    1
- *   - You have to use double sizes in your GUI because the filtering will downscale everithing
- *      - E.g. lv_obj_set_width(obj, 100) will result an 50 px wide object
- *   - Use the LV_AA macro to compensate this effect
- *      - E.g. lv_obj_set_width(obj, 100 << LV_AA) will result an 100 px wide object
- *                                                 independently from anti aliasing
- *   - The style parameters are also reduced (border width, radius, letter space etc.)
- *      - E.g. style.body.bolder.width = 5 << LV_AA
- *   - The font are reduced as well. To get a 20 px font you have to use 40 px ones
- *
+ *   - The fonts and images are down scaled to half during anti alaising.
+ *     - to get a 20 px font you have to use 40 px ones
  *
  * 2. Font anti aliasing
  *   - It smoothes only the fonts.
@@ -30,9 +23,8 @@
  *   - Needs only a little extra computation resource
  *   - Only the fonts has to be doubled
  *   - You can enable it in lv_conf.h: LV_FONT_ANTIALIAS    1
- *   - Don not enable LV_ANTIALIAS and LV_FONT_ANTIALIAS at the same time because
+ *   - Don't enable LV_ANTIALIAS and LV_FONT_ANTIALIAS at the same time because
  *     it will result quarter sized letters
- *
  *
  * Try the example by hanging the anti aliasing modes in lv_conf.h
  */
@@ -58,6 +50,8 @@
 /**********************
  *  STATIC VARIABLES
  **********************/
+LV_IMG_DECLARE(img_red_flower);
+
 
 /**********************
  *      MACROS
@@ -80,7 +74,6 @@ void lv_tutorial_antialiasing(void)
     style1.body.radius = 20;
     style1.body.border.width = 8;
 
-
     lv_obj_t *btn1;
     btn1 = lv_btn_create(lv_scr_act(), NULL);
     lv_obj_set_pos(btn1, 10, 10);
@@ -88,21 +81,21 @@ void lv_tutorial_antialiasing(void)
     lv_btn_set_style(btn1, LV_BTN_STYLE_REL, &style1);
 
     label = lv_label_create(btn1, NULL);
-    lv_label_set_text(label, "Reduce");
+    lv_label_set_text(label, "Button");
 
-    static lv_style_t style2;
-    lv_style_copy(&style2, &lv_style_btn_rel);
-    style2.body.radius = 20 << LV_AA;
-    style2.body.border.width = 8 << LV_AA;
 
-    lv_obj_t *btn2;
-    btn2 = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_align(btn2, btn1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
-    lv_obj_set_size(btn2, 160 << LV_AA, 80 << LV_AA);
-    lv_btn_set_style(btn2, LV_BTN_STYLE_REL, &style2);
+    lv_img_create_file("red_flower", img_red_flower);       /*Create a file in the RAM FS*/
 
-    label = lv_label_create(btn2, NULL);
-    lv_label_set_text(label, "Upscale");
+    /*Crate an image which is NOT automatically upscaled to compensate the anti aliasing*/
+    lv_obj_t *img_normal = lv_img_create(lv_scr_act(), NULL);
+    lv_img_set_file(img_normal, "U:/red_flower");
+    lv_img_set_upscale(img_normal, false);
+    lv_obj_align(img_normal, btn1, LV_ALIGN_OUT_RIGHT_TOP, 10, 0);
+
+    /*Crate an image which is automatically upscaled to compensate the anti aliasing*/
+    lv_obj_t *img_scaled = lv_img_create(lv_scr_act(), img_normal);  /*Crate an image object*/
+    lv_img_set_upscale(img_scaled, true);
+    lv_obj_align(img_scaled, img_normal, LV_ALIGN_OUT_RIGHT_TOP, 10, 0);
 
 
 }
