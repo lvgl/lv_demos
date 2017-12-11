@@ -111,7 +111,7 @@ void lv_test_page_2(void)
     lv_page_set_scrl_fit(page1, true, true);
     lv_page_set_scrl_layout(page1, LV_LAYOUT_COL_L);
     lv_page_set_sb_mode(page1, LV_SB_MODE_OFF);
-    lv_page_set_release_action(page1, page_rel_action);
+    lv_page_set_rel_action(page1, page_rel_action);
     lv_page_set_style(page1, LV_PAGE_STYLE_BG, &bg);
     lv_page_set_style(page1, LV_PAGE_STYLE_SCRL, &scrl);
     lv_page_set_style(page1, LV_PAGE_STYLE_SB, &sb);
