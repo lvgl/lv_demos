@@ -25,7 +25,7 @@ extern "C" {
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
-void demo_init(void);
+void demo_create(void);
 
 /**********************
  *      MACROS

@@ -11,7 +11,7 @@
 /*********************
  *      DEFINES
  *********************/
-#define DEMO_WALLPAPER  0
+#define DEMO_WALLPAPER  1
 
 /**********************
  *      TYPEDEFS
@@ -43,7 +43,7 @@ LV_IMG_DECLARE(img_bubble_pattern);
  *   GLOBAL FUNCTIONS
  **********************/
 
-void demo_init(void)
+void demo_create(void)
 {
 #if DEMO_WALLPAPER
     lv_img_create_file("bg", img_bubble_pattern);
