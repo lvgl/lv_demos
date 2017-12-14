@@ -195,6 +195,7 @@ static void list_create(lv_obj_t *parent)
 
     lv_obj_t *mbox= lv_mbox_create(parent, NULL);
     lv_mbox_set_text(mbox, "Click a button to copy its text to the Text area ");
+    lv_obj_set_width(mbox, LV_HOR_RES - LV_DPI);
     static const char * mbox_btns[] = {"Got it", ""};
     lv_mbox_add_btns(mbox, mbox_btns, NULL);    /*The default action is close*/
     lv_obj_align(mbox, parent, LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 2);
