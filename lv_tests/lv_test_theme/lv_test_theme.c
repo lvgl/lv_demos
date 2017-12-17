@@ -179,10 +179,6 @@ static void create_tab1(lv_theme_t * th, lv_obj_t *parent)
     lv_obj_t *roller = lv_roller_create(h, NULL);
     lv_roller_set_options(roller, "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday");
     lv_obj_set_height(roller, LV_DPI);
-
-    lv_obj_t *gauge = lv_gauge_create(h, NULL);
-    lv_gauge_set_value(gauge, 0, 40);
-    lv_obj_set_size(gauge, 3 * LV_DPI / 2, 3 * LV_DPI / 2);
 }
 
 static void create_tab2(lv_theme_t * th, lv_obj_t *parent)
@@ -191,6 +187,7 @@ static void create_tab2(lv_theme_t * th, lv_obj_t *parent)
 
     lv_obj_t *chart = lv_chart_create(parent, NULL);
     lv_obj_set_size(chart, w / 3, LV_VER_RES / 3);
+    lv_obj_set_pos(chart, LV_DPI / 10, LV_DPI / 10);
     lv_chart_series_t * s1 = lv_chart_add_series(chart, LV_COLOR_RED);
     lv_chart_set_next(chart, s1, 30);
     lv_chart_set_next(chart, s1, 20);
@@ -203,14 +200,20 @@ static void create_tab2(lv_theme_t * th, lv_obj_t *parent)
     lv_chart_set_next(chart, s1, 70);
     lv_chart_set_next(chart, s1, 75);
 
+
+    lv_obj_t *gauge = lv_gauge_create(parent, NULL);
+    lv_gauge_set_value(gauge, 0, 40);
+    lv_obj_set_size(gauge, 3 * LV_DPI / 2, 3 * LV_DPI / 2);
+    lv_obj_align(gauge, chart, LV_ALIGN_OUT_BOTTOM_LEFT, 0, LV_DPI / 4);
+
     lv_obj_t *ta = lv_ta_create(parent, NULL);
     lv_obj_set_size(ta, w / 3, LV_VER_RES / 4);
-    lv_obj_align(ta, NULL, LV_ALIGN_IN_TOP_RIGHT, 0, 0);
+    lv_obj_align(ta, NULL, LV_ALIGN_IN_TOP_RIGHT, -LV_DPI / 10, LV_DPI / 10);
     lv_ta_set_cursor_type(ta, LV_CURSOR_BLOCK);
 
     lv_obj_t *kb = lv_kb_create(parent, NULL);
     lv_obj_set_size(kb, 2 * w / 3, LV_VER_RES / 3);
-    lv_obj_align(kb, ta, LV_ALIGN_OUT_BOTTOM_RIGHT, 0, LV_DPI / 2);
+    lv_obj_align(kb, ta, LV_ALIGN_OUT_BOTTOM_RIGHT, 0, LV_DPI);
     lv_kb_set_ta(kb, ta);
 }
 

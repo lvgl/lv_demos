@@ -127,7 +127,7 @@ void lv_turorial_porting(void)
     lv_indev_drv_t indev_drv;                       /*Descriptor of an input device driver*/
     lv_indev_drv_init(&indev_drv);                  /*Basic initialization*/
     indev_drv.type = LV_INDEV_TYPE_POINTER;         /*The touchpad is pointer type device*/
-    indev_drv.read_fp = ex_tp_read;                 /*Library ready your touchpad via this function*/
+    indev_drv.read = ex_tp_read;                 /*Library ready your touchpad via this function*/
     lv_indev_drv_register(&indev_drv);              /*Finally register the driver*/
 
 }

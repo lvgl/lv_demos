@@ -89,7 +89,7 @@ void lv_tutorial_animations(void)
     a.start = lv_obj_get_x(btn2);
     a.end = a.start + (100 );
     a.fp = (lv_anim_fp_t)lv_obj_set_x;
-    a.path = lv_anim_get_path(LV_ANIM_PATH_LIN);
+    a.path = lv_anim_path_linear;
     a.end_cb = NULL;
     a.act_time = -1000;                         /*Negative number to set a delay*/
     a.time = 400;                               /*Animate in 400 ms*/
@@ -118,11 +118,11 @@ void lv_tutorial_animations(void)
     sa.style_start = &lv_style_btn_rel;     /*Style in the beginning (can be 'style_anim' as well)*/
     sa.style_end = &lv_style_pretty;        /*Style at the and (can be 'style_anim' as well)*/
     sa.act_time = -500;                     /*These parameters are the same as with the normal animation*/
-    sa.time = 100;
+    sa.time = 1000;
     sa.playback = 1;
-    sa.playback_pause = 0;
+    sa.playback_pause = 500;
     sa.repeat = 1;
-    sa.repeat_pause = 0;
+    sa.repeat_pause = 500;
     sa.end_cb = NULL;
     lv_style_anim_create(&sa);
 }

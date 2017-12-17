@@ -55,13 +55,13 @@ void lv_test_group_1(void)
     /*A keyboard will be simulated*/
     lv_indev_drv_t kb_drv;
     kb_drv.type = LV_INDEV_TYPE_KEYPAD;
-    kb_drv.read_fp = win_btn_get;
+    kb_drv.read = win_btn_get;
     lv_indev_t *win_kb_indev = lv_indev_drv_register(&kb_drv);
     lv_indev_set_group(win_kb_indev, g);
 
 #if ADD_KEYBOARD
     kb_drv.type = LV_INDEV_TYPE_KEYPAD;
-    kb_drv.read_fp = keyboard_read;
+    kb_drv.read = keyboard_read;
     lv_indev_t *kb_indev = lv_indev_register(&kb_drv);
     lv_indev_set_group(kb_indev, g);
 #endif

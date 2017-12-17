@@ -9,7 +9,7 @@
  */
 
 const lv_color_int_t img_flower_icon[] = {
-#if LV_COLOR_DEPTH == 8
+#if LV_COLOR_DEPTH == 8  || LV_COLOR_DEPTH == 1
   40, 128, 2, 5,  /* HEADER */
 
   /*IMAGE DATA*/

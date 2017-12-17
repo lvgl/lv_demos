@@ -107,7 +107,7 @@ static void obj_mem_leak_tester(void * param)
     static lv_obj_t *page;
 
     lv_anim_t a;
-    a.path = lv_anim_get_path(LV_ANIM_PATH_LIN);
+    a.path = lv_anim_path_linear;
     a.end_cb = NULL;
     a.act_time = 0;
     a.time = 500;

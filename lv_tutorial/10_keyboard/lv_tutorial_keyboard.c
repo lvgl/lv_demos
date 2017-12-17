@@ -196,7 +196,7 @@ static lv_res_t enable_action(lv_obj_t * btn)
 
         /*Create a message box*/
         lv_obj_t * mbox = lv_mbox_create(bg, NULL);
-        lv_mbox_set_text(mbox, "Really Enable the outputs?");
+        lv_mbox_set_text(mbox, "Turn on something?");
         lv_group_add_obj(g, mbox);          /*Add to he group*/
 
         /*Add two buttons*/
@@ -209,7 +209,7 @@ static lv_res_t enable_action(lv_obj_t * btn)
         lv_group_focus_obj(mbox);
         lv_group_focus_freeze(g, true);
     }
-    /*Disable is not dangerous so just change the button state*/
+    /*Just disable without message*/
     else {
         lv_btn_set_state(btn_enable, LV_BTN_STATE_REL);
     }

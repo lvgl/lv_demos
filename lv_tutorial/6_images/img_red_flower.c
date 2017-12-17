@@ -9,7 +9,7 @@
  */
 
 const lv_color_int_t img_red_flower[] = {
-#if LV_COLOR_DEPTH == 8
+#if LV_COLOR_DEPTH == 8 || LV_COLOR_DEPTH == 1
   200, 96, 9, 4,  /* HEADER */
 
   /*IMAGE DATA*/

@@ -990,7 +990,7 @@ const lv_color_int_t img_bubble_pattern[] = {
 };
 
 
-#elif LV_COLOR_DEPTH == 8
+#elif LV_COLOR_DEPTH == 8  || LV_COLOR_DEPTH == 1
 
 const lv_color_int_t img_bubble_pattern[] = {
 /*HEADER
