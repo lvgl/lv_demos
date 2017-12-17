@@ -164,6 +164,7 @@ static void create_tab1(lv_theme_t * th, lv_obj_t *parent)
     lv_obj_t * list = lv_list_create(h, NULL);
     lv_obj_t *list_btn;
     list_btn = lv_list_add(list, SYMBOL_GPS,  "GPS",  NULL);
+    lv_obj_set_size(list, LV_HOR_RES / 4, LV_VER_RES / 2);
     lv_btn_set_toggle(list_btn, true);
     lv_list_add(list, SYMBOL_WIFI, "WiFi", NULL);
     lv_list_add(list, SYMBOL_GPS, "GPS", NULL);
@@ -178,7 +179,8 @@ static void create_tab1(lv_theme_t * th, lv_obj_t *parent)
 
     lv_obj_t *roller = lv_roller_create(h, NULL);
     lv_roller_set_options(roller, "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday");
-    lv_obj_set_height(roller, LV_DPI);
+    lv_roller_set_selected(roller, 1, false);
+    lv_roller_set_row_count(roller, 3);
 }
 
 static void create_tab2(lv_theme_t * th, lv_obj_t *parent)
@@ -224,6 +226,7 @@ static void create_tab3(lv_theme_t * th, lv_obj_t *parent)
     lv_win_add_btn(win, SYMBOL_CLOSE, lv_win_close_action);
     lv_win_add_btn(win, SYMBOL_DOWN, NULL);
     lv_obj_set_size(win, LV_HOR_RES / 2, LV_VER_RES / 2);
+    lv_obj_set_pos(win, LV_DPI / 20, LV_DPI / 20);
     lv_obj_set_top(win, true);
 
     lv_obj_t *label = lv_label_create(win, NULL);
