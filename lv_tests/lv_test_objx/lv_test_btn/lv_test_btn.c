@@ -59,7 +59,7 @@ void lv_test_btn_1(void)
     lv_obj_t * btn4 = lv_btn_create(lv_scr_act(), NULL);
     lv_obj_align(btn4, btn1, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
     lv_btn_set_action(btn4, LV_BTN_ACTION_PR, width_inc);
-    lv_btn_set_action(btn4, LV_BTN_ACTION_REL, width_dec);
+    lv_btn_set_action(btn4, LV_BTN_ACTION_CLICK, width_dec);
     lv_btn_set_action(btn4,  LV_BTN_ACTION_LONG_PR, lv_obj_del);
 
     /* Test styles and copy. Same as 'btn4' but different styles */

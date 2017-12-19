@@ -131,7 +131,7 @@ static void create_tab1(lv_theme_t * th, lv_obj_t *parent)
     lv_obj_t *sw = lv_sw_create(sw_h, NULL);
 
     sw = lv_sw_create(sw_h, sw);
-    lv_sw_set_on(sw);
+    lv_sw_on(sw);
 
     lv_obj_t *bar = lv_bar_create(h, NULL);
     lv_bar_set_value(bar, 70);
@@ -180,7 +180,7 @@ static void create_tab1(lv_theme_t * th, lv_obj_t *parent)
     lv_obj_t *roller = lv_roller_create(h, NULL);
     lv_roller_set_options(roller, "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday");
     lv_roller_set_selected(roller, 1, false);
-    lv_roller_set_row_count(roller, 3);
+    lv_roller_set_visible_row_count(roller, 3);
 }
 
 static void create_tab2(lv_theme_t * th, lv_obj_t *parent)

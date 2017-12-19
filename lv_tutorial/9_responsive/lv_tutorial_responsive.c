@@ -16,6 +16,8 @@
  * - In lv_conf.h LV_DPI shows how many pixels are there in 1 inch
  * - You should use it as general unit:
  *     lv_obj_set_pos(btn1, LV_DPI / 2, LV_DPI);
+ * - Built-in styles and themes also use this to set padding and sizes.
+ *   So lowering LV_DPI will make paddings smaller.
  * - This way changing to higher pixel density display won't brake your design
  *
  * ALIGN

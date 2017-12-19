@@ -63,7 +63,7 @@ void lv_test_sw_1(void)
     lv_sw_set_style(sw2, LV_SW_STYLE_KNOB_OFF, &lv_style_btn_pr);
     lv_sw_set_style(sw2, LV_SW_STYLE_KNOB_ON, &lv_style_btn_tgl_pr);
 
-    lv_sw_set_on(sw2);
+    lv_sw_on(sw2);
     lv_obj_align(sw2, sw1, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
 
     lv_obj_t *sw3 = lv_sw_create(lv_scr_act(), sw2);

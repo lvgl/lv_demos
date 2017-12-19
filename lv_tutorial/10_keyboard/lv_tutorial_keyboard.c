@@ -127,7 +127,7 @@ static void gui_create(void)
 
     /*Create a button*/
     btn_enable = lv_btn_create(lv_scr_act(), NULL);
-    lv_btn_set_action(btn_enable, LV_BTN_ACTION_REL, enable_action);
+    lv_btn_set_action(btn_enable, LV_BTN_ACTION_CLICK, enable_action);
     lv_cont_set_fit(btn_enable, true, true);
     lv_group_add_obj(g, btn_enable);                /*Add to the group*/
     lv_obj_t * l = lv_label_create(btn_enable, NULL);
@@ -146,7 +146,7 @@ static void kaypad_create(void)
 {
     /*Next button*/
     lv_obj_t * btn_next = lv_btn_create(lv_scr_act(), NULL);
-    lv_btn_set_action(btn_next, LV_BTN_ACTION_REL, kb_next);
+    lv_btn_set_action(btn_next, LV_BTN_ACTION_CLICK, kb_next);
     lv_btn_set_fit(btn_next, true, true);
     lv_obj_t * l = lv_label_create(btn_next, NULL);
     lv_label_set_text(l, ">");
@@ -154,21 +154,21 @@ static void kaypad_create(void)
 
     /*Increment button*/
     lv_obj_t * btn_inc = lv_btn_create(lv_scr_act(), btn_next);
-    lv_btn_set_action(btn_inc, LV_BTN_ACTION_REL, kb_dec);
+    lv_btn_set_action(btn_inc, LV_BTN_ACTION_CLICK, kb_dec);
     l = lv_label_create(btn_inc, NULL);
     lv_label_set_text(l, "-");
     lv_obj_align(btn_inc, btn_next, LV_ALIGN_OUT_RIGHT_MID, LV_DPI / 4, 0);
 
     /*Decrement button*/
     lv_obj_t * btn_dec = lv_btn_create(lv_scr_act(), btn_next);
-    lv_btn_set_action(btn_dec, LV_BTN_ACTION_REL, kb_inc);
+    lv_btn_set_action(btn_dec, LV_BTN_ACTION_CLICK, kb_inc);
     l = lv_label_create(btn_dec, NULL);
     lv_label_set_text(l, "+");
     lv_obj_align(btn_dec, btn_inc, LV_ALIGN_OUT_RIGHT_MID, LV_DPI / 4, 0);
 
     /*Select button*/
     lv_obj_t * btn_sel = lv_btn_create(lv_scr_act(), btn_next);
-    lv_btn_set_action(btn_sel, LV_BTN_ACTION_REL, kb_sel);
+    lv_btn_set_action(btn_sel, LV_BTN_ACTION_CLICK, kb_sel);
     l = lv_label_create(btn_sel, NULL);
     lv_label_set_text(l, "!");
     lv_obj_align(btn_sel, btn_dec, LV_ALIGN_OUT_RIGHT_MID, LV_DPI / 4, 0);

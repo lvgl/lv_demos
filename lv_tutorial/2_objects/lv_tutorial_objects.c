@@ -107,7 +107,7 @@ void lv_tutorial_objects(void)
      ***********************/
     /*Create a button*/
     lv_obj_t *btn1 = lv_btn_create(lv_scr_act(), NULL);          /*Create a button on the currently loaded screen*/
-    lv_btn_set_action(btn1, LV_BTN_ACTION_REL, btn_rel_action); /*Set function to be called when the button is released*/
+    lv_btn_set_action(btn1, LV_BTN_ACTION_CLICK, btn_rel_action); /*Set function to be called when the button is released*/
     lv_obj_align(btn1, label, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);  /*Align below the label*/
 
     /*Create a label on the button (the 'label' variable can be reused)*/
