@@ -1,5 +1,5 @@
 /**
- * @file tp_cal.c
+ * @file tpcal.c
  *
  */
 
@@ -54,7 +54,7 @@ static lv_obj_t *circ_area;
 /**
  * Create a touch pad calibration screen
  */
-void tp_cal_create(void)
+void tpcal_create(void)
 {
     state = TP_CAL_STATE_INIT;
 

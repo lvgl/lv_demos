@@ -1,10 +1,10 @@
 /**
- * @file files.h
+ * @file tpcal.h
  *
  */
 
-#ifndef FILES_H
-#define FILES_H
+#ifndef TPCAL_H
+#define TPCAL_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,7 +13,6 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-#include "lvgl/lvgl.h"
 
 /*********************
  *      DEFINES
@@ -27,12 +26,18 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
+/**
+ * Create a touch pad calibration screen
+ */
+void tpcal_create(void);
+
 /**********************
  *      MACROS
  **********************/
+
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
 
-#endif /*FILES_H*/
+#endif /*TP_CAL_H*/

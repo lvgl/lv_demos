@@ -22,10 +22,14 @@ extern "C" {
  *      TYPEDEFS
  **********************/
 
-
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
+
+/**
+ * Open a graphics benchmark
+ */
+void bechmark_create(void);
 /**********************
  *      MACROS
  **********************/

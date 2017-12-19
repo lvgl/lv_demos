@@ -25,7 +25,17 @@ extern "C" {
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
-void terminal_init(void);
+
+/**
+ * Open a terminal
+ * @return pointer to the terminal window
+ */
+lv_obj_t * terminal_create(void);
+
+/**
+ * Add data to the terminal
+ * @param txt_in character sting to add to the terminal
+ */
 void terminal_add(const char * txt_in);
 
 /**********************

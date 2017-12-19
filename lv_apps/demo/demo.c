@@ -43,6 +43,9 @@ LV_IMG_DECLARE(img_bubble_pattern);
  *   GLOBAL FUNCTIONS
  **********************/
 
+/**
+ * Create a demo application
+ */
 void demo_create(void)
 {
 #if DEMO_WALLPAPER

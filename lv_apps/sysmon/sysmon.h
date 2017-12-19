@@ -26,6 +26,11 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
+/**
+ * Initialize the system monitor
+ */
+void sysmon_create(void);
+
 /**********************
  *      MACROS
  **********************/
