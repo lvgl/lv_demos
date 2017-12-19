@@ -1,6 +1,10 @@
-# Examples
-Examples for Littlev Graphics Library.
+# Examples for Littlev Graphics Library.
 
-It will be comptible with v5.0. (Current version is 4.2)
+## Tutorial
+A step-by-step guide to teach the most iportant parts of the Graphics Library.
 
-The Applications are moved here as examples
+## Applactions
+Real life GUI examples which can be adapted in your own project.
+
+## Tests
+Test cases to validate the features of LittelvGL
