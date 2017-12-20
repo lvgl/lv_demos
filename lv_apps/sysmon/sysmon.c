@@ -27,18 +27,18 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-
 static void sysmon_task(void * param);
+static lv_res_t win_close_action(lv_obj_t * btn);
 
 /**********************
  *  STATIC VARIABLES
  **********************/
-
+static lv_obj_t * win;
 static lv_obj_t * chart;
 static lv_chart_series_t * cpu_ser;
 static lv_chart_series_t * mem_ser;
 static lv_obj_t * info_label;
-
+static lv_task_t * refr_task;
 
 /**********************
  *      MACROS
@@ -53,11 +53,10 @@ static lv_obj_t * info_label;
  */
 void sysmon_create(void)
 {
-    lv_task_create(sysmon_task, REFR_TIME, LV_TASK_PRIO_LOW, NULL);
+    refr_task = lv_task_create(sysmon_task, REFR_TIME, LV_TASK_PRIO_LOW, NULL);
 
-    lv_obj_t * win;
     win = lv_win_create(lv_scr_act(), NULL);
-    lv_win_add_btn(win, SYMBOL_CLOSE, lv_win_close_action);
+    lv_win_add_btn(win, SYMBOL_CLOSE, win_close_action);
 
     /*Make the window content responsive*/
     lv_win_set_layout(win, LV_LAYOUT_PRETTY);
@@ -143,3 +142,17 @@ static void sysmon_task(void * param)
 
 }
 
+/**
+ * Called when the window's close button is clicked
+ * @param btn pointer to the close button
+ * @return LV_ACTION_RES_INV because the button is deleted in the function
+ */
+static lv_res_t win_close_action(lv_obj_t * btn)
+{
+    lv_obj_del(win);
+    win = NULL;
+
+    lv_task_del(refr_task);
+    refr_task = NULL;
+    return LV_RES_INV;
+}
