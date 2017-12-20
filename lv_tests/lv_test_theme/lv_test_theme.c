@@ -205,7 +205,7 @@ static void create_tab2(lv_theme_t * th, lv_obj_t *parent)
 
     lv_obj_t *gauge = lv_gauge_create(parent, NULL);
     lv_gauge_set_value(gauge, 0, 40);
-    lv_obj_set_size(gauge, 3 * LV_DPI / 2, 3 * LV_DPI / 2);
+    lv_obj_set_size(gauge, w / 4, w / 4);
     lv_obj_align(gauge, chart, LV_ALIGN_OUT_BOTTOM_LEFT, 0, LV_DPI / 4);
 
     lv_obj_t *ta = lv_ta_create(parent, NULL);
