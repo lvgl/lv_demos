@@ -25,6 +25,10 @@ extern "C" {
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
+
+/**
+ * Create a demo application
+ */
 void demo_create(void);
 
 /**********************

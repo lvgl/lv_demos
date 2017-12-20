@@ -95,7 +95,6 @@ void sysmon_create(void)
 
 /**
  * Called periodically to monitor the CPU and memory usage.
- * It refreshes the shortcuts and windows and also add notifications if there is any problem.
  * @param param unused
  */
 static void sysmon_task(void * param)
