@@ -99,13 +99,12 @@ void sysmon_create(void)
  */
 static void sysmon_task(void * param)
 {
-    terminal_add("alma\n");
     /*Get CPU and memory information */
     uint8_t cpu_busy;
     cpu_busy = 100 - lv_task_get_idle();
 
     uint8_t mem_used_pct = 0;
-#if  DM_CUSTOM == 0
+#if  LV_MEM_CUSTOM == 0
     lv_mem_monitor_t mem_mon;
     lv_mem_monitor(&mem_mon);
     mem_used_pct = mem_mon.used_pct;
@@ -123,7 +122,7 @@ static void sysmon_task(void * param)
             cpu_busy,
             LV_TXT_COLOR_CMD);
 
-#if DM_CUSTOM == 0
+#if LV_MEM_CUSTOM == 0
     sprintf(buf_long, "%s"LV_TXT_COLOR_CMD"%s MEMORY: %d %%"LV_TXT_COLOR_CMD"\n"
                       "Total: %d bytes\n"
                       "Used: %d bytes\n"

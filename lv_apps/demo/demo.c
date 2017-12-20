@@ -84,7 +84,6 @@ void demo_create(void)
 #endif
 
     lv_obj_t *tab1 = lv_tabview_add_tab(tv, "Write");
-    lv_page_set_style(tab1, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
     lv_obj_t *tab2 = lv_tabview_add_tab(tv, "List");
     lv_obj_t *tab3 = lv_tabview_add_tab(tv, "Chart");
 
@@ -111,55 +110,62 @@ void demo_create(void)
 
 static void write_create(lv_obj_t *parent)
 {
-     static lv_style_t style_ta;
-     lv_style_copy(&style_ta, &lv_style_pretty);
-     style_ta.body.opa = LV_OPA_30;
-     style_ta.body.radius = 0;
-     style_ta.text.color = LV_COLOR_WHITE;
+//    lv_page_set_sb_mode(parent, LV_SB_MODE_OFF);
+    lv_page_set_style(parent, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
+    lv_page_set_style(parent, LV_PAGE_STYLE_SCRL, &lv_style_transp_fit);
 
-     static lv_style_t style_kb;
-     lv_style_copy(&style_kb, &lv_style_plain);
-     style_kb.body.opa = LV_OPA_70;
-     style_kb.body.main_color = LV_COLOR_HEX3(0x333);
-     style_kb.body.grad_color = LV_COLOR_HEX3(0x333);
-     style_kb.body.padding.hor = 0;
-     style_kb.body.padding.ver = 0;
-     style_kb.body.padding.inner = 0;
+    static lv_style_t style_ta;
+    lv_style_copy(&style_ta, &lv_style_pretty);
+    style_ta.body.opa = LV_OPA_30;
+    style_ta.body.radius = 0;
+    style_ta.text.color = LV_COLOR_WHITE;
 
-     static lv_style_t style_kb_rel;
-     lv_style_copy(&style_kb_rel, &lv_style_plain);
-     style_kb_rel.body.empty = 1;
-     style_kb_rel.body.radius = 0;
-     style_kb_rel.body.border.width = 1;
-     style_kb_rel.body.border.color = LV_COLOR_SILVER;
-     style_kb_rel.body.border.opa = LV_OPA_50;
-     style_kb_rel.text.color = LV_COLOR_WHITE;
+    static lv_style_t style_kb;
+    lv_style_copy(&style_kb, &lv_style_plain);
+    style_kb.body.opa = LV_OPA_70;
+    style_kb.body.main_color = LV_COLOR_HEX3(0x333);
+    style_kb.body.grad_color = LV_COLOR_HEX3(0x333);
+    style_kb.body.padding.hor = 0;
+    style_kb.body.padding.ver = 0;
+    style_kb.body.padding.inner = 0;
 
-     static lv_style_t style_kb_pr;
-     lv_style_copy(&style_kb_pr, &lv_style_plain);
-     style_kb_pr.body.radius = 0;
-     style_kb_pr.body.opa = LV_OPA_50;
-     style_kb_pr.body.main_color = LV_COLOR_WHITE;
-     style_kb_pr.body.grad_color = LV_COLOR_WHITE;
-     style_kb_pr.body.border.width = 1;
-     style_kb_pr.body.border.color = LV_COLOR_SILVER;
+    static lv_style_t style_kb_rel;
+    lv_style_copy(&style_kb_rel, &lv_style_plain);
+    style_kb_rel.body.empty = 1;
+    style_kb_rel.body.radius = 0;
+    style_kb_rel.body.border.width = 1;
+    style_kb_rel.body.border.color = LV_COLOR_SILVER;
+    style_kb_rel.body.border.opa = LV_OPA_50;
+    style_kb_rel.text.color = LV_COLOR_WHITE;
 
-     ta = lv_ta_create(parent, NULL);
-     lv_obj_set_size(ta, lv_page_get_scrl_width(parent), lv_obj_get_height(parent) / 2);
-     lv_ta_set_style(ta, LV_TA_STYLE_BG, &style_ta);
-     lv_ta_set_text(ta, "");
+    static lv_style_t style_kb_pr;
+    lv_style_copy(&style_kb_pr, &lv_style_plain);
+    style_kb_pr.body.radius = 0;
+    style_kb_pr.body.opa = LV_OPA_50;
+    style_kb_pr.body.main_color = LV_COLOR_WHITE;
+    style_kb_pr.body.grad_color = LV_COLOR_WHITE;
+    style_kb_pr.body.border.width = 1;
+    style_kb_pr.body.border.color = LV_COLOR_SILVER;
 
-     lv_obj_t *kb = lv_kb_create(parent, NULL);
-     lv_obj_set_size(kb, lv_page_get_scrl_width(parent), lv_obj_get_height(parent) / 2);
-     lv_obj_align(kb, ta, LV_ALIGN_OUT_BOTTOM_MID, 0, 0);
-     lv_kb_set_ta(kb, ta);
-     lv_kb_set_style(kb, LV_KB_STYLE_BG, &style_kb);
-     lv_kb_set_style(kb, LV_KB_STYLE_BTN_REL, &style_kb_rel);
-     lv_kb_set_style(kb, LV_KB_STYLE_BTN_PR, &style_kb_pr);
+    ta = lv_ta_create(parent, NULL);
+    lv_obj_set_size(ta, lv_page_get_scrl_width(parent), lv_obj_get_height(parent) / 2);
+    lv_ta_set_style(ta, LV_TA_STYLE_BG, &style_ta);
+    lv_ta_set_text(ta, "");
+
+    lv_obj_t *kb = lv_kb_create(parent, NULL);
+    lv_obj_set_size(kb, lv_page_get_scrl_width(parent), lv_obj_get_height(parent) / 2);
+    lv_obj_align(kb, ta, LV_ALIGN_OUT_BOTTOM_MID, 0, 0);
+    lv_kb_set_ta(kb, ta);
+    lv_kb_set_style(kb, LV_KB_STYLE_BG, &style_kb);
+    lv_kb_set_style(kb, LV_KB_STYLE_BTN_REL, &style_kb_rel);
+    lv_kb_set_style(kb, LV_KB_STYLE_BTN_PR, &style_kb_pr);
 }
 
 static void list_create(lv_obj_t *parent)
 {
+    lv_page_set_style(parent, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
+    lv_page_set_style(parent, LV_PAGE_STYLE_SCRL, &lv_style_transp_fit);
+
     lv_page_set_scrl_fit(parent, false, false);
     lv_page_set_scrl_height(parent, lv_obj_get_height(parent));
     lv_page_set_sb_mode(parent, LV_SB_MODE_OFF);
@@ -206,6 +212,9 @@ static void list_create(lv_obj_t *parent)
 
 static void chart_create(lv_obj_t *parent)
 {
+    lv_page_set_style(parent, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
+    lv_page_set_style(parent, LV_PAGE_STYLE_SCRL, &lv_style_transp_fit);
+
     lv_page_set_scrl_fit(parent, false, false);
     lv_page_set_scrl_height(parent, lv_obj_get_height(parent));
     lv_page_set_sb_mode(parent, LV_SB_MODE_OFF);
@@ -266,7 +275,7 @@ static void chart_create(lv_obj_t *parent)
     lv_slider_set_style(slider, LV_SLIDER_STYLE_BG, &style_bar);
     lv_slider_set_style(slider, LV_SLIDER_STYLE_INDIC, &style_indic);
     lv_slider_set_style(slider, LV_SLIDER_STYLE_KNOB, &style_knob);
-    lv_obj_set_size(slider, lv_obj_get_width(parent) / 2, LV_DPI / 2);
+    lv_obj_set_size(slider, lv_obj_get_width(chart), LV_DPI / 2);
     lv_obj_align(slider, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, - LV_DPI / 4); /*Align below the slider*/
     lv_slider_set_action(slider, slider_action);
     lv_slider_set_range(slider, 10, 1000);

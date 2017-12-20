@@ -7,6 +7,7 @@
  *      INCLUDES
  *********************/
 #include "lv_test_obj.h"
+#include "../../lv_examples.h"  /*Just to include somewhere to test 'lv_example' version*/
 
 /*********************
  *      DEFINES

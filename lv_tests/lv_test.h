@@ -13,6 +13,8 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
+#include "../lv_examples.h"
+
 #include "lv_test_obj/lv_test_obj.h"
 
 #include "lv_test_objx/lv_test_bar/lv_test_bar.h"
