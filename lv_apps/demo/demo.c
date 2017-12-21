@@ -61,6 +61,7 @@ void demo_create(void)
     lv_style_copy(&style_tv_btn_bg, &lv_style_plain);
     style_tv_btn_bg.body.main_color = LV_COLOR_HEX(0x487fb7);
     style_tv_btn_bg.body.grad_color = LV_COLOR_HEX(0x487fb7);
+    style_tv_btn_bg.body.padding.ver = 0;
 
     static lv_style_t style_tv_btn_rel;
     lv_style_copy(&style_tv_btn_rel, &lv_style_btn_rel);
