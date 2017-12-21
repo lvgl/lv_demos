@@ -180,11 +180,11 @@ static void refr_monitor(uint32_t time_ms, uint32_t px_num)
 {
     if(caputre_next != false) {
         char w_buf[256];
-        if(time_ms != 0) sprintf(w_buf, "Screen load: %d ms\n%d px/ms", time_ms, px_num/time_ms);
-        else sprintf(w_buf, "Screen load: %d ms\nN/A px/ms", time_ms);
+        if(time_ms != 0) sprintf(w_buf, "Screen load: %d ms\n%d px/ms", (int)time_ms, (int)px_num/time_ms);
+        else sprintf(w_buf, "Screen load: %d ms\nN/A px/ms", (int)time_ms);
 
         char s_buf[16];
-        sprintf(s_buf, "%d ms", time_ms);
+        sprintf(s_buf, "%d ms", (int)time_ms);
 
         lv_label_set_text(result_label, w_buf);
 

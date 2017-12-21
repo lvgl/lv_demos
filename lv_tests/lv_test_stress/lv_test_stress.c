@@ -14,6 +14,7 @@
 /*********************
  *      DEFINES
  *********************/
+#define USE_PRINTF		0
 
 /**********************
  *      TYPEDEFS
@@ -94,10 +95,14 @@ void lv_test_stress_1(void)
 
 static void mem_monitor(void * param)
 {
-
+#if USE_PRINTF
     lv_mem_monitor_t mon;
     lv_mem_monitor(&mon);
-    printf("used: %6d (%3d %%), frag: %3d %%, big free: %6d\n", mon.total_size - mon.free_size, mon.used_pct, mon.frag_pct, mon.free_biggest_size);
+    printf("used: %6d (%3d %%), frag: %3d %%, big free: %6d\n", (int)mon.total_size - mon.free_size,
+    		                                                     mon.used_pct,
+																 mon.frag_pct,
+																 (int)mon.free_biggest_size);
+#endif
 }
 
 static void obj_mem_leak_tester(void * param)
