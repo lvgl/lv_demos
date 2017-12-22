@@ -33,6 +33,8 @@
 #include "../2_objects/lv_tutorial_objects.h"
 #include "lvgl/lvgl.h"
 
+#if USE_LV_THEME_ALIEN != 0
+
 /*********************
  *      DEFINES
  *********************/
@@ -78,3 +80,4 @@ void lv_tutorial_themes(void)
 /**********************
  *   STATIC FUNCTIONS
  **********************/
+#endif
