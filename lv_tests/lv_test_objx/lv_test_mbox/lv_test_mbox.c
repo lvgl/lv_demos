@@ -48,6 +48,7 @@ void lv_test_mbox_1(void)
     lv_obj_t *mbox2 = lv_mbox_create(lv_scr_act(), NULL);
     lv_mbox_add_btns(mbox2, btns2, NULL);
     lv_mbox_set_text(mbox2, "Message");
+    lv_obj_set_width(mbox2, LV_HOR_RES / 2);
     lv_obj_align(mbox2, mbox1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
 
     /*Add styles*/
@@ -75,9 +76,9 @@ void lv_test_mbox_1(void)
     btn_rel.body.border.color = LV_COLOR_WHITE;
 
     lv_obj_t *mbox3 = lv_mbox_create(lv_scr_act(), mbox2);
-    lv_mbox_set_style(mbox3, LV_MBOX_STYLE_BG, &bg);
-    lv_mbox_set_style(mbox3, LV_MBOX_STYLE_BTN_BG,  &btn_bg);
     lv_mbox_set_style(mbox3, LV_MBOX_STYLE_BTN_REL, &btn_rel);
+    lv_mbox_set_style(mbox3, LV_MBOX_STYLE_BTN_BG,  &btn_bg);
+    lv_mbox_set_style(mbox3, LV_MBOX_STYLE_BG, &bg);
     lv_obj_align(mbox3, mbox1, LV_ALIGN_OUT_RIGHT_TOP, 10, 0);
     lv_mbox_set_action(mbox3, mbox_action);
 
