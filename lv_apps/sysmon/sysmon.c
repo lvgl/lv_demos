@@ -136,7 +136,7 @@ static void sysmon_task(void * param)
 #else
     sprintf(buf_long, "%s"LV_TXT_COLOR_CMD"%s MEMORY: N/A"LV_TXT_COLOR_CMD,
             buf_long,
-            MEM_LABEL_COLOR,);
+            MEM_LABEL_COLOR);
 #endif
     lv_label_set_text(info_label, buf_long);
 

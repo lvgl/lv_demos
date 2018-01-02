@@ -119,7 +119,7 @@ static void write_create(lv_obj_t *parent)
     lv_style_copy(&style_ta, &lv_style_pretty);
     style_ta.body.opa = LV_OPA_30;
     style_ta.body.radius = 0;
-    style_ta.text.color = LV_COLOR_WHITE;
+    style_ta.text.color = LV_COLOR_HEX3(0x222);
 
     static lv_style_t style_kb;
     lv_style_copy(&style_kb, &lv_style_plain);
