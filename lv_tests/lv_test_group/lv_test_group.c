@@ -9,7 +9,7 @@
 #include "lv_test_group.h"
 #include "lvgl/lv_hal/lv_hal_indev.h"
 
-#define ADD_KEYBOARD   0
+#define ADD_KEYBOARD   0        /*Required: USE_KEYBOARD   1   in lv_drv_conf.h (lv_drivers repository)*/
 
 #if ADD_KEYBOARD
 #include "lv_drivers/indev/keyboard.h"
