@@ -40,8 +40,7 @@
  *      INCLUDES
  *********************/
 #include "lv_tutorial_porting.h"
-#include "lvgl/lvgl.h"
-
+#if  USE_LV_TUTORIALS 
 /*********************
  *      DEFINES
  *********************/
@@ -234,3 +233,4 @@ static bool ex_tp_read(lv_indev_data_t *data)
     return false;   /*false: no more data to read because we are no buffering*/
 }
 
+#endif /*USE_LV_TUTORIALS*/

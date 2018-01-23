@@ -7,6 +7,8 @@
  *      INCLUDES
  *********************/
 #include "lv_test_group.h"
+#if USE_LV_GROUP && USE_LV_TESTS    
+
 #include "lvgl/lv_hal/lv_hal_indev.h"
 
 #define ADD_KEYBOARD   0        /*Required: USE_KEYBOARD   1   in lv_drv_conf.h (lv_drivers repository)*/
@@ -231,3 +233,5 @@ static lv_res_t win_btn_acion(lv_obj_t *btn)
 
     return LV_RES_OK;
 }
+
+#endif /* USE_LV_GROUP && USE_LV_TESTS */

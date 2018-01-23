@@ -8,7 +8,7 @@
  *********************/
 #include "lv_test_list.h"
 
-#if USE_LV_LIST != 0
+#if USE_LV_LIST && USE_LV_TESTS
 
 /*********************
  *      DEFINES
@@ -119,4 +119,4 @@ static lv_res_t list_move(lv_obj_t *btn)
     return LV_RES_OK;
 }
 
-#endif /*USE_LV_LIST*/
+#endif /*USE_LV_LIST && USE_LV_TESTS*/

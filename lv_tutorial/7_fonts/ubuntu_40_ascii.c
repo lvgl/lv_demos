@@ -1,3 +1,6 @@
+#include "ubuntu_40_ascii.h"
+#if USE_LV_TUTORIALS
+
 #include <stdint.h>
 #include "lvgl/lv_misc/lv_font.h"
 
@@ -5938,5 +5941,8 @@ lv_font_t font_ubuntu_40_ascii =
     ubuntu_40_ascii_bitmap,    /*Glyph's bitmap*/
     ubuntu_40_ascii_map,    /*Glyph start indexes in the bitmap*/
     ubuntu_40_ascii_width,    /*Glyph widths (columns)*/
-    NULL         /*No next page by default*/};
+    NULL         /*No next page by default*/
+};
 
+
+#endif /*USE_LV_TUTORIALS*/

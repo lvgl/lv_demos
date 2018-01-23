@@ -95,4 +95,4 @@ void lv_test_slider_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_SLIDER*/
+#endif /*USE_LV_SLIDER && USE_LV_TESTS*/

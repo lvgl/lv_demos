@@ -1,5 +1,7 @@
 #include <stdint.h> 
 #include "lvgl/lv_misc/lv_color.h"
+#include "lv_ex_conf.h"
+#if USE_LV_TESTS
 
 
 /* Width = 40
@@ -151,3 +153,5 @@ const lv_color_int_t img_flower_icon[] = {
 #error  "Invalid color depth"
 #endif
 };  /*Arrray end*/
+
+#endif /*USE_LV_EXAMPLE_TESTS*/

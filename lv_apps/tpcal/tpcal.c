@@ -6,8 +6,9 @@
 /*********************
  *      INCLUDES
  *********************/
-#include "lvgl/lvgl.h"
-#include "stdio.h"
+#include "tpcal.h"
+#if USE_LV_TPCAL
+#include <stdio.h>
 
 /*********************
  *      DEFINES
@@ -278,3 +279,5 @@ static lv_res_t btn_click_action(lv_obj_t *scr)
 
     return LV_RES_OK;
 }
+
+#endif /*USE_LV_TPCAL*/

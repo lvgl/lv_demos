@@ -6,12 +6,12 @@
 /*********************
  *      INCLUDES
  *********************/
-#include "lvgl/lvgl.h"
+#include "demo.h"
+#if USE_LV_DEMO
 
 /*********************
  *      DEFINES
  *********************/
-#define DEMO_WALLPAPER  1
 
 /**********************
  *      TYPEDEFS
@@ -31,7 +31,7 @@ static lv_res_t list_btn_action(lv_obj_t *slider);
  **********************/
 static lv_obj_t *chart;
 static lv_obj_t *ta;
-#if DEMO_WALLPAPER
+#if LV_DEMO_WALLPAPER
 LV_IMG_DECLARE(img_bubble_pattern);
 #endif
 
@@ -48,7 +48,7 @@ LV_IMG_DECLARE(img_bubble_pattern);
  */
 void demo_create(void)
 {
-#if DEMO_WALLPAPER
+#if LV_DEMO_WALLPAPER
     lv_img_create_file("bg", img_bubble_pattern);
     lv_obj_t *wp = lv_img_create(lv_scr_act(), NULL);
     lv_img_set_upscale(wp, true);
@@ -79,7 +79,7 @@ void demo_create(void)
 
     lv_obj_t *tv = lv_tabview_create(lv_scr_act(), NULL);
 
-#if DEMO_WALLPAPER
+#if LV_DEMO_WALLPAPER
     lv_obj_set_parent(wp, ((lv_tabview_ext_t *) tv->ext_attr)->content);
     lv_obj_set_pos(wp, 0, -5);
 #endif
@@ -88,7 +88,7 @@ void demo_create(void)
     lv_obj_t *tab2 = lv_tabview_add_tab(tv, "List");
     lv_obj_t *tab3 = lv_tabview_add_tab(tv, "Chart");
 
-#if DEMO_WALLPAPER == 0
+#if LV_DEMO_WALLPAPER == 0
     /*Blue bg instead of wallpaper*/
     lv_tabview_set_style(tv, LV_TABVIEW_STYLE_BG, &style_tv_btn_bg);
 #endif
@@ -310,3 +310,5 @@ static lv_res_t list_btn_action(lv_obj_t *btn)
 
     return LV_RES_OK;
 }
+
+#endif  /*USE_LV_DEMO*/

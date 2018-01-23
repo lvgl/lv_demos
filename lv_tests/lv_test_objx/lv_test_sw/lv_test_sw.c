@@ -9,7 +9,7 @@
 #include <stdio.h>  /*For printf in the action*/
 #include "lv_test_sw.h"
 
-#if USE_LV_SW != 0
+#if USE_LV_SW && USE_LV_TESTS
 
 /*********************
  *      DEFINES
@@ -82,4 +82,4 @@ static lv_res_t sw_action(lv_obj_t *sw)
 }
 
 
-#endif /*USE_LV_SW*/
+#endif /*USE_LV_SW && USE_LV_TESTS*/

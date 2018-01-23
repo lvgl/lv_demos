@@ -47,6 +47,8 @@
  *      INCLUDES
  *********************/
 #include "lv_tutorial_images.h"
+#if USE_LV_TUTORIALS
+
 #include "lvgl/lvgl.h"
 #include <stdio.h>
 #include <errno.h>
@@ -238,3 +240,4 @@ static lv_fs_res_t pcfs_tell (void * file_p, uint32_t * pos_p)
     return LV_FS_RES_OK;
 }
 
+#endif /*USE_LV_TUTORIALS*/

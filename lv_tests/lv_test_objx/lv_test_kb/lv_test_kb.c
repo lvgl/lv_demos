@@ -94,4 +94,4 @@ void lv_test_kb_2(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_KB*/
+#endif /*USE_LV_KB && USE_LV_TESTS*/

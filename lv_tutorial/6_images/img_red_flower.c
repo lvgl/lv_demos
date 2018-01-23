@@ -1,3 +1,6 @@
+#include "../../../lv_ex_conf.h"
+#if USE_LV_TUTORIALS
+
 #include <stdint.h> 
 #include "lvgl/lv_misc/lv_color.h"
 
@@ -481,3 +484,5 @@ const lv_color_int_t img_red_flower[] = {
 #error  "Invalid color depth"
 #endif
 };  /*Arrray end*/
+
+#endif /*USE_LV_TUTORIALS*/

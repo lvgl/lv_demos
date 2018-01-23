@@ -27,7 +27,7 @@
  *      INCLUDES
  *********************/
 #include "lv_tutorial_keyboard.h"
-#include "lvgl/lvgl.h"
+#if USE_LV_TUTORIALS
 
 /*********************
  *      DEFINES
@@ -291,3 +291,5 @@ static lv_res_t kb_sel(lv_obj_t * btn)
 
     return LV_RES_OK;
 }
+
+#endif /*USE_LV_TUTORIALS*/

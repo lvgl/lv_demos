@@ -10,7 +10,7 @@
 
 #include "lv_test_ddlist.h"
 
-#if USE_LV_DDLIST != 0
+#if USE_LV_DDLIST && USE_LV_TESTS
 
 /*********************
  *      DEFINES
@@ -79,5 +79,5 @@ void lv_test_ddlist_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_DDLIST*/
+#endif /*USE_LV_DDLIST && USE_LV_TESTS*/
 

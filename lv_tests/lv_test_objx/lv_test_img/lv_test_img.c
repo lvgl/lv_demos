@@ -8,7 +8,7 @@
  *********************/
 #include "lv_test_img.h"
 
-#if USE_LV_IMG != 0
+#if USE_LV_IMG && USE_LV_TESTS
 
 /*********************
  *      DEFINES
@@ -79,4 +79,4 @@ void lv_test_img_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_IMG*/
+#endif /*USE_LV_IMG && USE_LV_TESTS*/

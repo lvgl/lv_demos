@@ -1,6 +1,10 @@
 #include <stdint.h> 
 #include "lvgl/lv_misc/lv_color.h"
 
+#include "../../../lv_ex_conf.h"
+#if  LV_DEMO_WALLPAPER
+
+
 #if LV_COLOR_DEPTH == 24
 
 const lv_color_int_t img_bubble_pattern[] = {
@@ -1489,3 +1493,6 @@ const lv_color_int_t img_bubble_pattern[] = {
 #error "img_bubble_pattern: Color depth mismatch"
 
 #endif	/*Color depth check*/
+
+#endif	/*LV_DEMO_WALLPAPER*/
+

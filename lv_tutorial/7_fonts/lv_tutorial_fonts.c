@@ -81,6 +81,8 @@
  *      INCLUDES
  *********************/
 #include "lv_tutorial_fonts.h"
+#if USE_LV_TUTORIALS
+
 #include "lvgl/lvgl.h"
 #include "ubuntu_40_ascii.h"
 #include "ubuntu_40_cyrillic.h"
@@ -133,3 +135,5 @@ void lv_tutorial_fonts(void)
 /**********************
  *   STATIC FUNCTIONS
  **********************/
+
+#endif /*USE_LV_TUTORIALS*/

@@ -1,3 +1,6 @@
+#include "ubuntu_40_cyrillic.h"
+#if USE_LV_TUTORIALS
+
 #include <stdint.h>
 #include "lvgl/lv_misc/lv_font.h"
 
@@ -15627,3 +15630,4 @@ lv_font_t font_ubuntu_40_cyrillic =
     NULL         /*No next page by default*/
 };
 
+#endif /*USE_LV_TUTORIALS*/

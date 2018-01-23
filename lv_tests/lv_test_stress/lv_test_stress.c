@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include "lv_test_stress.h"
 
-#if USE_LV_ANIMATION
+#if USE_LV_TESTS && USE_LV_ANIMATION
 
 /*********************
  *      DEFINES
@@ -399,5 +399,6 @@ static void alloc_free_tester(void * param)
 
     state ++;
 }
-#endif
+
+#endif /*USE_LV_TESTS && USE_LV_ANIMATION*/
 
