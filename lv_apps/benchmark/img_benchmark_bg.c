@@ -9,7 +9,7 @@
  */
 
 const lv_color_int_t img_benchmark_bg[] = {
-#if LV_COLOR_DEPTH == 8
+#if LV_COLOR_DEPTH == 8 || LV_COLOR_DEPTH == 1
   50, 32, 3, 4,  /* HEADER */
 
   /*IMAGE DATA*/
