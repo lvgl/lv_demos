@@ -42,6 +42,17 @@ static void delay_task(void * param);
  *   GLOBAL FUNCTIONS
  **********************/
 
+/*
+ * TEST ENVIRONMENT (only for lv_test_task)
+ * - Don't initialize LittlevGL (don't call l'v_init()')
+ * - Initialize 'lv_mem' and 'lv_task':
+ *       lv_mem_init();
+ *       lv_task_init();
+ * - Set up the tick interface: e.g. 1 ms Timer with 'lv_tick_inc(1);'
+ * - Call a test: lv_test_task_1/2/3();
+ */
+
+
 /**
  * Test the scheduling with various periods and priorities.
  */
@@ -67,7 +78,7 @@ void lv_test_task_1(void)
 }
 
 /**
- * Craete a lot of short task and see their order. They should be executed according to their priority
+ * Create a lot of short task and see their order. They should be executed according to their priority
  */
 void lv_test_task_2(void)
 {
