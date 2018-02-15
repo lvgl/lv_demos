@@ -30,6 +30,21 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
+/**
+ * Test the scheduling with various periods and priorities.
+ */
+void lv_test_task_1(void);
+
+/**
+ * Create a lot of short task and see their order. They should be executed according to their priority
+ */
+void lv_test_task_2(void);
+
+/**
+ * Change the priority later
+ */
+void lv_test_task_3(void);
+
 /**********************
  *      MACROS
  **********************/
