@@ -1,6 +1,9 @@
 #include <stdint.h>
 #include "lv_conf.h"
+#include "lv_ex_conf.h"
 #include "lvgl/lv_draw/lv_draw.h"
+
+#if USE_LV_TUTORIALS
 
 static const uint8_t apple_icon_chroma_pixel_map[] = {
 
@@ -120,4 +123,6 @@ const lv_img_t apple_icon_chroma = {
   .header.format = LV_IMG_FORMAT_RAW_INTERNAL,
   .pixel_map = apple_icon_chroma_pixel_map,	/*Pointer the array of image pixels.*/
 };
+
+#endif
 

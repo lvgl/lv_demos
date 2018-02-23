@@ -1,6 +1,9 @@
 #include <stdint.h>
 #include "lv_conf.h"
+#include "lv_ex_conf.h"
 #include "lvgl/lv_draw/lv_draw.h"
+
+#if USE_LV_TESTS
 
 static const uint8_t img_flower_icon_pixel_map[] = {
 
@@ -150,3 +153,6 @@ const lv_img_t img_flower_icon = {
   .header.format = LV_IMG_FORMAT_RAW_INTERNAL,
   .pixel_map = img_flower_icon_pixel_map /*Pointer the array of image pixels.*/
 };
+
+#endif
+

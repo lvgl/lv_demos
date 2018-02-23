@@ -1,6 +1,9 @@
 #include <stdint.h>
 #include "lv_conf.h"
+#include "lv_ex_conf.h"
 #include "lvgl/lv_draw/lv_draw.h"
+
+#if USE_LV_BENCHMARK
 
 static const uint8_t benchmark_bg_pixel_map[] = {
 
@@ -180,3 +183,5 @@ const lv_img_t benchmark_bg = {
   .header.format = LV_IMG_FORMAT_RAW_INTERNAL,  /*It's a variable compiled into the code*/
   .pixel_map = benchmark_bg_pixel_map   /*Pointer the array of image pixels.*/
 };
+
+#endif
