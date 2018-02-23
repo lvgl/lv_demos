@@ -8,39 +8,35 @@
  * Learn how to use images stored internally (in flash) or externally (like on an SD card)
  *-------------------------------------------------------------------------------------------
  *
- * In the graphics library images can be used as plain color arrays with a header.
- * To convert an image to a compatible array which can be simply copied into your project use:
- * lv_utils/img_conv/img_conv.py (https://github.com/littlevgl/lv_utils.git)
+ * The basic object to display images is 'lv_img'. It can accept 3 type of image sources:
  *
- * Then type in a terminal: python img_conv.py -f my_image.png (or .jpg, .bmp etc)
- * Optionally you can assign the "-t" flag to mark the image as chroma keyed
- * (chroma key: LV_COLOR_TRANSP colored pixels will be transparent)
+ * 1. IMAGE CONVETED TO C ARRAY
+ *  With the online image converter tool you can convert your images into C arrays:
+ *  https://littlevgl.com/image-to-c-array
  *
- * The script will result 2 files:
- *  - img_my_image.c:       contains a 'const' array with the pixels (can be added to your project to compile)
- *  - img_my_image.bin:     a binary file (can be used externally e.g. on an SD card)
+ *  If you have the converted file:
+ *    - Copy the result C file into your project
+ *    - Declare the image variable with 'LV_IMG_DECLARE(image_name);'
+ *    - Set it for an image obeject: 'lv_img_set_src(img1, &image_name);'
  *
- * USING THE IMAGES IN THE LIBRARY
- * For maximal flexibility  images are used like files.
- * Hence they can be loaded both from external drivers (like SD card) or from the internal flash.
- * LittlevGL contains a RAM file system called UFS (lv_misc/lv_ufs) to create files from images stored in the flash.
- * To add other drivers you need to use the file system interface (lv_misc/lv_fs). It assigns a letter to each drive
- * (like 'U' for UFS). You need to declare then open, close, read, write etc functions and create driver like in lv_ufs.c
+ *  In this case you don't need to think about color format because
+ *  all color formats are included in the C file and the currently active
+ *  (according to 'LV_COLOR_DEPTH' in 'lv_conf.h') will be enabled.
  *
- * ADDING THE C FILE
- * 1. Copy the ".c" file to any folder you want in your project
- * 2. In a file where you want to use the image, declare the image variable like this: LV_IMG_DECLARE(img_my_image);
- * 3. Create a file about this image: lv_img_create_file("file_name", img_my_image);
- * 4. Create an image object: lv_obj_t *img = lv_img_create(lv_scr_act(), NULL);
- * 5. Set the created file for the image: lv_imag_set_file(img, "U:/file_name");
+ * 2. IMAGE FROM FILE
+ *  With the above mentioned online image converter tool you can convert images to binary files too.
+ *  However now you should choose the right color format.
+ *  The result of the conversion should be a *.bin file which can be copied to any external sources (e.g. SD card)
  *
- * USING THE BINARY FILE
- * 1. Add a new driver to 'lv_fs'.
- * 2. Copy the file to that drive (like SD card)
- * 3. Create an image object: lv_obj_t *img = lv_img_create(lv_scr_act(), NULL);
- * 4. Set the a binary file for the image: lv_imag_set_file(img, "S:/img_my_image.bin");
+ *  To read this file you need to provide some functions for LittlevGL. You will see it in the example below.
  *
- * One file can be assigned to any number of image objects.
+ *  To set a file for an image object use: 'lv_img_set_src(img, "S:path/to/image.bin")'
+ *
+ * 3. IMAGE FROM SYMBOL FONT
+ *  The symbol fonts are letters however they look like small images.
+ *  To set symbols in an image use: 'lv_img_set_src(img, SYMBOL_CLOSE)'
+ *
+ *
  */
 
 /*********************
@@ -101,12 +97,12 @@ void lv_tutorial_image(void)
     lv_obj_t *img_src = lv_img_create(lv_scr_act(), NULL);  /*Crate an image object*/
     lv_img_set_src(img_src, &red_flower);  /*Set the created file as image (a red fl  ower)*/
     lv_obj_set_pos(img_src, 10, 10);      /*Set the positions*/
-    lv_obj_set_click(img_src, true);
     lv_obj_set_drag(img_src, true);
+
 #if PC_FILES
-    /*************************
-     * IMAGE FROM BBINARY FILE
-     *************************/
+    /**************************
+     * IMAGE FROM BINARY FILE
+     **************************/
 
     /* Add a simple drive to open images from PC*/
     lv_fs_drv_t pcfs_drv;                         /*A driver descriptor*/
@@ -133,11 +129,14 @@ void lv_tutorial_image(void)
     lv_img_set_src(img_bin, "P:/lv_examples/lv_tutorial/6_images/blue_flower_24.bin");
 #endif
 
-    lv_obj_align(img_bin, img_src, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);     /*Align next to the s'ource image'*/
-    lv_obj_set_click(img_bin, true);
+    lv_obj_align(img_bin, img_src, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);     /*Align next to the source image*/
     lv_obj_set_drag(img_bin, true);
 #endif
 
+    lv_obj_t * img_symbol = lv_img_create(lv_scr_act(), NULL);
+    lv_img_set_src(img_symbol, SYMBOL_OK);
+    lv_obj_set_drag(img_symbol, true);
+    lv_obj_align(img_symbol, img_src, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);     /*Align next to the source image*/
 }
 
 /**********************

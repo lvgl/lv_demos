@@ -120,7 +120,7 @@ const lv_img_t apple_icon_alpha = {
   .header.h = 30,			/*Image height in pixel count*/
   .header.alpha_byte = 1,		/*Alpha byte added to every pixel*/
   .header.chroma_keyed = 0,	/*No chroma keying*/
-  .header.format = LV_IMG_FORMAT_RAW_INTERNAL,
+  .header.format = LV_IMG_FORMAT_INTERNAL_RAW,
   .pixel_map = apple_icon_alpha_pixel_map,	/*Pointer the array of image pixels.*/
 };
 
