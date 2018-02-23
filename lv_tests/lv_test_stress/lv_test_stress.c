@@ -14,7 +14,6 @@
 /*********************
  *      DEFINES
  *********************/
-#define USE_PRINTF		0
 
 /**********************
  *      TYPEDEFS
@@ -53,8 +52,6 @@ void lv_test_stress_1(void)
     lv_task_create(obj_mem_leak_tester, 200, LV_TASK_PRIO_MID, NULL);
     lv_task_create(mem_monitor, 500, LV_TASK_PRIO_MID, NULL);
     lv_task_create(alloc_free_tester, 100, LV_TASK_PRIO_MID, NULL);
-
-    lv_img_create_file("stress_img", img_flower_icon);
 
     /* Holder for all object types */
     all_obj_h = lv_obj_create(lv_scr_act(), NULL);
@@ -95,7 +92,7 @@ void lv_test_stress_1(void)
 
 static void mem_monitor(void * param)
 {
-#if USE_PRINTF
+#if LV_EX_PRINTF
     lv_mem_monitor_t mon;
     lv_mem_monitor(&mon);
     printf("used: %6d (%3d %%), frag: %3d %%, big free: %6d\n", (int)mon.total_size - mon.free_size,
@@ -157,7 +154,7 @@ static void obj_mem_leak_tester(void * param)
             break;
         case 4:
             obj = lv_img_create(page, NULL);
-            lv_img_set_file(obj, "U:/stress_img");
+            lv_img_set_src(obj, &img_flower_icon);
             break;
         case 5:
             obj = lv_cb_create(page, NULL);

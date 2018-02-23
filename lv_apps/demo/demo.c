@@ -49,10 +49,8 @@ LV_IMG_DECLARE(img_bubble_pattern);
 void demo_create(void)
 {
 #if LV_DEMO_WALLPAPER
-    lv_img_create_file("bg", img_bubble_pattern);
     lv_obj_t *wp = lv_img_create(lv_scr_act(), NULL);
-    lv_img_set_upscale(wp, true);
-    lv_img_set_file(wp, "U:/bg");
+    lv_img_set_src(wp, &img_bubble_pattern);
     lv_obj_set_width(wp, LV_HOR_RES * 4);
     lv_obj_set_protect(wp, LV_PROTECT_POS);
 #endif
@@ -137,6 +135,8 @@ static void write_create(lv_obj_t *parent)
     style_kb_rel.body.border.width = 1;
     style_kb_rel.body.border.color = LV_COLOR_SILVER;
     style_kb_rel.body.border.opa = LV_OPA_50;
+    style_kb_rel.body.main_color = LV_COLOR_HEX3(0x333);    /*Recommended if LV_VDB_SIZE == 0 and bpp > 1 fonts are used*/
+    style_kb_rel.body.grad_color = LV_COLOR_HEX3(0x333);
     style_kb_rel.text.color = LV_COLOR_WHITE;
 
     static lv_style_t style_kb_pr;

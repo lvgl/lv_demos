@@ -6,7 +6,6 @@
 /*********************
  *      INCLUDES
  *********************/
-#include <stdio.h>  /*For printf in the action*/
 
 #include "lv_test_kb.h"
 

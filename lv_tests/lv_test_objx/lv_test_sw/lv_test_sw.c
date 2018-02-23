@@ -77,7 +77,9 @@ void lv_test_sw_1(void)
 
 static lv_res_t sw_action(lv_obj_t *sw)
 {
+#if LV_EX_PRINTF
     printf("Switch state: %d\n", lv_sw_get_state(sw));
+#endif
     return LV_RES_OK;
 }
 

@@ -40,18 +40,13 @@ LV_IMG_DECLARE(img_flower_icon);
  */
 void lv_test_img_1(void)
 {
-
-    /*Create an image file in the RAM file system*/
-    lv_img_create_file("pic1", img_flower_icon);
-
     /*Create an image object with the newly created file*/
     lv_obj_t *img1 = lv_img_create(lv_scr_act(), NULL);
-    lv_img_set_file(img1, "U:/pic1");
+    lv_img_set_src(img1, &img_flower_icon);
     lv_obj_set_pos(img1, 10, 10);
 
     /*Copy the previous image but set upscale*/
     lv_obj_t *img2 = lv_img_create(lv_scr_act(), img1);
-    lv_img_set_upscale(img2, true);
     lv_obj_align(img2, img1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
     /*Copy the previous image and set a redish style*/
@@ -71,7 +66,7 @@ void lv_test_img_1(void)
 
     /*Test symbol drawing*/
     lv_obj_t *img5 = lv_img_create(lv_scr_act(), NULL);
-    lv_img_set_file(img5, SYMBOL_SETTINGS SYMBOL_OK);
+    lv_img_set_src(img5, SYMBOL_SETTINGS SYMBOL_OK);
     lv_obj_align(img5, img4, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 }
 

@@ -85,9 +85,9 @@ void lv_test_btnm_1(void)
 
 static lv_res_t btnm_action(lv_obj_t * btnm, const char * txt)
 {
-    /* On PC */
-     printf("%s\n", txt);
-
+#if LV_EX_PRINTF
+     printf("Key pressed: %s\n", txt);
+#endif
     return LV_RES_OK;
 }
 
