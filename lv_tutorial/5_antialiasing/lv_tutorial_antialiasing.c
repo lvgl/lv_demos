@@ -69,7 +69,6 @@ LV_IMG_DECLARE(apple_icon_alpha);
 
 /**
  * Create object to see how they change from the anti aliasing
- * Modify LV_ANTIALIAS and LV_FONT_ANTIALIAS to see what is changing
  */
 void lv_tutorial_antialiasing(void)
 {

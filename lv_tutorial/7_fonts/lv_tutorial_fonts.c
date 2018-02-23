@@ -37,7 +37,7 @@
  *   you have to enable LV_TXT_UTF8 in lv_conf.h
  * - You also need fonts which contains the required Unicode letters
  *
- * BIT-PRE-PIXEL
+ * BIT-PER-PIXEL
  * - The fonts can describe a pixel with 1, 2, 4 or 8 bit. The higher value results smoother letters
  * but larger foot memory foot print.
  * - The built in fonts can be enabled with 1,2,4 or 8 values the select their bpp.
@@ -74,9 +74,9 @@
 /**********************
  *  STATIC VARIABLES
  **********************/
-extern lv_font_t arial_ascii_20;        /*Full ASCII range*/
- extern lv_font_t arial_cyrillic_20;   /*Continuous block of cyrillic characters*/
- extern lv_font_t arial_math_20;        /*Sparse mathematical characters*/
+LV_FONT_DECLARE(arial_ascii_20);        /*Full ASCII range*/
+LV_FONT_DECLARE(arial_cyrillic_20);   /*Continuous block of cyrillic characters*/
+LV_FONT_DECLARE(arial_math_20);        /*Sparse mathematical characters*/
 
 /**********************
  *      MACROS

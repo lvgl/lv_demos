@@ -90,8 +90,7 @@ LV_IMG_DECLARE(red_flower);
  **********************/
 
 /**
- * Create object to see how they change from the anti aliasing
- * Modify LV_ANTIALIAS and LV_FONT_ANTIALIAS to see what is changing
+ * Create images from variable and file
  */
 void lv_tutorial_image(void)
 {
