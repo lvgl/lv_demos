@@ -5,7 +5,7 @@
 
 /*
  * -------------------------------------------------------------------------------------------
- * Learn how to use images stored internally (in flash) or externally (like on an SD card)
+ * Learn how to use images stored internally (in a variable) or externally (e.g. on an SD card)
  *-------------------------------------------------------------------------------------------
  *
  * The basic object to display images is 'lv_img'. It can accept 3 type of image sources:
@@ -17,7 +17,7 @@
  *  If you have the converted file:
  *    - Copy the result C file into your project
  *    - Declare the image variable with 'LV_IMG_DECLARE(image_name);'
- *    - Set it for an image obeject: 'lv_img_set_src(img1, &image_name);'
+ *    - Set it for an image object: 'lv_img_set_src(img1, &image_name);'
  *
  *  In this case you don't need to think about color format because
  *  all color formats are included in the C file and the currently active
@@ -25,8 +25,8 @@
  *
  * 2. IMAGE FROM FILE
  *  With the above mentioned online image converter tool you can convert images to binary files too.
- *  However now you should choose the right color format.
- *  The result of the conversion should be a *.bin file which can be copied to any external sources (e.g. SD card)
+ *  Now you should choose the right color format.
+ *  The result of the conversion should be a *.bin file which can be copied to any external device (e.g. SD card)
  *
  *  To read this file you need to provide some functions for LittlevGL. You will see it in the example below.
  *
@@ -34,9 +34,23 @@
  *
  * 3. IMAGE FROM SYMBOL FONT
  *  The symbol fonts are letters however they look like small images.
- *  To set symbols in an image use: 'lv_img_set_src(img, SYMBOL_CLOSE)'
+ *  To set symbols for an image object use: 'lv_img_set_src(img, SYMBOL_CLOSE)'
  *
  *
+ * The images have 2 features related to pixel level transparency:
+ *
+ * 1. CHROMA KEYING
+ *  The LV_COLOR_TRANSP (lv_conf.h) pixels will be transparent.
+ *  This feature can be enabled individually in the images in the online image converter tool.
+ *  Because Chroma keying can only show/hide a pixel edges the image might be jagged.
+ *  On the other hand it dosn't mean extra memory usage.
+ *
+ * 2. ALHPA BYTE
+ * It will add an extra byte to every pixel to show its opacity.
+ * This feature also can be enabled in the online converter tool.
+ * In case of 8 and 16 bit images it means extra 8 bit for every pixel.
+ * The 24 bit images are stored on 32 bit independently from Alpha byte settings.
+ * Alpha byte results very smooth edges and high quality images.
  */
 
 /*********************
