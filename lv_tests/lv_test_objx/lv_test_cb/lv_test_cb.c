@@ -51,7 +51,7 @@ void lv_test_cb_1(void)
 #endif
     lv_obj_align(cb2, cb1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
 
-    /*Create styles for a round bullet*/
+    /*Create styles for the bullets*/
     static lv_style_t cb3_styles[LV_BTN_STATE_NUM];
     lv_style_copy(&cb3_styles[LV_BTN_STATE_REL], &lv_style_plain);
     cb3_styles[LV_BTN_STATE_REL].body.radius = LV_DPI / 20;
