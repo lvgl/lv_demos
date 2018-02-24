@@ -8,7 +8,11 @@
  * Learn how to use images stored internally (in a variable) or externally (e.g. on an SD card)
  *-------------------------------------------------------------------------------------------
  *
- * The basic object to display images is 'lv_img'. It can accept 3 type of image sources:
+ *
+ * The basic object to display images is 'lv_img'. The displayed image is called 'image source'.
+ *
+ * IMAGE SOURCES
+ * -----------------
  *
  * 1. IMAGE CONVETED TO C ARRAY
  *  With the online image converter tool you can convert your images into C arrays:
@@ -36,21 +40,23 @@
  *  The symbol fonts are letters however they look like small images.
  *  To set symbols for an image object use: 'lv_img_set_src(img, SYMBOL_CLOSE)'
  *
+ * TRANSPARENCY
+ * ---------------
  *
  * The images have 2 features related to pixel level transparency:
  *
  * 1. CHROMA KEYING
  *  The LV_COLOR_TRANSP (lv_conf.h) pixels will be transparent.
  *  This feature can be enabled individually in the images in the online image converter tool.
- *  Because Chroma keying can only show/hide a pixel edges the image might be jagged.
+ *  Because Chroma keying can only show/hide a pixel edges on the image might be jagged.
  *  On the other hand it dosn't mean extra memory usage.
  *
  * 2. ALHPA BYTE
- * It will add an extra byte to every pixel to show its opacity.
- * This feature also can be enabled in the online converter tool.
- * In case of 8 and 16 bit images it means extra 8 bit for every pixel.
- * The 24 bit images are stored on 32 bit independently from Alpha byte settings.
- * Alpha byte results very smooth edges and high quality images.
+ *  It will add an extra byte to every pixel to show its opacity.
+ *  This feature also can be enabled in the online converter tool.
+ *  In case of 8 and 16 bit images it means extra 8 bit for every pixel.
+ *  The 24 bit images are stored on 32 bit independently from Alpha byte settings.
+ *  Alpha byte results very smooth edges and high quality images.
  */
 
 /*********************

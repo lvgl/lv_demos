@@ -27,7 +27,7 @@
  *      INCLUDES
  *********************/
 #include "lv_tutorial_keyboard.h"
-#if USE_LV_TUTORIALS
+#if USE_LV_TUTORIALS && USE_LV_GROUP
 
 /*********************
  *      DEFINES
