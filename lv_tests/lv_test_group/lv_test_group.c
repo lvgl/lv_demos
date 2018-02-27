@@ -151,9 +151,13 @@ void lv_test_group_1(void)
     lv_group_add_obj(g, obj);
 
     obj = lv_ddlist_create(win, NULL);
+    lv_ddlist_set_options(obj, "Item1\nItem2\nItem3\nItem4\nItem5\nItem6");
+    lv_ddlist_set_fix_height(obj, LV_DPI);
+    lv_ddlist_set_action(obj, select_action);
     lv_group_add_obj(g, obj);
 
     obj = lv_roller_create(win, NULL);
+    lv_roller_set_action(obj, select_action);
     lv_group_add_obj(g, obj);
 
     obj = lv_btnm_create(win, NULL);
