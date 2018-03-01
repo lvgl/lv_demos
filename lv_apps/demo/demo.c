@@ -256,7 +256,7 @@ static void chart_create(lv_obj_t *parent)
     style_bar.body.border.color = LV_COLOR_WHITE;
     style_bar.body.opa = LV_OPA_60;
     style_bar.body.padding.hor = 0;
-    style_bar.body.padding.ver = LV_DPI / 6;
+    style_bar.body.padding.ver = LV_DPI / 10;
 
     lv_style_copy(&style_indic, &lv_style_pretty);
     style_indic.body.grad_color =  LV_COLOR_MARRON;
@@ -276,8 +276,8 @@ static void chart_create(lv_obj_t *parent)
     lv_slider_set_style(slider, LV_SLIDER_STYLE_BG, &style_bar);
     lv_slider_set_style(slider, LV_SLIDER_STYLE_INDIC, &style_indic);
     lv_slider_set_style(slider, LV_SLIDER_STYLE_KNOB, &style_knob);
-    lv_obj_set_size(slider, lv_obj_get_width(chart), LV_DPI / 2);
-    lv_obj_align(slider, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, - LV_DPI / 4); /*Align below the slider*/
+    lv_obj_set_size(slider, lv_obj_get_width(chart), LV_DPI / 3);
+    lv_obj_align(slider, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, - LV_DPI / 4); /*Align to the bottom of the screen*/
     lv_slider_set_action(slider, slider_action);
     lv_slider_set_range(slider, 10, 1000);
     lv_slider_set_value(slider, 700);
