@@ -38,6 +38,7 @@ static void group_focus_cb(lv_group_t * group);
 /*Dummy action functions*/
 static lv_res_t press_action(lv_obj_t * btn);
 static lv_res_t select_action(lv_obj_t * btn);
+static lv_res_t change_action(lv_obj_t * btn);
 static lv_res_t click_action(lv_obj_t * btn);
 static lv_res_t long_press_action(lv_obj_t * btn);
 
@@ -144,10 +145,11 @@ void lv_test_group_1(void)
 
     obj = lv_slider_create(win, NULL);
     lv_slider_set_range(obj, 0, 10);
-    lv_slider_set_action(obj, select_action);
+    lv_slider_set_action(obj, change_action);
     lv_group_add_obj(g, obj);
 
     obj = lv_sw_create(win, NULL);
+    lv_sw_set_action(obj, change_action);
     lv_group_add_obj(g, obj);
 
     obj = lv_ddlist_create(win, NULL);
@@ -291,6 +293,14 @@ static lv_res_t select_action(lv_obj_t * btn)
 {
 #if LV_EX_PRINTF
     printf("Select\n");
+#endif
+    return LV_RES_OK;
+}
+
+static lv_res_t change_action(lv_obj_t * btn)
+{
+#if LV_EX_PRINTF
+    printf("Change\n");
 #endif
     return LV_RES_OK;
 }
