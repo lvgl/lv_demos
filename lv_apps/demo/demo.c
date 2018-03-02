@@ -109,7 +109,6 @@ void demo_create(void)
 
 static void write_create(lv_obj_t *parent)
 {
-//    lv_page_set_sb_mode(parent, LV_SB_MODE_OFF);
     lv_page_set_style(parent, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
     lv_page_set_style(parent, LV_PAGE_STYLE_SCRL, &lv_style_transp_fit);
 
@@ -277,7 +276,7 @@ static void chart_create(lv_obj_t *parent)
     lv_slider_set_style(slider, LV_SLIDER_STYLE_INDIC, &style_indic);
     lv_slider_set_style(slider, LV_SLIDER_STYLE_KNOB, &style_knob);
     lv_obj_set_size(slider, lv_obj_get_width(chart), LV_DPI / 3);
-    lv_obj_align(slider, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, - LV_DPI / 4); /*Align to the bottom of the screen*/
+    lv_obj_align(slider, chart, LV_ALIGN_OUT_BOTTOM_MID, 0, (LV_VER_RES - chart->coords.y2 - lv_obj_get_height(slider)) / 2); /*Align to below the chart*/
     lv_slider_set_action(slider, slider_action);
     lv_slider_set_range(slider, 10, 1000);
     lv_slider_set_value(slider, 700);
