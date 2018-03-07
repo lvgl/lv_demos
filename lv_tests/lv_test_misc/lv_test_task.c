@@ -7,6 +7,7 @@
  *      INCLUDES
  *********************/
 #include "lv_test_task.h"
+#include <stdio.h>
 
 #if USE_LV_TESTS
 
@@ -151,8 +152,9 @@ void lv_test_task_3(void)
 static void delay_task(void * param)
 {
     lv_test_task_dsc_t * dsc = param;
-
+#if LV_EX_PRINTF
     printf("%s: %d\n", dsc->name, dsc->delay);
+#endif
     uint32_t act = lv_tick_get();
     while(lv_tick_elaps(act) < dsc->delay);
 
