@@ -11,7 +11,7 @@
 /*******************
  * GENERAL SETTING
  *******************/
-#define LV_EX_PRINTF    1       /*Enable printf-ing data*/
+#define LV_EX_PRINTF    0       /*Enable printf-ing data*/
 
 /*******************
  *   TEST USAGE    
