@@ -28,7 +28,7 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-void lv_tutorial_fontsg(void);
+void lv_tutorial_fonts(void);
 
 /**********************
  *      MACROS

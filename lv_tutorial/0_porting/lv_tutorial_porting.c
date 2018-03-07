@@ -41,6 +41,7 @@
  *********************/
 #include "lv_tutorial_porting.h"
 #if  USE_LV_TUTORIALS 
+
 /*********************
  *      DEFINES
  *********************/
@@ -129,6 +130,16 @@ void lv_turorial_porting(void)
     indev_drv.read = ex_tp_read;                 /*Library ready your touchpad via this function*/
     lv_indev_drv_register(&indev_drv);              /*Finally register the driver*/
 
+
+    /*************************************
+     * Run the task handler of LittlevGL
+     *************************************/
+    while(1) {
+        /* Periodically call this function.
+         * The timing is not critical but should be between 1..10 ms */
+        lv_task_handler();
+        /*delay_ms(5)*/
+    }
 }
 
 /**********************

@@ -1,6 +1,9 @@
 #include <stdint.h>
 #include "lv_conf.h"
+#include "lv_ex_conf.h"
 #include "lvgl/lv_draw/lv_draw.h"
+
+#if USE_LV_TUTORIALS
 
 static const uint8_t apple_icon_chroma_pixel_map[] = {
 
@@ -117,7 +120,9 @@ const lv_img_t apple_icon_chroma = {
   .header.h = 30,			/*Image height in pixel count*/
   .header.alpha_byte = 0,		/*No alpha byte*/
   .header.chroma_keyed = 1,	/*LV_COLOR_TRANSP (lv_conf.h) pixels will be transparent*/
-  .header.format = LV_IMG_FORMAT_RAW_INTERNAL,
+  .header.format = LV_IMG_FORMAT_INTERNAL_RAW,
   .pixel_map = apple_icon_chroma_pixel_map,	/*Pointer the array of image pixels.*/
 };
+
+#endif
 

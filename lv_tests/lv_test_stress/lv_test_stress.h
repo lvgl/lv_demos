@@ -31,9 +31,9 @@ extern "C" {
  **********************/
 
 /**
- * Create base objects to test their functionalities
+ * Create and delete a lot of objects and animations.
  */
-void lv_test_object_1(void);
+void lv_test_stress_1(void);
 
 /**********************
  *      MACROS

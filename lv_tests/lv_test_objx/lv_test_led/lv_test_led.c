@@ -8,7 +8,7 @@
  *********************/
 #include "lv_test_led.h"
 
-#if UUSE_LV_LED && USE_LV_TESTS
+#if USE_LV_LED && USE_LV_TESTS
 
 /*********************
  *      DEFINES

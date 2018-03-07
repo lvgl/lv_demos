@@ -1,6 +1,9 @@
 #include <stdint.h>
 #include "lv_conf.h"
+#include "lv_ex_conf.h"
 #include "lvgl/lv_draw/lv_draw.h"
+
+#if USE_LV_TUTORIALS
 
 static const uint8_t red_flower_pixel_map[] = {
 
@@ -255,4 +258,6 @@ const lv_img_t red_flower = {
   .header.format = LV_IMG_FORMAT_INTERNAL_RAW,	/*It's a variable compiled into the code*/
   .pixel_map = red_flower_pixel_map	/*Pointer the array of image pixels.*/
 };
+
+#endif
 

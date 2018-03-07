@@ -45,7 +45,7 @@ LV_IMG_DECLARE(img_flower_icon);
  **********************/
 
 /**
- * Create base objects to test their functionalities
+ * Create and delete a lot of objects and animations.
  */
 void lv_test_stress_1(void)
 {

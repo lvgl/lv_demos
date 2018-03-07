@@ -91,6 +91,7 @@ void tpcal_create(void)
     lv_obj_set_style(circ_area, &style_circ);
     lv_obj_set_click(circ_area, false);
 
+#if USE_LV_ANIMATION
     lv_anim_t a;
     a.var = circ_area;
     a.start = LV_HOR_RES / 2;
@@ -112,6 +113,9 @@ void tpcal_create(void)
     a.end_cb = NULL;
     a.time = 200;
     lv_anim_create(&a);
+#else
+    lv_obj_set_pos(circ_area, 0, 0);
+#endif
 
     state = TP_CAL_STATE_WAIT_TOP_LEFT;
 }
@@ -137,6 +141,7 @@ static lv_res_t btn_click_action(lv_obj_t *scr)
         lv_obj_set_pos(label_main, (LV_HOR_RES - lv_obj_get_width(label_main)) / 2,
                                    (LV_VER_RES - lv_obj_get_height(label_main)) / 2);
 
+#if USE_LV_ANIMATION
         lv_anim_t a;
         a.var = circ_area;
         a.start = 0;
@@ -158,7 +163,9 @@ static lv_res_t btn_click_action(lv_obj_t *scr)
         a.end_cb = NULL;
         a.time = 200;
         lv_anim_create(&a);
-
+#else
+    lv_obj_set_pos(circ_area, LV_HOR_RES - CIRCLE_SIZE, 0);
+#endif
         state = TP_CAL_STATE_WAIT_TOP_RIGHT;
     }
     else if(state == TP_CAL_STATE_WAIT_TOP_RIGHT) {
@@ -177,6 +184,7 @@ static lv_res_t btn_click_action(lv_obj_t *scr)
         lv_obj_set_pos(label_main, (LV_HOR_RES - lv_obj_get_width(label_main)) / 2,
                                    (LV_VER_RES - lv_obj_get_height(label_main)) / 2);
 
+#if USE_LV_ANIMATION
         lv_anim_t a;
         a.var = circ_area;
         a.start = LV_HOR_RES - CIRCLE_SIZE;
@@ -198,7 +206,9 @@ static lv_res_t btn_click_action(lv_obj_t *scr)
         a.end_cb = NULL;
         a.time = 200;
         lv_anim_create(&a);
-
+#else
+    lv_obj_set_pos(circ_area, LV_HOR_RES - CIRCLE_SIZE, LV_VER_RES - CIRCLE_SIZE);
+#endif
         state = TP_CAL_STATE_WAIT_BOTTOM_RIGHT;
     }
     else if(state == TP_CAL_STATE_WAIT_BOTTOM_RIGHT) {
@@ -218,6 +228,7 @@ static lv_res_t btn_click_action(lv_obj_t *scr)
         lv_obj_set_pos(label_main, (LV_HOR_RES - lv_obj_get_width(label_main)) / 2,
                                    (LV_VER_RES - lv_obj_get_height(label_main)) / 2);
 
+#if USE_LV_ANIMATION
         lv_anim_t a;
         a.var = circ_area;
         a.start = LV_HOR_RES - CIRCLE_SIZE;
@@ -239,7 +250,9 @@ static lv_res_t btn_click_action(lv_obj_t *scr)
         a.end_cb = NULL;
         a.time = 200;
         lv_anim_create(&a);
-
+#else
+    lv_obj_set_pos(circ_area, 0, LV_VER_RES - CIRCLE_SIZE);
+#endif
         state = TP_CAL_STATE_WAIT_BOTTOM_LEFT;
     }
 

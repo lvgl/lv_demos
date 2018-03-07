@@ -9,9 +9,14 @@
 #define LV_EX_CONF_H
 
 /*******************
+ * GENERAL SETTING
+ *******************/
+#define LV_EX_PRINTF    1       /*Enable printf-ing data*/
+
+/*******************
  *   TEST USAGE    
  *******************/
-#define USE_LV_TESTS   0
+#define USE_LV_TESTS        0
 
 /*******************
  * TUTORIAL USAGE    
