@@ -82,7 +82,7 @@ typedef  FILE*  pc_file_t;
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-#if PC_FILES
+#if PC_FILES && USE_LV_FILESYSTEM
 /*Interface functions to standard C file functions (only the required ones to image handling)*/
 static lv_fs_res_t pcfs_open (void * file_p, const char * fn, lv_fs_mode_t mode);
 static lv_fs_res_t pcfs_close (void * file_p);
@@ -119,7 +119,7 @@ void lv_tutorial_image(void)
     lv_obj_set_pos(img_src, 10, 10);      /*Set the positions*/
     lv_obj_set_drag(img_src, true);
 
-#if PC_FILES
+#if PC_FILES && USE_LV_FILESYSTEM
     /**************************
      * IMAGE FROM BINARY FILE
      **************************/
@@ -163,6 +163,7 @@ void lv_tutorial_image(void)
  *   STATIC FUNCTIONS
  **********************/
 
+#if PC_FILES && USE_LV_FILESYSTEM
 /**
  * Open a file from the PC
  * @param file_p pointer to a FILE* variable
@@ -256,5 +257,7 @@ static lv_fs_res_t pcfs_tell (void * file_p, uint32_t * pos_p)
     *pos_p = ftell(*fp);
     return LV_FS_RES_OK;
 }
+
+#endif
 
 #endif /*USE_LV_TUTORIALS*/
