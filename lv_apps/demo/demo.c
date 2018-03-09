@@ -21,6 +21,8 @@
  *  STATIC PROTOTYPES
  **********************/
 static void write_create(lv_obj_t *parent);
+static lv_res_t keyboard_open_close(lv_obj_t * ta);
+static lv_res_t keyboard_hide_action(lv_obj_t * keyboard);
 static void list_create(lv_obj_t *parent);
 static void chart_create(lv_obj_t *parent);
 static lv_res_t slider_action(lv_obj_t *slider);
@@ -31,6 +33,12 @@ static lv_res_t list_btn_action(lv_obj_t *slider);
  **********************/
 static lv_obj_t *chart;
 static lv_obj_t *ta;
+static lv_obj_t *kb;
+
+static lv_style_t style_kb;
+static lv_style_t style_kb_rel;
+static lv_style_t style_kb_pr;
+
 #if LV_DEMO_WALLPAPER
 LV_IMG_DECLARE(img_bubble_pattern);
 #endif
@@ -112,13 +120,20 @@ static void write_create(lv_obj_t *parent)
     lv_page_set_style(parent, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
     lv_page_set_style(parent, LV_PAGE_STYLE_SCRL, &lv_style_transp_fit);
 
+    lv_page_set_sb_mode(parent, LV_SB_MODE_OFF);
+
     static lv_style_t style_ta;
     lv_style_copy(&style_ta, &lv_style_pretty);
     style_ta.body.opa = LV_OPA_30;
     style_ta.body.radius = 0;
     style_ta.text.color = LV_COLOR_HEX3(0x222);
 
-    static lv_style_t style_kb;
+    ta = lv_ta_create(parent, NULL);
+    lv_obj_set_size(ta, lv_page_get_scrl_width(parent), lv_obj_get_height(parent) / 2);
+    lv_ta_set_style(ta, LV_TA_STYLE_BG, &style_ta);
+    lv_ta_set_text(ta, "");
+    lv_page_set_rel_action(ta, keyboard_open_close);
+
     lv_style_copy(&style_kb, &lv_style_plain);
     style_kb.body.opa = LV_OPA_70;
     style_kb.body.main_color = LV_COLOR_HEX3(0x333);
@@ -127,7 +142,6 @@ static void write_create(lv_obj_t *parent)
     style_kb.body.padding.ver = 0;
     style_kb.body.padding.inner = 0;
 
-    static lv_style_t style_kb_rel;
     lv_style_copy(&style_kb_rel, &lv_style_plain);
     style_kb_rel.body.empty = 1;
     style_kb_rel.body.radius = 0;
@@ -138,7 +152,6 @@ static void write_create(lv_obj_t *parent)
     style_kb_rel.body.grad_color = LV_COLOR_HEX3(0x333);
     style_kb_rel.text.color = LV_COLOR_WHITE;
 
-    static lv_style_t style_kb_pr;
     lv_style_copy(&style_kb_pr, &lv_style_plain);
     style_kb_pr.body.radius = 0;
     style_kb_pr.body.opa = LV_OPA_50;
@@ -147,18 +160,50 @@ static void write_create(lv_obj_t *parent)
     style_kb_pr.body.border.width = 1;
     style_kb_pr.body.border.color = LV_COLOR_SILVER;
 
-    ta = lv_ta_create(parent, NULL);
-    lv_obj_set_size(ta, lv_page_get_scrl_width(parent), lv_obj_get_height(parent) / 2);
-    lv_ta_set_style(ta, LV_TA_STYLE_BG, &style_ta);
-    lv_ta_set_text(ta, "");
+    keyboard_open_close(ta);
+}
 
-    lv_obj_t *kb = lv_kb_create(parent, NULL);
-    lv_obj_set_size(kb, lv_page_get_scrl_width(parent), lv_obj_get_height(parent) / 2);
-    lv_obj_align(kb, ta, LV_ALIGN_OUT_BOTTOM_MID, 0, 0);
-    lv_kb_set_ta(kb, ta);
-    lv_kb_set_style(kb, LV_KB_STYLE_BG, &style_kb);
-    lv_kb_set_style(kb, LV_KB_STYLE_BTN_REL, &style_kb_rel);
-    lv_kb_set_style(kb, LV_KB_STYLE_BTN_PR, &style_kb_pr);
+static lv_res_t keyboard_open_close(lv_obj_t * ta)
+{
+    lv_obj_t * parent = lv_obj_get_parent(lv_obj_get_parent(ta));   /*Test area is on the scrollabe part of the page but we need the page itself*/
+
+    if(kb) {
+        return keyboard_hide_action(kb);
+    } else {
+
+        kb = lv_kb_create(parent, NULL);
+        lv_obj_set_size(kb, lv_page_get_scrl_width(parent), lv_obj_get_height(parent) / 2);
+        lv_obj_align(kb, ta, LV_ALIGN_OUT_BOTTOM_MID, 0, 0);
+        lv_kb_set_ta(kb, ta);
+        lv_kb_set_style(kb, LV_KB_STYLE_BG, &style_kb);
+        lv_kb_set_style(kb, LV_KB_STYLE_BTN_REL, &style_kb_rel);
+        lv_kb_set_style(kb, LV_KB_STYLE_BTN_PR, &style_kb_pr);
+        lv_kb_set_hide_action(kb, keyboard_hide_action);
+        lv_kb_set_ok_action(kb, keyboard_hide_action);
+
+#if USE_LV_ANIMATION
+        lv_obj_animate(kb, LV_ANIM_FLOAT_BOTTOM | LV_ANIM_IN, 300, 0, NULL);
+#endif
+        return LV_RES_OK;
+    }
+}
+
+/**
+ * Called when the close or ok button is pressed on the keyboard
+ * @param keyboard pointer to the keyboard
+ * @return
+ */
+static lv_res_t keyboard_hide_action(lv_obj_t * keyboard)
+{
+#if USE_LV_ANIMATION
+    lv_obj_animate(kb, LV_ANIM_FLOAT_BOTTOM | LV_ANIM_OUT, 300, 0, (void(*)(lv_obj_t*))lv_obj_del);
+    kb = NULL;
+    return LV_RES_OK;
+#else
+    lv_obj_del(kb);
+    kb = NULL;
+    return LV_RES_INV;
+#endif
 }
 
 static void list_create(lv_obj_t *parent)
