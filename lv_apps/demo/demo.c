@@ -163,7 +163,7 @@ static void write_create(lv_obj_t *parent)
     keyboard_open_close(ta);
 }
 
-static lv_res_t keyboard_open_close(lv_obj_t * ta)
+static lv_res_t keyboard_open_close(lv_obj_t * text_area)
 {
     lv_obj_t * parent = lv_obj_get_parent(lv_obj_get_parent(ta));   /*Test area is on the scrollabe part of the page but we need the page itself*/
 
