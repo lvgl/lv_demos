@@ -27,6 +27,9 @@ static void list_create(lv_obj_t *parent);
 static void chart_create(lv_obj_t *parent);
 static lv_res_t slider_action(lv_obj_t *slider);
 static lv_res_t list_btn_action(lv_obj_t *slider);
+#if LV_DEMO_SLIDE_SHOW
+static void tab_switcher(void * tv);
+#endif
 
 /**********************
  *  STATIC VARIABLES
@@ -108,6 +111,10 @@ void demo_create(void)
     write_create(tab1);
     list_create(tab2);
     chart_create(tab3);
+
+#if LV_DEMO_SLIDE_SHOW
+	lv_task_create(tab_switcher, 3000, LV_TASK_PRIO_MID, tv);
+#endif
 }
 
 
@@ -354,5 +361,20 @@ static lv_res_t list_btn_action(lv_obj_t *btn)
 
     return LV_RES_OK;
 }
+
+#if LV_DEMO_SLIDE_SHOW
+/**
+ * Called periodically (lv_task) to switch to the next tab
+ */
+static void tab_switcher(void * tv)
+{
+    static uint8_t tab = 0;
+
+    tab++;
+    if(tab >= 3) tab = 0;
+    lv_tabview_set_tab_act(tv, tab, true);
+}
+#endif
+
 
 #endif  /*USE_LV_DEMO*/
