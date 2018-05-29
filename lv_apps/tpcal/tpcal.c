@@ -1,6 +1,23 @@
 /**
  * @file tpcal.c
  *
+ * TOUCHPAD CALIBRATION
+ * ---------------------
+ *
+ * This application creates a GUI and instruct the user 
+ * to click the four corners to get data for touchpad calibration.
+ * 
+ * - You display driver should have two functions: `xxx_read` and `xxx_set_cal_data`.
+ * - At first run run the touchpad is not calibrated therefore your `xxx_read` function should provide raw data.
+ * - When the user touched all four corners you should call the `xxx_set_cal_data` function in 
+ * ` TP_CAL_STATE_WAIT_LEAVE` state. As arguments you should pass `p[0]`, `p[1]`, `p[2]` and `p[3]`
+ *   which are the coordinates read on corner perssing.
+ * - `xxx_set_cal_data` should mark the display as calibrated, save the raw coordinates 
+ *    and use them in the upcoming calls of `xxx_read` to adjust the coordinates.
+ * - A simple equation to adjust the coordinates: x_cal = ((x_act - x1_saved) * lcd_hor_res) / (x2_saved - x1_saved);
+ *      - x_cal: the calibrated X coordinate
+ *      - x_act: the currently measered X coordinate
+ *      - x1_saved, x2_saved: The raw X coordinates saved as calibration data 
  */
 
 /*********************
