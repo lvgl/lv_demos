@@ -1,10 +1,10 @@
 /**
- * @file lv_tutorial_responsive.h
+ * @file lv_test_task.h
  *
  */
 
-#ifndef LV_TUTORIAL_RESPONSIVE_H
-#define LV_TUTORIAL_RESPONSIVE_H
+#ifndef LV_TEST_TASK_H
+#define LV_TEST_TASK_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -14,7 +14,8 @@ extern "C" {
  *      INCLUDES
  *********************/
 #include "../../../lv_ex_conf.h"
-#if USE_LV_TUTORIALS
+#if USE_LV_TESTS
+
 #include "../../../lvgl/lvgl.h"
 
 /*********************
@@ -29,16 +30,29 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-void lv_tutorial_responsive(void);
+/**
+ * Test the scheduling with various periods and priorities.
+ */
+void lv_test_task_1(void);
+
+/**
+ * Create a lot of short task and see their order. They should be executed according to their priority
+ */
+void lv_test_task_2(void);
+
+/**
+ * Change the priority later
+ */
+void lv_test_task_3(void);
 
 /**********************
  *      MACROS
  **********************/
 
-#endif /*USE_LV_TUTORIALS*/
+#endif
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
 
-#endif /*LV_TUTORIAL_ANTMATION_H*/
+#endif /*LV_TEST_TASK_H*/

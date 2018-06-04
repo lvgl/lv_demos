@@ -11,7 +11,7 @@
 /*******************
  * GENERAL SETTING
  *******************/
-#define LV_EX_PRINTF    1       /*Enable printf-ing data*/
+#define LV_EX_PRINTF    0       /*Enable printf-ing data*/
 
 /*******************
  *   TEST USAGE    
@@ -37,6 +37,7 @@
 #define USE_LV_DEMO        0
 #if USE_LV_DEMO
 #define LV_DEMO_WALLPAPER  0    /*Create a wallpaper too*/
+#define LV_DEMO_SLIDE_SHOW 1	/*Automatically switch between tabs*/
 #endif
 
 /*MCU and memory usage monitoring*/
