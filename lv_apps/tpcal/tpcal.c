@@ -357,7 +357,7 @@ static lv_res_t btn_click_action(lv_obj_t *scr)
         else
         {
             sprintf(buf, "Click the circle in\n"
-                "upper right-hand corner\n"
+                "lower left-hand corner\n"
                 " %u Left", touch_nb);
         }
         lv_label_set_text(label_main,buf);
