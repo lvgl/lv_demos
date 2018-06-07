@@ -172,7 +172,7 @@ static void write_create(lv_obj_t *parent)
 
 static lv_res_t keyboard_open_close(lv_obj_t * text_area)
 {
-    lv_obj_t * parent = lv_obj_get_parent(lv_obj_get_parent(ta));   /*Test area is on the scrollabe part of the page but we need the page itself*/
+    lv_obj_t * parent = lv_obj_get_parent(lv_obj_get_parent(ta));   /*Test area is on the scrollable part of the page but we need the page itself*/
 
     if(kb) {
         return keyboard_hide_action(kb);
