@@ -30,7 +30,7 @@ extern "C" {
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
-void ex_hello_world(void);
+void lv_tutorial_hello_world(void);
 
 /**********************
  *      MACROS
