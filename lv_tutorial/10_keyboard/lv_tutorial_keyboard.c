@@ -205,12 +205,12 @@ static lv_res_t enable_action(lv_obj_t * btn)
         /* Create a dark screen sized bg. with opacity to show
          * the other objects are not available now*/
         lv_obj_t * bg = lv_obj_create(lv_scr_act(), NULL);
-        lv_obj_set_protect(bg, LV_PROTECT_PARENT);          /*The page screen move it to scrollable area*/
-        lv_obj_set_parent(bg, lv_scr_act());                         /*So movi it back ater protected*/
+        lv_obj_set_protect(bg, LV_PROTECT_PARENT);          		/*The page screen moves it to scrollable area*/
+        lv_obj_set_parent(bg, lv_scr_act());                         /*So move it back when protected*/
         lv_obj_set_style(bg, &style_mbox_bg);
         lv_obj_set_size(bg, LV_HOR_RES, LV_VER_RES);
         lv_obj_set_pos(bg, 0, 0);
-        lv_obj_set_click(bg, false);                        /*For test disable click there fore buttons under it remain  clickable*/
+        lv_obj_set_click(bg, false);                        /*For test disable click to enable the buttons under it (else this object would be on the top)*/
 
         /*Create a message box*/
         lv_obj_t * mbox = lv_mbox_create(bg, NULL);
