@@ -76,7 +76,7 @@
  **********************/
 
 /**
- * Crate some objects an animate them
+ * Create some objects an animate them
  */
 void lv_tutorial_responsive(void)
 {
