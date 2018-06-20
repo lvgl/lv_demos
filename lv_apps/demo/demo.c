@@ -42,6 +42,8 @@ static lv_style_t style_kb;
 static lv_style_t style_kb_rel;
 static lv_style_t style_kb_pr;
 
+static lv_group_t * grp;
+
 #if LV_DEMO_WALLPAPER
 LV_IMG_DECLARE(img_bubble_pattern);
 #endif
@@ -57,8 +59,13 @@ LV_IMG_DECLARE(img_bubble_pattern);
 /**
  * Create a demo application
  */
-void demo_create(void)
+void demo_create(lv_indev_t * kp_indev)
 {
+    /*Create an object group for objects to focus*/
+    grp = lv_group_create();
+
+    lv_indev_set_group(kp_indev, grp);
+
 #if LV_DEMO_WALLPAPER
     lv_obj_t * wp = lv_img_create(lv_scr_act(), NULL);
     lv_img_set_src(wp, &img_bubble_pattern);
@@ -96,6 +103,9 @@ void demo_create(void)
     lv_obj_t * tab1 = lv_tabview_add_tab(tv, "Write");
     lv_obj_t * tab2 = lv_tabview_add_tab(tv, "List");
     lv_obj_t * tab3 = lv_tabview_add_tab(tv, "Chart");
+
+    lv_group_add_obj(grp, tv);                  /*Add the object to the group*/
+    lv_group_focus_obj(tv);
 
 #if LV_DEMO_WALLPAPER == 0
     /*Blue bg instead of wallpaper*/

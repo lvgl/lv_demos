@@ -6,12 +6,19 @@
 /*********************
  *      INCLUDES
  *********************/
+#include "stdio.h"
+#include "lv_drv_conf.h"
 #include "lv_test_group.h"
 #if USE_LV_GROUP && USE_LV_TESTS
 
 #include "lvgl/lv_hal/lv_hal_indev.h"
 
-#define ADD_KEYBOARD   1        /*Required: USE_KEYBOARD   1   in lv_drv_conf.h (lv_drivers repository)*/
+
+#ifndef USE_KEYBOARD
+#define USE_KEYBOARD    1                   /*defined in lv_drv_conf.h (lv_drivers repository)*/
+#endif
+
+#define ADD_KEYBOARD   USE_KEYBOARD
 
 #if ADD_KEYBOARD
 #include "lv_drivers/indev/keyboard.h"
