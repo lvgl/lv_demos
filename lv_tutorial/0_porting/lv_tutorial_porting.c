@@ -40,7 +40,7 @@
  *      INCLUDES
  *********************/
 #include "lv_tutorial_porting.h"
-#if  USE_LV_TUTORIALS 
+#if  USE_LV_TUTORIALS
 
 /*********************
  *      DEFINES
@@ -60,7 +60,7 @@ static void ex_disp_fill(int32_t x1, int32_t y1, int32_t x2, int32_t y2,  lv_col
 static void ex_mem_blend(lv_color_t * dest, const lv_color_t * src, uint32_t length, lv_opa_t opa);
 static void ex_mem_fill(lv_color_t * dest, uint32_t length, lv_color_t color);
 #endif
-static bool ex_tp_read(lv_indev_data_t *data);
+static bool ex_tp_read(lv_indev_data_t * data);
 
 /**********************
  *  STATIC VARIABLES
@@ -234,7 +234,7 @@ static void ex_mem_fill(lv_color_t * dest, uint32_t length, lv_color_t color)
 
 /* Read the touchpad and store it in 'data'
  * REaturn false if no more data read; true for ready again */
-static bool ex_tp_read(lv_indev_data_t *data)
+static bool ex_tp_read(lv_indev_data_t * data)
 {
     /* Read your touchpad */
     /* data->state = LV_INDEV_STATE_REL or LV_INDEV_STATE_PR */

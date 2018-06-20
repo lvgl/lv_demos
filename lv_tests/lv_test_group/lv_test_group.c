@@ -7,7 +7,7 @@
  *      INCLUDES
  *********************/
 #include "lv_test_group.h"
-#if USE_LV_GROUP && USE_LV_TESTS    
+#if USE_LV_GROUP && USE_LV_TESTS
 
 #include "lvgl/lv_hal/lv_hal_indev.h"
 
@@ -29,9 +29,9 @@
  *  STATIC PROTOTYPES
  **********************/
 /*To emulate some keys on the window header*/
-static bool win_btn_read(lv_indev_data_t *data);
-static lv_res_t win_btn_press(lv_obj_t *btn);
-static lv_res_t win_btn_click(lv_obj_t *btn);
+static bool win_btn_read(lv_indev_data_t * data);
+static lv_res_t win_btn_press(lv_obj_t * btn);
+static lv_res_t win_btn_click(lv_obj_t * btn);
 
 static void group_focus_cb(lv_group_t * group);
 
@@ -47,8 +47,8 @@ static lv_res_t long_press_action(lv_obj_t * btn);
  **********************/
 static uint32_t last_key;
 static lv_indev_state_t last_key_state = LV_INDEV_STATE_REL;
-static lv_group_t *g;
-static lv_obj_t *win;
+static lv_group_t * g;
+static lv_obj_t * win;
 
 /**********************
  *      MACROS
@@ -71,13 +71,13 @@ void lv_test_group_1(void)
     lv_indev_drv_t kb_drv;
     kb_drv.type = LV_INDEV_TYPE_KEYPAD;
     kb_drv.read = win_btn_read;
-    lv_indev_t *win_kb_indev = lv_indev_drv_register(&kb_drv);
+    lv_indev_t * win_kb_indev = lv_indev_drv_register(&kb_drv);
     lv_indev_set_group(win_kb_indev, g);
 
 #if ADD_KEYBOARD
     kb_drv.type = LV_INDEV_TYPE_KEYPAD;
     kb_drv.read = keyboard_read;
-    lv_indev_t *kb_indev = lv_indev_drv_register(&kb_drv);
+    lv_indev_t * kb_indev = lv_indev_drv_register(&kb_drv);
     lv_indev_set_group(kb_indev, g);
 #endif
     /*Create a window to hold all the objects*/
@@ -93,7 +93,7 @@ void lv_test_group_1(void)
     lv_win_set_layout(win, LV_LAYOUT_PRETTY);
     lv_win_set_style(win, LV_WIN_STYLE_CONTENT_SCRL, &win_style);
 
-    lv_obj_t *win_btn = lv_win_add_btn(win, SYMBOL_RIGHT, win_btn_click);
+    lv_obj_t * win_btn = lv_win_add_btn(win, SYMBOL_RIGHT, win_btn_click);
     lv_btn_set_action(win_btn, LV_BTN_ACTION_PR, win_btn_press);
     lv_obj_set_free_num(win_btn, LV_GROUP_KEY_RIGHT);
 
@@ -117,7 +117,7 @@ void lv_test_group_1(void)
     lv_btn_set_action(win_btn, LV_BTN_ACTION_PR, win_btn_press);
     lv_obj_set_free_num(win_btn, 'a');
 
-    lv_obj_t *obj;
+    lv_obj_t * obj;
 
     obj = lv_obj_create(win, NULL);
     lv_obj_set_style(obj, &lv_style_plain_color);
@@ -166,7 +166,7 @@ void lv_test_group_1(void)
     lv_obj_set_size(obj, LV_HOR_RES / 2, LV_VER_RES / 3);
     lv_group_add_obj(g, obj);
 
-    lv_obj_t *ta = lv_ta_create(win, NULL);
+    lv_obj_t * ta = lv_ta_create(win, NULL);
     lv_ta_set_cursor_type(ta, LV_CURSOR_BLOCK);
     lv_group_add_obj(g, ta);
 
@@ -175,7 +175,7 @@ void lv_test_group_1(void)
     lv_kb_set_ta(obj, ta);
     lv_group_add_obj(g, obj);
 
-    static const char *mbox_btns[] = {"Yes", "No", ""};
+    static const char * mbox_btns[] = {"Yes", "No", ""};
     obj = lv_mbox_create(win, NULL);
     lv_mbox_add_btns(obj, mbox_btns, NULL);
     lv_group_add_obj(g, obj);
@@ -236,7 +236,7 @@ void lv_test_group_1(void)
  * @param data store the last key and its staee here
  * @return false because the reading in not buffered
  */
-static bool win_btn_read(lv_indev_data_t *data)
+static bool win_btn_read(lv_indev_data_t * data)
 {
     data->state = last_key_state;
     data->key = last_key;
@@ -250,7 +250,7 @@ static bool win_btn_read(lv_indev_data_t *data)
  * @param btn pointer t to a button on the window header
  * @return LV_RES_OK  because the button is not deleted
  */
-static lv_res_t win_btn_press(lv_obj_t *btn)
+static lv_res_t win_btn_press(lv_obj_t * btn)
 {
     LV_OBJ_FREE_NUM_TYPE c = lv_obj_get_free_num(btn);
     last_key_state = LV_INDEV_STATE_PR;
@@ -264,7 +264,7 @@ static lv_res_t win_btn_press(lv_obj_t *btn)
  * @param btn pointer t to a button on the window header
  * @return LV_RES_OK  because the button is not deleted
  */
-static lv_res_t win_btn_click(lv_obj_t *btn)
+static lv_res_t win_btn_click(lv_obj_t * btn)
 {
     last_key_state = LV_INDEV_STATE_REL;
 

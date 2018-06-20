@@ -20,13 +20,13 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static void write_create(lv_obj_t *parent);
+static void write_create(lv_obj_t * parent);
 static lv_res_t keyboard_open_close(lv_obj_t * ta);
 static lv_res_t keyboard_hide_action(lv_obj_t * keyboard);
-static void list_create(lv_obj_t *parent);
-static void chart_create(lv_obj_t *parent);
-static lv_res_t slider_action(lv_obj_t *slider);
-static lv_res_t list_btn_action(lv_obj_t *slider);
+static void list_create(lv_obj_t * parent);
+static void chart_create(lv_obj_t * parent);
+static lv_res_t slider_action(lv_obj_t * slider);
+static lv_res_t list_btn_action(lv_obj_t * slider);
 #if LV_DEMO_SLIDE_SHOW
 static void tab_switcher(void * tv);
 #endif
@@ -34,9 +34,9 @@ static void tab_switcher(void * tv);
 /**********************
  *  STATIC VARIABLES
  **********************/
-static lv_obj_t *chart;
-static lv_obj_t *ta;
-static lv_obj_t *kb;
+static lv_obj_t * chart;
+static lv_obj_t * ta;
+static lv_obj_t * kb;
 
 static lv_style_t style_kb;
 static lv_style_t style_kb_rel;
@@ -60,7 +60,7 @@ LV_IMG_DECLARE(img_bubble_pattern);
 void demo_create(void)
 {
 #if LV_DEMO_WALLPAPER
-    lv_obj_t *wp = lv_img_create(lv_scr_act(), NULL);
+    lv_obj_t * wp = lv_img_create(lv_scr_act(), NULL);
     lv_img_set_src(wp, &img_bubble_pattern);
     lv_obj_set_width(wp, LV_HOR_RES * 4);
     lv_obj_set_protect(wp, LV_PROTECT_POS);
@@ -86,16 +86,16 @@ void demo_create(void)
     style_tv_btn_pr.body.border.width = 0;
     style_tv_btn_pr.text.color = LV_COLOR_GRAY;
 
-    lv_obj_t *tv = lv_tabview_create(lv_scr_act(), NULL);
+    lv_obj_t * tv = lv_tabview_create(lv_scr_act(), NULL);
 
 #if LV_DEMO_WALLPAPER
     lv_obj_set_parent(wp, ((lv_tabview_ext_t *) tv->ext_attr)->content);
     lv_obj_set_pos(wp, 0, -5);
 #endif
 
-    lv_obj_t *tab1 = lv_tabview_add_tab(tv, "Write");
-    lv_obj_t *tab2 = lv_tabview_add_tab(tv, "List");
-    lv_obj_t *tab3 = lv_tabview_add_tab(tv, "Chart");
+    lv_obj_t * tab1 = lv_tabview_add_tab(tv, "Write");
+    lv_obj_t * tab2 = lv_tabview_add_tab(tv, "List");
+    lv_obj_t * tab3 = lv_tabview_add_tab(tv, "Chart");
 
 #if LV_DEMO_WALLPAPER == 0
     /*Blue bg instead of wallpaper*/
@@ -113,7 +113,7 @@ void demo_create(void)
     chart_create(tab3);
 
 #if LV_DEMO_SLIDE_SHOW
-	lv_task_create(tab_switcher, 3000, LV_TASK_PRIO_MID, tv);
+    lv_task_create(tab_switcher, 3000, LV_TASK_PRIO_MID, tv);
 #endif
 }
 
@@ -122,7 +122,7 @@ void demo_create(void)
  *   STATIC FUNCTIONS
  **********************/
 
-static void write_create(lv_obj_t *parent)
+static void write_create(lv_obj_t * parent)
 {
     lv_page_set_style(parent, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
     lv_page_set_style(parent, LV_PAGE_STYLE_SCRL, &lv_style_transp_fit);
@@ -203,7 +203,7 @@ static lv_res_t keyboard_open_close(lv_obj_t * text_area)
 static lv_res_t keyboard_hide_action(lv_obj_t * keyboard)
 {
 #if USE_LV_ANIMATION
-    lv_obj_animate(kb, LV_ANIM_FLOAT_BOTTOM | LV_ANIM_OUT, 300, 0, (void(*)(lv_obj_t*))lv_obj_del);
+    lv_obj_animate(kb, LV_ANIM_FLOAT_BOTTOM | LV_ANIM_OUT, 300, 0, (void(*)(lv_obj_t *))lv_obj_del);
     kb = NULL;
     return LV_RES_OK;
 #else
@@ -213,7 +213,7 @@ static lv_res_t keyboard_hide_action(lv_obj_t * keyboard)
 #endif
 }
 
-static void list_create(lv_obj_t *parent)
+static void list_create(lv_obj_t * parent)
 {
     lv_page_set_style(parent, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
     lv_page_set_style(parent, LV_PAGE_STYLE_SCRL, &lv_style_transp_fit);
@@ -238,7 +238,7 @@ static void list_create(lv_obj_t *parent)
     style_btn_pr.body.grad_color = LV_COLOR_MAKE(0x37, 0x62, 0x90);
     style_btn_pr.text.color = LV_COLOR_MAKE(0xbb, 0xd5, 0xf1);
 
-    lv_obj_t *list = lv_list_create(parent, NULL);
+    lv_obj_t * list = lv_list_create(parent, NULL);
     lv_obj_set_height(list, 2 * lv_obj_get_height(parent) / 3);
     lv_list_set_style(list, LV_LIST_STYLE_BG, &lv_style_transp_tight);
     lv_list_set_style(list, LV_LIST_STYLE_SCRL, &lv_style_transp_tight);
@@ -254,7 +254,7 @@ static void list_create(lv_obj_t *parent)
     lv_list_add(list, SYMBOL_WIFI, "WiFi", list_btn_action);
     lv_list_add(list, SYMBOL_GPS, "GPS", list_btn_action);
 
-    lv_obj_t *mbox= lv_mbox_create(parent, NULL);
+    lv_obj_t * mbox = lv_mbox_create(parent, NULL);
     lv_mbox_set_text(mbox, "Click a button to copy its text to the Text area ");
     lv_obj_set_width(mbox, LV_HOR_RES - LV_DPI);
     static const char * mbox_btns[] = {"Got it", ""};
@@ -262,7 +262,7 @@ static void list_create(lv_obj_t *parent)
     lv_obj_align(mbox, parent, LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 2);
 }
 
-static void chart_create(lv_obj_t *parent)
+static void chart_create(lv_obj_t * parent)
 {
     lv_page_set_style(parent, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
     lv_page_set_style(parent, LV_PAGE_STYLE_SCRL, &lv_style_transp_fit);
@@ -283,7 +283,7 @@ static void chart_create(lv_obj_t *parent)
     lv_chart_set_type(chart, LV_CHART_TYPE_COLUMN);
     lv_chart_set_style(chart, &style_chart);
     lv_chart_set_series_opa(chart, LV_OPA_70);
-    lv_chart_series_t *ser1;
+    lv_chart_series_t * ser1;
     ser1 = lv_chart_add_series(chart, LV_COLOR_RED);
     lv_chart_set_next(chart, ser1, 40);
     lv_chart_set_next(chart, ser1, 30);
@@ -323,7 +323,7 @@ static void chart_create(lv_obj_t *parent)
     style_knob.body.opa = LV_OPA_70;
 
     /*Create a second slider*/
-    lv_obj_t *slider = lv_slider_create(parent, NULL);
+    lv_obj_t * slider = lv_slider_create(parent, NULL);
     lv_slider_set_style(slider, LV_SLIDER_STYLE_BG, &style_bar);
     lv_slider_set_style(slider, LV_SLIDER_STYLE_INDIC, &style_indic);
     lv_slider_set_style(slider, LV_SLIDER_STYLE_KNOB, &style_knob);
@@ -340,7 +340,7 @@ static void chart_create(lv_obj_t *parent)
  * @param slider pointer to the slider
  * @return LV_RES_OK because the slider is not deleted in the function
  */
-static lv_res_t slider_action(lv_obj_t *slider)
+static lv_res_t slider_action(lv_obj_t * slider)
 {
     int16_t v = lv_slider_get_value(slider);
     v = 1000 * 100 / v; /*Convert to range modify values linearly*/
@@ -354,7 +354,7 @@ static lv_res_t slider_action(lv_obj_t *slider)
  * @param btn pointer to a list button
  * @return LV_RES_OK because the button is not deleted in the function
  */
-static lv_res_t list_btn_action(lv_obj_t *btn)
+static lv_res_t list_btn_action(lv_obj_t * btn)
 {
     lv_ta_add_char(ta, '\n');
     lv_ta_add_text(ta, lv_list_get_btn_text(btn));

@@ -56,14 +56,14 @@ lv_style_t btn3_style;
  */
 void lv_tutorial_animations(void)
 {
-    lv_obj_t *label;
+    lv_obj_t * label;
 
 
     /*Create a button the demonstrate built-in animations*/
-    lv_obj_t *btn1;
+    lv_obj_t * btn1;
     btn1 = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_set_pos(btn1, 10 , 10 );     /*Set a position. It will be the animation's destination*/
-    lv_obj_set_size(btn1, 80 , 50 );
+    lv_obj_set_pos(btn1, 10, 10);       /*Set a position. It will be the animation's destination*/
+    lv_obj_set_size(btn1, 80, 50);
 
     label = lv_label_create(btn1, NULL);
     lv_label_set_text(label, "Float");
@@ -73,10 +73,10 @@ void lv_tutorial_animations(void)
     lv_obj_animate(btn1, LV_ANIM_FLOAT_TOP | LV_ANIM_IN, 300, 2000, NULL);
 
     /*Create a button to demonstrate user defined animations*/
-    lv_obj_t *btn2;
+    lv_obj_t * btn2;
     btn2 = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_set_pos(btn2, 10 , 80 );     /*Set a position. It will be the animation's destination*/
-    lv_obj_set_size(btn2, 80 , 50 );
+    lv_obj_set_pos(btn2, 10, 80);       /*Set a position. It will be the animation's destination*/
+    lv_obj_set_size(btn2, 80, 50);
 
     label = lv_label_create(btn2, NULL);
     lv_label_set_text(label, "Move");
@@ -85,7 +85,7 @@ void lv_tutorial_animations(void)
     lv_anim_t a;
     a.var = btn2;
     a.start = lv_obj_get_x(btn2);
-    a.end = a.start + (100 );
+    a.end = a.start + (100);
     a.fp = (lv_anim_fp_t)lv_obj_set_x;
     a.path = lv_anim_path_linear;
     a.end_cb = NULL;
@@ -98,10 +98,10 @@ void lv_tutorial_animations(void)
     lv_anim_create(&a);
 
     /*Create a button to demonstrate the style animations*/
-    lv_obj_t *btn3;
+    lv_obj_t * btn3;
     btn3 = lv_btn_create(lv_scr_act(), NULL);
-    lv_obj_set_pos(btn3, 10 , 150 );     /*Set a position. It will be the animation's destination*/
-    lv_obj_set_size(btn3, 80 , 50 );
+    lv_obj_set_pos(btn3, 10, 150);       /*Set a position. It will be the animation's destination*/
+    lv_obj_set_size(btn3, 80, 50);
 
     label = lv_label_create(btn3, NULL);
     lv_label_set_text(label, "Style");

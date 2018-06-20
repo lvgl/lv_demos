@@ -48,7 +48,7 @@ void lv_test_led_1(void)
     lv_style_copy(&style, &lv_style_pretty_color);
     style.body.shadow.width = 10;
     style.body.radius = LV_RADIUS_CIRCLE;
-    style.body.border.width= 3;
+    style.body.border.width = 3;
     style.body.border.opa = LV_OPA_30;
     style.body.main_color = LV_COLOR_MAKE(0xb5, 0x0f, 0x04);
     style.body.grad_color = LV_COLOR_MAKE(0x50, 0x07, 0x02);

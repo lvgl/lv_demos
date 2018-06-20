@@ -21,15 +21,15 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static lv_res_t cursor_move(lv_obj_t *btn);
+static lv_res_t cursor_move(lv_obj_t * btn);
 
 /**********************
  *  STATIC VARIABLES
  **********************/
-static lv_obj_t *ta2_1;
-static lv_obj_t *ta2_2;
-static lv_obj_t *ta2_3;
-static lv_obj_t *ta2_4;
+static lv_obj_t * ta2_1;
+static lv_obj_t * ta2_2;
+static lv_obj_t * ta2_3;
+static lv_obj_t * ta2_4;
 
 /**********************
  *      MACROS
@@ -45,7 +45,7 @@ static lv_obj_t *ta2_4;
 void lv_test_ta_1(void)
 {
     /* Create a text area which looks well */
-    lv_obj_t *ta1 = lv_ta_create(lv_scr_act(), NULL);
+    lv_obj_t * ta1 = lv_ta_create(lv_scr_act(), NULL);
 
     /*A text area with the following text:
      * Next long test text and testing the automatic       (line break here)
@@ -57,7 +57,7 @@ void lv_test_ta_1(void)
      * "űŰöÖ "
      * The cursor should be after these letters*/
 
-    lv_obj_t *ta2 = lv_ta_create(lv_scr_act(), NULL);
+    lv_obj_t * ta2 = lv_ta_create(lv_scr_act(), NULL);
     lv_ta_set_text(ta2, "New text");
     lv_ta_set_cursor_pos(ta2, 4);
     lv_ta_add_text(ta2, "test ");
@@ -69,7 +69,7 @@ void lv_test_ta_1(void)
     lv_ta_add_char(ta2, ' ');
     lv_ta_set_cursor_pos(ta2, LV_TA_CURSOR_LAST);
     lv_ta_add_text(ta2, " and testing the automatic\n"
-                        "and manual line break feature too.");
+                   "and manual line break feature too.");
 
 #if LV_TXT_UTF8 != 0
     lv_ta_set_cursor_pos(ta2, 0);
@@ -83,7 +83,7 @@ void lv_test_ta_1(void)
     lv_obj_align(ta2, ta1, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
 
     /*Test password mode and one line*/
-    lv_obj_t *ta3 = lv_ta_create(lv_scr_act(), NULL);
+    lv_obj_t * ta3 = lv_ta_create(lv_scr_act(), NULL);
     lv_ta_set_pwd_mode(ta3, true);
     lv_ta_set_one_line(ta3, true);
 
@@ -102,7 +102,7 @@ void lv_test_ta_1(void)
     lv_ta_add_text(ta3, "É");
 
     /*Get the password text and set in a new text area*/
-    lv_obj_t *ta4 = lv_ta_create(lv_scr_act(), NULL);
+    lv_obj_t * ta4 = lv_ta_create(lv_scr_act(), NULL);
     lv_ta_set_one_line(ta4, true);
     lv_ta_set_text(ta4, lv_ta_get_text(ta3));
     lv_obj_align(ta4, ta3, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
@@ -154,11 +154,11 @@ void lv_test_ta_2(void)
     lv_ta_set_cursor_type(ta2_1, LV_CURSOR_LINE);
 #if LV_TXT_UTF8 != 0
     lv_ta_set_text(ta2_1, "Some UTF-8 characters "
-                          "űőabcŰŐABC\n"
-                          "\n"
-                          "Í\n"
-                          "W\n"
-                          "abc");
+                   "űőabcŰŐABC\n"
+                   "\n"
+                   "Í\n"
+                   "W\n"
+                   "abc");
 
 #endif
     ta2_2 = lv_ta_create(lv_scr_act(), ta2_1);
@@ -173,11 +173,11 @@ void lv_test_ta_2(void)
     lv_obj_align(ta2_4, ta2_3, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
     lv_ta_set_cursor_type(ta2_4, LV_CURSOR_UNDERLINE);
 
-    lv_obj_t *btn = lv_btn_create(lv_scr_act(), NULL);
+    lv_obj_t * btn = lv_btn_create(lv_scr_act(), NULL);
     lv_obj_align(btn, ta2_1, LV_ALIGN_OUT_RIGHT_MID, 10, 0);
     lv_obj_set_free_num(btn, 0);
     lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, cursor_move);
-    lv_obj_t *label = lv_label_create(btn, NULL);
+    lv_obj_t * label = lv_label_create(btn, NULL);
     lv_label_set_text(label, "Up");
 
     btn = lv_btn_create(lv_scr_act(), btn);
@@ -213,7 +213,7 @@ void lv_test_ta_2(void)
  *   STATIC FUNCTIONS
  **********************/
 
-static lv_res_t cursor_move(lv_obj_t *btn)
+static lv_res_t cursor_move(lv_obj_t * btn)
 {
     switch(lv_obj_get_free_num(btn)) {
         case 0:

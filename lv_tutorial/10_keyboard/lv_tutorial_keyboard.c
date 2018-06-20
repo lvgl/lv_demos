@@ -43,7 +43,7 @@
 static void gui_create(void);
 static void kaypad_create(void);
 static bool emulated_keypad_read(lv_indev_data_t * data);
-static lv_res_t mbox_action(lv_obj_t * btn, const char *txt);
+static lv_res_t mbox_action(lv_obj_t * btn, const char * txt);
 static lv_res_t enable_action(lv_obj_t * btn);
 static lv_res_t keypad_btn_press(lv_obj_t * btn);
 static lv_res_t keypad_btn_release(lv_obj_t * btn);
@@ -84,7 +84,7 @@ void lv_tutorial_keyboard(void)
     /* Create a dark plain style for a message box's background (modal)*/
     lv_style_copy(&style_mbox_bg, &lv_style_plain);
     style_mbox_bg.body.main_color = LV_COLOR_BLACK;
-    style_mbox_bg.body.grad_color= LV_COLOR_BLACK;
+    style_mbox_bg.body.grad_color = LV_COLOR_BLACK;
     style_mbox_bg.body.opa = LV_OPA_50;
 
     /*Create a demo GUI*/
@@ -239,7 +239,7 @@ static lv_res_t enable_action(lv_obj_t * btn)
  * @param btn pointer to the 'Yes' button
  * @return LV_ACTION_RES_INV: because the button along with the message box will be deleted
  */
-static lv_res_t mbox_action(lv_obj_t * btn, const char *txt)
+static lv_res_t mbox_action(lv_obj_t * btn, const char * txt)
 {
     lv_group_focus_freeze(g, false);        /*Release the freeze*/
     lv_obj_t * mbox = lv_mbox_get_from_btn(btn);

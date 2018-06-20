@@ -69,12 +69,12 @@ void lv_tutorial_styles(void)
      * BASE OBJECT + LABEL WITH DEFAULT STYLE
      ****************************************/
     /*Create a simple objects*/
-    lv_obj_t  *obj1;
+    lv_obj_t * obj1;
     obj1 = lv_obj_create(lv_scr_act(), NULL);
     lv_obj_set_pos(obj1, 10, 10);
 
     /*Add a label to the object*/
-    lv_obj_t *label;
+    lv_obj_t * label;
     label = lv_label_create(obj1, NULL);
     lv_label_set_text(label, "Default");
     lv_obj_align(label, NULL, LV_ALIGN_CENTER, 0, 0);
@@ -145,7 +145,7 @@ void lv_tutorial_styles(void)
     style_bar_indic.body.padding.ver = 8;
 
     /*Create a bar and apply the styles*/
-    lv_obj_t *bar = lv_bar_create(lv_scr_act(), NULL);
+    lv_obj_t * bar = lv_bar_create(lv_scr_act(), NULL);
     lv_bar_set_style(bar, LV_BAR_STYLE_BG, &style_bar_bg);
     lv_bar_set_style(bar, LV_BAR_STYLE_INDIC, &style_bar_indic);
     lv_bar_set_value(bar, 70);

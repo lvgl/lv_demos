@@ -79,7 +79,7 @@ void benchmark_create(void)
 
     style_btn_rel.body.opa = LV_OPA_COVER;
     style_btn_pr.body.opa  = LV_OPA_COVER;
-    style_btn_tgl_rel.body.opa =LV_OPA_COVER;
+    style_btn_tgl_rel.body.opa = LV_OPA_COVER;
     style_btn_tgl_pr.body.opa = LV_OPA_COVER;
 
     style_btn_rel.body.shadow.width =  0;
@@ -99,38 +99,38 @@ void benchmark_create(void)
     lv_page_set_scrl_layout(holder_page, LV_LAYOUT_PRETTY);
 
     /*Create a wallpaper on the page*/
-	wp = lv_img_create(holder_page, NULL);
-	lv_obj_set_protect(wp, LV_PROTECT_PARENT);          /*Don't let to move the wallpaper by the layout */
-	lv_obj_set_parent(wp, holder_page);
-	lv_obj_set_parent(lv_page_get_scrl(holder_page), holder_page);
-	lv_img_set_src(wp, &benchmark_bg);
-	lv_obj_set_size(wp, LV_HOR_RES, LV_VER_RES);
-	lv_obj_set_pos(wp, 0, 0);
-	lv_obj_set_hidden(wp, true);
+    wp = lv_img_create(holder_page, NULL);
+    lv_obj_set_protect(wp, LV_PROTECT_PARENT);          /*Don't let to move the wallpaper by the layout */
+    lv_obj_set_parent(wp, holder_page);
+    lv_obj_set_parent(lv_page_get_scrl(holder_page), holder_page);
+    lv_img_set_src(wp, &benchmark_bg);
+    lv_obj_set_size(wp, LV_HOR_RES, LV_VER_RES);
+    lv_obj_set_pos(wp, 0, 0);
+    lv_obj_set_hidden(wp, true);
     lv_img_set_style(wp, &style_wp);
     lv_img_set_auto_size(wp, false);
 
-	/*Create a label to show the test result*/
+    /*Create a label to show the test result*/
     result_label = lv_label_create(holder_page, NULL);
     lv_label_set_text(result_label, "Run the test");
-	lv_label_set_body_draw(result_label, true);
-	lv_label_set_style(result_label, &lv_style_pretty);
+    lv_label_set_body_draw(result_label, true);
+    lv_label_set_style(result_label, &lv_style_pretty);
 
-	/*Create a "Run test" button*/
-	lv_obj_t * btn;
-	btn = lv_btn_create(holder_page, NULL);
+    /*Create a "Run test" button*/
+    lv_obj_t * btn;
+    btn = lv_btn_create(holder_page, NULL);
     lv_page_glue_obj(btn, true);
-	lv_cont_set_fit(btn, true, true);
-	lv_btn_set_style(btn, LV_BTN_STYLE_REL, &style_btn_rel);
+    lv_cont_set_fit(btn, true, true);
+    lv_btn_set_style(btn, LV_BTN_STYLE_REL, &style_btn_rel);
     lv_btn_set_style(btn, LV_BTN_STYLE_PR, &style_btn_pr);
     lv_btn_set_style(btn, LV_BTN_STYLE_TGL_REL, &style_btn_tgl_rel);
     lv_btn_set_style(btn, LV_BTN_STYLE_TGL_PR, &style_btn_tgl_pr);
-	lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, run_test_click);
+    lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, run_test_click);
 
-	lv_obj_t * btn_l;
-	btn_l = lv_label_create(btn, NULL);
-	lv_label_set_text(btn_l, "Run\ntest!");
-	lv_obj_set_protect(btn, LV_PROTECT_FOLLOW);     /*Line break in layout*/
+    lv_obj_t * btn_l;
+    btn_l = lv_label_create(btn, NULL);
+    lv_label_set_text(btn_l, "Run\ntest!");
+    lv_obj_set_protect(btn, LV_PROTECT_FOLLOW);     /*Line break in layout*/
 
 
     /*Create a "Wallpaper show" button*/
@@ -295,7 +295,7 @@ static lv_res_t opa_click(lv_obj_t * btn)
     } else {
         style_btn_rel.body.opa = LV_OPA_COVER;
         style_btn_pr.body.opa  = LV_OPA_COVER;
-        style_btn_tgl_rel.body.opa =LV_OPA_COVER;
+        style_btn_tgl_rel.body.opa = LV_OPA_COVER;
         style_btn_tgl_pr.body.opa = LV_OPA_COVER;
     }
 

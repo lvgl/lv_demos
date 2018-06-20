@@ -105,7 +105,7 @@ void lv_test_label_2(void)
     lv_label_set_body_draw(label2, true);
     lv_obj_set_style(label2, &lv_style_plain_color);
     lv_label_set_text(label2, "This is a long line and a VeryVeryLongWordToWrap.\n"
-                              "A new line and a lot of spaces:                        . Can you see them?");
+                      "A new line and a lot of spaces:                        . Can you see them?");
     lv_label_set_long_mode(label2, LV_LABEL_LONG_BREAK);
     lv_obj_align(label2, label1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
     lv_obj_set_width(label2, 100);
@@ -191,9 +191,9 @@ void lv_test_label_4(void)
      * GOAL: The text in 5 lines without empty lines*/
     lv_obj_t * label1 = lv_label_create(lv_scr_act(), NULL);
     lv_label_set_text(label1, "Line1\n"
-                              "Line2\r"
-                              "Line3\r\n"
-                              "Line4");
+                      "Line2\r"
+                      "Line3\r\n"
+                      "Line4");
 
 
     /* Activate the no break feature
@@ -214,8 +214,8 @@ void lv_test_label_4(void)
      * GOAL: the word "red" is red*/
     lv_obj_t * label4 = lv_label_create(lv_scr_act(), NULL);
     lv_label_set_text(label4, "Normal ASCII\n"
-                              "UTF-8 letters:áÁééőŐöÖúÚűŰ\n"
-                              "Recolor UTF-8: #ff0000 öŐ##00ff00 üŰ##0000ff éÉ#");
+                      "UTF-8 letters:áÁééőŐöÖúÚűŰ\n"
+                      "Recolor UTF-8: #ff0000 öŐ##00ff00 üŰ##0000ff éÉ#");
     lv_label_set_recolor(label4, true);
     lv_label_set_long_mode(label4, LV_LABEL_LONG_BREAK);
     lv_obj_set_width(label4, 100);

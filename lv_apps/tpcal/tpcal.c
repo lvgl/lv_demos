@@ -4,20 +4,20 @@
  * TOUCHPAD CALIBRATION
  * ---------------------
  *
- * This application creates a GUI and instruct the user 
+ * This application creates a GUI and instruct the user
  * to click the four corners to get data for touchpad calibration.
- * 
+ *
  * - You display driver should have two functions: `xxx_read` and `xxx_set_cal_data`.
  * - At first run run the touchpad is not calibrated therefore your `xxx_read` function should provide raw data.
- * - When the user touched all four corners you should call the `xxx_set_cal_data` function in 
+ * - When the user touched all four corners you should call the `xxx_set_cal_data` function in
  * ` TP_CAL_STATE_WAIT_LEAVE` state. As arguments you should pass `p[0]`, `p[1]`, `p[2]` and `p[3]`
  *   which are the coordinates read on corner perssing.
- * - `xxx_set_cal_data` should mark the display as calibrated, save the raw coordinates 
+ * - `xxx_set_cal_data` should mark the display as calibrated, save the raw coordinates
  *    and use them in the upcoming calls of `xxx_read` to adjust the coordinates.
  * - A simple equation to adjust the coordinates: x_cal = ((x_act - x1_saved) * lcd_hor_res) / (x2_saved - x1_saved);
  *      - x_cal: the calibrated X coordinate
  *      - x_act: the currently measered X coordinate
- *      - x1_saved, x2_saved: The raw X coordinates saved as calibration data 
+ *      - x1_saved, x2_saved: The raw X coordinates saved as calibration data
  */
 
 /*********************
@@ -46,13 +46,13 @@ typedef enum {
     TP_CAL_STATE_WAIT_BOTTOM_LEFT,
     TP_CAL_STATE_WAIT_LEAVE,
     TP_CAL_STATE_READY,
-}tp_cal_state_t;
+} tp_cal_state_t;
 
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static void get_avr_value(lv_point_t* p);
-static lv_res_t btn_click_action(lv_obj_t *scr);
+static void get_avr_value(lv_point_t * p);
+static lv_res_t btn_click_action(lv_obj_t * scr);
 
 /**********************
  *  STATIC VARIABLES
@@ -61,10 +61,10 @@ static lv_point_t p[4]; /*Calibration points: p[0]: top-left; p[1]: top-right, p
 static lv_point_t avr[TOUCH_NUMBER]; /*Storage point to calculate average*/
 
 static tp_cal_state_t state;
-static lv_obj_t *prev_scr;
-static lv_obj_t *big_btn;
-static lv_obj_t *label_main;
-static lv_obj_t *circ_area;
+static lv_obj_t * prev_scr;
+static lv_obj_t * big_btn;
+static lv_obj_t * label_main;
+static lv_obj_t * circ_area;
 
 /**********************
  *      MACROS
@@ -83,7 +83,7 @@ void tpcal_create(void)
 
     prev_scr = lv_scr_act();
 
-    lv_obj_t *scr = lv_obj_create(NULL, NULL);
+    lv_obj_t * scr = lv_obj_create(NULL, NULL);
     lv_obj_set_size(scr, TP_MAX_VALUE, TP_MAX_VALUE);
     lv_scr_load(scr);
 
@@ -98,13 +98,13 @@ void tpcal_create(void)
     label_main = lv_label_create(lv_scr_act(), NULL);
     char buf[64];
     sprintf(buf, "Click the circle in\n"
-                    "upper left-hand corner\n"
-                    "%u left", TOUCH_NUMBER);
+            "upper left-hand corner\n"
+            "%u left", TOUCH_NUMBER);
     lv_label_set_text(label_main, buf);
     lv_label_set_align(label_main, LV_LABEL_ALIGN_CENTER);
 
     lv_obj_set_pos(label_main, (LV_HOR_RES - lv_obj_get_width(label_main)) / 2,
-                               (LV_VER_RES - lv_obj_get_height(label_main)) / 2);
+                   (LV_VER_RES - lv_obj_get_height(label_main)) / 2);
 
 
     static lv_style_t style_circ;
@@ -149,222 +149,201 @@ void tpcal_create(void)
  *   STATIC FUNCTIONS
  **********************/
 
-static void get_avr_value(lv_point_t* p)
+static void get_avr_value(lv_point_t * p)
 {
     int32_t x_sum = 0;
     int32_t y_sum = 0;
-    for(uint8_t i = 0 ; i < TOUCH_NUMBER ; i++)
-    {
+    for(uint8_t i = 0 ; i < TOUCH_NUMBER ; i++) {
         x_sum += avr[i].x;
         y_sum += avr[i].y;
     }
-    p->x = x_sum/TOUCH_NUMBER;
-    p->y = y_sum/TOUCH_NUMBER;
+    p->x = x_sum / TOUCH_NUMBER;
+    p->y = y_sum / TOUCH_NUMBER;
 }
 
-static lv_res_t btn_click_action(lv_obj_t *scr)
+static lv_res_t btn_click_action(lv_obj_t * scr)
 {
     static uint8_t touch_nb = TOUCH_NUMBER;
 
-    if(state == TP_CAL_STATE_WAIT_TOP_LEFT)
-    {
+    if(state == TP_CAL_STATE_WAIT_TOP_LEFT) {
         char buf[64];
         touch_nb--;
-        lv_indev_t *indev = lv_indev_get_act();
+        lv_indev_t * indev = lv_indev_get_act();
         lv_indev_get_point(indev, &avr[touch_nb]);
 
-        if(!touch_nb)
-        {
+        if(!touch_nb) {
             touch_nb = TOUCH_NUMBER;
             get_avr_value(&p[0]);
             sprintf(buf, "x: %d\ny: %d", p[0].x, p[0].y);
-            lv_obj_t *label_coord = lv_label_create(lv_scr_act(), NULL);
+            lv_obj_t * label_coord = lv_label_create(lv_scr_act(), NULL);
             lv_label_set_text(label_coord, buf);
             sprintf(buf, "Click the circle in\n"
-                "upper right-hand corner\n"
-                " %u Left", TOUCH_NUMBER);
+                    "upper right-hand corner\n"
+                    " %u Left", TOUCH_NUMBER);
 #if USE_LV_ANIMATION
-        lv_anim_t a;
-        a.var = circ_area;
-        a.start = CIRCLE_OFFSET;
-        a.end = LV_HOR_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
-        a.fp = (lv_anim_fp_t)lv_obj_set_x;
-        a.path = lv_anim_path_linear;
-        a.end_cb = NULL;
-        a.act_time = 0;
-        a.time = 200;
-        a.playback = 0;
-        a.playback_pause = 0;
-        a.repeat = 0;
-        a.repeat_pause = 0;
-        lv_anim_create(&a);
+            lv_anim_t a;
+            a.var = circ_area;
+            a.start = CIRCLE_OFFSET;
+            a.end = LV_HOR_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
+            a.fp = (lv_anim_fp_t)lv_obj_set_x;
+            a.path = lv_anim_path_linear;
+            a.end_cb = NULL;
+            a.act_time = 0;
+            a.time = 200;
+            a.playback = 0;
+            a.playback_pause = 0;
+            a.repeat = 0;
+            a.repeat_pause = 0;
+            lv_anim_create(&a);
 
-        a.start = CIRCLE_OFFSET;
-        a.end = CIRCLE_OFFSET;
-        a.fp = (lv_anim_fp_t)lv_obj_set_y;
-        a.end_cb = NULL;
-        a.time = 200;
-        lv_anim_create(&a);
+            a.start = CIRCLE_OFFSET;
+            a.end = CIRCLE_OFFSET;
+            a.fp = (lv_anim_fp_t)lv_obj_set_y;
+            a.end_cb = NULL;
+            a.time = 200;
+            lv_anim_create(&a);
 #else
-    lv_obj_set_pos(circ_area, LV_HOR_RES - CIRCLE_SIZE - CIRCLE_OFFSET, CIRCLE_OFFSET);
+            lv_obj_set_pos(circ_area, LV_HOR_RES - CIRCLE_SIZE - CIRCLE_OFFSET, CIRCLE_OFFSET);
 #endif
-        state = TP_CAL_STATE_WAIT_TOP_RIGHT;
-        }
-        else
-        {
+            state = TP_CAL_STATE_WAIT_TOP_RIGHT;
+        } else {
             sprintf(buf, "Click the circle in\n"
-                "upper left-hand corner\n"
-                " %u Left", touch_nb);
+                    "upper left-hand corner\n"
+                    " %u Left", touch_nb);
         }
-        lv_label_set_text(label_main,buf);
+        lv_label_set_text(label_main, buf);
         lv_obj_set_pos(label_main, (LV_HOR_RES - lv_obj_get_width(label_main)) / 2,
-                                   (LV_VER_RES - lv_obj_get_height(label_main)) / 2);
+                       (LV_VER_RES - lv_obj_get_height(label_main)) / 2);
 
 
-    }
-    else if(state == TP_CAL_STATE_WAIT_TOP_RIGHT)
-    {
+    } else if(state == TP_CAL_STATE_WAIT_TOP_RIGHT) {
         char buf[64];
         touch_nb--;
-        lv_indev_t *indev = lv_indev_get_act();
+        lv_indev_t * indev = lv_indev_get_act();
         lv_indev_get_point(indev, &avr[touch_nb]);
 
-        if(!touch_nb)
-        {
+        if(!touch_nb) {
             touch_nb = TOUCH_NUMBER;
             get_avr_value(&p[1]);
             sprintf(buf, "x: %d\ny: %d", p[1].x, p[1].y);
-            lv_obj_t *label_coord = lv_label_create(lv_scr_act(), NULL);
+            lv_obj_t * label_coord = lv_label_create(lv_scr_act(), NULL);
             lv_label_set_text(label_coord, buf);
             lv_obj_set_pos(label_coord, LV_HOR_RES - lv_obj_get_width(label_coord), 0);
             sprintf(buf, "Click the circle in\n"
-                "lower right-hand corner\n"
-                " %u Left", TOUCH_NUMBER);
+                    "lower right-hand corner\n"
+                    " %u Left", TOUCH_NUMBER);
 #if USE_LV_ANIMATION
-        lv_anim_t a;
-        a.var = circ_area;
-        a.start = LV_HOR_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
-        a.end = LV_HOR_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
-        a.fp = (lv_anim_fp_t)lv_obj_set_x;
-        a.path = lv_anim_path_linear;
-        a.end_cb = NULL;
-        a.act_time = 0;
-        a.time = 200;
-        a.playback = 0;
-        a.playback_pause = 0;
-        a.repeat = 0;
-        a.repeat_pause = 0;
-        lv_anim_create(&a);
+            lv_anim_t a;
+            a.var = circ_area;
+            a.start = LV_HOR_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
+            a.end = LV_HOR_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
+            a.fp = (lv_anim_fp_t)lv_obj_set_x;
+            a.path = lv_anim_path_linear;
+            a.end_cb = NULL;
+            a.act_time = 0;
+            a.time = 200;
+            a.playback = 0;
+            a.playback_pause = 0;
+            a.repeat = 0;
+            a.repeat_pause = 0;
+            lv_anim_create(&a);
 
-        a.start = CIRCLE_OFFSET;
-        a.end = LV_VER_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
-        a.fp = (lv_anim_fp_t)lv_obj_set_y;
-        a.end_cb = NULL;
-        a.time = 200;
-        lv_anim_create(&a);
+            a.start = CIRCLE_OFFSET;
+            a.end = LV_VER_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
+            a.fp = (lv_anim_fp_t)lv_obj_set_y;
+            a.end_cb = NULL;
+            a.time = 200;
+            lv_anim_create(&a);
 #else
-    lv_obj_set_pos(circ_area, LV_HOR_RES - CIRCLE_SIZE - CIRCLE_OFFSET, LV_VER_RES - CIRCLE_SIZE - CIRCLE_OFFSET);
+            lv_obj_set_pos(circ_area, LV_HOR_RES - CIRCLE_SIZE - CIRCLE_OFFSET, LV_VER_RES - CIRCLE_SIZE - CIRCLE_OFFSET);
 #endif
-        state = TP_CAL_STATE_WAIT_BOTTOM_RIGHT;
-    }
-    else
-    {
-        sprintf(buf, "Click the circle in\n"
-            "upper right-hand corner\n"
-            " %u Left", touch_nb);
-    }
-    lv_label_set_text(label_main,buf);
-    lv_obj_set_pos(label_main, (LV_HOR_RES - lv_obj_get_width(label_main)) / 2,
-                               (LV_VER_RES - lv_obj_get_height(label_main)) / 2);
+            state = TP_CAL_STATE_WAIT_BOTTOM_RIGHT;
+        } else {
+            sprintf(buf, "Click the circle in\n"
+                    "upper right-hand corner\n"
+                    " %u Left", touch_nb);
+        }
+        lv_label_set_text(label_main, buf);
+        lv_obj_set_pos(label_main, (LV_HOR_RES - lv_obj_get_width(label_main)) / 2,
+                       (LV_VER_RES - lv_obj_get_height(label_main)) / 2);
 
-    }
-    else if(state == TP_CAL_STATE_WAIT_BOTTOM_RIGHT)
-    {
+    } else if(state == TP_CAL_STATE_WAIT_BOTTOM_RIGHT) {
         char buf[64];
         touch_nb--;
-        lv_indev_t *indev = lv_indev_get_act();
+        lv_indev_t * indev = lv_indev_get_act();
         lv_indev_get_point(indev, &avr[touch_nb]);
 
-        if(!touch_nb)
-        {
+        if(!touch_nb) {
             touch_nb = TOUCH_NUMBER;
             get_avr_value(&p[2]);
             sprintf(buf, "x: %d\ny: %d", p[2].x, p[2].y);
-            lv_obj_t *label_coord = lv_label_create(lv_scr_act(), NULL);
+            lv_obj_t * label_coord = lv_label_create(lv_scr_act(), NULL);
             lv_label_set_text(label_coord, buf);
             sprintf(buf, "Click the circle in\n"
-                "lower left-hand corner\n"
-                " %u Left", TOUCH_NUMBER);
+                    "lower left-hand corner\n"
+                    " %u Left", TOUCH_NUMBER);
             lv_obj_set_pos(label_coord, LV_HOR_RES - lv_obj_get_width(label_coord),
-                                        LV_VER_RES - lv_obj_get_height(label_coord));
+                           LV_VER_RES - lv_obj_get_height(label_coord));
 #if USE_LV_ANIMATION
-        lv_anim_t a;
-        a.var = circ_area;
-        a.start = LV_HOR_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
-        a.end = CIRCLE_OFFSET;
-        a.fp = (lv_anim_fp_t)lv_obj_set_x;
-        a.path = lv_anim_path_linear;
-        a.end_cb = NULL;
-        a.act_time = 0;
-        a.time = 200;
-        a.playback = 0;
-        a.playback_pause = 0;
-        a.repeat = 0;
-        a.repeat_pause = 0;
-        lv_anim_create(&a);
+            lv_anim_t a;
+            a.var = circ_area;
+            a.start = LV_HOR_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
+            a.end = CIRCLE_OFFSET;
+            a.fp = (lv_anim_fp_t)lv_obj_set_x;
+            a.path = lv_anim_path_linear;
+            a.end_cb = NULL;
+            a.act_time = 0;
+            a.time = 200;
+            a.playback = 0;
+            a.playback_pause = 0;
+            a.repeat = 0;
+            a.repeat_pause = 0;
+            lv_anim_create(&a);
 
-        a.start = LV_VER_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
-        a.end = LV_VER_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
-        a.fp = (lv_anim_fp_t)lv_obj_set_y;
-        a.end_cb = NULL;
-        a.time = 200;
-        lv_anim_create(&a);
+            a.start = LV_VER_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
+            a.end = LV_VER_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
+            a.fp = (lv_anim_fp_t)lv_obj_set_y;
+            a.end_cb = NULL;
+            a.time = 200;
+            lv_anim_create(&a);
 #else
-    lv_obj_set_pos(circ_area, CIRCLE_OFFSET, LV_VER_RES - CIRCLE_SIZE - CIRCLE_OFFSET);
+            lv_obj_set_pos(circ_area, CIRCLE_OFFSET, LV_VER_RES - CIRCLE_SIZE - CIRCLE_OFFSET);
 #endif
-        state = TP_CAL_STATE_WAIT_BOTTOM_LEFT;
-    }
-    else
-    {
-        sprintf(buf, "Click the circle in\n"
-            "lower right-hand corner\n"
-            " %u Left", touch_nb);
-    }
-    lv_label_set_text(label_main,buf);
-    lv_obj_set_pos(label_main, (LV_HOR_RES - lv_obj_get_width(label_main)) / 2,
-                               (LV_VER_RES - lv_obj_get_height(label_main)) / 2);
-    }
-    else if(state == TP_CAL_STATE_WAIT_BOTTOM_LEFT)
-    {
+            state = TP_CAL_STATE_WAIT_BOTTOM_LEFT;
+        } else {
+            sprintf(buf, "Click the circle in\n"
+                    "lower right-hand corner\n"
+                    " %u Left", touch_nb);
+        }
+        lv_label_set_text(label_main, buf);
+        lv_obj_set_pos(label_main, (LV_HOR_RES - lv_obj_get_width(label_main)) / 2,
+                       (LV_VER_RES - lv_obj_get_height(label_main)) / 2);
+    } else if(state == TP_CAL_STATE_WAIT_BOTTOM_LEFT) {
         char buf[64];
         touch_nb--;
-        lv_indev_t *indev = lv_indev_get_act();
+        lv_indev_t * indev = lv_indev_get_act();
         lv_indev_get_point(indev, &avr[touch_nb]);
 
-        if(!touch_nb)
-        {
+        if(!touch_nb) {
             touch_nb = TOUCH_NUMBER;
             get_avr_value(&p[3]);
             sprintf(buf, "x: %d\ny: %d", p[3].x, p[3].y);
-            lv_obj_t *label_coord = lv_label_create(lv_scr_act(), NULL);
+            lv_obj_t * label_coord = lv_label_create(lv_scr_act(), NULL);
             lv_label_set_text(label_coord, buf);
             lv_obj_set_pos(label_coord, 0, LV_VER_RES - lv_obj_get_height(label_coord));
             sprintf(buf, "Click the screen\n"
-                "to leave calibration");
+                    "to leave calibration");
             lv_obj_del(circ_area);
             state = TP_CAL_STATE_WAIT_LEAVE;
-        }
-        else
-        {
+        } else {
             sprintf(buf, "Click the circle in\n"
-                "lower left-hand corner\n"
-                " %u Left", touch_nb);
+                    "lower left-hand corner\n"
+                    " %u Left", touch_nb);
         }
-        lv_label_set_text(label_main,buf);
+        lv_label_set_text(label_main, buf);
         lv_obj_set_pos(label_main, (LV_HOR_RES - lv_obj_get_width(label_main)) / 2,
-                                   (LV_VER_RES - lv_obj_get_height(label_main)) / 2);
-    }
-    else if(state == TP_CAL_STATE_WAIT_LEAVE) {
+                       (LV_VER_RES - lv_obj_get_height(label_main)) / 2);
+    } else if(state == TP_CAL_STATE_WAIT_LEAVE) {
         lv_scr_load(prev_scr);
 
         /*
@@ -380,9 +359,7 @@ static lv_res_t btn_click_action(lv_obj_t *scr)
 
         state = TP_CAL_STATE_READY;
 
-    }
-    else if(state == TP_CAL_STATE_READY)
-    {
+    } else if(state == TP_CAL_STATE_READY) {
     }
 
     return LV_RES_OK;
