@@ -13,7 +13,7 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-#include "../../../../lv_ex_conf.h"   
+#include "../../../../lv_ex_conf.h"
 #include "../../../../lvgl/lvgl.h"
 
 #if USE_LV_LMETER && USE_LV_TESTS

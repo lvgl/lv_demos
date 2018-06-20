@@ -13,10 +13,10 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-#include "../../../lv_ex_conf.h"  
-#include "../../../lvgl/lvgl.h" 
-#if USE_LV_GROUP && USE_LV_TESTS    
-    
+#include "../../../lv_ex_conf.h"
+#include "../../../lvgl/lvgl.h"
+#if USE_LV_GROUP && USE_LV_TESTS
+
 /*********************
  *      DEFINES
  *********************/

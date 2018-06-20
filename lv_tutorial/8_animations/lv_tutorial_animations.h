@@ -18,7 +18,7 @@ extern "C" {
 
 #if USE_LV_TUTORIALS && USE_LV_ANIMATION
 
-    
+
 /*********************
  *      DEFINES
  *********************/
