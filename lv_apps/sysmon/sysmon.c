@@ -123,15 +123,15 @@ static void sysmon_task(void * param)
 
 #if LV_MEM_CUSTOM == 0
     sprintf(buf_long, "%s"LV_TXT_COLOR_CMD"%s MEMORY: %d %%"LV_TXT_COLOR_CMD"\n"
-                      "Total: %d bytes\n"
-                      "Used: %d bytes\n"
-                      "Free: %d bytes\n"
-                      "Frag: %d %%",
-                      buf_long,
-                      MEM_LABEL_COLOR,
-                      mem_used_pct,
-                      (int)mem_mon.total_size,
-                      (int)mem_mon.total_size - mem_mon.free_size, mem_mon.free_size, mem_mon.frag_pct);
+            "Total: %d bytes\n"
+            "Used: %d bytes\n"
+            "Free: %d bytes\n"
+            "Frag: %d %%",
+            buf_long,
+            MEM_LABEL_COLOR,
+            mem_used_pct,
+            (int)mem_mon.total_size,
+            (int)mem_mon.total_size - mem_mon.free_size, mem_mon.free_size, mem_mon.frag_pct);
 
 #else
     sprintf(buf_long, "%s"LV_TXT_COLOR_CMD"%s MEMORY: N/A"LV_TXT_COLOR_CMD,

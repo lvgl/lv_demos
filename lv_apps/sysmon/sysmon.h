@@ -15,9 +15,9 @@ extern "C" {
  *********************/
 #include "../../../lv_ex_conf.h"
 #if USE_LV_DEMO
-    
+
 #include "../../../lvgl/lvgl.h"
-    
+
 /*********************
  *      DEFINES
  *********************/

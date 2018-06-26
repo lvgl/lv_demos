@@ -14,8 +14,9 @@ extern "C" {
  *      INCLUDES
  *********************/
 #include "../../../lv_ex_conf.h"
+
 #if USE_LV_DEMO
-    
+#include "lvgl/lv_hal/lv_hal.h"
 #include "../../../lvgl/lvgl.h"
 
 /*********************
@@ -33,7 +34,7 @@ extern "C" {
 /**
  * Create a demo application
  */
-void demo_create(void);
+void demo_create(lv_indev_t * kp_indev);
 
 /**********************
  *      MACROS

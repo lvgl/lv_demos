@@ -29,9 +29,9 @@ static lv_res_t btnm_action(lv_obj_t * btnm, const char * txt);
  *  STATIC VARIABLES
  **********************/
 #if LV_TXT_UTF8 != 0
-static const char * btnm_map[] = {"One line", "\n", "\212", "\242Ina", "\204üŰöŐ", "\221éÉ","\n", "\214", "\202Left", ""};
+static const char * btnm_map[] = {"One line", "\n", "\212", "\242Ina", "\204üŰöŐ", "\221éÉ", "\n", "\214", "\202Left", ""};
 #else
-static const char * btnm_map[] = {"One line", "\n", "\212", "\242Ina", "\204long", "\221short","\n", "\214", "\202Left", ""};
+static const char * btnm_map[] = {"One line", "\n", "\212", "\242Ina", "\204long", "\221short", "\n", "\214", "\202Left", ""};
 #endif
 /**********************
  *      MACROS
@@ -86,7 +86,7 @@ void lv_test_btnm_1(void)
 static lv_res_t btnm_action(lv_obj_t * btnm, const char * txt)
 {
 #if LV_EX_PRINTF
-     printf("Key pressed: %s\n", txt);
+    printf("Key pressed: %s\n", txt);
 #endif
     return LV_RES_OK;
 }

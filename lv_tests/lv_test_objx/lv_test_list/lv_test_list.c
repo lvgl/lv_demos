@@ -21,15 +21,15 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static lv_res_t list_move(lv_obj_t *btn);
+static lv_res_t list_move(lv_obj_t * btn);
 
 /**********************
  *  STATIC VARIABLES
  **********************/
-static lv_obj_t *list1;
-static lv_obj_t *list2;
-static lv_obj_t *list3;
-static lv_obj_t *list4;
+static lv_obj_t * list1;
+static lv_obj_t * list2;
+static lv_obj_t * list3;
+static lv_obj_t * list4;
 
 extern const lv_img_t img_flower_icon;        /*Comes from lv_test_img*/
 
@@ -80,14 +80,14 @@ void lv_test_list_1(void)
     lv_obj_set_width(list4, 200);
 
     /*Add list up/down buttons*/
-    lv_obj_t *btn_up = lv_btn_create(lv_scr_act(), NULL);
+    lv_obj_t * btn_up = lv_btn_create(lv_scr_act(), NULL);
     lv_obj_align(btn_up, list1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
     lv_btn_set_action(btn_up, LV_BTN_ACTION_CLICK, list_move);
     lv_obj_set_free_num(btn_up, 0);
-    lv_obj_t *label = lv_label_create(btn_up, NULL);
+    lv_obj_t * label = lv_label_create(btn_up, NULL);
     lv_label_set_text(label, SYMBOL_UP);
 
-    lv_obj_t *btn_down = lv_btn_create(lv_scr_act(), btn_up);
+    lv_obj_t * btn_down = lv_btn_create(lv_scr_act(), btn_up);
     lv_obj_align(btn_down, btn_up, LV_ALIGN_OUT_RIGHT_MID, 10, 0);
     lv_obj_set_free_num(btn_down, 1);
     label = lv_label_create(btn_down, NULL);
@@ -101,7 +101,7 @@ void lv_test_list_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-static lv_res_t list_move(lv_obj_t *btn)
+static lv_res_t list_move(lv_obj_t * btn)
 {
     if(lv_obj_get_free_num(btn) == 0) {
         lv_list_up(list1);

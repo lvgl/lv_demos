@@ -59,11 +59,11 @@ void lv_test_stress_1(void)
     lv_obj_set_style(all_obj_h, &lv_style_pretty);
 
     alloc_ta = lv_ta_create(lv_scr_act(), NULL);
-    lv_obj_align(alloc_ta, all_obj_h, LV_ALIGN_OUT_RIGHT_TOP, 10 , 10 );
+    lv_obj_align(alloc_ta, all_obj_h, LV_ALIGN_OUT_RIGHT_TOP, 10, 10);
     lv_obj_set_height(alloc_ta, LV_VER_RES / 4);
 
     alloc_label = lv_label_create(lv_scr_act(), NULL);
-    lv_obj_align(alloc_label, alloc_ta, LV_ALIGN_OUT_BOTTOM_LEFT, 0 , 20 );
+    lv_obj_align(alloc_label, alloc_ta, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
 
     /*Add style animation to the ta*/
@@ -96,17 +96,17 @@ static void mem_monitor(void * param)
     lv_mem_monitor_t mon;
     lv_mem_monitor(&mon);
     printf("used: %6d (%3d %%), frag: %3d %%, big free: %6d\n", (int)mon.total_size - mon.free_size,
-    		                                                     mon.used_pct,
-																 mon.frag_pct,
-																 (int)mon.free_biggest_size);
+           mon.used_pct,
+           mon.frag_pct,
+           (int)mon.free_biggest_size);
 #endif
 }
 
 static void obj_mem_leak_tester(void * param)
 {
     static int16_t state = 0;
-    lv_obj_t *obj;
-    static lv_obj_t *page;
+    lv_obj_t * obj;
+    static lv_obj_t * page;
 
     lv_anim_t a;
     a.path = lv_anim_path_linear;
@@ -120,7 +120,7 @@ static void obj_mem_leak_tester(void * param)
     switch(state) {
         case 0:
             obj = lv_obj_create(all_obj_h, NULL);
-            lv_obj_set_pos(obj, 10 , 5 );
+            lv_obj_set_pos(obj, 10, 5);
             a.playback = 1;
             a.repeat = 1;
             a.fp = (lv_anim_fp_t)lv_obj_set_x;
@@ -131,7 +131,7 @@ static void obj_mem_leak_tester(void * param)
             break;
         case 1:
             obj = lv_btn_create(all_obj_h, NULL);
-            lv_obj_set_pos(obj, 60 , 5 );
+            lv_obj_set_pos(obj, 60, 5);
             a.playback = 0;
             a.repeat = 1;
             a.fp = (lv_anim_fp_t)lv_obj_set_x;
@@ -144,8 +144,8 @@ static void obj_mem_leak_tester(void * param)
             break;
         case 2:     /*Page tests container too*/
             page = lv_page_create(all_obj_h, NULL);
-            lv_obj_set_pos(page, 10 , 60 );
-            lv_obj_set_size(page, lv_obj_get_width(all_obj_h) - (20 ), 3 * LV_VER_RES / 4);
+            lv_obj_set_pos(page, 10, 60);
+            lv_obj_set_size(page, lv_obj_get_width(all_obj_h) - (20), 3 * LV_VER_RES / 4);
             lv_page_set_scrl_layout(page, LV_LAYOUT_PRETTY);
             break;
         case 3:
@@ -183,7 +183,7 @@ static void obj_mem_leak_tester(void * param)
             break;
         case 15: /*Wait a little to see the previous results*/
             obj = lv_list_create(all_obj_h, NULL);
-            lv_obj_set_pos(obj, 40 , 50 );
+            lv_obj_set_pos(obj, 40, 50);
             lv_list_add(obj, SYMBOL_OK, "List 1", NULL);
             lv_list_add(obj, SYMBOL_OK, "List 2", NULL);
             lv_list_add(obj, SYMBOL_OK, "List 3", NULL);
@@ -198,7 +198,7 @@ static void obj_mem_leak_tester(void * param)
             lv_win_add_btn(obj, SYMBOL_OK, NULL);
             lv_win_set_style(obj, LV_WIN_STYLE_BG, &lv_style_pretty);
             lv_obj_set_size(obj, LV_HOR_RES / 3, LV_VER_RES / 3);
-            lv_obj_set_pos(obj, 20 , 100 );
+            lv_obj_set_pos(obj, 20, 100);
             break;
         case 17:
             obj = lv_tabview_create(all_obj_h, NULL);
@@ -207,7 +207,7 @@ static void obj_mem_leak_tester(void * param)
             lv_tabview_add_tab(obj, "tab3");
             lv_tabview_set_style(obj, LV_TABVIEW_STYLE_BG, &lv_style_pretty);
             lv_obj_set_size(obj, LV_HOR_RES / 3, LV_VER_RES / 3);
-            lv_obj_set_pos(obj, 50 , 140 );
+            lv_obj_set_pos(obj, 50, 140);
             break;
         case 18:
             obj = lv_mbox_create(all_obj_h, NULL);
@@ -228,11 +228,10 @@ static void obj_mem_leak_tester(void * param)
             break;
         case 21:
             obj = lv_obj_get_child_back(lv_page_get_scrl(page), NULL);       /*Delete from the end too to be more random*/
-            if(obj){
+            if(obj) {
                 lv_obj_del(obj);
                 state -= 2;     /*Go back to delete state*/
-            }
-            else state = 24;
+            } else state = 24;
             break;
         /*Remove object from 'all_obj_h'*/
         case 25:
@@ -242,11 +241,10 @@ static void obj_mem_leak_tester(void * param)
             break;
         case 26:
             obj = lv_obj_get_child_back(all_obj_h, NULL);       /*Delete from the end too to be more random*/
-            if(obj){
+            if(obj) {
                 lv_obj_del(obj);
                 state -= 2;     /*Go back to delete state*/
-            }
-            else state = 29;
+            } else state = 29;
             break;
 
         case 30:
@@ -268,130 +266,130 @@ static void alloc_free_tester(void * param)
     static int16_t state = 0;
 
     switch(state) {
-         case 0:
-             lv_label_set_text(alloc_label, "a");
-             break;
+        case 0:
+            lv_label_set_text(alloc_label, "a");
+            break;
 
-         case 1:
-             lv_ta_set_text(alloc_ta, "Initilal");
-             break;
+        case 1:
+            lv_ta_set_text(alloc_ta, "Initilal");
+            break;
 
-         case 2:
-             lv_label_set_text(alloc_label, "long long long\nlong long long");
-             break;
+        case 2:
+            lv_label_set_text(alloc_label, "long long long\nlong long long");
+            break;
 
-         case 3:
-             lv_label_set_text(alloc_label, "b");
-             break;
+        case 3:
+            lv_label_set_text(alloc_label, "b");
+            break;
 
-         case 6:    /*Wait to be random*/
-             lv_ta_set_cursor_pos(alloc_ta, 0);
-             lv_ta_add_text(alloc_ta, "aaaaaaaaaaaaaaaaaaaaaaaaaaa!\n");
-             break;
+        case 6:    /*Wait to be random*/
+            lv_ta_set_cursor_pos(alloc_ta, 0);
+            lv_ta_add_text(alloc_ta, "aaaaaaaaaaaaaaaaaaaaaaaaaaa!\n");
+            break;
 
-         case 7:
-             lv_label_set_text(alloc_label, "medium");
-             break;
+        case 7:
+            lv_label_set_text(alloc_label, "medium");
+            break;
 
-         case 8:
-             lv_label_set_text(alloc_label, "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n"
-                                             "very very long very very long\n");
-             break;
+        case 8:
+            lv_label_set_text(alloc_label, "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n"
+                              "very very long very very long\n");
+            break;
 
-         case 10:       /*Wait to be random*/
-             lv_label_set_text(alloc_label, "some text");
-             break;
+        case 10:       /*Wait to be random*/
+            lv_label_set_text(alloc_label, "some text");
+            break;
 
-         case 11:
-             lv_ta_set_cursor_pos(alloc_ta, 20);
-             lv_ta_del_char(alloc_ta);
-             lv_ta_del_char(alloc_ta);
-             lv_ta_del_char(alloc_ta);
-             lv_ta_del_char(alloc_ta);
-             lv_ta_del_char(alloc_ta);
-             lv_ta_del_char(alloc_ta);
-             lv_ta_del_char(alloc_ta);
-             lv_ta_del_char(alloc_ta);
-             lv_ta_del_char(alloc_ta);
-             lv_ta_del_char(alloc_ta);
-             lv_ta_del_char(alloc_ta);
-             break;
+        case 11:
+            lv_ta_set_cursor_pos(alloc_ta, 20);
+            lv_ta_del_char(alloc_ta);
+            lv_ta_del_char(alloc_ta);
+            lv_ta_del_char(alloc_ta);
+            lv_ta_del_char(alloc_ta);
+            lv_ta_del_char(alloc_ta);
+            lv_ta_del_char(alloc_ta);
+            lv_ta_del_char(alloc_ta);
+            lv_ta_del_char(alloc_ta);
+            lv_ta_del_char(alloc_ta);
+            lv_ta_del_char(alloc_ta);
+            lv_ta_del_char(alloc_ta);
+            break;
 
-         case 12:
-             lv_label_set_text(alloc_label, SYMBOL_DIRECTORY);
-             break;
+        case 12:
+            lv_label_set_text(alloc_label, SYMBOL_DIRECTORY);
+            break;
 
-         case 16:     /*Wait to be random*/
-             lv_label_set_text(alloc_label, "A dummy sentence nothing else");
-             break;
+        case 16:     /*Wait to be random*/
+            lv_label_set_text(alloc_label, "A dummy sentence nothing else");
+            break;
 
-         case 17:
-             lv_ta_set_cursor_pos(alloc_ta, 5);
-             lv_ta_add_char(alloc_ta, 'A');
-             lv_ta_add_char(alloc_ta, 'A');
-             lv_ta_add_char(alloc_ta, 'A');
-             lv_ta_add_char(alloc_ta, 'A');
-             lv_ta_add_char(alloc_ta, 'A');
-             break;
+        case 17:
+            lv_ta_set_cursor_pos(alloc_ta, 5);
+            lv_ta_add_char(alloc_ta, 'A');
+            lv_ta_add_char(alloc_ta, 'A');
+            lv_ta_add_char(alloc_ta, 'A');
+            lv_ta_add_char(alloc_ta, 'A');
+            lv_ta_add_char(alloc_ta, 'A');
+            break;
 
-         case 18:
-             lv_label_set_text(alloc_label, "ok");
-             break;
+        case 18:
+            lv_label_set_text(alloc_label, "ok");
+            break;
 
-         case 20:   /*Wait to be random*/
-             lv_label_set_text(alloc_label, SYMBOL_FILE);
-             break;
-         case 21:
-             lv_label_set_text(alloc_label, "c");
-             break;
+        case 20:   /*Wait to be random*/
+            lv_label_set_text(alloc_label, SYMBOL_FILE);
+            break;
+        case 21:
+            lv_label_set_text(alloc_label, "c");
+            break;
 #if LV_TXT_UTF8
-         case 22:
-             lv_ta_set_cursor_pos(alloc_ta, 20);
-             lv_ta_add_text(alloc_ta, "Ű");
-             lv_ta_add_text(alloc_ta, "Ű");
-             lv_ta_add_text(alloc_ta, "Ű");
-             lv_ta_add_text(alloc_ta, "Ű");
-             lv_ta_add_text(alloc_ta, "Ű");
-             break;
+        case 22:
+            lv_ta_set_cursor_pos(alloc_ta, 20);
+            lv_ta_add_text(alloc_ta, "Ű");
+            lv_ta_add_text(alloc_ta, "Ű");
+            lv_ta_add_text(alloc_ta, "Ű");
+            lv_ta_add_text(alloc_ta, "Ű");
+            lv_ta_add_text(alloc_ta, "Ű");
+            break;
 
-         case 23:
-             lv_label_set_text(alloc_label, "ÁÁÁÁÁÉÉÉÉÉÉÉŐŐŐŐŐŐŐŐŐ");
-             break;
+        case 23:
+            lv_label_set_text(alloc_label, "ÁÁÁÁÁÉÉÉÉÉÉÉŐŐŐŐŐŐŐŐŐ");
+            break;
 #endif
-         case 25:
-             lv_ta_set_text(alloc_ta, "");
-             break;
+        case 25:
+            lv_ta_set_text(alloc_ta, "");
+            break;
 
-         case 26:
-             lv_label_set_text(alloc_label, "");
-             break;
+        case 26:
+            lv_label_set_text(alloc_label, "");
+            break;
 
-         case 28:
-             state =-1 ;
-             break;
-         default:
-             break;
+        case 28:
+            state = -1 ;
+            break;
+        default:
+            break;
     }
 
     state ++;

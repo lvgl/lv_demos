@@ -24,7 +24,7 @@ typedef struct {
     lv_task_prio_t prio;
     uint32_t period;
     uint32_t delay;
-}lv_test_task_dsc_t;
+} lv_test_task_dsc_t;
 
 /**********************
  *  STATIC PROTOTYPES
@@ -61,14 +61,14 @@ void lv_test_task_1(void)
 {
 
     static lv_test_task_dsc_t dsc[] = {
-            {.name = "highest 2", .prio = LV_TASK_PRIO_HIGHEST, .period = 5000, .delay = 400},
-            {.name = "highest 1", .prio = LV_TASK_PRIO_HIGHEST, .period = 4000, .delay = 300},
-            {.name = "high 1", .prio = LV_TASK_PRIO_HIGH, .period = 3000, .delay = 100},
-            {.name = "mid 4", .prio = LV_TASK_PRIO_MID, .period = 500, .delay = 1000},
-            {.name = "mid 3", .prio = LV_TASK_PRIO_MID, .period = 500, .delay = 100},
-            {.name = "mid 2", .prio = LV_TASK_PRIO_MID, .period = 500, .delay = 3000},
-            {.name = "mid 1", .prio = LV_TASK_PRIO_MID, .period = 500, .delay = 100},
-            {.name = ""}
+        {.name = "highest 2", .prio = LV_TASK_PRIO_HIGHEST, .period = 5000, .delay = 400},
+        {.name = "highest 1", .prio = LV_TASK_PRIO_HIGHEST, .period = 4000, .delay = 300},
+        {.name = "high 1", .prio = LV_TASK_PRIO_HIGH, .period = 3000, .delay = 100},
+        {.name = "mid 4", .prio = LV_TASK_PRIO_MID, .period = 500, .delay = 1000},
+        {.name = "mid 3", .prio = LV_TASK_PRIO_MID, .period = 500, .delay = 100},
+        {.name = "mid 2", .prio = LV_TASK_PRIO_MID, .period = 500, .delay = 3000},
+        {.name = "mid 1", .prio = LV_TASK_PRIO_MID, .period = 500, .delay = 100},
+        {.name = ""}
     };
 
     uint8_t i;
@@ -86,22 +86,22 @@ void lv_test_task_2(void)
 
     static lv_test_task_dsc_t dsc[] = {
 
-            {.name = "low 1", .prio = LV_TASK_PRIO_LOW, .period= 5000, .delay = 5},
-            {.name = "mid 1", .prio = LV_TASK_PRIO_MID, .period= 5000, .delay = 5},
-            {.name = "highest 1", .prio = LV_TASK_PRIO_HIGHEST, .period= 5000, .delay = 5},
-            {.name = "highest 2", .prio = LV_TASK_PRIO_HIGHEST, .period= 5000, .delay = 5},
-            {.name = "mid 2", .prio = LV_TASK_PRIO_MID, .period= 5000, .delay = 5},
-            {.name = "high 1", .prio = LV_TASK_PRIO_HIGH, .period= 5000, .delay = 5},
-            {.name = "mid 3", .prio = LV_TASK_PRIO_MID, .period= 5000, .delay = 5},
-            {.name = "high 2", .prio = LV_TASK_PRIO_HIGH, .period= 5000, .delay = 5},
-            {.name = "high 3", .prio = LV_TASK_PRIO_HIGH, .period= 5000, .delay = 5},
-            {.name = "mid 4", .prio = LV_TASK_PRIO_MID, .period= 5000, .delay = 5},
-            {.name = "high 4", .prio = LV_TASK_PRIO_HIGH, .period= 5000, .delay = 5},
-            {.name = "lowest 1", .prio = LV_TASK_PRIO_LOWEST, .period= 5000, .delay = 5},
-            {.name = "low 2", .prio = LV_TASK_PRIO_LOW, .period= 5000, .delay = 5},
-            {.name = "lowest 2", .prio = LV_TASK_PRIO_LOWEST, .period= 5000, .delay = 5},
-            {.name = "low 3", .prio = LV_TASK_PRIO_LOW, .period= 5000, .delay = 5},
-            {.name = ""}
+        {.name = "low 1", .prio = LV_TASK_PRIO_LOW, .period = 5000, .delay = 5},
+        {.name = "mid 1", .prio = LV_TASK_PRIO_MID, .period = 5000, .delay = 5},
+        {.name = "highest 1", .prio = LV_TASK_PRIO_HIGHEST, .period = 5000, .delay = 5},
+        {.name = "highest 2", .prio = LV_TASK_PRIO_HIGHEST, .period = 5000, .delay = 5},
+        {.name = "mid 2", .prio = LV_TASK_PRIO_MID, .period = 5000, .delay = 5},
+        {.name = "high 1", .prio = LV_TASK_PRIO_HIGH, .period = 5000, .delay = 5},
+        {.name = "mid 3", .prio = LV_TASK_PRIO_MID, .period = 5000, .delay = 5},
+        {.name = "high 2", .prio = LV_TASK_PRIO_HIGH, .period = 5000, .delay = 5},
+        {.name = "high 3", .prio = LV_TASK_PRIO_HIGH, .period = 5000, .delay = 5},
+        {.name = "mid 4", .prio = LV_TASK_PRIO_MID, .period = 5000, .delay = 5},
+        {.name = "high 4", .prio = LV_TASK_PRIO_HIGH, .period = 5000, .delay = 5},
+        {.name = "lowest 1", .prio = LV_TASK_PRIO_LOWEST, .period = 5000, .delay = 5},
+        {.name = "low 2", .prio = LV_TASK_PRIO_LOW, .period = 5000, .delay = 5},
+        {.name = "lowest 2", .prio = LV_TASK_PRIO_LOWEST, .period = 5000, .delay = 5},
+        {.name = "low 3", .prio = LV_TASK_PRIO_LOW, .period = 5000, .delay = 5},
+        {.name = ""}
     };
 
     uint8_t i;
@@ -118,17 +118,17 @@ void lv_test_task_2(void)
 void lv_test_task_3(void)
 {
     static lv_test_task_dsc_t dsc[] = {
-            {.name = "highest 1", .prio = LV_TASK_PRIO_HIGHEST, .period = 5000, .delay = 10},
-            {.name = "highest 2", .prio = LV_TASK_PRIO_HIGHEST, .period = 5000, .delay = 10},
-            {.name = "high 1", .prio = LV_TASK_PRIO_HIGH, .period = 5000, .delay = 10},
-            {.name = "mid 1", .prio = LV_TASK_PRIO_MID, .period = 5000, .delay = 10},
-            {.name = "mid 2", .prio = LV_TASK_PRIO_MID, .period = 5000, .delay = 10},
-            {.name = "should be high 2", .prio = LV_TASK_PRIO_MID, .period = 5000, .delay = 10},
-            {.name = "mid 3", .prio = LV_TASK_PRIO_MID, .period = 5000, .delay = 10},
-            {.name = "mid 4", .prio = LV_TASK_PRIO_MID, .period = 5000, .delay = 10},
-            {.name = "low 1", .prio = LV_TASK_PRIO_LOW, .period = 5000, .delay = 10},
-            {.name = "lowest 1", .prio = LV_TASK_PRIO_LOWEST, .period = 5000, .delay = 10},
-            {.name = ""}
+        {.name = "highest 1", .prio = LV_TASK_PRIO_HIGHEST, .period = 5000, .delay = 10},
+        {.name = "highest 2", .prio = LV_TASK_PRIO_HIGHEST, .period = 5000, .delay = 10},
+        {.name = "high 1", .prio = LV_TASK_PRIO_HIGH, .period = 5000, .delay = 10},
+        {.name = "mid 1", .prio = LV_TASK_PRIO_MID, .period = 5000, .delay = 10},
+        {.name = "mid 2", .prio = LV_TASK_PRIO_MID, .period = 5000, .delay = 10},
+        {.name = "should be high 2", .prio = LV_TASK_PRIO_MID, .period = 5000, .delay = 10},
+        {.name = "mid 3", .prio = LV_TASK_PRIO_MID, .period = 5000, .delay = 10},
+        {.name = "mid 4", .prio = LV_TASK_PRIO_MID, .period = 5000, .delay = 10},
+        {.name = "low 1", .prio = LV_TASK_PRIO_LOW, .period = 5000, .delay = 10},
+        {.name = "lowest 1", .prio = LV_TASK_PRIO_LOWEST, .period = 5000, .delay = 10},
+        {.name = ""}
     };
 
     uint8_t i;

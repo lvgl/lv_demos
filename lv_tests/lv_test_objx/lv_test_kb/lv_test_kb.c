@@ -41,11 +41,11 @@
 void lv_test_kb_1(void)
 {
 
-    lv_obj_t *ta = lv_ta_create(lv_scr_act(), NULL);
+    lv_obj_t * ta = lv_ta_create(lv_scr_act(), NULL);
     lv_obj_align(ta, NULL, LV_ALIGN_IN_TOP_MID, 0, 30);
 
     /* Default object*/
-    lv_obj_t *kb1 = lv_kb_create(lv_scr_act(), NULL);
+    lv_obj_t * kb1 = lv_kb_create(lv_scr_act(), NULL);
     lv_obj_align(kb1, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, 0);
     lv_kb_set_ta(kb1, ta);
 }
@@ -56,11 +56,11 @@ void lv_test_kb_1(void)
 void lv_test_kb_2(void)
 {
 
-    lv_obj_t *ta = lv_ta_create(lv_scr_act(), NULL);
+    lv_obj_t * ta = lv_ta_create(lv_scr_act(), NULL);
     lv_obj_align(ta, NULL, LV_ALIGN_IN_TOP_MID, 0, 30);
 
     /* Default object*/
-    lv_obj_t *kb1 = lv_kb_create(lv_scr_act(), NULL);
+    lv_obj_t * kb1 = lv_kb_create(lv_scr_act(), NULL);
     lv_obj_set_size(kb1, LV_HOR_RES / 2, LV_VER_RES / 4);
     lv_obj_align(kb1, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, 0);
     lv_kb_set_ta(kb1, ta);

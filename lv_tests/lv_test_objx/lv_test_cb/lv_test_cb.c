@@ -85,7 +85,7 @@ void lv_test_cb_1(void)
 
 
     /*Copy the previous check box and apply the new styles*/
-    lv_obj_t *cb3 = lv_cb_create(lv_scr_act(), cb2);
+    lv_obj_t * cb3 = lv_cb_create(lv_scr_act(), cb2);
     lv_cb_set_style(cb3, LV_CB_STYLE_BOX_REL, &cb3_styles[LV_BTN_STATE_REL]);
     lv_cb_set_style(cb3, LV_CB_STYLE_BOX_PR, &cb3_styles[LV_BTN_STATE_PR]);
     lv_cb_set_style(cb3, LV_CB_STYLE_BOX_TGL_REL, &cb3_styles[LV_BTN_STATE_TGL_REL]);
@@ -94,7 +94,7 @@ void lv_test_cb_1(void)
     lv_obj_align(cb3, cb2, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
 
     /*Copy the previous check box and set it to INACTIVE*/
-    lv_obj_t *cb4 = lv_cb_create(lv_scr_act(), cb3);
+    lv_obj_t * cb4 = lv_cb_create(lv_scr_act(), cb3);
     lv_obj_align(cb4, cb3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
     lv_btn_set_state(cb4, LV_BTN_STATE_INA);
 }

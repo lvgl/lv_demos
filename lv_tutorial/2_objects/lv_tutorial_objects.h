@@ -15,7 +15,7 @@ extern "C" {
  *********************/
 #include "../../../lv_ex_conf.h"
 #if USE_LV_TUTORIALS
-    
+
 #include "../../../lvgl/lvgl.h"
 
 

@@ -77,18 +77,18 @@
 /**********************
  *      TYPEDEFS
  **********************/
-typedef  FILE*  pc_file_t;
+typedef  FILE * pc_file_t;
 
 /**********************
  *  STATIC PROTOTYPES
  **********************/
 #if PC_FILES && USE_LV_FILESYSTEM
 /*Interface functions to standard C file functions (only the required ones to image handling)*/
-static lv_fs_res_t pcfs_open (void * file_p, const char * fn, lv_fs_mode_t mode);
-static lv_fs_res_t pcfs_close (void * file_p);
-static lv_fs_res_t pcfs_read (void * file_p, void * buf, uint32_t btr, uint32_t * br);
-static lv_fs_res_t pcfs_seek (void * file_p, uint32_t pos);
-static lv_fs_res_t pcfs_tell (void * file_p, uint32_t * pos_p);
+static lv_fs_res_t pcfs_open(void * file_p, const char * fn, lv_fs_mode_t mode);
+static lv_fs_res_t pcfs_close(void * file_p);
+static lv_fs_res_t pcfs_read(void * file_p, void * buf, uint32_t btr, uint32_t * br);
+static lv_fs_res_t pcfs_seek(void * file_p, uint32_t pos);
+static lv_fs_res_t pcfs_tell(void * file_p, uint32_t * pos_p);
 #endif
 
 /**********************
@@ -114,7 +114,7 @@ void lv_tutorial_image(void)
      * IMAGE FROM SOURCE CODE
      *************************/
 
-    lv_obj_t *img_src = lv_img_create(lv_scr_act(), NULL);  /*Crate an image object*/
+    lv_obj_t * img_src = lv_img_create(lv_scr_act(), NULL); /*Crate an image object*/
     lv_img_set_src(img_src, &red_flower);  /*Set the created file as image (a red fl  ower)*/
     lv_obj_set_pos(img_src, 10, 10);      /*Set the positions*/
     lv_obj_set_drag(img_src, true);
@@ -138,7 +138,7 @@ void lv_tutorial_image(void)
     lv_fs_add_drv(&pcfs_drv);
 
 
-    lv_obj_t *img_bin = lv_img_create(lv_scr_act(), NULL);  /*Create an image object*/
+    lv_obj_t * img_bin = lv_img_create(lv_scr_act(), NULL); /*Create an image object*/
     /* Set the image's file according to the current color depth
      * a blue flower picture*/
 #if LV_COLOR_DEPTH == 8
@@ -172,7 +172,7 @@ void lv_tutorial_image(void)
  * @return LV_FS_RES_OK: no error, the file is opened
  *         any error from lv_fs_res_t enum
  */
-static lv_fs_res_t pcfs_open (void * file_p, const char * fn, lv_fs_mode_t mode)
+static lv_fs_res_t pcfs_open(void * file_p, const char * fn, lv_fs_mode_t mode)
 {
     errno = 0;
 
@@ -193,7 +193,7 @@ static lv_fs_res_t pcfs_open (void * file_p, const char * fn, lv_fs_mode_t mode)
 
         /* 'file_p' is pointer to a file descriptor and
          * we need to store our file descriptor here*/
-        pc_file_t *fp = file_p;         /*Just avoid the confusing casings*/
+        pc_file_t * fp = file_p;        /*Just avoid the confusing casings*/
         *fp = f;
     }
 
@@ -207,9 +207,9 @@ static lv_fs_res_t pcfs_open (void * file_p, const char * fn, lv_fs_mode_t mode)
  * @return LV_FS_RES_OK: no error, the file is read
  *         any error from lv__fs_res_t enum
  */
-static lv_fs_res_t pcfs_close (void * file_p)
+static lv_fs_res_t pcfs_close(void * file_p)
 {
-    pc_file_t *fp = file_p;         /*Just avoid the confusing casings*/
+    pc_file_t * fp = file_p;        /*Just avoid the confusing casings*/
     fclose(*fp);
     return LV_FS_RES_OK;
 }
@@ -223,9 +223,9 @@ static lv_fs_res_t pcfs_close (void * file_p)
  * @return LV_FS_RES_OK: no error, the file is read
  *         any error from lv__fs_res_t enum
  */
-static lv_fs_res_t pcfs_read (void * file_p, void * buf, uint32_t btr, uint32_t * br)
+static lv_fs_res_t pcfs_read(void * file_p, void * buf, uint32_t btr, uint32_t * br)
 {
-    pc_file_t *fp = file_p;         /*Just avoid the confusing casings*/
+    pc_file_t * fp = file_p;        /*Just avoid the confusing casings*/
     *br = fread(buf, 1, btr, *fp);
     return LV_FS_RES_OK;
 }
@@ -237,9 +237,9 @@ static lv_fs_res_t pcfs_read (void * file_p, void * buf, uint32_t btr, uint32_t 
  * @return LV_FS_RES_OK: no error, the file is read
  *         any error from lv__fs_res_t enum
  */
-static lv_fs_res_t pcfs_seek (void * file_p, uint32_t pos)
+static lv_fs_res_t pcfs_seek(void * file_p, uint32_t pos)
 {
-    pc_file_t *fp = file_p;         /*Just avoid the confusing casings*/
+    pc_file_t * fp = file_p;        /*Just avoid the confusing casings*/
     fseek(*fp, pos, SEEK_SET);
     return LV_FS_RES_OK;
 }
@@ -251,9 +251,9 @@ static lv_fs_res_t pcfs_seek (void * file_p, uint32_t pos)
  * @return LV_FS_RES_OK: no error, the file is read
  *         any error from lv__fs_res_t enum
  */
-static lv_fs_res_t pcfs_tell (void * file_p, uint32_t * pos_p)
+static lv_fs_res_t pcfs_tell(void * file_p, uint32_t * pos_p)
 {
-    pc_file_t *fp = file_p;         /*Just avoid the confusing casings*/
+    pc_file_t * fp = file_p;        /*Just avoid the confusing casings*/
     *pos_p = ftell(*fp);
     return LV_FS_RES_OK;
 }

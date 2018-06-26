@@ -1,6 +1,6 @@
 /**
  * @file lv_ex_conf.h
- * 
+ *
  */
 
 #if 0 /*Remove this to enable the content (Delete the last #endif too!)*/
@@ -14,18 +14,18 @@
 #define LV_EX_PRINTF    0       /*Enable printf-ing data*/
 
 /*******************
- *   TEST USAGE    
+ *   TEST USAGE
  *******************/
 #define USE_LV_TESTS        0
 
 /*******************
- * TUTORIAL USAGE    
+ * TUTORIAL USAGE
  *******************/
 #define USE_LV_TUTORIALS   0
 
 
 /*********************
- * APPLICATION USAGE    
+ * APPLICATION USAGE
  *********************/
 
 /* Test the graphical performance of your MCU
@@ -37,7 +37,7 @@
 #define USE_LV_DEMO        0
 #if USE_LV_DEMO
 #define LV_DEMO_WALLPAPER  0    /*Create a wallpaper too*/
-#define LV_DEMO_SLIDE_SHOW 1	/*Automatically switch between tabs*/
+#define LV_DEMO_SLIDE_SHOW 1    /*Automatically switch between tabs*/
 #endif
 
 /*MCU and memory usage monitoring*/

@@ -42,3 +42,9 @@ Test cases to validate the features of LittelvGL. You can also use them as examp
 * Theme test: `lv_test_theme_1()`
 * Keyboard interface test: `lv_test_group_1()`
 * Tests of object types: `lv_test_..._1/2/3()` e.g. (lv_test_slider_1())
+
+## Contributing
+For contribution and coding style guidelines, please refer to the file docs/CONTRIBUTNG.md in the main LittlevGL repo:
+  https://github.com/littlevgl/lvgl
+You are encouraged to use the 'astyle' util to format your code prior to pushing it. The files docs/astyle_(c/h) contain astyle rules to format source and header files according to the project coding guidelines.
+

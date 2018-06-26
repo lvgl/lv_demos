@@ -29,7 +29,7 @@ extern "C" {
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
-void lv_tutorial_keyboard(void);
+void lv_tutorial_keyboard(lv_indev_t * kp_drv);
 
 /**********************
  *      MACROS

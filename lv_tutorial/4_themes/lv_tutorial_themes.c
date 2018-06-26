@@ -68,7 +68,7 @@ void lv_tutorial_themes(void)
     /*Initialize the alien theme
      * 210: a green HUE value
      * NULL: use the default font (LV_FONT_DEFAULT)*/
-    lv_theme_t *th = lv_theme_alien_init(210, NULL);
+    lv_theme_t * th = lv_theme_alien_init(210, NULL);
 
     /*Set the surent system theme*/
     lv_theme_set_current(th);

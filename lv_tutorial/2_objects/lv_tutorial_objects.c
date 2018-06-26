@@ -92,13 +92,13 @@ void lv_tutorial_objects(void)
     /* Create a new screen and load it
      * Screen can be created from any type object type
      * Now a Page is used which is an objects with scrollable content*/
-    lv_obj_t *scr = lv_page_create(NULL, NULL);
+    lv_obj_t * scr = lv_page_create(NULL, NULL);
     lv_scr_load(scr);
 
     /****************
      * ADD A TITLE
      ****************/
-    lv_obj_t *label = lv_label_create(scr, NULL);  /*First parameters (scr) is the parent*/
+    lv_obj_t * label = lv_label_create(scr, NULL); /*First parameters (scr) is the parent*/
     lv_label_set_text(label, "Object usage demo");  /*Set the text*/
     lv_obj_set_x(label, 50);                        /*Set the x coordinate*/
 
@@ -106,7 +106,7 @@ void lv_tutorial_objects(void)
      * CREATE TWO BUTTONS
      ***********************/
     /*Create a button*/
-    lv_obj_t *btn1 = lv_btn_create(lv_scr_act(), NULL);          /*Create a button on the currently loaded screen*/
+    lv_obj_t * btn1 = lv_btn_create(lv_scr_act(), NULL);         /*Create a button on the currently loaded screen*/
     lv_btn_set_action(btn1, LV_BTN_ACTION_CLICK, btn_rel_action); /*Set function to be called when the button is released*/
     lv_obj_align(btn1, label, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);  /*Align below the label*/
 
@@ -115,7 +115,7 @@ void lv_tutorial_objects(void)
     lv_label_set_text(label, "Button 1");
 
     /*Copy the previous button*/
-    lv_obj_t *btn2 = lv_btn_create(lv_scr_act(), btn1);         /*Second parameter is an object to copy*/
+    lv_obj_t * btn2 = lv_btn_create(lv_scr_act(), btn1);        /*Second parameter is an object to copy*/
     lv_obj_align(btn2, btn1, LV_ALIGN_OUT_RIGHT_MID, 50, 0);    /*Align next to the prev. button.*/
 
     /*Create a label on the button*/
@@ -125,7 +125,7 @@ void lv_tutorial_objects(void)
     /****************
      * ADD A SLIDER
      ****************/
-    lv_obj_t *slider = lv_slider_create(scr, NULL);                             /*Create a slider*/
+    lv_obj_t * slider = lv_slider_create(scr, NULL);                            /*Create a slider*/
     lv_obj_set_size(slider, lv_obj_get_width(lv_scr_act())  / 3, LV_DPI / 3);   /*Set the size*/
     lv_obj_align(slider, btn1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);                /*Align below the first button*/
     lv_slider_set_value(slider, 30);                                            /*Set the current value*/
@@ -193,7 +193,7 @@ static  lv_res_t ddlist_action(lv_obj_t * ddlist)
 {
     uint16_t opt = lv_ddlist_get_selected(ddlist);      /*Get the id of selected option*/
 
-    lv_obj_t *slider = lv_obj_get_free_ptr(ddlist);       /*Get the saved slider*/
+    lv_obj_t * slider = lv_obj_get_free_ptr(ddlist);      /*Get the saved slider*/
     lv_slider_set_value(slider, (opt * 100) / 4);       /*Modify the slider value according to the selection*/
 
     return LV_RES_OK;
