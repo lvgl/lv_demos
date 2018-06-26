@@ -153,7 +153,8 @@ static void get_avr_value(lv_point_t * p)
 {
     int32_t x_sum = 0;
     int32_t y_sum = 0;
-    for(uint8_t i = 0 ; i < TOUCH_NUMBER ; i++) {
+    uint8_t i = 0;
+    for(; i < TOUCH_NUMBER ; i++) {
         x_sum += avr[i].x;
         y_sum += avr[i].y;
     }
