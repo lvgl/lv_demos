@@ -15,7 +15,7 @@
 
 
 #ifndef USE_KEYBOARD
-#define USE_KEYBOARD    1                   /*defined in lv_drv_conf.h (lv_drivers repository)*/
+#define USE_KEYBOARD    0                   /*defined in lv_drv_conf.h (lv_drivers repository)*/
 #endif
 
 #define ADD_KEYBOARD   USE_KEYBOARD
