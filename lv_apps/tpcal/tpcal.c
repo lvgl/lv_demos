@@ -149,7 +149,7 @@ void tpcal_create(void)
  *   STATIC FUNCTIONS
  **********************/
 
-static void get_avr_value(lv_point_t * p)
+static void get_avr_value(lv_point_t * pt)
 {
     int32_t x_sum = 0;
     int32_t y_sum = 0;
@@ -158,8 +158,8 @@ static void get_avr_value(lv_point_t * p)
         x_sum += avr[i].x;
         y_sum += avr[i].y;
     }
-    p->x = x_sum / TOUCH_NUMBER;
-    p->y = y_sum / TOUCH_NUMBER;
+    pt->x = x_sum / TOUCH_NUMBER;
+    pt->y = y_sum / TOUCH_NUMBER;
 }
 
 static lv_res_t btn_click_action(lv_obj_t * scr)

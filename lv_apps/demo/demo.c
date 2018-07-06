@@ -9,6 +9,8 @@
 #include "demo.h"
 #if USE_LV_DEMO
 
+#include "lv_drv_conf.h"
+
 /*********************
  *      DEFINES
  *********************/

@@ -29,7 +29,7 @@
 #include <assert.h>
 #include "lv_tutorial_keyboard.h"
 
-#if USE_LV_TUTORIALS && USE_LV_GROUP
+#if USE_LV_TUTORIALS && USE_LV_GROUP && USE_KEYBOARD
 
 /*********************
  *      DEFINES
