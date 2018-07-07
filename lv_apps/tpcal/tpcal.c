@@ -10,13 +10,13 @@
  * - You display driver should have two functions: `xxx_read` and `xxx_set_cal_data`.
  * - At first run run the touchpad is not calibrated therefore your `xxx_read` function should provide raw data.
  * - When the user touched all four corners you should call the `xxx_set_cal_data` function in
- * ` TP_CAL_STATE_WAIT_LEAVE` state. As arguments you should pass `p[0]`, `p[1]`, `p[2]` and `p[3]`
- *   which are the coordinates read on corner perssing.
+ * ` TP_CAL_STATE_WAIT_LEAVE` state. As arguments you should pass `point[0]`, `point[1]`, `point[2]` and `point[3]`
+ *   which are the coordinates read on corner pressing.
  * - `xxx_set_cal_data` should mark the display as calibrated, save the raw coordinates
  *    and use them in the upcoming calls of `xxx_read` to adjust the coordinates.
  * - A simple equation to adjust the coordinates: x_cal = ((x_act - x1_saved) * lcd_hor_res) / (x2_saved - x1_saved);
  *      - x_cal: the calibrated X coordinate
- *      - x_act: the currently measered X coordinate
+ *      - x_act: the currently measured X coordinate
  *      - x1_saved, x2_saved: The raw X coordinates saved as calibration data
  */
 
@@ -57,7 +57,7 @@ static lv_res_t btn_click_action(lv_obj_t * scr);
 /**********************
  *  STATIC VARIABLES
  **********************/
-static lv_point_t p[4]; /*Calibration points: p[0]: top-left; p[1]: top-right, p[2]: bottom-right, p[3]: bottom-left */
+static lv_point_t point[4]; /*Calibration points: [0]: top-left; [1]: top-right, [2]: bottom-right, [3]: bottom-left */
 static lv_point_t avr[TOUCH_NUMBER]; /*Storage point to calculate average*/
 
 static tp_cal_state_t state;
@@ -174,8 +174,8 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
 
         if(!touch_nb) {
             touch_nb = TOUCH_NUMBER;
-            get_avr_value(&p[0]);
-            sprintf(buf, "x: %d\ny: %d", p[0].x, p[0].y);
+            get_avr_value(&point[0]);
+            sprintf(buf, "x: %d\ny: %d", point[0].x, point[0].y);
             lv_obj_t * label_coord = lv_label_create(lv_scr_act(), NULL);
             lv_label_set_text(label_coord, buf);
             sprintf(buf, "Click the circle in\n"
@@ -225,8 +225,8 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
 
         if(!touch_nb) {
             touch_nb = TOUCH_NUMBER;
-            get_avr_value(&p[1]);
-            sprintf(buf, "x: %d\ny: %d", p[1].x, p[1].y);
+            get_avr_value(&point[1]);
+            sprintf(buf, "x: %d\ny: %d", point[1].x, point[1].y);
             lv_obj_t * label_coord = lv_label_create(lv_scr_act(), NULL);
             lv_label_set_text(label_coord, buf);
             lv_obj_set_pos(label_coord, LV_HOR_RES - lv_obj_get_width(label_coord), 0);
@@ -276,8 +276,8 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
 
         if(!touch_nb) {
             touch_nb = TOUCH_NUMBER;
-            get_avr_value(&p[2]);
-            sprintf(buf, "x: %d\ny: %d", p[2].x, p[2].y);
+            get_avr_value(&point[2]);
+            sprintf(buf, "x: %d\ny: %d", point[2].x, point[2].y);
             lv_obj_t * label_coord = lv_label_create(lv_scr_act(), NULL);
             lv_label_set_text(label_coord, buf);
             sprintf(buf, "Click the circle in\n"
@@ -327,8 +327,8 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
 
         if(!touch_nb) {
             touch_nb = TOUCH_NUMBER;
-            get_avr_value(&p[3]);
-            sprintf(buf, "x: %d\ny: %d", p[3].x, p[3].y);
+            get_avr_value(&point[3]);
+            sprintf(buf, "x: %d\ny: %d", point[3].x, point[3].y);
             lv_obj_t * label_coord = lv_label_create(lv_scr_act(), NULL);
             lv_label_set_text(label_coord, buf);
             lv_obj_set_pos(label_coord, 0, LV_VER_RES - lv_obj_get_height(label_coord));
