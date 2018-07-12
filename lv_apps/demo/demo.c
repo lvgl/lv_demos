@@ -9,8 +9,6 @@
 #include "demo.h"
 #if USE_LV_DEMO
 
-#include "lv_drv_conf.h"
-
 /*********************
  *      DEFINES
  *********************/
@@ -44,10 +42,6 @@ static lv_style_t style_kb;
 static lv_style_t style_kb_rel;
 static lv_style_t style_kb_pr;
 
-#if USE_KEYBOARD
-static lv_group_t * grp;
-#endif
-
 #if LV_DEMO_WALLPAPER
 LV_IMG_DECLARE(img_bubble_pattern);
 #endif
@@ -63,16 +57,8 @@ LV_IMG_DECLARE(img_bubble_pattern);
 /**
  * Create a demo application
  */
-void demo_create(lv_indev_t * kp_indev)
+void demo_create(void)
 {
-#if USE_KEYBOARD
-    /*Create an object group for objects to focus*/
-    grp = lv_group_create();
-
-    lv_indev_set_group(kp_indev, grp);
-#else
-    (void)kp_indev;
-#endif
 
 #if LV_DEMO_WALLPAPER
     lv_obj_t * wp = lv_img_create(lv_scr_act(), NULL);
@@ -111,11 +97,6 @@ void demo_create(lv_indev_t * kp_indev)
     lv_obj_t * tab1 = lv_tabview_add_tab(tv, "Write");
     lv_obj_t * tab2 = lv_tabview_add_tab(tv, "List");
     lv_obj_t * tab3 = lv_tabview_add_tab(tv, "Chart");
-
-#if USE_KEYBOARD
-    lv_group_add_obj(grp, tv);                  /*Add the object to the group*/
-    lv_group_focus_obj(tv);
-#endif
 
 #if LV_DEMO_WALLPAPER == 0
     /*Blue bg instead of wallpaper*/

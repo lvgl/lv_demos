@@ -29,7 +29,11 @@ extern "C" {
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
-void lv_tutorial_keyboard(lv_indev_t * kp_drv);
+/**
+ * Create a simple GUI to demonstrate encoder control capability
+ * kp_indev optinonally pass a keypad input device to control the object (NULL if unused)
+ */
+void lv_tutorial_keyboard(lv_indev_t * kp_indev);
 
 /**********************
  *      MACROS

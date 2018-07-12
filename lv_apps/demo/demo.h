@@ -34,7 +34,7 @@ extern "C" {
 /**
  * Create a demo application
  */
-void demo_create(lv_indev_t * kp_indev);
+void demo_create(void);
 
 /**********************
  *      MACROS

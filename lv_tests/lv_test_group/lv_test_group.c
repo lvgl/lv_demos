@@ -7,20 +7,13 @@
  *      INCLUDES
  *********************/
 #include "stdio.h"
-#include "lv_drv_conf.h"
 #include "lv_test_group.h"
 #if USE_LV_GROUP && USE_LV_TESTS
 
 #include "lvgl/lv_hal/lv_hal_indev.h"
 
-
-#ifndef USE_KEYBOARD
-#define USE_KEYBOARD    0                   /*defined in lv_drv_conf.h (lv_drivers repository)*/
-#endif
-
-#define ADD_KEYBOARD   USE_KEYBOARD
-
-#if ADD_KEYBOARD
+#if LV_EX_KEYBOARD
+#include "lv_drv_conf.h"
 #include "lv_drivers/indev/keyboard.h"
 #endif
 
@@ -81,7 +74,7 @@ void lv_test_group_1(void)
     lv_indev_t * win_kb_indev = lv_indev_drv_register(&kb_drv);
     lv_indev_set_group(win_kb_indev, g);
 
-#if ADD_KEYBOARD
+#if LV_EX_KEYBOARD
     kb_drv.type = LV_INDEV_TYPE_KEYPAD;
     kb_drv.read = keyboard_read;
     lv_indev_t * kb_indev = lv_indev_drv_register(&kb_drv);
@@ -200,7 +193,9 @@ void lv_test_group_1(void)
     lv_obj_set_size(obj, 2 * LV_DPI, LV_DPI);
     lv_group_add_obj(g, obj);
     obj = lv_label_create(obj, NULL);
-    lv_label_set_text(obj, "I'm a page");
+    lv_label_set_text(obj, "I'm a page\nwith a long \ntext.\n\n"
+    		               "You can try \nto scroll me\nwith UP and DOWN\nbuttons.");
+    lv_label_set_align(obj, LV_LABEL_ALIGN_CENTER);
 
     obj = lv_lmeter_create(win, NULL);
     lv_lmeter_set_value(obj, 60);
