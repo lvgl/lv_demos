@@ -50,8 +50,11 @@ void lv_test_gauge_1(void)
     lv_obj_align(gauge2, gauge1, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
 
     /*Copy the first gauge add more needles and set new style*/
+#if LV_COMPILER_NON_CONST_INIT_SUPPORTED
     static lv_color_t needle_colors[3] = {LV_COLOR_BLUE, LV_COLOR_PURPLE, LV_COLOR_TEAL};
-
+#else
+	static lv_color_t needle_colors[3] = { 0, 0, 0 };
+#endif
     /*Create a styled gauge*/
     static lv_style_t style3;
     lv_style_copy(&style3, &lv_style_pretty);
