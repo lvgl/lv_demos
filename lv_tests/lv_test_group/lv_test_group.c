@@ -201,7 +201,11 @@ void lv_test_group_1(void)
     lv_lmeter_set_value(obj, 60);
     lv_group_add_obj(g, obj);
 
+#if LV_COMPILER_NON_CONST_INIT_SUPPORTED
     static lv_color_t needle_color[] = {LV_COLOR_RED};
+#else
+	static lv_color_t needle_color[] = { 0 };
+#endif
     obj = lv_gauge_create(win, NULL);
     lv_gauge_set_needle_count(obj, 1, needle_color);
     lv_gauge_set_value(obj, 0, 80);

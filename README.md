@@ -6,7 +6,7 @@ GitHub: https://github.com/littlevgl/lvgl
 Website: https://littlevgl.com
 
 ## Add the examples to your projects
-1. Clone this repositry: `git clone https://github.com/littlevgl/lv_examples.git` or download from the [Download page](https://littlevgl.com/download). To always use the newst version the cloning is recommended.
+1. Clone this repository: `git clone https://github.com/littlevgl/lv_examples.git` or download from the [Download page](https://littlevgl.com/download). To always use the newest version the cloning is recommended.
 2. The `lv_examples` directory should be next to the `lvgl` directory in your project.
 
 Similary to `lv_conf.h` there is a configuration file for the examples too. It is called `lv_ex_conf.h`.
@@ -16,7 +16,7 @@ Similary to `lv_conf.h` there is a configuration file for the examples too. It i
 4. Enable or Disable modules
 
 ## Tutorial
-A step-by-step guide to teach the most iportant parts of the Graphics Library.
+A step-by-step guide to teach the most important parts of the Graphics Library.
 * Porting
 * Hello world
 * Objects (graphical components)
@@ -29,8 +29,8 @@ A step-by-step guide to teach the most iportant parts of the Graphics Library.
 * Responsive
 * Keyboard
 
-## Applactions
-Real life GUI examples which can be adapted in your own project. The appliactions are designed to adapt to your screen's resolution.  
+## Applications
+Real life GUI examples which can be adapted in your own project. The applications are designed to adapt to your screen's resolution.
 * Demo
 * Benchmark
 * System performance monitor

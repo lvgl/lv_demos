@@ -32,7 +32,11 @@ static void mem_monitor(void *);
 static lv_obj_t * all_obj_h;
 static lv_obj_t * alloc_label;
 static lv_obj_t * alloc_ta;
+#if LV_COMPILER_NON_CONST_INIT_SUPPORTED
 static const lv_color_t needle_colors[1] = {LV_COLOR_RED};
+#else
+static const lv_color_t needle_colors[1] = { 0 };
+#endif
 static const char * mbox_btns[] = {"Ok", "Cancel", ""};
 LV_IMG_DECLARE(img_flower_icon);
 

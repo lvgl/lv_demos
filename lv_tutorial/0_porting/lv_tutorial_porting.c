@@ -28,7 +28,7 @@
  * It is possible to draw directly to a frame buffer when the internal buffering is disabled (LV_VDB_SIZE = 0).
  * Keep in mind this way during refresh some artifacts can be visible because the layers are drawn after each other.
  * And some high level graphics features like anti aliasing, opacity or shadows aren't available in this configuration.
- * In this mode two finctions are required:  fill and area with a color AND write a color array to an area
+ * In this mode two functions are required:  fill and area with a color AND write a color array to an area
  *
  * HARDWARE ACCELERATION (GPU)
  * If your MCU supports graphical acceleration (GPU) then you can use it with two interface functions:
@@ -233,8 +233,8 @@ static void ex_mem_fill(lv_color_t * dest, uint32_t length, lv_color_t color)
 #endif
 
 /* Read the touchpad and store it in 'data'
- * REaturn false if no more data read; true for ready again */
-static bool ex_tp_read(lv_indev_data_t * data)
+ * Return false if no more data read; true for ready again */
+static bool ex_tp_read(lv_indev_data_t *data)
 {
     /* Read your touchpad */
     /* data->state = LV_INDEV_STATE_REL or LV_INDEV_STATE_PR */
