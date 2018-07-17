@@ -252,14 +252,14 @@ static const uint8_t red_flower_pixel_map[] = {
 
 const lv_img_t red_flower = {
     {
-    .header.w = 100,          /*Image width in pixel count*/
-    .header.h = 75,           /*Image height in pixel count*/
-    .header.alpha_byte = 0,       /*No alpha byte*/
-    .header.chroma_keyed = 0, /*No chroma keying*/
-    .header.format = LV_IMG_FORMAT_INTERNAL_RAW,  /*It's a variable compiled into the code*/
+        .header.w = 100,          /*Image width in pixel count*/
+        .header.h = 75,           /*Image height in pixel count*/
+        .header.alpha_byte = 0,       /*No alpha byte*/
+        .header.chroma_keyed = 0, /*No chroma keying*/
+        .header.format = LV_IMG_FORMAT_INTERNAL_RAW,  /*It's a variable compiled into the code*/
     },
     {
-    .pixel_map = red_flower_pixel_map /*Pointer the array of image pixels.*/
+        .pixel_map = red_flower_pixel_map /*Pointer the array of image pixels.*/
     }
 };
 

@@ -194,7 +194,7 @@ void lv_test_group_1(void)
     lv_group_add_obj(g, obj);
     obj = lv_label_create(obj, NULL);
     lv_label_set_text(obj, "I'm a page\nwith a long \ntext.\n\n"
-    		               "You can try \nto scroll me\nwith UP and DOWN\nbuttons.");
+                      "You can try \nto scroll me\nwith UP and DOWN\nbuttons.");
     lv_label_set_align(obj, LV_LABEL_ALIGN_CENTER);
 
     obj = lv_lmeter_create(win, NULL);
@@ -204,7 +204,7 @@ void lv_test_group_1(void)
 #if LV_COMPILER_NON_CONST_INIT_SUPPORTED
     static lv_color_t needle_color[] = {LV_COLOR_RED};
 #else
-	static lv_color_t needle_color[] = { 0 };
+    static lv_color_t needle_color[] = { 0 };
 #endif
     obj = lv_gauge_create(win, NULL);
     lv_gauge_set_needle_count(obj, 1, needle_color);

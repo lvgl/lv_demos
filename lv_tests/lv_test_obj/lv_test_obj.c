@@ -74,7 +74,7 @@ void lv_test_object_1(void)
 
     /*Create a parent and 3 objects on it. Hide the parent but move 2 children to the screen*/
 
-    lv_obj_t *obj4_parent = lv_obj_create(lv_scr_act(), NULL);
+    lv_obj_t * obj4_parent = lv_obj_create(lv_scr_act(), NULL);
     lv_obj_set_pos(obj4_parent, lv_obj_get_x(obj1) + 10, lv_obj_get_y(obj1) + lv_obj_get_height(obj1) + 20);
     lv_obj_set_style(obj4_parent, &lv_style_pretty_color);
     lv_obj_set_hidden(obj4_parent, true); /*Hide this and all children objects*/
