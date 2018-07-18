@@ -53,10 +53,10 @@ static lv_res_t keypad_btn_release(lv_obj_t * btn);
 /**********************
  *  STATIC VARIABLES
  **********************/
-static lv_obj_t * btn_enable;       	/*An enable button*/
-static lv_style_t style_mbox_bg;    	/*Black bg. style with opacity*/
-static lv_group_t * g;              	/*An Object Group*/
-static lv_indev_t * emulated_kp_indev;	/*The input device of the emulated keypad*/
+static lv_obj_t * btn_enable;           /*An enable button*/
+static lv_style_t style_mbox_bg;        /*Black bg. style with opacity*/
+static lv_group_t * g;                  /*An Object Group*/
+static lv_indev_t * emulated_kp_indev;  /*The input device of the emulated keypad*/
 static lv_indev_state_t last_state = LV_INDEV_STATE_REL;
 static uint32_t last_key = 0;
 
@@ -212,7 +212,7 @@ static lv_res_t enable_action(lv_obj_t * btn)
         /* Create a dark screen sized bg. with opacity to show
          * the other objects are not available now*/
         lv_obj_t * bg = lv_obj_create(lv_scr_act(), NULL);
-        lv_obj_set_protect(bg, LV_PROTECT_PARENT);          		/*The page screen moves it to scrollable area*/
+        lv_obj_set_protect(bg, LV_PROTECT_PARENT);                  /*The page screen moves it to scrollable area*/
         lv_obj_set_parent(bg, lv_scr_act());                         /*So move it back when protected*/
         lv_obj_set_style(bg, &style_mbox_bg);
         lv_obj_set_size(bg, LV_HOR_RES, LV_VER_RES);
@@ -268,8 +268,8 @@ static lv_res_t mbox_action(lv_obj_t * btn, const char * txt)
  */
 static lv_res_t keypad_btn_press(lv_obj_t * btn)
 {
-    last_key = lv_obj_get_free_num(btn);	/*Save the key*/
-    last_state = LV_INDEV_STATE_PR;			/*Save the state*/
+    last_key = lv_obj_get_free_num(btn);    /*Save the key*/
+    last_state = LV_INDEV_STATE_PR;         /*Save the state*/
 
     return LV_RES_OK;
 }
@@ -282,7 +282,7 @@ static lv_res_t keypad_btn_press(lv_obj_t * btn)
  */
 static lv_res_t keypad_btn_release(lv_obj_t * btn)
 {
-    last_state = LV_INDEV_STATE_REL;		/*Save the new state but leave the last key*/
+    last_state = LV_INDEV_STATE_REL;        /*Save the new state but leave the last key*/
 
     return LV_RES_OK;
 }

@@ -234,7 +234,7 @@ static void ex_mem_fill(lv_color_t * dest, uint32_t length, lv_color_t color)
 
 /* Read the touchpad and store it in 'data'
  * Return false if no more data read; true for ready again */
-static bool ex_tp_read(lv_indev_data_t *data)
+static bool ex_tp_read(lv_indev_data_t * data)
 {
     /* Read your touchpad */
     /* data->state = LV_INDEV_STATE_REL or LV_INDEV_STATE_PR */
