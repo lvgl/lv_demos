@@ -195,13 +195,6 @@ void lv_test_label_4(void)
                       "Line3\r\n"
                       "Line4");
 
-
-    /* Activate the no break feature
-     * GOAL: same as 'label1' but in one line*/
-    lv_obj_t * label2 = lv_label_create(lv_scr_act(), label1);
-    lv_label_set_no_break(label2, true);
-    lv_obj_align(label2, label1, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
-
     /* Test recoloring
      * GOAL: the word "red" is red*/
     lv_obj_t * label3 = lv_label_create(lv_scr_act(), NULL);

@@ -80,6 +80,7 @@ void lv_test_group_1(void)
     lv_indev_t * kb_indev = lv_indev_drv_register(&kb_drv);
     lv_indev_set_group(kb_indev, g);
 #endif
+
     /*Create a window to hold all the objects*/
     static lv_style_t win_style;
     lv_style_copy(&win_style, &lv_style_transp);
@@ -92,6 +93,7 @@ void lv_test_group_1(void)
     lv_win_set_title(win, "Group test");
     lv_win_set_layout(win, LV_LAYOUT_PRETTY);
     lv_win_set_style(win, LV_WIN_STYLE_CONTENT_SCRL, &win_style);
+    lv_group_add_obj(g, win);
 
     lv_obj_t * win_btn = lv_win_add_btn(win, SYMBOL_RIGHT, win_btn_click);
     lv_btn_set_action(win_btn, LV_BTN_ACTION_PR, win_btn_press);
@@ -191,11 +193,13 @@ void lv_test_group_1(void)
 
     obj = lv_page_create(win, NULL);
     lv_obj_set_size(obj, 2 * LV_DPI, LV_DPI);
+    lv_page_set_arrow_scroll(obj, true);
     lv_group_add_obj(g, obj);
     obj = lv_label_create(obj, NULL);
     lv_label_set_text(obj, "I'm a page\nwith a long \ntext.\n\n"
                       "You can try \nto scroll me\nwith UP and DOWN\nbuttons.");
     lv_label_set_align(obj, LV_LABEL_ALIGN_CENTER);
+    lv_obj_align(obj, NULL, LV_ALIGN_CENTER, 0, 0);
 
     obj = lv_lmeter_create(win, NULL);
     lv_lmeter_set_value(obj, 60);
@@ -230,6 +234,8 @@ void lv_test_group_1(void)
     lv_tabview_add_tab(obj, "Tab 1");
     lv_tabview_add_tab(obj, "Tab 2");
     lv_group_add_obj(g, obj);
+
+    lv_group_focus_obj(lv_group_get_focused(g));
 }
 
 
@@ -280,7 +286,8 @@ static lv_res_t win_btn_click(lv_obj_t * btn)
 
 static void group_focus_cb(lv_group_t * group)
 {
-    lv_win_focus(win, lv_group_get_focused(g), 200);
+	lv_obj_t * f = lv_group_get_focused(g);
+	if(f != win) lv_win_focus(win, f, 200);
 }
 
 /*

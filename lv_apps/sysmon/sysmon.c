@@ -98,6 +98,9 @@ void sysmon_create(void)
  */
 static void sysmon_task(void * param)
 {
+
+//	LV_LOG_TRACE("sys_mon task started");
+
     /*Get CPU and memory information */
     uint8_t cpu_busy;
     cpu_busy = 100 - lv_task_get_idle();
@@ -140,6 +143,8 @@ static void sysmon_task(void * param)
 #endif
     lv_label_set_text(info_label, buf_long);
 
+
+//	LV_LOG_TRACE("sys_mon task finished");
 }
 
 /**

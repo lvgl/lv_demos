@@ -73,10 +73,10 @@ void lv_test_ta_1(void)
 
 #if LV_TXT_UTF8 != 0
     lv_ta_set_cursor_pos(ta2, 0);
-    lv_ta_add_text(ta2, "ű");
-    lv_ta_add_text(ta2, "Ű");
-    lv_ta_add_text(ta2, "ö");
-    lv_ta_add_text(ta2, "Ő");
+    lv_ta_add_text(ta2, "á");
+    lv_ta_add_text(ta2, "Á");
+    lv_ta_add_text(ta2, "ü");
+    lv_ta_add_text(ta2, "Ü");
     lv_ta_add_char(ta2, ' ');
 #endif
 
@@ -154,12 +154,16 @@ void lv_test_ta_2(void)
     lv_ta_set_cursor_type(ta2_1, LV_CURSOR_LINE);
 #if LV_TXT_UTF8 != 0
     lv_ta_set_text(ta2_1, "Some UTF-8 characters "
-                   "űőabcŰŐABC\n"
+                   "áÁabcöÖABC\n"
                    "\n"
                    "Í\n"
                    "W\n"
                    "abc");
 
+#else
+    lv_ta_set_text(ta2_1, "First long line\n"
+    				      "short\n"
+    				      "longer one!");
 #endif
     ta2_2 = lv_ta_create(lv_scr_act(), ta2_1);
     lv_obj_align(ta2_2, ta2_1, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);

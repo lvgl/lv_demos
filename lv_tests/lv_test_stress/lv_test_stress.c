@@ -370,15 +370,15 @@ static void alloc_free_tester(void * param)
 #if LV_TXT_UTF8
         case 22:
             lv_ta_set_cursor_pos(alloc_ta, 20);
-            lv_ta_add_text(alloc_ta, "Ű");
-            lv_ta_add_text(alloc_ta, "Ű");
-            lv_ta_add_text(alloc_ta, "Ű");
-            lv_ta_add_text(alloc_ta, "Ű");
-            lv_ta_add_text(alloc_ta, "Ű");
+            lv_ta_add_text(alloc_ta, "Ú");
+            lv_ta_add_text(alloc_ta, "Ú");
+            lv_ta_add_text(alloc_ta, "Ú");
+            lv_ta_add_text(alloc_ta, "Ú");
+            lv_ta_add_text(alloc_ta, "Ú");
             break;
 
         case 23:
-            lv_label_set_text(alloc_label, "ÁÁÁÁÁÉÉÉÉÉÉÉŐŐŐŐŐŐŐŐŐ");
+            lv_label_set_text(alloc_label, "ÁaÁaaÁÁaaaÁÁÁaaaaÁÁÁÁ");
             break;
 #endif
         case 25:
