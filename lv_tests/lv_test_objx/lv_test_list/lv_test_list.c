@@ -31,7 +31,7 @@ static lv_obj_t * list2;
 static lv_obj_t * list3;
 static lv_obj_t * list4;
 
-extern const lv_img_t img_flower_icon;        /*Comes from lv_test_img*/
+LV_IMG_DECLARE(img_flower_icon); /*Comes from lv_test_img*/
 
 /**********************
  *      MACROS
