@@ -156,7 +156,7 @@ void lv_tutorial_image(void)
     lv_obj_t * img_symbol = lv_img_create(lv_scr_act(), NULL);
     lv_img_set_src(img_symbol, SYMBOL_OK);
     lv_obj_set_drag(img_symbol, true);
-    lv_obj_align(img_symbol, img_src, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);     /*Align next to the source image*/
+//    lv_obj_align(img_symbol, img_src, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);     /*Align next to the source image*/
 }
 
 /**********************

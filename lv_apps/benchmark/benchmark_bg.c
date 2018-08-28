@@ -1,5 +1,8 @@
 #include "lv_conf.h"
+#include "lv_ex_conf.h"
 #include "lvgl/lv_draw/lv_draw_img.h"
+
+#if USE_LV_BENCHMARK
 
 const uint8_t benchmark_bg_map[] = {
 #if LV_COLOR_DEPTH == 1 || LV_COLOR_DEPTH == 8
@@ -224,3 +227,5 @@ lv_img_dsc_t benchmark_bg = {
   .header.cf = LV_IMG_FORMAT_TRUE_COLOR,
   .data = benchmark_bg_map,
 };
+
+#endif
