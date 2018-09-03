@@ -97,26 +97,32 @@ void lv_test_group_1(void)
     lv_obj_t * win_btn = lv_win_add_btn(win, SYMBOL_RIGHT, win_btn_click);
     lv_btn_set_action(win_btn, LV_BTN_ACTION_PR, win_btn_press);
     lv_obj_set_free_num(win_btn, LV_GROUP_KEY_RIGHT);
+    lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
 
     win_btn = lv_win_add_btn(win, SYMBOL_NEXT, win_btn_click);
     lv_btn_set_action(win_btn, LV_BTN_ACTION_PR, win_btn_press);
     lv_obj_set_free_num(win_btn, LV_GROUP_KEY_NEXT);
+    lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
 
     win_btn = lv_win_add_btn(win, SYMBOL_OK, win_btn_click);
     lv_btn_set_action(win_btn, LV_BTN_ACTION_PR, win_btn_press);
     lv_obj_set_free_num(win_btn, LV_GROUP_KEY_ENTER);
+    lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
 
     win_btn = lv_win_add_btn(win, SYMBOL_PREV, win_btn_click);
     lv_btn_set_action(win_btn, LV_BTN_ACTION_PR, win_btn_press);
     lv_obj_set_free_num(win_btn, LV_GROUP_KEY_PREV);
+    lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
 
     win_btn = lv_win_add_btn(win, SYMBOL_LEFT, win_btn_click);
     lv_btn_set_action(win_btn, LV_BTN_ACTION_PR, win_btn_press);
     lv_obj_set_free_num(win_btn, LV_GROUP_KEY_LEFT);
+    lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
 
     win_btn = lv_win_add_btn(win, "a", win_btn_click);
     lv_btn_set_action(win_btn, LV_BTN_ACTION_PR, win_btn_press);
     lv_obj_set_free_num(win_btn, 'a');
+    lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
 
     lv_obj_t * obj;
 
