@@ -13,7 +13,12 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
+#ifdef LV_CONF_INCLUDE_SIMPLE
+#include "lv_ex_conf.h"
+#else
 #include "../../lv_ex_conf.h"
+#endif
+
 #if USE_LV_TESTS
 
 #include "../lv_examples.h"

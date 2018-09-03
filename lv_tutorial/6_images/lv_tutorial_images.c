@@ -143,8 +143,10 @@ void lv_tutorial_image(void)
      * a blue flower picture*/
 #if LV_COLOR_DEPTH == 8
     lv_img_set_src(img_bin, "P:/lv_examples/lv_tutorial/6_images/blue_flower_8.bin");
-#elif LV_COLOR_DEPTH == 16
+#elif LV_COLOR_DEPTH == 16 && LV_COLOR_16_SWAP == 0
     lv_img_set_src(img_bin, "P:/lv_examples/lv_tutorial/6_images/blue_flower_16.bin");
+#elif LV_COLOR_DEPTH == 16 && LV_COLOR_16_SWAP == 0
+    lv_img_set_src(img_bin, "P:/lv_examples/lv_tutorial/6_images/blue_flower_16_swap.bin");
 #elif LV_COLOR_DEPTH == 24
     lv_img_set_src(img_bin, "P:/lv_examples/lv_tutorial/6_images/blue_flower_24.bin");
 #endif

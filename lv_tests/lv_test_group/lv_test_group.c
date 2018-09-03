@@ -88,10 +88,9 @@ void lv_test_group_1(void)
     win_style.body.padding.ver = LV_DPI / 4;
     win_style.body.padding.inner = LV_DPI / 4;
 
-
     win = lv_win_create(lv_scr_act(), NULL);
     lv_win_set_title(win, "Group test");
-    lv_win_set_layout(win, LV_LAYOUT_PRETTY);
+    lv_page_set_scrl_layout(lv_win_get_content(win), LV_LAYOUT_PRETTY);
     lv_win_set_style(win, LV_WIN_STYLE_CONTENT_SCRL, &win_style);
     lv_group_add_obj(g, win);
 
@@ -173,7 +172,7 @@ void lv_test_group_1(void)
     lv_group_add_obj(g, ta);
 
     obj = lv_kb_create(win, NULL);
-    lv_obj_set_size(obj, lv_win_get_width(win), LV_VER_RES / 2);
+    lv_obj_set_size(obj, LV_HOR_RES - LV_DPI, LV_VER_RES / 2);
     lv_kb_set_ta(obj, ta);
     lv_group_add_obj(g, obj);
 

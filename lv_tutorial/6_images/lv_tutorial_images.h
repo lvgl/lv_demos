@@ -1,10 +1,10 @@
 /**
- * @file lv_tutorial_antialiasing.h
+ * @file lv_tutorial_images.h
  *
  */
 
-#ifndef LV_TUTORIAL_ANTIALIASING_H
-#define LV_TUTORIAL_ANTIALIASING_H
+#ifndef LV_TUTORIAL_IMAGES_H
+#define LV_TUTORIAL_IMAGES_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,11 +13,15 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-#include "../../../lv_ex_conf.h"
-#if USE_LV_TUTORIALS
-
+#ifdef LV_CONF_INCLUDE_SIMPLE
+#include "lvgl.h"
+#include "lv_ex_conf.h"
+#else
 #include "../../../lvgl/lvgl.h"
+#include "../../../lv_ex_conf.h"
+#endif
 
+#if USE_LV_TUTORIALS
 
 /*********************
  *      DEFINES
@@ -31,11 +35,11 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
+
 /**
- * Create object to see how they change from the anti aliasing
- * Modify LV_ANTIALIAS and LV_FONT_ANTIALIAS to see what is changing
+ * Create images from variable and file
  */
-void lv_tutorial_antialiasing(void);
+void lv_tutorial_image(void);
 
 /**********************
  *      MACROS
