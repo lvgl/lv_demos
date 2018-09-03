@@ -119,7 +119,7 @@ void lv_test_group_1(void)
     lv_obj_set_free_num(win_btn, LV_GROUP_KEY_LEFT);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
 
-    win_btn = lv_win_add_btn(win, "a", win_btn_click);
+    win_btn = lv_win_add_btn(win, SYMBOL_DUMMY"a", win_btn_click);
     lv_btn_set_action(win_btn, LV_BTN_ACTION_PR, win_btn_press);
     lv_obj_set_free_num(win_btn, 'a');
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
