@@ -324,7 +324,7 @@ lv_img_dsc_t red_flower = {
   .header.w = 100,
   .header.h = 75,
   .data_size = 7500 * LV_COLOR_SIZE / 8,
-  .header.cf = LV_IMG_FORMAT_TRUE_COLOR,
+  .header.cf = LV_IMG_CF_TRUE_COLOR,
   .data = red_flower_map,
 };
 

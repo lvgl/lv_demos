@@ -143,7 +143,7 @@ lv_img_dsc_t apple_icon_alpha = {
   .header.h = 30,
   .data_size = 900 * LV_COLOR_SIZE / 8,
   .data_size = 900 * LV_IMG_PX_SIZE_ALPHA_BYTE,
-  .header.cf = LV_IMG_FORMAT_TRUE_COLOR_ALPHA,
+  .header.cf = LV_IMG_CF_TRUE_COLOR_ALPHA,
   .data = apple_icon_alpha_map,
 };
 #endif

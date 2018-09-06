@@ -142,7 +142,7 @@ lv_img_dsc_t apple_icon_chroma = {
   .header.always_zero = 0,
   .header.w = 30,
   .header.h = 30,
-  .header.cf = LV_IMG_FORMAT_TRUE_COLOR_CHROMA_KEYED,
+  .header.cf = LV_IMG_CF_TRUE_COLOR_CHROMA_KEYED,
   .data = apple_icon_chroma_map,
 };
 

@@ -224,7 +224,7 @@ lv_img_dsc_t benchmark_bg = {
   .header.w = 50,
   .header.h = 50,
   .data_size = 2500 * LV_COLOR_SIZE / 8,
-  .header.cf = LV_IMG_FORMAT_TRUE_COLOR,
+  .header.cf = LV_IMG_CF_TRUE_COLOR,
   .data = benchmark_bg_map,
 };
 
