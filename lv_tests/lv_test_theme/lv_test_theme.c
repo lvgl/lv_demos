@@ -59,9 +59,6 @@ void lv_test_theme_1(lv_theme_t * th)
     create_tab1(th, tab1);
     create_tab2(th, tab2);
     create_tab3(th, tab3);
-
-//   lv_tabview_set_current_tab(tv, 2, false);
-
 }
 
 /**********************
@@ -224,6 +221,8 @@ static void create_tab2(lv_theme_t * th, lv_obj_t * parent)
 
 static void create_tab3(lv_theme_t * th, lv_obj_t * parent)
 {
+
+    /*Create a Window*/
     lv_obj_t * win = lv_win_create(parent, NULL);
     lv_win_add_btn(win, SYMBOL_CLOSE, lv_win_close_action);
     lv_win_add_btn(win, SYMBOL_DOWN, NULL);
@@ -231,13 +230,17 @@ static void create_tab3(lv_theme_t * th, lv_obj_t * parent)
     lv_obj_set_pos(win, LV_DPI / 20, LV_DPI / 20);
     lv_obj_set_top(win, true);
 
+
+    /*Create a Label in the Window*/
     lv_obj_t * label = lv_label_create(win, NULL);
     lv_label_set_text(label, "Label in the window");
 
+    /*Create a  Line meter in the Window*/
     lv_obj_t * lmeter = lv_lmeter_create(win, NULL);
     lv_obj_align(lmeter, label, LV_ALIGN_OUT_BOTTOM_LEFT, 0, LV_DPI / 2);
     lv_lmeter_set_value(lmeter, 70);
 
+    /*Create a 2 LEDs in the Window*/
     lv_obj_t * led1 = lv_led_create(win, NULL);
     lv_obj_align(led1, lmeter, LV_ALIGN_OUT_RIGHT_MID, LV_DPI / 2, 0);
     lv_led_on(led1);
@@ -246,7 +249,7 @@ static void create_tab3(lv_theme_t * th, lv_obj_t * parent)
     lv_obj_align(led2, led1, LV_ALIGN_OUT_RIGHT_MID, LV_DPI / 2, 0);
     lv_led_off(led2);
 
-
+    /*Create a Page*/
     lv_obj_t * page = lv_page_create(parent, NULL);
     lv_obj_set_size(page, LV_HOR_RES / 3, LV_VER_RES / 2);
     lv_obj_set_top(page, true);
@@ -263,15 +266,35 @@ static void create_tab3(lv_theme_t * th, lv_obj_t * parent)
                       "his ei malis quodsi, te quis aeterno his.\n"
                       "Qui tritani recusabo reprehendunt ne,\n"
                       "per duis explicari at. Simul mediocritatem mei et.");
-    //lv_label_set_long_mode(label, LV_LABEL_LONG_BREAK);
-    //lv_obj_set_width(label, lv_page_get_scrl_width(page));
     lv_page_set_scrl_fit(page, true, true);
 
+
+    /*Create a Calendar*/
+    lv_obj_t * cal = lv_calendar_create(parent, NULL);
+    lv_obj_set_size(cal, 5 * LV_DPI / 2, 5 * LV_DPI / 2);
+    lv_obj_align(cal, page, LV_ALIGN_OUT_RIGHT_TOP, -LV_DPI / 2, LV_DPI / 3);
+
+    static lv_calendar_date_t highlighted_days[2];
+    highlighted_days[0].day = 5;
+    highlighted_days[0].month= 5;
+    highlighted_days[0].year = 2018;
+
+    highlighted_days[1].day = 8;
+    highlighted_days[1].month= 5;
+    highlighted_days[1].year = 2018;
+
+    lv_calendar_set_highlighted_dates(cal, highlighted_days, 2);
+    lv_calendar_set_today_date(cal, &highlighted_days[0]);
+    lv_calendar_set_showed_date(cal, &highlighted_days[0]);
+
+    /*Create a Message box*/
     static const char * mbox_btn_map[] = {"\211", "\222Got it!", "\211", ""};
     lv_obj_t * mbox = lv_mbox_create(parent, NULL);
     lv_mbox_set_text(mbox, "Click on the window or the page to bring it to the foreground");
     lv_mbox_add_btns(mbox, mbox_btn_map, NULL);
     lv_obj_set_top(mbox, true);
+
+
 }
 
 #endif /*USE_LV_TESTS*/
