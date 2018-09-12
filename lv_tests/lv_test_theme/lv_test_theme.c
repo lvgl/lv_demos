@@ -273,6 +273,7 @@ static void create_tab3(lv_theme_t * th, lv_obj_t * parent)
     lv_obj_t * cal = lv_calendar_create(parent, NULL);
     lv_obj_set_size(cal, 5 * LV_DPI / 2, 5 * LV_DPI / 2);
     lv_obj_align(cal, page, LV_ALIGN_OUT_RIGHT_TOP, -LV_DPI / 2, LV_DPI / 3);
+    lv_obj_set_top(cal, true);
 
     static lv_calendar_date_t highlighted_days[2];
     highlighted_days[0].day = 5;

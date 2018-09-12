@@ -39,7 +39,7 @@
  */
 void lv_test_line_1(void)
 {
-    static const lv_point_t p[] = {{5, 5}, {60, 30}, {80, 10}};
+    static const lv_point_t p[] = {{5, 5}, {60, 5}, {120, 65}};
 
     /* Create a default object*/
     lv_obj_t * line1 = lv_line_create(lv_scr_act(), NULL);
@@ -49,19 +49,29 @@ void lv_test_line_1(void)
     /*Test y invert*/
     lv_obj_t * line2 = lv_line_create(lv_scr_act(), line1);
     lv_line_set_y_invert(line2, true);
-    lv_obj_align(line2, line1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
+    lv_obj_align(line2, line1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 5);
 
     /*Test styling*/
-    static lv_style_t style;
-    lv_style_copy(&style, &lv_style_plain);
+    static lv_style_t style1;
+    lv_style_copy(&style1, &lv_style_plain);
 
-    style.line.color = LV_COLOR_RED;
-    style.line.width = 3;
+    style1.line.color = LV_COLOR_RED;
+    style1.line.width = 20;
 
     lv_obj_t * line3 = lv_line_create(lv_scr_act(), line2);
-    lv_line_set_style(line3, &style);
-    lv_line_set_y_invert(line3, true);
-    lv_obj_align(line3, line2, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
+    lv_line_set_style(line3, &style1);
+    lv_obj_align(line3, line1, LV_ALIGN_OUT_RIGHT_TOP, 5, 0);
+    lv_obj_set_hidden(line3, false);
+
+    /*Test rounding*/
+    static lv_style_t style2;
+    lv_style_copy(&style2, &style1);
+    style2.line.rounded = 1;
+
+    lv_obj_t * line4 = lv_line_create(lv_scr_act(), line3);
+    lv_line_set_style(line4, &style2);
+    lv_obj_align(line4, line3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 5);
+    lv_obj_set_hidden(line4, false);
 }
 
 
