@@ -58,7 +58,7 @@ void lv_test_win_1(void)
     static lv_style_t header;
     lv_style_copy(&header, &lv_style_plain);
     header.body.main_color = LV_COLOR_RED;
-    header.body.grad_color = LV_COLOR_MARRON;
+    header.body.grad_color = LV_COLOR_MAROON;
     header.body.padding.inner = 0;
     header.text.color = LV_COLOR_WHITE;
 

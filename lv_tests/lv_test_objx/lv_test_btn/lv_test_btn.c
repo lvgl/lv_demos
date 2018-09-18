@@ -68,7 +68,7 @@ void lv_test_btn_1(void)
     style_rel.body.main_color = LV_COLOR_ORANGE;
     style_rel.body.grad_color = LV_COLOR_BLACK;
     style_rel.body.border.color = LV_COLOR_RED;
-    style_rel.body.shadow.color = LV_COLOR_MARRON;
+    style_rel.body.shadow.color = LV_COLOR_MAROON;
     style_rel.body.shadow.width = 10;
 
     static lv_style_t style_pr;

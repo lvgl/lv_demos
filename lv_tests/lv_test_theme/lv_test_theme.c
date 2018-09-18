@@ -207,6 +207,10 @@ static void create_tab2(lv_theme_t * th, lv_obj_t * parent)
     lv_obj_set_size(gauge, w / 4, w / 4);
     lv_obj_align(gauge, chart, LV_ALIGN_OUT_BOTTOM_LEFT, 0, LV_DPI / 4);
 
+
+    lv_obj_t * arc = lv_arc_create(parent, NULL);
+    lv_obj_align(arc, gauge, LV_ALIGN_OUT_BOTTOM_MID, 0, LV_DPI / 8);
+
     lv_obj_t * ta = lv_ta_create(parent, NULL);
     lv_obj_set_size(ta, w / 3, LV_VER_RES / 4);
     lv_obj_align(ta, NULL, LV_ALIGN_IN_TOP_RIGHT, -LV_DPI / 10, LV_DPI / 10);
@@ -216,6 +220,10 @@ static void create_tab2(lv_theme_t * th, lv_obj_t * parent)
     lv_obj_set_size(kb, 2 * w / 3, LV_VER_RES / 3);
     lv_obj_align(kb, ta, LV_ALIGN_OUT_BOTTOM_RIGHT, 0, LV_DPI);
     lv_kb_set_ta(kb, ta);
+
+
+    lv_obj_t * loader = lv_preload_create(parent, NULL);
+    lv_obj_align(loader, NULL, LV_ALIGN_CENTER, 0, - LV_DPI);
 }
 
 

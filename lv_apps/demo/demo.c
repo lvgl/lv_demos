@@ -311,7 +311,7 @@ static void chart_create(lv_obj_t * parent)
     style_bar.body.padding.ver = LV_DPI / 10;
 
     lv_style_copy(&style_indic, &lv_style_pretty);
-    style_indic.body.grad_color =  LV_COLOR_MARRON;
+    style_indic.body.grad_color =  LV_COLOR_MAROON;
     style_indic.body.main_color =  LV_COLOR_RED;
     style_indic.body.radius = LV_RADIUS_CIRCLE;
     style_indic.body.shadow.width = LV_DPI / 10;

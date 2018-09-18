@@ -60,7 +60,7 @@ void lv_test_mbox_1(void)
     bg.body.padding.ver = 20;
     bg.body.padding.inner = 20;
     bg.body.main_color = LV_COLOR_BLACK;
-    bg.body.grad_color = LV_COLOR_MARRON;
+    bg.body.grad_color = LV_COLOR_MAROON;
     bg.text.color = LV_COLOR_WHITE;
 
     btn_bg.body.padding.hor = 10;

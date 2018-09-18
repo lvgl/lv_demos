@@ -65,7 +65,7 @@ void lv_test_bar_1(void)
     static lv_style_t bar_indic;
     lv_style_copy(&bar_indic, &lv_style_pretty);
     bar_indic.body.main_color = LV_COLOR_RED;
-    bar_indic.body.grad_color = LV_COLOR_MARRON;
+    bar_indic.body.grad_color = LV_COLOR_MAROON;
     bar_indic.body.shadow.color = LV_COLOR_RED;
     bar_indic.body.shadow.width = 20;
     bar_indic.body.padding.ver = 10;       /*Make the indicator thinner*/

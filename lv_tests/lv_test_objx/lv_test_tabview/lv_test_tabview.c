@@ -83,7 +83,7 @@ void lv_test_tabview_1(void)
     rel.body.main_color = LV_COLOR_SILVER;
     pr.body.main_color = LV_COLOR_GRAY;
     tgl_rel.body.main_color = LV_COLOR_RED;
-    tgl_pr.body.main_color = LV_COLOR_MARRON;
+    tgl_pr.body.main_color = LV_COLOR_MAROON;
     indic.body.main_color = LV_COLOR_ORANGE;
     indic.body.grad_color = LV_COLOR_ORANGE;
     indic.body.padding.inner = LV_DPI / 16;

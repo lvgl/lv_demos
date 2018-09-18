@@ -65,7 +65,7 @@ void lv_test_slider_1(void)
     static lv_style_t slider_indic;
     lv_style_copy(&slider_indic, &lv_style_pretty);
     slider_indic.body.main_color = LV_COLOR_RED;
-    slider_indic.body.grad_color = LV_COLOR_MARRON;
+    slider_indic.body.grad_color = LV_COLOR_MAROON;
     slider_indic.body.shadow.color = LV_COLOR_RED;
     slider_indic.body.shadow.width = 20;
     slider_indic.body.padding.ver = 0;
