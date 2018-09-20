@@ -25,6 +25,7 @@ extern "C" {
 
 #include "lv_test_obj/lv_test_obj.h"
 
+#include "lv_test_objx/lv_test_arc/lv_test_arc.h"
 #include "lv_test_objx/lv_test_bar/lv_test_bar.h"
 #include "lv_test_objx/lv_test_btn/lv_test_btn.h"
 #include "lv_test_objx/lv_test_btnm/lv_test_btnm.h"
@@ -34,6 +35,7 @@ extern "C" {
 #include "lv_test_objx/lv_test_ddlist/lv_test_ddlist.h"
 #include "lv_test_objx/lv_test_gauge/lv_test_gauge.h"
 #include "lv_test_objx/lv_test_img/lv_test_img.h"
+#include "lv_test_objx/lv_test_imgbtn/lv_test_imgbtn.h"
 #include "lv_test_objx/lv_test_kb/lv_test_kb.h"
 #include "lv_test_objx/lv_test_label/lv_test_label.h"
 #include "lv_test_objx/lv_test_led/lv_test_led.h"
@@ -42,6 +44,7 @@ extern "C" {
 #include "lv_test_objx/lv_test_lmeter/lv_test_lmeter.h"
 #include "lv_test_objx/lv_test_mbox/lv_test_mbox.h"
 #include "lv_test_objx/lv_test_page/lv_test_page.h"
+#include "lv_test_objx/lv_test_preload/lv_test_preload.h"
 #include "lv_test_objx/lv_test_roller/lv_test_roller.h"
 #include "lv_test_objx/lv_test_slider/lv_test_slider.h"
 #include "lv_test_objx/lv_test_sw/lv_test_sw.h"
