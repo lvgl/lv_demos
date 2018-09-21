@@ -147,8 +147,8 @@ void lv_tutorial_image(void)
     lv_img_set_src(img_bin, "P:/lv_examples/lv_tutorial/6_images/blue_flower_16.bin");
 #elif LV_COLOR_DEPTH == 16 && LV_COLOR_16_SWAP == 0
     lv_img_set_src(img_bin, "P:/lv_examples/lv_tutorial/6_images/blue_flower_16_swap.bin");
-#elif LV_COLOR_DEPTH == 24
-    lv_img_set_src(img_bin, "P:/lv_examples/lv_tutorial/6_images/blue_flower_24.bin");
+#elif LV_COLOR_DEPTH == 32
+    lv_img_set_src(img_bin, "P:/lv_examples/lv_tutorial/6_images/blue_flower_32.bin");
 #endif
 
     lv_obj_align(img_bin, img_src, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);     /*Align next to the source image*/
