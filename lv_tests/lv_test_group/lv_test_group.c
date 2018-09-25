@@ -298,6 +298,7 @@ static lv_res_t win_btn_press(lv_obj_t * btn)
  */
 static lv_res_t win_btn_click(lv_obj_t * btn)
 {
+    (void) btn; /*Unused*/
     last_key_state = LV_INDEV_STATE_REL;
 
     return LV_RES_OK;
@@ -306,7 +307,7 @@ static lv_res_t win_btn_click(lv_obj_t * btn)
 
 static void group_focus_cb(lv_group_t * group)
 {
-	lv_obj_t * f = lv_group_get_focused(g);
+	lv_obj_t * f = lv_group_get_focused(group);
 	if(f != win) lv_win_focus(win, f, 200);
 }
 
@@ -316,6 +317,8 @@ static void group_focus_cb(lv_group_t * group)
 
 static lv_res_t press_action(lv_obj_t * btn)
 {
+    (void) btn; /*Unused*/
+
 #if LV_EX_PRINTF
     printf("Press\n");
 #endif
@@ -324,6 +327,8 @@ static lv_res_t press_action(lv_obj_t * btn)
 
 static lv_res_t select_action(lv_obj_t * btn)
 {
+    (void) btn; /*Unused*/
+
 #if LV_EX_PRINTF
     printf("Select\n");
 #endif
@@ -332,6 +337,8 @@ static lv_res_t select_action(lv_obj_t * btn)
 
 static lv_res_t change_action(lv_obj_t * btn)
 {
+    (void) btn; /*Unused*/
+
 #if LV_EX_PRINTF
     printf("Change\n");
 #endif
@@ -340,6 +347,8 @@ static lv_res_t change_action(lv_obj_t * btn)
 
 static lv_res_t click_action(lv_obj_t * btn)
 {
+    (void) btn; /*Unused*/
+
 #if LV_EX_PRINTF
     printf("Click\n");
 #endif
@@ -348,6 +357,8 @@ static lv_res_t click_action(lv_obj_t * btn)
 
 static lv_res_t long_press_action(lv_obj_t * btn)
 {
+    (void) btn; /*Unused*/
+
 #if LV_EX_PRINTF
     printf("Long press\n");
 #endif

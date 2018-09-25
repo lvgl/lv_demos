@@ -80,6 +80,8 @@ void lv_test_imgbtn_1(void)
 
 lv_res_t imgbtn_clicked(lv_obj_t * imgbtn)
 {
+    (void) imgbtn; /*Unused*/
+
 #if LV_EX_PRINTF
     printf("Clicked\n");
 #endif

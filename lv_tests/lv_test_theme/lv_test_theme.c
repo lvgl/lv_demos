@@ -20,9 +20,9 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static void create_tab1(lv_theme_t * th, lv_obj_t * parent);
-static void create_tab2(lv_theme_t * th, lv_obj_t * parent);
-static void create_tab3(lv_theme_t * th, lv_obj_t * parent);
+static void create_tab1(lv_obj_t * parent);
+static void create_tab2(lv_obj_t * parent);
+static void create_tab3(lv_obj_t * parent);
 
 /**********************
  *  STATIC VARIABLES
@@ -56,17 +56,19 @@ void lv_test_theme_1(lv_theme_t * th)
     lv_obj_t * tab2 = lv_tabview_add_tab(tv, "Tab 2");
     lv_obj_t * tab3 = lv_tabview_add_tab(tv, "Tab 3");
 
-    create_tab1(th, tab1);
-    create_tab2(th, tab2);
-    create_tab3(th, tab3);
+    create_tab1(tab1);
+    create_tab2(tab2);
+    create_tab3(tab3);
 }
 
 /**********************
  *   STATIC FUNCTIONS
  **********************/
-static void create_tab1(lv_theme_t * th, lv_obj_t * parent)
+static void create_tab1(lv_obj_t * parent)
 {
     lv_page_set_scrl_layout(parent, LV_LAYOUT_PRETTY);
+
+    lv_theme_t * th = lv_theme_get_current();
 
     static lv_style_t h_style;
     lv_style_copy(&h_style, &lv_style_transp);
@@ -182,7 +184,7 @@ static void create_tab1(lv_theme_t * th, lv_obj_t * parent)
     lv_roller_set_visible_row_count(roller, 3);
 }
 
-static void create_tab2(lv_theme_t * th, lv_obj_t * parent)
+static void create_tab2(lv_obj_t * parent)
 {
     lv_coord_t w = lv_page_get_scrl_width(parent);
 
@@ -227,9 +229,8 @@ static void create_tab2(lv_theme_t * th, lv_obj_t * parent)
 }
 
 
-static void create_tab3(lv_theme_t * th, lv_obj_t * parent)
+static void create_tab3(lv_obj_t * parent)
 {
-
     /*Create a Window*/
     lv_obj_t * win = lv_win_create(parent, NULL);
     lv_win_add_btn(win, SYMBOL_CLOSE, lv_win_close_action);

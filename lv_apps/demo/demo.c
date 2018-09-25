@@ -173,6 +173,8 @@ static void write_create(lv_obj_t * parent)
 
 static lv_res_t keyboard_open_close(lv_obj_t * text_area)
 {
+    (void) text_area;    /*Unused*/
+
     lv_obj_t * parent = lv_obj_get_parent(lv_obj_get_parent(ta));   /*Test area is on the scrollable part of the page but we need the page itself*/
 
     if(kb) {
@@ -203,6 +205,8 @@ static lv_res_t keyboard_open_close(lv_obj_t * text_area)
  */
 static lv_res_t keyboard_hide_action(lv_obj_t * keyboard)
 {
+    (void) keyboard;    /*Unused*/
+
 #if USE_LV_ANIMATION
     lv_obj_animate(kb, LV_ANIM_FLOAT_BOTTOM | LV_ANIM_OUT, 300, 0, (void(*)(lv_obj_t *))lv_obj_del);
     kb = NULL;

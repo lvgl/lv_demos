@@ -99,7 +99,9 @@ void sysmon_create(void)
 static void sysmon_task(void * param)
 {
 
-//	LV_LOG_TRACE("sys_mon task started");
+    (void) param;    /*Unused*/
+
+	LV_LOG_TRACE("sys_mon task started");
 
     /*Get CPU and memory information */
     uint8_t cpu_busy;
@@ -144,7 +146,7 @@ static void sysmon_task(void * param)
     lv_label_set_text(info_label, buf_long);
 
 
-//	LV_LOG_TRACE("sys_mon task finished");
+	LV_LOG_TRACE("sys_mon task finished");
 }
 
 /**
@@ -154,6 +156,8 @@ static void sysmon_task(void * param)
  */
 static lv_res_t win_close_action(lv_obj_t * btn)
 {
+    (void) btn;    /*Unused*/
+
     lv_obj_del(win);
     win = NULL;
 

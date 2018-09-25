@@ -146,6 +146,8 @@ void terminal_add(const char * txt_in)
  */
 static lv_res_t clr_click_action(lv_obj_t * btn)
 {
+    (void) btn;    /*Unused*/
+
     txt_log[0] = '\0';
     lv_label_set_static_text(label, txt_log);   /*Refresh the text*/
 
@@ -159,6 +161,8 @@ static lv_res_t clr_click_action(lv_obj_t * btn)
  */
 static lv_res_t win_close_action(lv_obj_t * btn)
 {
+    (void) btn;    /*Unused*/
+
     lv_obj_del(win);
     win = NULL;
     return LV_RES_INV;

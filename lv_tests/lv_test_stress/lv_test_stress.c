@@ -96,10 +96,12 @@ void lv_test_stress_1(void)
 
 static void mem_monitor(void * param)
 {
+    (void) param;    /*Unused*/
+
 #if LV_EX_PRINTF
     lv_mem_monitor_t mon;
     lv_mem_monitor(&mon);
-    printf("used: %6d (%3d %%), frag: %3d %%, big free: %6d\n", (int)mon.total_size - mon.free_size,
+    printf("used: %6d (%3d %%), frag: %3d %%, biggest free: %6d\n", (int)mon.total_size - mon.free_size,
            mon.used_pct,
            mon.frag_pct,
            (int)mon.free_biggest_size);
@@ -108,6 +110,8 @@ static void mem_monitor(void * param)
 
 static void obj_mem_leak_tester(void * param)
 {
+    (void) param;    /*Unused*/
+
     static int16_t state = 0;
     lv_obj_t * obj;
     static lv_obj_t * page;
@@ -267,6 +271,8 @@ static void obj_mem_leak_tester(void * param)
  */
 static void alloc_free_tester(void * param)
 {
+    (void) param;    /*Unused*/
+
     static int16_t state = 0;
 
     switch(state) {

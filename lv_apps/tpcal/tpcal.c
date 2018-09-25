@@ -164,6 +164,8 @@ static void get_avr_value(lv_point_t * p)
 
 static lv_res_t btn_click_action(lv_obj_t * scr)
 {
+    (void) scr;    /*Unused*/
+
     static uint8_t touch_nb = TOUCH_NUMBER;
 
     if(state == TP_CAL_STATE_WAIT_TOP_LEFT) {

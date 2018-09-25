@@ -282,6 +282,8 @@ static lv_res_t keypad_btn_press(lv_obj_t * btn)
  */
 static lv_res_t keypad_btn_release(lv_obj_t * btn)
 {
+    (void)btn;      /*Unused*/
+
     last_state = LV_INDEV_STATE_REL;        /*Save the new state but leave the last key*/
 
     return LV_RES_OK;

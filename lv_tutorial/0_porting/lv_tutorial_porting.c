@@ -202,6 +202,8 @@ static void ex_disp_fill(int32_t x1, int32_t y1, int32_t x2, int32_t y2,  lv_col
             /* put_px(x, y, *color)*/
         }
     }
+
+    (void)color; /*Just to avid warnings*/
 }
 
 #if USE_LV_GPU
@@ -212,7 +214,7 @@ static void ex_mem_blend(lv_color_t * dest, const lv_color_t * src, uint32_t len
 {
     /*It's an example code which should be done by your GPU*/
 
-    int32_t i;
+    uint32_t i;
     for(i = 0; i < length; i++) {
         dest[i] = lv_color_mix(dest[i], src[i], opa);
     }
@@ -224,7 +226,7 @@ static void ex_mem_fill(lv_color_t * dest, uint32_t length, lv_color_t color)
 {
     /*It's an example code which should be done by your GPU*/
 
-    int32_t i;
+    uint32_t i;
     for(i = 0; i < length; i++) {
         dest[i] = color;
     }
@@ -240,6 +242,8 @@ static bool ex_tp_read(lv_indev_data_t * data)
     /* data->state = LV_INDEV_STATE_REL or LV_INDEV_STATE_PR */
     /* data->point.x = tp_x; */
     /* data->point.y = tp_y; */
+
+    (void)data; /*Just to avid warnings*/
 
     return false;   /*false: no more data to read because we are no buffering*/
 }
