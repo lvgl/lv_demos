@@ -12,9 +12,16 @@
 
 #include "lvgl/lv_hal/lv_hal_indev.h"
 
-#if LV_EX_KEYBOARD
+#if LV_EX_KEYBOARD || LV_EX_ENCODER
 #include "lv_drv_conf.h"
+#endif
+
+#if LV_EX_KEYBOARD
 #include "lv_drivers/indev/keyboard.h"
+#endif
+
+#if LV_EX_ENCODER
+#include "lv_drivers/indev/encoder.h"
 #endif
 
 /*********************
@@ -79,6 +86,14 @@ void lv_test_group_1(void)
     kb_drv.read = keyboard_read;
     lv_indev_t * kb_indev = lv_indev_drv_register(&kb_drv);
     lv_indev_set_group(kb_indev, g);
+#endif
+
+#if LV_EX_ENCODER
+    lv_indev_drv_t enc_drv;
+    enc_drv.type = LV_INDEV_TYPE_ENCODER;
+    enc_drv.read = encoder_read;
+    lv_indev_t * enc_indev = lv_indev_drv_register(&enc_drv);
+    lv_indev_set_group(enc_indev, g);
 #endif
 
     /*Create a window to hold all the objects*/
