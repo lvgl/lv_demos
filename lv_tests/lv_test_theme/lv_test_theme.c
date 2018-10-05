@@ -285,11 +285,11 @@ static void create_tab3(lv_obj_t * parent)
 
     static lv_calendar_date_t highlighted_days[2];
     highlighted_days[0].day = 5;
-    highlighted_days[0].month= 5;
+    highlighted_days[0].month = 5;
     highlighted_days[0].year = 2018;
 
     highlighted_days[1].day = 8;
-    highlighted_days[1].month= 5;
+    highlighted_days[1].month = 5;
     highlighted_days[1].year = 2018;
 
     lv_calendar_set_highlighted_dates(cal, highlighted_days, 2);

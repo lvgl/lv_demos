@@ -162,8 +162,8 @@ void lv_test_ta_2(void)
 
 #else
     lv_ta_set_text(ta2_1, "First long line\n"
-    				      "short\n"
-    				      "longer one!");
+                   "short\n"
+                   "longer one!");
 #endif
     ta2_2 = lv_ta_create(lv_scr_act(), ta2_1);
     lv_obj_align(ta2_2, ta2_1, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);

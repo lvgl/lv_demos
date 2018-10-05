@@ -325,8 +325,8 @@ static lv_res_t win_btn_click(lv_obj_t * btn)
 
 static void group_focus_cb(lv_group_t * group)
 {
-	lv_obj_t * f = lv_group_get_focused(group);
-	if(f != win) lv_win_focus(win, f, 200);
+    lv_obj_t * f = lv_group_get_focused(group);
+    if(f != win) lv_win_focus(win, f, 200);
 }
 
 /*

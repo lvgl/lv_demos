@@ -193,7 +193,7 @@ uint32_t benchmark_get_refr_time(void)
  */
 static void refr_monitor(uint32_t time_ms, uint32_t px_num)
 {
-    (void) px_num; /*Unused*/
+    (void) px_num   ; /*Unused*/
 
     time_sum += time_ms;
     refr_cnt ++;

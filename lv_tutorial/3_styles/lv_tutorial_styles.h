@@ -10,9 +10,9 @@
 lv_tutorialtern "C" {
 #endif
 
-/*********************
- *      INCLUDES
- *********************/
+    /*********************
+     *      INCLUDES
+     *********************/
 #ifdef LV_CONF_INCLUDE_SIMPLE
 #include "lvgl.h"
 #include "lv_ex_conf.h"
@@ -23,22 +23,22 @@ lv_tutorialtern "C" {
 
 #if USE_LV_TUTORIALS
 
-/*********************
- *      DEFINES
- *********************/
+    /*********************
+     *      DEFINES
+     *********************/
 
-/**********************
- *      TYPEDEFS
- **********************/
+    /**********************
+     *      TYPEDEFS
+     **********************/
 
-/**********************
- * GLOBAL PROTOTYPES
- **********************/
-void lv_tutorial_styles(void);
+    /**********************
+     * GLOBAL PROTOTYPES
+     **********************/
+    void lv_tutorial_styles(void);
 
-/**********************
- *      MACROS
- **********************/
+    /**********************
+     *      MACROS
+     **********************/
 
 #endif /*USE_LV_TUTORIALS*/
 

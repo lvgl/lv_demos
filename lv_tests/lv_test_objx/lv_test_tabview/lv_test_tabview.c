@@ -51,7 +51,7 @@ void lv_test_tabview_1(void)
 
 
     lv_tabview_ext_t * tv_ext = lv_obj_get_ext_attr(tv1);
-    char ** btnm_map = (char**)lv_btnm_get_map(tv_ext->btns);
+    char ** btnm_map = (char **)lv_btnm_get_map(tv_ext->btns);
     btnm_map[1][0] |= LV_BTNM_INACTIVE_MASK;
 
     lv_obj_t * tab = lv_tabview_get_tab(tv2, 0);
