@@ -193,6 +193,8 @@ uint32_t benchmark_get_refr_time(void)
  */
 static void refr_monitor(uint32_t time_ms, uint32_t px_num)
 {
+    (void) px_num; /*Unused*/
+
     time_sum += time_ms;
     refr_cnt ++;
     lv_obj_invalidate(lv_scr_act());
@@ -219,6 +221,8 @@ static void refr_monitor(uint32_t time_ms, uint32_t px_num)
  */
 static lv_res_t run_test_click(lv_obj_t * btn)
 {
+    (void) btn; /*Unused*/
+
     benchmark_start();
 
     return LV_RES_OK;

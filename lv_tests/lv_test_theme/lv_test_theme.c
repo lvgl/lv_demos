@@ -50,19 +50,6 @@ void lv_test_theme_1(lv_theme_t * th)
 
 
     lv_obj_t * tv = lv_tabview_create(scr, NULL);
-
-    /*The released button is transparent so the will inherit the background's style*/
-    static lv_style_t tb_bg;
-    lv_style_copy(&tb_bg, th->tabview.btn.bg);
-    tb_bg.text.font = &lv_font_dejavu_40;
-    lv_tabview_set_style(tv, LV_TABVIEW_STYLE_BTN_BG, &tb_bg);
-
-    /*The toggled released (active tab) is not transparent. Set it directly*/
-    static lv_style_t tb_tgl_rel;
-    lv_style_copy(&tb_tgl_rel, th->tabview.btn.tgl_rel);
-    tb_tgl_rel.text.font = &lv_font_dejavu_40;
-    lv_tabview_set_style(tv, LV_TABVIEW_STYLE_BTN_TGL_REL, &tb_tgl_rel);
-
     lv_obj_set_size(tv, LV_HOR_RES, LV_VER_RES);
     lv_obj_t * tab1 = lv_tabview_add_tab(tv, "Tab 1");
     lv_obj_t * tab2 = lv_tabview_add_tab(tv, "Tab 2");
