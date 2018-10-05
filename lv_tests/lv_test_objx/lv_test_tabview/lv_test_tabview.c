@@ -49,6 +49,11 @@ void lv_test_tabview_1(void)
     lv_obj_t * tv2 = lv_tabview_create(lv_scr_act(), tv1);
     lv_obj_align(tv2, NULL, LV_ALIGN_IN_TOP_RIGHT, 0, 0);
 
+
+    lv_tabview_ext_t * tv_ext = lv_obj_get_ext_attr(tv1);
+    char ** btnm_map = (char**)lv_btnm_get_map(tv_ext->btns);
+    btnm_map[1][0] |= LV_BTNM_INACTIVE_MASK;
+
     lv_obj_t * tab = lv_tabview_get_tab(tv2, 0);
     lv_obj_t * label = lv_label_create(tab, NULL);
     lv_label_set_text(label, "This is\n\n\nA long text\n\n\ntext\n\n\non the\n\n\nsecond\n\n\ntab\n\n\nto see\n\n\nthe scrolling");

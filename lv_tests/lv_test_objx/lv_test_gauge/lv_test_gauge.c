@@ -53,7 +53,7 @@ void lv_test_gauge_1(void)
 #if LV_COMPILER_NON_CONST_INIT_SUPPORTED
     static lv_color_t needle_colors[3] = {LV_COLOR_BLUE, LV_COLOR_PURPLE, LV_COLOR_TEAL};
 #else
-    static lv_color_t needle_colors[3] = { 0, 0, 0 };
+    static lv_color_t needle_colors[3] = { {{0}}, {{0}}, {{0}} };
 #endif
     /*Create a styled gauge*/
     static lv_style_t style3;

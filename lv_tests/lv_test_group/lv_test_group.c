@@ -65,6 +65,23 @@ static lv_obj_t * win;
  *   GLOBAL FUNCTIONS
  **********************/
 
+
+bool ta_chk(lv_obj_t * ta, uint32_t c)
+{
+    static bool run;
+
+    /*Prevent to be called from every `lv_ta_add_char`*/
+    if(run) return true;
+
+    run = true;
+
+    lv_ta_add_char(ta, c);
+    lv_ta_add_char(ta, '.');
+
+    run = false;
+    return false;
+}
+
 /**
  * Create base groups to test their functionalities
  */
@@ -75,17 +92,18 @@ void lv_test_group_1(void)
     lv_group_set_focus_cb(g, group_focus_cb);
 
     /*A keyboard will be simulated*/
-    lv_indev_drv_t kb_drv;
-    kb_drv.type = LV_INDEV_TYPE_KEYPAD;
-    kb_drv.read = win_btn_read;
-    lv_indev_t * win_kb_indev = lv_indev_drv_register(&kb_drv);
+    lv_indev_drv_t sim_kb_drv;
+    sim_kb_drv.type = LV_INDEV_TYPE_KEYPAD;
+    sim_kb_drv.read = win_btn_read;
+    lv_indev_t * win_kb_indev = lv_indev_drv_register(&sim_kb_drv);
     lv_indev_set_group(win_kb_indev, g);
 
 #if LV_EX_KEYBOARD
-    kb_drv.type = LV_INDEV_TYPE_KEYPAD;
-    kb_drv.read = keyboard_read;
-    lv_indev_t * kb_indev = lv_indev_drv_register(&kb_drv);
-    lv_indev_set_group(kb_indev, g);
+    lv_indev_drv_t rael_kb_drv;
+    rael_kb_drv.type = LV_INDEV_TYPE_KEYPAD;
+    rael_kb_drv.read = keyboard_read;
+    lv_indev_t * real_kb_indev = lv_indev_drv_register(&rael_kb_drv);
+    lv_indev_set_group(real_kb_indev, g);
 #endif
 
 #if LV_EX_ENCODER
@@ -107,7 +125,7 @@ void lv_test_group_1(void)
     lv_win_set_title(win, "Group test");
     lv_page_set_scrl_layout(lv_win_get_content(win), LV_LAYOUT_PRETTY);
     lv_win_set_style(win, LV_WIN_STYLE_CONTENT_SCRL, &win_style);
-    lv_group_add_obj(g, win);
+    lv_group_add_obj(g, lv_win_get_content(win));
 
     lv_obj_t * win_btn = lv_win_add_btn(win, SYMBOL_RIGHT, win_btn_click);
     lv_btn_set_action(win_btn, LV_BTN_ACTION_PR, win_btn_press);
