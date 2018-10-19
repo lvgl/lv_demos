@@ -242,6 +242,8 @@ static bool ex_tp_read(lv_indev_data_t * data)
     /* data->state = LV_INDEV_STATE_REL or LV_INDEV_STATE_PR */
     /* data->point.x = tp_x; */
     /* data->point.y = tp_y; */
+    
+    /*In LV_INDEV_STATE_REL state you should use the last pressed coordinates*/
 
     (void)data; /*Just to avid warnings*/
 
