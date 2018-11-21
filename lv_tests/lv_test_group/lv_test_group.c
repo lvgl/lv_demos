@@ -21,7 +21,7 @@
 #endif
 
 #if LV_EX_MOUSEWHEEL
-#include "lv_drivers/indev/encoder.h"
+#include "lv_drivers/indev/mousewheel.h"
 #endif
 
 /*********************
@@ -109,7 +109,7 @@ void lv_test_group_1(void)
 #if LV_EX_MOUSEWHEEL
     lv_indev_drv_t enc_drv;
     enc_drv.type = LV_INDEV_TYPE_ENCODER;
-    enc_drv.read = encoder_read;
+    enc_drv.read = mousewheel_read;
     lv_indev_t * enc_indev = lv_indev_drv_register(&enc_drv);
     lv_indev_set_group(enc_indev, g);
 #endif
