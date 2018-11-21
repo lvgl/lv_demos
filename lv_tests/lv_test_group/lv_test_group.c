@@ -12,7 +12,7 @@
 
 #include "lvgl/lv_hal/lv_hal_indev.h"
 
-#if LV_EX_KEYBOARD || LV_EX_ENCODER
+#if LV_EX_KEYBOARD || LV_EX_MOUSEWHEEL
 #include "lv_drv_conf.h"
 #endif
 
@@ -20,7 +20,7 @@
 #include "lv_drivers/indev/keyboard.h"
 #endif
 
-#if LV_EX_ENCODER
+#if LV_EX_MOUSEWHEEL
 #include "lv_drivers/indev/encoder.h"
 #endif
 
@@ -106,7 +106,7 @@ void lv_test_group_1(void)
     lv_indev_set_group(real_kb_indev, g);
 #endif
 
-#if LV_EX_ENCODER
+#if LV_EX_MOUSEWHEEL
     lv_indev_drv_t enc_drv;
     enc_drv.type = LV_INDEV_TYPE_ENCODER;
     enc_drv.read = encoder_read;
