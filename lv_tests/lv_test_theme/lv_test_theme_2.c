@@ -227,6 +227,7 @@ static void content_create(void)
 
     /*Line meter*/
     lv_obj_t * lmeter = lv_lmeter_create(content, NULL);
+    lv_obj_set_click(lmeter, false);
 
     a.var = lmeter;
     a.start = 0;
@@ -246,6 +247,7 @@ static void content_create(void)
     lv_obj_t * gauge = lv_gauge_create(content, NULL);
     lv_gauge_set_value(gauge, 0, 47);
     lv_obj_set_size(gauge, LV_MATH_MIN(max_w, LV_DPI * 3 / 2), LV_MATH_MIN(max_w, LV_DPI * 3 / 2));
+    lv_obj_set_click(gauge, false);
 
     /*Test area*/
     lv_obj_t * ta = lv_ta_create(content, NULL);
