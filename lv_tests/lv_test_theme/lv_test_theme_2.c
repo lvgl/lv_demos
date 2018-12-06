@@ -87,6 +87,12 @@ void lv_test_theme_2(void)
 {
     init_all_themes(0);
     th_act = themes[0];
+    if(th_act == NULL) {
+    	LV_LOG_WARN("lv_test_theme_2: no theme is enabled. Check lv_conf.h");
+    	return;
+    }
+
+
     lv_theme_set_current(th_act);
 
     lv_obj_t * scr = lv_obj_create(NULL, NULL);
