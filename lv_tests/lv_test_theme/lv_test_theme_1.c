@@ -1,14 +1,14 @@
 /**
- * @file lv_test_win.c
+ * @file lv_test_theme_1.c
  *
  */
 
 /*********************
  *      INCLUDES
  *********************/
-#include "lv_test_theme.h"
-#if USE_LV_TESTS
+#include "lv_test_theme_1.h"
 
+#if USE_LV_TESTS
 /*********************
  *      DEFINES
  *********************/
