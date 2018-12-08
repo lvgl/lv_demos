@@ -187,7 +187,8 @@ static void content_create(void)
     lv_label_set_text(label, "Button");
 
     /*Switch*/
-    lv_sw_create(content, NULL);
+    lv_obj_t * sw = lv_sw_create(content, NULL);
+    lv_sw_set_anim_time(sw, 250);
 
     /*Check box*/
     lv_cb_create(content, NULL);
