@@ -188,7 +188,9 @@ static void content_create(void)
 
     /*Switch*/
     lv_obj_t * sw = lv_sw_create(content, NULL);
+#if LVGL_VERSION_MAJOR == 5 && LVGL_VERSION_MINOR >= 3
     lv_sw_set_anim_time(sw, 250);
+#endif
 
     /*Check box*/
     lv_cb_create(content, NULL);
