@@ -133,10 +133,8 @@ static void create_tab1(lv_obj_t * parent)
     sw = lv_sw_create(sw_h, sw);
     lv_sw_on(sw);
 
-#if USE_LV_ANIMATION
 #if LVGL_VERSION_MAJOR == 5 && LVGL_VERSION_MINOR >= 3
     lv_sw_set_anim_time(sw, 250);
-#endif
 #endif
 
 
