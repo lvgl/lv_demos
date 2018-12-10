@@ -311,32 +311,34 @@ static lv_res_t hue_select_action(lv_obj_t * roller)
 
 static void init_all_themes(uint16_t hue)
 {
+    /* NOTE: This must be adjusted if there are more than 8 themes. */
+    int i = 0;
 #if USE_LV_THEME_NIGHT
-    themes[0] = lv_theme_night_init(hue, NULL);
+    themes[i++] = lv_theme_night_init(hue, NULL);
 #endif
 
 #if USE_LV_THEME_MATERIAL
-    themes[1] = lv_theme_material_init(hue, NULL);
+    themes[i++] = lv_theme_material_init(hue, NULL);
 #endif
 
 #if USE_LV_THEME_ALIEN
-    themes[2] = lv_theme_alien_init(hue, NULL);
+    themes[i++] = lv_theme_alien_init(hue, NULL);
 #endif
 
 #if USE_LV_THEME_ZEN
-    themes[3] = lv_theme_zen_init(hue, NULL);
+    themes[i++] = lv_theme_zen_init(hue, NULL);
 #endif
 
 #if USE_LV_THEME_NEMO
-    themes[4] = lv_theme_nemo_init(hue, NULL);
+    themes[i++] = lv_theme_nemo_init(hue, NULL);
 #endif
 
 #if USE_LV_THEME_MONO
-    themes[5] = lv_theme_mono_init(hue, NULL);
+    themes[i++] = lv_theme_mono_init(hue, NULL);
 #endif
 
 #if USE_LV_THEME_DEFAULT
-    themes[6] = lv_theme_default_init(hue, NULL);
+    themes[i++] = lv_theme_default_init(hue, NULL);
 #endif
 }
 
