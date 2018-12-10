@@ -311,7 +311,7 @@ static lv_res_t hue_select_action(lv_obj_t * roller)
 
 static void init_all_themes(uint16_t hue)
 {
-    /* NOTE: This must be adjusted if there are more than 8 themes. */
+    /* NOTE: This must be adjusted if more themes are added. */
     int i = 0;
 #if USE_LV_THEME_NIGHT
     themes[i++] = lv_theme_night_init(hue, NULL);
