@@ -132,7 +132,9 @@ static void create_tab1(lv_obj_t * parent)
 
     sw = lv_sw_create(sw_h, sw);
     lv_sw_on(sw);
+#if LVGL_VERSION_MAJOR == 5 && LVGL_VERSION_MINOR >= 3
     lv_sw_set_anim_time(sw, 250);
+#endif
 
     lv_obj_t * bar = lv_bar_create(h, NULL);
     lv_bar_set_value(bar, 70);
