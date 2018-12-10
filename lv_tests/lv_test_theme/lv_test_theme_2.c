@@ -188,8 +188,10 @@ static void content_create(void)
 
     /*Switch*/
     lv_obj_t * sw = lv_sw_create(content, NULL);
+#if USE_LV_ANIMATION
 #if LVGL_VERSION_MAJOR == 5 && LVGL_VERSION_MINOR >= 3
     lv_sw_set_anim_time(sw, 250);
+#endif
 #endif
 
     /*Check box*/
@@ -198,6 +200,7 @@ static void content_create(void)
     /*Bar*/
     lv_obj_t * bar = lv_bar_create(content, NULL);
     lv_obj_set_width(bar, LV_MATH_MIN(max_w, 3 * LV_DPI / 2));
+#if USE_LV_ANIMATION
     lv_anim_t a;
     a.var = bar;
     a.start = 0;
@@ -212,6 +215,7 @@ static void content_create(void)
     a.repeat = 1;
     a.repeat_pause = 100;
     lv_anim_create(&a);
+#endif
 
     /*Slider*/
     lv_obj_t * slider = lv_slider_create(content, NULL);
@@ -231,7 +235,7 @@ static void content_create(void)
     /*Line meter*/
     lv_obj_t * lmeter = lv_lmeter_create(content, NULL);
     lv_obj_set_click(lmeter, false);
-
+#if USE_LV_ANIMATION
     a.var = lmeter;
     a.start = 0;
     a.end = 100;
@@ -245,6 +249,7 @@ static void content_create(void)
     a.repeat = 1;
     a.repeat_pause = 100;
     lv_anim_create(&a);
+#endif
 
     /*Gauge*/
     lv_obj_t * gauge = lv_gauge_create(content, NULL);
