@@ -49,6 +49,7 @@ extern "C" {
 #include "lv_test_objx/lv_test_slider/lv_test_slider.h"
 #include "lv_test_objx/lv_test_sw/lv_test_sw.h"
 #include "lv_test_objx/lv_test_ta/lv_test_ta.h"
+#include "lv_test_objx/lv_test_table/lv_test_table.h"
 #include "lv_test_objx/lv_test_tabview/lv_test_tabview.h"
 #include "lv_test_objx/lv_test_win/lv_test_win.h"
 
