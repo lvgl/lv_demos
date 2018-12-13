@@ -85,6 +85,10 @@ static lv_theme_t * themes[8];
  */
 void lv_test_theme_2(void)
 {
+    /* By doing this, we hide the first (empty) option. */
+    if(th_options[0] == '\n')
+	    th_options++;
+
     init_all_themes(0);
     th_act = themes[0];
     if(th_act == NULL) {
