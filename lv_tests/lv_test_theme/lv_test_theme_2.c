@@ -85,6 +85,10 @@ static lv_theme_t * themes[8];
  */
 void lv_test_theme_2(void)
 {
+    /* By doing this, we hide the first (empty) option. */
+    if(th_options[0] == '\n')
+	    th_options++;
+
     init_all_themes(0);
     th_act = themes[0];
     if(th_act == NULL) {
@@ -188,8 +192,10 @@ static void content_create(void)
 
     /*Switch*/
     lv_obj_t * sw = lv_sw_create(content, NULL);
+#if USE_LV_ANIMATION
 #if LVGL_VERSION_MAJOR == 5 && LVGL_VERSION_MINOR >= 3
     lv_sw_set_anim_time(sw, 250);
+#endif
 #endif
 
     /*Check box*/
@@ -198,6 +204,7 @@ static void content_create(void)
     /*Bar*/
     lv_obj_t * bar = lv_bar_create(content, NULL);
     lv_obj_set_width(bar, LV_MATH_MIN(max_w, 3 * LV_DPI / 2));
+#if USE_LV_ANIMATION
     lv_anim_t a;
     a.var = bar;
     a.start = 0;
@@ -212,6 +219,7 @@ static void content_create(void)
     a.repeat = 1;
     a.repeat_pause = 100;
     lv_anim_create(&a);
+#endif
 
     /*Slider*/
     lv_obj_t * slider = lv_slider_create(content, NULL);
@@ -231,7 +239,7 @@ static void content_create(void)
     /*Line meter*/
     lv_obj_t * lmeter = lv_lmeter_create(content, NULL);
     lv_obj_set_click(lmeter, false);
-
+#if USE_LV_ANIMATION
     a.var = lmeter;
     a.start = 0;
     a.end = 100;
@@ -245,6 +253,7 @@ static void content_create(void)
     a.repeat = 1;
     a.repeat_pause = 100;
     lv_anim_create(&a);
+#endif
 
     /*Gauge*/
     lv_obj_t * gauge = lv_gauge_create(content, NULL);
@@ -313,32 +322,34 @@ static lv_res_t hue_select_action(lv_obj_t * roller)
 
 static void init_all_themes(uint16_t hue)
 {
+    /* NOTE: This must be adjusted if more themes are added. */
+    int i = 0;
 #if USE_LV_THEME_NIGHT
-    themes[0] = lv_theme_night_init(hue, NULL);
+    themes[i++] = lv_theme_night_init(hue, NULL);
 #endif
 
 #if USE_LV_THEME_MATERIAL
-    themes[1] = lv_theme_material_init(hue, NULL);
+    themes[i++] = lv_theme_material_init(hue, NULL);
 #endif
 
 #if USE_LV_THEME_ALIEN
-    themes[2] = lv_theme_alien_init(hue, NULL);
+    themes[i++] = lv_theme_alien_init(hue, NULL);
 #endif
 
 #if USE_LV_THEME_ZEN
-    themes[3] = lv_theme_zen_init(hue, NULL);
+    themes[i++] = lv_theme_zen_init(hue, NULL);
 #endif
 
 #if USE_LV_THEME_NEMO
-    themes[4] = lv_theme_nemo_init(hue, NULL);
+    themes[i++] = lv_theme_nemo_init(hue, NULL);
 #endif
 
 #if USE_LV_THEME_MONO
-    themes[5] = lv_theme_mono_init(hue, NULL);
+    themes[i++] = lv_theme_mono_init(hue, NULL);
 #endif
 
 #if USE_LV_THEME_DEFAULT
-    themes[6] = lv_theme_default_init(hue, NULL);
+    themes[i++] = lv_theme_default_init(hue, NULL);
 #endif
 }
 

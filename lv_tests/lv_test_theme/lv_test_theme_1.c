@@ -132,9 +132,11 @@ static void create_tab1(lv_obj_t * parent)
 
     sw = lv_sw_create(sw_h, sw);
     lv_sw_on(sw);
+
 #if LVGL_VERSION_MAJOR == 5 && LVGL_VERSION_MINOR >= 3
     lv_sw_set_anim_time(sw, 250);
 #endif
+
 
     lv_obj_t * bar = lv_bar_create(h, NULL);
     lv_bar_set_value(bar, 70);
@@ -225,9 +227,10 @@ static void create_tab2(lv_obj_t * parent)
     lv_obj_align(kb, ta, LV_ALIGN_OUT_BOTTOM_RIGHT, 0, LV_DPI);
     lv_kb_set_ta(kb, ta);
 
-
+#if USE_LV_ANIMATION
     lv_obj_t * loader = lv_preload_create(parent, NULL);
     lv_obj_align(loader, NULL, LV_ALIGN_CENTER, 0, - LV_DPI);
+#endif
 }
 
 
