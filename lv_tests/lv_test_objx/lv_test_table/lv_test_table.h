@@ -40,6 +40,11 @@ extern "C" {
  */
 void lv_test_table_1(void);
 
+/**
+ * Create tables to test their functionalities
+ */
+void lv_test_table_2(void);
+
 /**********************
  *      MACROS
  **********************/
