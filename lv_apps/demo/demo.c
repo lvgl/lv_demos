@@ -299,6 +299,7 @@ static void chart_create(lv_obj_t * parent)
     lv_chart_set_next(chart, ser1, 55);
     lv_chart_set_next(chart, ser1, 70);
     lv_chart_set_next(chart, ser1, 82);
+    lv_chart_set_next(chart, ser1, 91);
 
     /*Create a bar, an indicator and a knob style*/
     static lv_style_t style_bar;
