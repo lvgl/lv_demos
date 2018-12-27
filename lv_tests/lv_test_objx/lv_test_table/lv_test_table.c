@@ -46,7 +46,6 @@ void lv_test_table_1(void)
     lv_obj_t * table1 = lv_table_create(lv_scr_act(), NULL);
     lv_obj_set_pos(table1, 10, 10);
     lv_table_set_style(table1, LV_TABLE_STYLE_CELL, &cell_style);
-    lv_table_set_style(table1, LV_TABLE_STYLE_BG, &lv_style_transp_fit);
     lv_table_set_col_cnt(table1, 4);
     lv_table_set_row_cnt(table1, 5);
 
