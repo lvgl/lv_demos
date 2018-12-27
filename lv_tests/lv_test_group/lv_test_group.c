@@ -188,12 +188,9 @@ void lv_test_group_1(void)
     lv_slider_set_action(obj, change_action);
     lv_group_add_obj(g, obj);
 
-    lv_slider_set_value(obj, 3);
-
     obj = lv_sw_create(win, NULL);
     lv_sw_set_action(obj, change_action);
     lv_group_add_obj(g, obj);
-    lv_sw_set_anim_time(obj, 400);
 
     obj = lv_ddlist_create(win, NULL);
     lv_ddlist_set_options(obj, "Item1\nItem2\nItem3\nItem4\nItem5\nItem6");
@@ -218,7 +215,7 @@ void lv_test_group_1(void)
     lv_kb_set_ta(obj, ta);
     lv_group_add_obj(g, obj);
 
-    static const char * mbox_btns[] = {"#FF0000 Yes#", "No", ""};
+    static const char * mbox_btns[] = {"Yes", "No", ""};
     obj = lv_mbox_create(win, NULL);
     lv_mbox_add_btns(obj, mbox_btns, NULL);
     lv_group_add_obj(g, obj);
@@ -379,7 +376,6 @@ static lv_res_t long_press_action(lv_obj_t * btn)
 {
     (void) btn; /*Unused*/
 
-    lv_group_focus_next(g);
 #if LV_EX_PRINTF
     printf("Long press\n");
 #endif

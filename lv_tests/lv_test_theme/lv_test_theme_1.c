@@ -173,7 +173,7 @@ static void create_tab1(lv_obj_t * parent)
     lv_btn_set_toggle(list_btn, true);
     lv_list_add(list, SYMBOL_WIFI, "WiFi", NULL);
     lv_list_add(list, SYMBOL_GPS, "GPS", NULL);
-    lv_list_add(list, SYMBOL_AUDIO, "Audio videjo redeo", NULL);
+    lv_list_add(list, SYMBOL_AUDIO, "Audio", NULL);
     lv_list_add(list, SYMBOL_VIDEO, "Video", NULL);
     lv_list_add(list, SYMBOL_CALL, "Call", NULL);
     lv_list_add(list, SYMBOL_BELL, "Bell", NULL);
