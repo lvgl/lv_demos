@@ -120,7 +120,7 @@ static void create_tab1(lv_obj_t * parent)
     lv_btnm_set_map(btnm, btnm_str);
     lv_btnm_set_toggle(btnm, true, 3);
 
-#if LV_VERSION_CHECK(5,3,0)
+#if LVGL_VERSION_MAJOR == 5 && LVGL_VERSION_MINOR >= 3
     lv_obj_t * table = lv_table_create(h, NULL);
     lv_table_set_col_cnt(table, 3);
     lv_table_set_row_cnt(table, 4);
@@ -158,7 +158,7 @@ static void create_tab1(lv_obj_t * parent)
     lv_cont_set_layout(sw_h, LV_LAYOUT_PRETTY);
 
     lv_obj_t * sw = lv_sw_create(sw_h, NULL);
-#if LV_VERSION_CHECK(5,3,0)
+#if LVGL_VERSION_MAJOR == 5 && LVGL_VERSION_MINOR >= 3
     lv_sw_set_anim_time(sw, 250);
 #endif
 

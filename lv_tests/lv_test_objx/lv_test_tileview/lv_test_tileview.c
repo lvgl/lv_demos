@@ -7,7 +7,7 @@
  *      INCLUDES
  *********************/
 #include "lv_test_tileview.h"
-#if USE_LV_TILEVIEW && USE_LV_BTN && USE_LV_LABEL && USE_LV_LIST && USE_LV_TESTS &&  && LV_VERSION_CHECK(5,3,0)
+#if USE_LV_TILEVIEW && USE_LV_BTN && USE_LV_LABEL && USE_LV_LIST
 
 /*********************
  *      DEFINES
