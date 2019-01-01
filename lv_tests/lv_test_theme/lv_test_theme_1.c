@@ -120,6 +120,35 @@ static void create_tab1(lv_obj_t * parent)
     lv_btnm_set_map(btnm, btnm_str);
     lv_btnm_set_toggle(btnm, true, 3);
 
+#if LV_VERSION_CHECK(5,3,0)
+    lv_obj_t * table = lv_table_create(h, NULL);
+    lv_table_set_col_cnt(table, 3);
+    lv_table_set_row_cnt(table, 4);
+    lv_table_set_col_width(table, 0, LV_DPI / 3);
+    lv_table_set_col_width(table, 1, LV_DPI / 2);
+    lv_table_set_col_width(table, 2, LV_DPI / 2);
+    lv_table_set_cell_merge_right(table, 0, 0, true);
+    lv_table_set_cell_merge_right(table, 0, 1, true);
+
+    lv_table_set_cell_value(table, 0, 0, "Table");
+    lv_table_set_cell_align(table, 0, 0, LV_LABEL_ALIGN_CENTER);
+
+    lv_table_set_cell_value(table, 1, 0, "1");
+    lv_table_set_cell_value(table, 1, 1, "13");
+    lv_table_set_cell_align(table, 1, 1, LV_LABEL_ALIGN_RIGHT);
+    lv_table_set_cell_value(table, 1, 2, "ms");
+
+    lv_table_set_cell_value(table, 2, 0, "2");
+    lv_table_set_cell_value(table, 2, 1, "46");
+    lv_table_set_cell_align(table, 2, 1, LV_LABEL_ALIGN_RIGHT);
+    lv_table_set_cell_value(table, 2, 2, "ms");
+
+    lv_table_set_cell_value(table, 3, 0, "3");
+    lv_table_set_cell_value(table, 3, 1, "61");
+    lv_table_set_cell_align(table, 3, 1, LV_LABEL_ALIGN_RIGHT);
+    lv_table_set_cell_value(table, 3, 2, "ms");
+#endif
+
     h = lv_cont_create(parent, h);
 
     lv_obj_t * sw_h = lv_cont_create(h, NULL);
@@ -129,13 +158,12 @@ static void create_tab1(lv_obj_t * parent)
     lv_cont_set_layout(sw_h, LV_LAYOUT_PRETTY);
 
     lv_obj_t * sw = lv_sw_create(sw_h, NULL);
+#if LV_VERSION_CHECK(5,3,0)
+    lv_sw_set_anim_time(sw, 250);
+#endif
 
     sw = lv_sw_create(sw_h, sw);
     lv_sw_on(sw);
-
-#if LVGL_VERSION_MAJOR == 5 && LVGL_VERSION_MINOR >= 3
-    lv_sw_set_anim_time(sw, 250);
-#endif
 
 
     lv_obj_t * bar = lv_bar_create(h, NULL);
@@ -148,11 +176,6 @@ static void create_tab1(lv_obj_t * parent)
     static const lv_point_t line_p[] = {{0, 0}, {LV_HOR_RES / 5, 0}};
     lv_line_set_points(line, line_p, 2);
     lv_line_set_style(line, th->line.decor);
-
-    lv_obj_t * ta = lv_ta_create(h, NULL);
-    lv_obj_set_style(ta, th->ta.oneline);
-    lv_ta_set_text(ta, "Some text");
-    lv_ta_set_one_line(ta, true);
 
     lv_obj_t * cb = lv_cb_create(h, NULL);
 
@@ -186,6 +209,8 @@ static void create_tab1(lv_obj_t * parent)
     lv_roller_set_options(roller, "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday");
     lv_roller_set_selected(roller, 1, false);
     lv_roller_set_visible_row_count(roller, 3);
+
+
 }
 
 static void create_tab2(lv_obj_t * parent)
