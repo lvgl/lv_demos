@@ -23,6 +23,7 @@
 static void write_create(lv_obj_t * parent);
 static lv_res_t keyboard_open_close(lv_obj_t * ta);
 static lv_res_t keyboard_hide_action(lv_obj_t * keyboard);
+static void kb_hide_anim_end(lv_obj_t * kb);
 static void list_create(lv_obj_t * parent);
 static void chart_create(lv_obj_t * parent);
 static lv_res_t slider_action(lv_obj_t * slider);
@@ -208,7 +209,7 @@ static lv_res_t keyboard_hide_action(lv_obj_t * keyboard)
     (void) keyboard;    /*Unused*/
 
 #if USE_LV_ANIMATION
-    lv_obj_animate(kb, LV_ANIM_FLOAT_BOTTOM | LV_ANIM_OUT, 300, 0, (void(*)(lv_obj_t *))lv_obj_del);
+    lv_obj_animate(kb, LV_ANIM_FLOAT_BOTTOM | LV_ANIM_OUT, 300, 0, kb_hide_anim_end);
     kb = NULL;
     return LV_RES_OK;
 #else
@@ -265,6 +266,11 @@ static void list_create(lv_obj_t * parent)
     static const char * mbox_btns[] = {"Got it", ""};
     lv_mbox_add_btns(mbox, mbox_btns, NULL);    /*The default action is close*/
     lv_obj_align(mbox, parent, LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 2);
+}
+
+static void kb_hide_anim_end(lv_obj_t * kb)
+{
+    lv_obj_del(kb);
 }
 
 static void chart_create(lv_obj_t * parent)
