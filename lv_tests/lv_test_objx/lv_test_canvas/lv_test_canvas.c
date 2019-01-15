@@ -1,5 +1,5 @@
 /**
- * @file lv_test_cb.c
+ * @file lv_test_canvas.c
  *
  */
 
