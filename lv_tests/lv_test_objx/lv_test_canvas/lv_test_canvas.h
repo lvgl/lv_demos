@@ -1,10 +1,10 @@
 /**
- * @file lv_test_cb.h
+ * @file lv_test_canvas.h
  *
  */
 
-#ifndef LV_TEST_CB_H
-#define LV_TEST_CB_H
+#ifndef LV_TEST_CANVAS_H
+#define LV_TEST_CANVAS_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -50,4 +50,4 @@ void lv_test_canvas_1(void);
 } /* extern "C" */
 #endif
 
-#endif /*LV_TEST_CB_H*/
+#endif /*LV_TEST_CANVAS_H*/

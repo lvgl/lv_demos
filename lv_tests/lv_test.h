@@ -30,6 +30,7 @@ extern "C" {
 #include "lv_test_objx/lv_test_btn/lv_test_btn.h"
 #include "lv_test_objx/lv_test_btnm/lv_test_btnm.h"
 #include "lv_test_objx/lv_test_cb/lv_test_cb.h"
+#include "lv_test_objx/lv_test_canvas/lv_test_canvas.h"
 #include "lv_test_objx/lv_test_chart/lv_test_chart.h"
 #include "lv_test_objx/lv_test_cont/lv_test_cont.h"
 #include "lv_test_objx/lv_test_ddlist/lv_test_ddlist.h"
