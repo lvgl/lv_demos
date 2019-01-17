@@ -39,11 +39,12 @@
  */
 void lv_test_canvas_1(void)
 {
-    /*Create a buffer for the canvas set its pixels to gray*/
+
+    /*Create a buffer for the canvas set its pixels to light blue*/
     static lv_color_t cbuf[sizeof(lv_color_t) * 100 * 80];
     uint32_t i;
     for(i = 0; i < sizeof(cbuf) / sizeof(cbuf[0]); i++) {
-        cbuf[i] = LV_COLOR_GRAY;
+        cbuf[i] = LV_COLOR_HEX3(0xacf);
     }
 
     /*Create the canvas object*/
@@ -60,17 +61,18 @@ void lv_test_canvas_1(void)
     lv_color_t pbuf[2][2] = {LV_COLOR_RED, LV_COLOR_GREEN, LV_COLOR_BLUE, LV_COLOR_AQUA};
 
     /*Copy the pattern to the canvas*/
-    lv_canvas_copy_to_buf(canvas, pbuf, 2, 2, 6, 10);
-
-
+    lv_canvas_copy_buf(canvas, pbuf, 2, 2, 6, 10);
 
 
     /* Copy a pattern along a line using Bresenham’s Line Drawing Algorithm:
      * https://www.thecrazyprogrammer.com/2017/01/bresenhams-line-drawing-algorithm-c-c.html*/
+//
+//    lv_color_t line_pbuf[3][3] = {LV_COLOR_GRAY, LV_COLOR_BLACK, LV_COLOR_GRAY,
+//                                  LV_COLOR_BLACK, LV_COLOR_BLACK, LV_COLOR_BLACK,
+//                                  LV_COLOR_GRAY, LV_COLOR_BLACK, LV_COLOR_GRAY,};
 
-    lv_color_t line_pbuf[3][3] = {LV_COLOR_BLACK, LV_COLOR_BLACK, LV_COLOR_BLACK,
-                                  LV_COLOR_BLACK, LV_COLOR_BLACK, LV_COLOR_BLACK,
-                                  LV_COLOR_BLACK, LV_COLOR_BLACK, LV_COLOR_BLACK,};
+    lv_color_t line_pbuf[2][2] = {LV_COLOR_GRAY, LV_COLOR_GRAY,
+                                  LV_COLOR_GRAY, LV_COLOR_GRAY};
 
     lv_coord_t x0 = 10;
     lv_coord_t y0 = 10;
@@ -90,13 +92,13 @@ void lv_test_canvas_1(void)
     {
         if(p>=0)
         {
-            lv_canvas_copy_to_buf(canvas, line_pbuf, 3, 3, x - 1, y - 1);
+            lv_canvas_mult_buf(canvas, line_pbuf, 2, 2, x, y);
             y=y+1;
             p=p+2*dy-2*dx;
         }
         else
         {
-            lv_canvas_copy_to_buf(canvas, line_pbuf, 3, 3, x - 1, y - 1);
+            lv_canvas_mult_buf(canvas, line_pbuf, 2, 2, x, y);
             p=p+2*dy;
         }
         x=x+1;
