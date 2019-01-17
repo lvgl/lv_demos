@@ -59,8 +59,48 @@ void lv_test_canvas_1(void)
     /*Create a pattern to copy to the canvas*/
     lv_color_t pbuf[2][2] = {LV_COLOR_RED, LV_COLOR_GREEN, LV_COLOR_BLUE, LV_COLOR_AQUA};
 
-    /*Copy the pattern to teh canvas*/
+    /*Copy the pattern to the canvas*/
     lv_canvas_copy_to_buf(canvas, pbuf, 2, 2, 6, 10);
+
+
+
+
+    /* Copy a pattern along a line using Bresenham’s Line Drawing Algorithm:
+     * https://www.thecrazyprogrammer.com/2017/01/bresenhams-line-drawing-algorithm-c-c.html*/
+
+    lv_color_t line_pbuf[3][3] = {LV_COLOR_BLACK, LV_COLOR_BLACK, LV_COLOR_BLACK,
+                                  LV_COLOR_BLACK, LV_COLOR_BLACK, LV_COLOR_BLACK,
+                                  LV_COLOR_BLACK, LV_COLOR_BLACK, LV_COLOR_BLACK,};
+
+    lv_coord_t x0 = 10;
+    lv_coord_t y0 = 10;
+    lv_coord_t x1= 40;
+    lv_coord_t y1 = 23;
+    int dx, dy, p, x, y;
+
+    dx=x1-x0;
+    dy=y1-y0;
+
+    x=x0;
+    y=y0;
+
+    p=2*dy-dx;
+
+    while(x<x1)
+    {
+        if(p>=0)
+        {
+            lv_canvas_copy_to_buf(canvas, line_pbuf, 3, 3, x - 1, y - 1);
+            y=y+1;
+            p=p+2*dy-2*dx;
+        }
+        else
+        {
+            lv_canvas_copy_to_buf(canvas, line_pbuf, 3, 3, x - 1, y - 1);
+            p=p+2*dy;
+        }
+        x=x+1;
+    }
 }
 
 
