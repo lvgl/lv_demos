@@ -107,9 +107,8 @@ void lv_test_canvas_1(void)
 
 void lv_test_canvas_2(void)
 {
-    lv_color_t boundary_color = LV_COLOR_RED;
     lv_color_t bg_color = LV_COLOR_MAKE(0xec, 0xf0, 0xf1);
-    lv_color_t fill_color = LV_COLOR_MAKE(0xec, 0xf0, 0xf1);
+    lv_color_t fill_color = LV_COLOR_MAKE(0xbc, 0xa0, 0xa1);
 
     /*Create a buffer for the canvas set its pixels to light blue*/
     static lv_color_t cbuf[sizeof(lv_color_t) * 100 * 80];
@@ -122,7 +121,7 @@ void lv_test_canvas_2(void)
     lv_obj_t * canvas = lv_canvas_create(lv_scr_act(), NULL);
 
     /*Assign the buffer to the canvas*/
-    lv_canvas_set_buffer(canvas, cbuf, 100, 80, LV_IMG_CF_TRUE_COLOR_ALPHA);
+    lv_canvas_set_buffer(canvas, cbuf, 100, 80, LV_IMG_CF_TRUE_COLOR);
 
     // a. Draw image
     LV_IMG_DECLARE(img_flower_icon);
