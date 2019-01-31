@@ -39,6 +39,7 @@ extern "C" {
  * Create canvas to test its functionalities
  */
 void lv_test_canvas_1(void);
+void lv_test_canvas_2(void);
 
 /**********************
  *      MACROS
