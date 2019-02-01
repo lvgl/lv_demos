@@ -58,6 +58,8 @@ extern "C" {
 #include "lv_test_theme/lv_test_theme_1.h"
 #include "lv_test_theme/lv_test_theme_2.h"
 
+#include "lv_test_group/lv_test_group.h"
+
 /*********************
  *      DEFINES
  *********************/

@@ -23,7 +23,7 @@
 static void write_create(lv_obj_t * parent);
 static lv_res_t keyboard_open_close(lv_obj_t * ta);
 static lv_res_t keyboard_hide_action(lv_obj_t * keyboard);
-static void kb_hide_anim_end(lv_obj_t * kb);
+static void kb_hide_anim_end(lv_obj_t * keyboard);
 static void list_create(lv_obj_t * parent);
 static void chart_create(lv_obj_t * parent);
 static lv_res_t slider_action(lv_obj_t * slider);
@@ -181,7 +181,6 @@ static lv_res_t keyboard_open_close(lv_obj_t * text_area)
     if(kb) {
         return keyboard_hide_action(kb);
     } else {
-
         kb = lv_kb_create(parent, NULL);
         lv_obj_set_size(kb, lv_page_get_scrl_width(parent), lv_obj_get_height(parent) / 2);
         lv_obj_align(kb, ta, LV_ALIGN_OUT_BOTTOM_MID, 0, 0);
@@ -268,9 +267,9 @@ static void list_create(lv_obj_t * parent)
     lv_obj_align(mbox, parent, LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 2);
 }
 
-static void kb_hide_anim_end(lv_obj_t * kb)
+static void kb_hide_anim_end(lv_obj_t * keyboard)
 {
-    lv_obj_del(kb);
+    lv_obj_del(keyboard);
 }
 
 static void chart_create(lv_obj_t * parent)
