@@ -103,8 +103,11 @@ void tpcal_create(void)
     lv_label_set_text(label_main, buf);
     lv_label_set_align(label_main, LV_LABEL_ALIGN_CENTER);
 
-    lv_obj_set_pos(label_main, (LV_HOR_RES - lv_obj_get_width(label_main)) / 2,
-                   (LV_VER_RES - lv_obj_get_height(label_main)) / 2);
+    lv_coord_t hres = lv_disp_get_hor_res(NULL);
+    lv_coord_t vres = lv_disp_get_ver_res(NULL);
+
+    lv_obj_set_pos(label_main, (hres - lv_obj_get_width(label_main)) / 2,
+                   (vres - lv_obj_get_height(label_main)) / 2);
 
 
     static lv_style_t style_circ;
@@ -119,7 +122,7 @@ void tpcal_create(void)
 #if USE_LV_ANIMATION
     lv_anim_t a;
     a.var = circ_area;
-    a.start = LV_HOR_RES / 2;
+    a.start = hres / 2;
     a.end = CIRCLE_OFFSET;
     a.fp = (lv_anim_fp_t)lv_obj_set_x;
     a.path = lv_anim_path_linear;
@@ -132,7 +135,7 @@ void tpcal_create(void)
     a.repeat_pause = 0;
     lv_anim_create(&a);
 
-    a.start = LV_VER_RES / 2;
+    a.start = vres / 2;
     a.end = CIRCLE_OFFSET;
     a.fp = (lv_anim_fp_t)lv_obj_set_y;
     a.end_cb = NULL;
@@ -166,6 +169,9 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
 {
     (void) scr;    /*Unused*/
 
+    lv_coord_t hres = lv_disp_get_hor_res(NULL);
+    lv_coord_t vres = lv_disp_get_ver_res(NULL);
+
     static uint8_t touch_nb = TOUCH_NUMBER;
 
     if(state == TP_CAL_STATE_WAIT_TOP_LEFT) {
@@ -187,7 +193,7 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
             lv_anim_t a;
             a.var = circ_area;
             a.start = CIRCLE_OFFSET;
-            a.end = LV_HOR_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
+            a.end = hres - CIRCLE_SIZE - CIRCLE_OFFSET;
             a.fp = (lv_anim_fp_t)lv_obj_set_x;
             a.path = lv_anim_path_linear;
             a.end_cb = NULL;
@@ -215,8 +221,8 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
                     " %u Left", touch_nb);
         }
         lv_label_set_text(label_main, buf);
-        lv_obj_set_pos(label_main, (LV_HOR_RES - lv_obj_get_width(label_main)) / 2,
-                       (LV_VER_RES - lv_obj_get_height(label_main)) / 2);
+        lv_obj_set_pos(label_main, (hres - lv_obj_get_width(label_main)) / 2,
+                       (vres - lv_obj_get_height(label_main)) / 2);
 
 
     } else if(state == TP_CAL_STATE_WAIT_TOP_RIGHT) {
@@ -231,15 +237,15 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
             sprintf(buf, "x: %d\ny: %d", point[1].x, point[1].y);
             lv_obj_t * label_coord = lv_label_create(lv_scr_act(), NULL);
             lv_label_set_text(label_coord, buf);
-            lv_obj_set_pos(label_coord, LV_HOR_RES - lv_obj_get_width(label_coord), 0);
+            lv_obj_set_pos(label_coord, hres - lv_obj_get_width(label_coord), 0);
             sprintf(buf, "Click the circle in\n"
                     "lower right-hand corner\n"
                     " %u Left", TOUCH_NUMBER);
 #if USE_LV_ANIMATION
             lv_anim_t a;
             a.var = circ_area;
-            a.start = LV_HOR_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
-            a.end = LV_HOR_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
+            a.start = hres - CIRCLE_SIZE - CIRCLE_OFFSET;
+            a.end = hres - CIRCLE_SIZE - CIRCLE_OFFSET;
             a.fp = (lv_anim_fp_t)lv_obj_set_x;
             a.path = lv_anim_path_linear;
             a.end_cb = NULL;
@@ -252,13 +258,13 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
             lv_anim_create(&a);
 
             a.start = CIRCLE_OFFSET;
-            a.end = LV_VER_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
+            a.end = vres - CIRCLE_SIZE - CIRCLE_OFFSET;
             a.fp = (lv_anim_fp_t)lv_obj_set_y;
             a.end_cb = NULL;
             a.time = 200;
             lv_anim_create(&a);
 #else
-            lv_obj_set_pos(circ_area, LV_HOR_RES - CIRCLE_SIZE - CIRCLE_OFFSET, LV_VER_RES - CIRCLE_SIZE - CIRCLE_OFFSET);
+            lv_obj_set_pos(circ_area, hres - CIRCLE_SIZE - CIRCLE_OFFSET, vres - CIRCLE_SIZE - CIRCLE_OFFSET);
 #endif
             state = TP_CAL_STATE_WAIT_BOTTOM_RIGHT;
         } else {
@@ -267,8 +273,8 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
                     " %u Left", touch_nb);
         }
         lv_label_set_text(label_main, buf);
-        lv_obj_set_pos(label_main, (LV_HOR_RES - lv_obj_get_width(label_main)) / 2,
-                       (LV_VER_RES - lv_obj_get_height(label_main)) / 2);
+        lv_obj_set_pos(label_main, (hres - lv_obj_get_width(label_main)) / 2,
+                       (vres - lv_obj_get_height(label_main)) / 2);
 
     } else if(state == TP_CAL_STATE_WAIT_BOTTOM_RIGHT) {
         char buf[64];
@@ -285,12 +291,12 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
             sprintf(buf, "Click the circle in\n"
                     "lower left-hand corner\n"
                     " %u Left", TOUCH_NUMBER);
-            lv_obj_set_pos(label_coord, LV_HOR_RES - lv_obj_get_width(label_coord),
-                           LV_VER_RES - lv_obj_get_height(label_coord));
+            lv_obj_set_pos(label_coord, hres - lv_obj_get_width(label_coord),
+                           vres - lv_obj_get_height(label_coord));
 #if USE_LV_ANIMATION
             lv_anim_t a;
             a.var = circ_area;
-            a.start = LV_HOR_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
+            a.start = hres - CIRCLE_SIZE - CIRCLE_OFFSET;
             a.end = CIRCLE_OFFSET;
             a.fp = (lv_anim_fp_t)lv_obj_set_x;
             a.path = lv_anim_path_linear;
@@ -303,8 +309,8 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
             a.repeat_pause = 0;
             lv_anim_create(&a);
 
-            a.start = LV_VER_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
-            a.end = LV_VER_RES - CIRCLE_SIZE - CIRCLE_OFFSET;
+            a.start = vres - CIRCLE_SIZE - CIRCLE_OFFSET;
+            a.end = vres - CIRCLE_SIZE - CIRCLE_OFFSET;
             a.fp = (lv_anim_fp_t)lv_obj_set_y;
             a.end_cb = NULL;
             a.time = 200;
@@ -319,8 +325,8 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
                     " %u Left", touch_nb);
         }
         lv_label_set_text(label_main, buf);
-        lv_obj_set_pos(label_main, (LV_HOR_RES - lv_obj_get_width(label_main)) / 2,
-                       (LV_VER_RES - lv_obj_get_height(label_main)) / 2);
+        lv_obj_set_pos(label_main, (hres - lv_obj_get_width(label_main)) / 2,
+                       (vres - lv_obj_get_height(label_main)) / 2);
     } else if(state == TP_CAL_STATE_WAIT_BOTTOM_LEFT) {
         char buf[64];
         touch_nb--;
@@ -333,7 +339,7 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
             sprintf(buf, "x: %d\ny: %d", point[3].x, point[3].y);
             lv_obj_t * label_coord = lv_label_create(lv_scr_act(), NULL);
             lv_label_set_text(label_coord, buf);
-            lv_obj_set_pos(label_coord, 0, LV_VER_RES - lv_obj_get_height(label_coord));
+            lv_obj_set_pos(label_coord, 0, vres - lv_obj_get_height(label_coord));
             sprintf(buf, "Click the screen\n"
                     "to leave calibration");
             lv_obj_del(circ_area);
@@ -344,8 +350,8 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
                     " %u Left", touch_nb);
         }
         lv_label_set_text(label_main, buf);
-        lv_obj_set_pos(label_main, (LV_HOR_RES - lv_obj_get_width(label_main)) / 2,
-                       (LV_VER_RES - lv_obj_get_height(label_main)) / 2);
+        lv_obj_set_pos(label_main, (hres - lv_obj_get_width(label_main)) / 2,
+                       (vres - lv_obj_get_height(label_main)) / 2);
     } else if(state == TP_CAL_STATE_WAIT_LEAVE) {
         lv_scr_load(prev_scr);
 

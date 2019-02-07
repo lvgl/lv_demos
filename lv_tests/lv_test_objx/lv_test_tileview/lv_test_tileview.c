@@ -38,6 +38,9 @@
  */
 void lv_test_tileview_1(void)
 {
+    lv_coord_t hres = lv_disp_get_hor_res(NULL);
+    lv_coord_t vres = lv_disp_get_ver_res(NULL);
+
     static const lv_point_t vp[] = {
                    {1,0},          /*First row: only the middle tile*/
             {0,1}, {1,1}, {1,2},   /*Second row: all tree tiles */
@@ -82,7 +85,7 @@ void lv_test_tileview_1(void)
 
     /*x1, y2 list*/
     lv_obj_t * list12 = lv_list_create(t, NULL);
-    lv_obj_set_size(list12, LV_HOR_RES, LV_VER_RES);
+    lv_obj_set_size(list12, hres, vres);
     lv_obj_align(list12, p11, LV_ALIGN_OUT_BOTTOM_MID, 0, 0);
     lv_list_set_scroll_propagation(list12, true);
     lv_tileview_add_element(list12);

@@ -48,7 +48,7 @@ void lv_test_mbox_1(void)
     lv_obj_t * mbox2 = lv_mbox_create(lv_scr_act(), NULL);
     lv_mbox_add_btns(mbox2, btns2, NULL);
     lv_mbox_set_text(mbox2, "Message");
-    lv_obj_set_width(mbox2, LV_HOR_RES / 2);
+    lv_obj_set_width(mbox2, lv_disp_get_hor_res(NULL) / 2);
     lv_obj_align(mbox2, mbox1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
 
     /*Add styles*/

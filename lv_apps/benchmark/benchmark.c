@@ -71,6 +71,9 @@ LV_IMG_DECLARE(benchmark_bg);
 void benchmark_create(void)
 {
 
+    lv_coord_t hres = lv_disp_get_hor_res(NULL);
+    lv_coord_t vres = lv_disp_get_ver_res(NULL);
+
     /*Styles of the buttons*/
     lv_style_copy(&style_btn_rel, &lv_style_btn_rel);
     lv_style_copy(&style_btn_pr, &lv_style_btn_pr);
@@ -93,7 +96,7 @@ void benchmark_create(void)
 
     /*Create a holder page (the page become scrollable on small displays )*/
     holder_page = lv_page_create(lv_scr_act(), NULL);
-    lv_obj_set_size(holder_page, LV_HOR_RES, LV_VER_RES);
+    lv_obj_set_size(holder_page, hres, vres);
     lv_page_set_style(holder_page, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
     lv_page_set_style(holder_page, LV_PAGE_STYLE_SCRL, &lv_style_transp);
     lv_page_set_scrl_layout(holder_page, LV_LAYOUT_PRETTY);
@@ -104,7 +107,7 @@ void benchmark_create(void)
     lv_obj_set_parent(wp, holder_page);
     lv_obj_set_parent(lv_page_get_scrl(holder_page), holder_page);
     lv_img_set_src(wp, &benchmark_bg);
-    lv_obj_set_size(wp, LV_HOR_RES, LV_VER_RES);
+    lv_obj_set_size(wp, hres, vres);
     lv_obj_set_pos(wp, 0, 0);
     lv_obj_set_hidden(wp, true);
     lv_img_set_style(wp, &style_wp);

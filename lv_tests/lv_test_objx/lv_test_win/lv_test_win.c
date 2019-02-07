@@ -39,9 +39,11 @@
  */
 void lv_test_win_1(void)
 {
+    lv_coord_t hres = lv_disp_get_hor_res(NULL);
+    lv_coord_t vres = lv_disp_get_ver_res(NULL);
 
     lv_obj_t * win1 = lv_win_create(lv_scr_act(), NULL);
-    lv_obj_set_size(win1, LV_HOR_RES / 2 - LV_DPI / 20, LV_VER_RES / 2 - LV_DPI / 20);
+    lv_obj_set_size(win1, hres / 2 - LV_DPI / 20, vres / 2 - LV_DPI / 20);
 
     lv_obj_t * win2 = lv_win_create(lv_scr_act(), win1);
     lv_obj_align(win2, NULL, LV_ALIGN_IN_TOP_RIGHT, 0, 0);

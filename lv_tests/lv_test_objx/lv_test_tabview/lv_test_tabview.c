@@ -39,11 +39,14 @@
  */
 void lv_test_tabview_1(void)
 {
+    lv_coord_t hres = lv_disp_get_hor_res(NULL);
+    lv_coord_t vres = lv_disp_get_ver_res(NULL);
+
     /* Default object. It will be an empty tab view*/
     lv_obj_t * tv1 = lv_tabview_create(lv_scr_act(), NULL);
     lv_tabview_add_tab(tv1, "First");
     lv_tabview_add_tab(tv1, "Second");
-    lv_obj_set_size(tv1, LV_HOR_RES / 2 - 10, LV_VER_RES / 2 - 10);
+    lv_obj_set_size(tv1, hres / 2 - 10, vres / 2 - 10);
 
     /*Copy the first tabview and add some texts*/
     lv_obj_t * tv2 = lv_tabview_create(lv_scr_act(), tv1);

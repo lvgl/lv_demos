@@ -121,7 +121,7 @@ void lv_test_canvas_2(void)
     lv_obj_t * canvas = lv_canvas_create(lv_scr_act(), NULL);
 
     /*Assign the buffer to the canvas*/
-    lv_canvas_set_buffer(canvas, cbuf, 100, 80, LV_IMG_CF_TRUE_COLOR);
+    lv_canvas_set_buffer(canvas, cbuf, 100, 80, LV_IMG_CF_TRUE_COLOR_CHROMA_KEYED);
 
     // a. Draw image
     LV_IMG_DECLARE(img_flower_icon);

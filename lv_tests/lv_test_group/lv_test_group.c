@@ -87,6 +87,8 @@ bool ta_chk(lv_obj_t * ta, uint32_t c)
  */
 void lv_test_group_1(void)
 {
+    lv_coord_t hres = lv_disp_get_hor_res(NULL);
+    lv_coord_t vres = lv_disp_get_ver_res(NULL);
 
     g = lv_group_create();
     lv_group_set_focus_cb(g, group_focus_cb);
@@ -203,7 +205,7 @@ void lv_test_group_1(void)
     lv_group_add_obj(g, obj);
 
     obj = lv_btnm_create(win, NULL);
-    lv_obj_set_size(obj, LV_HOR_RES / 2, LV_VER_RES / 3);
+    lv_obj_set_size(obj, hres / 2, vres / 3);
     lv_group_add_obj(g, obj);
 
     lv_obj_t * ta = lv_ta_create(win, NULL);
@@ -211,7 +213,7 @@ void lv_test_group_1(void)
     lv_group_add_obj(g, ta);
 
     obj = lv_kb_create(win, NULL);
-    lv_obj_set_size(obj, LV_HOR_RES - LV_DPI, LV_VER_RES / 2);
+    lv_obj_set_size(obj, vres - LV_DPI, vres / 2);
     lv_kb_set_ta(obj, ta);
     lv_group_add_obj(g, obj);
 
@@ -268,7 +270,7 @@ void lv_test_group_1(void)
     lv_group_add_obj(g, obj);
 
     obj = lv_tabview_create(win, NULL);
-    lv_obj_set_size(obj, LV_HOR_RES / 2, LV_VER_RES / 2);
+    lv_obj_set_size(obj, hres / 2, vres / 2);
     lv_tabview_add_tab(obj, "Tab 1");
     lv_tabview_add_tab(obj, "Tab 2");
     lv_group_add_obj(g, obj);
