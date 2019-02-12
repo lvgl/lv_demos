@@ -28,22 +28,16 @@ static void list_create(lv_obj_t * parent);
 static void chart_create(lv_obj_t * parent);
 static lv_res_t slider_action(lv_obj_t * slider);
 static lv_res_t list_btn_action(lv_obj_t * slider);
-static void list_anim_end_cb(void * p);
 #if LV_DEMO_SLIDE_SHOW
 static void tab_switcher(void * tv);
 #endif
 
-static void ta_task(void * p);
-static void chart_task(void * p);
-
 /**********************
  *  STATIC VARIABLES
  **********************/
-static lv_obj_t * tv;
 static lv_obj_t * chart;
 static lv_obj_t * ta;
 static lv_obj_t * kb;
-static lv_obj_t * list;
 
 static lv_style_t style_kb;
 static lv_style_t style_kb_rel;
@@ -67,13 +61,10 @@ LV_IMG_DECLARE(img_bubble_pattern);
 void demo_create(void)
 {
 
-    lv_coord_t hres = lv_disp_get_hor_res(NULL);
-    lv_coord_t vres = lv_disp_get_ver_res(NULL);
-
 #if LV_DEMO_WALLPAPER
     lv_obj_t * wp = lv_img_create(lv_scr_act(NULL), NULL);
     lv_img_set_src(wp, &img_bubble_pattern);
-    lv_obj_set_width(wp, lv_disp_get_hor_res(NULL) * 4);
+    lv_obj_set_width(wp, LV_HOR_RES * 4);
     lv_obj_set_protect(wp, LV_PROTECT_POS);
 #endif
 
@@ -97,8 +88,7 @@ void demo_create(void)
     style_tv_btn_pr.body.border.width = 0;
     style_tv_btn_pr.text.color = LV_COLOR_GRAY;
 
-    tv = lv_tabview_create(lv_scr_act(NULL), NULL);
-    lv_obj_set_size(tv, hres, vres);
+    lv_obj_t * tv = lv_tabview_create(lv_scr_act(NULL), NULL);
 
 #if LV_DEMO_WALLPAPER
     lv_obj_set_parent(wp, ((lv_tabview_ext_t *) tv->ext_attr)->content);
@@ -125,7 +115,7 @@ void demo_create(void)
     chart_create(tab3);
 
 #if LV_DEMO_SLIDE_SHOW
-//    lv_task_create(tab_switcher, 4000, LV_TASK_PRIO_MID, tv);
+    lv_task_create(tab_switcher, 3000, LV_TASK_PRIO_MID, tv);
 #endif
 }
 
@@ -152,8 +142,8 @@ static void write_create(lv_obj_t * parent)
     lv_ta_set_style(ta, LV_TA_STYLE_BG, &style_ta);
     lv_ta_set_text(ta, "");
     lv_page_set_rel_action(ta, keyboard_open_close);
-    lv_style_copy(&style_kb, &lv_style_plain);
 
+    lv_style_copy(&style_kb, &lv_style_plain);
     style_kb.body.opa = LV_OPA_70;
     style_kb.body.main_color = LV_COLOR_HEX3(0x333);
     style_kb.body.grad_color = LV_COLOR_HEX3(0x333);
@@ -180,9 +170,6 @@ static void write_create(lv_obj_t * parent)
     style_kb_pr.body.border.color = LV_COLOR_SILVER;
 
     keyboard_open_close(ta);
-
-    lv_task_create(ta_task, 80, LV_TASK_PRIO_MID, ta);
-
 }
 
 static lv_res_t keyboard_open_close(lv_obj_t * text_area)
@@ -256,7 +243,7 @@ static void list_create(lv_obj_t * parent)
     style_btn_pr.body.grad_color = LV_COLOR_MAKE(0x37, 0x62, 0x90);
     style_btn_pr.text.color = LV_COLOR_MAKE(0xbb, 0xd5, 0xf1);
 
-    list = lv_list_create(parent, NULL);
+    lv_obj_t * list = lv_list_create(parent, NULL);
     lv_obj_set_height(list, 2 * lv_obj_get_height(parent) / 3);
     lv_list_set_style(list, LV_LIST_STYLE_BG, &lv_style_transp_tight);
     lv_list_set_style(list, LV_LIST_STYLE_SCRL, &lv_style_transp_tight);
@@ -272,13 +259,12 @@ static void list_create(lv_obj_t * parent)
     lv_list_add(list, SYMBOL_WIFI, "WiFi", list_btn_action);
     lv_list_add(list, SYMBOL_GPS, "GPS", list_btn_action);
 
-//    lv_obj_t * mbox = lv_mbox_create(parent, NULL);
-//    lv_mbox_set_text(mbox, "Click a button to copy its text to the Text area ");
-//    lv_obj_set_width(mbox, LV_HOR_RES - LV_DPI);
-//    static const char * mbox_btns[] = {"Got it", ""};
-//    lv_mbox_add_btns(mbox, mbox_btns, NULL);    /*The default action is close*/
-//    lv_obj_align(mbox, parent, LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 2);
-
+    lv_obj_t * mbox = lv_mbox_create(parent, NULL);
+    lv_mbox_set_text(mbox, "Click a button to copy its text to the Text area ");
+    lv_obj_set_width(mbox, LV_HOR_RES - LV_DPI);
+    static const char * mbox_btns[] = {"Got it", ""};
+    lv_mbox_add_btns(mbox, mbox_btns, NULL);    /*The default action is close*/
+    lv_obj_align(mbox, parent, LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 2);
 }
 
 static void kb_hide_anim_end(lv_obj_t * keyboard)
@@ -353,14 +339,11 @@ static void chart_create(lv_obj_t * parent)
     lv_slider_set_style(slider, LV_SLIDER_STYLE_INDIC, &style_indic);
     lv_slider_set_style(slider, LV_SLIDER_STYLE_KNOB, &style_knob);
     lv_obj_set_size(slider, lv_obj_get_width(chart), LV_DPI / 3);
-    lv_obj_align(slider, chart, LV_ALIGN_OUT_BOTTOM_MID, 0, (lv_disp_get_ver_res(NULL) - chart->coords.y2 - lv_obj_get_height(slider)) / 2); /*Align to below the chart*/
+    lv_obj_align(slider, chart, LV_ALIGN_OUT_BOTTOM_MID, 0, (LV_VER_RES - chart->coords.y2 - lv_obj_get_height(slider)) / 2); /*Align to below the chart*/
     lv_slider_set_action(slider, slider_action);
     lv_slider_set_range(slider, 10, 1000);
     lv_slider_set_value(slider, 700);
     slider_action(slider);          /*Simulate a user value set the refresh the chart*/
-
-
-    lv_task_create(chart_task, 10, LV_TASK_PRIO_MID, slider);
 }
 
 /**
@@ -377,80 +360,6 @@ static lv_res_t slider_action(lv_obj_t * slider)
     return LV_RES_OK;
 }
 
-
-
-static void ta_task(void * ta)
-{
-    static const char * txt = "This GUI is created with LittlevGL and runs on ESP32\n"
-            "The display has 320 x 240 resolution and 16 bit color depth\n"
-            "The average FPS is 30";
-
-    static uint32_t i = 0;
-
-    if(lv_tabview_get_tab_act(tv) != 0) return;
-
-
-    if(i < strlen(txt)) lv_ta_add_char(ta, txt[i]);
-
-    i++;
-    if(i > strlen(txt) + 30) {
-        lv_ta_set_text(ta, "");
-        i = 0;
-        tab_switcher(tv);
-//        lv_task_t * t = lv_task_create(tab_switcher, 5000, LV_TASK_PRIO_MID, tv);
-//        lv_task_once(t);
-
-        lv_anim_t a;
-        a.var = lv_page_get_scrl(list);
-        a.start = 0;
-        a.end = -(lv_obj_get_height(a.var) - lv_obj_get_height(list));
-        a.fp = (lv_anim_fp_t)lv_obj_set_y;
-        a.path = lv_anim_path_linear;
-        a.end_cb = list_anim_end_cb;
-        a.act_time = 0;
-        a.time = 1000;
-        a.playback = 1;
-        a.playback_pause = 300;
-        a.repeat = 0;
-        a.repeat_pause = 0;
-        lv_anim_create(&a);
-
-
-    }
-
-}
-
-static void chart_task(void * slider)
-{
-
-    static int16_t i = 0;
-    static bool up = true;
-    static uint16_t rounds = 0;
-
-
-    if(lv_tabview_get_tab_act(tv) != 2) return;
-
-    if(up) {
-        i+=10;
-        if(i > 1000)up = false;;
-    }
-    else {
-        i-=10;
-        if(i < 10) {
-            up = true;
-            rounds++;
-        }
-    }
-
-    lv_slider_set_value(slider, i);
-    slider_action(slider);
-
-    if(rounds >= 3) {
-        rounds = 0;
-        tab_switcher(tv);
-    }
-}
-
 /**
  * Called when a a list button is clicked on the List tab
  * @param btn pointer to a list button
@@ -462,36 +371,6 @@ static lv_res_t list_btn_action(lv_obj_t * btn)
     lv_ta_add_text(ta, lv_list_get_btn_text(btn));
 
     return LV_RES_OK;
-}
-
-static void list_anim_end_cb(void * p)
-{
-
-    static uint32_t i = 0;
-
-    if(i >= 2) {
-        i = 0;
-        tab_switcher(tv);
-        return;
-    }
-
-    lv_anim_t a;
-    a.var = lv_page_get_scrl(list);
-    a.start = 0;
-    a.end = -(lv_obj_get_height(a.var) - lv_obj_get_height(list));
-    a.fp = (lv_anim_fp_t)lv_obj_set_y;
-    a.path = lv_anim_path_linear;
-    a.end_cb = list_anim_end_cb;
-    a.act_time = -300;
-    a.time = 1000;
-    a.playback = 1;
-    a.playback_pause = 300;
-    a.repeat = 0;
-    a.repeat_pause = 0;
-    lv_anim_create(&a);
-
-    i++;
-
 }
 
 #if LV_DEMO_SLIDE_SHOW
