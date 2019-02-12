@@ -71,7 +71,7 @@ void demo_create(void)
     lv_coord_t vres = lv_disp_get_ver_res(NULL);
 
 #if LV_DEMO_WALLPAPER
-    lv_obj_t * wp = lv_img_create(lv_scr_act(), NULL);
+    lv_obj_t * wp = lv_img_create(lv_scr_act(NULL), NULL);
     lv_img_set_src(wp, &img_bubble_pattern);
     lv_obj_set_width(wp, lv_disp_get_hor_res(NULL) * 4);
     lv_obj_set_protect(wp, LV_PROTECT_POS);
@@ -97,7 +97,7 @@ void demo_create(void)
     style_tv_btn_pr.body.border.width = 0;
     style_tv_btn_pr.text.color = LV_COLOR_GRAY;
 
-    tv = lv_tabview_create(lv_scr_act(), NULL);
+    tv = lv_tabview_create(lv_scr_act(NULL), NULL);
     lv_obj_set_size(tv, hres, vres);
 
 #if LV_DEMO_WALLPAPER

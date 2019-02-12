@@ -9,7 +9,7 @@
 
 #include "lv_test_kb.h"
 
-#if USE_LV_KB != 0
+#if USE_LV_KB && USE_LV_TESTS
 
 /*********************
  *      DEFINES
