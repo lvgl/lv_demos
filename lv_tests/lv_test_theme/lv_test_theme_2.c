@@ -115,7 +115,7 @@ void lv_test_theme_2(void)
 
 static void header_create(void)
 {
-    header = lv_cont_create(lv_scr_act(), NULL);
+    header = lv_cont_create(lv_scr_act(NULL), NULL);
     lv_obj_set_width(header, lv_disp_get_hor_res(NULL));
 
     lv_obj_t * sym = lv_label_create(header, NULL);
@@ -136,7 +136,7 @@ static void sb_create(void)
     lv_coord_t hres = lv_disp_get_hor_res(NULL);
     lv_coord_t vres = lv_disp_get_ver_res(NULL);
 
-    sb = lv_page_create(lv_scr_act(), NULL);
+    sb = lv_page_create(lv_scr_act(NULL), NULL);
     lv_page_set_scrl_layout(sb, LV_LAYOUT_COL_M);
     lv_page_set_style(sb, LV_PAGE_STYLE_BG, &lv_style_transp_tight);
     lv_page_set_style(sb, LV_PAGE_STYLE_SCRL, &lv_style_transp);
@@ -174,7 +174,7 @@ static void content_create(void)
     lv_coord_t hres = lv_disp_get_hor_res(NULL);
     lv_coord_t vres = lv_disp_get_ver_res(NULL);
 
-    content = lv_page_create(lv_scr_act(), NULL);
+    content = lv_page_create(lv_scr_act(NULL), NULL);
 
     if(hres > vres) {
         lv_obj_set_size(content, hres - lv_obj_get_width(sb), vres - lv_obj_get_height(header));
@@ -279,7 +279,7 @@ static void content_create(void)
     lv_obj_set_width(kb, LV_MATH_MIN(max_w, LV_DPI * 3));
     lv_kb_set_ta(kb, ta);
 
-    lv_obj_t * mbox = lv_mbox_create(lv_scr_act(), NULL);
+    lv_obj_t * mbox = lv_mbox_create(lv_scr_act(NULL), NULL);
     lv_obj_set_drag(mbox, true);
     lv_mbox_set_text(mbox, "Choose a theme and a color on the left!");
 

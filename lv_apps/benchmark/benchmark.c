@@ -95,7 +95,7 @@ void benchmark_create(void)
     style_wp.image.color = LV_COLOR_RED;
 
     /*Create a holder page (the page become scrollable on small displays )*/
-    holder_page = lv_page_create(lv_scr_act(), NULL);
+    holder_page = lv_page_create(lv_scr_act(NULL), NULL);
     lv_obj_set_size(holder_page, hres, vres);
     lv_page_set_style(holder_page, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
     lv_page_set_style(holder_page, LV_PAGE_STYLE_SCRL, &lv_style_transp);
@@ -168,7 +168,7 @@ void benchmark_create(void)
 void benchmark_start(void)
 {
     lv_refr_set_monitor_cb(refr_monitor);
-    lv_obj_invalidate(lv_scr_act());
+    lv_obj_invalidate(lv_scr_act(NULL));
     time_sum = 0;
     refr_cnt = 0;
 }
@@ -200,7 +200,7 @@ static void refr_monitor(uint32_t time_ms, uint32_t px_num)
 
     time_sum += time_ms;
     refr_cnt ++;
-    lv_obj_invalidate(lv_scr_act());
+    lv_obj_invalidate(lv_scr_act(NULL));
 
     if(refr_cnt >= TEST_CYCLE_NUM) {
         float time_avg = (float)time_sum / (float)TEST_CYCLE_NUM;

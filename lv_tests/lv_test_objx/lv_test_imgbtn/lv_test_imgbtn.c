@@ -44,7 +44,7 @@ lv_res_t imgbtn_clicked(lv_obj_t * imgbtn);
 void lv_test_imgbtn_1(void)
 {
     /* Create an image button and set images for it*/
-    lv_obj_t * imgbtn1 = lv_imgbtn_create(lv_scr_act(), NULL);
+    lv_obj_t * imgbtn1 = lv_imgbtn_create(lv_scr_act(NULL), NULL);
     lv_obj_set_pos(imgbtn1, 10, 10);
     lv_imgbtn_set_toggle(imgbtn1, true);
 
@@ -65,7 +65,7 @@ void lv_test_imgbtn_1(void)
     lv_label_set_text(label, "Button 1");
 
     /*Copy the image button*/
-    lv_obj_t * imgbtn2 = lv_imgbtn_create(lv_scr_act(), imgbtn1);
+    lv_obj_t * imgbtn2 = lv_imgbtn_create(lv_scr_act(NULL), imgbtn1);
     lv_imgbtn_set_state(imgbtn2, LV_BTN_STATE_TGL_REL);
     lv_obj_align(imgbtn2, imgbtn1, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
 

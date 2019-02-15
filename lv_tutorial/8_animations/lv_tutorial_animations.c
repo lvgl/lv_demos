@@ -61,7 +61,7 @@ void lv_tutorial_animations(void)
 
     /*Create a button the demonstrate built-in animations*/
     lv_obj_t * btn1;
-    btn1 = lv_btn_create(lv_scr_act(), NULL);
+    btn1 = lv_btn_create(lv_scr_act(NULL), NULL);
     lv_obj_set_pos(btn1, 10, 10);       /*Set a position. It will be the animation's destination*/
     lv_obj_set_size(btn1, 80, 50);
 
@@ -74,7 +74,7 @@ void lv_tutorial_animations(void)
 
     /*Create a button to demonstrate user defined animations*/
     lv_obj_t * btn2;
-    btn2 = lv_btn_create(lv_scr_act(), NULL);
+    btn2 = lv_btn_create(lv_scr_act(NULL), NULL);
     lv_obj_set_pos(btn2, 10, 80);       /*Set a position. It will be the animation's destination*/
     lv_obj_set_size(btn2, 80, 50);
 
@@ -99,7 +99,7 @@ void lv_tutorial_animations(void)
 
     /*Create a button to demonstrate the style animations*/
     lv_obj_t * btn3;
-    btn3 = lv_btn_create(lv_scr_act(), NULL);
+    btn3 = lv_btn_create(lv_scr_act(NULL), NULL);
     lv_obj_set_pos(btn3, 10, 150);       /*Set a position. It will be the animation's destination*/
     lv_obj_set_size(btn3, 80, 50);
 

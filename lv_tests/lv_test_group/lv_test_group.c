@@ -123,7 +123,7 @@ void lv_test_group_1(void)
     win_style.body.padding.ver = LV_DPI / 4;
     win_style.body.padding.inner = LV_DPI / 4;
 
-    win = lv_win_create(lv_scr_act(), NULL);
+    win = lv_win_create(lv_scr_act(NULL), NULL);
     lv_win_set_title(win, "Group test");
     lv_page_set_scrl_layout(lv_win_get_content(win), LV_LAYOUT_PRETTY);
     lv_win_set_style(win, LV_WIN_STYLE_CONTENT_SCRL, &win_style);
@@ -161,11 +161,8 @@ void lv_test_group_1(void)
 
     lv_obj_t * obj;
 
-    obj = lv_obj_create(win, NULL);
-    lv_obj_set_style(obj, &lv_style_plain_color);
-    lv_group_add_obj(g, obj);
+    obj = lv_spinbox_create(win, NULL);
 
-    obj = lv_label_create(win, NULL);
     lv_group_add_obj(g, obj);
 
     obj = lv_btn_create(win, NULL);

@@ -105,13 +105,13 @@ void lv_tutorial_keyboard(lv_indev_t * kp_indev)
 static void gui_create(void)
 {
     /*Create a drop down list*/
-    lv_obj_t * ddlist = lv_ddlist_create(lv_scr_act(), NULL);
+    lv_obj_t * ddlist = lv_ddlist_create(lv_scr_act(NULL), NULL);
     lv_ddlist_set_options(ddlist, "Low\nMedium\nHigh");
     lv_obj_set_pos(ddlist, LV_DPI / 4, LV_DPI / 4);
     lv_group_add_obj(g, ddlist);                    /*Add the object to the group*/
 
     /*Create a holder and check boxes on it*/
-    lv_obj_t * holder = lv_cont_create(lv_scr_act(), NULL);   /*Create a transparent holder*/
+    lv_obj_t * holder = lv_cont_create(lv_scr_act(NULL), NULL);   /*Create a transparent holder*/
     lv_cont_set_fit(holder, true, true);
     lv_cont_set_layout(holder, LV_LAYOUT_COL_L);
     lv_obj_set_style(holder, &lv_style_transp);
@@ -128,14 +128,14 @@ static void gui_create(void)
     lv_cb_set_text(cb, "Blue");
 
     /*Create a sliders*/
-    lv_obj_t * slider = lv_slider_create(lv_scr_act(), NULL);
+    lv_obj_t * slider = lv_slider_create(lv_scr_act(NULL), NULL);
     lv_obj_set_size(slider, LV_DPI, LV_DPI / 3);
     lv_obj_align(slider, holder, LV_ALIGN_OUT_RIGHT_TOP, LV_DPI / 4, 0);
     lv_bar_set_range(slider, 0, 20);
     lv_group_add_obj(g, slider);                    /*Add to the group*/
 
     /*Create a button*/
-    btn_enable = lv_btn_create(lv_scr_act(), NULL);
+    btn_enable = lv_btn_create(lv_scr_act(NULL), NULL);
     lv_btn_set_action(btn_enable, LV_BTN_ACTION_CLICK, enable_action);
     lv_cont_set_fit(btn_enable, true, true);
     lv_group_add_obj(g, btn_enable);                /*Add to the group*/
@@ -160,7 +160,7 @@ static void gui_create(void)
 static void kaypad_create(void)
 {
     /*Next button*/
-    lv_obj_t * btn_next = lv_btn_create(lv_scr_act(), NULL);
+    lv_obj_t * btn_next = lv_btn_create(lv_scr_act(NULL), NULL);
     lv_btn_set_action(btn_next, LV_BTN_ACTION_PR, keypad_btn_press);
     lv_btn_set_action(btn_next, LV_BTN_ACTION_CLICK, keypad_btn_release);
     lv_btn_set_action(btn_next, LV_BTN_ACTION_LONG_PR, keypad_btn_release);
@@ -171,21 +171,21 @@ static void kaypad_create(void)
     lv_obj_align(btn_next, NULL, LV_ALIGN_IN_BOTTOM_LEFT, LV_DPI / 4, - LV_DPI / 4);
 
     /*Increment button*/
-    lv_obj_t * btn_inc = lv_btn_create(lv_scr_act(), btn_next);
+    lv_obj_t * btn_inc = lv_btn_create(lv_scr_act(NULL), btn_next);
     lv_obj_set_free_num(btn_inc, LV_GROUP_KEY_LEFT);
     l = lv_label_create(btn_inc, NULL);
     lv_label_set_text(l, "Dec");
     lv_obj_align(btn_inc, btn_next, LV_ALIGN_OUT_RIGHT_MID, LV_DPI / 4, 0);
 
     /*Decrement button*/
-    lv_obj_t * btn_dec = lv_btn_create(lv_scr_act(), btn_next);
+    lv_obj_t * btn_dec = lv_btn_create(lv_scr_act(NULL), btn_next);
     lv_obj_set_free_num(btn_dec, LV_GROUP_KEY_RIGHT);
     l = lv_label_create(btn_dec, NULL);
     lv_label_set_text(l, "Inc");
     lv_obj_align(btn_dec, btn_inc, LV_ALIGN_OUT_RIGHT_MID, LV_DPI / 4, 0);
 
     /*Enter button*/
-    lv_obj_t * btn_enter = lv_btn_create(lv_scr_act(), btn_next);
+    lv_obj_t * btn_enter = lv_btn_create(lv_scr_act(NULL), btn_next);
     lv_obj_set_free_num(btn_enter, LV_GROUP_KEY_ENTER);
     l = lv_label_create(btn_enter, NULL);
     lv_label_set_text(l, "Enter");
@@ -211,9 +211,9 @@ static lv_res_t enable_action(lv_obj_t * btn)
     if(lv_btn_get_state(btn) == LV_BTN_STATE_REL) {
         /* Create a dark screen sized bg. with opacity to show
          * the other objects are not available now*/
-        lv_obj_t * bg = lv_obj_create(lv_scr_act(), NULL);
+        lv_obj_t * bg = lv_obj_create(lv_scr_act(NULL), NULL);
         lv_obj_set_protect(bg, LV_PROTECT_PARENT);                  /*The page screen moves it to scrollable area*/
-        lv_obj_set_parent(bg, lv_scr_act());                         /*So move it back when protected*/
+        lv_obj_set_parent(bg, lv_scr_act(NULL));                         /*So move it back when protected*/
         lv_obj_set_style(bg, &style_mbox_bg);
         lv_obj_set_size(bg, lv_disp_get_hor_res(NULL), lv_disp_get_ver_res(NULL));
         lv_obj_set_pos(bg, 0, 0);

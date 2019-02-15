@@ -48,12 +48,12 @@ static lv_res_t ddlist_action(lv_obj_t * ddlist);
 void lv_test_ddlist_1(void)
 {
     /* Create a default object*/
-    lv_obj_t * ddlist1 = lv_ddlist_create(lv_scr_act(), NULL);
+    lv_obj_t * ddlist1 = lv_ddlist_create(lv_scr_act(NULL), NULL);
     lv_obj_set_pos(ddlist1, 10, 10);
 
     /* Create a drop down list with a lot of options, fix height and anim time.
      * Open it by default without animation and assign an action*/
-    lv_obj_t * ddlist2 = lv_ddlist_create(lv_scr_act(), NULL);
+    lv_obj_t * ddlist2 = lv_ddlist_create(lv_scr_act(NULL), NULL);
     lv_obj_align(ddlist2, ddlist1, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
     lv_ddlist_set_options(ddlist2, "First\nSecond\nThird\nForth\nFifth\nSixth");
     lv_ddlist_set_fix_height(ddlist2, LV_DPI);
@@ -76,7 +76,7 @@ void lv_test_ddlist_1(void)
     ddlist3_style.text.letter_space = 5;
     ddlist3_style.text.line_space = 15;
 
-    lv_obj_t * ddlist3 = lv_ddlist_create(lv_scr_act(), ddlist2);
+    lv_obj_t * ddlist3 = lv_ddlist_create(lv_scr_act(NULL), ddlist2);
     lv_obj_align(ddlist3, ddlist2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     lv_ddlist_set_style(ddlist3, LV_DDLIST_STYLE_BG, &ddlist3_style);
     lv_ddlist_set_style(ddlist3, LV_DDLIST_STYLE_SEL, &lv_style_plain_color);
