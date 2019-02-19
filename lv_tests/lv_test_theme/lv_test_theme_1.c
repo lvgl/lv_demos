@@ -46,7 +46,7 @@ void lv_test_theme_1(lv_theme_t * th)
     th = lv_theme_get_current();    /*If `LV_THEME_LIVE_UPDATE  1` `th` is not used directly so get the real theme after set*/
     lv_obj_t * scr = lv_cont_create(NULL, NULL);
     lv_scr_load(scr);
-    lv_cont_set_style(scr, th->bg);
+    lv_cont_set_style(scr, th->style.bg);
 
 
     lv_obj_t * tv = lv_tabview_create(scr, NULL);
@@ -82,11 +82,6 @@ static void create_tab1(lv_obj_t * parent)
     lv_cont_set_layout(h, LV_LAYOUT_COL_M);
 
     lv_obj_t * btn = lv_btn_create(h, NULL);
-    lv_btn_set_style(btn, LV_BTN_STYLE_REL, th->btn.rel);
-    lv_btn_set_style(btn, LV_BTN_STYLE_PR, th->btn.pr);
-    lv_btn_set_style(btn, LV_BTN_STYLE_TGL_REL, th->btn.tgl_rel);
-    lv_btn_set_style(btn, LV_BTN_STYLE_TGL_PR, th->btn.tgl_pr);
-    lv_btn_set_style(btn, LV_BTN_STYLE_INA, th->btn.ina);
     lv_btn_set_fit(btn, true, true);
     lv_btn_set_toggle(btn, true);
     lv_obj_t * btn_label = lv_label_create(btn, NULL);
@@ -104,15 +99,15 @@ static void create_tab1(lv_obj_t * parent)
 
     lv_obj_t * label = lv_label_create(h, NULL);
     lv_label_set_text(label, "Primary");
-    lv_obj_set_style(label, th->label.prim);
+    lv_obj_set_style(label, th->style.label.prim);
 
     label = lv_label_create(h, NULL);
     lv_label_set_text(label, "Secondary");
-    lv_obj_set_style(label, th->label.sec);
+    lv_obj_set_style(label, th->style.label.sec);
 
     label = lv_label_create(h, NULL);
     lv_label_set_text(label, "Hint");
-    lv_obj_set_style(label, th->label.hint);
+    lv_obj_set_style(label, th->style.label.hint);
 
     static const char * btnm_str[] = {"1", "2", "3", SYMBOL_OK, SYMBOL_CLOSE, ""};
     lv_obj_t * btnm = lv_btnm_create(h, NULL);
@@ -175,7 +170,7 @@ static void create_tab1(lv_obj_t * parent)
     lv_obj_t * line = lv_line_create(h, NULL);
     static const lv_point_t line_p[] = {{0, 0}, {LV_HOR_RES / 5, 0}};
     lv_line_set_points(line, line_p, 2);
-    lv_line_set_style(line, th->line.decor);
+    lv_line_set_style(line, th->style.line.decor);
 
     lv_obj_t * cb = lv_cb_create(h, NULL);
 
