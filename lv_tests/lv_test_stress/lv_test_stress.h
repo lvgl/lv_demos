@@ -1,10 +1,10 @@
 /**
- * @file lv_test_object.h
+ * @file lv_test_stress.h
  *
  */
 
-#ifndef LV_TEST_OBJECT_H
-#define LV_TEST_OBJECT_H
+#ifndef LV_TEST_STRESS_H
+#define LV_TEST_STRESS_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -50,4 +50,4 @@ void lv_test_stress_1(void);
 } /* extern "C" */
 #endif
 
-#endif /*LV_TEST_BAR_H*/
+#endif /*LV_TEST_STRESS_H*/

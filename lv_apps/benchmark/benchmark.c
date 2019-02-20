@@ -212,8 +212,6 @@ static void refr_monitor(lv_disp_t * disp, uint32_t time_ms, uint32_t px_num)
         char buf[256];
         if(time_sum != 0) sprintf(buf, "Screen load: %0.1f ms\nAverage of %d", time_avg, TEST_CYCLE_NUM);
         lv_label_set_text(result_label, buf);
-
-        lv_disp_t * disp = lv_disp_get_default();
         disp->driver.monitor_cb = NULL;
     } else {
         char buf[256];
