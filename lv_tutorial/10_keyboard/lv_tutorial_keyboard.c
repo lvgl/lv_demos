@@ -211,16 +211,11 @@ static lv_res_t enable_action(lv_obj_t * btn)
     if(lv_btn_get_state(btn) == LV_BTN_STATE_REL) {
         /* Create a dark screen sized bg. with opacity to show
          * the other objects are not available now*/
-        lv_obj_t * bg = lv_obj_create(lv_scr_act(), NULL);
-        lv_obj_set_protect(bg, LV_PROTECT_PARENT);                  /*The page screen moves it to scrollable area*/
-        lv_obj_set_parent(bg, lv_scr_act());                         /*So move it back when protected*/
-        lv_obj_set_style(bg, &style_mbox_bg);
-        lv_obj_set_size(bg, LV_HOR_RES, LV_VER_RES);
-        lv_obj_set_pos(bg, 0, 0);
-        lv_obj_set_click(bg, false);                        /*For test disable click to enable the buttons under it (else this object would be on the top)*/
+        lv_obj_set_style(lv_layer_top(), &style_mbox_bg);
+        lv_obj_set_click(lv_layer_top(), false);     /*It should be `true` but it'd block the emulated keyboard too*/
 
         /*Create a message box*/
-        lv_obj_t * mbox = lv_mbox_create(bg, NULL);
+        lv_obj_t * mbox = lv_mbox_create(lv_layer_top(), NULL);
         lv_mbox_set_text(mbox, "Turn on something?");
         lv_group_add_obj(g, mbox);          /*Add to he group*/
 
@@ -250,12 +245,17 @@ static lv_res_t mbox_action(lv_obj_t * btn, const char * txt)
 {
     lv_group_focus_freeze(g, false);        /*Release the freeze*/
     lv_obj_t * mbox = lv_mbox_get_from_btn(btn);
-    lv_obj_del(lv_obj_get_parent(mbox));    /*Delete the black background. (it will delete the mbox too)*/
+
+    /*Revert the top layer to not block*/
+    lv_obj_set_style(lv_layer_top(), &lv_style_transp);
+    lv_obj_set_click(lv_layer_top(), false);
 
 
     /*Mark the enabled state by toggling the button*/
     if(strcmp(txt, "No") == 0)  lv_btn_set_state(btn_enable, LV_BTN_STATE_REL);
     else if(strcmp(txt, "Yes") == 0)  lv_btn_set_state(btn_enable, LV_BTN_STATE_TGL_REL);
+
+    lv_obj_del(mbox);
 
     return LV_RES_INV;
 }
