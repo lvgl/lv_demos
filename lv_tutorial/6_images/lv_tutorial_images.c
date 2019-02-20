@@ -110,11 +110,13 @@ LV_IMG_DECLARE(red_flower);
  */
 void lv_tutorial_image(void)
 {
+    lv_obj_t * scr = lv_disp_get_scr_act(NULL);     /*Get the current screen*/
+
     /*************************
      * IMAGE FROM SOURCE CODE
      *************************/
 
-    lv_obj_t * img_src = lv_img_create(lv_scr_act(NULL), NULL); /*Crate an image object*/
+    lv_obj_t * img_src = lv_img_create(scr, NULL); /*Crate an image object*/
     lv_img_set_src(img_src, &red_flower);  /*Set the created file as image (a red fl  ower)*/
     lv_obj_set_pos(img_src, 10, 10);      /*Set the positions*/
     lv_obj_set_drag(img_src, true);
@@ -138,7 +140,7 @@ void lv_tutorial_image(void)
     lv_fs_add_drv(&pcfs_drv);
 
 
-    lv_obj_t * img_bin = lv_img_create(lv_scr_act(NULL), NULL); /*Create an image object*/
+    lv_obj_t * img_bin = lv_img_create(scr, NULL); /*Create an image object*/
     /* Set the image's file according to the current color depth
      * a blue flower picture*/
 #if LV_COLOR_DEPTH == 8
@@ -155,7 +157,7 @@ void lv_tutorial_image(void)
     lv_obj_set_drag(img_bin, true);
 #endif
 
-    lv_obj_t * img_symbol = lv_img_create(lv_scr_act(NULL), NULL);
+    lv_obj_t * img_symbol = lv_img_create(scr, NULL);
     lv_img_set_src(img_symbol, SYMBOL_OK);
     lv_obj_set_drag(img_symbol, true);
 //    lv_obj_align(img_symbol, img_src, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);     /*Align next to the source image*/

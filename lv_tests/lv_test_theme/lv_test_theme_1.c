@@ -45,7 +45,7 @@ void lv_test_theme_1(lv_theme_t * th)
     lv_theme_set_current(th);
     th = lv_theme_get_current();    /*If `LV_THEME_LIVE_UPDATE  1` `th` is not used directly so get the real theme after set*/
     lv_obj_t * scr = lv_cont_create(NULL, NULL);
-    lv_scr_load(scr);
+    lv_disp_set_scr_act(scr);
     lv_cont_set_style(scr, th->style.bg);
 
 

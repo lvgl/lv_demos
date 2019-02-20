@@ -19,7 +19,7 @@ extern "C" {
  *      DEFINES
  *********************/
 /*Test  lvgl version*/
-#define LV_EXAMPLES_LVGL_REQ_MAJOR  5
+#define LV_EXAMPLES_LVGL_REQ_MAJOR  6
 #define LV_EXAMPLES_LVGL_REQ_MINOR  0
 #define LV_EXAMPLES_LVGL_REQ_PATCH  0
 

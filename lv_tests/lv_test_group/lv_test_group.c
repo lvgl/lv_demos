@@ -36,7 +36,7 @@
  *  STATIC PROTOTYPES
  **********************/
 /*To emulate some keys on the window header*/
-static bool win_btn_read(lv_indev_data_t * data);
+static bool win_btn_read(lv_indev_t * indev, lv_indev_data_t * data);
 static lv_res_t win_btn_press(lv_obj_t * btn);
 static lv_res_t win_btn_click(lv_obj_t * btn);
 
@@ -96,14 +96,14 @@ void lv_test_group_1(void)
     /*A keyboard will be simulated*/
     lv_indev_drv_t sim_kb_drv;
     sim_kb_drv.type = LV_INDEV_TYPE_KEYPAD;
-    sim_kb_drv.read = win_btn_read;
+    sim_kb_drv.read_cb = win_btn_read;
     lv_indev_t * win_kb_indev = lv_indev_drv_register(&sim_kb_drv);
     lv_indev_set_group(win_kb_indev, g);
 
 #if LV_EX_KEYBOARD
     lv_indev_drv_t rael_kb_drv;
     rael_kb_drv.type = LV_INDEV_TYPE_KEYPAD;
-    rael_kb_drv.read = keyboard_read;
+    rael_kb_drv.read_cb = keyboard_read;
     lv_indev_t * real_kb_indev = lv_indev_drv_register(&rael_kb_drv);
     lv_indev_set_group(real_kb_indev, g);
 #endif
@@ -111,7 +111,7 @@ void lv_test_group_1(void)
 #if LV_EX_MOUSEWHEEL
     lv_indev_drv_t enc_drv;
     enc_drv.type = LV_INDEV_TYPE_ENCODER;
-    enc_drv.read = mousewheel_read;
+    enc_drv.read_cb = mousewheel_read;
     lv_indev_t * enc_indev = lv_indev_drv_register(&enc_drv);
     lv_indev_set_group(enc_indev, g);
 #endif
@@ -123,7 +123,7 @@ void lv_test_group_1(void)
     win_style.body.padding.ver = LV_DPI / 4;
     win_style.body.padding.inner = LV_DPI / 4;
 
-    win = lv_win_create(lv_scr_act(NULL), NULL);
+    win = lv_win_create(lv_disp_get_scr_act(NULL), NULL);
     lv_win_set_title(win, "Group test");
     lv_page_set_scrl_layout(lv_win_get_content(win), LV_LAYOUT_PRETTY);
     lv_win_set_style(win, LV_WIN_STYLE_CONTENT_SCRL, &win_style);
@@ -282,14 +282,16 @@ void lv_test_group_1(void)
 
 /**
  * Read function for the input device which emulates keys on the window header
+ * @param indev pointer to the related input device
  * @param data store the last key and its staee here
  * @return false because the reading in not buffered
  */
-static bool win_btn_read(lv_indev_data_t * data)
+static bool win_btn_read(lv_indev_t * indev, lv_indev_data_t * data)
 {
+    (void) indev;      /*Unused*/
+
     data->state = last_key_state;
     data->key = last_key;
-
 
     return false;
 }

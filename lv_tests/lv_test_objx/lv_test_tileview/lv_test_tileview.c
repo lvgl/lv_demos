@@ -48,7 +48,7 @@ void lv_test_tileview_1(void)
             {LV_COORD_MIN, LV_COORD_MIN}};
 
     lv_obj_t * t;
-    t = lv_tileview_create(lv_scr_act(NULL), NULL);
+    t = lv_tileview_create(lv_disp_get_scr_act(NULL), NULL);
     lv_tileview_set_valid_positions(t, vp);
     lv_tileview_set_edge_flash(t, true);
 

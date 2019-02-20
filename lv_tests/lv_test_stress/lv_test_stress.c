@@ -61,15 +61,15 @@ void lv_test_stress_1(void)
     lv_task_create(alloc_free_tester, 100, LV_TASK_PRIO_MID, NULL);
 
     /* Holder for all object types */
-    all_obj_h = lv_obj_create(lv_scr_act(NULL), NULL);
+    all_obj_h = lv_obj_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_size(all_obj_h, hres / 2, vres);
     lv_obj_set_style(all_obj_h, &lv_style_pretty);
 
-    alloc_ta = lv_ta_create(lv_scr_act(NULL), NULL);
+    alloc_ta = lv_ta_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_align(alloc_ta, all_obj_h, LV_ALIGN_OUT_RIGHT_TOP, 10, 10);
     lv_obj_set_height(alloc_ta, vres / 4);
 
-    alloc_label = lv_label_create(lv_scr_act(NULL), NULL);
+    alloc_label = lv_label_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_align(alloc_label, alloc_ta, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
 

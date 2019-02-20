@@ -40,12 +40,12 @@ static lv_res_t mbox_action(lv_obj_t * btn, const char * txt);
 void lv_test_mbox_1(void)
 {
     /* Default object */
-    lv_obj_t * mbox1 = lv_mbox_create(lv_scr_act(NULL), NULL);
+    lv_obj_t * mbox1 = lv_mbox_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_pos(mbox1, 10, 10);
 
     /*Add buttons and modify text*/
     static const char * btns2[] = {"Ok", "Cancel", ""};
-    lv_obj_t * mbox2 = lv_mbox_create(lv_scr_act(NULL), NULL);
+    lv_obj_t * mbox2 = lv_mbox_create(lv_disp_get_scr_act(NULL), NULL);
     lv_mbox_add_btns(mbox2, btns2, NULL);
     lv_mbox_set_text(mbox2, "Message");
     lv_obj_set_width(mbox2, lv_disp_get_hor_res(NULL) / 2);
@@ -75,7 +75,7 @@ void lv_test_mbox_1(void)
     btn_rel.body.empty = 1;
     btn_rel.body.border.color = LV_COLOR_WHITE;
 
-    lv_obj_t * mbox3 = lv_mbox_create(lv_scr_act(NULL), mbox2);
+    lv_obj_t * mbox3 = lv_mbox_create(lv_disp_get_scr_act(NULL), mbox2);
     lv_mbox_set_style(mbox3, LV_MBOX_STYLE_BTN_REL, &btn_rel);
     lv_mbox_set_style(mbox3, LV_MBOX_STYLE_BTN_BG,  &btn_bg);
     lv_mbox_set_style(mbox3, LV_MBOX_STYLE_BG, &bg);
@@ -83,7 +83,7 @@ void lv_test_mbox_1(void)
     lv_mbox_set_action(mbox3, mbox_action);
 
     /*Copy with styles and set button width*/
-    lv_obj_t * mbox4 = lv_mbox_create(lv_scr_act(NULL), mbox3);
+    lv_obj_t * mbox4 = lv_mbox_create(lv_disp_get_scr_act(NULL), mbox3);
     lv_mbox_set_text(mbox4, "A quite long message text which is\n"
                      "manually broken into multiple lines");
 

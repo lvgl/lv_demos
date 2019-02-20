@@ -54,7 +54,7 @@ void lv_test_table_1(void)
     cell_head_style.text.letter_space = 3;
 
     /* Create a default object*/
-    lv_obj_t * table1 = lv_table_create(lv_scr_act(NULL), NULL);
+    lv_obj_t * table1 = lv_table_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_pos(table1, 10, 10);
     lv_table_set_style(table1, LV_TABLE_STYLE_CELL1, &cell1_style);
     lv_table_set_style(table1, LV_TABLE_STYLE_CELL2, &cell_head_style);
@@ -105,7 +105,7 @@ void lv_test_table_1(void)
  */
 void lv_test_table_2(void)
 {
-    lv_obj_t * page = lv_page_create(lv_scr_act(NULL), NULL);
+    lv_obj_t * page = lv_page_create(lv_disp_get_scr_act(NULL), NULL);
     lv_page_set_style(page, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
     lv_page_set_style(page, LV_PAGE_STYLE_SCRL, &lv_style_transp_fit);
     lv_page_set_scrl_fit(page, true, true);

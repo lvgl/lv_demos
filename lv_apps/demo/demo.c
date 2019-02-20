@@ -61,10 +61,12 @@ LV_IMG_DECLARE(img_bubble_pattern);
 void demo_create(void)
 {
 
+    lv_coord_t hres = lv_disp_get_hor_res(NULL);
+
 #if LV_DEMO_WALLPAPER
-    lv_obj_t * wp = lv_img_create(lv_scr_act(NULL), NULL);
+    lv_obj_t * wp = lv_img_create(lv_disp_get_scr_act(NULL), NULL);
     lv_img_set_src(wp, &img_bubble_pattern);
-    lv_obj_set_width(wp, LV_HOR_RES * 4);
+    lv_obj_set_width(wp, hres * 4);
     lv_obj_set_protect(wp, LV_PROTECT_POS);
 #endif
 
@@ -88,7 +90,7 @@ void demo_create(void)
     style_tv_btn_pr.body.border.width = 0;
     style_tv_btn_pr.text.color = LV_COLOR_GRAY;
 
-    lv_obj_t * tv = lv_tabview_create(lv_scr_act(NULL), NULL);
+    lv_obj_t * tv = lv_tabview_create(lv_disp_get_scr_act(NULL), NULL);
 
 #if LV_DEMO_WALLPAPER
     lv_obj_set_parent(wp, ((lv_tabview_ext_t *) tv->ext_attr)->content);
@@ -220,6 +222,8 @@ static lv_res_t keyboard_hide_action(lv_obj_t * keyboard)
 
 static void list_create(lv_obj_t * parent)
 {
+    lv_coord_t hres = lv_disp_get_hor_res(NULL);
+
     lv_page_set_style(parent, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
     lv_page_set_style(parent, LV_PAGE_STYLE_SCRL, &lv_style_transp_fit);
 
@@ -261,7 +265,7 @@ static void list_create(lv_obj_t * parent)
 
     lv_obj_t * mbox = lv_mbox_create(parent, NULL);
     lv_mbox_set_text(mbox, "Click a button to copy its text to the Text area ");
-    lv_obj_set_width(mbox, LV_HOR_RES - LV_DPI);
+    lv_obj_set_width(mbox, hres - LV_DPI);
     static const char * mbox_btns[] = {"Got it", ""};
     lv_mbox_add_btns(mbox, mbox_btns, NULL);    /*The default action is close*/
     lv_obj_align(mbox, parent, LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 2);
@@ -274,6 +278,9 @@ static void kb_hide_anim_end(lv_obj_t * keyboard)
 
 static void chart_create(lv_obj_t * parent)
 {
+
+    lv_coord_t vres = lv_disp_get_ver_res(NULL);
+
     lv_page_set_style(parent, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
     lv_page_set_style(parent, LV_PAGE_STYLE_SCRL, &lv_style_transp_fit);
 
@@ -339,7 +346,7 @@ static void chart_create(lv_obj_t * parent)
     lv_slider_set_style(slider, LV_SLIDER_STYLE_INDIC, &style_indic);
     lv_slider_set_style(slider, LV_SLIDER_STYLE_KNOB, &style_knob);
     lv_obj_set_size(slider, lv_obj_get_width(chart), LV_DPI / 3);
-    lv_obj_align(slider, chart, LV_ALIGN_OUT_BOTTOM_MID, 0, (LV_VER_RES - chart->coords.y2 - lv_obj_get_height(slider)) / 2); /*Align to below the chart*/
+    lv_obj_align(slider, chart, LV_ALIGN_OUT_BOTTOM_MID, 0, (vres - chart->coords.y2 - lv_obj_get_height(slider)) / 2); /*Align to below the chart*/
     lv_slider_set_action(slider, slider_action);
     lv_slider_set_range(slider, 10, 1000);
     lv_slider_set_value(slider, 700);

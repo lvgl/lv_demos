@@ -40,12 +40,12 @@
 void lv_test_gauge_1(void)
 {
     /* Create a default object*/
-    lv_obj_t * gauge1 = lv_gauge_create(lv_scr_act(NULL), NULL);
+    lv_obj_t * gauge1 = lv_gauge_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_pos(gauge1, 10, 10);
     lv_gauge_set_value(gauge1, 0, 75);
 
     /*Copy the previous gauge and set smaller size for it*/
-    lv_obj_t * gauge2 = lv_gauge_create(lv_scr_act(NULL), gauge1);
+    lv_obj_t * gauge2 = lv_gauge_create(lv_disp_get_scr_act(NULL), gauge1);
     lv_obj_set_size(gauge2, 2 * lv_obj_get_width(gauge1) / 3,  2 * lv_obj_get_height(gauge1) / 3);
     lv_obj_align(gauge2, gauge1, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
 
@@ -66,7 +66,7 @@ void lv_test_gauge_1(void)
     style3.body.border.color = LV_COLOR_GRAY;
     style3.line.width = 2;
 
-    lv_obj_t * gauge3 = lv_gauge_create(lv_scr_act(NULL), gauge1);
+    lv_obj_t * gauge3 = lv_gauge_create(lv_disp_get_scr_act(NULL), gauge1);
     lv_obj_align(gauge3, gauge1, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
     lv_obj_set_style(gauge3, &style3);
     lv_gauge_set_scale(gauge3, 270, 41, 5);
@@ -76,7 +76,7 @@ void lv_test_gauge_1(void)
     lv_gauge_set_value(gauge3, 2, 60);
 
     /*Copy the modified 'gauge3' and set a smaller size for it*/
-    lv_obj_t * gauge4 = lv_gauge_create(lv_scr_act(NULL), gauge3);
+    lv_obj_t * gauge4 = lv_gauge_create(lv_disp_get_scr_act(NULL), gauge3);
     lv_obj_set_size(gauge4, 100, 100);
     lv_obj_align(gauge4, gauge3, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
 

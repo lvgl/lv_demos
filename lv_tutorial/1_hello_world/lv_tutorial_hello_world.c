@@ -48,8 +48,10 @@
  */
 void lv_tutorial_hello_world(void)
 {
+    lv_obj_t * scr = lv_disp_get_scr_act(NULL);     /*Get the current screen*/
+
     /*Create a Label on the currently active screen*/
-    lv_obj_t * label1 =  lv_label_create(lv_scr_act(NULL), NULL);
+    lv_obj_t * label1 =  lv_label_create(scr, NULL);
 
     /*Modify the Label's text*/
     lv_label_set_text(label1, "Hello world!");

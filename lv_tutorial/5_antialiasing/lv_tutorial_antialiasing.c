@@ -72,6 +72,8 @@ LV_IMG_DECLARE(apple_icon_alpha);
  */
 void lv_tutorial_antialiasing(void)
 {
+    lv_obj_t * scr = lv_disp_get_scr_act(NULL);     /*Get the current screen*/
+
     lv_obj_t * label;
 
     static lv_style_t style1;
@@ -80,7 +82,7 @@ void lv_tutorial_antialiasing(void)
     style1.body.border.width = 4;
 
     lv_obj_t * btn1;
-    btn1 = lv_btn_create(lv_scr_act(NULL), NULL);
+    btn1 = lv_btn_create(scr, NULL);
     lv_obj_set_pos(btn1, 10, 10);
     lv_obj_set_size(btn1, 100, 60);
     lv_btn_set_style(btn1, LV_BTN_STYLE_REL, &style1);
@@ -89,12 +91,12 @@ void lv_tutorial_antialiasing(void)
     lv_label_set_text(label, "Button");
 
     /*Crate an image which is NOT automatically upscaled to compensate the anti aliasing*/
-    lv_obj_t * img_normal = lv_img_create(lv_scr_act(NULL), NULL);
+    lv_obj_t * img_normal = lv_img_create(scr, NULL);
     lv_img_set_src(img_normal, &apple_icon_chroma);
     lv_obj_align(img_normal, btn1, LV_ALIGN_OUT_RIGHT_TOP, 10, 0);
 
     /*Crate an image which is automatically upscaled to compensate the anti aliasing*/
-    lv_obj_t * img_alpha_byte = lv_img_create(lv_scr_act(NULL), img_normal); /*Crate an image object*/
+    lv_obj_t * img_alpha_byte = lv_img_create(scr, img_normal); /*Crate an image object*/
     lv_img_set_src(img_alpha_byte, &apple_icon_alpha);
     lv_obj_align(img_alpha_byte, img_normal, LV_ALIGN_OUT_RIGHT_TOP, 10, 0);
 

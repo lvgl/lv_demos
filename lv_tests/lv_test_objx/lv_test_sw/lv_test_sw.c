@@ -42,7 +42,7 @@ static lv_res_t sw_action(lv_obj_t * sw);
 void lv_test_sw_1(void)
 {
     /* Default object */
-    lv_obj_t * sw1 = lv_sw_create(lv_scr_act(NULL), NULL);
+    lv_obj_t * sw1 = lv_sw_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_pos(sw1, 10, 10);
     lv_sw_set_action(sw1, sw_action);
 
@@ -57,7 +57,7 @@ void lv_test_sw_1(void)
     indic.body.padding.hor = 8;
     indic.body.padding.ver = 8;
 
-    lv_obj_t * sw2 = lv_sw_create(lv_scr_act(NULL), sw1);
+    lv_obj_t * sw2 = lv_sw_create(lv_disp_get_scr_act(NULL), sw1);
     lv_sw_set_style(sw2, LV_SW_STYLE_BG, &bg);
     lv_sw_set_style(sw2, LV_SW_STYLE_INDIC, &indic);
     lv_sw_set_style(sw2, LV_SW_STYLE_KNOB_OFF, &lv_style_btn_pr);
@@ -66,7 +66,7 @@ void lv_test_sw_1(void)
     lv_sw_on(sw2);
     lv_obj_align(sw2, sw1, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
 
-    lv_obj_t * sw3 = lv_sw_create(lv_scr_act(NULL), sw2);
+    lv_obj_t * sw3 = lv_sw_create(lv_disp_get_scr_act(NULL), sw2);
     lv_obj_align(sw3, sw2, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
 
 }

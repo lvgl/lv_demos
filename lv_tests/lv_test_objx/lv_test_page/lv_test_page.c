@@ -41,15 +41,15 @@ static lv_res_t page_rel_action(lv_obj_t * page);
 void lv_test_page_1(void)
 {
     /*Create a page which should look well*/
-    lv_obj_t * page1 = lv_page_create(lv_scr_act(NULL), NULL);
+    lv_obj_t * page1 = lv_page_create(lv_disp_get_scr_act(NULL), NULL);
 
     /*Resize the page*/
-    lv_obj_t * page2 = lv_page_create(lv_scr_act(NULL), NULL);
+    lv_obj_t * page2 = lv_page_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_size(page2, LV_DPI, LV_DPI * 2);
     lv_obj_align(page2, page1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
     /*Add some text to text the scrolling*/
-    lv_obj_t * page3 = lv_page_create(lv_scr_act(NULL), page2);
+    lv_obj_t * page3 = lv_page_create(lv_disp_get_scr_act(NULL), page2);
     lv_obj_set_size(page3, LV_DPI, LV_DPI * 2);
     lv_obj_align(page3, page2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
 
@@ -66,7 +66,7 @@ void lv_test_page_1(void)
                       "Tenth line of a text\n");
 
     /*Enable horizontal fit to set scrolling in both directions*/
-    lv_obj_t * page4 = lv_page_create(lv_scr_act(NULL), page3);
+    lv_obj_t * page4 = lv_page_create(lv_disp_get_scr_act(NULL), page3);
     lv_obj_align(page4, page3, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     lv_page_set_scrl_fit(page4, true, true);
     label = lv_label_create(page4, label);
@@ -106,7 +106,7 @@ void lv_test_page_2(void)
     sb.body.opa = LV_OPA_70;
 
     /* Create a page with new style, layout, fit, action and scrollbar OFF*/
-    lv_obj_t * page1 = lv_page_create(lv_scr_act(NULL), NULL);
+    lv_obj_t * page1 = lv_page_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_size(page1, LV_DPI, LV_DPI * 2);
     lv_page_set_scrl_fit(page1, true, true);
     lv_page_set_scrl_layout(page1, LV_LAYOUT_COL_L);
@@ -124,19 +124,19 @@ void lv_test_page_2(void)
                       "Fifth line of a text\n");
 
     /*Copy 'page1' and set scrollbar ON*/
-    lv_obj_t * page2 = lv_page_create(lv_scr_act(NULL), page1);
+    lv_obj_t * page2 = lv_page_create(lv_disp_get_scr_act(NULL), page1);
     lv_obj_align(page2, page1, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     label = lv_label_create(page2, label);
     lv_page_set_sb_mode(page2, LV_SB_MODE_ON);
 
     /*Copy 'page1' and set scrollbar AUTO*/
-    lv_obj_t * page3 = lv_page_create(lv_scr_act(NULL), page1);
+    lv_obj_t * page3 = lv_page_create(lv_disp_get_scr_act(NULL), page1);
     lv_obj_align(page3, page2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     label = lv_label_create(page3, label);
     lv_page_set_sb_mode(page3, LV_SB_MODE_AUTO);
 
     /*Copy 'page1' and set scrollbar DRAG*/
-    lv_obj_t * page4 = lv_page_create(lv_scr_act(NULL), page1);
+    lv_obj_t * page4 = lv_page_create(lv_disp_get_scr_act(NULL), page1);
     lv_obj_align(page4, page3, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     label = lv_label_create(page4, label);
     lv_page_set_sb_mode(page4, LV_SB_MODE_DRAG);

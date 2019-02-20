@@ -81,21 +81,21 @@ void tpcal_create(void)
 {
     state = TP_CAL_STATE_INIT;
 
-    prev_scr = lv_scr_act(NULL);
+    prev_scr = lv_disp_get_scr_act(NULL);
 
     lv_obj_t * scr = lv_obj_create(NULL, NULL);
     lv_obj_set_size(scr, TP_MAX_VALUE, TP_MAX_VALUE);
-    lv_scr_load(scr);
+    lv_disp_set_scr_act(scr);
 
     /*Create a big transparent button screen to receive clicks*/
-    big_btn = lv_btn_create(lv_scr_act(NULL), NULL);
+    big_btn = lv_btn_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_size(big_btn, TP_MAX_VALUE, TP_MAX_VALUE);
     lv_btn_set_style(big_btn, LV_BTN_STYLE_REL, &lv_style_transp);
     lv_btn_set_style(big_btn, LV_BTN_STYLE_PR, &lv_style_transp);
     lv_btn_set_action(big_btn, LV_BTN_ACTION_CLICK, btn_click_action);
     lv_btn_set_layout(big_btn, LV_LAYOUT_OFF);
 
-    label_main = lv_label_create(lv_scr_act(NULL), NULL);
+    label_main = lv_label_create(lv_disp_get_scr_act(NULL), NULL);
     char buf[64];
     sprintf(buf, "Click the circle in\n"
             "upper left-hand corner\n"
@@ -114,7 +114,7 @@ void tpcal_create(void)
     lv_style_copy(&style_circ, &lv_style_pretty_color);
     style_circ.body.radius = LV_RADIUS_CIRCLE;
 
-    circ_area = lv_obj_create(lv_scr_act(NULL), NULL);
+    circ_area = lv_obj_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_size(circ_area, CIRCLE_SIZE, CIRCLE_SIZE);
     lv_obj_set_style(circ_area, &style_circ);
     lv_obj_set_click(circ_area, false);
@@ -184,7 +184,7 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
             touch_nb = TOUCH_NUMBER;
             get_avr_value(&point[0]);
             sprintf(buf, "x: %d\ny: %d", point[0].x, point[0].y);
-            lv_obj_t * label_coord = lv_label_create(lv_scr_act(NULL), NULL);
+            lv_obj_t * label_coord = lv_label_create(lv_disp_get_scr_act(NULL), NULL);
             lv_label_set_text(label_coord, buf);
             sprintf(buf, "Click the circle in\n"
                     "upper right-hand corner\n"
@@ -235,7 +235,7 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
             touch_nb = TOUCH_NUMBER;
             get_avr_value(&point[1]);
             sprintf(buf, "x: %d\ny: %d", point[1].x, point[1].y);
-            lv_obj_t * label_coord = lv_label_create(lv_scr_act(NULL), NULL);
+            lv_obj_t * label_coord = lv_label_create(lv_disp_get_scr_act(NULL), NULL);
             lv_label_set_text(label_coord, buf);
             lv_obj_set_pos(label_coord, hres - lv_obj_get_width(label_coord), 0);
             sprintf(buf, "Click the circle in\n"
@@ -286,7 +286,7 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
             touch_nb = TOUCH_NUMBER;
             get_avr_value(&point[2]);
             sprintf(buf, "x: %d\ny: %d", point[2].x, point[2].y);
-            lv_obj_t * label_coord = lv_label_create(lv_scr_act(NULL), NULL);
+            lv_obj_t * label_coord = lv_label_create(scr, NULL);
             lv_label_set_text(label_coord, buf);
             sprintf(buf, "Click the circle in\n"
                     "lower left-hand corner\n"
@@ -337,7 +337,7 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
             touch_nb = TOUCH_NUMBER;
             get_avr_value(&point[3]);
             sprintf(buf, "x: %d\ny: %d", point[3].x, point[3].y);
-            lv_obj_t * label_coord = lv_label_create(lv_scr_act(NULL), NULL);
+            lv_obj_t * label_coord = lv_label_create(scr, NULL);
             lv_label_set_text(label_coord, buf);
             lv_obj_set_pos(label_coord, 0, vres - lv_obj_get_height(label_coord));
             sprintf(buf, "Click the screen\n"
@@ -353,7 +353,7 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
         lv_obj_set_pos(label_main, (hres - lv_obj_get_width(label_main)) / 2,
                        (vres - lv_obj_get_height(label_main)) / 2);
     } else if(state == TP_CAL_STATE_WAIT_LEAVE) {
-        lv_scr_load(prev_scr);
+        lv_disp_set_scr_act(prev_scr);
 
         /*
          * TODO Process 'p' points here to calibrate the touch pad

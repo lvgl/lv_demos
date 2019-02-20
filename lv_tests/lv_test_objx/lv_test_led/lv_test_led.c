@@ -40,7 +40,7 @@
 void lv_test_led_1(void)
 {
     /* Create a default object*/
-    lv_obj_t * led1 = lv_led_create(lv_scr_act(NULL), NULL);
+    lv_obj_t * led1 = lv_led_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_pos(led1, 20, 20);
 
     /*Create styles LED*/
@@ -55,22 +55,22 @@ void lv_test_led_1(void)
     style.body.border.color = LV_COLOR_MAKE(0xfa, 0x0f, 0x00);
     style.body.shadow.color = LV_COLOR_MAKE(0xb5, 0x0f, 0x04);
 
-    lv_obj_t * led2 = lv_led_create(lv_scr_act(NULL), NULL);
+    lv_obj_t * led2 = lv_led_create(lv_disp_get_scr_act(NULL), NULL);
     lv_led_set_style(led2, &style);
     lv_obj_align(led2, led1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
     /*Turned ON LED*/
-    lv_obj_t * led_on = lv_led_create(lv_scr_act(NULL), led2);
+    lv_obj_t * led_on = lv_led_create(lv_disp_get_scr_act(NULL), led2);
     lv_obj_align(led_on, led2, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
     lv_led_on(led_on);
 
     /*Tuned OFF LED*/
-    lv_obj_t * led_off = lv_led_create(lv_scr_act(NULL), led_on);
+    lv_obj_t * led_off = lv_led_create(lv_disp_get_scr_act(NULL), led_on);
     lv_obj_align(led_off, led_on, LV_ALIGN_OUT_RIGHT_MID, 10, 0);
     lv_led_off(led_off);
 
     /*Arbitrary brightness*/
-    lv_obj_t * led_x = lv_led_create(lv_scr_act(NULL), led_off);
+    lv_obj_t * led_x = lv_led_create(lv_disp_get_scr_act(NULL), led_off);
     lv_obj_align(led_x, led_off, LV_ALIGN_OUT_RIGHT_MID, 10, 0);
     lv_led_set_bright(led_x, 170);
 

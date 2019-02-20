@@ -60,7 +60,7 @@ lv_obj_t * terminal_create(void)
     lv_coord_t hres = lv_disp_get_hor_res(NULL);
     lv_coord_t vres = lv_disp_get_ver_res(NULL);
 
-    win = lv_win_create(lv_scr_act(NULL), NULL);
+    win = lv_win_create(lv_disp_get_scr_act(NULL), NULL);
     lv_win_set_style(win, LV_WIN_STYLE_BG, &style_bg);
     lv_obj_set_size(win, hres, vres);
     lv_win_set_sb_mode(win, LV_SB_MODE_AUTO);

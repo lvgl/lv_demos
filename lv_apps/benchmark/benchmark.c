@@ -27,7 +27,7 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static void refr_monitor(uint32_t time_ms, uint32_t px_num);
+static void refr_monitor(lv_disp_t * disp, uint32_t time_ms, uint32_t px_num);
 static lv_res_t run_test_click(lv_obj_t * btn);
 static lv_res_t wp_click(lv_obj_t * btn);
 static lv_res_t recolor_click(lv_obj_t * btn);
@@ -95,7 +95,7 @@ void benchmark_create(void)
     style_wp.image.color = LV_COLOR_RED;
 
     /*Create a holder page (the page become scrollable on small displays )*/
-    holder_page = lv_page_create(lv_scr_act(NULL), NULL);
+    holder_page = lv_page_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_size(holder_page, hres, vres);
     lv_page_set_style(holder_page, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
     lv_page_set_style(holder_page, LV_PAGE_STYLE_SCRL, &lv_style_transp);
@@ -167,8 +167,12 @@ void benchmark_create(void)
 
 void benchmark_start(void)
 {
-    lv_refr_set_monitor_cb(refr_monitor);
-    lv_obj_invalidate(lv_scr_act(NULL));
+    lv_disp_t * disp = lv_disp_get_default();
+
+    disp->driver.monitor_cb = refr_monitor;
+
+    lv_obj_invalidate(lv_disp_get_scr_act(disp));
+
     time_sum = 0;
     refr_cnt = 0;
 }
@@ -191,16 +195,17 @@ uint32_t benchmark_get_refr_time(void)
 
 /**
  * Called when a the library finished rendering to monitor its performance
+ * @param disp pointer to the caller display
  * @param time_ms time of rendering in milliseconds
  * @param px_num Number of pixels drawn
  */
-static void refr_monitor(uint32_t time_ms, uint32_t px_num)
+static void refr_monitor(lv_disp_t * disp, uint32_t time_ms, uint32_t px_num)
 {
     (void) px_num   ; /*Unused*/
 
     time_sum += time_ms;
     refr_cnt ++;
-    lv_obj_invalidate(lv_scr_act(NULL));
+    lv_obj_invalidate(lv_disp_get_scr_act(NULL));
 
     if(refr_cnt >= TEST_CYCLE_NUM) {
         float time_avg = (float)time_sum / (float)TEST_CYCLE_NUM;
@@ -208,7 +213,8 @@ static void refr_monitor(uint32_t time_ms, uint32_t px_num)
         if(time_sum != 0) sprintf(buf, "Screen load: %0.1f ms\nAverage of %d", time_avg, TEST_CYCLE_NUM);
         lv_label_set_text(result_label, buf);
 
-        lv_refr_set_monitor_cb(NULL);
+        lv_disp_t * disp = lv_disp_get_default();
+        disp->driver.monitor_cb = NULL;
     } else {
         char buf[256];
         sprintf(buf, "Running %d/%d", refr_cnt, TEST_CYCLE_NUM);
