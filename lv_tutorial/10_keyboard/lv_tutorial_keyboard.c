@@ -44,7 +44,7 @@
  **********************/
 static void gui_create(void);
 static void kaypad_create(void);
-static bool emulated_keypad_read(lv_indev_t * indev, lv_indev_data_t * data);
+static bool emulated_keypad_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data);
 static lv_res_t mbox_action(lv_obj_t * btn, const char * txt);
 static lv_res_t enable_action(lv_obj_t * btn);
 static lv_res_t keypad_btn_press(lv_obj_t * btn);
@@ -196,9 +196,9 @@ static void kaypad_create(void)
     lv_obj_align(btn_enter, btn_dec, LV_ALIGN_OUT_RIGHT_MID, LV_DPI / 4, 0);
 }
 
-static bool emulated_keypad_read(lv_indev_t * indev, lv_indev_data_t * data)
+static bool emulated_keypad_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data)
 {
-    (void)indev;                /*Unused*/
+    (void)indev_drv;                /*Unused*/
     data->key = last_key;
     data->state = last_state;
     return false;

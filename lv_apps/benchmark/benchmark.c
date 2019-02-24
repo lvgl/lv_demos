@@ -27,7 +27,7 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static void refr_monitor(lv_disp_t * disp, uint32_t time_ms, uint32_t px_num);
+static void refr_monitor(lv_disp_drv_t * disp_drv, uint32_t time_ms, uint32_t px_num);
 static lv_res_t run_test_click(lv_obj_t * btn);
 static lv_res_t wp_click(lv_obj_t * btn);
 static lv_res_t recolor_click(lv_obj_t * btn);
@@ -195,11 +195,11 @@ uint32_t benchmark_get_refr_time(void)
 
 /**
  * Called when a the library finished rendering to monitor its performance
- * @param disp pointer to the caller display
+ * @param disp_drv pointer to the caller display driver
  * @param time_ms time of rendering in milliseconds
  * @param px_num Number of pixels drawn
  */
-static void refr_monitor(lv_disp_t * disp, uint32_t time_ms, uint32_t px_num)
+static void refr_monitor(lv_disp_drv_t * disp_drv, uint32_t time_ms, uint32_t px_num)
 {
     (void) px_num   ; /*Unused*/
 
@@ -212,7 +212,7 @@ static void refr_monitor(lv_disp_t * disp, uint32_t time_ms, uint32_t px_num)
         char buf[256];
         if(time_sum != 0) sprintf(buf, "Screen load: %0.1f ms\nAverage of %d", time_avg, TEST_CYCLE_NUM);
         lv_label_set_text(result_label, buf);
-        disp->driver.monitor_cb = NULL;
+        disp_drv->monitor_cb = NULL;
     } else {
         char buf[256];
         sprintf(buf, "Running %d/%d", refr_cnt, TEST_CYCLE_NUM);

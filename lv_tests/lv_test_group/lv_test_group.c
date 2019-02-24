@@ -36,7 +36,7 @@
  *  STATIC PROTOTYPES
  **********************/
 /*To emulate some keys on the window header*/
-static bool win_btn_read(lv_indev_t * indev, lv_indev_data_t * data);
+static bool win_btn_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data);
 static lv_res_t win_btn_press(lv_obj_t * btn);
 static lv_res_t win_btn_click(lv_obj_t * btn);
 
@@ -282,13 +282,13 @@ void lv_test_group_1(void)
 
 /**
  * Read function for the input device which emulates keys on the window header
- * @param indev pointer to the related input device
- * @param data store the last key and its staee here
+ * @param indev_drv pointer to the related input device driver
+ * @param data store the last key and its state here
  * @return false because the reading in not buffered
  */
-static bool win_btn_read(lv_indev_t * indev, lv_indev_data_t * data)
+static bool win_btn_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data)
 {
-    (void) indev;      /*Unused*/
+    (void) indev_drv;      /*Unused*/
 
     data->state = last_key_state;
     data->key = last_key;
