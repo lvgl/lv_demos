@@ -74,7 +74,7 @@ lv_obj_t * terminal_create(void)
 
     /*Create a clear button*/
     clr_btn = lv_btn_create(win, NULL);
-    lv_cont_set_fit(clr_btn, true, true);
+    lv_btn_set_fit(clr_btn, LV_FIT_TIGHT);
     lv_btn_set_action(clr_btn, LV_BTN_ACTION_CLICK, clr_click_action);
     lv_obj_t * btn_label = lv_label_create(clr_btn, NULL);
     lv_label_set_text(btn_label, "Clear");

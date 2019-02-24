@@ -112,7 +112,7 @@ static void gui_create(void)
 
     /*Create a holder and check boxes on it*/
     lv_obj_t * holder = lv_cont_create(lv_scr_act(), NULL);   /*Create a transparent holder*/
-    lv_cont_set_fit(holder, true, true);
+    lv_cont_set_fit(holder, LV_FIT_TIGHT);
     lv_cont_set_layout(holder, LV_LAYOUT_COL_L);
     lv_obj_set_style(holder, &lv_style_transp);
     lv_obj_align(holder, ddlist, LV_ALIGN_OUT_RIGHT_TOP, LV_DPI / 4, 0);
@@ -137,7 +137,7 @@ static void gui_create(void)
     /*Create a button*/
     btn_enable = lv_btn_create(lv_scr_act(), NULL);
     lv_btn_set_action(btn_enable, LV_BTN_ACTION_CLICK, enable_action);
-    lv_cont_set_fit(btn_enable, true, true);
+    lv_btn_set_fit(btn_enable, LV_FIT_TIGHT);
     lv_group_add_obj(g, btn_enable);                /*Add to the group*/
     lv_obj_t * l = lv_label_create(btn_enable, NULL);
     lv_label_set_text(l, "Message");
@@ -164,7 +164,7 @@ static void kaypad_create(void)
     lv_btn_set_action(btn_next, LV_BTN_ACTION_PR, keypad_btn_press);
     lv_btn_set_action(btn_next, LV_BTN_ACTION_CLICK, keypad_btn_release);
     lv_btn_set_action(btn_next, LV_BTN_ACTION_LONG_PR, keypad_btn_release);
-    lv_btn_set_fit(btn_next, true, true);
+    lv_btn_set_fit(btn_next, LV_FIT_TIGHT);
     lv_obj_set_free_num(btn_next, LV_GROUP_KEY_NEXT);
     lv_obj_t * l = lv_label_create(btn_next, NULL);
     lv_label_set_text(l, "Next");

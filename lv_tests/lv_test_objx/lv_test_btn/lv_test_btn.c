@@ -107,7 +107,7 @@ void lv_test_btn_1(void)
 
     /*Test horizontal fit and default layout (CENTER)*/
     lv_obj_t * btn7 = lv_btn_create(lv_scr_act(), NULL);
-    lv_btn_set_fit(btn7, true, false);
+    lv_btn_set_fit2(btn7, LV_FIT_TIGHT, LV_FIT_NONE);
     lv_obj_t * label = lv_label_create(btn7, NULL);
     lv_label_set_text(label, "A quite long text");
     label = lv_label_create(btn7, NULL);

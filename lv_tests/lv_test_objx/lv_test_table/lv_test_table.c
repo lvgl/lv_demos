@@ -108,7 +108,7 @@ void lv_test_table_2(void)
     lv_obj_t * page = lv_page_create(lv_scr_act(), NULL);
     lv_page_set_style(page, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
     lv_page_set_style(page, LV_PAGE_STYLE_SCRL, &lv_style_transp_fit);
-    lv_page_set_scrl_fit(page, true, true);
+    lv_page_set_scrl_fit(page, LV_FIT_TIGHT);
     lv_obj_set_size(page, 200, 200);
 
     static lv_style_t cell_style;

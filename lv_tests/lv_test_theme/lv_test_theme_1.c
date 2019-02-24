@@ -78,11 +78,11 @@ static void create_tab1(lv_obj_t * parent)
     lv_obj_t * h = lv_cont_create(parent, NULL);
     lv_obj_set_style(h, &h_style);
     lv_obj_set_click(h, false);
-    lv_cont_set_fit(h, true, true);
+    lv_cont_set_fit(h, LV_FIT_TIGHT);
     lv_cont_set_layout(h, LV_LAYOUT_COL_M);
 
     lv_obj_t * btn = lv_btn_create(h, NULL);
-    lv_btn_set_fit(btn, true, true);
+    lv_btn_set_fit(btn, LV_FIT_TIGHT);
     lv_btn_set_toggle(btn, true);
     lv_obj_t * btn_label = lv_label_create(btn, NULL);
     lv_label_set_text(btn_label, "Button");
@@ -148,8 +148,7 @@ static void create_tab1(lv_obj_t * parent)
 
     lv_obj_t * sw_h = lv_cont_create(h, NULL);
     lv_cont_set_style(sw_h, &lv_style_transp);
-    lv_cont_set_fit(sw_h, false, true);
-    lv_obj_set_width(sw_h, LV_HOR_RES / 4);
+    lv_cont_set_fit2(sw_h, LV_FIT_FLOOD, LV_FIT_TIGHT);
     lv_cont_set_layout(sw_h, LV_LAYOUT_PRETTY);
 
     lv_obj_t * sw = lv_sw_create(sw_h, NULL);
@@ -300,8 +299,6 @@ static void create_tab3(lv_obj_t * parent)
                       "his ei malis quodsi, te quis aeterno his.\n"
                       "Qui tritani recusabo reprehendunt ne,\n"
                       "per duis explicari at. Simul mediocritatem mei et.");
-    lv_page_set_scrl_fit(page, true, true);
-
 
     /*Create a Calendar*/
     lv_obj_t * cal = lv_calendar_create(parent, NULL);

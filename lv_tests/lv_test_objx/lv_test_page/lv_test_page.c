@@ -68,7 +68,6 @@ void lv_test_page_1(void)
     /*Enable horizontal fit to set scrolling in both directions*/
     lv_obj_t * page4 = lv_page_create(lv_scr_act(), page3);
     lv_obj_align(page4, page3, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
-    lv_page_set_scrl_fit(page4, true, true);
     label = lv_label_create(page4, label);
 
 }
@@ -108,7 +107,6 @@ void lv_test_page_2(void)
     /* Create a page with new style, layout, fit, action and scrollbar OFF*/
     lv_obj_t * page1 = lv_page_create(lv_scr_act(), NULL);
     lv_obj_set_size(page1, LV_DPI, LV_DPI * 2);
-    lv_page_set_scrl_fit(page1, true, true);
     lv_page_set_scrl_layout(page1, LV_LAYOUT_COL_L);
     lv_page_set_sb_mode(page1, LV_SB_MODE_OFF);
     lv_page_set_rel_action(page1, page_rel_action);

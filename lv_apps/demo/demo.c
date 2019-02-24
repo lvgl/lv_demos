@@ -223,8 +223,6 @@ static void list_create(lv_obj_t * parent)
     lv_page_set_style(parent, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
     lv_page_set_style(parent, LV_PAGE_STYLE_SCRL, &lv_style_transp_fit);
 
-    lv_page_set_scrl_fit(parent, false, false);
-    lv_page_set_scrl_height(parent, lv_obj_get_height(parent));
     lv_page_set_sb_mode(parent, LV_SB_MODE_OFF);
 
     /*Create styles for the buttons*/
@@ -277,7 +275,6 @@ static void chart_create(lv_obj_t * parent)
     lv_page_set_style(parent, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
     lv_page_set_style(parent, LV_PAGE_STYLE_SCRL, &lv_style_transp_fit);
 
-    lv_page_set_scrl_fit(parent, false, false);
     lv_page_set_scrl_height(parent, lv_obj_get_height(parent));
     lv_page_set_sb_mode(parent, LV_SB_MODE_OFF);
 

@@ -120,7 +120,7 @@ void benchmark_create(void)
     lv_obj_t * btn;
     btn = lv_btn_create(holder_page, NULL);
     lv_page_glue_obj(btn, true);
-    lv_cont_set_fit(btn, true, true);
+    lv_btn_set_fit(btn, LV_FIT_TIGHT);
     lv_btn_set_style(btn, LV_BTN_STYLE_REL, &style_btn_rel);
     lv_btn_set_style(btn, LV_BTN_STYLE_PR, &style_btn_pr);
     lv_btn_set_style(btn, LV_BTN_STYLE_TGL_REL, &style_btn_tgl_rel);

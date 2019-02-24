@@ -102,7 +102,7 @@ void lv_tutorial_responsive(void)
     /*AUTO FIT*/
     lv_obj_t * btn3;
     btn3 = lv_btn_create(lv_scr_act(), btn1);
-    lv_btn_set_fit(btn3, true, true);
+    lv_btn_set_fit(btn3, LV_FIT_TIGHT);
 
     label = lv_label_create(btn3, NULL);
     lv_label_set_text(label, "Fit");
@@ -112,7 +112,7 @@ void lv_tutorial_responsive(void)
     /*LAYOUT*/
     lv_obj_t * btn4;
     btn4 = lv_btn_create(lv_scr_act(), btn1);
-    lv_btn_set_fit(btn4, true, true);           /*Enable fit too*/
+    lv_btn_set_fit(btn4, LV_FIT_TIGHT);           /*Enable fit too*/
     lv_btn_set_layout(btn4, LV_LAYOUT_COL_R);   /*Right aligned column layout*/
 
     label = lv_label_create(btn4, NULL);

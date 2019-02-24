@@ -126,7 +126,7 @@ static void header_create(void)
     lv_label_set_text(clock, "14:21");
     lv_obj_align(clock, NULL, LV_ALIGN_IN_LEFT_MID, LV_DPI/10, 0);
 
-    lv_cont_set_fit(header, false, true);   /*Let the height set automatically*/
+    lv_cont_set_fit2(header, LV_FIT_NONE, LV_FIT_TIGHT);   /*Let the height set automatically*/
     lv_obj_set_pos(header, 0, 0);
 
 }
@@ -154,8 +154,8 @@ static void sb_create(void)
 
 #if LV_HOR_RES > LV_VER_RES
     lv_obj_set_height(sb, LV_VER_RES - lv_obj_get_height(header));
-    lv_cont_set_fit(sb, true, false);
-    lv_page_set_scrl_fit(sb, true, false);
+    lv_cont_set_fit2(sb, LV_FIT_TIGHT, LV_FIT_NONE);
+    lv_page_set_scrl_fit2(sb, LV_FIT_TIGHT, LV_FIT_NONE);
     lv_obj_align(sb, header, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 0);
     lv_page_set_sb_mode(sb, LV_SB_MODE_DRAG);
 #else
