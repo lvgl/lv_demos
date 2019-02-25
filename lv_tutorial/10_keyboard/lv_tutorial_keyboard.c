@@ -44,7 +44,7 @@
  **********************/
 static void gui_create(void);
 static void kaypad_create(void);
-static bool emulated_keypad_read(lv_indev_data_t * data);
+static bool emulated_keypad_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data);
 static lv_res_t mbox_action(lv_obj_t * btn, const char * txt);
 static lv_res_t enable_action(lv_obj_t * btn);
 static lv_res_t keypad_btn_press(lv_obj_t * btn);
@@ -78,7 +78,7 @@ void lv_tutorial_keyboard(lv_indev_t * kp_indev)
     lv_indev_drv_t  kp_drv;
     lv_indev_drv_init(&kp_drv);
     kp_drv.type = LV_INDEV_TYPE_KEYPAD;
-    kp_drv.read = emulated_keypad_read;
+    kp_drv.read_cb = emulated_keypad_read;
     emulated_kp_indev = lv_indev_drv_register(&kp_drv);
 
     /*Create an object group*/
@@ -104,15 +104,18 @@ void lv_tutorial_keyboard(lv_indev_t * kp_indev)
  */
 static void gui_create(void)
 {
+    lv_obj_t * scr = lv_disp_get_scr_act(NULL);     /*Get the current screen*/
+
     /*Create a drop down list*/
-    lv_obj_t * ddlist = lv_ddlist_create(lv_scr_act(), NULL);
+    lv_obj_t * ddlist = lv_ddlist_create(scr, NULL);
     lv_ddlist_set_options(ddlist, "Low\nMedium\nHigh");
     lv_obj_set_pos(ddlist, LV_DPI / 4, LV_DPI / 4);
     lv_group_add_obj(g, ddlist);                    /*Add the object to the group*/
 
     /*Create a holder and check boxes on it*/
-    lv_obj_t * holder = lv_cont_create(lv_scr_act(), NULL);   /*Create a transparent holder*/
+    lv_obj_t * holder = lv_cont_create(scr, NULL);   /*Create a transparent holder*/
     lv_cont_set_fit(holder, LV_FIT_TIGHT);
+
     lv_cont_set_layout(holder, LV_LAYOUT_COL_L);
     lv_obj_set_style(holder, &lv_style_transp);
     lv_obj_align(holder, ddlist, LV_ALIGN_OUT_RIGHT_TOP, LV_DPI / 4, 0);
@@ -128,14 +131,14 @@ static void gui_create(void)
     lv_cb_set_text(cb, "Blue");
 
     /*Create a sliders*/
-    lv_obj_t * slider = lv_slider_create(lv_scr_act(), NULL);
+    lv_obj_t * slider = lv_slider_create(scr, NULL);
     lv_obj_set_size(slider, LV_DPI, LV_DPI / 3);
     lv_obj_align(slider, holder, LV_ALIGN_OUT_RIGHT_TOP, LV_DPI / 4, 0);
     lv_bar_set_range(slider, 0, 20);
     lv_group_add_obj(g, slider);                    /*Add to the group*/
 
     /*Create a button*/
-    btn_enable = lv_btn_create(lv_scr_act(), NULL);
+    btn_enable = lv_btn_create(scr, NULL);
     lv_btn_set_action(btn_enable, LV_BTN_ACTION_CLICK, enable_action);
     lv_btn_set_fit(btn_enable, LV_FIT_TIGHT);
     lv_group_add_obj(g, btn_enable);                /*Add to the group*/
@@ -159,8 +162,10 @@ static void gui_create(void)
  */
 static void kaypad_create(void)
 {
+    lv_obj_t * scr = lv_disp_get_scr_act(NULL);     /*Get the current screen*/
+
     /*Next button*/
-    lv_obj_t * btn_next = lv_btn_create(lv_scr_act(), NULL);
+    lv_obj_t * btn_next = lv_btn_create(scr, NULL);
     lv_btn_set_action(btn_next, LV_BTN_ACTION_PR, keypad_btn_press);
     lv_btn_set_action(btn_next, LV_BTN_ACTION_CLICK, keypad_btn_release);
     lv_btn_set_action(btn_next, LV_BTN_ACTION_LONG_PR, keypad_btn_release);
@@ -171,29 +176,30 @@ static void kaypad_create(void)
     lv_obj_align(btn_next, NULL, LV_ALIGN_IN_BOTTOM_LEFT, LV_DPI / 4, - LV_DPI / 4);
 
     /*Increment button*/
-    lv_obj_t * btn_inc = lv_btn_create(lv_scr_act(), btn_next);
+    lv_obj_t * btn_inc = lv_btn_create(scr, btn_next);
     lv_obj_set_free_num(btn_inc, LV_GROUP_KEY_LEFT);
     l = lv_label_create(btn_inc, NULL);
     lv_label_set_text(l, "Dec");
     lv_obj_align(btn_inc, btn_next, LV_ALIGN_OUT_RIGHT_MID, LV_DPI / 4, 0);
 
     /*Decrement button*/
-    lv_obj_t * btn_dec = lv_btn_create(lv_scr_act(), btn_next);
+    lv_obj_t * btn_dec = lv_btn_create(scr, btn_next);
     lv_obj_set_free_num(btn_dec, LV_GROUP_KEY_RIGHT);
     l = lv_label_create(btn_dec, NULL);
     lv_label_set_text(l, "Inc");
     lv_obj_align(btn_dec, btn_inc, LV_ALIGN_OUT_RIGHT_MID, LV_DPI / 4, 0);
 
     /*Enter button*/
-    lv_obj_t * btn_enter = lv_btn_create(lv_scr_act(), btn_next);
+    lv_obj_t * btn_enter = lv_btn_create(scr, btn_next);
     lv_obj_set_free_num(btn_enter, LV_GROUP_KEY_ENTER);
     l = lv_label_create(btn_enter, NULL);
     lv_label_set_text(l, "Enter");
     lv_obj_align(btn_enter, btn_dec, LV_ALIGN_OUT_RIGHT_MID, LV_DPI / 4, 0);
 }
 
-static bool emulated_keypad_read(lv_indev_data_t * data)
+static bool emulated_keypad_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data)
 {
+    (void)indev_drv;                /*Unused*/
     data->key = last_key;
     data->state = last_state;
     return false;
@@ -211,11 +217,11 @@ static lv_res_t enable_action(lv_obj_t * btn)
     if(lv_btn_get_state(btn) == LV_BTN_STATE_REL) {
         /* Create a dark screen sized bg. with opacity to show
          * the other objects are not available now*/
-        lv_obj_set_style(lv_layer_top(), &style_mbox_bg);
-        lv_obj_set_click(lv_layer_top(), false);     /*It should be `true` but it'd block the emulated keyboard too*/
+        lv_obj_set_style(lv_disp_get_layer_top(NULL), &style_mbox_bg);
+        lv_obj_set_click(lv_disp_get_layer_top(NULL), false);     /*It should be `true` but it'd block the emulated keyboard too*/
 
         /*Create a message box*/
-        lv_obj_t * mbox = lv_mbox_create(lv_layer_top(), NULL);
+        lv_obj_t * mbox = lv_mbox_create(lv_disp_get_layer_top(NULL), NULL);
         lv_mbox_set_text(mbox, "Turn on something?");
         lv_group_add_obj(g, mbox);          /*Add to he group*/
 
@@ -247,8 +253,8 @@ static lv_res_t mbox_action(lv_obj_t * btn, const char * txt)
     lv_obj_t * mbox = lv_mbox_get_from_btn(btn);
 
     /*Revert the top layer to not block*/
-    lv_obj_set_style(lv_layer_top(), &lv_style_transp);
-    lv_obj_set_click(lv_layer_top(), false);
+    lv_obj_set_style(lv_disp_get_layer_top(NULL), &lv_style_transp);
+    lv_obj_set_click(lv_disp_get_layer_top(NULL), false);
 
 
     /*Mark the enabled state by toggling the button*/

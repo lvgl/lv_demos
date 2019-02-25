@@ -80,11 +80,13 @@
  */
 void lv_tutorial_responsive(void)
 {
+    lv_obj_t * scr = lv_disp_get_scr_act(NULL);     /*Get the current screen*/
+
     lv_obj_t * label;
 
     /*LV_DPI*/
     lv_obj_t * btn1;
-    btn1 = lv_btn_create(lv_scr_act(), NULL);
+    btn1 = lv_btn_create(scr, NULL);
     lv_obj_set_pos(btn1, LV_DPI / 10, LV_DPI / 10);     /*Use LV_DPI to set the position*/
     lv_obj_set_size(btn1, LV_DPI, LV_DPI / 2);          /*Use LVDOI to set the size*/
 
@@ -93,7 +95,7 @@ void lv_tutorial_responsive(void)
 
     /*ALIGN*/
     lv_obj_t * btn2;
-    btn2 = lv_btn_create(lv_scr_act(), btn1);
+    btn2 = lv_btn_create(scr, btn1);
     lv_obj_align(btn2, btn1, LV_ALIGN_OUT_RIGHT_MID, LV_DPI / 4, 0);
 
     label = lv_label_create(btn2, NULL);
@@ -101,7 +103,7 @@ void lv_tutorial_responsive(void)
 
     /*AUTO FIT*/
     lv_obj_t * btn3;
-    btn3 = lv_btn_create(lv_scr_act(), btn1);
+    btn3 = lv_btn_create(scr, btn1);
     lv_btn_set_fit(btn3, LV_FIT_TIGHT);
 
     label = lv_label_create(btn3, NULL);
@@ -111,7 +113,7 @@ void lv_tutorial_responsive(void)
 
     /*LAYOUT*/
     lv_obj_t * btn4;
-    btn4 = lv_btn_create(lv_scr_act(), btn1);
+    btn4 = lv_btn_create(scr, btn1);
     lv_btn_set_fit(btn4, LV_FIT_TIGHT);           /*Enable fit too*/
     lv_btn_set_layout(btn4, LV_LAYOUT_COL_R);   /*Right aligned column layout*/
 

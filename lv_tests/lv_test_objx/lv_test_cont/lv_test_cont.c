@@ -40,12 +40,12 @@
 void lv_test_cont_1(void)
 {
     /* Create a default object*/
-    lv_obj_t * cont1 = lv_cont_create(lv_scr_act(), NULL);
+    lv_obj_t * cont1 = lv_cont_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_pos(cont1, 10, 10);
     lv_cont_set_style(cont1, &lv_style_pretty);
 
     /*Test fit wit adding two labels*/
-    lv_obj_t * cont2 = lv_cont_create(lv_scr_act(), cont1);
+    lv_obj_t * cont2 = lv_cont_create(lv_disp_get_scr_act(NULL), cont1);
     lv_cont_set_fit(cont2, LV_FIT_TIGHT);
 
     lv_obj_t * obj2_1 = lv_label_create(cont2, NULL);
@@ -58,7 +58,7 @@ void lv_test_cont_1(void)
     lv_obj_align(cont2, cont1, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
 
     /*Test layout and fit togother*/
-    lv_obj_t * cont3 = lv_cont_create(lv_scr_act(), cont2);
+    lv_obj_t * cont3 = lv_cont_create(lv_disp_get_scr_act(NULL), cont2);
     lv_label_create(cont3, obj2_1);
     lv_label_create(cont3, obj2_2);
     lv_cont_set_layout(cont3, LV_LAYOUT_COL_L);
@@ -73,7 +73,7 @@ void lv_test_cont_1(void)
     cont4_style.body.padding.ver = 40;
     cont4_style.body.padding.inner = 1;
 
-    lv_obj_t * cont4 = lv_cont_create(lv_scr_act(), cont3);
+    lv_obj_t * cont4 = lv_cont_create(lv_disp_get_scr_act(NULL), cont3);
     lv_label_create(cont4, obj2_1);
     lv_label_create(cont4, obj2_2);
     lv_cont_set_style(cont4, &cont4_style);
@@ -96,7 +96,7 @@ void lv_test_cont_2(void)
     cont4_style.body.padding.inner = 1;
 
     /* Create a main container*/
-    lv_obj_t * cont_main = lv_cont_create(lv_scr_act(), NULL);
+    lv_obj_t * cont_main = lv_cont_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_pos(cont_main, 50, 50);
     lv_cont_set_style(cont_main, &lv_style_pretty);
     lv_cont_set_fit(cont_main, LV_FIT_TIGHT);

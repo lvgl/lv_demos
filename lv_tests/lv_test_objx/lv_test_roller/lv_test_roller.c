@@ -40,7 +40,7 @@
 void lv_test_roller_1(void)
 {
     /* Default object*/
-    lv_obj_t * roller1 = lv_roller_create(lv_scr_act(), NULL);
+    lv_obj_t * roller1 = lv_roller_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_pos(roller1, 10, 10);
 
 
@@ -53,7 +53,7 @@ void lv_test_roller_1(void)
     bg.text.opa = LV_OPA_60;
     bg.text.color = LV_COLOR_GRAY;
 
-    lv_obj_t * roller2 = lv_roller_create(lv_scr_act(), NULL);
+    lv_obj_t * roller2 = lv_roller_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_size(roller2, 80, 120);
     lv_roller_set_options(roller2, "0\n1\n2\n3\n4\n5\n6\n7\n8\n9");
     lv_obj_align(roller2, roller1, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
@@ -62,7 +62,7 @@ void lv_test_roller_1(void)
     lv_roller_set_style(roller2, LV_ROLLER_STYLE_SEL, &lv_style_plain);
     lv_roller_set_selected(roller2, 4, true);
 
-    lv_obj_t * roller3 = lv_roller_create(lv_scr_act(), roller2);
+    lv_obj_t * roller3 = lv_roller_create(lv_disp_get_scr_act(NULL), roller2);
     lv_obj_align(roller3, roller2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     lv_roller_set_hor_fit(roller3, false);
     lv_obj_set_width(roller3, LV_DPI);

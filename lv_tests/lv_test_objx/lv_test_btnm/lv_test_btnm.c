@@ -46,9 +46,12 @@ static const char * btnm_map[] = {"One line", "\n", "\212", "\242Ina", "\204long
  */
 void lv_test_btnm_1(void)
 {
+    lv_coord_t hres = lv_disp_get_hor_res(NULL);
+    lv_coord_t vres = lv_disp_get_ver_res(NULL);
+
     /* Default object
      * GOAL: A button matrix with default buttons */
-    lv_obj_t * btnm1 = lv_btnm_create(lv_scr_act(), NULL);
+    lv_obj_t * btnm1 = lv_btnm_create(lv_disp_get_scr_act(NULL), NULL);
 
     /* Test map, size and position. Also try some features.
      * GOAL: A button matrix with default buttons.  */
@@ -65,9 +68,9 @@ void lv_test_btnm_1(void)
     pr.text.color = LV_COLOR_WHITE;
 
 
-    lv_obj_t * btnm2 = lv_btnm_create(lv_scr_act(), NULL);
+    lv_obj_t * btnm2 = lv_btnm_create(lv_disp_get_scr_act(NULL), NULL);
     lv_btnm_set_map(btnm2, btnm_map);
-    lv_obj_set_size(btnm2, LV_HOR_RES / 2, LV_VER_RES / 3);
+    lv_obj_set_size(btnm2, hres / 2, vres / 3);
     lv_obj_align(btnm2, btnm1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
     lv_btnm_set_toggle(btnm2, true, 2);
     lv_btnm_set_action(btnm2, btnm_action);
@@ -75,7 +78,7 @@ void lv_test_btnm_1(void)
     lv_btnm_set_style(btnm2, LV_BTNM_STYLE_BTN_PR, &pr);
 
 
-    lv_obj_t * btnm3 = lv_btnm_create(lv_scr_act(), btnm2);
+    lv_obj_t * btnm3 = lv_btnm_create(lv_disp_get_scr_act(NULL), btnm2);
     lv_obj_align(btnm3, btnm1, LV_ALIGN_OUT_BOTTOM_RIGHT, 0, 20);
 }
 

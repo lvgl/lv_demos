@@ -14,8 +14,6 @@
  *********************/
 #define TERMINAL_ANIM_TIME   100 /*[ms]*/
 #define TERMINAL_NO_INPUT    0   /*Do not create Text area and Keyboard*/
-#define TERMINAL_WIDTH       (LV_HOR_RES / 2)
-#define TERMINAL_HEIGHT      (LV_VER_RES)
 #define TERMINAL_LOG_LENGTH  512        /*Characters*/
 
 /**********************
@@ -57,9 +55,14 @@ lv_obj_t * terminal_create(void)
     style_bg.body.border.color = LV_COLOR_WHITE;
     style_bg.text.color = LV_COLOR_MAKE(0xE0, 0xE0, 0xE0);
 
-    win = lv_win_create(lv_scr_act(), NULL);
+
+
+    lv_coord_t hres = lv_disp_get_hor_res(NULL);
+    lv_coord_t vres = lv_disp_get_ver_res(NULL);
+
+    win = lv_win_create(lv_disp_get_scr_act(NULL), NULL);
     lv_win_set_style(win, LV_WIN_STYLE_BG, &style_bg);
-    lv_obj_set_size(win, TERMINAL_WIDTH, TERMINAL_HEIGHT);
+    lv_obj_set_size(win, hres, vres);
     lv_win_set_sb_mode(win, LV_SB_MODE_AUTO);
     lv_win_add_btn(win, SYMBOL_CLOSE, win_close_action);
 

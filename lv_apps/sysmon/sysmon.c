@@ -55,7 +55,11 @@ void sysmon_create(void)
 {
     refr_task = lv_task_create(sysmon_task, REFR_TIME, LV_TASK_PRIO_LOW, NULL);
 
-    win = lv_win_create(lv_scr_act(), NULL);
+
+    lv_coord_t hres = lv_disp_get_hor_res(NULL);
+    lv_coord_t vres = lv_disp_get_ver_res(NULL);
+
+    win = lv_win_create(lv_disp_get_scr_act(NULL), NULL);
     lv_win_add_btn(win, SYMBOL_CLOSE, win_close_action);
 
     /*Make the window content responsive*/
@@ -63,7 +67,7 @@ void sysmon_create(void)
 
     /*Create a chart with two data lines*/
     chart = lv_chart_create(win, NULL);
-    lv_obj_set_size(chart, LV_HOR_RES / 2, LV_VER_RES / 2);
+    lv_obj_set_size(chart, hres / 2, vres / 2);
     lv_obj_set_pos(chart, LV_DPI / 10, LV_DPI / 10);
     lv_chart_set_point_count(chart, CHART_POINT_NUM);
     lv_chart_set_range(chart, 0, 100);

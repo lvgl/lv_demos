@@ -45,12 +45,12 @@ void lv_test_theme_1(lv_theme_t * th)
     lv_theme_set_current(th);
     th = lv_theme_get_current();    /*If `LV_THEME_LIVE_UPDATE  1` `th` is not used directly so get the real theme after set*/
     lv_obj_t * scr = lv_cont_create(NULL, NULL);
-    lv_scr_load(scr);
+    lv_disp_set_scr_act(scr);
     lv_cont_set_style(scr, th->style.bg);
 
 
     lv_obj_t * tv = lv_tabview_create(scr, NULL);
-    lv_obj_set_size(tv, LV_HOR_RES, LV_VER_RES);
+    lv_obj_set_size(tv, lv_disp_get_hor_res(NULL), lv_disp_get_ver_res(NULL));
     lv_obj_t * tab1 = lv_tabview_add_tab(tv, "Tab 1");
     lv_obj_t * tab2 = lv_tabview_add_tab(tv, "Tab 2");
     lv_obj_t * tab3 = lv_tabview_add_tab(tv, "Tab 3");
@@ -111,7 +111,7 @@ static void create_tab1(lv_obj_t * parent)
 
     static const char * btnm_str[] = {"1", "2", "3", SYMBOL_OK, SYMBOL_CLOSE, ""};
     lv_obj_t * btnm = lv_btnm_create(h, NULL);
-    lv_obj_set_size(btnm, LV_HOR_RES / 4, 2 * LV_DPI / 3);
+    lv_obj_set_size(btnm, lv_disp_get_hor_res(NULL) / 4, 2 * LV_DPI / 3);
     lv_btnm_set_map(btnm, btnm_str);
     lv_btnm_set_toggle(btnm, true, 3);
 
@@ -167,7 +167,12 @@ static void create_tab1(lv_obj_t * parent)
     lv_bar_set_value(slider, 70);
 
     lv_obj_t * line = lv_line_create(h, NULL);
-    static const lv_point_t line_p[] = {{0, 0}, {LV_HOR_RES / 5, 0}};
+    static lv_point_t line_p[2];
+    line_p[0].x = 0;
+    line_p[0].y = 0;
+    line_p[1].x = lv_disp_get_hor_res(NULL) / 5;
+    line_p[1].y = 0;
+
     lv_line_set_points(line, line_p, 2);
     lv_line_set_style(line, th->style.line.decor);
 
@@ -186,7 +191,7 @@ static void create_tab1(lv_obj_t * parent)
     lv_obj_t * list = lv_list_create(h, NULL);
     lv_obj_t * list_btn;
     list_btn = lv_list_add(list, SYMBOL_GPS,  "GPS",  NULL);
-    lv_obj_set_size(list, LV_HOR_RES / 4, LV_VER_RES / 2);
+    lv_obj_set_size(list, lv_disp_get_hor_res(NULL) / 4, lv_disp_get_ver_res(NULL) / 2);
     lv_btn_set_toggle(list_btn, true);
     lv_list_add(list, SYMBOL_WIFI, "WiFi", NULL);
     lv_list_add(list, SYMBOL_GPS, "GPS", NULL);
@@ -212,7 +217,7 @@ static void create_tab2(lv_obj_t * parent)
     lv_coord_t w = lv_page_get_scrl_width(parent);
 
     lv_obj_t * chart = lv_chart_create(parent, NULL);
-    lv_obj_set_size(chart, w / 3, LV_VER_RES / 3);
+    lv_obj_set_size(chart, w / 3, lv_disp_get_ver_res(NULL) / 3);
     lv_obj_set_pos(chart, LV_DPI / 10, LV_DPI / 10);
     lv_chart_series_t * s1 = lv_chart_add_series(chart, LV_COLOR_RED);
     lv_chart_set_next(chart, s1, 30);
@@ -237,12 +242,12 @@ static void create_tab2(lv_obj_t * parent)
     lv_obj_align(arc, gauge, LV_ALIGN_OUT_BOTTOM_MID, 0, LV_DPI / 8);
 
     lv_obj_t * ta = lv_ta_create(parent, NULL);
-    lv_obj_set_size(ta, w / 3, LV_VER_RES / 4);
+    lv_obj_set_size(ta, w / 3, lv_disp_get_ver_res(NULL) / 4);
     lv_obj_align(ta, NULL, LV_ALIGN_IN_TOP_RIGHT, -LV_DPI / 10, LV_DPI / 10);
     lv_ta_set_cursor_type(ta, LV_CURSOR_BLOCK);
 
     lv_obj_t * kb = lv_kb_create(parent, NULL);
-    lv_obj_set_size(kb, 2 * w / 3, LV_VER_RES / 3);
+    lv_obj_set_size(kb, 2 * w / 3, lv_disp_get_ver_res(NULL) / 3);
     lv_obj_align(kb, ta, LV_ALIGN_OUT_BOTTOM_RIGHT, 0, LV_DPI);
     lv_kb_set_ta(kb, ta);
 
@@ -259,7 +264,7 @@ static void create_tab3(lv_obj_t * parent)
     lv_obj_t * win = lv_win_create(parent, NULL);
     lv_win_add_btn(win, SYMBOL_CLOSE, lv_win_close_action);
     lv_win_add_btn(win, SYMBOL_DOWN, NULL);
-    lv_obj_set_size(win, LV_HOR_RES / 2, LV_VER_RES / 2);
+    lv_obj_set_size(win, lv_disp_get_hor_res(NULL) / 2, lv_disp_get_ver_res(NULL) / 2);
     lv_obj_set_pos(win, LV_DPI / 20, LV_DPI / 20);
     lv_obj_set_top(win, true);
 
@@ -284,7 +289,7 @@ static void create_tab3(lv_obj_t * parent)
 
     /*Create a Page*/
     lv_obj_t * page = lv_page_create(parent, NULL);
-    lv_obj_set_size(page, LV_HOR_RES / 3, LV_VER_RES / 2);
+    lv_obj_set_size(page, lv_disp_get_hor_res(NULL) / 3, lv_disp_get_ver_res(NULL) / 2);
     lv_obj_set_top(page, true);
     lv_obj_align(page, win, LV_ALIGN_IN_TOP_RIGHT,  LV_DPI, LV_DPI);
 

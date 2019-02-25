@@ -53,20 +53,23 @@ LV_IMG_DECLARE(img_flower_icon);
  */
 void lv_test_stress_1(void)
 {
+    lv_coord_t hres = lv_disp_get_hor_res(NULL);
+    lv_coord_t vres = lv_disp_get_ver_res(NULL);
+
     lv_task_create(obj_mem_leak_tester, 200, LV_TASK_PRIO_MID, NULL);
     lv_task_create(mem_monitor, 500, LV_TASK_PRIO_MID, NULL);
     lv_task_create(alloc_free_tester, 100, LV_TASK_PRIO_MID, NULL);
 
     /* Holder for all object types */
-    all_obj_h = lv_obj_create(lv_scr_act(), NULL);
-    lv_obj_set_size(all_obj_h, LV_HOR_RES / 2, LV_VER_RES);
+    all_obj_h = lv_obj_create(lv_disp_get_scr_act(NULL), NULL);
+    lv_obj_set_size(all_obj_h, hres / 2, vres);
     lv_obj_set_style(all_obj_h, &lv_style_pretty);
 
-    alloc_ta = lv_ta_create(lv_scr_act(), NULL);
+    alloc_ta = lv_ta_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_align(alloc_ta, all_obj_h, LV_ALIGN_OUT_RIGHT_TOP, 10, 10);
-    lv_obj_set_height(alloc_ta, LV_VER_RES / 4);
+    lv_obj_set_height(alloc_ta, vres / 4);
 
-    alloc_label = lv_label_create(lv_scr_act(), NULL);
+    alloc_label = lv_label_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_align(alloc_label, alloc_ta, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
 
@@ -112,6 +115,9 @@ static void obj_mem_leak_tester(void * param)
 {
     (void) param;    /*Unused*/
 
+    lv_coord_t hres = lv_disp_get_hor_res(NULL);
+    lv_coord_t vres = lv_disp_get_ver_res(NULL);
+
     static int16_t state = 0;
     lv_obj_t * obj;
     static lv_obj_t * page;
@@ -153,7 +159,7 @@ static void obj_mem_leak_tester(void * param)
         case 2:     /*Page tests container too*/
             page = lv_page_create(all_obj_h, NULL);
             lv_obj_set_pos(page, 10, 60);
-            lv_obj_set_size(page, lv_obj_get_width(all_obj_h) - (20), 3 * LV_VER_RES / 4);
+            lv_obj_set_size(page, lv_obj_get_width(all_obj_h) - (20), 3 * vres / 4);
             lv_page_set_scrl_layout(page, LV_LAYOUT_PRETTY);
             break;
         case 3:
@@ -174,7 +180,7 @@ static void obj_mem_leak_tester(void * param)
             break;
         case 8:     /*Kb tests butm too*/
             obj = lv_kb_create(all_obj_h, NULL);
-            lv_obj_set_size(obj, LV_HOR_RES / 3, LV_VER_RES / 5);
+            lv_obj_set_size(obj, hres / 3, vres / 5);
             lv_obj_set_pos(obj, 30, 90);
             lv_obj_animate(obj, LV_ANIM_FLOAT_BOTTOM | LV_ANIM_IN, 200, 0, NULL);
             break;
@@ -205,7 +211,7 @@ static void obj_mem_leak_tester(void * param)
             lv_win_add_btn(obj, SYMBOL_CLOSE, NULL);
             lv_win_add_btn(obj, SYMBOL_OK, NULL);
             lv_win_set_style(obj, LV_WIN_STYLE_BG, &lv_style_pretty);
-            lv_obj_set_size(obj, LV_HOR_RES / 3, LV_VER_RES / 3);
+            lv_obj_set_size(obj, hres / 3, vres / 3);
             lv_obj_set_pos(obj, 20, 100);
             break;
         case 17:
@@ -214,12 +220,12 @@ static void obj_mem_leak_tester(void * param)
             lv_tabview_add_tab(obj, "tab2");
             lv_tabview_add_tab(obj, "tab3");
             lv_tabview_set_style(obj, LV_TABVIEW_STYLE_BG, &lv_style_pretty);
-            lv_obj_set_size(obj, LV_HOR_RES / 3, LV_VER_RES / 3);
+            lv_obj_set_size(obj, hres / 3, vres / 3);
             lv_obj_set_pos(obj, 50, 140);
             break;
         case 18:
             obj = lv_mbox_create(all_obj_h, NULL);
-            lv_obj_set_width(obj, LV_HOR_RES / 4);
+            lv_obj_set_width(obj, hres / 4);
             lv_mbox_set_text(obj, "message");
             lv_mbox_add_btns(obj, mbox_btns, NULL); /*Set 3 times to test btnm add memory leasks*/
             lv_mbox_add_btns(obj, mbox_btns, NULL);

@@ -60,6 +60,8 @@ extern "C" {
 
 #include "lv_test_group/lv_test_group.h"
 
+#include "lv_test_stress/lv_test_stress.h"
+
 /*********************
  *      DEFINES
  *********************/
