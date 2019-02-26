@@ -21,7 +21,7 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static lv_res_t list_move(lv_obj_t * btn);
+static void list_move_event_handler(lv_obj_t * btn, lv_event_t event);
 
 /**********************
  *  STATIC VARIABLES
@@ -82,7 +82,7 @@ void lv_test_list_1(void)
     /*Add list up/down buttons*/
     lv_obj_t * btn_up = lv_btn_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_align(btn_up, list1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
-    lv_btn_set_action(btn_up, LV_BTN_ACTION_CLICK, list_move);
+    lv_obj_set_event_cb(btn_up, list_move_event_handler);
     lv_obj_set_free_num(btn_up, 0);
     lv_obj_t * label = lv_label_create(btn_up, NULL);
     lv_label_set_text(label, SYMBOL_UP);
@@ -101,8 +101,10 @@ void lv_test_list_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-static lv_res_t list_move(lv_obj_t * btn)
+static void list_move_event_handler(lv_obj_t * btn, lv_event_t event)
 {
+    if(event != LV_EVENT_CLICKED) return;
+
     if(lv_obj_get_free_num(btn) == 0) {
         lv_list_up(list1);
         lv_list_up(list2);
@@ -114,7 +116,6 @@ static lv_res_t list_move(lv_obj_t * btn)
         lv_list_down(list3);
         lv_list_down(list4);
     }
-    return LV_RES_OK;
 }
 
 #endif /*USE_LV_LIST && USE_LV_TESTS*/

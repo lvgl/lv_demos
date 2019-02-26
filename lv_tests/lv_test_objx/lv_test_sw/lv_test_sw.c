@@ -22,7 +22,7 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static lv_res_t sw_action(lv_obj_t * sw);
+static void event_handler(lv_obj_t * sw, lv_event_t event);
 
 /**********************
  *  STATIC VARIABLES
@@ -44,7 +44,7 @@ void lv_test_sw_1(void)
     /* Default object */
     lv_obj_t * sw1 = lv_sw_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_pos(sw1, 10, 10);
-    lv_sw_set_action(sw1, sw_action);
+    lv_obj_set_event_cb(sw1, event_handler);
 
     static lv_style_t bg;
     static lv_style_t indic;
@@ -75,12 +75,14 @@ void lv_test_sw_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-static lv_res_t sw_action(lv_obj_t * sw)
+static void event_handler(lv_obj_t * sw, lv_event_t event)
 {
+
+    if(event == LV_EVENT_VALUE_CHANGED) {
 #if LV_EX_PRINTF
-    printf("Switch state: %d\n", lv_sw_get_state(sw));
+        printf("Switch state: %d\n", lv_sw_get_state(sw));
 #endif
-    return LV_RES_OK;
+    }
 }
 
 

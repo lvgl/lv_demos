@@ -21,13 +21,13 @@
  *  STATIC PROTOTYPES
  **********************/
 static void write_create(lv_obj_t * parent);
-static lv_res_t keyboard_open_close(lv_obj_t * ta);
-static lv_res_t keyboard_hide_action(lv_obj_t * keyboard);
+static void text_area_event_handler(lv_obj_t * text_area, lv_event_t event);
+static void keyboard_event_handler(lv_obj_t * keyboard, lv_event_t event);
 static void kb_hide_anim_end(lv_obj_t * keyboard);
 static void list_create(lv_obj_t * parent);
 static void chart_create(lv_obj_t * parent);
-static lv_res_t slider_action(lv_obj_t * slider);
-static lv_res_t list_btn_action(lv_obj_t * slider);
+static void slider_event_handler(lv_obj_t * slider, lv_event_t event);
+static void list_btn_event_handler(lv_obj_t * slider, lv_event_t event);
 #if LV_DEMO_SLIDE_SHOW
 static void tab_switcher(void * tv);
 #endif
@@ -60,8 +60,8 @@ LV_IMG_DECLARE(img_bubble_pattern);
  */
 void demo_create(void)
 {
-
     lv_coord_t hres = lv_disp_get_hor_res(NULL);
+    lv_coord_t vres = lv_disp_get_ver_res(NULL);
 
 #if LV_DEMO_WALLPAPER
     lv_obj_t * wp = lv_img_create(lv_disp_get_scr_act(NULL), NULL);
@@ -78,7 +78,7 @@ void demo_create(void)
 
     static lv_style_t style_tv_btn_rel;
     lv_style_copy(&style_tv_btn_rel, &lv_style_btn_rel);
-    style_tv_btn_rel.body.empty = 1;
+    style_tv_btn_rel.body.opa = LV_OPA_TRANSP;
     style_tv_btn_rel.body.border.width = 0;
 
     static lv_style_t style_tv_btn_pr;
@@ -91,6 +91,7 @@ void demo_create(void)
     style_tv_btn_pr.text.color = LV_COLOR_GRAY;
 
     lv_obj_t * tv = lv_tabview_create(lv_disp_get_scr_act(NULL), NULL);
+    lv_obj_set_size(tv, hres, vres);
 
 #if LV_DEMO_WALLPAPER
     lv_obj_set_parent(wp, ((lv_tabview_ext_t *) tv->ext_attr)->content);
@@ -143,7 +144,7 @@ static void write_create(lv_obj_t * parent)
     lv_obj_set_size(ta, lv_page_get_scrl_width(parent), lv_obj_get_height(parent) / 2);
     lv_ta_set_style(ta, LV_TA_STYLE_BG, &style_ta);
     lv_ta_set_text(ta, "");
-    lv_page_set_rel_action(ta, keyboard_open_close);
+    lv_obj_set_event_cb(ta, text_area_event_handler);
 
     lv_style_copy(&style_kb, &lv_style_plain);
     style_kb.body.opa = LV_OPA_70;
@@ -154,7 +155,7 @@ static void write_create(lv_obj_t * parent)
     style_kb.body.padding.inner = 0;
 
     lv_style_copy(&style_kb_rel, &lv_style_plain);
-    style_kb_rel.body.empty = 1;
+    style_kb_rel.body.opa = LV_OPA_TRANSP;
     style_kb_rel.body.radius = 0;
     style_kb_rel.body.border.width = 1;
     style_kb_rel.body.border.color = LV_COLOR_SILVER;
@@ -171,33 +172,34 @@ static void write_create(lv_obj_t * parent)
     style_kb_pr.body.border.width = 1;
     style_kb_pr.body.border.color = LV_COLOR_SILVER;
 
-    keyboard_open_close(ta);
 }
 
-static lv_res_t keyboard_open_close(lv_obj_t * text_area)
+static void text_area_event_handler(lv_obj_t * text_area, lv_event_t event)
 {
     (void) text_area;    /*Unused*/
 
-    lv_obj_t * parent = lv_obj_get_parent(lv_obj_get_parent(ta));   /*Test area is on the scrollable part of the page but we need the page itself*/
+    /*Text area is on the scrollable part of the page but we need the page itself*/
+    lv_obj_t * parent = lv_obj_get_parent(lv_obj_get_parent(ta));
 
-    if(kb) {
-        return keyboard_hide_action(kb);
-    } else {
-        kb = lv_kb_create(parent, NULL);
-        lv_obj_set_size(kb, lv_page_get_scrl_width(parent), lv_obj_get_height(parent) / 2);
-        lv_obj_align(kb, ta, LV_ALIGN_OUT_BOTTOM_MID, 0, 0);
-        lv_kb_set_ta(kb, ta);
-        lv_kb_set_style(kb, LV_KB_STYLE_BG, &style_kb);
-        lv_kb_set_style(kb, LV_KB_STYLE_BTN_REL, &style_kb_rel);
-        lv_kb_set_style(kb, LV_KB_STYLE_BTN_PR, &style_kb_pr);
-        lv_kb_set_hide_action(kb, keyboard_hide_action);
-        lv_kb_set_ok_action(kb, keyboard_hide_action);
+    if(event == LV_EVENT_CLICKED) {
+        if(kb) {
+            lv_obj_send_event(kb, LV_EVENT_CANCEL);
+        } else {
+            kb = lv_kb_create(parent, NULL);
+            lv_obj_set_size(kb, lv_page_get_scrl_width(parent), lv_obj_get_height(parent) / 2);
+            lv_obj_align(kb, ta, LV_ALIGN_OUT_BOTTOM_MID, 0, 0);
+            lv_kb_set_ta(kb, ta);
+            lv_kb_set_style(kb, LV_KB_STYLE_BG, &style_kb);
+            lv_kb_set_style(kb, LV_KB_STYLE_BTN_REL, &style_kb_rel);
+            lv_kb_set_style(kb, LV_KB_STYLE_BTN_PR, &style_kb_pr);
+            lv_obj_set_event_cb(kb, keyboard_event_handler);
 
 #if USE_LV_ANIMATION
-        lv_obj_animate(kb, LV_ANIM_FLOAT_BOTTOM | LV_ANIM_IN, 300, 0, NULL);
+            lv_obj_animate(kb, LV_ANIM_FLOAT_BOTTOM | LV_ANIM_IN, 300, 0, NULL);
 #endif
-        return LV_RES_OK;
+        }
     }
+
 }
 
 /**
@@ -205,19 +207,19 @@ static lv_res_t keyboard_open_close(lv_obj_t * text_area)
  * @param keyboard pointer to the keyboard
  * @return
  */
-static lv_res_t keyboard_hide_action(lv_obj_t * keyboard)
+static void keyboard_event_handler(lv_obj_t * keyboard, lv_event_t event)
 {
     (void) keyboard;    /*Unused*/
 
+    if(event == LV_EVENT_APPLY || event == LV_EVENT_CANCEL) {
 #if USE_LV_ANIMATION
-    lv_obj_animate(kb, LV_ANIM_FLOAT_BOTTOM | LV_ANIM_OUT, 300, 0, kb_hide_anim_end);
-    kb = NULL;
-    return LV_RES_OK;
+        lv_obj_animate(kb, LV_ANIM_FLOAT_BOTTOM | LV_ANIM_OUT, 300, 0, kb_hide_anim_end);
+        kb = NULL;
 #else
-    lv_obj_del(kb);
-    kb = NULL;
-    return LV_RES_INV;
+        lv_obj_del(kb);
+        kb = NULL;
 #endif
+    }
 }
 
 static void list_create(lv_obj_t * parent)
@@ -253,13 +255,13 @@ static void list_create(lv_obj_t * parent)
     lv_list_set_style(list, LV_LIST_STYLE_BTN_PR, &style_btn_pr);
     lv_obj_align(list, NULL, LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 4);
 
-    lv_list_add(list, SYMBOL_FILE, "New", list_btn_action);
-    lv_list_add(list, SYMBOL_DIRECTORY, "Open", list_btn_action);
-    lv_list_add(list, SYMBOL_TRASH, "Delete", list_btn_action);
-    lv_list_add(list, SYMBOL_EDIT, "Edit", list_btn_action);
-    lv_list_add(list, SYMBOL_SAVE, "Save", list_btn_action);
-    lv_list_add(list, SYMBOL_WIFI, "WiFi", list_btn_action);
-    lv_list_add(list, SYMBOL_GPS, "GPS", list_btn_action);
+    lv_list_add(list, SYMBOL_FILE, "New", list_btn_event_handler);
+    lv_list_add(list, SYMBOL_DIRECTORY, "Open", list_btn_event_handler);
+    lv_list_add(list, SYMBOL_TRASH, "Delete", list_btn_event_handler);
+    lv_list_add(list, SYMBOL_EDIT, "Edit", list_btn_event_handler);
+    lv_list_add(list, SYMBOL_SAVE, "Save", list_btn_event_handler);
+    lv_list_add(list, SYMBOL_WIFI, "WiFi", list_btn_event_handler);
+    lv_list_add(list, SYMBOL_GPS, "GPS", list_btn_event_handler);
 
     lv_obj_t * mbox = lv_mbox_create(parent, NULL);
     lv_mbox_set_text(mbox, "Click a button to copy its text to the Text area ");
@@ -344,10 +346,10 @@ static void chart_create(lv_obj_t * parent)
     lv_slider_set_style(slider, LV_SLIDER_STYLE_KNOB, &style_knob);
     lv_obj_set_size(slider, lv_obj_get_width(chart), LV_DPI / 3);
     lv_obj_align(slider, chart, LV_ALIGN_OUT_BOTTOM_MID, 0, (vres - chart->coords.y2 - lv_obj_get_height(slider)) / 2); /*Align to below the chart*/
-    lv_slider_set_action(slider, slider_action);
+    lv_obj_set_event_cb(slider, slider_event_handler);
     lv_slider_set_range(slider, 10, 1000);
     lv_slider_set_value(slider, 700);
-    slider_action(slider);          /*Simulate a user value set the refresh the chart*/
+    slider_event_handler(slider, LV_EVENT_VALUE_CHANGED);          /*Simulate a user value set the refresh the chart*/
 }
 
 /**
@@ -355,13 +357,14 @@ static void chart_create(lv_obj_t * parent)
  * @param slider pointer to the slider
  * @return LV_RES_OK because the slider is not deleted in the function
  */
-static lv_res_t slider_action(lv_obj_t * slider)
+static void slider_event_handler(lv_obj_t * slider, lv_event_t event)
 {
-    int16_t v = lv_slider_get_value(slider);
-    v = 1000 * 100 / v; /*Convert to range modify values linearly*/
-    lv_chart_set_range(chart, 0, v);
 
-    return LV_RES_OK;
+    if(event == LV_EVENT_VALUE_CHANGED) {
+        int16_t v = lv_slider_get_value(slider);
+        v = 1000 * 100 / v; /*Convert to range modify values linearly*/
+        lv_chart_set_range(chart, 0, v);
+    }
 }
 
 /**
@@ -369,12 +372,13 @@ static lv_res_t slider_action(lv_obj_t * slider)
  * @param btn pointer to a list button
  * @return LV_RES_OK because the button is not deleted in the function
  */
-static lv_res_t list_btn_action(lv_obj_t * btn)
+static void list_btn_event_handler(lv_obj_t * btn, lv_event_t event)
 {
-    lv_ta_add_char(ta, '\n');
-    lv_ta_add_text(ta, lv_list_get_btn_text(btn));
 
-    return LV_RES_OK;
+    if(event == LV_EVENT_CLICKED) {
+        lv_ta_add_char(ta, '\n');
+        lv_ta_add_text(ta, lv_list_get_btn_text(btn));
+    }
 }
 
 #if LV_DEMO_SLIDE_SHOW

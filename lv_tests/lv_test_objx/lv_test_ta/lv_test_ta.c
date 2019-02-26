@@ -21,7 +21,7 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static lv_res_t cursor_move(lv_obj_t * btn);
+static void nav_btn_event_handler(lv_obj_t * btn, lv_event_t event);
 
 /**********************
  *  STATIC VARIABLES
@@ -180,7 +180,7 @@ void lv_test_ta_2(void)
     lv_obj_t * btn = lv_btn_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_align(btn, ta2_1, LV_ALIGN_OUT_RIGHT_MID, 10, 0);
     lv_obj_set_free_num(btn, 0);
-    lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, cursor_move);
+    lv_obj_set_event_cb(btn, nav_btn_event_handler);
     lv_obj_t * label = lv_label_create(btn, NULL);
     lv_label_set_text(label, "Up");
 
@@ -217,8 +217,10 @@ void lv_test_ta_2(void)
  *   STATIC FUNCTIONS
  **********************/
 
-static lv_res_t cursor_move(lv_obj_t * btn)
+static void nav_btn_event_handler(lv_obj_t * btn, lv_event_t event)
 {
+    if(event != LV_EVENT_CLICKED) return;
+
     switch(lv_obj_get_free_num(btn)) {
         case 0:
             lv_ta_cursor_up(ta2_1);

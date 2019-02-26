@@ -75,7 +75,7 @@ void lv_test_slider_1(void)
     lv_style_copy(&slider_knob, &lv_style_pretty);
     slider_knob.body.radius = LV_RADIUS_CIRCLE;
     slider_knob.body.border.color = LV_COLOR_BLUE;
-    slider_knob.body.empty = 1;
+    slider_knob.body.opa = LV_OPA_TRANSP;
 
     lv_obj_t * slider4 = lv_slider_create(lv_disp_get_scr_act(NULL), slider2);
     lv_obj_align(slider4, slider2, LV_ALIGN_OUT_RIGHT_MID, 20, 0);

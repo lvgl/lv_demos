@@ -130,7 +130,7 @@ void lv_tutorial_styles(void)
     static lv_style_t style_bar_bg;
     lv_style_copy(&style_bar_bg, &lv_style_pretty);
     style_bar_bg.body.radius = 3;
-    style_bar_bg.body.empty = 1;                            /*Empty (not filled)*/
+    style_bar_bg.body.opa = LV_OPA_TRANSP;                  /*Empty (not filled)*/
     style_bar_bg.body.border.color = LV_COLOR_GRAY;         /*Gray border color*/
     style_bar_bg.body.border.width = 6;                     /*2 px border width*/
     style_bar_bg.body.border.opa = LV_OPA_COVER;

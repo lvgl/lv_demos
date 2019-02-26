@@ -28,7 +28,7 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static lv_res_t ddlist_action(lv_obj_t * ddlist);
+static void event_handler(lv_obj_t * ddlist, lv_event_t event);
 
 /**********************
  *  STATIC VARIABLES
@@ -60,8 +60,8 @@ void lv_test_ddlist_1(void)
     lv_ddlist_set_selected(ddlist2, 2);
     lv_ddlist_set_anim_time(ddlist2, 100);
     lv_ddlist_open(ddlist2, false);
-    lv_ddlist_set_hor_fit(ddlist2, false);
-    lv_ddlist_set_action(ddlist2, ddlist_action);
+    lv_ddlist_set_fit(ddlist2, false);
+    lv_obj_set_event_cb(ddlist2, event_handler);
     lv_obj_set_width(ddlist2, LV_DPI * 2);
 
     /*Copy the previous drop down list and modify its style*/
@@ -86,16 +86,17 @@ void lv_test_ddlist_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-static lv_res_t ddlist_action(lv_obj_t * ddlist)
+
+static void event_handler(lv_obj_t * ddlist, lv_event_t event)
 {
+    if(event == LV_EVENT_VALUE_CHANGED) {
 
 #if LV_EX_PRINTF
     char buf[64];
     lv_ddlist_get_selected_str(ddlist, buf);
     printf("New option selected on a drop down list: %s\n", buf);
 #endif
-
-    return LV_RES_OK;
+    }
 }
 
 #endif /*USE_LV_DDLIST && USE_LV_TESTS*/
