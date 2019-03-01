@@ -40,8 +40,8 @@ void lv_test_tileview_1(void)
 {
     static const lv_point_t vp[] = {
                    {1,0},          /*First row: only the middle tile*/
-            {0,1}, {1,1}, {1,2},   /*Second row: all tree tiles */
-                   {2,1}, {2,2},   /*Third row: middle and right tile*/
+            {0,1}, {1,1}, {2,1},   /*Second row: all tree tiles */
+                   {1,2}, {2,2},   /*Third row: middle and right tile*/
             {LV_COORD_MIN, LV_COORD_MIN}};
 
     lv_obj_t * t;
