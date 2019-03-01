@@ -72,8 +72,8 @@ static void create_tab1(lv_obj_t * parent)
     static lv_style_t h_style;
     lv_style_copy(&h_style, &lv_style_transp);
     h_style.body.padding.inner = LV_DPI / 4;
-    h_style.body.padding.hor = LV_DPI / 4;
-    h_style.body.padding.ver = LV_DPI / 6;
+    h_style.body.padding.hor = LV_DPI / 12;
+    h_style.body.padding.ver = LV_DPI / 10;
 
     lv_obj_t * h = lv_cont_create(parent, NULL);
     lv_obj_set_style(h, &h_style);
@@ -148,7 +148,8 @@ static void create_tab1(lv_obj_t * parent)
 
     lv_obj_t * sw_h = lv_cont_create(h, NULL);
     lv_cont_set_style(sw_h, &lv_style_transp);
-    lv_cont_set_fit2(sw_h, LV_FIT_FLOOD, LV_FIT_TIGHT);
+    lv_cont_set_fit2(sw_h, LV_FIT_NONE, LV_FIT_TIGHT);
+    lv_obj_set_width(sw_h, LV_HOR_RES / 4);
     lv_cont_set_layout(sw_h, LV_LAYOUT_PRETTY);
 
     lv_obj_t * sw = lv_sw_create(sw_h, NULL);

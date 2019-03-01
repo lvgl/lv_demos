@@ -279,11 +279,9 @@ static void win_btn_event_handler(lv_obj_t * btn, lv_event_t event)
             break;
 
         case LV_EVENT_CLICKED:
-            last_key_state = LV_INDEV_STATE_PR;
-            break;
-
         case LV_EVENT_RELEASED:
         case LV_EVENT_PRESS_LOST:
+            last_key_state = LV_INDEV_STATE_REL;
             last_key = 0;
             break;
         default:
@@ -317,10 +315,15 @@ static void general_event_handler(lv_obj_t * obj, lv_event_t event)
             break;
 
         case LV_EVENT_LONG_PRESSED_REPEAT:
-            printf("Long press repeate\n");
+            printf("Long press repeat\n");
             break;
+
         case LV_EVENT_VALUE_CHANGED:
             printf("Value changed\n");
+            break;
+
+        case LV_EVENT_RELEASED:
+            printf("Released\n");
             break;
         default:
             break;
