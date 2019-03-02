@@ -179,11 +179,11 @@ void lv_test_group_1(void)
     lv_group_add_obj(g, obj);
 
     obj = lv_bar_create(win, NULL);
-    lv_bar_set_value(obj, 60);
+    lv_bar_set_value(obj, 60, false);
     lv_group_add_obj(g, obj);
 
     obj = lv_slider_create(win, NULL);
-    lv_slider_set_range(obj, 0, 10);
+    lv_slider_set_range(obj, 0, 1);
     lv_slider_set_action(obj, change_action);
     lv_group_add_obj(g, obj);
 

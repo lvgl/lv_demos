@@ -225,7 +225,7 @@ static void content_create(void)
     /*Slider*/
     lv_obj_t * slider = lv_slider_create(content, NULL);
     lv_obj_set_width(slider, LV_MATH_MIN(max_w, 3 * LV_DPI / 2));
-    lv_slider_set_value(slider, 30);
+    lv_slider_set_value(slider, 30, false);
 
     /*Roller*/
     static const char * days = "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday";
