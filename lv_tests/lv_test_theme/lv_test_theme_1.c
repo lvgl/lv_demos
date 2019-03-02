@@ -158,14 +158,14 @@ static void create_tab1(lv_obj_t * parent)
 #endif
 
     sw = lv_sw_create(sw_h, sw);
-    lv_sw_on(sw);
+    lv_sw_on(sw, false);
 
 
     lv_obj_t * bar = lv_bar_create(h, NULL);
-    lv_bar_set_value(bar, 70);
+    lv_bar_set_value(bar, 70, false);
 
     lv_obj_t * slider = lv_slider_create(h, NULL);
-    lv_bar_set_value(slider, 70);
+    lv_bar_set_value(slider, 70, false);
 
     lv_obj_t * line = lv_line_create(h, NULL);
     static lv_point_t line_p[2];

@@ -48,7 +48,7 @@ void lv_test_slider_1(void)
     lv_obj_set_size(slider2, 150, 50);
     lv_obj_align(slider2, slider1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
     lv_slider_set_range(slider2, -50, 50);
-    lv_slider_set_value(slider2, 25);
+    lv_slider_set_value(slider2, 25, false);
 
     /* Copy 'slider2' but set its size to be vertical (indicator at 75%)*/
     lv_obj_t * slider3 = lv_slider_create(lv_disp_get_scr_act(NULL), slider2);

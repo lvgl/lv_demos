@@ -348,7 +348,7 @@ static void chart_create(lv_obj_t * parent)
     lv_obj_align(slider, chart, LV_ALIGN_OUT_BOTTOM_MID, 0, (vres - chart->coords.y2 - lv_obj_get_height(slider)) / 2); /*Align to below the chart*/
     lv_obj_set_event_cb(slider, slider_event_handler);
     lv_slider_set_range(slider, 10, 1000);
-    lv_slider_set_value(slider, 700);
+    lv_slider_set_value(slider, 700, false);
     slider_event_handler(slider, LV_EVENT_VALUE_CHANGED);          /*Simulate a user value set the refresh the chart*/
 }
 
