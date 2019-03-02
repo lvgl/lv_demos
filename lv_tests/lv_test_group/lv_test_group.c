@@ -124,27 +124,21 @@ void lv_test_group_1(void)
     lv_group_add_obj(g, lv_win_get_content(win));
 
     lv_obj_t * win_btn = lv_win_add_btn(win, SYMBOL_RIGHT, win_btn_event_handler);
-    lv_obj_set_free_num(win_btn, LV_GROUP_KEY_RIGHT);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
 
     win_btn = lv_win_add_btn(win, SYMBOL_NEXT, win_btn_event_handler);
-    lv_obj_set_free_num(win_btn, LV_GROUP_KEY_NEXT);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
 
     win_btn = lv_win_add_btn(win, SYMBOL_OK, win_btn_event_handler);
-    lv_obj_set_free_num(win_btn, LV_GROUP_KEY_ENTER);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
 
     win_btn = lv_win_add_btn(win, SYMBOL_PREV, win_btn_event_handler);
-    lv_obj_set_free_num(win_btn, LV_GROUP_KEY_PREV);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
 
     win_btn = lv_win_add_btn(win, SYMBOL_LEFT, win_btn_event_handler);
-    lv_obj_set_free_num(win_btn, LV_GROUP_KEY_LEFT);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
 
     win_btn = lv_win_add_btn(win, SYMBOL_DUMMY"a", win_btn_event_handler);
-    lv_obj_set_free_num(win_btn, 'a');
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
 
     lv_obj_t * obj;
@@ -270,12 +264,22 @@ static void win_btn_event_handler(lv_obj_t * btn, lv_event_t event)
 {
     (void) btn; /*Unused*/
 
-    LV_OBJ_FREE_NUM_TYPE c = lv_obj_get_free_num(btn);
+    uint32_t key = 0;
+
+    lv_obj_t * label = lv_obj_get_child(btn, NULL);
+    const char * txt = lv_label_get_text(label);
+
+    if(strcmp(txt, SYMBOL_PREV) == 0) key = LV_GROUP_KEY_PREV;
+    else if(strcmp(txt, SYMBOL_NEXT) == 0) key = LV_GROUP_KEY_NEXT;
+    else if(strcmp(txt, SYMBOL_LEFT) == 0) key = LV_GROUP_KEY_LEFT;
+    else if(strcmp(txt, SYMBOL_RIGHT) == 0) key = LV_GROUP_KEY_RIGHT;
+    else if(strcmp(txt, SYMBOL_OK) == 0) key = LV_GROUP_KEY_ENTER;
+    else key = 'a';
 
     switch(event) {
         case LV_EVENT_PRESSED:
             last_key_state = LV_INDEV_STATE_PR;
-            last_key = c;
+            last_key = key;
             break;
 
         case LV_EVENT_CLICKED:

@@ -31,6 +31,9 @@ static lv_obj_t * list2;
 static lv_obj_t * list3;
 static lv_obj_t * list4;
 
+static lv_obj_t * btn_up;
+static lv_obj_t * btn_down;
+
 LV_IMG_DECLARE(img_flower_icon); /*Comes from lv_test_img*/
 
 /**********************
@@ -80,16 +83,14 @@ void lv_test_list_1(void)
     lv_obj_set_width(list4, 200);
 
     /*Add list up/down buttons*/
-    lv_obj_t * btn_up = lv_btn_create(lv_disp_get_scr_act(NULL), NULL);
+    btn_up = lv_btn_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_align(btn_up, list1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
     lv_obj_set_event_cb(btn_up, list_move_event_handler);
-    lv_obj_set_free_num(btn_up, 0);
     lv_obj_t * label = lv_label_create(btn_up, NULL);
     lv_label_set_text(label, SYMBOL_UP);
 
-    lv_obj_t * btn_down = lv_btn_create(lv_disp_get_scr_act(NULL), btn_up);
+    btn_down = lv_btn_create(lv_disp_get_scr_act(NULL), btn_up);
     lv_obj_align(btn_down, btn_up, LV_ALIGN_OUT_RIGHT_MID, 10, 0);
-    lv_obj_set_free_num(btn_down, 1);
     label = lv_label_create(btn_down, NULL);
     lv_label_set_text(label, SYMBOL_DOWN);
 
@@ -105,12 +106,12 @@ static void list_move_event_handler(lv_obj_t * btn, lv_event_t event)
 {
     if(event != LV_EVENT_CLICKED) return;
 
-    if(lv_obj_get_free_num(btn) == 0) {
+    if(btn == btn_up) {
         lv_list_up(list1);
         lv_list_up(list2);
         lv_list_up(list3);
         lv_list_up(list4);
-    } else {
+    } else if(btn == btn_down) {
         lv_list_down(list1);
         lv_list_down(list2);
         lv_list_down(list3);

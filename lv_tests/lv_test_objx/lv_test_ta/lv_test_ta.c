@@ -179,32 +179,27 @@ void lv_test_ta_2(void)
 
     lv_obj_t * btn = lv_btn_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_align(btn, ta2_1, LV_ALIGN_OUT_RIGHT_MID, 10, 0);
-    lv_obj_set_free_num(btn, 0);
     lv_obj_set_event_cb(btn, nav_btn_event_handler);
     lv_obj_t * label = lv_label_create(btn, NULL);
     lv_label_set_text(label, "Up");
 
     btn = lv_btn_create(lv_disp_get_scr_act(NULL), btn);
     lv_obj_align(btn, btn, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
-    lv_obj_set_free_num(btn, 1);
     label = lv_label_create(btn, NULL);
     lv_label_set_text(label, "Down");
 
     btn = lv_btn_create(lv_disp_get_scr_act(NULL), btn);
     lv_obj_align(btn, btn, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
-    lv_obj_set_free_num(btn, 2);
     label = lv_label_create(btn, NULL);
     lv_label_set_text(label, "Left");
 
     btn = lv_btn_create(lv_disp_get_scr_act(NULL), btn);
     lv_obj_align(btn, btn, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
-    lv_obj_set_free_num(btn, 3);
     label = lv_label_create(btn, NULL);
     lv_label_set_text(label, "Right");
 
     btn = lv_btn_create(lv_disp_get_scr_act(NULL), btn);
     lv_obj_align(btn, btn, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
-    lv_obj_set_free_num(btn, 4);
     label = lv_label_create(btn, NULL);
     lv_label_set_text(label, "Del");
 
@@ -221,41 +216,33 @@ static void nav_btn_event_handler(lv_obj_t * btn, lv_event_t event)
 {
     if(event != LV_EVENT_CLICKED) return;
 
-    switch(lv_obj_get_free_num(btn)) {
-        case 0:
-            lv_ta_cursor_up(ta2_1);
-            lv_ta_cursor_up(ta2_2);
-            lv_ta_cursor_up(ta2_3);
-            lv_ta_cursor_up(ta2_4);
-            break;
 
-        case 1:
-            lv_ta_cursor_down(ta2_1);
-            lv_ta_cursor_down(ta2_2);
-            lv_ta_cursor_down(ta2_3);
-            lv_ta_cursor_down(ta2_4);
-            break;
+    lv_obj_t * label = lv_obj_get_child(btn, NULL);
+    const char * txt = lv_label_get_text(label);
 
-        case 2:
-            lv_ta_cursor_left(ta2_1);
-            lv_ta_cursor_left(ta2_2);
-            lv_ta_cursor_left(ta2_3);
-            lv_ta_cursor_left(ta2_4);
-            break;
-
-        case 3:
-            lv_ta_cursor_right(ta2_1);
-            lv_ta_cursor_right(ta2_2);
-            lv_ta_cursor_right(ta2_3);
-            lv_ta_cursor_right(ta2_4);
-            break;
-
-        case 4:
-            lv_ta_del_char(ta2_1);
-            lv_ta_del_char(ta2_2);
-            lv_ta_del_char(ta2_3);
-            lv_ta_del_char(ta2_4);
-            break;
+    if(strcmp(txt, "Up") == 0) {
+        lv_ta_cursor_up(ta2_1);
+        lv_ta_cursor_up(ta2_2);
+        lv_ta_cursor_up(ta2_3);
+        lv_ta_cursor_up(ta2_4);
+    }
+    else if(strcmp(txt, "Down") == 0) {
+        lv_ta_cursor_down(ta2_1);
+        lv_ta_cursor_down(ta2_2);
+        lv_ta_cursor_down(ta2_3);
+        lv_ta_cursor_down(ta2_4);
+    }
+    else if(strcmp(txt, "Left") == 0) {
+        lv_ta_cursor_left(ta2_1);
+        lv_ta_cursor_left(ta2_2);
+        lv_ta_cursor_left(ta2_3);
+        lv_ta_cursor_left(ta2_4);
+    }
+    else if(strcmp(txt, "Right") == 0) {
+        lv_ta_cursor_right(ta2_1);
+        lv_ta_cursor_right(ta2_2);
+        lv_ta_cursor_right(ta2_3);
+        lv_ta_cursor_right(ta2_4);
     }
 
     return LV_RES_OK;
