@@ -329,6 +329,12 @@ static void general_event_handler(lv_obj_t * obj, lv_event_t event)
         case LV_EVENT_RELEASED:
             printf("Released\n");
             break;
+        case LV_EVENT_FOCUSED:
+            printf("Foused\n");
+            break;
+        case LV_EVENT_DEFOCUSED:
+            printf("Defocused\n");
+            break;
         default:
             break;
     }

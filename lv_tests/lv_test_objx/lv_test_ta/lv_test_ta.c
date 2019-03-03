@@ -244,8 +244,5 @@ static void nav_btn_event_handler(lv_obj_t * btn, lv_event_t event)
         lv_ta_cursor_right(ta2_3);
         lv_ta_cursor_right(ta2_4);
     }
-
-    return LV_RES_OK;
-
 }
 #endif /*USE_LV_TA && USE_LV_TESTS*/

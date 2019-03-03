@@ -88,7 +88,6 @@ static void imgbtn_event_handler(lv_obj_t * imgbtn, lv_event_t event)
     #endif
     }
 
-    return LV_RES_OK;
 }
 
 #endif /*USE_LV_IMGBTN && USE_LV_TESTS*/
