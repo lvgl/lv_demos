@@ -17,7 +17,6 @@ Similary to `lv_conf.h` there is a configuration file for the examples too. It i
 
 ## Tutorial
 A step-by-step guide to teach the most important parts of the Graphics Library.
-* Porting
 * Hello world
 * Objects (graphical components)
 * Styles
