@@ -149,7 +149,7 @@ void lv_tutorial_styles(void)
     lv_obj_t * bar = lv_bar_create(scr, NULL);
     lv_bar_set_style(bar, LV_BAR_STYLE_BG, &style_bar_bg);
     lv_bar_set_style(bar, LV_BAR_STYLE_INDIC, &style_bar_indic);
-    lv_bar_set_value(bar, 70);
+    lv_bar_set_value(bar, 70, false);
     lv_obj_set_size(bar, 200, 30);
     lv_obj_align(bar, obj1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 

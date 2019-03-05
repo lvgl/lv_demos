@@ -65,12 +65,13 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static  lv_res_t btn_rel_action(lv_obj_t * btn);
-static  lv_res_t ddlist_action(lv_obj_t * ddlist);
+static void btn_event_cb(lv_obj_t * btn, lv_event_t event);
+static void ddlist_event_cb(lv_obj_t * ddlist, lv_event_t event);
 
 /**********************
  *  STATIC VARIABLES
  **********************/
+static lv_obj_t * slider;
 
 /**********************
  *      MACROS
@@ -107,8 +108,8 @@ void lv_tutorial_objects(void)
      ***********************/
     /*Create a button*/
     lv_obj_t * btn1 = lv_btn_create(lv_disp_get_scr_act(NULL), NULL);         /*Create a button on the currently loaded screen*/
-    lv_btn_set_action(btn1, LV_BTN_ACTION_CLICK, btn_rel_action); /*Set function to be called when the button is released*/
-    lv_obj_align(btn1, label, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);  /*Align below the label*/
+    lv_obj_set_event_cb(btn1, btn_event_cb);                                  /*Set function to be called when the button is released*/
+    lv_obj_align(btn1, label, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);               /*Align below the label*/
 
     /*Create a label on the button (the 'label' variable can be reused)*/
     label = lv_label_create(btn1, NULL);
@@ -125,20 +126,19 @@ void lv_tutorial_objects(void)
     /****************
      * ADD A SLIDER
      ****************/
-    lv_obj_t * slider = lv_slider_create(scr, NULL);                            /*Create a slider*/
+    slider = lv_slider_create(scr, NULL);                            /*Create a slider*/
     lv_obj_set_size(slider, lv_obj_get_width(scr)  / 3, LV_DPI / 3);            /*Set the size*/
     lv_obj_align(slider, btn1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);                /*Align below the first button*/
-    lv_slider_set_value(slider, 30);                                            /*Set the current value*/
+    lv_slider_set_value(slider, 30, false);                                            /*Set the current value*/
 
     /***********************
      * ADD A DROP DOWN LIST
      ************************/
     lv_obj_t * ddlist = lv_ddlist_create(scr, NULL);                     /*Create a drop down list*/
     lv_obj_align(ddlist, slider, LV_ALIGN_OUT_RIGHT_TOP, 50, 0);         /*Align next to the slider*/
-    lv_obj_set_free_ptr(ddlist, slider);                                 /*Save the pointer of the slider in the ddlist (used in 'ddlist_action()')*/
     lv_obj_set_top(ddlist, true);                                        /*Enable to be on the top when clicked*/
     lv_ddlist_set_options(ddlist, "None\nLittle\nHalf\nA lot\nAll");     /*Set the options*/
-    lv_ddlist_set_action(ddlist, ddlist_action);                         /*Set function to call on new option is chosen*/
+    lv_obj_set_event_cb(ddlist, ddlist_event_cb);                        /*Set function to call on new option is chosen*/
 
     /****************
      * CREATE A CHART
@@ -173,30 +173,32 @@ void lv_tutorial_objects(void)
 /**
  * Called when a button is released
  * @param btn pointer to the released button
+ * @param event the triggering event
  * @return LV_RES_OK because the object is not deleted in this function
  */
-static  lv_res_t btn_rel_action(lv_obj_t * btn)
+static void btn_event_cb(lv_obj_t * btn, lv_event_t event)
 {
-    /*Increase the button width*/
-    lv_coord_t width = lv_obj_get_width(btn);
-    lv_obj_set_width(btn, width + 20);
-
-    return LV_RES_OK;
+    if(event == LV_EVENT_RELEASED) {
+        /*Increase the button width*/
+        lv_coord_t width = lv_obj_get_width(btn);
+        lv_obj_set_width(btn, width + 20);
+    }
 }
 
 /**
  * Called when a new option is chosen in the drop down list
  * @param ddlist pointer to the drop down list
+ * @param event the triggering event
  * @return LV_RES_OK because the object is not deleted in this function
  */
-static  lv_res_t ddlist_action(lv_obj_t * ddlist)
+static  void ddlist_event_cb(lv_obj_t * ddlist, lv_event_t event)
 {
-    uint16_t opt = lv_ddlist_get_selected(ddlist);      /*Get the id of selected option*/
+    if(event == LV_EVENT_VALUE_CHANGED) {
+        uint16_t opt = lv_ddlist_get_selected(ddlist);            /*Get the id of selected option*/
 
-    lv_obj_t * slider = lv_obj_get_free_ptr(ddlist);      /*Get the saved slider*/
-    lv_slider_set_value(slider, (opt * 100) / 4);       /*Modify the slider value according to the selection*/
+        lv_slider_set_value(slider, (opt * 100) / 4, true);       /*Modify the slider value according to the selection*/
+    }
 
-    return LV_RES_OK;
 }
 
 #endif /*USE_LV_TUTORIALS*/
