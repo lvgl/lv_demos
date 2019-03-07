@@ -8,7 +8,7 @@
  *********************/
 #include "lv_test_theme_2.h"
 
-#if USE_LV_TESTS
+#if LV_USE_TESTS
 #include "lvgl/lv_misc/lv_math.h"
 
 /*********************
@@ -40,31 +40,31 @@ static lv_theme_t * th_act;
 static const char * th_options =
 {
 
-#if USE_LV_THEME_NIGHT
+#if LV_USE_THEME_NIGHT
         "Night"
 #endif
 
-#if USE_LV_THEME_MATERIAL
+#if LV_USE_THEME_MATERIAL
         "\nMaterial"
 #endif
 
-#if USE_LV_THEME_ALIEN
+#if LV_USE_THEME_ALIEN
         "\nAlien"
 #endif
 
-#if USE_LV_THEME_ZEN
+#if LV_USE_THEME_ZEN
         "\nZen"
 #endif
 
-#if USE_LV_THEME_NEMO
+#if LV_USE_THEME_NEMO
         "\nNemo"
 #endif
 
-#if USE_LV_THEME_MONO
+#if LV_USE_THEME_MONO
         "\nMono"
 #endif
 
-#if USE_LV_THEME_DEFAULT
+#if LV_USE_THEME_DEFAULT
         "\nDefault"
 #endif
         ""
@@ -119,7 +119,7 @@ static void header_create(void)
     lv_obj_set_width(header, lv_disp_get_hor_res(NULL));
 
     lv_obj_t * sym = lv_label_create(header, NULL);
-    lv_label_set_text(sym, SYMBOL_GPS SYMBOL_WIFI SYMBOL_BLUETOOTH SYMBOL_VOLUME_MAX);
+    lv_label_set_text(sym, LV_SYMBOL_GPS LV_SYMBOL_WIFI LV_SYMBOL_BLUETOOTH LV_SYMBOL_VOLUME_MAX);
     lv_obj_align(sym, NULL, LV_ALIGN_IN_RIGHT_MID, -LV_DPI/10, 0);
 
     lv_obj_t * clock = lv_label_create(header, NULL);
@@ -205,7 +205,7 @@ static void content_create(void)
     /*Bar*/
     lv_obj_t * bar = lv_bar_create(content, NULL);
     lv_obj_set_width(bar, LV_MATH_MIN(max_w, 3 * LV_DPI / 2));
-#if USE_LV_ANIMATION
+#if LV_USE_ANIMATION
     lv_anim_t a;
     a.var = bar;
     a.start = 0;
@@ -240,7 +240,7 @@ static void content_create(void)
     /*Line meter*/
     lv_obj_t * lmeter = lv_lmeter_create(content, NULL);
     lv_obj_set_click(lmeter, false);
-#if USE_LV_ANIMATION
+#if LV_USE_ANIMATION
     a.var = lmeter;
     a.start = 0;
     a.end = 100;
@@ -329,33 +329,33 @@ static void init_all_themes(uint16_t hue)
 {
     /* NOTE: This must be adjusted if more themes are added. */
     int i = 0;
-#if USE_LV_THEME_NIGHT
+#if LV_USE_THEME_NIGHT
     themes[i++] = lv_theme_night_init(hue, NULL);
 #endif
 
-#if USE_LV_THEME_MATERIAL
+#if LV_USE_THEME_MATERIAL
     themes[i++] = lv_theme_material_init(hue, NULL);
 #endif
 
-#if USE_LV_THEME_ALIEN
+#if LV_USE_THEME_ALIEN
     themes[i++] = lv_theme_alien_init(hue, NULL);
 #endif
 
-#if USE_LV_THEME_ZEN
+#if LV_USE_THEME_ZEN
     themes[i++] = lv_theme_zen_init(hue, NULL);
 #endif
 
-#if USE_LV_THEME_NEMO
+#if LV_USE_THEME_NEMO
     themes[i++] = lv_theme_nemo_init(hue, NULL);
 #endif
 
-#if USE_LV_THEME_MONO
+#if LV_USE_THEME_MONO
     themes[i++] = lv_theme_mono_init(hue, NULL);
 #endif
 
-#if USE_LV_THEME_DEFAULT
+#if LV_USE_THEME_DEFAULT
     themes[i++] = lv_theme_default_init(hue, NULL);
 #endif
 }
 
-#endif /*USE_LV_TESTS*/
+#endif /*LV_USE_TESTS*/

@@ -8,7 +8,7 @@
  *********************/
 #include "lv_test_roller.h"
 
-#if USE_LV_ROLLER && USE_LV_TESTS
+#if LV_USE_ROLLER && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -74,4 +74,4 @@ void lv_test_roller_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_ROLLER && USE_LV_TESTS*/
+#endif /*LV_USE_ROLLER && LV_USE_TESTS*/

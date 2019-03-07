@@ -9,7 +9,7 @@
 #include <stdio.h>  /*For printf in the action*/
 #include "lv_test_sw.h"
 
-#if USE_LV_SW && USE_LV_TESTS
+#if LV_USE_SW && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -86,4 +86,4 @@ static void event_handler(lv_obj_t * sw, lv_event_t event)
 }
 
 
-#endif /*USE_LV_SW && USE_LV_TESTS*/
+#endif /*LV_USE_SW && LV_USE_TESTS*/

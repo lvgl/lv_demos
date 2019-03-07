@@ -38,7 +38,7 @@
  *
  * 3. IMAGE FROM SYMBOL FONT
  *  The symbol fonts are letters however they look like small images.
- *  To set symbols for an image object use: 'lv_img_set_src(img, SYMBOL_CLOSE)'
+ *  To set symbols for an image object use: 'lv_img_set_src(img, LV_SYMBOL_CLOSE)'
  *
  * TRANSPARENCY
  * ---------------
@@ -63,7 +63,7 @@
  *      INCLUDES
  *********************/
 #include "lv_tutorial_images.h"
-#if USE_LV_TUTORIALS
+#if LV_USE_TUTORIALS
 
 #include "lvgl/lvgl.h"
 #include <stdio.h>
@@ -82,7 +82,7 @@ typedef  FILE * pc_file_t;
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-#if PC_FILES && USE_LV_FILESYSTEM
+#if PC_FILES && LV_USE_FILESYSTEM
 /*Interface functions to standard C file functions (only the required ones to image handling)*/
 static lv_fs_res_t pcfs_open(void * file_p, const char * fn, lv_fs_mode_t mode);
 static lv_fs_res_t pcfs_close(void * file_p);
@@ -121,7 +121,7 @@ void lv_tutorial_image(void)
     lv_obj_set_pos(img_src, 10, 10);      /*Set the positions*/
     lv_obj_set_drag(img_src, true);
 
-#if PC_FILES && USE_LV_FILESYSTEM
+#if PC_FILES && LV_USE_FILESYSTEM
     /**************************
      * IMAGE FROM BINARY FILE
      **************************/
@@ -158,7 +158,7 @@ void lv_tutorial_image(void)
 #endif
 
     lv_obj_t * img_symbol = lv_img_create(scr, NULL);
-    lv_img_set_src(img_symbol, SYMBOL_OK);
+    lv_img_set_src(img_symbol, LV_SYMBOL_OK);
     lv_obj_set_drag(img_symbol, true);
 //    lv_obj_align(img_symbol, img_src, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);     /*Align next to the source image*/
 }
@@ -167,7 +167,7 @@ void lv_tutorial_image(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#if PC_FILES && USE_LV_FILESYSTEM
+#if PC_FILES && LV_USE_FILESYSTEM
 /**
  * Open a file from the PC
  * @param file_p pointer to a FILE* variable
@@ -264,4 +264,4 @@ static lv_fs_res_t pcfs_tell(void * file_p, uint32_t * pos_p)
 
 #endif
 
-#endif /*USE_LV_TUTORIALS*/
+#endif /*LV_USE_TUTORIALS*/

@@ -52,7 +52,7 @@
  *      INCLUDES
  *********************/
 #include "lv_tutorial_objects.h"
-#if USE_LV_TUTORIALS
+#if LV_USE_TUTORIALS
 
 /*********************
  *      DEFINES
@@ -201,4 +201,4 @@ static  void ddlist_event_cb(lv_obj_t * ddlist, lv_event_t event)
 
 }
 
-#endif /*USE_LV_TUTORIALS*/
+#endif /*LV_USE_TUTORIALS*/

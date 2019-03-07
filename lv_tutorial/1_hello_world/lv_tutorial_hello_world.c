@@ -17,7 +17,7 @@
  *      INCLUDES
  *********************/
 #include "lv_tutorial_hello_world.h"
-#if USE_LV_TUTORIALS
+#if LV_USE_TUTORIALS
 
 /*********************
  *      DEFINES
@@ -66,4 +66,4 @@ void lv_tutorial_hello_world(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_TUTORIALS*/
+#endif /*LV_USE_TUTORIALS*/

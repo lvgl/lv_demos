@@ -21,7 +21,7 @@ extern "C" {
 #include "../../../../lv_ex_conf.h"
 #endif
 
-#if USE_LV_KB && USE_LV_TESTS
+#if LV_USE_KB && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -49,10 +49,10 @@ void lv_test_kb_2(void);
  *      MACROS
  **********************/
 
-#endif /*USE_LV_KB*/
+#endif /*LV_USE_KB*/
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
 
-#endif /*USE_LV_KB && USE_LV_TESTS*/
+#endif /*LV_USE_KB && LV_USE_TESTS*/

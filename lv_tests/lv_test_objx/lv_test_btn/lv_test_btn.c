@@ -8,7 +8,7 @@
  *********************/
 #include "lv_test_btn.h"
 
-#if USE_LV_BTN && USE_LV_TESTS
+#if LV_USE_BTN && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -132,4 +132,4 @@ static void btn_event_handler(lv_obj_t * btn, lv_event_t event)
 }
 
 
-#endif /*USE_LV_BTN && USE_LV_TESTS*/
+#endif /*LV_USE_BTN && LV_USE_TESTS*/

@@ -22,7 +22,7 @@ extern "C" {
 #include "../../../lv_ex_conf.h"
 #endif
 
-#if USE_LV_BENCHMARK
+#if LV_USE_BENCHMARK
 
 
 /*********************
@@ -52,7 +52,7 @@ uint32_t benchmark_get_refr_time(void);
  *      MACROS
  **********************/
 
-#endif /*USE_LV_BENCHMARK*/
+#endif /*LV_USE_BENCHMARK*/
 
 #ifdef __cplusplus
 } /* extern "C" */

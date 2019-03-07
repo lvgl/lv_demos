@@ -8,7 +8,7 @@
  *********************/
 #include "stdio.h"
 #include "lv_test_group.h"
-#if USE_LV_GROUP && USE_LV_TESTS
+#if LV_USE_GROUP && LV_USE_TESTS
 
 #include "lvgl/lv_hal/lv_hal_indev.h"
 
@@ -123,27 +123,28 @@ void lv_test_group_1(void)
     lv_win_set_style(win, LV_WIN_STYLE_CONTENT_SCRL, &win_style);
     lv_group_add_obj(g, lv_win_get_content(win));
 
-    lv_obj_t * win_btn = lv_win_add_btn(win, SYMBOL_RIGHT, win_btn_event_handler);
+    lv_obj_t * win_btn = lv_win_add_btn(win, LV_SYMBOL_RIGHT, win_btn_event_handler);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
 
-    win_btn = lv_win_add_btn(win, SYMBOL_NEXT, win_btn_event_handler);
+    win_btn = lv_win_add_btn(win, LV_SYMBOL_NEXT, win_btn_event_handler);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
 
-    win_btn = lv_win_add_btn(win, SYMBOL_OK, win_btn_event_handler);
+    win_btn = lv_win_add_btn(win, LV_SYMBOL_OK, win_btn_event_handler);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
 
-    win_btn = lv_win_add_btn(win, SYMBOL_PREV, win_btn_event_handler);
+    win_btn = lv_win_add_btn(win, LV_SYMBOL_PREV, win_btn_event_handler);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
 
-    win_btn = lv_win_add_btn(win, SYMBOL_LEFT, win_btn_event_handler);
+    win_btn = lv_win_add_btn(win, LV_SYMBOL_LEFT, win_btn_event_handler);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
 
-    win_btn = lv_win_add_btn(win, SYMBOL_DUMMY"a", win_btn_event_handler);
+    win_btn = lv_win_add_btn(win, LV_SYMBOL_DUMMY"a", win_btn_event_handler);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
 
     lv_obj_t * obj;
 
     obj = lv_spinbox_create(win, NULL);
+    lv_obj_set_event_cb(obj, general_event_handler);
 
     lv_group_add_obj(g, obj);
 
@@ -194,12 +195,12 @@ void lv_test_group_1(void)
 
 
     obj = lv_list_create(win, NULL);
-    lv_list_add(obj, SYMBOL_FILE, "File 1", general_event_handler);
-    lv_list_add(obj, SYMBOL_FILE, "File 2", general_event_handler);
-    lv_list_add(obj, SYMBOL_FILE, "File 3", general_event_handler);
-    lv_list_add(obj, SYMBOL_FILE, "File 4", general_event_handler);
-    lv_list_add(obj, SYMBOL_FILE, "File 5", general_event_handler);
-    lv_list_add(obj, SYMBOL_FILE, "File 6", general_event_handler);
+    lv_list_add(obj, LV_SYMBOL_FILE, "File 1", general_event_handler);
+    lv_list_add(obj, LV_SYMBOL_FILE, "File 2", general_event_handler);
+    lv_list_add(obj, LV_SYMBOL_FILE, "File 3", general_event_handler);
+    lv_list_add(obj, LV_SYMBOL_FILE, "File 4", general_event_handler);
+    lv_list_add(obj, LV_SYMBOL_FILE, "File 5", general_event_handler);
+    lv_list_add(obj, LV_SYMBOL_FILE, "File 6", general_event_handler);
     lv_group_add_obj(g, obj);
 
 
@@ -269,11 +270,11 @@ static void win_btn_event_handler(lv_obj_t * btn, lv_event_t event)
     lv_obj_t * label = lv_obj_get_child(btn, NULL);
     const char * txt = lv_label_get_text(label);
 
-    if(strcmp(txt, SYMBOL_PREV) == 0) key = LV_GROUP_KEY_PREV;
-    else if(strcmp(txt, SYMBOL_NEXT) == 0) key = LV_GROUP_KEY_NEXT;
-    else if(strcmp(txt, SYMBOL_LEFT) == 0) key = LV_GROUP_KEY_LEFT;
-    else if(strcmp(txt, SYMBOL_RIGHT) == 0) key = LV_GROUP_KEY_RIGHT;
-    else if(strcmp(txt, SYMBOL_OK) == 0) key = LV_GROUP_KEY_ENTER;
+    if(strcmp(txt, LV_SYMBOL_PREV) == 0) key = LV_GROUP_KEY_PREV;
+    else if(strcmp(txt, LV_SYMBOL_NEXT) == 0) key = LV_GROUP_KEY_NEXT;
+    else if(strcmp(txt, LV_SYMBOL_LEFT) == 0) key = LV_GROUP_KEY_LEFT;
+    else if(strcmp(txt, LV_SYMBOL_RIGHT) == 0) key = LV_GROUP_KEY_RIGHT;
+    else if(strcmp(txt, LV_SYMBOL_OK) == 0) key = LV_GROUP_KEY_ENTER;
     else key = 'a';
 
     switch(event) {
@@ -283,7 +284,6 @@ static void win_btn_event_handler(lv_obj_t * btn, lv_event_t event)
             break;
 
         case LV_EVENT_CLICKED:
-        case LV_EVENT_RELEASED:
         case LV_EVENT_PRESS_LOST:
             last_key_state = LV_INDEV_STATE_REL;
             last_key = 0;
@@ -308,6 +308,10 @@ static void general_event_handler(lv_obj_t * obj, lv_event_t event)
     switch(event) {
         case LV_EVENT_PRESSED:
             printf("Pressed\n");
+            break;
+
+        case LV_EVENT_SHORT_CLICKED:
+            printf("Short clicked\n");
             break;
 
         case LV_EVENT_CLICKED:
@@ -341,4 +345,4 @@ static void general_event_handler(lv_obj_t * obj, lv_event_t event)
 #endif
 }
 
-#endif /* USE_LV_GROUP && USE_LV_TESTS */
+#endif /* LV_USE_GROUP && LV_USE_TESTS */

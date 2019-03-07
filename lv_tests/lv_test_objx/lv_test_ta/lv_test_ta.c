@@ -8,7 +8,7 @@
  *********************/
 #include "lv_test_ta.h"
 
-#if USE_LV_TA && USE_LV_TESTS
+#if LV_USE_TA && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -214,7 +214,7 @@ void lv_test_ta_2(void)
 
 static void nav_btn_event_handler(lv_obj_t * btn, lv_event_t event)
 {
-    if(event != LV_EVENT_CLICKED) return;
+    if(event != LV_EVENT_SHORT_CLICKED) return;
 
 
     lv_obj_t * label = lv_obj_get_child(btn, NULL);
@@ -245,4 +245,4 @@ static void nav_btn_event_handler(lv_obj_t * btn, lv_event_t event)
         lv_ta_cursor_right(ta2_4);
     }
 }
-#endif /*USE_LV_TA && USE_LV_TESTS*/
+#endif /*LV_USE_TA && LV_USE_TESTS*/

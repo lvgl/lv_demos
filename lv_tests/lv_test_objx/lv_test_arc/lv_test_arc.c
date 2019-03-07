@@ -7,7 +7,7 @@
  *      INCLUDES
  *********************/
 #include "lv_test_arc.h"
-#if USE_LV_ARC && USE_LV_TESTS
+#if LV_USE_ARC && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -64,4 +64,4 @@ void lv_test_arc_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_ARC && USE_LV_TESTS*/
+#endif /*LV_USE_ARC && LV_USE_TESTS*/

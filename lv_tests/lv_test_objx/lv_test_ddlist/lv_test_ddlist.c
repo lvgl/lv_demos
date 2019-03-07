@@ -14,7 +14,7 @@
 #endif
 
 
-#if USE_LV_DDLIST && USE_LV_TESTS
+#if LV_USE_DDLIST && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -99,5 +99,5 @@ static void event_handler(lv_obj_t * ddlist, lv_event_t event)
     }
 }
 
-#endif /*USE_LV_DDLIST && USE_LV_TESTS*/
+#endif /*LV_USE_DDLIST && LV_USE_TESTS*/
 

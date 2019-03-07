@@ -8,7 +8,7 @@
  *********************/
 #include "lv_test_list.h"
 
-#if USE_LV_LIST && USE_LV_TESTS
+#if LV_USE_LIST && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -55,17 +55,17 @@ void lv_test_list_1(void)
 
     list2 = lv_list_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_align(list2, list1, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
-    lv_list_add(list2, SYMBOL_FILE, "File", NULL);
-    lv_list_add(list2, SYMBOL_DIRECTORY, "Directory", NULL);
+    lv_list_add(list2, LV_SYMBOL_FILE, "File", NULL);
+    lv_list_add(list2, LV_SYMBOL_DIRECTORY, "Directory", NULL);
     lv_list_add(list2, &img_flower_icon, "Image icon", NULL);
     lv_obj_set_width(list2, 100);
 
     list3 = lv_list_create(lv_disp_get_scr_act(NULL), list2);
     lv_obj_align(list3, list2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     lv_list_add(list3, NULL, "No icon", NULL);
-    lv_list_add(list3, SYMBOL_CLOSE, "", NULL);
-    lv_list_add(list3, SYMBOL_UP, "Up", NULL);
-    lv_list_add(list3, SYMBOL_DOWN, "Down", NULL);
+    lv_list_add(list3, LV_SYMBOL_CLOSE, "", NULL);
+    lv_list_add(list3, LV_SYMBOL_UP, "Up", NULL);
+    lv_list_add(list3, LV_SYMBOL_DOWN, "Down", NULL);
 
     static lv_style_t sb;
     static lv_style_t bg;
@@ -87,12 +87,12 @@ void lv_test_list_1(void)
     lv_obj_align(btn_up, list1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
     lv_obj_set_event_cb(btn_up, list_move_event_handler);
     lv_obj_t * label = lv_label_create(btn_up, NULL);
-    lv_label_set_text(label, SYMBOL_UP);
+    lv_label_set_text(label, LV_SYMBOL_UP);
 
     btn_down = lv_btn_create(lv_disp_get_scr_act(NULL), btn_up);
     lv_obj_align(btn_down, btn_up, LV_ALIGN_OUT_RIGHT_MID, 10, 0);
     label = lv_label_create(btn_down, NULL);
-    lv_label_set_text(label, SYMBOL_DOWN);
+    lv_label_set_text(label, LV_SYMBOL_DOWN);
 
 }
 
@@ -104,7 +104,7 @@ void lv_test_list_1(void)
 
 static void list_move_event_handler(lv_obj_t * btn, lv_event_t event)
 {
-    if(event != LV_EVENT_CLICKED) return;
+    if(event != LV_EVENT_SHORT_CLICKED) return;
 
     if(btn == btn_up) {
         lv_list_up(list1);
@@ -119,4 +119,4 @@ static void list_move_event_handler(lv_obj_t * btn, lv_event_t event)
     }
 }
 
-#endif /*USE_LV_LIST && USE_LV_TESTS*/
+#endif /*LV_USE_LIST && LV_USE_TESTS*/

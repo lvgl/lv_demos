@@ -8,7 +8,7 @@
  *********************/
 #include "lv_test_img.h"
 
-#if USE_LV_IMG && USE_LV_TESTS
+#if LV_USE_IMG && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -62,7 +62,7 @@ void lv_test_img_1(void)
 
     /*Test symbol drawing*/
     lv_obj_t * img4 = lv_img_create(lv_disp_get_scr_act(NULL), NULL);
-    lv_img_set_src(img4, SYMBOL_SETTINGS SYMBOL_OK);
+    lv_img_set_src(img4, LV_SYMBOL_SETTINGS LV_SYMBOL_OK);
     lv_obj_align(img4, img3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 }
 
@@ -70,4 +70,4 @@ void lv_test_img_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_IMG && USE_LV_TESTS*/
+#endif /*LV_USE_IMG && LV_USE_TESTS*/

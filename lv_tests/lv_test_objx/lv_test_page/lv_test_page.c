@@ -8,7 +8,7 @@
  *********************/
 #include "lv_test_page.h"
 
-#if USE_LV_PAGE && USE_LV_TESTS
+#if LV_USE_PAGE && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -150,7 +150,7 @@ void lv_test_page_2(void)
 
 static void event_handler(lv_obj_t * page, lv_event_t event)
 {
-    if(event == LV_EVENT_CLICKED) {
+    if(event == LV_EVENT_SHORT_CLICKED) {
         lv_obj_t * label = lv_label_create(page, NULL);
         lv_label_set_text(label, "First line of a text\n"
                 "Second line of a text\n"
@@ -161,4 +161,4 @@ static void event_handler(lv_obj_t * page, lv_event_t event)
 }
 
 
-#endif /*USE_LV_PAGE && USE_LV_TESTS*/
+#endif /*LV_USE_PAGE && LV_USE_TESTS*/

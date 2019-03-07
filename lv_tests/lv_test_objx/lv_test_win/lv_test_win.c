@@ -8,7 +8,7 @@
  *********************/
 #include "lv_test_win.h"
 
-#if USE_LV_WIN && USE_LV_TESTS
+#if LV_USE_WIN && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -48,9 +48,9 @@ void lv_test_win_1(void)
     lv_obj_t * win2 = lv_win_create(lv_disp_get_scr_act(NULL), win1);
     lv_obj_align(win2, NULL, LV_ALIGN_IN_TOP_RIGHT, 0, 0);
     lv_win_set_title(win2, "Random title");
-    lv_win_add_btn(win2, SYMBOL_CLOSE, NULL);
-    lv_win_add_btn(win2, SYMBOL_OK, NULL);
-    lv_win_add_btn(win2, SYMBOL_EDIT, NULL);
+    lv_win_add_btn(win2, LV_SYMBOL_CLOSE, NULL);
+    lv_win_add_btn(win2, LV_SYMBOL_OK, NULL);
+    lv_win_add_btn(win2, LV_SYMBOL_EDIT, NULL);
 
     lv_obj_t * label = lv_label_create(win2, NULL);
     lv_obj_set_pos(label, 10, 10);
@@ -85,4 +85,4 @@ void lv_test_win_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_WIN && USE_LV_TESTS*/
+#endif /*LV_USE_WIN && LV_USE_TESTS*/

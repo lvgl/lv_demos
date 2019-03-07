@@ -7,7 +7,7 @@
  *      INCLUDES
  *********************/
 #include "lv_test_table.h"
-#if USE_LV_TABLE && USE_LV_TESTS
+#if LV_USE_TABLE && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -129,4 +129,4 @@ void lv_test_table_2(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_TABLE && USE_LV_TESTS*/
+#endif /*LV_USE_TABLE && LV_USE_TESTS*/

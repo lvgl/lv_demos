@@ -7,7 +7,7 @@
  *      INCLUDES
  *********************/
 #include "lv_test_imgbtn.h"
-#if USE_LV_IMGBTN && USE_LV_TESTS
+#if LV_USE_IMGBTN && LV_USE_TESTS
 
 #if LV_EX_PRINTF
 #include <stdio.h>
@@ -82,7 +82,7 @@ static void imgbtn_event_handler(lv_obj_t * imgbtn, lv_event_t event)
 {
     (void) imgbtn; /*Unused*/
 
-    if(event == LV_EVENT_CLICKED) {
+    if(event == LV_EVENT_SHORT_CLICKED) {
     #if LV_EX_PRINTF
         printf("Clicked\n");
     #endif
@@ -90,4 +90,4 @@ static void imgbtn_event_handler(lv_obj_t * imgbtn, lv_event_t event)
 
 }
 
-#endif /*USE_LV_IMGBTN && USE_LV_TESTS*/
+#endif /*LV_USE_IMGBTN && LV_USE_TESTS*/

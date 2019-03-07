@@ -7,7 +7,7 @@
  *      INCLUDES
  *********************/
 #include "demo.h"
-#if USE_LV_DEMO
+#if LV_USE_DEMO
 
 /*********************
  *      DEFINES
@@ -181,7 +181,7 @@ static void text_area_event_handler(lv_obj_t * text_area, lv_event_t event)
     /*Text area is on the scrollable part of the page but we need the page itself*/
     lv_obj_t * parent = lv_obj_get_parent(lv_obj_get_parent(ta));
 
-    if(event == LV_EVENT_CLICKED) {
+    if(event == LV_EVENT_SHORT_CLICKED) {
         if(kb) {
             lv_obj_send_event(kb, LV_EVENT_CANCEL);
         } else {
@@ -194,7 +194,7 @@ static void text_area_event_handler(lv_obj_t * text_area, lv_event_t event)
             lv_kb_set_style(kb, LV_KB_STYLE_BTN_PR, &style_kb_pr);
             lv_obj_set_event_cb(kb, keyboard_event_handler);
 
-#if USE_LV_ANIMATION
+#if LV_USE_ANIMATION
             lv_obj_animate(kb, LV_ANIM_FLOAT_BOTTOM | LV_ANIM_IN, 300, 0, NULL);
 #endif
         }
@@ -212,7 +212,7 @@ static void keyboard_event_handler(lv_obj_t * keyboard, lv_event_t event)
     (void) keyboard;    /*Unused*/
 
     if(event == LV_EVENT_APPLY || event == LV_EVENT_CANCEL) {
-#if USE_LV_ANIMATION
+#if LV_USE_ANIMATION
         lv_obj_animate(kb, LV_ANIM_FLOAT_BOTTOM | LV_ANIM_OUT, 300, 0, kb_hide_anim_end);
         kb = NULL;
 #else
@@ -255,13 +255,13 @@ static void list_create(lv_obj_t * parent)
     lv_list_set_style(list, LV_LIST_STYLE_BTN_PR, &style_btn_pr);
     lv_obj_align(list, NULL, LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 4);
 
-    lv_list_add(list, SYMBOL_FILE, "New", list_btn_event_handler);
-    lv_list_add(list, SYMBOL_DIRECTORY, "Open", list_btn_event_handler);
-    lv_list_add(list, SYMBOL_TRASH, "Delete", list_btn_event_handler);
-    lv_list_add(list, SYMBOL_EDIT, "Edit", list_btn_event_handler);
-    lv_list_add(list, SYMBOL_SAVE, "Save", list_btn_event_handler);
-    lv_list_add(list, SYMBOL_WIFI, "WiFi", list_btn_event_handler);
-    lv_list_add(list, SYMBOL_GPS, "GPS", list_btn_event_handler);
+    lv_list_add(list, LV_SYMBOL_FILE, "New", list_btn_event_handler);
+    lv_list_add(list, LV_SYMBOL_DIRECTORY, "Open", list_btn_event_handler);
+    lv_list_add(list, LV_SYMBOL_TRASH, "Delete", list_btn_event_handler);
+    lv_list_add(list, LV_SYMBOL_EDIT, "Edit", list_btn_event_handler);
+    lv_list_add(list, LV_SYMBOL_SAVE, "Save", list_btn_event_handler);
+    lv_list_add(list, LV_SYMBOL_WIFI, "WiFi", list_btn_event_handler);
+    lv_list_add(list, LV_SYMBOL_GPS, "GPS", list_btn_event_handler);
 
     lv_obj_t * mbox = lv_mbox_create(parent, NULL);
     lv_mbox_set_text(mbox, "Click a button to copy its text to the Text area ");
@@ -375,7 +375,7 @@ static void slider_event_handler(lv_obj_t * slider, lv_event_t event)
 static void list_btn_event_handler(lv_obj_t * btn, lv_event_t event)
 {
 
-    if(event == LV_EVENT_CLICKED) {
+    if(event == LV_EVENT_SHORT_CLICKED) {
         lv_ta_add_char(ta, '\n');
         lv_ta_add_text(ta, lv_list_get_btn_text(btn));
     }
@@ -396,4 +396,4 @@ static void tab_switcher(void * tv)
 #endif
 
 
-#endif  /*USE_LV_DEMO*/
+#endif  /*LV_USE_DEMO*/

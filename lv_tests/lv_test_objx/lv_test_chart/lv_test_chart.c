@@ -8,7 +8,7 @@
  *********************/
 #include "lv_test_chart.h"
 
-#if USE_LV_BTN && USE_LV_TESTS
+#if LV_USE_BTN && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -121,4 +121,4 @@ void lv_test_chart_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_BTN && USE_LV_TESTS*/
+#endif /*LV_USE_BTN && LV_USE_TESTS*/

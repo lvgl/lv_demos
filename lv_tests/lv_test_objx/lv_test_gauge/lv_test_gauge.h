@@ -21,7 +21,7 @@ extern "C" {
 #include "../../../../lv_ex_conf.h"
 #endif
 
-#if USE_LV_GAUGE && USE_LV_TESTS
+#if LV_USE_GAUGE && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -43,10 +43,10 @@ void lv_test_gauge_1(void);
  *      MACROS
  **********************/
 
-#endif /*USE_LV_GAUGE*/
+#endif /*LV_USE_GAUGE*/
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
 
-#endif /*USE_LV_GAUGE && USE_LV_TESTS*/
+#endif /*LV_USE_GAUGE && LV_USE_TESTS*/

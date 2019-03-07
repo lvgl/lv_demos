@@ -7,7 +7,7 @@
  *      INCLUDES
  *********************/
 #include "sysmon.h"
-#if USE_LV_SYSMON
+#if LV_USE_SYSMON
 
 #include <stdio.h>
 
@@ -60,7 +60,7 @@ void sysmon_create(void)
     lv_coord_t vres = lv_disp_get_ver_res(NULL);
 
     win = lv_win_create(lv_disp_get_scr_act(NULL), NULL);
-    lv_win_add_btn(win, SYMBOL_CLOSE, win_close_action);
+    lv_win_add_btn(win, LV_SYMBOL_CLOSE, win_close_action);
 
     /*Make the window content responsive*/
     lv_win_set_layout(win, LV_LAYOUT_PRETTY);
@@ -170,4 +170,4 @@ static lv_res_t win_close_action(lv_obj_t * btn)
     return LV_RES_INV;
 }
 
-#endif /*USE_LV_SYMON*/
+#endif /*LV_USE_SYMON*/
