@@ -8,7 +8,7 @@
  *********************/
 #include "lv_test_theme_2.h"
 
-#if USE_LV_TESTS
+#if LV_USE_TESTS
 #include "lvgl/lv_misc/lv_math.h"
 
 /*********************
@@ -25,8 +25,8 @@
 static void header_create(void);
 static void sb_create(void);
 static void content_create(void);
-static lv_res_t theme_select_action(lv_obj_t * roller);
-static lv_res_t hue_select_action(lv_obj_t * roller);
+static void theme_select_event_handler(lv_obj_t * roller, lv_event_t event);
+static void hue_select_event_cb(lv_obj_t * roller, lv_event_t event);
 static void init_all_themes(uint16_t hue);
 
 /**********************
@@ -40,31 +40,31 @@ static lv_theme_t * th_act;
 static const char * th_options =
 {
 
-#if USE_LV_THEME_NIGHT
+#if LV_USE_THEME_NIGHT
         "Night"
 #endif
 
-#if USE_LV_THEME_MATERIAL
+#if LV_USE_THEME_MATERIAL
         "\nMaterial"
 #endif
 
-#if USE_LV_THEME_ALIEN
+#if LV_USE_THEME_ALIEN
         "\nAlien"
 #endif
 
-#if USE_LV_THEME_ZEN
+#if LV_USE_THEME_ZEN
         "\nZen"
 #endif
 
-#if USE_LV_THEME_NEMO
+#if LV_USE_THEME_NEMO
         "\nNemo"
 #endif
 
-#if USE_LV_THEME_MONO
+#if LV_USE_THEME_MONO
         "\nMono"
 #endif
 
-#if USE_LV_THEME_DEFAULT
+#if LV_USE_THEME_DEFAULT
         "\nDefault"
 #endif
         ""
@@ -119,7 +119,7 @@ static void header_create(void)
     lv_obj_set_width(header, lv_disp_get_hor_res(NULL));
 
     lv_obj_t * sym = lv_label_create(header, NULL);
-    lv_label_set_text(sym, SYMBOL_GPS SYMBOL_WIFI SYMBOL_BLUETOOTH SYMBOL_VOLUME_MAX);
+    lv_label_set_text(sym, LV_SYMBOL_GPS LV_SYMBOL_WIFI LV_SYMBOL_BLUETOOTH LV_SYMBOL_VOLUME_MAX);
     lv_obj_align(sym, NULL, LV_ALIGN_IN_RIGHT_MID, -LV_DPI/10, 0);
 
     lv_obj_t * clock = lv_label_create(header, NULL);
@@ -146,14 +146,14 @@ static void sb_create(void)
 
     lv_obj_t * th_roller = lv_roller_create(sb, NULL);
     lv_roller_set_options(th_roller, th_options);
-    lv_roller_set_action(th_roller, theme_select_action);
+    lv_obj_set_event_cb(th_roller, theme_select_event_handler);
 
     lv_obj_t * hue_label = lv_label_create(sb, NULL);
     lv_label_set_text(hue_label, "\nColor");
 
     lv_obj_t * hue_roller = lv_roller_create(sb, NULL);
     lv_roller_set_options(hue_roller, "0\n30\n60\n90\n120\n150\n180\n210\n240\n270\n300\n330");
-    lv_roller_set_action(hue_roller, hue_select_action);
+    lv_obj_set_event_cb(hue_roller, hue_select_event_cb);
 
     if(hres > vres) {
         lv_obj_set_height(sb, vres - lv_obj_get_height(header));
@@ -205,7 +205,7 @@ static void content_create(void)
     /*Bar*/
     lv_obj_t * bar = lv_bar_create(content, NULL);
     lv_obj_set_width(bar, LV_MATH_MIN(max_w, 3 * LV_DPI / 2));
-#if USE_LV_ANIMATION
+#if LV_USE_ANIMATION
     lv_anim_t a;
     a.var = bar;
     a.start = 0;
@@ -225,7 +225,7 @@ static void content_create(void)
     /*Slider*/
     lv_obj_t * slider = lv_slider_create(content, NULL);
     lv_obj_set_width(slider, LV_MATH_MIN(max_w, 3 * LV_DPI / 2));
-    lv_slider_set_value(slider, 30);
+    lv_slider_set_value(slider, 30, false);
 
     /*Roller*/
     static const char * days = "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday";
@@ -240,7 +240,7 @@ static void content_create(void)
     /*Line meter*/
     lv_obj_t * lmeter = lv_lmeter_create(content, NULL);
     lv_obj_set_click(lmeter, false);
-#if USE_LV_ANIMATION
+#if LV_USE_ANIMATION
     a.var = lmeter;
     a.start = 0;
     a.end = 100;
@@ -284,43 +284,44 @@ static void content_create(void)
 
 }
 
-static lv_res_t theme_select_action(lv_obj_t * roller)
+static void theme_select_event_handler(lv_obj_t * roller, lv_event_t event)
 {
-    lv_coord_t hres = lv_disp_get_hor_res(NULL);
-    lv_coord_t vres = lv_disp_get_ver_res(NULL);
+    if(event == LV_EVENT_VALUE_CHANGED) {
+        lv_coord_t hres = lv_disp_get_hor_res(NULL);
+        lv_coord_t vres = lv_disp_get_ver_res(NULL);
 
-    uint16_t opt = lv_roller_get_selected(roller);
-    th_act = themes[opt];
-    lv_theme_set_current(th_act);
+        uint16_t opt = lv_roller_get_selected(roller);
+        th_act = themes[opt];
+        lv_theme_set_current(th_act);
 
-    lv_obj_align(header, NULL, LV_ALIGN_IN_TOP_MID, 0, 0);
-    lv_obj_align(sb, header, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 0);
+        lv_obj_align(header, NULL, LV_ALIGN_IN_TOP_MID, 0, 0);
+        lv_obj_align(sb, header, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 0);
 
-if(hres > vres) {
-    lv_obj_set_size(content, hres - lv_obj_get_width(sb), vres - lv_obj_get_height(header));
-    lv_obj_set_pos(content,  lv_obj_get_width(sb), lv_obj_get_height(header));
-} else {
-    lv_obj_set_size(content, hres , vres / 2);
-    lv_obj_set_pos(content,  0, vres / 2);
+    if(hres > vres) {
+        lv_obj_set_size(content, hres - lv_obj_get_width(sb), vres - lv_obj_get_height(header));
+        lv_obj_set_pos(content,  lv_obj_get_width(sb), lv_obj_get_height(header));
+    } else {
+        lv_obj_set_size(content, hres , vres / 2);
+        lv_obj_set_pos(content,  0, vres / 2);
+    }
+
+        lv_page_focus(sb, roller, 200);
+    }
 }
 
-    lv_page_focus(sb, roller, 200);
 
-    return LV_RES_OK;
-}
-
-
-static lv_res_t hue_select_action(lv_obj_t * roller)
+static void hue_select_event_cb(lv_obj_t * roller, lv_event_t event)
 {
-    uint16_t hue = lv_roller_get_selected(roller) * 30;
 
-    init_all_themes(hue);
+    if(event == LV_EVENT_VALUE_CHANGED) {
+        uint16_t hue = lv_roller_get_selected(roller) * 30;
 
-    lv_theme_set_current(th_act);
+        init_all_themes(hue);
 
-    lv_page_focus(sb, roller, 200);
+        lv_theme_set_current(th_act);
 
-    return LV_RES_OK;
+        lv_page_focus(sb, roller, 200);
+    }
 }
 
 
@@ -328,33 +329,33 @@ static void init_all_themes(uint16_t hue)
 {
     /* NOTE: This must be adjusted if more themes are added. */
     int i = 0;
-#if USE_LV_THEME_NIGHT
+#if LV_USE_THEME_NIGHT
     themes[i++] = lv_theme_night_init(hue, NULL);
 #endif
 
-#if USE_LV_THEME_MATERIAL
+#if LV_USE_THEME_MATERIAL
     themes[i++] = lv_theme_material_init(hue, NULL);
 #endif
 
-#if USE_LV_THEME_ALIEN
+#if LV_USE_THEME_ALIEN
     themes[i++] = lv_theme_alien_init(hue, NULL);
 #endif
 
-#if USE_LV_THEME_ZEN
+#if LV_USE_THEME_ZEN
     themes[i++] = lv_theme_zen_init(hue, NULL);
 #endif
 
-#if USE_LV_THEME_NEMO
+#if LV_USE_THEME_NEMO
     themes[i++] = lv_theme_nemo_init(hue, NULL);
 #endif
 
-#if USE_LV_THEME_MONO
+#if LV_USE_THEME_MONO
     themes[i++] = lv_theme_mono_init(hue, NULL);
 #endif
 
-#if USE_LV_THEME_DEFAULT
+#if LV_USE_THEME_DEFAULT
     themes[i++] = lv_theme_default_init(hue, NULL);
 #endif
 }
 
-#endif /*USE_LV_TESTS*/
+#endif /*LV_USE_TESTS*/

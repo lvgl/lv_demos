@@ -8,7 +8,7 @@
  *********************/
 #include "lv_test_theme_1.h"
 
-#if USE_LV_TESTS
+#if LV_USE_TESTS
 /*********************
  *      DEFINES
  *********************/
@@ -72,8 +72,8 @@ static void create_tab1(lv_obj_t * parent)
     static lv_style_t h_style;
     lv_style_copy(&h_style, &lv_style_transp);
     h_style.body.padding.inner = LV_DPI / 4;
-    h_style.body.padding.hor = LV_DPI / 4;
-    h_style.body.padding.ver = LV_DPI / 6;
+    h_style.body.padding.hor = LV_DPI / 12;
+    h_style.body.padding.ver = LV_DPI / 10;
 
     lv_obj_t * h = lv_cont_create(parent, NULL);
     lv_obj_set_style(h, &h_style);
@@ -109,7 +109,7 @@ static void create_tab1(lv_obj_t * parent)
     lv_label_set_text(label, "Hint");
     lv_obj_set_style(label, th->style.label.hint);
 
-    static const char * btnm_str[] = {"1", "2", "3", SYMBOL_OK, SYMBOL_CLOSE, ""};
+    static const char * btnm_str[] = {"1", "2", "3", LV_SYMBOL_OK, LV_SYMBOL_CLOSE, ""};
     lv_obj_t * btnm = lv_btnm_create(h, NULL);
     lv_obj_set_size(btnm, lv_disp_get_hor_res(NULL) / 4, 2 * LV_DPI / 3);
     lv_btnm_set_map(btnm, btnm_str);
@@ -148,7 +148,8 @@ static void create_tab1(lv_obj_t * parent)
 
     lv_obj_t * sw_h = lv_cont_create(h, NULL);
     lv_cont_set_style(sw_h, &lv_style_transp);
-    lv_cont_set_fit2(sw_h, LV_FIT_FLOOD, LV_FIT_TIGHT);
+    lv_cont_set_fit2(sw_h, LV_FIT_NONE, LV_FIT_TIGHT);
+    lv_obj_set_width(sw_h, LV_HOR_RES / 4);
     lv_cont_set_layout(sw_h, LV_LAYOUT_PRETTY);
 
     lv_obj_t * sw = lv_sw_create(sw_h, NULL);
@@ -157,14 +158,14 @@ static void create_tab1(lv_obj_t * parent)
 #endif
 
     sw = lv_sw_create(sw_h, sw);
-    lv_sw_on(sw);
+    lv_sw_on(sw, false);
 
 
     lv_obj_t * bar = lv_bar_create(h, NULL);
-    lv_bar_set_value(bar, 70);
+    lv_bar_set_value(bar, 70, false);
 
     lv_obj_t * slider = lv_slider_create(h, NULL);
-    lv_bar_set_value(slider, 70);
+    lv_bar_set_value(slider, 70, false);
 
     lv_obj_t * line = lv_line_create(h, NULL);
     static lv_point_t line_p[2];
@@ -190,19 +191,19 @@ static void create_tab1(lv_obj_t * parent)
 
     lv_obj_t * list = lv_list_create(h, NULL);
     lv_obj_t * list_btn;
-    list_btn = lv_list_add(list, SYMBOL_GPS,  "GPS",  NULL);
+    list_btn = lv_list_add(list, LV_SYMBOL_GPS,  "GPS",  NULL);
     lv_obj_set_size(list, lv_disp_get_hor_res(NULL) / 4, lv_disp_get_ver_res(NULL) / 2);
     lv_btn_set_toggle(list_btn, true);
-    lv_list_add(list, SYMBOL_WIFI, "WiFi", NULL);
-    lv_list_add(list, SYMBOL_GPS, "GPS", NULL);
-    lv_list_add(list, SYMBOL_AUDIO, "Audio", NULL);
-    lv_list_add(list, SYMBOL_VIDEO, "Video", NULL);
-    lv_list_add(list, SYMBOL_CALL, "Call", NULL);
-    lv_list_add(list, SYMBOL_BELL, "Bell", NULL);
-    lv_list_add(list, SYMBOL_FILE, "File", NULL);
-    lv_list_add(list, SYMBOL_EDIT, "Edit", NULL);
-    lv_list_add(list, SYMBOL_CUT,  "Cut",  NULL);
-    lv_list_add(list, SYMBOL_COPY, "Copy", NULL);
+    lv_list_add(list, LV_SYMBOL_WIFI, "WiFi", NULL);
+    lv_list_add(list, LV_SYMBOL_GPS, "GPS", NULL);
+    lv_list_add(list, LV_SYMBOL_AUDIO, "Audio", NULL);
+    lv_list_add(list, LV_SYMBOL_VIDEO, "Video", NULL);
+    lv_list_add(list, LV_SYMBOL_CALL, "Call", NULL);
+    lv_list_add(list, LV_SYMBOL_BELL, "Bell", NULL);
+    lv_list_add(list, LV_SYMBOL_FILE, "File", NULL);
+    lv_list_add(list, LV_SYMBOL_EDIT, "Edit", NULL);
+    lv_list_add(list, LV_SYMBOL_CUT,  "Cut",  NULL);
+    lv_list_add(list, LV_SYMBOL_COPY, "Copy", NULL);
 
     lv_obj_t * roller = lv_roller_create(h, NULL);
     lv_roller_set_options(roller, "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday");
@@ -251,7 +252,7 @@ static void create_tab2(lv_obj_t * parent)
     lv_obj_align(kb, ta, LV_ALIGN_OUT_BOTTOM_RIGHT, 0, LV_DPI);
     lv_kb_set_ta(kb, ta);
 
-#if USE_LV_ANIMATION
+#if LV_USE_ANIMATION
     lv_obj_t * loader = lv_preload_create(parent, NULL);
     lv_obj_align(loader, NULL, LV_ALIGN_CENTER, 0, - LV_DPI);
 #endif
@@ -262,8 +263,8 @@ static void create_tab3(lv_obj_t * parent)
 {
     /*Create a Window*/
     lv_obj_t * win = lv_win_create(parent, NULL);
-    lv_win_add_btn(win, SYMBOL_CLOSE, lv_win_close_action);
-    lv_win_add_btn(win, SYMBOL_DOWN, NULL);
+    lv_win_add_btn(win, LV_SYMBOL_CLOSE, lv_win_close_event);
+    lv_win_add_btn(win, LV_SYMBOL_DOWN, NULL);
     lv_obj_set_size(win, lv_disp_get_hor_res(NULL) / 2, lv_disp_get_ver_res(NULL) / 2);
     lv_obj_set_pos(win, LV_DPI / 20, LV_DPI / 20);
     lv_obj_set_top(win, true);
@@ -334,4 +335,4 @@ static void create_tab3(lv_obj_t * parent)
 
 }
 
-#endif /*USE_LV_TESTS*/
+#endif /*LV_USE_TESTS*/

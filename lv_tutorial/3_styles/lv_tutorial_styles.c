@@ -33,7 +33,7 @@
  *      INCLUDES
  *********************/
 #include "lv_tutorial_styles.h"
-#if USE_LV_TUTORIALS
+#if LV_USE_TUTORIALS
 
 /*********************
  *      DEFINES
@@ -130,7 +130,7 @@ void lv_tutorial_styles(void)
     static lv_style_t style_bar_bg;
     lv_style_copy(&style_bar_bg, &lv_style_pretty);
     style_bar_bg.body.radius = 3;
-    style_bar_bg.body.empty = 1;                            /*Empty (not filled)*/
+    style_bar_bg.body.opa = LV_OPA_TRANSP;                  /*Empty (not filled)*/
     style_bar_bg.body.border.color = LV_COLOR_GRAY;         /*Gray border color*/
     style_bar_bg.body.border.width = 6;                     /*2 px border width*/
     style_bar_bg.body.border.opa = LV_OPA_COVER;
@@ -149,7 +149,7 @@ void lv_tutorial_styles(void)
     lv_obj_t * bar = lv_bar_create(scr, NULL);
     lv_bar_set_style(bar, LV_BAR_STYLE_BG, &style_bar_bg);
     lv_bar_set_style(bar, LV_BAR_STYLE_INDIC, &style_bar_indic);
-    lv_bar_set_value(bar, 70);
+    lv_bar_set_value(bar, 70, false);
     lv_obj_set_size(bar, 200, 30);
     lv_obj_align(bar, obj1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
@@ -159,4 +159,4 @@ void lv_tutorial_styles(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_TUTORIALS*/
+#endif /*LV_USE_TUTORIALS*/

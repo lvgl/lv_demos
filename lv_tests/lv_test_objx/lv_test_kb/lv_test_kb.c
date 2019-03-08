@@ -9,7 +9,7 @@
 
 #include "lv_test_kb.h"
 
-#if USE_LV_KB && USE_LV_TESTS
+#if LV_USE_KB && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -96,4 +96,4 @@ void lv_test_kb_2(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_KB && USE_LV_TESTS*/
+#endif /*LV_USE_KB && LV_USE_TESTS*/

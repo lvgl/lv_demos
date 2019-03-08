@@ -7,7 +7,7 @@
  *      INCLUDES
  *********************/
 #include "lv_test_tileview.h"
-#if USE_LV_TILEVIEW && USE_LV_BTN && USE_LV_LABEL && USE_LV_LIST && USE_LV_TESTS
+#if LV_USE_TILEVIEW && LV_USE_BTN && LV_USE_LABEL && LV_USE_LIST && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -38,8 +38,8 @@
  */
 void lv_test_tileview_1(void)
 {
-    lv_coord_t hres = lv_disp_get_hor_res(NULL);
-    lv_coord_t vres = lv_disp_get_ver_res(NULL);
+    lv_coord_t hres = 240;//lv_disp_get_hor_res(NULL);
+    lv_coord_t vres = 240;//lv_disp_get_ver_res(NULL);
 
     static const lv_point_t vp[] = {
                    {1,0},          /*First row: only the middle tile*/
@@ -51,7 +51,7 @@ void lv_test_tileview_1(void)
     t = lv_tileview_create(lv_disp_get_scr_act(NULL), NULL);
     lv_tileview_set_valid_positions(t, vp);
     lv_tileview_set_edge_flash(t, true);
-
+    lv_obj_set_size(t, hres, vres);
     lv_obj_t * label;
 
     /*x0, y1 container*/
@@ -152,4 +152,4 @@ void lv_test_tileview_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_TILEVIEW && USE_LV_TESTS*/
+#endif /*LV_USE_TILEVIEW && LV_USE_TESTS*/

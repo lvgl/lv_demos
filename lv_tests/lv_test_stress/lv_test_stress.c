@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include "lv_test_stress.h"
 
-#if USE_LV_TESTS && USE_LV_ANIMATION
+#if LV_USE_TESTS && LV_USE_ANIMATION
 
 /*********************
  *      DEFINES
@@ -176,7 +176,7 @@ static void obj_mem_leak_tester(void * param)
             break;
         case 7:             /*Switch tests bar and slider memory leak too*/
             obj = lv_sw_create(page, NULL);
-            lv_sw_on(obj);
+            lv_sw_on(obj, false);
             break;
         case 8:     /*Kb tests butm too*/
             obj = lv_kb_create(all_obj_h, NULL);
@@ -198,18 +198,18 @@ static void obj_mem_leak_tester(void * param)
         case 15: /*Wait a little to see the previous results*/
             obj = lv_list_create(all_obj_h, NULL);
             lv_obj_set_pos(obj, 40, 50);
-            lv_list_add(obj, SYMBOL_OK, "List 1", NULL);
-            lv_list_add(obj, SYMBOL_OK, "List 2", NULL);
-            lv_list_add(obj, SYMBOL_OK, "List 3", NULL);
-            lv_list_add(obj, SYMBOL_OK, "List 4", NULL);
-            lv_list_add(obj, SYMBOL_OK, "List 5", NULL);
-            lv_list_add(obj, SYMBOL_OK, "List 6", NULL);
+            lv_list_add(obj, LV_SYMBOL_OK, "List 1", NULL);
+            lv_list_add(obj, LV_SYMBOL_OK, "List 2", NULL);
+            lv_list_add(obj, LV_SYMBOL_OK, "List 3", NULL);
+            lv_list_add(obj, LV_SYMBOL_OK, "List 4", NULL);
+            lv_list_add(obj, LV_SYMBOL_OK, "List 5", NULL);
+            lv_list_add(obj, LV_SYMBOL_OK, "List 6", NULL);
             lv_obj_animate(obj, LV_ANIM_GROW_V | LV_ANIM_IN, 5000, 0, NULL);
             break;
         case 16:
             obj = lv_win_create(all_obj_h, NULL);
-            lv_win_add_btn(obj, SYMBOL_CLOSE, NULL);
-            lv_win_add_btn(obj, SYMBOL_OK, NULL);
+            lv_win_add_btn(obj, LV_SYMBOL_CLOSE, NULL);
+            lv_win_add_btn(obj, LV_SYMBOL_OK, NULL);
             lv_win_set_style(obj, LV_WIN_STYLE_BG, &lv_style_pretty);
             lv_obj_set_size(obj, hres / 3, vres / 3);
             lv_obj_set_pos(obj, 20, 100);
@@ -353,7 +353,7 @@ static void alloc_free_tester(void * param)
             break;
 
         case 12:
-            lv_label_set_text(alloc_label, SYMBOL_DIRECTORY);
+            lv_label_set_text(alloc_label, LV_SYMBOL_DIRECTORY);
             break;
 
         case 16:     /*Wait to be random*/
@@ -374,7 +374,7 @@ static void alloc_free_tester(void * param)
             break;
 
         case 20:   /*Wait to be random*/
-            lv_label_set_text(alloc_label, SYMBOL_FILE);
+            lv_label_set_text(alloc_label, LV_SYMBOL_FILE);
             break;
         case 21:
             lv_label_set_text(alloc_label, "c");
@@ -411,5 +411,5 @@ static void alloc_free_tester(void * param)
     state ++;
 }
 
-#endif /*USE_LV_TESTS && USE_LV_ANIMATION*/
+#endif /*LV_USE_TESTS && LV_USE_ANIMATION*/
 

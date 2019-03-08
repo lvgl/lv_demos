@@ -8,7 +8,7 @@
  *********************/
 #include "lv_test_slider.h"
 
-#if USE_LV_SLIDER && USE_LV_TESTS
+#if LV_USE_SLIDER && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -48,7 +48,7 @@ void lv_test_slider_1(void)
     lv_obj_set_size(slider2, 150, 50);
     lv_obj_align(slider2, slider1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
     lv_slider_set_range(slider2, -50, 50);
-    lv_slider_set_value(slider2, 25);
+    lv_slider_set_value(slider2, 25, false);
 
     /* Copy 'slider2' but set its size to be vertical (indicator at 75%)*/
     lv_obj_t * slider3 = lv_slider_create(lv_disp_get_scr_act(NULL), slider2);
@@ -75,7 +75,7 @@ void lv_test_slider_1(void)
     lv_style_copy(&slider_knob, &lv_style_pretty);
     slider_knob.body.radius = LV_RADIUS_CIRCLE;
     slider_knob.body.border.color = LV_COLOR_BLUE;
-    slider_knob.body.empty = 1;
+    slider_knob.body.opa = LV_OPA_TRANSP;
 
     lv_obj_t * slider4 = lv_slider_create(lv_disp_get_scr_act(NULL), slider2);
     lv_obj_align(slider4, slider2, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
@@ -95,4 +95,4 @@ void lv_test_slider_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_SLIDER && USE_LV_TESTS*/
+#endif /*LV_USE_SLIDER && LV_USE_TESTS*/

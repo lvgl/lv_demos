@@ -7,7 +7,7 @@
  *      INCLUDES
  *********************/
 #include "lv_test_mbox.h"
-#if USE_LV_MBOX && USE_LV_TESTS
+#if LV_USE_MBOX && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -66,13 +66,13 @@ void lv_test_mbox_1(void)
     btn_bg.body.padding.hor = 10;
     btn_bg.body.padding.ver = 5;
     btn_bg.body.padding.inner = 40;
-    btn_bg.body.empty = 1;
+    btn_bg.body.opa = LV_OPA_TRANSP;
     btn_bg.body.border.color = LV_COLOR_WHITE;
     btn_bg.text.color = LV_COLOR_WHITE;
 
     static lv_style_t btn_rel;
     lv_style_copy(&btn_rel, &lv_style_btn_rel);
-    btn_rel.body.empty = 1;
+    btn_rel.body.opa = LV_OPA_TRANSP;
     btn_rel.body.border.color = LV_COLOR_WHITE;
 
     lv_obj_t * mbox3 = lv_mbox_create(lv_disp_get_scr_act(NULL), mbox2);
@@ -105,4 +105,4 @@ static lv_res_t mbox_action(lv_obj_t * btn, const char * txt)
     return LV_RES_OK;
 }
 
-#endif /*USE_LV_MBOX && USE_LV_TESTS*/
+#endif /*LV_USE_MBOX && LV_USE_TESTS*/

@@ -39,7 +39,7 @@
  *      INCLUDES
  *********************/
 #include "lv_tutorial_antialiasing.h"
-#if USE_LV_TUTORIALS
+#if LV_USE_TUTORIALS
 
 /*********************
  *      DEFINES
@@ -107,4 +107,4 @@ void lv_tutorial_antialiasing(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_TUTORIALS*/
+#endif /*LV_USE_TUTORIALS*/

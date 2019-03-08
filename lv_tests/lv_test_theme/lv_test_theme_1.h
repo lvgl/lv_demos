@@ -21,7 +21,7 @@ extern "C" {
 #include "../../../lv_ex_conf.h"
 #endif
 
-#if USE_LV_TESTS
+#if LV_USE_TESTS
 
 
 /*********************
@@ -46,7 +46,7 @@ void lv_test_theme_1(lv_theme_t *th);
  *      MACROS
  **********************/
 
-#endif /*USE_LV_TESTS*/
+#endif /*LV_USE_TESTS*/
 
 #ifdef __cplusplus
 } /* extern "C" */

@@ -21,7 +21,7 @@ extern "C" {
 #include "../../../../lv_ex_conf.h"
 #endif
 
-#if USE_LV_DDLIST && USE_LV_TESTS
+#if LV_USE_DDLIST && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -44,10 +44,10 @@ void lv_test_ddlist_1(void);
  *      MACROS
  **********************/
 
-#endif /*USE_LV_DDLIST*/
+#endif /*LV_USE_DDLIST*/
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
 
-#endif /*USE_LV_DDLIST && USE_LV_TESTS*/
+#endif /*LV_USE_DDLIST && LV_USE_TESTS*/

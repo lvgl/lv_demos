@@ -24,7 +24,7 @@
  *      INCLUDES
  *********************/
 #include "tpcal.h"
-#if USE_LV_TPCAL
+#if LV_USE_TPCAL
 #include <stdio.h>
 
 /*********************
@@ -119,7 +119,7 @@ void tpcal_create(void)
     lv_obj_set_style(circ_area, &style_circ);
     lv_obj_set_click(circ_area, false);
 
-#if USE_LV_ANIMATION
+#if LV_USE_ANIMATION
     lv_anim_t a;
     a.var = circ_area;
     a.start = hres / 2;
@@ -189,7 +189,7 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
             sprintf(buf, "Click the circle in\n"
                     "upper right-hand corner\n"
                     " %u Left", TOUCH_NUMBER);
-#if USE_LV_ANIMATION
+#if LV_USE_ANIMATION
             lv_anim_t a;
             a.var = circ_area;
             a.start = CIRCLE_OFFSET;
@@ -241,7 +241,7 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
             sprintf(buf, "Click the circle in\n"
                     "lower right-hand corner\n"
                     " %u Left", TOUCH_NUMBER);
-#if USE_LV_ANIMATION
+#if LV_USE_ANIMATION
             lv_anim_t a;
             a.var = circ_area;
             a.start = hres - CIRCLE_SIZE - CIRCLE_OFFSET;
@@ -293,7 +293,7 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
                     " %u Left", TOUCH_NUMBER);
             lv_obj_set_pos(label_coord, hres - lv_obj_get_width(label_coord),
                            vres - lv_obj_get_height(label_coord));
-#if USE_LV_ANIMATION
+#if LV_USE_ANIMATION
             lv_anim_t a;
             a.var = circ_area;
             a.start = hres - CIRCLE_SIZE - CIRCLE_OFFSET;
@@ -374,4 +374,4 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
     return LV_RES_OK;
 }
 
-#endif /*USE_LV_TPCAL*/
+#endif /*LV_USE_TPCAL*/

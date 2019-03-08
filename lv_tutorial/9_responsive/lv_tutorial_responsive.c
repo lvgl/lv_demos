@@ -47,7 +47,7 @@
  *      INCLUDES
  *********************/
 #include "lv_tutorial_responsive.h"
-#if  USE_LV_TUTORIALS
+#if  LV_USE_TUTORIALS
 
 #include "lvgl/lvgl.h"
 
@@ -134,4 +134,4 @@ void lv_tutorial_responsive(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_TUTORIALS*/
+#endif /*LV_USE_TUTORIALS*/

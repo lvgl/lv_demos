@@ -9,7 +9,7 @@
 #include "lv_test_task.h"
 #include <stdio.h>
 
-#if USE_LV_TESTS
+#if LV_USE_TESTS
 
 /*********************
  *      DEFINES

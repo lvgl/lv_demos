@@ -22,7 +22,7 @@ extern "C" {
 #endif
 
 
-#if USE_LV_DEMO
+#if LV_USE_DEMO
 
 /*********************
  *      DEFINES
@@ -45,7 +45,7 @@ void tpcal_create(void);
  *      MACROS
  **********************/
 
-#endif /*USE_LV_TPCAL*/
+#endif /*LV_USE_TPCAL*/
 
 #ifdef __cplusplus
 } /* extern "C" */

@@ -7,7 +7,7 @@
  *      INCLUDES
  *********************/
 #include "benchmark.h"
-#if USE_LV_BENCHMARK
+#if LV_USE_BENCHMARK
 
 #include "lvgl/lv_core/lv_refr.h"
 #include <stdio.h>
@@ -318,4 +318,4 @@ static lv_res_t opa_click(lv_obj_t * btn)
     return LV_RES_OK;
 }
 
-#endif /*USE_LV_BENCHMARK*/
+#endif /*LV_USE_BENCHMARK*/

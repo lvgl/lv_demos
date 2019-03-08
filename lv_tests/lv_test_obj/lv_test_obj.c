@@ -8,7 +8,7 @@
  *********************/
 #include "lv_test_obj.h"
 #include "../../lv_examples.h"  /*Just to include somewhere to test 'lv_example' version*/
-#if USE_LV_TESTS
+#if LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -101,4 +101,4 @@ void lv_test_object_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_TESTS*/
+#endif /*LV_USE_TESTS*/

@@ -8,7 +8,7 @@
  *********************/
 #include "lv_test_page.h"
 
-#if USE_LV_PAGE && USE_LV_TESTS
+#if LV_USE_PAGE && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -21,7 +21,7 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static lv_res_t page_rel_action(lv_obj_t * page);
+static void event_handler(lv_obj_t * page, lv_event_t event);
 
 /**********************
  *  STATIC VARIABLES
@@ -109,7 +109,7 @@ void lv_test_page_2(void)
     lv_obj_set_size(page1, LV_DPI, LV_DPI * 2);
     lv_page_set_scrl_layout(page1, LV_LAYOUT_COL_L);
     lv_page_set_sb_mode(page1, LV_SB_MODE_OFF);
-    lv_page_set_rel_action(page1, page_rel_action);
+    lv_obj_set_event_cb(page1, event_handler);
     lv_page_set_style(page1, LV_PAGE_STYLE_BG, &bg);
     lv_page_set_style(page1, LV_PAGE_STYLE_SCRL, &scrl);
     lv_page_set_style(page1, LV_PAGE_STYLE_SB, &sb);
@@ -147,17 +147,18 @@ void lv_test_page_2(void)
  *   STATIC FUNCTIONS
  **********************/
 
-static lv_res_t page_rel_action(lv_obj_t * page)
+
+static void event_handler(lv_obj_t * page, lv_event_t event)
 {
-    lv_obj_t * label = lv_label_create(page, NULL);
-    lv_label_set_text(label, "First line of a text\n"
-                      "Second line of a text\n"
-                      "Third line of a text\n"
-                      "Forth line of a text\n"
-                      "Fifth line of a text\n");
-
-    return LV_RES_OK;
-
+    if(event == LV_EVENT_SHORT_CLICKED) {
+        lv_obj_t * label = lv_label_create(page, NULL);
+        lv_label_set_text(label, "First line of a text\n"
+                "Second line of a text\n"
+                "Third line of a text\n"
+                "Forth line of a text\n"
+                "Fifth line of a text\n");
+    }
 }
 
-#endif /*USE_LV_PAGE && USE_LV_TESTS*/
+
+#endif /*LV_USE_PAGE && LV_USE_TESTS*/

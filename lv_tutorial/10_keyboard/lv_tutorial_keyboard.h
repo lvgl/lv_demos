@@ -21,7 +21,7 @@ extern "C" {
 #include "../../../lv_ex_conf.h"
 #endif
 
-#if USE_LV_TUTORIALS && USE_LV_GROUP
+#if LV_USE_TUTORIALS && LV_USE_GROUP
 
 /*********************
  *      DEFINES
@@ -44,7 +44,7 @@ void lv_tutorial_keyboard(lv_indev_t * kp_indev);
  *      MACROS
  **********************/
 
-#endif /*USE_LV_TUTORIALS*/
+#endif /*LV_USE_TUTORIALS*/
 
 #ifdef __cplusplus
 } /* extern "C" */

@@ -21,7 +21,7 @@ extern "C" {
 #include "../../../../lv_ex_conf.h"
 #endif
 
-#if USE_LV_BTN && USE_LV_TESTS
+#if LV_USE_BTN && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -44,10 +44,10 @@ void lv_test_btn_1(void);
  *      MACROS
  **********************/
 
-#endif /*USE_LV_BTN*/
+#endif /*LV_USE_BTN*/
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
 
-#endif /*USE_LV_BTN && USE_LV_TESTS*/
+#endif /*LV_USE_BTN && LV_USE_TESTS*/

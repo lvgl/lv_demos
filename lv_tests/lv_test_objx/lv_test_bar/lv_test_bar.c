@@ -7,7 +7,7 @@
  *      INCLUDES
  *********************/
 #include "lv_test_bar.h"
-#if USE_LV_BAR && USE_LV_TESTS
+#if LV_USE_BAR && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -41,14 +41,14 @@ void lv_test_bar_1(void)
     /* Create a default object*/
     lv_obj_t * bar1 = lv_bar_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_pos(bar1, 10, 10);
-    lv_bar_set_value(bar1, 40);
+    lv_bar_set_value(bar1, 40, false);
 
     /* Modify size and position, range and set to 75 % */
     lv_obj_t * bar2 = lv_bar_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_size(bar2, 200, 50);
     lv_obj_align(bar2, bar1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
     lv_bar_set_range(bar2, -50, 50);
-    lv_bar_set_value(bar2, 25);
+    lv_bar_set_value(bar2, 25, false);
 
     /* Copy 'bar2' but set its size to be vertical (indicator at 75%)*/
     lv_obj_t * bar3 = lv_bar_create(lv_disp_get_scr_act(NULL), bar2);
@@ -87,4 +87,4 @@ void lv_test_bar_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_BAR && USE_LV_TESTS*/
+#endif /*LV_USE_BAR && LV_USE_TESTS*/

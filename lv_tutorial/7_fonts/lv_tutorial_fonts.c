@@ -18,7 +18,7 @@
  *
  * SYMBOLS
  * - There are symbols as well which stored as fonts.
- * - To reference a symbol use the defines: SYMBOL_... (SYMBOL_FILE, SYMBOL_OK ... see lv_symbol_def.h)
+ * - To reference a symbol use the defines: LV_SYMBOL_... (LV_SYMBOL_FILE, LV_SYMBOL_OK ... see lv_symbol_def.h)
  * - You can enable the symbols in lv_conf. similarly to built-in fonts.
  *
  * CHARACTER-SET EXTENSION
@@ -55,7 +55,7 @@
  *      INCLUDES
  *********************/
 #include "lv_tutorial_fonts.h"
-#if USE_LV_TUTORIALS
+#if LV_USE_TUTORIALS
 
 #include "lvgl/lvgl.h"
 
@@ -112,4 +112,4 @@ void lv_tutorial_fonts(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_TUTORIALS*/
+#endif /*LV_USE_TUTORIALS*/
