@@ -28,11 +28,11 @@
  *  STATIC PROTOTYPES
  **********************/
 static void refr_monitor(lv_disp_drv_t * disp_drv, uint32_t time_ms, uint32_t px_num);
-static lv_res_t run_test_click(lv_obj_t * btn);
-static lv_res_t wp_click(lv_obj_t * btn);
-static lv_res_t recolor_click(lv_obj_t * btn);
-static lv_res_t shadow_click(lv_obj_t * btn);
-static lv_res_t opa_click(lv_obj_t * btn);
+static void run_test_event_cb(lv_obj_t * btn, lv_event_t event);
+static void wp_btn_event_cb(lv_obj_t * btn, lv_event_t event);
+static void recolor_btn_event_cb(lv_obj_t * btn, lv_event_t event);
+static void shadow_btn_event_cb(lv_obj_t * btn, lv_event_t event);
+static void opa_btn_event_cb(lv_obj_t * btn, lv_event_t event);
 
 /**********************
  *  STATIC VARIABLES
@@ -128,7 +128,7 @@ void benchmark_create(void)
     lv_btn_set_style(btn, LV_BTN_STYLE_PR, &style_btn_pr);
     lv_btn_set_style(btn, LV_BTN_STYLE_TGL_REL, &style_btn_tgl_rel);
     lv_btn_set_style(btn, LV_BTN_STYLE_TGL_PR, &style_btn_tgl_pr);
-    lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, run_test_click);
+    lv_obj_set_event_cb(btn, run_test_event_cb);
 
     lv_obj_t * btn_l;
     btn_l = lv_label_create(btn, NULL);
@@ -140,26 +140,26 @@ void benchmark_create(void)
     btn = lv_btn_create(holder_page, btn);
     lv_btn_set_toggle(btn, true);
     lv_obj_clear_protect(btn, LV_PROTECT_FOLLOW);
-    lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, wp_click);
+    lv_obj_set_event_cb(btn, wp_btn_event_cb);
     btn_l = lv_label_create(btn, btn_l);
     lv_label_set_text(btn_l, "Wallpaper");
 
 
     /*Create a "Wallpaper re-color" button*/
     btn = lv_btn_create(holder_page, btn);
-    lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, recolor_click);
+    lv_obj_set_event_cb(btn, recolor_btn_event_cb);
     btn_l = lv_label_create(btn, btn_l);
     lv_label_set_text(btn_l, "Wp. recolor!");
 
     /*Create a "Shadow draw" button*/
     btn = lv_btn_create(holder_page, btn);
-    lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, shadow_click);
+    lv_obj_set_event_cb(btn, shadow_btn_event_cb);
     btn_l = lv_label_create(btn, btn_l);
     lv_label_set_text(btn_l, "Shadow");
 
     /*Create an "Opacity enable" button*/
     btn = lv_btn_create(holder_page, btn);
-    lv_btn_set_action(btn, LV_BTN_ACTION_CLICK, opa_click);
+    lv_obj_set_event_cb(btn, opa_btn_event_cb);
     btn_l = lv_label_create(btn, btn_l);
     lv_label_set_text(btn_l, "Opacity");
 }
@@ -167,7 +167,7 @@ void benchmark_create(void)
 
 void benchmark_start(void)
 {
-    lv_disp_t * disp = lv_disp_get_default();
+    lv_disp_t * disp = lv_obj_get_disp(holder_page);
 
     disp->driver.monitor_cb = refr_monitor;
 
@@ -202,15 +202,15 @@ uint32_t benchmark_get_refr_time(void)
 static void refr_monitor(lv_disp_drv_t * disp_drv, uint32_t time_ms, uint32_t px_num)
 {
     (void) px_num   ; /*Unused*/
-
+    lv_disp_t * disp = lv_obj_get_disp(holder_page);
     time_sum += time_ms;
     refr_cnt ++;
-    lv_obj_invalidate(lv_disp_get_scr_act(NULL));
+    lv_obj_invalidate(lv_disp_get_scr_act(disp));
 
     if(refr_cnt >= TEST_CYCLE_NUM) {
         float time_avg = (float)time_sum / (float)TEST_CYCLE_NUM;
         char buf[256];
-        if(time_sum != 0) sprintf(buf, "Screen load: %0.1f ms\nAverage of %d", time_avg, TEST_CYCLE_NUM);
+        sprintf(buf, "Screen load: %0.1f ms\nAverage of %d", time_avg, TEST_CYCLE_NUM);
         lv_label_set_text(result_label, buf);
         disp_drv->monitor_cb = NULL;
     } else {
@@ -224,53 +224,54 @@ static void refr_monitor(lv_disp_drv_t * disp_drv, uint32_t time_ms, uint32_t px
 /**
  * Called when the "Run test" button is clicked
  * @param btn pointer to the button
- * @return LV_RES_OK because the button is not deleted in the function
+ * @param event the current event
  */
-static lv_res_t run_test_click(lv_obj_t * btn)
+static void run_test_event_cb(lv_obj_t * btn, lv_event_t event)
 {
     (void) btn; /*Unused*/
 
-    benchmark_start();
+    if(event != LV_EVENT_CLICKED) return;
 
-    return LV_RES_OK;
+    benchmark_start();
 }
 
 /**
  * Called when the "Wallpaper" button is clicked
  * @param btn pointer to the button
- * @return LV_RES_OK because the button is not deleted in the function
+ * @param event the current event
  */
-static lv_res_t wp_click(lv_obj_t * btn)
+static void wp_btn_event_cb(lv_obj_t * btn, lv_event_t event)
 {
+    if(event != LV_EVENT_CLICKED) return;
+
     if(lv_btn_get_state(btn) == LV_BTN_STATE_TGL_REL) lv_obj_set_hidden(wp, false);
     else lv_obj_set_hidden(wp, true);
-
-    return LV_RES_OK;
 }
 
 /**
  * Called when the "Wp. recolor" button is clicked
  * @param btn pointer to the button
- * @return LV_RES_OK because the button is not deleted in the function
+ * @param event the current event
  */
-static lv_res_t recolor_click(lv_obj_t * btn)
+static void recolor_btn_event_cb(lv_obj_t * btn, lv_event_t event)
 {
+    if(event != LV_EVENT_CLICKED) return;
 
     if(lv_btn_get_state(btn) == LV_BTN_STATE_TGL_REL) style_wp.image.intense = IMG_RECOLOR;
     else style_wp.image.intense = LV_OPA_TRANSP;
 
     lv_obj_refresh_style(wp);
-
-    return LV_RES_OK;
 }
 
 /**
  * Called when the "Shadow" button is clicked
  * @param btn pointer to the button
- * @return LV_RES_OK because the button is not deleted in the function
+ * @param event the current event
  */
-static lv_res_t shadow_click(lv_obj_t * btn)
+static void shadow_btn_event_cb(lv_obj_t * btn, lv_event_t event)
 {
+    if(event != LV_EVENT_CLICKED) return;
+
     if(lv_btn_get_state(btn) == LV_BTN_STATE_TGL_REL) {
         style_btn_rel.body.shadow.width = SHADOW_WIDTH;
         style_btn_pr.body.shadow.width  =  SHADOW_WIDTH;
@@ -287,17 +288,17 @@ static lv_res_t shadow_click(lv_obj_t * btn)
     lv_obj_report_style_mod(&style_btn_pr);
     lv_obj_report_style_mod(&style_btn_tgl_rel);
     lv_obj_report_style_mod(&style_btn_tgl_pr);
-
-    return LV_RES_OK;
 }
 
 /**
  * Called when the "Opacity" button is clicked
  * @param btn pointer to the button
- * @return LV_RES_OK because the button is not deleted in the function
+ * @param event the current event
  */
-static lv_res_t opa_click(lv_obj_t * btn)
+static void opa_btn_event_cb(lv_obj_t * btn, lv_event_t event)
 {
+    if(event != LV_EVENT_CLICKED) return;
+
     if(lv_btn_get_state(btn) == LV_BTN_STATE_TGL_REL) {
         style_btn_rel.body.opa = OPACITY;
         style_btn_pr.body.opa  = OPACITY;
@@ -314,8 +315,6 @@ static lv_res_t opa_click(lv_obj_t * btn)
     lv_obj_report_style_mod(&style_btn_pr);
     lv_obj_report_style_mod(&style_btn_tgl_rel);
     lv_obj_report_style_mod(&style_btn_tgl_pr);
-
-    return LV_RES_OK;
 }
 
 #endif /*LV_USE_BENCHMARK*/

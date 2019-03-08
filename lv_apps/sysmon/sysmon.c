@@ -28,7 +28,7 @@
  *  STATIC PROTOTYPES
  **********************/
 static void sysmon_task(void * param);
-static lv_res_t win_close_action(lv_obj_t * btn);
+static void win_close_action(lv_obj_t * btn, lv_event_t event);
 
 /**********************
  *  STATIC VARIABLES
@@ -156,18 +156,19 @@ static void sysmon_task(void * param)
 /**
  * Called when the window's close button is clicked
  * @param btn pointer to the close button
- * @return LV_ACTION_RES_INV because the button is deleted in the function
+ * @param event the current event
  */
-static lv_res_t win_close_action(lv_obj_t * btn)
+static void win_close_action(lv_obj_t * btn, lv_event_t event)
 {
     (void) btn;    /*Unused*/
+
+    if(event != LV_EVENT_CLICKED) return;
 
     lv_obj_del(win);
     win = NULL;
 
     lv_task_del(refr_task);
     refr_task = NULL;
-    return LV_RES_INV;
 }
 
 #endif /*LV_USE_SYMON*/

@@ -23,8 +23,8 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static lv_res_t clr_click_action(lv_obj_t * btn);
-static lv_res_t win_close_action(lv_obj_t * btn);
+static void clr_event_cb(lv_obj_t * btn, lv_event_t event);
+static void win_close_action(lv_obj_t * btn, lv_event_t event);
 
 /**********************
  *  STATIC VARIABLES
@@ -78,7 +78,7 @@ lv_obj_t * terminal_create(void)
     /*Create a clear button*/
     clr_btn = lv_btn_create(win, NULL);
     lv_btn_set_fit(clr_btn, LV_FIT_TIGHT);
-    lv_btn_set_action(clr_btn, LV_BTN_ACTION_CLICK, clr_click_action);
+    lv_obj_set_event_cb(clr_btn, clr_event_cb);
     lv_obj_t * btn_label = lv_label_create(clr_btn, NULL);
     lv_label_set_text(btn_label, "Clear");
 
@@ -145,16 +145,16 @@ void terminal_add(const char * txt_in)
 /**
  * Called when the Clear button is click to clear the text of the terminal
  * @param btn pointer to the clear button
- * @return LV_ACTION_RES_OK because the button is not deleted
+ * @param event the current event
  */
-static lv_res_t clr_click_action(lv_obj_t * btn)
+static void clr_event_cb(lv_obj_t * btn, lv_event_t event)
 {
     (void) btn;    /*Unused*/
 
+    if(event != LV_EVENT_CLICKED) return;
+
     txt_log[0] = '\0';
     lv_label_set_static_text(label, txt_log);   /*Refresh the text*/
-
-    return LV_RES_OK;
 }
 
 /**
@@ -162,13 +162,14 @@ static lv_res_t clr_click_action(lv_obj_t * btn)
  * @param btn pointer to the close button
  * @return LV_ACTION_RES_INV because the button is deleted in the function
  */
-static lv_res_t win_close_action(lv_obj_t * btn)
+static void win_close_action(lv_obj_t * btn, lv_event_t event)
 {
     (void) btn;    /*Unused*/
 
+    if(event != LV_EVENT_CLICKED) return;
+
     lv_obj_del(win);
     win = NULL;
-    return LV_RES_INV;
 }
 
 #endif /*LV_USE_TERMINAL*/

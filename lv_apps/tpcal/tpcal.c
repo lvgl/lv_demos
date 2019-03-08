@@ -52,7 +52,7 @@ typedef enum {
  *  STATIC PROTOTYPES
  **********************/
 static void get_avr_value(lv_point_t * p);
-static lv_res_t btn_click_action(lv_obj_t * scr);
+static void btn_event_cb(lv_obj_t * scr, lv_event_t event);
 
 /**********************
  *  STATIC VARIABLES
@@ -92,7 +92,7 @@ void tpcal_create(void)
     lv_obj_set_size(big_btn, TP_MAX_VALUE, TP_MAX_VALUE);
     lv_btn_set_style(big_btn, LV_BTN_STYLE_REL, &lv_style_transp);
     lv_btn_set_style(big_btn, LV_BTN_STYLE_PR, &lv_style_transp);
-    lv_btn_set_action(big_btn, LV_BTN_ACTION_CLICK, btn_click_action);
+    lv_obj_set_event_cb(big_btn, btn_event_cb);
     lv_btn_set_layout(big_btn, LV_LAYOUT_OFF);
 
     label_main = lv_label_create(lv_disp_get_scr_act(NULL), NULL);
@@ -165,12 +165,15 @@ static void get_avr_value(lv_point_t * p)
     p->y = y_sum / TOUCH_NUMBER;
 }
 
-static lv_res_t btn_click_action(lv_obj_t * scr)
+static void btn_event_cb(lv_obj_t * scr, lv_event_t event)
 {
     (void) scr;    /*Unused*/
 
-    lv_coord_t hres = lv_disp_get_hor_res(NULL);
-    lv_coord_t vres = lv_disp_get_ver_res(NULL);
+    if(event != LV_EVENT_CLICKED) return;
+
+    lv_disp_t * disp = lv_obj_get_disp(prev_scr);
+    lv_coord_t hres = lv_disp_get_hor_res(disp);
+    lv_coord_t vres = lv_disp_get_ver_res(disp);
 
     static uint8_t touch_nb = TOUCH_NUMBER;
 
@@ -184,7 +187,7 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
             touch_nb = TOUCH_NUMBER;
             get_avr_value(&point[0]);
             sprintf(buf, "x: %d\ny: %d", point[0].x, point[0].y);
-            lv_obj_t * label_coord = lv_label_create(lv_disp_get_scr_act(NULL), NULL);
+            lv_obj_t * label_coord = lv_label_create(lv_disp_get_scr_act(disp), NULL);
             lv_label_set_text(label_coord, buf);
             sprintf(buf, "Click the circle in\n"
                     "upper right-hand corner\n"
@@ -235,7 +238,7 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
             touch_nb = TOUCH_NUMBER;
             get_avr_value(&point[1]);
             sprintf(buf, "x: %d\ny: %d", point[1].x, point[1].y);
-            lv_obj_t * label_coord = lv_label_create(lv_disp_get_scr_act(NULL), NULL);
+            lv_obj_t * label_coord = lv_label_create(lv_disp_get_scr_act(disp), NULL);
             lv_label_set_text(label_coord, buf);
             lv_obj_set_pos(label_coord, hres - lv_obj_get_width(label_coord), 0);
             sprintf(buf, "Click the circle in\n"
@@ -370,8 +373,6 @@ static lv_res_t btn_click_action(lv_obj_t * scr)
 
     } else if(state == TP_CAL_STATE_READY) {
     }
-
-    return LV_RES_OK;
 }
 
 #endif /*LV_USE_TPCAL*/
