@@ -59,23 +59,6 @@ static lv_obj_t * win;
  *   GLOBAL FUNCTIONS
  **********************/
 
-
-bool ta_chk(lv_obj_t * ta, uint32_t c)
-{
-    static bool run;
-
-    /*Prevent to be called from every `lv_ta_add_char`*/
-    if(run) return true;
-
-    run = true;
-
-    lv_ta_add_char(ta, c);
-    lv_ta_add_char(ta, '.');
-
-    run = false;
-    return false;
-}
-
 /**
  * Create base groups to test their functionalities
  */
@@ -185,12 +168,14 @@ void lv_test_group_1(void)
     obj = lv_kb_create(win, NULL);
     lv_obj_set_size(obj, hres - LV_DPI, vres / 2);
     lv_kb_set_ta(obj, ta);
+    lv_kb_set_cursor_manage(obj, true);
     lv_group_add_obj(g, obj);
 
 
     static const char * mbox_btns[] = {"Yes", "No", ""};
     obj = lv_mbox_create(win, NULL);
-    lv_mbox_add_btns(obj, mbox_btns, NULL);
+    lv_mbox_add_btns(obj, mbox_btns);
+    lv_obj_set_event_cb(obj, general_event_handler);
     lv_group_add_obj(g, obj);
 
 
@@ -222,6 +207,7 @@ void lv_test_group_1(void)
     lv_obj_set_size(obj, hres / 2, vres / 2);
     lv_obj_t * t1 = lv_tabview_add_tab(obj, "Tab 1");
     lv_obj_t * t2 = lv_tabview_add_tab(obj, "Tab 2");
+    lv_obj_set_event_cb(obj, general_event_handler);
     lv_group_add_obj(g, obj);
 
     obj = lv_label_create(t1, NULL);
@@ -229,10 +215,6 @@ void lv_test_group_1(void)
 
     obj = lv_label_create(t2, NULL);
     lv_label_set_text(obj, "This is the content\nof the second tab");
-
-    return;
-
-    lv_group_focus_obj(lv_group_get_focused(g));
 }
 
 

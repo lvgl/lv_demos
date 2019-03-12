@@ -227,9 +227,9 @@ static void obj_mem_leak_tester(void * param)
             obj = lv_mbox_create(all_obj_h, NULL);
             lv_obj_set_width(obj, hres / 4);
             lv_mbox_set_text(obj, "message");
-            lv_mbox_add_btns(obj, mbox_btns, NULL); /*Set 3 times to test btnm add memory leasks*/
-            lv_mbox_add_btns(obj, mbox_btns, NULL);
-            lv_mbox_add_btns(obj, mbox_btns, NULL);
+            lv_mbox_add_btns(obj, mbox_btns); /*Set 3 times to test btnm add memory leasks*/
+            lv_mbox_add_btns(obj, mbox_btns);
+            lv_mbox_add_btns(obj, mbox_btns);
             lv_mbox_set_anim_time(obj, 300);
             lv_mbox_start_auto_close(obj, 500);
             break;

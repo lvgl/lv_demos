@@ -113,7 +113,7 @@ static void create_tab1(lv_obj_t * parent)
     lv_obj_t * btnm = lv_btnm_create(h, NULL);
     lv_obj_set_size(btnm, lv_disp_get_hor_res(NULL) / 4, 2 * LV_DPI / 3);
     lv_btnm_set_map(btnm, btnm_str);
-    lv_btnm_set_toggle(btnm, true, 3);
+    lv_btnm_set_btn_toggle_state(btnm, true, 3);
 
 #if LVGL_VERSION_MAJOR == 5 && LVGL_VERSION_MINOR >= 3
     lv_obj_t * table = lv_table_create(h, NULL);
@@ -326,10 +326,13 @@ static void create_tab3(lv_obj_t * parent)
     lv_calendar_set_showed_date(cal, &highlighted_days[0]);
 
     /*Create a Message box*/
-    static const char * mbox_btn_map[] = {"\211", "\222Got it!", "\211", ""};
+    static const char * mbox_btn_map[] = {" ", "Got it!", " ", ""};
     lv_obj_t * mbox = lv_mbox_create(parent, NULL);
     lv_mbox_set_text(mbox, "Click on the window or the page to bring it to the foreground");
-    lv_mbox_add_btns(mbox, mbox_btn_map, NULL);
+    lv_mbox_add_btns(mbox, mbox_btn_map);
+    lv_btnm_set_btn_hidden(lv_mbox_get_btnm(mbox), 0, true);
+    lv_btnm_set_btn_width(lv_mbox_get_btnm(mbox), 1, 7);
+    lv_btnm_set_btn_hidden(lv_mbox_get_btnm(mbox), 2, true);
     lv_obj_set_top(mbox, true);
 
 

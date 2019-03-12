@@ -278,7 +278,7 @@ static void content_create(void)
     lv_mbox_set_text(mbox, "Choose a theme and a color on the left!");
 
     static const char * mbox_btns[] = {"Ok", ""};
-    lv_mbox_add_btns(mbox, mbox_btns, NULL);
+    lv_mbox_add_btns(mbox, mbox_btns);
 
     lv_obj_align(mbox, NULL, LV_ALIGN_CENTER, 0, 0);
 

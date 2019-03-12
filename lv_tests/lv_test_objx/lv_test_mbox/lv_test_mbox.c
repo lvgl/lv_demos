@@ -20,7 +20,7 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static lv_res_t mbox_action(lv_obj_t * btn, const char * txt);
+static void mbox_event_cb(lv_obj_t * mbox, lv_event_t event);
 
 /**********************
  *  STATIC VARIABLES
@@ -46,7 +46,7 @@ void lv_test_mbox_1(void)
     /*Add buttons and modify text*/
     static const char * btns2[] = {"Ok", "Cancel", ""};
     lv_obj_t * mbox2 = lv_mbox_create(lv_disp_get_scr_act(NULL), NULL);
-    lv_mbox_add_btns(mbox2, btns2, NULL);
+    lv_mbox_add_btns(mbox2, btns2);
     lv_mbox_set_text(mbox2, "Message");
     lv_obj_set_width(mbox2, lv_disp_get_hor_res(NULL) / 2);
     lv_obj_align(mbox2, mbox1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
@@ -80,7 +80,7 @@ void lv_test_mbox_1(void)
     lv_mbox_set_style(mbox3, LV_MBOX_STYLE_BTN_BG,  &btn_bg);
     lv_mbox_set_style(mbox3, LV_MBOX_STYLE_BG, &bg);
     lv_obj_align(mbox3, mbox1, LV_ALIGN_OUT_RIGHT_TOP, 10, 0);
-    lv_mbox_set_action(mbox3, mbox_action);
+    lv_obj_set_event_cb(mbox3, mbox_event_cb);
 
     /*Copy with styles and set button width*/
     lv_obj_t * mbox4 = lv_mbox_create(lv_disp_get_scr_act(NULL), mbox3);
@@ -88,7 +88,8 @@ void lv_test_mbox_1(void)
                      "manually broken into multiple lines");
 
     static const char * btns3[] = {"Ok", "Cancel", "Third", ""};
-    lv_mbox_add_btns(mbox4, btns3, mbox_action);
+    lv_mbox_add_btns(mbox4, btns3);
+    lv_obj_set_event_cb(mbox4, mbox_event_cb);
     lv_obj_align(mbox4, mbox3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
 }
 
@@ -96,13 +97,14 @@ void lv_test_mbox_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-static lv_res_t mbox_action(lv_obj_t * btn, const char * txt)
+static void mbox_event_cb(lv_obj_t * mbox, lv_event_t event)
 {
-    lv_obj_t * mbox = lv_mbox_get_from_btn(btn);
+    if(event != LV_EVENT_CLICKED) return;
 
-    lv_mbox_set_text(mbox, txt);
-
-    return LV_RES_OK;
+    const char * btn_txt = lv_mbox_get_active_btn_text(mbox);
+    if(btn_txt) {
+        lv_mbox_set_text(mbox, btn_txt);
+    }
 }
 
 #endif /*LV_USE_MBOX && LV_USE_TESTS*/

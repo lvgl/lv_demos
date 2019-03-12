@@ -23,7 +23,7 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static lv_res_t btnm_action(lv_obj_t * btnm, const char * txt);
+static void btnm_event_cb(lv_obj_t * btnm, lv_event_t event);
 
 /**********************
  *  STATIC VARIABLES
@@ -72,8 +72,8 @@ void lv_test_btnm_1(void)
     lv_btnm_set_map(btnm2, btnm_map);
     lv_obj_set_size(btnm2, hres / 2, vres / 3);
     lv_obj_align(btnm2, btnm1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
-    lv_btnm_set_toggle(btnm2, true, 2);
-    lv_btnm_set_action(btnm2, btnm_action);
+    lv_btnm_set_btn_toggle_state(btnm2, 2, true);
+    lv_obj_set_event_cb(btnm2, btnm_event_cb);
     lv_btnm_set_style(btnm2, LV_BTNM_STYLE_BTN_REL, &rel);
     lv_btnm_set_style(btnm2, LV_BTNM_STYLE_BTN_PR, &pr);
 
@@ -86,14 +86,20 @@ void lv_test_btnm_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-static lv_res_t btnm_action(lv_obj_t * btnm, const char * txt)
+static void btnm_event_cb(lv_obj_t * btnm, lv_event_t event)
 {
     (void) btnm; /*Unused*/
 
+    if(event != LV_EVENT_CLICKED) return;
+
+
+
 #if LV_EX_PRINTF
-    printf("Key pressed: %s\n", txt);
+    const char * txt = lv_btnm_get_active_btn_text(btnm);
+    if(txt) {
+        printf("Key pressed: %s\n", txt);
+    }
 #endif
-    return LV_RES_OK;
 }
 
 #endif /* LV_USE_BTNM && LV_USE_TESTS*/

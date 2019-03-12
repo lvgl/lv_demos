@@ -45,7 +45,7 @@
 static void gui_create(void);
 static void kaypad_create(void);
 static bool emulated_keypad_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data);
-static lv_res_t mbox_action(lv_obj_t * btn, const char * txt);
+static void mbox_event_cb(lv_obj_t * mbox, lv_event_t event);
 static void keypad_event_cb(lv_obj_t * btn, lv_event_t event);
 static void message_btn_event_cb(lv_obj_t * btn, lv_event_t event);
 
@@ -218,11 +218,12 @@ static void message_btn_event_cb(lv_obj_t * btn, lv_event_t event)
         /*Create a message box*/
         lv_obj_t * mbox = lv_mbox_create(lv_disp_get_layer_top(NULL), NULL);
         lv_mbox_set_text(mbox, "Turn on something?");
+        lv_obj_set_event_cb(mbox, mbox_event_cb);
         lv_group_add_obj(g, mbox);          /*Add to he group*/
 
         /*Add two buttons*/
         static const char * btns[] = {"Yes", "No", ""};
-        lv_mbox_add_btns(mbox, btns, mbox_action);
+        lv_mbox_add_btns(mbox, btns);
 
         lv_obj_align(mbox, NULL, LV_ALIGN_CENTER, 0, - LV_DPI / 2);
 
@@ -238,26 +239,27 @@ static void message_btn_event_cb(lv_obj_t * btn, lv_event_t event)
 
 /**
  * Called when a message box button is clicked
- * @param btn pointer to the 'Yes' button
- * @return LV_ACTION_RES_INV: because the button along with the message box will be deleted
+ * @param mbox pointer to message box
+ * @param event event type
  */
-static lv_res_t mbox_action(lv_obj_t * btn, const char * txt)
+static void mbox_event_cb(lv_obj_t * mbox, lv_event_t event)
 {
-    lv_group_focus_freeze(g, false);        /*Release the freeze*/
-    lv_obj_t * mbox = lv_mbox_get_from_btn(btn);
+    if(event != LV_EVENT_CLICKED) return;
 
-    /*Revert the top layer to not block*/
-    lv_obj_set_style(lv_disp_get_layer_top(NULL), &lv_style_transp);
-    lv_obj_set_click(lv_disp_get_layer_top(NULL), false);
+    const char * btn_txt = lv_mbox_get_active_btn_text(mbox);
+    if(btn_txt) {
+        lv_group_focus_freeze(g, false);        /*Release the freeze*/
 
+        /*Revert the top layer to not block*/
+        lv_obj_set_style(lv_disp_get_layer_top(NULL), &lv_style_transp);
+        lv_obj_set_click(lv_disp_get_layer_top(NULL), false);
 
-    /*Mark the enabled state by toggling the button*/
-    if(strcmp(txt, "No") == 0)  lv_btn_set_state(btn_enable, LV_BTN_STATE_REL);
-    else if(strcmp(txt, "Yes") == 0)  lv_btn_set_state(btn_enable, LV_BTN_STATE_TGL_REL);
+        /*Mark the enabled state by toggling the button*/
+        if(strcmp(btn_txt, "No") == 0)  lv_btn_set_state(btn_enable, LV_BTN_STATE_REL);
+        else if(strcmp(btn_txt, "Yes") == 0)  lv_btn_set_state(btn_enable, LV_BTN_STATE_TGL_REL);
 
-    lv_obj_del(mbox);
-
-    return LV_RES_INV;
+        lv_obj_del(mbox);
+    }
 }
 
 /**
