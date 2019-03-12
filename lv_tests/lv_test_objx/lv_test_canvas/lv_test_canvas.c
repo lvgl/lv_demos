@@ -139,7 +139,7 @@ void lv_test_canvas_2(void)
     lv_canvas_fill_polygon(canvas, points5, 4, LV_COLOR_RED, fill_color);
 
     lv_canvas_draw_circle(canvas, 25, 54, 10, LV_COLOR_BLACK);
-    lv_canvas_flood_fill(canvas, 25, 54, bg_color, LV_COLOR_RED);
+    lv_canvas_flood_fill(canvas, 25, 54, LV_COLOR_RED, bg_color);
 
     lv_canvas_draw_circle(canvas, 25, 54, 5, LV_COLOR_BLACK);
     lv_canvas_draw_circle(canvas, 25, 54, 15, LV_COLOR_BLACK);
