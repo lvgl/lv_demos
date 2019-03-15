@@ -95,7 +95,7 @@ static lv_fs_res_t pcfs_tell(void * file_p, uint32_t * pos_p);
  *  STATIC VARIABLES
  **********************/
 /*Declare the "source code image" which is stored in the flash*/
-LV_IMG_DECLARE(red_flower);
+LV_IMG_DECLARE(red_flower)
 
 /**********************
  *      MACROS

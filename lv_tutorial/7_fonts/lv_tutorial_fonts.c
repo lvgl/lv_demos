@@ -74,9 +74,9 @@
 /**********************
  *  STATIC VARIABLES
  **********************/
-LV_FONT_DECLARE(arial_ascii_20);        /*Full ASCII range*/
-LV_FONT_DECLARE(arial_cyrillic_20);   /*Continuous block of cyrillic characters*/
-LV_FONT_DECLARE(arial_math_20);        /*Sparse mathematical characters*/
+LV_FONT_DECLARE(arial_ascii_20)        /*Full ASCII range*/
+LV_FONT_DECLARE(arial_cyrillic_20)   /*Continuous block of cyrillic characters*/
+LV_FONT_DECLARE(arial_math_20)        /*Sparse mathematical characters*/
 
 /**********************
  *      MACROS
