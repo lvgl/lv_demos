@@ -21,7 +21,7 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static void btn_event_handler(lv_obj_t * btn, lv_event_t event);
+static void btn_event_cb(lv_obj_t * btn, lv_event_t event);
 
 /**********************
  *  STATIC VARIABLES
@@ -57,7 +57,7 @@ void lv_test_btn_1(void)
      * Press: increase width, Release: decrease width, Long press: delete */
     lv_obj_t * btn4 = lv_btn_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_align(btn4, btn1, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
-    lv_obj_set_event_cb(btn4, btn_event_handler);
+    lv_obj_set_event_cb(btn4, btn_event_cb);
 
     /* Test styles and copy. Same as 'btn4' but different styles */
     static lv_style_t style_rel;
@@ -74,7 +74,7 @@ void lv_test_btn_1(void)
     style_pr.body.border.color = LV_COLOR_RED;
     style_pr.body.border.width = 4;
 
-    /*Skip 'tpr' because it will be let the same*/
+    /*Skip 'TGL_PR' (leave unchanged)*/
 
     static lv_style_t style_tpr;
     lv_style_copy(&style_tpr, &lv_style_pretty);
@@ -89,7 +89,7 @@ void lv_test_btn_1(void)
     style_ina.body.border.color = LV_COLOR_RED;
 
     /*Create styled button*/
-    lv_obj_t * btn5 = lv_btn_create(lv_disp_get_scr_act(NULL), btn4);
+    lv_obj_t * btn5 = lv_btn_create(lv_scr_act(), btn4);
     lv_obj_align(btn5, btn4, LV_ALIGN_OUT_BOTTOM_MID, 0, 20);
     lv_btn_set_style(btn5, LV_BTN_STYLE_REL, &style_rel);
     lv_btn_set_style(btn5, LV_BTN_STYLE_PR, &style_pr);
@@ -98,12 +98,12 @@ void lv_test_btn_1(void)
     lv_btn_set_toggle(btn5, true);
 
     /* Test style copy and inactive state*/
-    lv_obj_t * btn6 = lv_btn_create(lv_disp_get_scr_act(NULL), btn5);
+    lv_obj_t * btn6 = lv_btn_create(lv_scr_act(), btn5);
     lv_obj_align(btn6, btn5, LV_ALIGN_OUT_BOTTOM_MID, 0, 20);
     lv_btn_set_state(btn6, LV_BTN_STATE_INA);
 
     /*Test horizontal fit and default layout (CENTER)*/
-    lv_obj_t * btn7 = lv_btn_create(lv_disp_get_scr_act(NULL), NULL);
+    lv_obj_t * btn7 = lv_btn_create(lv_scr_act(), NULL);
     lv_btn_set_fit2(btn7, LV_FIT_TIGHT, LV_FIT_NONE);
     lv_obj_t * label = lv_label_create(btn7, NULL);
     lv_label_set_text(label, "A quite long text");
@@ -118,7 +118,7 @@ void lv_test_btn_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-static void btn_event_handler(lv_obj_t * btn, lv_event_t event)
+static void btn_event_cb(lv_obj_t * btn, lv_event_t event)
 {
     if(event == LV_EVENT_PRESSED) {
         lv_obj_set_width(btn, lv_obj_get_width(btn) + (10));

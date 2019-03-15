@@ -59,11 +59,11 @@ void lv_test_tileview_1(void)
     lv_obj_set_click(p01, true);
     lv_obj_set_style(p01, &lv_style_pretty_color);
     lv_obj_set_size(p01, lv_obj_get_width(t), lv_obj_get_height(t));
-    lv_tileview_add_element(p01);
+    lv_tileview_add_element(t, p01);
 
     /*Add a  button at x0, y1*/
     lv_obj_t * b01 = lv_btn_create(p01, NULL);
-    lv_tileview_add_element(b01);
+    lv_tileview_add_element(t, b01);
     lv_obj_align(b01, NULL, LV_ALIGN_CENTER, 0, 50);
     label = lv_label_create(b01, NULL);
     lv_label_set_text(label, "Button");
@@ -76,7 +76,7 @@ void lv_test_tileview_1(void)
     /*x1, y1 container*/
     lv_obj_t * p11 = lv_obj_create(t, p01);
     lv_obj_align(p11, p01, LV_ALIGN_OUT_RIGHT_MID, 0, 0);
-    lv_tileview_add_element(p11);
+    lv_tileview_add_element(t, p11);
 
     /*Add a label to indicate the position*/
     label = lv_label_create(p11, NULL);
@@ -88,33 +88,33 @@ void lv_test_tileview_1(void)
     lv_obj_set_size(list12, hres, vres);
     lv_obj_align(list12, p11, LV_ALIGN_OUT_BOTTOM_MID, 0, 0);
     lv_list_set_scroll_propagation(list12, true);
-    lv_tileview_add_element(list12);
+    lv_tileview_add_element(t, list12);
 
     lv_obj_t * list_btn;
     list_btn = lv_list_add(list12, NULL, "One", NULL);
-    lv_tileview_add_element(list_btn);
+    lv_tileview_add_element(t, list_btn);
 
     list_btn = lv_list_add(list12, NULL, "Two", NULL);
-    lv_tileview_add_element(list_btn);
+    lv_tileview_add_element(t, list_btn);
 
     list_btn = lv_list_add(list12, NULL, "Three", NULL);
-    lv_tileview_add_element(list_btn);
+    lv_tileview_add_element(t, list_btn);
 
     list_btn = lv_list_add(list12, NULL, "Four", NULL);
-    lv_tileview_add_element(list_btn);
+    lv_tileview_add_element(t, list_btn);
 
     list_btn = lv_list_add(list12, NULL, "Five", NULL);
-    lv_tileview_add_element(list_btn);
+    lv_tileview_add_element(t, list_btn);
 
     list_btn = lv_list_add(list12, NULL, "Six", NULL);
-    lv_tileview_add_element(list_btn);
+    lv_tileview_add_element(t, list_btn);
 
     list_btn = lv_list_add(list12, NULL, "Seven", NULL);
-    lv_tileview_add_element(list_btn);
+    lv_tileview_add_element(t, list_btn);
 
     /*x1, y0 container*/
     lv_obj_t * p10 = lv_obj_create(t, p01);
-    lv_tileview_add_element(p10);
+    lv_tileview_add_element(t, p10);
 
     /*Add a label to indicate the position*/
     label = lv_label_create(p10, NULL);
@@ -124,7 +124,7 @@ void lv_test_tileview_1(void)
 
     /*x2, y1 container*/
     lv_obj_t * p21 = lv_obj_create(t, p01);
-    lv_tileview_add_element(p21);
+    lv_tileview_add_element(t, p21);
     lv_obj_align(p21, p11, LV_ALIGN_OUT_RIGHT_MID, 0, 0);
 
     /*Add a label to indicate the position*/
@@ -134,7 +134,7 @@ void lv_test_tileview_1(void)
 
     /*x2, y1 container*/
     lv_obj_t * p22 = lv_obj_create(t, p01);
-    lv_tileview_add_element(p22);
+    lv_tileview_add_element(t, p22);
     lv_obj_align(p22, p21, LV_ALIGN_OUT_BOTTOM_MID, 0, 0);
 
     /*Add a label to indicate the position*/
@@ -143,7 +143,7 @@ void lv_test_tileview_1(void)
     lv_obj_align(label, NULL, LV_ALIGN_CENTER, 0, 0);
 
     /*Focus on a tile (the list)*/
-    lv_tileview_set_tile_act(t, 1, 2, true);
+//    lv_tileview_set_tile_act(t, 1, 2, true);
 
 }
 

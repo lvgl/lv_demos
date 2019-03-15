@@ -68,8 +68,10 @@ void lv_test_bar_1(void)
     bar_indic.body.grad_color = LV_COLOR_MAROON;
     bar_indic.body.shadow.color = LV_COLOR_RED;
     bar_indic.body.shadow.width = 20;
-    bar_indic.body.padding.top = 10;       /*Make the indicator thinner*/
-    bar_indic.body.padding.bottom = 10;       /*Make the indicator thinner*/
+    bar_indic.body.padding.top = 10;       /*Set the padding around the indicator*/
+    bar_indic.body.padding.bottom = 3;
+    bar_indic.body.padding.left = 3;
+    bar_indic.body.padding.right = 10;
 
     lv_obj_t * bar4 = lv_bar_create(lv_disp_get_scr_act(NULL), bar2);
     lv_obj_align(bar4, bar2, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
@@ -80,7 +82,6 @@ void lv_test_bar_1(void)
     lv_obj_t * bar5 = lv_bar_create(lv_disp_get_scr_act(NULL), bar4);
     lv_obj_set_size(bar5, 50, 200);
     lv_obj_align(bar5, bar4, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
-
 }
 
 
