@@ -46,7 +46,8 @@ void lv_test_table_1(void)
     static lv_style_t cell_head_style;
     lv_style_copy(&cell_head_style, &lv_style_plain);
     cell_head_style.body.border.width = 1;
-    cell_head_style.body.padding.ver = 20;
+    cell_head_style.body.padding.top = 20;
+    cell_head_style.body.padding.bottom = 20;
     cell_head_style.line.width = 1;
     cell_head_style.text.color = LV_COLOR_RED;
     cell_head_style.text.line_space = 0;

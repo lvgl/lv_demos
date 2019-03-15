@@ -68,8 +68,10 @@ void lv_test_slider_1(void)
     slider_indic.body.grad_color = LV_COLOR_MAROON;
     slider_indic.body.shadow.color = LV_COLOR_RED;
     slider_indic.body.shadow.width = 20;
-    slider_indic.body.padding.ver = 0;
-    slider_indic.body.padding.hor = 0;
+    slider_indic.body.padding.left = 0;
+    slider_indic.body.padding.right = 0;
+    slider_indic.body.padding.top = 0;
+    slider_indic.body.padding.bottom = 0;
 
     static lv_style_t slider_knob;
     lv_style_copy(&slider_knob, &lv_style_pretty);

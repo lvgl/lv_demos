@@ -142,8 +142,10 @@ void lv_tutorial_styles(void)
     style_bar_indic.body.main_color = LV_COLOR_GRAY;          /*White main color*/
     style_bar_indic.body.grad_color = LV_COLOR_GRAY;           /*Blue gradient color*/
     style_bar_indic.body.border.width = 0;                     /*2 px border width*/
-    style_bar_indic.body.padding.hor = 8;
-    style_bar_indic.body.padding.ver = 8;
+    style_bar_indic.body.padding.left = 8;
+    style_bar_indic.body.padding.right = 8;
+    style_bar_indic.body.padding.top = 8;
+    style_bar_indic.body.padding.bottom = 8;
 
     /*Create a bar and apply the styles*/
     lv_obj_t * bar = lv_bar_create(scr, NULL);

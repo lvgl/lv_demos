@@ -69,8 +69,10 @@ void lv_test_ddlist_1(void)
     lv_style_copy(&ddlist3_style, &lv_style_pretty);
     ddlist3_style.body.main_color = LV_COLOR_GRAY;
     ddlist3_style.body.grad_color = LV_COLOR_BLACK;
-    ddlist3_style.body.padding.hor = 20;
-    ddlist3_style.body.padding.ver = 30;
+    ddlist3_style.body.padding.left = 20;
+    ddlist3_style.body.padding.right = 20;
+    ddlist3_style.body.padding.top = 30;
+    ddlist3_style.body.padding.bottom = 30;
 
     ddlist3_style.text.color = LV_COLOR_RED;
     ddlist3_style.text.letter_space = 5;

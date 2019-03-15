@@ -96,8 +96,10 @@ void lv_test_group_1(void)
     /*Create a window to hold all the objects*/
     static lv_style_t win_style;
     lv_style_copy(&win_style, &lv_style_transp);
-    win_style.body.padding.hor = LV_DPI / 6;
-    win_style.body.padding.ver = LV_DPI / 6;
+    win_style.body.padding.left= LV_DPI / 6;
+    win_style.body.padding.right = LV_DPI / 6;
+    win_style.body.padding.top = LV_DPI / 6;
+    win_style.body.padding.bottom = LV_DPI / 6;
     win_style.body.padding.inner = LV_DPI / 6;
 
     win = lv_win_create(lv_disp_get_scr_act(NULL), NULL);

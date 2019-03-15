@@ -71,10 +71,11 @@ void lv_test_list_1(void)
     static lv_style_t bg;
     lv_style_copy(&sb, &lv_style_pretty_color);
     lv_style_copy(&bg, &lv_style_pretty_color);
-    sb.body.padding.hor = -10;
+    sb.body.padding.right = -10;
     sb.body.padding.inner = 10;
 
-    bg.body.padding.hor = 20;
+    bg.body.padding.left = 20;
+    bg.body.padding.right = 20;
 
     list4 = lv_list_create(lv_disp_get_scr_act(NULL), list3);
     lv_list_set_style(list4, LV_LIST_STYLE_BG, &bg);

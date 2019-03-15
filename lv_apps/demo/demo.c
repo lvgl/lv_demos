@@ -74,7 +74,8 @@ void demo_create(void)
     lv_style_copy(&style_tv_btn_bg, &lv_style_plain);
     style_tv_btn_bg.body.main_color = LV_COLOR_HEX(0x487fb7);
     style_tv_btn_bg.body.grad_color = LV_COLOR_HEX(0x487fb7);
-    style_tv_btn_bg.body.padding.ver = 0;
+    style_tv_btn_bg.body.padding.top = 0;
+    style_tv_btn_bg.body.padding.bottom = 0;
 
     static lv_style_t style_tv_btn_rel;
     lv_style_copy(&style_tv_btn_rel, &lv_style_btn_rel);
@@ -150,8 +151,10 @@ static void write_create(lv_obj_t * parent)
     style_kb.body.opa = LV_OPA_70;
     style_kb.body.main_color = LV_COLOR_HEX3(0x333);
     style_kb.body.grad_color = LV_COLOR_HEX3(0x333);
-    style_kb.body.padding.hor = 0;
-    style_kb.body.padding.ver = 0;
+    style_kb.body.padding.left = 0;
+    style_kb.body.padding.right = 0;
+    style_kb.body.padding.top = 0;
+    style_kb.body.padding.bottom = 0;
     style_kb.body.padding.inner = 0;
 
     lv_style_copy(&style_kb_rel, &lv_style_plain);
@@ -323,8 +326,10 @@ static void chart_create(lv_obj_t * parent)
     style_bar.body.radius = LV_RADIUS_CIRCLE;
     style_bar.body.border.color = LV_COLOR_WHITE;
     style_bar.body.opa = LV_OPA_60;
-    style_bar.body.padding.hor = 0;
-    style_bar.body.padding.ver = LV_DPI / 10;
+    style_bar.body.padding.left = 0;
+    style_bar.body.padding.right = 0;
+    style_bar.body.padding.top = LV_DPI / 10;
+    style_bar.body.padding.bottom = LV_DPI / 10;
 
     lv_style_copy(&style_indic, &lv_style_pretty);
     style_indic.body.grad_color =  LV_COLOR_MAROON;
@@ -332,8 +337,10 @@ static void chart_create(lv_obj_t * parent)
     style_indic.body.radius = LV_RADIUS_CIRCLE;
     style_indic.body.shadow.width = LV_DPI / 10;
     style_indic.body.shadow.color = LV_COLOR_RED;
-    style_indic.body.padding.hor = LV_DPI / 30;
-    style_indic.body.padding.ver = LV_DPI / 30;
+    style_indic.body.padding.left = LV_DPI / 30;
+    style_indic.body.padding.right = LV_DPI / 30;
+    style_indic.body.padding.top = LV_DPI / 30;
+    style_indic.body.padding.bottom = LV_DPI / 30;
 
     lv_style_copy(&style_knob, &lv_style_pretty);
     style_knob.body.radius = LV_RADIUS_CIRCLE;

@@ -125,20 +125,25 @@ void lv_test_ta_2(void)
 
 
     bg.body.main_color = LV_COLOR_BLACK;
-    bg.body.padding.hor = 10;
-    bg.body.padding.ver = 10;
+    bg.body.padding.left = 10;
+    bg.body.padding.right = 10;
+    bg.body.padding.top = 10;
+    bg.body.padding.bottom = 10;
     bg.text.color = LV_COLOR_BLUE;
     bg.text.letter_space = 4;
     bg.text.line_space = 10;
 
-    sb.body.padding.hor = 3;
+    sb.body.padding.left = 3;
+    sb.body.padding.right = 3;
     sb.body.padding.inner = 10;
     sb.body.main_color = LV_COLOR_WHITE;
     sb.body.grad_color = LV_COLOR_WHITE;
     sb.body.opa = LV_OPA_70;
 
-    cur.body.padding.hor = 2;
-    cur.body.padding.ver = 4;
+    cur.body.padding.left = 2;
+    cur.body.padding.right = 2;
+    cur.body.padding.top = 4;
+    cur.body.padding.top = 4;
     cur.body.main_color = LV_COLOR_RED;
     cur.body.grad_color = LV_COLOR_YELLOW;
     cur.body.border.color = LV_COLOR_ORANGE;

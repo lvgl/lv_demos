@@ -60,9 +60,9 @@ void lv_test_gauge_1(void)
     lv_style_copy(&style3, &lv_style_pretty);
     style3.body.main_color = LV_COLOR_GREEN;
     style3.body.grad_color = LV_COLOR_RED;
-    style3.body.padding.hor = 6;
+    style3.body.padding.left = 6;
     style3.body.padding.inner = 10;
-    style3.body.padding.ver = 8;
+    style3.body.padding.top = 8;
     style3.body.border.color = LV_COLOR_GRAY;
     style3.line.width = 2;
 

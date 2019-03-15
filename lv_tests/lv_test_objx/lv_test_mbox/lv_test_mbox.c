@@ -56,15 +56,19 @@ void lv_test_mbox_1(void)
     static lv_style_t btn_bg;
     lv_style_copy(&bg, &lv_style_pretty);
     lv_style_copy(&btn_bg, &lv_style_pretty);
-    bg.body.padding.hor = 20;
-    bg.body.padding.ver = 20;
+    bg.body.padding.left = 20;
+    bg.body.padding.right = 20;
+    bg.body.padding.top = 20;
+    bg.body.padding.bottom = 20;
     bg.body.padding.inner = 20;
     bg.body.main_color = LV_COLOR_BLACK;
     bg.body.grad_color = LV_COLOR_MAROON;
     bg.text.color = LV_COLOR_WHITE;
 
-    btn_bg.body.padding.hor = 10;
-    btn_bg.body.padding.ver = 5;
+    btn_bg.body.padding.left = 10;
+    btn_bg.body.padding.right = 10;
+    btn_bg.body.padding.top = 5;
+    btn_bg.body.padding.bottom = 5;
     btn_bg.body.padding.inner = 40;
     btn_bg.body.opa = LV_OPA_TRANSP;
     btn_bg.body.border.color = LV_COLOR_WHITE;

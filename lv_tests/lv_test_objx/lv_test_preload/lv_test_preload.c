@@ -50,8 +50,10 @@ void lv_test_preload_1(void)
     style1.line.rounded = 1;
     style1.body.border.width = 2;
     style1.body.border.color = LV_COLOR_MAROON;
-    style1.body.padding.hor = 3;
-    style1.body.padding.ver = 3;
+    style1.body.padding.left = 3;
+    style1.body.padding.right = 3;
+    style1.body.padding.top = 3;
+    style1.body.padding.bottom = 3;
     lv_obj_t * preload2 = lv_preload_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_size(preload2, 60, 60);
     lv_preload_set_style(preload2, LV_PRELOAD_STYLE_MAIN, &style1);

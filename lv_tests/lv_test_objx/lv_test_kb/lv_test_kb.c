@@ -75,8 +75,10 @@ void lv_test_kb_2(void)
     lv_style_copy(&bg, &lv_style_plain_color);
     bg.body.main_color = LV_COLOR_NAVY;
     bg.body.grad_color = LV_COLOR_NAVY;
-    bg.body.padding.hor = 0;
-    bg.body.padding.ver = 10;
+    bg.body.padding.left = 0;
+    bg.body.padding.right = 0;
+    bg.body.padding.top = 10;
+    bg.body.padding.bottom = 10;
     bg.body.padding.inner = 0;
 
     lv_style_copy(&rel, &lv_style_plain);

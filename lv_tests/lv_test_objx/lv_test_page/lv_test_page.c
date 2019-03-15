@@ -87,18 +87,22 @@ void lv_test_page_2(void)
 
     bg.body.main_color = LV_COLOR_SILVER;
     bg.body.grad_color = LV_COLOR_GRAY;
-    bg.body.padding.hor = 5;
-    bg.body.padding.ver = 20;
+    bg.body.padding.left = 5;
+    bg.body.padding.right = 5;
+    bg.body.padding.top = 20;
+    bg.body.padding.bottom = 20;
 
     scrl.body.main_color = LV_COLOR_BLUE;
     scrl.body.grad_color = LV_COLOR_NAVY;
-    scrl.body.padding.hor = 3;
-    scrl.body.padding.ver = 3;
+    scrl.body.padding.left = 3;
+    scrl.body.padding.right = 3;
+    scrl.body.padding.top = 3;
+    scrl.body.padding.bottom = 3;
     scrl.body.shadow.width = 15;
     scrl.text.color = LV_COLOR_SILVER;
 
-    sb.body.padding.hor = -10;    /*Out of the page*/
-    sb.body.padding.ver = 10;
+    sb.body.padding.right = -10;    /*Out of the page*/
+    sb.body.padding.bottom = 10;
     sb.body.padding.inner = 10;
     sb.body.main_color = LV_COLOR_WHITE;
     sb.body.grad_color = LV_COLOR_WHITE;

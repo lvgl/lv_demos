@@ -50,12 +50,16 @@ void lv_test_sw_1(void)
     static lv_style_t indic;
 
     lv_style_copy(&bg, &lv_style_pretty);
-    bg.body.padding.hor = -5;
-    bg.body.padding.ver = -5;
+    bg.body.padding.left = -5;
+    bg.body.padding.right = -5;
+    bg.body.padding.top = -5;
+    bg.body.padding.bottom = -5;
 
     lv_style_copy(&indic, &lv_style_pretty_color);
-    indic.body.padding.hor = 8;
-    indic.body.padding.ver = 8;
+    indic.body.padding.left = 8;
+    indic.body.padding.right = 8;
+    indic.body.padding.top  = 8;
+    indic.body.padding.bottom = 8;
 
     lv_obj_t * sw2 = lv_sw_create(lv_disp_get_scr_act(NULL), sw1);
     lv_sw_set_style(sw2, LV_SW_STYLE_BG, &bg);

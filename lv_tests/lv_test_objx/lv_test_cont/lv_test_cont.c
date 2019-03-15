@@ -69,8 +69,10 @@ void lv_test_cont_1(void)
     /*Set a new style with new padding*/
     static lv_style_t cont4_style;
     lv_style_copy(&cont4_style, &lv_style_pretty_color);
-    cont4_style.body.padding.hor = 20;
-    cont4_style.body.padding.ver = 40;
+    cont4_style.body.padding.left = 20;
+    cont4_style.body.padding.right = 20;
+    cont4_style.body.padding.top = 40;
+    cont4_style.body.padding.bottom = 40;
     cont4_style.body.padding.inner = 1;
 
     lv_obj_t * cont4 = lv_cont_create(lv_disp_get_scr_act(NULL), cont3);
@@ -91,8 +93,10 @@ void lv_test_cont_2(void)
     /*Create a new style with big paddings*/
     static lv_style_t cont4_style;
     lv_style_copy(&cont4_style, &lv_style_pretty_color);
-    cont4_style.body.padding.hor = 10;
-    cont4_style.body.padding.ver = 20;
+    cont4_style.body.padding.left = 10;
+    cont4_style.body.padding.right = 10;
+    cont4_style.body.padding.top = 20;
+    cont4_style.body.padding.bottom = 20;
     cont4_style.body.padding.inner = 1;
 
     /* Create a main container*/

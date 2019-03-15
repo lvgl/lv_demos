@@ -72,8 +72,10 @@ static void create_tab1(lv_obj_t * parent)
     static lv_style_t h_style;
     lv_style_copy(&h_style, &lv_style_transp);
     h_style.body.padding.inner = LV_DPI / 4;
-    h_style.body.padding.hor = LV_DPI / 12;
-    h_style.body.padding.ver = LV_DPI / 10;
+    h_style.body.padding.left = LV_DPI / 12;
+    h_style.body.padding.right = LV_DPI / 12;
+    h_style.body.padding.top = LV_DPI / 10;
+    h_style.body.padding.bottom = LV_DPI / 10;
 
     lv_obj_t * h = lv_cont_create(parent, NULL);
     lv_obj_set_style(h, &h_style);
