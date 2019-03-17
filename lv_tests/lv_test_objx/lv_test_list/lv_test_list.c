@@ -34,7 +34,7 @@ static lv_obj_t * list4;
 static lv_obj_t * btn_up;
 static lv_obj_t * btn_down;
 
-LV_IMG_DECLARE(img_flower_icon); /*Comes from lv_test_img*/
+LV_IMG_DECLARE(img_flower_icon) /*Comes from lv_test_img*/
 
 /**********************
  *      MACROS

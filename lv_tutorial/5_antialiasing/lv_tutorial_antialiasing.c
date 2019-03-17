@@ -56,8 +56,8 @@
 /**********************
  *  STATIC VARIABLES
  **********************/
-LV_IMG_DECLARE(apple_icon_chroma);
-LV_IMG_DECLARE(apple_icon_alpha);
+LV_IMG_DECLARE(apple_icon_chroma)
+LV_IMG_DECLARE(apple_icon_alpha)
 
 /**********************
  *      MACROS

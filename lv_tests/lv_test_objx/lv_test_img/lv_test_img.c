@@ -13,7 +13,7 @@
 /*********************
  *      DEFINES
  *********************/
-LV_IMG_DECLARE(img_flower_icon);
+LV_IMG_DECLARE(img_flower_icon)
 
 /**********************
  *      TYPEDEFS
