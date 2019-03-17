@@ -50,7 +50,7 @@ static lv_style_t style_btn_tgl_pr;
 static uint32_t time_sum;
 static uint32_t refr_cnt;
 
-LV_IMG_DECLARE(benchmark_bg);
+LV_IMG_DECLARE(benchmark_bg)
 
 /**********************
  *      MACROS

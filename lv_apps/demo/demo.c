@@ -44,7 +44,7 @@ static lv_style_t style_kb_rel;
 static lv_style_t style_kb_pr;
 
 #if LV_DEMO_WALLPAPER
-LV_IMG_DECLARE(img_bubble_pattern);
+LV_IMG_DECLARE(img_bubble_pattern)
 #endif
 
 /**********************

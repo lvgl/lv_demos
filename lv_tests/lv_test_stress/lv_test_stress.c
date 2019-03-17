@@ -38,7 +38,7 @@ static const lv_color_t needle_colors[1] = {LV_COLOR_RED};
 static const lv_color_t needle_colors[1] = { 0 };
 #endif
 static const char * mbox_btns[] = {"Ok", "Cancel", ""};
-LV_IMG_DECLARE(img_flower_icon);
+LV_IMG_DECLARE(img_flower_icon)
 
 /**********************
  *      MACROS
