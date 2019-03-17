@@ -72,8 +72,8 @@ void demo_create(void)
 
     static lv_style_t style_tv_btn_bg;
     lv_style_copy(&style_tv_btn_bg, &lv_style_plain);
-    style_tv_btn_bg.body.main_color = LV_COLOR_HEX(0x487fb7);
-    style_tv_btn_bg.body.grad_color = LV_COLOR_HEX(0x487fb7);
+    style_tv_btn_bg.body.main_color = lv_color_hex(0x487fb7);
+    style_tv_btn_bg.body.grad_color = lv_color_hex(0x487fb7);
     style_tv_btn_bg.body.padding.top = 0;
     style_tv_btn_bg.body.padding.bottom = 0;
 
@@ -139,7 +139,7 @@ static void write_create(lv_obj_t * parent)
     lv_style_copy(&style_ta, &lv_style_pretty);
     style_ta.body.opa = LV_OPA_30;
     style_ta.body.radius = 0;
-    style_ta.text.color = LV_COLOR_HEX3(0x222);
+    style_ta.text.color = lv_color_hex3(0x222);
 
     ta = lv_ta_create(parent, NULL);
     lv_obj_set_size(ta, lv_page_get_scrl_width(parent), lv_obj_get_height(parent) / 2);
@@ -149,8 +149,8 @@ static void write_create(lv_obj_t * parent)
 
     lv_style_copy(&style_kb, &lv_style_plain);
     style_kb.body.opa = LV_OPA_70;
-    style_kb.body.main_color = LV_COLOR_HEX3(0x333);
-    style_kb.body.grad_color = LV_COLOR_HEX3(0x333);
+    style_kb.body.main_color = lv_color_hex3(0x333);
+    style_kb.body.grad_color = lv_color_hex3(0x333);
     style_kb.body.padding.left = 0;
     style_kb.body.padding.right = 0;
     style_kb.body.padding.top = 0;
@@ -163,8 +163,8 @@ static void write_create(lv_obj_t * parent)
     style_kb_rel.body.border.width = 1;
     style_kb_rel.body.border.color = LV_COLOR_SILVER;
     style_kb_rel.body.border.opa = LV_OPA_50;
-    style_kb_rel.body.main_color = LV_COLOR_HEX3(0x333);    /*Recommended if LV_VDB_SIZE == 0 and bpp > 1 fonts are used*/
-    style_kb_rel.body.grad_color = LV_COLOR_HEX3(0x333);
+    style_kb_rel.body.main_color = lv_color_hex3(0x333);    /*Recommended if LV_VDB_SIZE == 0 and bpp > 1 fonts are used*/
+    style_kb_rel.body.grad_color = lv_color_hex3(0x333);
     style_kb_rel.text.color = LV_COLOR_WHITE;
 
     lv_style_copy(&style_kb_pr, &lv_style_plain);
@@ -238,7 +238,7 @@ static void list_create(lv_obj_t * parent)
     static lv_style_t style_btn_rel;
     static lv_style_t style_btn_pr;
     lv_style_copy(&style_btn_rel, &lv_style_btn_rel);
-    style_btn_rel.body.main_color = LV_COLOR_HEX3(0x333);
+    style_btn_rel.body.main_color = lv_color_hex3(0x333);
     style_btn_rel.body.grad_color = LV_COLOR_BLACK;
     style_btn_rel.body.border.color = LV_COLOR_SILVER;
     style_btn_rel.body.border.width = 1;
@@ -246,9 +246,9 @@ static void list_create(lv_obj_t * parent)
     style_btn_rel.body.radius = 0;
 
     lv_style_copy(&style_btn_pr, &style_btn_rel);
-    style_btn_pr.body.main_color = LV_COLOR_MAKE(0x55, 0x96, 0xd8);
-    style_btn_pr.body.grad_color = LV_COLOR_MAKE(0x37, 0x62, 0x90);
-    style_btn_pr.text.color = LV_COLOR_MAKE(0xbb, 0xd5, 0xf1);
+    style_btn_pr.body.main_color = lv_color_make(0x55, 0x96, 0xd8);
+    style_btn_pr.body.grad_color = lv_color_make(0x37, 0x62, 0x90);
+    style_btn_pr.text.color = lv_color_make(0xbb, 0xd5, 0xf1);
 
     lv_obj_t * list = lv_list_create(parent, NULL);
     lv_obj_set_height(list, 2 * lv_obj_get_height(parent) / 3);

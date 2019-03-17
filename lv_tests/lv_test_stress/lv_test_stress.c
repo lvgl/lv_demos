@@ -186,7 +186,7 @@ static void obj_mem_leak_tester(void * param)
             break;
         case 9: /*Roller test ddlist too*/
             obj = lv_roller_create(page, NULL);
-            lv_roller_set_options(obj, "One\nTwo\nThree");
+            lv_roller_set_options(obj, "One\nTwo\nThree", false);
             lv_roller_set_anim_time(obj, 300);
             lv_roller_set_selected(obj, 2, true);
             break;

@@ -156,7 +156,7 @@ void lv_tutorial_objects(void)
     lv_chart_set_next(chart, dl1, 80);
 
     /*Add a BLUE data series and set some points*/
-    lv_chart_series_t * dl2 = lv_chart_add_series(chart, LV_COLOR_MAKE(0x40, 0x70, 0xC0));
+    lv_chart_series_t * dl2 = lv_chart_add_series(chart, lv_color_make(0x40, 0x70, 0xC0));
     lv_chart_set_next(chart, dl2, 10);
     lv_chart_set_next(chart, dl2, 25);
     lv_chart_set_next(chart, dl2, 45);

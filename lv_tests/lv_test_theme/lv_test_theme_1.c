@@ -208,7 +208,7 @@ static void create_tab1(lv_obj_t * parent)
     lv_list_add(list, LV_SYMBOL_COPY, "Copy", NULL);
 
     lv_obj_t * roller = lv_roller_create(h, NULL);
-    lv_roller_set_options(roller, "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday");
+    lv_roller_set_options(roller, "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday", false);
     lv_roller_set_selected(roller, 1, false);
     lv_roller_set_visible_row_count(roller, 3);
 
@@ -220,6 +220,7 @@ static void create_tab2(lv_obj_t * parent)
     lv_coord_t w = lv_page_get_scrl_width(parent);
 
     lv_obj_t * chart = lv_chart_create(parent, NULL);
+    lv_chart_set_type(chart, LV_CHART_TYPE_AREA);
     lv_obj_set_size(chart, w / 3, lv_disp_get_ver_res(NULL) / 3);
     lv_obj_set_pos(chart, LV_DPI / 10, LV_DPI / 10);
     lv_chart_series_t * s1 = lv_chart_add_series(chart, LV_COLOR_RED);

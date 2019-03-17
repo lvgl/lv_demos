@@ -50,10 +50,10 @@ lv_obj_t * terminal_create(void)
 {
     static lv_style_t style_bg;
     lv_style_copy(&style_bg, &lv_style_pretty);
-    style_bg.body.main_color = LV_COLOR_MAKE(0x30, 0x30, 0x30);
-    style_bg.body.grad_color = LV_COLOR_MAKE(0x30, 0x30, 0x30);
+    style_bg.body.main_color = lv_color_make(0x30, 0x30, 0x30);
+    style_bg.body.grad_color = lv_color_make(0x30, 0x30, 0x30);
     style_bg.body.border.color = LV_COLOR_WHITE;
-    style_bg.text.color = LV_COLOR_MAKE(0xE0, 0xE0, 0xE0);
+    style_bg.text.color = lv_color_make(0xE0, 0xE0, 0xE0);
 
 
 

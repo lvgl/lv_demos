@@ -44,7 +44,7 @@ void lv_test_canvas_1(void)
     static lv_color_t cbuf[sizeof(lv_color_t) * 100 * 80];
     uint32_t i;
     for(i = 0; i < sizeof(cbuf) / sizeof(cbuf[0]); i++) {
-        cbuf[i] = LV_COLOR_HEX3(0xacf);
+        cbuf[i] = lv_color_hex3(0xacf);
     }
 
     /*Create the canvas object*/
@@ -107,8 +107,8 @@ void lv_test_canvas_1(void)
 
 void lv_test_canvas_2(void)
 {
-    lv_color_t bg_color = LV_COLOR_MAKE(0xec, 0xf0, 0xf1);
-    lv_color_t fill_color = LV_COLOR_MAKE(0xbc, 0xa0, 0xa1);
+    lv_color_t bg_color = lv_color_make(0xec, 0xf0, 0xf1);
+    lv_color_t fill_color = lv_color_make(0xbc, 0xa0, 0xa1);
 
     /*Create a buffer for the canvas set its pixels to light blue*/
     static lv_color_t cbuf[sizeof(lv_color_t) * 100 * 80];

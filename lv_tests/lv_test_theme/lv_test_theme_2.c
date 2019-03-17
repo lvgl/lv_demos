@@ -145,14 +145,14 @@ static void sb_create(void)
     lv_label_set_text(th_label, "Theme");
 
     lv_obj_t * th_roller = lv_roller_create(sb, NULL);
-    lv_roller_set_options(th_roller, th_options);
+    lv_roller_set_options(th_roller, th_options, true);
     lv_obj_set_event_cb(th_roller, theme_select_event_handler);
 
     lv_obj_t * hue_label = lv_label_create(sb, NULL);
     lv_label_set_text(hue_label, "\nColor");
 
     lv_obj_t * hue_roller = lv_roller_create(sb, NULL);
-    lv_roller_set_options(hue_roller, "0\n30\n60\n90\n120\n150\n180\n210\n240\n270\n300\n330");
+    lv_roller_set_options(hue_roller, "0\n30\n60\n90\n120\n150\n180\n210\n240\n270\n300\n330", true);
     lv_obj_set_event_cb(hue_roller, hue_select_event_cb);
 
     if(hres > vres) {
@@ -230,7 +230,7 @@ static void content_create(void)
     /*Roller*/
     static const char * days = "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday";
     lv_obj_t * roller = lv_roller_create(content, NULL);
-    lv_roller_set_options(roller, days);
+    lv_roller_set_options(roller, days, false);
 
     /*Drop down list*/
     static const char * nums = "One\nTwo\nThree\nFour";
