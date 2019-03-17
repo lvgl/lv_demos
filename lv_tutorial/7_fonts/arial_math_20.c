@@ -1,5 +1,5 @@
 
-#include "lvgl/lv_misc/lv_font.h"
+#include "lvgl/lvgl.h"
 
 /***********************************************************************************
  * arial.ttf 20 px Font in U+2200 (∀) .. U+222f (∯)  range with 4 bpp

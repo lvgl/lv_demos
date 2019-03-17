@@ -9,7 +9,6 @@
 #include "lv_test_theme_2.h"
 
 #if LV_USE_TESTS
-#include "lvgl/lv_misc/lv_math.h"
 
 /*********************
  *      DEFINES

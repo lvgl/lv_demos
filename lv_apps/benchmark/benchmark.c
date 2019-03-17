@@ -9,7 +9,6 @@
 #include "benchmark.h"
 #if LV_USE_BENCHMARK
 
-#include "lvgl/lv_core/lv_refr.h"
 #include <stdio.h>
 
 /*********************

@@ -1,6 +1,5 @@
-#include "lv_conf.h"
+#include "lvgl/lvgl.h"
 #include "lv_ex_conf.h"
-#include "lvgl/lv_draw/lv_draw_img.h"
 
 #if LV_USE_TUTORIALS
 const uint8_t apple_icon_alpha_map[] = {

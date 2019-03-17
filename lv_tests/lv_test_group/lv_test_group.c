@@ -10,8 +10,6 @@
 #include "lv_test_group.h"
 #if LV_USE_GROUP && LV_USE_TESTS
 
-#include "lvgl/lv_hal/lv_hal_indev.h"
-
 #if LV_EX_KEYBOARD || LV_EX_MOUSEWHEEL
 #include "lv_drv_conf.h"
 #endif
