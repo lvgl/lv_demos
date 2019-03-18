@@ -70,7 +70,7 @@ static void create_tab1(lv_obj_t * parent)
     lv_theme_t * th = lv_theme_get_current();
 
     static lv_style_t h_style;
-    lv_style_copy(&h_style, &lv_style_plain_color);
+    lv_style_copy(&h_style, &lv_style_transp);
     h_style.body.padding.inner = LV_DPI / 10;
     h_style.body.padding.left = LV_DPI / 4;
     h_style.body.padding.right = LV_DPI / 4;
