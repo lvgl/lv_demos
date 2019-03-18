@@ -117,7 +117,6 @@ static void create_tab1(lv_obj_t * parent)
     lv_btnm_set_map(btnm, btnm_str);
     lv_btnm_set_btn_toggle_state(btnm, true, 3);
 
-#if LVGL_VERSION_MAJOR == 5 && LVGL_VERSION_MINOR >= 3
     lv_obj_t * table = lv_table_create(h, NULL);
     lv_table_set_col_cnt(table, 3);
     lv_table_set_row_cnt(table, 4);
@@ -144,7 +143,6 @@ static void create_tab1(lv_obj_t * parent)
     lv_table_set_cell_value(table, 3, 1, "61");
     lv_table_set_cell_align(table, 3, 1, LV_LABEL_ALIGN_RIGHT);
     lv_table_set_cell_value(table, 3, 2, "ms");
-#endif
 
     h = lv_cont_create(parent, h);
 
@@ -155,9 +153,7 @@ static void create_tab1(lv_obj_t * parent)
     lv_cont_set_layout(sw_h, LV_LAYOUT_PRETTY);
 
     lv_obj_t * sw = lv_sw_create(sw_h, NULL);
-#if LVGL_VERSION_MAJOR == 5 && LVGL_VERSION_MINOR >= 3
     lv_sw_set_anim_time(sw, 250);
-#endif
 
     sw = lv_sw_create(sw_h, sw);
     lv_sw_on(sw, false);
