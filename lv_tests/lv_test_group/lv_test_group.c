@@ -163,12 +163,14 @@ void lv_test_group_1(void)
 
     lv_obj_t * ta = lv_ta_create(win, NULL);
     lv_ta_set_cursor_type(ta, LV_CURSOR_BLOCK);
+    lv_obj_set_event_cb(ta, general_event_handler);
     lv_group_add_obj(g, ta);
 
     obj = lv_kb_create(win, NULL);
     lv_obj_set_size(obj, hres - LV_DPI, vres / 2);
     lv_kb_set_ta(obj, ta);
     lv_kb_set_cursor_manage(obj, true);
+    lv_obj_set_event_cb(obj, general_event_handler);
     lv_group_add_obj(g, obj);
 
 
@@ -309,12 +311,17 @@ static void general_event_handler(lv_obj_t * obj, lv_event_t event)
             break;
 
         case LV_EVENT_VALUE_CHANGED:
-            printf("Value changed\n");
+            printf("Value changed: %s\n", lv_event_get_data() ? (const char *)lv_event_get_data() : "");
             break;
 
         case LV_EVENT_RELEASED:
             printf("Released\n");
             break;
+
+        case LV_EVENT_SELECTED:
+            printf("Selected: %s\n", lv_event_get_data() ? (const char *)lv_event_get_data() : "");
+            break;
+
         case LV_EVENT_FOCUSED:
             printf("Foused\n");
             break;

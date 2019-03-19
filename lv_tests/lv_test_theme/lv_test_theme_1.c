@@ -115,7 +115,7 @@ static void create_tab1(lv_obj_t * parent)
     lv_obj_t * btnm = lv_btnm_create(h, NULL);
     lv_obj_set_size(btnm, lv_disp_get_hor_res(NULL) / 4, 2 * LV_DPI / 3);
     lv_btnm_set_map(btnm, btnm_str);
-    lv_btnm_set_btn_toggle_state(btnm, true, 3);
+    lv_btnm_set_btn_ctrl(btnm, 3, LV_BTNM_CTRL_TGL_STATE, true);
 
     lv_obj_t * table = lv_table_create(h, NULL);
     lv_table_set_col_cnt(table, 3);
@@ -329,9 +329,9 @@ static void create_tab3(lv_obj_t * parent)
     lv_obj_t * mbox = lv_mbox_create(parent, NULL);
     lv_mbox_set_text(mbox, "Click on the window or the page to bring it to the foreground");
     lv_mbox_add_btns(mbox, mbox_btn_map);
-    lv_btnm_set_btn_hidden(lv_mbox_get_btnm(mbox), 0, true);
+    lv_btnm_set_btn_ctrl(lv_mbox_get_btnm(mbox), 0, LV_BTNM_CTRL_HIDDEN, true);
     lv_btnm_set_btn_width(lv_mbox_get_btnm(mbox), 1, 7);
-    lv_btnm_set_btn_hidden(lv_mbox_get_btnm(mbox), 2, true);
+    lv_btnm_set_btn_ctrl(lv_mbox_get_btnm(mbox), 2, LV_BTNM_CTRL_HIDDEN, true);
     lv_obj_set_top(mbox, true);
 
 

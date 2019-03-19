@@ -186,7 +186,7 @@ static void text_area_event_handler(lv_obj_t * text_area, lv_event_t event)
 
     if(event == LV_EVENT_SHORT_CLICKED) {
         if(kb) {
-            lv_obj_send_event(kb, LV_EVENT_CANCEL);
+            lv_event_send(kb, LV_EVENT_CANCEL, NULL);
         } else {
             kb = lv_kb_create(parent, NULL);
             lv_obj_set_size(kb, lv_page_get_scrl_width(parent), lv_obj_get_height(parent) / 2);
