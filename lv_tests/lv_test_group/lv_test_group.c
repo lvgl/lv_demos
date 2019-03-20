@@ -319,7 +319,11 @@ static void general_event_handler(lv_obj_t * obj, lv_event_t event)
             break;
 
         case LV_EVENT_SELECTED:
-            printf("Selected: %s\n", lv_event_get_data() ? (const char *)lv_event_get_data() : "");
+            if(lv_event_get_data() != NULL) {
+                printf("Selected: %d\n", *((uint16_t*)lv_event_get_data()));
+            } else {
+                printf("Selected\n");
+            }
             break;
 
         case LV_EVENT_FOCUSED:
