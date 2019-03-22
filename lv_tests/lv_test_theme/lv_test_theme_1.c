@@ -115,7 +115,8 @@ static void create_tab1(lv_obj_t * parent)
     lv_obj_t * btnm = lv_btnm_create(h, NULL);
     lv_obj_set_size(btnm, lv_disp_get_hor_res(NULL) / 4, 2 * LV_DPI / 3);
     lv_btnm_set_map(btnm, btnm_str);
-    lv_btnm_set_btn_ctrl(btnm, 3, LV_BTNM_CTRL_TGL_STATE, true);
+    lv_btnm_set_btn_ctrl_all(btnm, LV_BTNM_CTRL_TGL_ENABLE, true);
+    lv_btnm_set_one_toggle(btnm, true);
 
     lv_obj_t * table = lv_table_create(h, NULL);
     lv_table_set_col_cnt(table, 3);
