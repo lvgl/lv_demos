@@ -39,6 +39,7 @@ extern "C" {
  * Create charts to test their functionalities
  */
 void lv_test_chart_1(void);
+void lv_test_chart_2(uint8_t chart);
 
 /**********************
  *      MACROS
