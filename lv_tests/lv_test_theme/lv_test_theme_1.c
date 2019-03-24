@@ -181,10 +181,10 @@ static void create_tab1(lv_obj_t * parent)
     cb = lv_cb_create(h, cb);
     lv_btn_set_state(cb, LV_BTN_STATE_TGL_REL);
 
-
     lv_obj_t * ddlist = lv_ddlist_create(h, NULL);
-    lv_ddlist_open(ddlist, false);
-    lv_ddlist_set_selected(ddlist, 1);
+    lv_ddlist_set_fit(ddlist, LV_FIT_NONE);
+    lv_obj_set_width(ddlist, lv_obj_get_width(ddlist) + LV_DPI / 2);   /*Make space for the arrow*/
+    lv_ddlist_set_draw_arrow(ddlist, true);
 
     h = lv_cont_create(parent, h);
 
