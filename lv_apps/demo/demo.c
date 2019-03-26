@@ -22,7 +22,7 @@
  **********************/
 static void write_create(lv_obj_t * parent);
 static void text_area_event_handler(lv_obj_t * text_area, lv_event_t event);
-static void keyboard_event_handler(lv_obj_t * keyboard, lv_event_t event);
+static void keyboard_event_cb(lv_obj_t * keyboard, lv_event_t event);
 static void kb_hide_anim_end(lv_obj_t * keyboard);
 static void list_create(lv_obj_t * parent);
 static void chart_create(lv_obj_t * parent);
@@ -195,7 +195,7 @@ static void text_area_event_handler(lv_obj_t * text_area, lv_event_t event)
             lv_kb_set_style(kb, LV_KB_STYLE_BG, &style_kb);
             lv_kb_set_style(kb, LV_KB_STYLE_BTN_REL, &style_kb_rel);
             lv_kb_set_style(kb, LV_KB_STYLE_BTN_PR, &style_kb_pr);
-            lv_obj_set_event_cb(kb, keyboard_event_handler);
+            lv_obj_set_event_cb(kb, keyboard_event_cb);
 
 #if LV_USE_ANIMATION
             lv_obj_animate(kb, LV_ANIM_FLOAT_BOTTOM | LV_ANIM_IN, 300, 0, NULL);
@@ -210,9 +210,11 @@ static void text_area_event_handler(lv_obj_t * text_area, lv_event_t event)
  * @param keyboard pointer to the keyboard
  * @return
  */
-static void keyboard_event_handler(lv_obj_t * keyboard, lv_event_t event)
+static void keyboard_event_cb(lv_obj_t * keyboard, lv_event_t event)
 {
     (void) keyboard;    /*Unused*/
+
+    lv_kb_def_event_cb(kb, event);
 
     if(event == LV_EVENT_APPLY || event == LV_EVENT_CANCEL) {
 #if LV_USE_ANIMATION
