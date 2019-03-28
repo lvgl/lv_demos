@@ -214,6 +214,7 @@ static void keyboard_event_handler(lv_obj_t * keyboard, lv_event_t event)
 {
     (void) keyboard;    /*Unused*/
 
+    lv_kb_def_event_cb(keyboard, event);/*Call the ancestor event handler*/
     if(event == LV_EVENT_APPLY || event == LV_EVENT_CANCEL) {
 #if LV_USE_ANIMATION
         lv_obj_animate(kb, LV_ANIM_FLOAT_BOTTOM | LV_ANIM_OUT, 300, 0, kb_hide_anim_end);
