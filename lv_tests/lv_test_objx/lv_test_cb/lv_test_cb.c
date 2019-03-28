@@ -44,11 +44,7 @@ void lv_test_cb_1(void)
 
     /*Create an other check box and set its text*/
     lv_obj_t * cb2 = lv_cb_create(lv_disp_get_scr_act(NULL), NULL);
-#if LV_TXT_UTF8 == 0
-    lv_cb_set_text(cb2, "New text");
-#else
     lv_cb_set_text(cb2, "UTF8-text: üŰ öŐ íÍ");
-#endif
     lv_obj_align(cb2, cb1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
 
     /*Create styles for the bullets*/

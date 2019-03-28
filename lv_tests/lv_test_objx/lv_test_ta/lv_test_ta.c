@@ -71,14 +71,12 @@ void lv_test_ta_1(void)
     lv_ta_add_text(ta2, " and testing the automatic\n"
                    "and manual line break feature too.");
 
-#if LV_TXT_UTF8 != 0
     lv_ta_set_cursor_pos(ta2, 0);
     lv_ta_add_text(ta2, "á");
     lv_ta_add_text(ta2, "Á");
     lv_ta_add_text(ta2, "ü");
     lv_ta_add_text(ta2, "Ü");
     lv_ta_add_char(ta2, ' ');
-#endif
 
     lv_obj_align(ta2, ta1, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
 
@@ -91,12 +89,8 @@ void lv_test_ta_1(void)
     lv_ta_set_text(ta3, "a A");
     lv_ta_set_cursor_pos(ta3, 1);
     lv_ta_add_char(ta3, 'b');
-#if LV_TXT_UTF8 != 0
     lv_ta_add_text(ta3, "é");
     lv_ta_set_cursor_pos(ta3, 5);
-#else
-    lv_ta_set_cursor_pos(ta3, 4);
-#endif
 
     lv_ta_add_char(ta3, 'B');
     lv_ta_add_text(ta3, "É");
@@ -157,7 +151,6 @@ void lv_test_ta_2(void)
     lv_ta_set_style(ta2_1, LV_TA_STYLE_SB, &sb);
     lv_ta_set_style(ta2_1, LV_TA_STYLE_CURSOR, &cur);
     lv_ta_set_cursor_type(ta2_1, LV_CURSOR_LINE);
-#if LV_TXT_UTF8 != 0
     lv_ta_set_text(ta2_1, "Some UTF-8 characters "
                    "áÁabcöÖABC\n"
                    "\n"
@@ -165,11 +158,6 @@ void lv_test_ta_2(void)
                    "W\n"
                    "abc");
 
-#else
-    lv_ta_set_text(ta2_1, "First long line\n"
-                   "short\n"
-                   "longer one!");
-#endif
     ta2_2 = lv_ta_create(lv_disp_get_scr_act(NULL), ta2_1);
     lv_obj_align(ta2_2, ta2_1, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
     lv_ta_set_cursor_type(ta2_2, LV_CURSOR_BLOCK);

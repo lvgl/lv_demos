@@ -379,7 +379,6 @@ static void alloc_free_tester(void * param)
         case 21:
             lv_label_set_text(alloc_label, "c");
             break;
-#if LV_TXT_UTF8
         case 22:
             lv_ta_set_cursor_pos(alloc_ta, 20);
             lv_ta_add_text(alloc_ta, "Ú");
@@ -392,7 +391,7 @@ static void alloc_free_tester(void * param)
         case 23:
             lv_label_set_text(alloc_label, "ÁaÁaaÁÁaaaÁÁÁaaaaÁÁÁÁ");
             break;
-#endif
+
         case 25:
             lv_ta_set_text(alloc_ta, "");
             break;

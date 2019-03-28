@@ -32,11 +32,6 @@
  * - The built-in fonts are concatenated automatically in the same height
  * - The symbols are concatenated to the normal fonts as well
  *
- * UTF8 SUPPORT
- * - To use unicode characters (not only the basic ASCII: 32..126 and symbols)
- *   you have to enable LV_TXT_UTF8 in lv_conf.h
- * - You also need fonts which contains the required Unicode letters
- *
  * BIT-PER-PIXEL
  * - The fonts can describe a pixel with 1, 2, 4 or 8 bit. The higher value results smoother letters
  * but larger foot memory foot print.
@@ -88,7 +83,6 @@ LV_FONT_DECLARE(arial_math_20)        /*Sparse mathematical characters*/
 
 /**
  * Concat two font and create label with Unicode characters
- * LV_TXT_UTF8 has to be enabled
  */
 void lv_tutorial_fonts(void)
 {

@@ -28,11 +28,7 @@ static void btnm_event_cb(lv_obj_t * btnm, lv_event_t event);
 /**********************
  *  STATIC VARIABLES
  **********************/
-#if LV_TXT_UTF8 != 0
 static const char * btnm_map[] = {"One line", "\n", "\212", "\242Ina", "\204üŰöŐ", "\221éÉ", "\n", "\214", "\202Left", ""};
-#else
-static const char * btnm_map[] = {"One line", "\n", "\212", "\242Ina", "\204long", "\221short", "\n", "\214", "\202Left", ""};
-#endif
 /**********************
  *      MACROS
  **********************/
