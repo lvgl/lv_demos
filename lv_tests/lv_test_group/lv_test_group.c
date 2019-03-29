@@ -196,14 +196,11 @@ void lv_test_group_1(void)
     lv_page_set_arrow_scroll(obj, true);
     lv_group_add_obj(g, obj);
 
-
-
     obj = lv_label_create(obj, NULL);
     lv_label_set_text(obj, "I'm a page\nwith a long \ntext.\n\n"
                       "You can try \nto scroll me\nwith UP and DOWN\nbuttons.");
     lv_label_set_align(obj, LV_LABEL_ALIGN_CENTER);
     lv_obj_align(obj, NULL, LV_ALIGN_CENTER, 0, 0);
-
 
     obj = lv_tabview_create(win, NULL);
     lv_obj_set_size(obj, hres / 2, vres / 2);

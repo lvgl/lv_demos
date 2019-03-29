@@ -95,7 +95,7 @@ static void event_handler(lv_obj_t * ddlist, lv_event_t event)
 
 #if LV_EX_PRINTF
     char buf[64];
-    lv_ddlist_get_selected_str(ddlist, buf);
+    lv_ddlist_get_selected_str(ddlist, buf, sizeof(buf));
     printf("New option selected on a drop down list: %s\n", buf);
 #endif
     }
