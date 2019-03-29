@@ -146,7 +146,6 @@ static void write_create(lv_obj_t * parent)
     lv_ta_set_style(ta, LV_TA_STYLE_BG, &style_ta);
     lv_ta_set_text(ta, "");
     lv_obj_set_event_cb(ta, text_area_event_handler);
-
     lv_style_copy(&style_kb, &lv_style_plain);
     style_kb.body.opa = LV_OPA_70;
     style_kb.body.main_color = lv_color_hex3(0x333);
@@ -184,10 +183,8 @@ static void text_area_event_handler(lv_obj_t * text_area, lv_event_t event)
     /*Text area is on the scrollable part of the page but we need the page itself*/
     lv_obj_t * parent = lv_obj_get_parent(lv_obj_get_parent(ta));
 
-    if(event == LV_EVENT_SHORT_CLICKED) {
-        if(kb) {
-            lv_event_send(kb, LV_EVENT_CANCEL, NULL);
-        } else {
+    if(event == LV_EVENT_CLICKED) {
+        if(kb == NULL) {
             kb = lv_kb_create(parent, NULL);
             lv_obj_set_size(kb, lv_page_get_scrl_width(parent), lv_obj_get_height(parent) / 2);
             lv_obj_align(kb, ta, LV_ALIGN_OUT_BOTTOM_MID, 0, 0);
