@@ -170,16 +170,13 @@ void lv_test_group_1(void)
     lv_obj_set_size(obj, hres - LV_DPI, vres / 2);
     lv_kb_set_ta(obj, ta);
     lv_kb_set_cursor_manage(obj, true);
-    lv_obj_set_event_cb(obj, general_event_handler);
     lv_group_add_obj(g, obj);
-
 
     static const char * mbox_btns[] = {"Yes", "No", ""};
     obj = lv_mbox_create(win, NULL);
     lv_mbox_add_btns(obj, mbox_btns);
     lv_obj_set_event_cb(obj, general_event_handler);
     lv_group_add_obj(g, obj);
-
 
     obj = lv_list_create(win, NULL);
     lv_list_add(obj, LV_SYMBOL_FILE, "File 1", general_event_handler);
@@ -189,7 +186,6 @@ void lv_test_group_1(void)
     lv_list_add(obj, LV_SYMBOL_FILE, "File 5", general_event_handler);
     lv_list_add(obj, LV_SYMBOL_FILE, "File 6", general_event_handler);
     lv_group_add_obj(g, obj);
-
 
     obj = lv_page_create(win, NULL);
     lv_obj_set_size(obj, 2 * LV_DPI, LV_DPI);
