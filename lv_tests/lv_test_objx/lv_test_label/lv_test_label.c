@@ -120,17 +120,14 @@ void lv_test_label_2(void)
     lv_obj_align(label3, label2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     lv_obj_set_size(label3, 100, 50);
 
-    /* LV_LABEL_LONG_SCROLL (create a parent and label on it)
-     * GOAL: the text is scrolled in both directions */
-    lv_obj_t * bg1 = lv_obj_create(lv_disp_get_scr_act(NULL), NULL);
-    lv_obj_set_style(bg1, &lv_style_pretty);
-    lv_obj_align(bg1, label3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
-
-    lv_obj_t * label4 = lv_label_create(bg1, NULL);
+    /* LV_LABEL_LONG_ROLL (set size and test rolling)
+     * GOAL: the text is rolled circularly*/
+    lv_obj_t * label4 = lv_label_create(lv_scr_act(), label3);
     lv_obj_set_style(label4, &lv_style_plain_color);
-    lv_label_set_body_draw(label4, true);
-    lv_label_set_text(label4, "Long line to scroll!");
-    lv_label_set_long_mode(label4, LV_LABEL_LONG_SCROLL);
+    lv_label_set_text(label4, "Long line to roll circularly!");
+//    lv_label_set_body_draw(label4, true);
+    lv_label_set_long_mode(label4, LV_LABEL_LONG_ROLL_CIRC);
+    lv_obj_align(label4, label3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
     /* LV_LABEL_LONG_DOTS (set size and a long text)
      * GOAL: see dots at the end of the size */
@@ -140,7 +137,7 @@ void lv_test_label_2(void)
     lv_label_set_long_mode(label5, LV_LABEL_LONG_DOT);
     lv_obj_set_size(label5, 100, 60);
     lv_label_set_text(label5, "Dots: aáeéiíoóuúAÁEÉIÍOÓUÚ");
-    lv_obj_align(label5, bg1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
+    lv_obj_align(label5, label4, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
     /*Restore dots*/
     lv_obj_t * label6 = lv_label_create(lv_disp_get_scr_act(NULL), label5);
