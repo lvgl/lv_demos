@@ -12,7 +12,7 @@
  *
  * INPUT DEVICE DRIVER
  * - Similarly to touchpad you need to register an 'lv_indev_drv_t' driver
- * - For control keys you should use LV_GROUP_KEY_... from lv_group.h (e.g. LV_GROUP_KEY_NEXT)
+ * - For control keys you should use LV_KEY_... from lv_group.h (e.g. LV_KEY_NEXT)
  * -
  *
  *
@@ -274,10 +274,10 @@ static void keypad_event_cb(lv_obj_t * btn, lv_event_t event)
         lv_obj_t * label = lv_obj_get_child(btn, NULL);
         const char * txt = lv_label_get_text(label);
 
-        if(strcmp(txt, "Next") == 0)        last_key = LV_GROUP_KEY_NEXT;
-        else if (strcmp(txt, "Inc") == 0)   last_key = LV_GROUP_KEY_UP;
-        else if (strcmp(txt, "Dec") == 0)   last_key = LV_GROUP_KEY_DOWN;
-        else if (strcmp(txt, "Enter") == 0) last_key = LV_GROUP_KEY_ENTER;
+        if(strcmp(txt, "Next") == 0)        last_key = LV_KEY_NEXT;
+        else if (strcmp(txt, "Inc") == 0)   last_key = LV_KEY_UP;
+        else if (strcmp(txt, "Dec") == 0)   last_key = LV_KEY_DOWN;
+        else if (strcmp(txt, "Enter") == 0) last_key = LV_KEY_ENTER;
         else last_key = 0;
 
         last_state = LV_INDEV_STATE_PR;         /*Save the state*/
