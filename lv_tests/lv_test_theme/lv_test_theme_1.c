@@ -205,7 +205,7 @@ static void create_tab1(lv_obj_t * parent)
     lv_list_add(list, LV_SYMBOL_COPY, "Copy", NULL);
 
     lv_obj_t * roller = lv_roller_create(h, NULL);
-    lv_roller_set_options(roller, "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday", false);
+    lv_roller_set_options(roller, "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday", true);
     lv_roller_set_selected(roller, 1, false);
     lv_roller_set_visible_row_count(roller, 3);
 
