@@ -114,7 +114,7 @@ static void create_tab1(lv_obj_t * parent)
     static const char * btnm_str[] = {"1", "2", "3", LV_SYMBOL_OK, LV_SYMBOL_CLOSE, ""};
     lv_obj_t * btnm = lv_btnm_create(h, NULL);
     lv_obj_set_size(btnm, lv_disp_get_hor_res(NULL) / 4, 2 * LV_DPI / 3);
-    lv_btnm_set_map(btnm, btnm_str);
+    lv_btnm_set_map_array(btnm, btnm_str);
     lv_btnm_set_btn_ctrl_all(btnm, LV_BTNM_CTRL_TGL_ENABLE, true);
     lv_btnm_set_one_toggle(btnm, true);
 
