@@ -121,9 +121,12 @@ void lv_test_chart_1(void)
 void lv_test_chart_2(uint8_t chart)
 {
 
-	lv_style_t * scr_style = lv_obj_get_style(lv_disp_get_scr_act(NULL));
-	scr_style->body.main_color = LV_COLOR_BLACK;
-	scr_style->body.grad_color = LV_COLOR_BLACK;
+	static lv_style_t scr_style;
+	lv_style_copy(&scr_style, lv_obj_get_style(lv_scr_act()));
+	scr_style.body.main_color = LV_COLOR_BLACK;
+	scr_style.body.grad_color = LV_COLOR_BLACK;
+
+	lv_obj_set_style(lv_scr_act(), &scr_style);
 
 	static lv_style_t style_chart_label;
 	lv_style_copy(&style_chart_label, &lv_style_plain);
