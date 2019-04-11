@@ -65,7 +65,7 @@ void lv_test_btnm_1(void)
 
 
     lv_obj_t * btnm2 = lv_btnm_create(lv_disp_get_scr_act(NULL), NULL);
-    lv_btnm_set_map_array(btnm2, btnm_map);
+    lv_btnm_set_map(btnm2, btnm_map);
     lv_obj_set_size(btnm2, hres / 2, vres / 3);
     lv_obj_align(btnm2, btnm1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
     lv_btnm_set_btn_ctrl(btnm2, 2, LV_BTNM_CTRL_TGL_STATE, true);
