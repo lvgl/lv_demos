@@ -70,21 +70,24 @@ void lv_test_group_1(void)
 
     /*A keyboard will be simulated*/
     lv_indev_drv_t sim_kb_drv;
+    lv_indev_drv_init(&sim_kb_drv);
     sim_kb_drv.type = LV_INDEV_TYPE_KEYPAD;
     sim_kb_drv.read_cb = win_btn_read;
     lv_indev_t * win_kb_indev = lv_indev_drv_register(&sim_kb_drv);
     lv_indev_set_group(win_kb_indev, g);
 
 #if LV_EX_KEYBOARD
-    lv_indev_drv_t rael_kb_drv;
-    rael_kb_drv.type = LV_INDEV_TYPE_KEYPAD;
-    rael_kb_drv.read_cb = keyboard_read;
-    lv_indev_t * real_kb_indev = lv_indev_drv_register(&rael_kb_drv);
+    lv_indev_drv_t real_kb_drv;
+    lv_indev_drv_init(&real_kb_drv);
+    real_kb_drv.type = LV_INDEV_TYPE_KEYPAD;
+    real_kb_drv.read_cb = keyboard_read;
+    lv_indev_t * real_kb_indev = lv_indev_drv_register(&real_kb_drv);
     lv_indev_set_group(real_kb_indev, g);
 #endif
 
 #if LV_EX_MOUSEWHEEL
     lv_indev_drv_t enc_drv;
+    lv_indev_drv_init(&enc_drv);
     enc_drv.type = LV_INDEV_TYPE_ENCODER;
     enc_drv.read_cb = mousewheel_read;
     lv_indev_t * enc_indev = lv_indev_drv_register(&enc_drv);
