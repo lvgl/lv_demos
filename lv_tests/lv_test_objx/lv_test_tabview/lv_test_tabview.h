@@ -39,6 +39,7 @@ extern "C" {
  * Create tab views to test their functionalities
  */
 void lv_test_tabview_1(void);
+void lv_test_tabview_2(void);
 
 /**********************
  *      MACROS

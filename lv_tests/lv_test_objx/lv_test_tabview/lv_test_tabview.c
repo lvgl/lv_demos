@@ -120,7 +120,122 @@ void lv_test_tabview_1(void)
     lv_obj_align(tv4, NULL, LV_ALIGN_IN_BOTTOM_RIGHT, 0, 0);
 }
 
+void lv_test_tabview_2(void)
+{
+    lv_obj_t * tab;
+    lv_obj_t * label;
 
+    lv_coord_t hres = lv_disp_get_hor_res(NULL);
+    lv_coord_t vres = lv_disp_get_ver_res(NULL);
+
+    // Tabview 1
+    lv_obj_t * tv1 = lv_tabview_create(lv_disp_get_scr_act(NULL), NULL);
+    lv_obj_set_size(tv1, hres / 2 - 10, vres / 2 - 10);
+    lv_obj_align(tv1, NULL, LV_ALIGN_IN_TOP_LEFT, 0, 0);
+    lv_tabview_set_btns_pos(tv1, LV_TABVIEW_BTNS_POS_TOP);
+
+    lv_tabview_add_tab(tv1, "111");
+    lv_tabview_add_tab(tv1, "222");
+    lv_tabview_add_tab(tv1, "333");
+    lv_tabview_add_tab(tv1, "444");
+
+    tab = lv_tabview_get_tab(tv1, 0);
+    label = lv_label_create(tab, NULL);
+    lv_label_set_text(label, "1111This is\n\n\nA long text\n\n\ntext\n\n\non the\n\n\nsecond\n\n\ntab\n\n\nto see\n\n\nthe scrolling");
+
+    tab = lv_tabview_get_tab(tv1, 1);
+    label = lv_label_create(tab, NULL);
+    lv_label_set_text(label, "2222");
+
+    tab = lv_tabview_get_tab(tv1, 2);
+    label = lv_label_create(tab, NULL);
+    lv_label_set_text(label, "3333");
+
+    tab = lv_tabview_get_tab(tv1, 3);
+    label = lv_label_create(tab, NULL);
+    lv_label_set_text(label, "444");
+
+    // Tabview 2
+    lv_obj_t * tv2 = lv_tabview_create(lv_disp_get_scr_act(NULL), NULL);
+    lv_obj_set_size(tv2, hres / 2 - 10, vres / 2 - 10);
+    lv_obj_align(tv2, NULL, LV_ALIGN_IN_TOP_RIGHT, 0, 0);
+    lv_tabview_set_btns_pos(tv2, LV_TABVIEW_BTNS_POS_BOTTOM);
+
+    lv_tabview_add_tab(tv2, "111");
+    lv_tabview_add_tab(tv2, "222");
+    lv_tabview_add_tab(tv2, "333");
+    lv_tabview_add_tab(tv2, "444");        
+
+    tab = lv_tabview_get_tab(tv2, 0);
+    label = lv_label_create(tab, NULL);
+    lv_label_set_text(label, "1111This is\n\n\nA long text\n\n\ntext\n\n\non the\n\n\nsecond\n\n\ntab\n\n\nto see\n\n\nthe scrolling");
+
+    tab = lv_tabview_get_tab(tv2, 1);
+    label = lv_label_create(tab, NULL);
+    lv_label_set_text(label, "2222");
+
+    tab = lv_tabview_get_tab(tv2, 2);
+    label = lv_label_create(tab, NULL);
+    lv_label_set_text(label, "3333");
+
+    tab = lv_tabview_get_tab(tv2, 3);
+    label = lv_label_create(tab, NULL);
+    lv_label_set_text(label, "444");
+
+    // Tabview 3
+    lv_obj_t * tv3 = lv_tabview_create(lv_disp_get_scr_act(NULL), NULL);
+    lv_obj_set_size(tv3, hres / 2 - 10, vres / 2 - 10);
+    lv_obj_align(tv3, NULL, LV_ALIGN_IN_BOTTOM_LEFT, 0, 0);
+    lv_tabview_set_btns_pos(tv3, LV_TABVIEW_BTNS_POS_LEFT);
+
+    lv_tabview_add_tab(tv3, "111");
+    lv_tabview_add_tab(tv3, "222");
+    lv_tabview_add_tab(tv3, "333");
+    lv_tabview_add_tab(tv3, "444");        
+
+    tab = lv_tabview_get_tab(tv3, 0);
+    label = lv_label_create(tab, NULL);
+    lv_label_set_text(label, "1111This is\n\n\nA long text\n\n\ntext\n\n\non the\n\n\nsecond\n\n\ntab\n\n\nto see\n\n\nthe scrolling");
+
+    tab = lv_tabview_get_tab(tv3, 1);
+    label = lv_label_create(tab, NULL);
+    lv_label_set_text(label, "2222");
+
+    tab = lv_tabview_get_tab(tv3, 2);
+    label = lv_label_create(tab, NULL);
+    lv_label_set_text(label, "3333");
+
+    tab = lv_tabview_get_tab(tv3, 3);
+    label = lv_label_create(tab, NULL);
+    lv_label_set_text(label, "444");
+
+    // Tabview 4
+    lv_obj_t * tv4 = lv_tabview_create(lv_disp_get_scr_act(NULL), NULL);
+    lv_obj_set_size(tv4, hres / 2 - 10, vres / 2 - 10);
+    lv_obj_align(tv4, NULL, LV_ALIGN_IN_BOTTOM_RIGHT, 0, 0);
+    lv_tabview_set_btns_pos(tv4, LV_TABVIEW_BTNS_POS_RIGHT);
+
+    lv_tabview_add_tab(tv4, "111");
+    lv_tabview_add_tab(tv4, "222");
+    lv_tabview_add_tab(tv4, "333");
+    lv_tabview_add_tab(tv4, "444");        
+
+    tab = lv_tabview_get_tab(tv4, 0);
+    label = lv_label_create(tab, NULL);
+    lv_label_set_text(label, "1111This is\n\n\nA long text\n\n\ntext\n\n\non the\n\n\nsecond\n\n\ntab\n\n\nto see\n\n\nthe scrolling");
+
+    tab = lv_tabview_get_tab(tv4, 1);
+    label = lv_label_create(tab, NULL);
+    lv_label_set_text(label, "2222");
+
+    tab = lv_tabview_get_tab(tv4, 2);
+    label = lv_label_create(tab, NULL);
+    lv_label_set_text(label, "3333");
+
+    tab = lv_tabview_get_tab(tv4, 3);
+    label = lv_label_create(tab, NULL);
+    lv_label_set_text(label, "444");
+}
 
 /**********************
  *   STATIC FUNCTIONS
