@@ -60,7 +60,7 @@ void lv_test_ddlist_1(void)
     lv_ddlist_set_selected(ddlist2, 2);
     lv_ddlist_set_anim_time(ddlist2, 100);
     lv_ddlist_open(ddlist2, false);
-    lv_ddlist_set_fit(ddlist2, false);
+    lv_ddlist_set_hor_fit(ddlist2, false);
     lv_obj_set_event_cb(ddlist2, event_handler);
     lv_obj_set_width(ddlist2, LV_DPI * 2);
 

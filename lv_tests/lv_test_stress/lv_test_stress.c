@@ -88,7 +88,7 @@ void lv_test_stress_1(void)
     sa.playback_pause = 500;
     sa.repeat = 1;
     sa.repeat_pause = 500;
-    sa.end_cb = NULL;
+    sa.ready_cb = NULL;
     lv_style_anim_create(&sa);
 }
 
@@ -123,8 +123,8 @@ static void obj_mem_leak_tester(void * param)
     static lv_obj_t * page;
 
     lv_anim_t a;
-    a.path = lv_anim_path_linear;
-    a.end_cb = NULL;
+    a.path_cb = lv_anim_path_linear;
+    a.ready_cb = NULL;
     a.act_time = 0;
     a.time = 500;
     a.playback_pause = 100;
@@ -137,7 +137,7 @@ static void obj_mem_leak_tester(void * param)
             lv_obj_set_pos(obj, 10, 5);
             a.playback = 1;
             a.repeat = 1;
-            a.fp = (lv_anim_fp_t)lv_obj_set_x;
+            a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_x;
             a.var = obj;
             a.start = 10 ;
             a.end = 100 ;
@@ -148,7 +148,7 @@ static void obj_mem_leak_tester(void * param)
             lv_obj_set_pos(obj, 60, 5);
             a.playback = 0;
             a.repeat = 1;
-            a.fp = (lv_anim_fp_t)lv_obj_set_x;
+            a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_x;
             a.var = obj;
             a.start = 150 ;
             a.end = 200 ;
