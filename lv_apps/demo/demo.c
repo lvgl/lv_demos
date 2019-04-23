@@ -23,7 +23,7 @@
 static void write_create(lv_obj_t * parent);
 static void text_area_event_handler(lv_obj_t * text_area, lv_event_t event);
 static void keyboard_event_cb(lv_obj_t * keyboard, lv_event_t event);
-static void kb_hide_anim_end(lv_obj_t * keyboard);
+static void kb_hide_anim_end(lv_anim_t * a);
 static void list_create(lv_obj_t * parent);
 static void chart_create(lv_obj_t * parent);
 static void slider_event_handler(lv_obj_t * slider, lv_event_t event);
@@ -147,6 +147,8 @@ static void write_create(lv_obj_t * parent)
     lv_ta_set_text(ta, "");
     lv_obj_set_event_cb(ta, text_area_event_handler);
     lv_style_copy(&style_kb, &lv_style_plain);
+    lv_ta_set_text_sel(ta, true);
+
     style_kb.body.opa = LV_OPA_70;
     style_kb.body.main_color = lv_color_hex3(0x333);
     style_kb.body.grad_color = lv_color_hex3(0x333);
@@ -216,7 +218,6 @@ static void keyboard_event_cb(lv_obj_t * keyboard, lv_event_t event)
     if(event == LV_EVENT_APPLY || event == LV_EVENT_CANCEL) {
 #if LV_USE_ANIMATION
         lv_obj_animate(kb, LV_ANIM_FLOAT_BOTTOM | LV_ANIM_OUT, 300, 0, kb_hide_anim_end);
-        kb = NULL;
 #else
         lv_obj_del(kb);
         kb = NULL;
@@ -273,9 +274,10 @@ static void list_create(lv_obj_t * parent)
     lv_obj_align(mbox, parent, LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 2);
 }
 
-static void kb_hide_anim_end(lv_obj_t * keyboard)
+static void kb_hide_anim_end(lv_anim_t * a)
 {
-    lv_obj_del(keyboard);
+    lv_obj_del(a->var);
+    kb = NULL;
 }
 
 static void chart_create(lv_obj_t * parent)
