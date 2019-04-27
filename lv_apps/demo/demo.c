@@ -188,7 +188,7 @@ static void text_area_event_handler(lv_obj_t * text_area, lv_event_t event)
     if(event == LV_EVENT_CLICKED) {
         if(kb == NULL) {
             kb = lv_kb_create(parent, NULL);
-            lv_obj_set_size(kb, lv_page_get_scrl_width(parent), lv_obj_get_height(parent) / 2);
+            lv_obj_set_size(kb, lv_obj_get_width_fit(parent), lv_obj_get_height_fit(parent) / 2);
             lv_obj_align(kb, ta, LV_ALIGN_OUT_BOTTOM_MID, 0, 0);
             lv_kb_set_ta(kb, ta);
             lv_kb_set_style(kb, LV_KB_STYLE_BG, &style_kb);
