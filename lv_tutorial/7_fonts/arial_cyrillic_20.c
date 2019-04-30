@@ -1,5 +1,7 @@
 
 #include "lvgl/lvgl.h"
+#include "lv_ex_conf.h"
+#if LV_USE_TUTORIALS
 
 /***********************************************************************************
  * arial.ttf 20 px Font in U+0400 (Ѐ) .. U+045f (џ)  range with 4 bpp
@@ -2330,3 +2332,4 @@ lv_font_t arial_cyrillic_20 = {
     .bpp = 4,               /*Bit per pixel*/
     .next_page = NULL,      /*Pointer to a font extension*/
 };
+#endif

@@ -27,7 +27,7 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static void sysmon_task(void * param);
+static void sysmon_task(lv_task_t * param);
 static void win_close_action(lv_obj_t * btn, lv_event_t event);
 
 /**********************
@@ -100,7 +100,7 @@ void sysmon_create(void)
  * Called periodically to monitor the CPU and memory usage.
  * @param param unused
  */
-static void sysmon_task(void * param)
+static void sysmon_task(lv_task_t * param)
 {
 
     (void) param;    /*Unused*/

@@ -22,9 +22,9 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static void obj_mem_leak_tester(void *);
-static void alloc_free_tester(void *);
-static void mem_monitor(void *);
+static void obj_mem_leak_tester(lv_task_t *);
+static void alloc_free_tester(lv_task_t *);
+static void mem_monitor(lv_task_t *);
 
 /**********************
  *  STATIC VARIABLES
@@ -97,7 +97,7 @@ void lv_test_stress_1(void)
  *   STATIC FUNCTIONS
  **********************/
 
-static void mem_monitor(void * param)
+static void mem_monitor(lv_task_t * param)
 {
     (void) param;    /*Unused*/
 
@@ -111,7 +111,7 @@ static void mem_monitor(void * param)
 #endif
 }
 
-static void obj_mem_leak_tester(void * param)
+static void obj_mem_leak_tester(lv_task_t * param)
 {
     (void) param;    /*Unused*/
 
@@ -278,7 +278,7 @@ static void obj_mem_leak_tester(void * param)
 /**
  * Test alloc and free by settings the text of a label and instering text to a text area
  */
-static void alloc_free_tester(void * param)
+static void alloc_free_tester(lv_task_t * param)
 {
     (void) param;    /*Unused*/
 
