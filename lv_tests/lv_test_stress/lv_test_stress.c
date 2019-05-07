@@ -127,6 +127,8 @@ static void obj_mem_leak_tester(lv_task_t * param)
     a.ready_cb = NULL;
     a.act_time = 0;
     a.time = 500;
+    a.playback = 0;
+    a.repeat = 0;
     a.playback_pause = 100;
     a.repeat_pause = 100;
 
@@ -181,8 +183,14 @@ static void obj_mem_leak_tester(lv_task_t * param)
             obj = lv_kb_create(all_obj_h, NULL);
             lv_obj_set_size(obj, hres / 3, vres / 5);
             lv_obj_set_pos(obj, 30, 90);
-            lv_obj_animate(obj, LV_ANIM_FLOAT_BOTTOM | LV_ANIM_IN, 200, 0, NULL);
+            a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_y;
+            a.var = obj;
+            a.start = LV_VER_RES ;
+            a.end = lv_obj_get_y(obj);
+            a.time = 200;
+            lv_anim_create(&a);
             break;
+
         case 9: /*Roller test ddlist too*/
             obj = lv_roller_create(page, NULL);
             lv_roller_set_options(obj, "One\nTwo\nThree", false);
@@ -203,7 +211,12 @@ static void obj_mem_leak_tester(lv_task_t * param)
             lv_list_add(obj, LV_SYMBOL_OK, "List 4", NULL);
             lv_list_add(obj, LV_SYMBOL_OK, "List 5", NULL);
             lv_list_add(obj, LV_SYMBOL_OK, "List 6", NULL);
-            lv_obj_animate(obj, LV_ANIM_GROW_V | LV_ANIM_IN, 5000, 0, NULL);
+            a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_height;
+            a.var = obj;
+            a.start = 0;
+            a.end = lv_obj_get_height(obj);
+            a.time = 5000;
+            lv_anim_create(&a);
             break;
         case 16:
             obj = lv_win_create(all_obj_h, NULL);

@@ -197,7 +197,21 @@ static void text_area_event_handler(lv_obj_t * text_area, lv_event_t event)
             lv_obj_set_event_cb(kb, keyboard_event_cb);
 
 #if LV_USE_ANIMATION
-            lv_obj_animate(kb, LV_ANIM_FLOAT_BOTTOM | LV_ANIM_IN, 300, 0, NULL);
+            lv_anim_t a;
+            a.var = kb;
+            a.start = LV_VER_RES;
+            a.end = lv_obj_get_y(kb);
+            a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_y;
+            a.path_cb = lv_anim_path_linear;
+            a.ready_cb = NULL;
+            a.act_time = 0;
+            a.time = 300;
+            a.playback = 0;
+            a.playback_pause = 0;
+            a.repeat = 0;
+            a.repeat_pause = 0;
+            a.user_data = NULL;
+            lv_anim_create(&a);
 #endif
         }
     }
@@ -217,7 +231,21 @@ static void keyboard_event_cb(lv_obj_t * keyboard, lv_event_t event)
 
     if(event == LV_EVENT_APPLY || event == LV_EVENT_CANCEL) {
 #if LV_USE_ANIMATION
-        lv_obj_animate(kb, LV_ANIM_FLOAT_BOTTOM | LV_ANIM_OUT, 300, 0, kb_hide_anim_end);
+        lv_anim_t a;
+        a.var = kb;
+        a.start = lv_obj_get_y(kb);
+        a.end = LV_VER_RES;
+        a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_y;
+        a.path_cb = lv_anim_path_linear;
+        a.ready_cb = kb_hide_anim_end;
+        a.act_time = 0;
+        a.time = 300;
+        a.playback = 0;
+        a.playback_pause = 0;
+        a.repeat = 0;
+        a.repeat_pause = 0;
+        a.user_data = NULL;
+        lv_anim_create(&a);
 #else
         lv_obj_del(kb);
         kb = NULL;
