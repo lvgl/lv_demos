@@ -71,7 +71,21 @@ void lv_tutorial_animations(void)
 
     /* Float in the button using a built-in function
      * Delay the animation with 2000 ms and float in 300 ms. NULL means no end callback*/
-    lv_obj_animate(btn1, LV_ANIM_FLOAT_TOP | LV_ANIM_IN, 300, 2000, NULL);
+    lv_anim_t a;
+    a.var = btn1;
+    a.start = -lv_obj_get_height(btn1);
+    a.end = lv_obj_get_y(btn1);
+    a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_y;
+    a.path_cb = lv_anim_path_linear;
+    a.ready_cb = NULL;
+    a.act_time = -2000; /*Delay the animation*/
+    a.time = 300;
+    a.playback = 0;
+    a.playback_pause = 0;
+    a.repeat = 0;
+    a.repeat_pause = 0;
+    a.user_data = NULL;
+    lv_anim_create(&a);
 
     /*Create a button to demonstrate user defined animations*/
     lv_obj_t * btn2;
@@ -83,7 +97,6 @@ void lv_tutorial_animations(void)
     lv_label_set_text(label, "Move");
 
     /*Create an animation to move the button continuously left to right*/
-    lv_anim_t a;
     a.var = btn2;
     a.start = lv_obj_get_x(btn2);
     a.end = a.start + (100);
