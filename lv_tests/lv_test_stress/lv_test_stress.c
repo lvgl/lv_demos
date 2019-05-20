@@ -78,18 +78,17 @@ void lv_test_stress_1(void)
     lv_style_copy(&ta_style, &lv_style_pretty);
     lv_ta_set_style(alloc_ta, LV_TA_STYLE_BG, &ta_style);
 
-    lv_style_anim_t sa;
-    sa.style_anim = &ta_style;
-    sa.style_start = &lv_style_pretty;
-    sa.style_end = &lv_style_pretty_color;
+
+    lv_anim_t sa;
+    lv_style_anim_init(&sa);
+    lv_style_anim_set_styles(&sa, &ta_style, &lv_style_pretty, &lv_style_pretty_color);
     sa.act_time = 500;
     sa.time = 500;
     sa.playback = 1;
     sa.playback_pause = 500;
     sa.repeat = 1;
     sa.repeat_pause = 500;
-    sa.ready_cb = NULL;
-    lv_style_anim_create(&sa);
+    lv_anim_create(&sa);
 }
 
 
