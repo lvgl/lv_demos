@@ -241,7 +241,7 @@ void lv_test_chart_3(void)
 {
 /* Create a the base chart*/
 	lv_obj_t * chart1 = lv_chart_create(lv_scr_act(), NULL);
-	lv_chart_set_type(chart4, LV_CHART_TYPE_LINE);
+	lv_chart_set_type(chart1, LV_CHART_TYPE_LINE);
 	lv_obj_set_size(chart1, 100, 100);
 
 	lv_chart_series_t * dl1_1 = lv_chart_add_series(chart1, LV_COLOR_RED);
