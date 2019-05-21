@@ -23,7 +23,9 @@
 static void write_create(lv_obj_t * parent);
 static void text_area_event_handler(lv_obj_t * text_area, lv_event_t event);
 static void keyboard_event_cb(lv_obj_t * keyboard, lv_event_t event);
+#if LV_USE_ANIMATION
 static void kb_hide_anim_end(lv_anim_t * a);
+#endif
 static void list_create(lv_obj_t * parent);
 static void chart_create(lv_obj_t * parent);
 static void slider_event_handler(lv_obj_t * slider, lv_event_t event);
@@ -302,11 +304,13 @@ static void list_create(lv_obj_t * parent)
     lv_obj_align(mbox, parent, LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 2);
 }
 
+#if LV_USE_ANIMATION
 static void kb_hide_anim_end(lv_anim_t * a)
 {
     lv_obj_del(a->var);
     kb = NULL;
 }
+#endif
 
 static void chart_create(lv_obj_t * parent)
 {
