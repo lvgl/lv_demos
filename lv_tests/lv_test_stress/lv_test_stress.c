@@ -82,13 +82,10 @@ void lv_test_stress_1(void)
     lv_anim_t sa;
     lv_style_anim_init(&sa);
     lv_style_anim_set_styles(&sa, &ta_style, &lv_style_pretty, &lv_style_pretty_color);
-    sa.act_time = 500;
-    sa.time = 500;
-    sa.playback = 1;
-    sa.playback_pause = 500;
-    sa.repeat = 1;
-    sa.repeat_pause = 500;
-    lv_anim_create(&sa);
+    lv_style_anim_set_time(&sa, 500, 500);
+    lv_style_anim_set_playback(&sa, 500);
+    lv_style_anim_set_repeat(&sa, 500);
+    lv_style_anim_create(&sa);
 }
 
 
