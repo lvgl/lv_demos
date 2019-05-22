@@ -249,14 +249,15 @@ void lv_test_chart_3(lv_chart_type_t chart_type)
 
 	lv_chart_series_t * dl1_1 = lv_chart_add_series(chart1, LV_COLOR_RED);
 	dl1_1->points[0] = 0;
-	dl1_1->points[1] = 25;
+	dl1_1->points[1] = 20;
 	dl1_1->points[2] = 0;
-	dl1_1->points[3] = 50;
+	dl1_1->points[3] = 40;
 	dl1_1->points[4] = 0;
-	dl1_1->points[5] = 75;
+	dl1_1->points[5] = 60;
 	dl1_1->points[6] = 0;
-	dl1_1->points[7] = 100;
+	dl1_1->points[7] = 80;
 	dl1_1->points[8] = 0;
+	dl1_1->points[9] = 100;
 
 	/*create the chart with `LV_CHART_UPDATE_MODE_SHIFT` */
 	lv_obj_t * chart2 = lv_chart_create(lv_scr_act(), chart1);
