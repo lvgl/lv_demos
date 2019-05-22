@@ -240,6 +240,54 @@ void lv_test_chart_2(uint8_t chart)
 	lv_obj_align(chart_label, NULL, LV_ALIGN_IN_TOP_MID, 10, 20);
 }
 
+void lv_test_chart_3(lv_chart_type_t chart_type)
+{
+	/* Create a the base chart*/
+	lv_obj_t * chart1 = lv_chart_create(lv_scr_act(), NULL);
+	lv_chart_set_type(chart1, chart_type);
+	lv_obj_set_size(chart1, 100, 100);
+
+	lv_chart_series_t * dl1_1 = lv_chart_add_series(chart1, LV_COLOR_RED);
+	dl1_1->points[0] = 0;
+	dl1_1->points[1] = 25;
+	dl1_1->points[2] = 0;
+	dl1_1->points[3] = 50;
+	dl1_1->points[4] = 0;
+	dl1_1->points[5] = 75;
+	dl1_1->points[6] = 0;
+	dl1_1->points[7] = 100;
+	dl1_1->points[8] = 0;
+
+	/*create the chart with `LV_CHART_UPDATE_MODE_SHIFT` */
+	lv_obj_t * chart2 = lv_chart_create(lv_scr_act(), chart1);
+	lv_chart_set_update_mode(chart2, LV_CHART_UPDATE_MODE_SHIFT);
+
+	lv_chart_series_t * dl2_1 = lv_chart_add_series(chart2, LV_COLOR_RED);
+	memcpy(dl2_1->points, dl1_1->points, sizeof(lv_coord_t) * lv_chart_get_point_cnt(chart1));
+	lv_obj_align(chart2, chart1, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
+
+	/*create the chart with `LV_CHART_UPDATE_MODE_CIRCULAR` */
+	lv_obj_t * chart3 = lv_chart_create(lv_scr_act(), chart1);
+	lv_chart_set_update_mode(chart3, LV_CHART_UPDATE_MODE_CIRCULAR);
+
+	lv_chart_series_t * dl3_1 = lv_chart_add_series(chart3, LV_COLOR_RED);
+	memcpy(dl3_1->points, dl1_1->points, sizeof(lv_coord_t) * lv_chart_get_point_cnt(chart1));
+	lv_obj_align(chart3, chart2, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
+
+	/*add some new data to chart2*/
+	lv_chart_set_next(chart2, dl2_1, 35);
+	lv_chart_set_next(chart2, dl2_1, 35);
+	lv_chart_set_next(chart2, dl2_1, 35);
+	lv_chart_set_next(chart2, dl2_1, 35);
+	lv_chart_set_next(chart2, dl2_1, 35);
+
+	/*add some new data -same as chart2- to chart3*/
+	lv_chart_set_next(chart3, dl3_1, 35);
+	lv_chart_set_next(chart3, dl3_1, 35);
+	lv_chart_set_next(chart3, dl3_1, 35);
+	lv_chart_set_next(chart3, dl3_1, 35);
+	lv_chart_set_next(chart3, dl3_1, 35);
+}
 /**********************
  *   STATIC FUNCTIONS
  **********************/
