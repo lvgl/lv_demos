@@ -125,17 +125,12 @@ void lv_tutorial_animations(void)
     lv_btn_set_style(btn3, LV_BTN_STATE_REL, &btn3_style);
 
     /*Animate the new style*/
-    lv_style_anim_t sa;
-    sa.style_anim = &btn3_style;            /*This style will be animated*/
-    sa.style_start = &lv_style_btn_rel;     /*Style in the beginning (can be 'style_anim' as well)*/
-    sa.style_end = &lv_style_pretty;        /*Style at the and (can be 'style_anim' as well)*/
-    sa.act_time = -500;                     /*These parameters are the same as with the normal animation*/
-    sa.time = 1000;
-    sa.playback = 1;
-    sa.playback_pause = 500;
-    sa.repeat = 1;
-    sa.repeat_pause = 500;
-    sa.ready_cb = NULL;
+    lv_anim_t sa;
+    lv_style_anim_init(&sa);
+    lv_style_anim_set_styles(&sa, &btn3_style, &lv_style_btn_rel, &lv_style_pretty);
+    lv_style_anim_set_time(&sa, 500, 500);
+    lv_style_anim_set_playback(&sa, 500);
+    lv_style_anim_set_repeat(&sa, 500);
     lv_style_anim_create(&sa);
 }
 
