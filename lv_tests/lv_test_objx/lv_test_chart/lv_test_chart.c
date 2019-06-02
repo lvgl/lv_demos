@@ -130,7 +130,6 @@ void lv_test_chart_2(uint8_t chart)
 
 	static lv_style_t style_chart_label;
 	lv_style_copy(&style_chart_label, &lv_style_plain);
-	style_chart_label.text.font = &lv_font_dejavu_20;
 	style_chart_label.text.color = LV_COLOR_YELLOW;
 	style_chart_label.text.opa = LV_OPA_COVER;
 
@@ -157,7 +156,6 @@ void lv_test_chart_2(uint8_t chart)
 	style_chart_axes.body.border.width = 1;
 	style_chart_axes.body.border.opa = LV_OPA_70;
 	style_chart_axes.text.color = LV_COLOR_WHITE;
-	style_chart_axes.text.font = &lv_font_dejavu_20;
 	style_chart_axes.text.opa = LV_OPA_COVER;
 
 	lv_obj_t * chart_axes = lv_chart_create(lv_disp_get_scr_act(NULL), NULL);
