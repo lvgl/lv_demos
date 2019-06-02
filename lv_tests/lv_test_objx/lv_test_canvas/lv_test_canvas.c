@@ -13,6 +13,9 @@
 /*********************
  *      DEFINES
  *********************/
+#define CANVAS_WIDTH    100
+#define CANVAS_HEIGHT   100
+#define TEST_ROTATE     0
 
 /**********************
  *      TYPEDEFS
@@ -53,32 +56,35 @@ void lv_test_canvas_1(void)
     style.text.color = LV_COLOR_BLUE;
 
     lv_obj_t * canvas = lv_canvas_create(lv_scr_act(), NULL);
-    lv_color_t cbuf[LV_CANVAS_BUF_SIZE_TRUE_COLOR(200, 300)];
-    lv_canvas_set_buffer(canvas, cbuf, 200, 300, LV_IMG_CF_TRUE_COLOR);
-    lv_obj_set_pos(canvas, 10, 20);
+    static lv_color_t cbuf[LV_CANVAS_BUF_SIZE_TRUE_COLOR(CANVAS_WIDTH, CANVAS_HEIGHT)];
+    lv_canvas_set_buffer(canvas, cbuf, CANVAS_WIDTH, CANVAS_HEIGHT, LV_IMG_CF_TRUE_COLOR);
+    lv_obj_set_pos(canvas, 10, 10);
     lv_canvas_fill_bg(canvas, LV_COLOR_LIGHT_GRAY);
 
-    lv_canvas_draw_rect(canvas, 50, 20, 100, 60, &style);
+    lv_canvas_draw_rect(canvas, 40, 10, 50, 30, &style);
 
-    lv_canvas_draw_text(canvas, 80, 100, 110, &style, "Long text on the right!", LV_LABEL_ALIGN_RIGHT);
+    lv_canvas_draw_text(canvas, 5, 5, 100, &style, "ABC", LV_LABEL_ALIGN_LEFT);
 
-    const lv_point_t points[] = {{50, 180}, {130, 190}, {110, 260}, {60, 280}, {50, 180}};
+    const lv_point_t points[] = {{5, 40}, {35, 45}, {30, 80}, {10, 90}, {5, 40}};
 
     lv_canvas_draw_polygon(canvas, points, 5, &style);
     lv_canvas_draw_line(canvas, points, 5, &style);
 
-    lv_canvas_draw_arc(canvas, 40, 120, 30, 20, 250, &style);
+    lv_canvas_draw_arc(canvas, 70, 70, 20, 20, 250, &style);
 
-    lv_color_t cbuf_tmp[200 * 300];
+#if TEST_ROTATE
+    /*Copy the current image to buffer and rotate it to the canvas */
+    lv_color_t cbuf_tmp[CANVAS_WIDTH * CANVAS_HEIGHT];
     memcpy(cbuf_tmp, cbuf, sizeof(cbuf_tmp));
     lv_img_dsc_t img;
     img.data = (void *)cbuf_tmp;
     img.header.cf = LV_IMG_CF_TRUE_COLOR;
-    img.header.w = 200;
-    img.header.h = 300;
+    img.header.w = CANVAS_WIDTH;
+    img.header.h = CANVAS_HEIGHT;
 
     lv_canvas_fill_bg(canvas, LV_COLOR_LIGHT_GRAY);
-    lv_canvas_rotate(canvas, &img, 40, 0, 0, 100, 150);
+    lv_canvas_rotate(canvas, &img, 30, 0, 0, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
+#endif
 }
 
 /**********************
