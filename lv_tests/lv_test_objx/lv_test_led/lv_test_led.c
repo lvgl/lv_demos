@@ -56,7 +56,7 @@ void lv_test_led_1(void)
     style.body.shadow.color = lv_color_make(0xb5, 0x0f, 0x04);
 
     lv_obj_t * led2 = lv_led_create(lv_disp_get_scr_act(NULL), NULL);
-    lv_led_set_style(led2, &style);
+    lv_led_set_style(led2, LV_LED_STYLE_MAIN, &style);
     lv_obj_align(led2, led1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
     /*Turned ON LED*/

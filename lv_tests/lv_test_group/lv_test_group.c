@@ -138,8 +138,10 @@ void lv_test_group_1(void)
     lv_group_add_obj(g, obj);
     lv_btn_set_toggle(obj, true);
     lv_obj_set_event_cb(obj, general_event_handler);
+    lv_obj_set_protect(obj, LV_PROTECT_PRESS_LOST);
     obj = lv_label_create(obj, NULL);
     lv_label_set_text(obj, "Button");
+
 
     obj = lv_cb_create(win, NULL);
     lv_obj_set_event_cb(obj, general_event_handler);

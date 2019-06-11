@@ -109,14 +109,14 @@ void benchmark_create(void)
     lv_obj_set_size(wp, hres, vres);
     lv_obj_set_pos(wp, 0, 0);
     lv_obj_set_hidden(wp, true);
-    lv_img_set_style(wp, &style_wp);
+    lv_img_set_style(wp, LV_IMG_STYLE_MAIN, &style_wp);
     lv_img_set_auto_size(wp, false);
 
     /*Create a label to show the test result*/
     result_label = lv_label_create(holder_page, NULL);
     lv_label_set_text(result_label, "Run the test");
     lv_label_set_body_draw(result_label, true);
-    lv_label_set_style(result_label, &lv_style_pretty);
+    lv_label_set_style(result_label, LV_LABEL_STYLE_MAIN, &lv_style_pretty);
 
     /*Create a "Run test" button*/
     lv_obj_t * btn;

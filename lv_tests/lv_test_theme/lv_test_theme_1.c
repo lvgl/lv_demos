@@ -46,7 +46,7 @@ void lv_test_theme_1(lv_theme_t * th)
     th = lv_theme_get_current();    /*If `LV_THEME_LIVE_UPDATE  1` `th` is not used directly so get the real theme after set*/
     lv_obj_t * scr = lv_cont_create(NULL, NULL);
     lv_disp_set_scr_act(scr);
-    lv_cont_set_style(scr, th->style.bg);
+    lv_cont_set_style(scr, LV_CONT_STYLE_MAIN, th->style.bg);
 
 
     lv_obj_t * tv = lv_tabview_create(scr, NULL);
@@ -148,7 +148,7 @@ static void create_tab1(lv_obj_t * parent)
     h = lv_cont_create(parent, h);
 
     lv_obj_t * sw_h = lv_cont_create(h, NULL);
-    lv_cont_set_style(sw_h, &lv_style_transp);
+    lv_cont_set_style(sw_h, LV_CONT_STYLE_MAIN, &lv_style_transp);
     lv_cont_set_fit2(sw_h, LV_FIT_NONE, LV_FIT_TIGHT);
     lv_obj_set_width(sw_h, LV_HOR_RES / 4);
     lv_cont_set_layout(sw_h, LV_LAYOUT_PRETTY);
@@ -174,7 +174,7 @@ static void create_tab1(lv_obj_t * parent)
     line_p[1].y = 0;
 
     lv_line_set_points(line, line_p, 2);
-    lv_line_set_style(line, th->style.line.decor);
+    lv_line_set_style(line, LV_LINE_STYLE_MAIN, th->style.line.decor);
 
     lv_obj_t * cb = lv_cb_create(h, NULL);
 

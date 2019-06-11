@@ -59,7 +59,7 @@ void lv_test_line_1(void)
     style1.line.width = 20;
 
     lv_obj_t * line3 = lv_line_create(lv_disp_get_scr_act(NULL), line2);
-    lv_line_set_style(line3, &style1);
+    lv_line_set_style(line3, LV_LINE_STYLE_MAIN, &style1);
     lv_obj_align(line3, line1, LV_ALIGN_OUT_RIGHT_TOP, 5, 0);
     lv_obj_set_hidden(line3, false);
 
@@ -69,7 +69,7 @@ void lv_test_line_1(void)
     style2.line.rounded = 1;
 
     lv_obj_t * line4 = lv_line_create(lv_disp_get_scr_act(NULL), line3);
-    lv_line_set_style(line4, &style2);
+    lv_line_set_style(line4, LV_LINE_STYLE_MAIN, &style2);
     lv_obj_align(line4, line3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 5);
     lv_obj_set_hidden(line4, false);
 }

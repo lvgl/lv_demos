@@ -333,7 +333,7 @@ static void chart_create(lv_obj_t * parent)
     lv_obj_set_size(chart, 2 * lv_obj_get_width(parent) / 3, lv_obj_get_height(parent) / 2);
     lv_obj_align(chart, NULL,  LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 4);
     lv_chart_set_type(chart, LV_CHART_TYPE_COLUMN);
-    lv_chart_set_style(chart, &style_chart);
+    lv_chart_set_style(chart, LV_CHART_STYLE_MAIN, &style_chart);
     lv_chart_set_series_opa(chart, LV_OPA_70);
     lv_chart_series_t * ser1;
     ser1 = lv_chart_add_series(chart, LV_COLOR_RED);

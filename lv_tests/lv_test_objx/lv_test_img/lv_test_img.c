@@ -52,7 +52,7 @@ void lv_test_img_1(void)
     style.image.intense = LV_OPA_70;
 
     lv_obj_t * img2 = lv_img_create(lv_disp_get_scr_act(NULL), img1);
-    lv_img_set_style(img2, &style);
+    lv_img_set_style(img2, LV_IMG_STYLE_MAIN, &style);
     lv_obj_align(img2, img1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
     /*Copy the previous image and test the mosaic feature*/

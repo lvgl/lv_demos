@@ -79,7 +79,7 @@ void lv_tutorial_fonts(void)
     /*Create a label and set new text*/
     lv_obj_t * label = lv_label_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_pos(label, 10, 10);
-    lv_label_set_style(label, &style1);
+    lv_label_set_style(label, LV_LABEL_STYLE_MAIN, &style1);
     lv_label_set_text(label, "Hello\nпривет\n∞∑");      /*Use ASCII and Cyrillic letters together*/
 }
 
