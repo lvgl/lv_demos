@@ -203,7 +203,7 @@ static void text_area_event_handler(lv_obj_t * text_area, lv_event_t event)
             a.var = kb;
             a.start = LV_VER_RES;
             a.end = lv_obj_get_y(kb);
-            a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_y;
+            a.exec_cb = (lv_anim_exec_xcb_t)lv_obj_set_y;
             a.path_cb = lv_anim_path_linear;
             a.ready_cb = NULL;
             a.act_time = 0;
@@ -237,7 +237,7 @@ static void keyboard_event_cb(lv_obj_t * keyboard, lv_event_t event)
         a.var = kb;
         a.start = lv_obj_get_y(kb);
         a.end = LV_VER_RES;
-        a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_y;
+        a.exec_cb = (lv_anim_exec_xcb_t)lv_obj_set_y;
         a.path_cb = lv_anim_path_linear;
         a.ready_cb = kb_hide_anim_end;
         a.act_time = 0;

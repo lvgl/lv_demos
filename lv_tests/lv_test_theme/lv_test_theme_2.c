@@ -209,7 +209,7 @@ static void content_create(void)
     a.var = bar;
     a.start = 0;
     a.end = 100;
-    a.exec_cb = (lv_anim_exec_cb_t)lv_bar_set_value;
+    a.exec_cb = (lv_anim_exec_xcb_t)lv_bar_set_value;
     a.path_cb = lv_anim_path_linear;
     a.ready_cb = NULL;
     a.act_time = 0;
@@ -243,7 +243,7 @@ static void content_create(void)
     a.var = lmeter;
     a.start = 0;
     a.end = 100;
-    a.exec_cb = (lv_anim_exec_cb_t)lv_lmeter_set_value;
+    a.exec_cb = (lv_anim_exec_xcb_t)lv_lmeter_set_value;
     a.path_cb = lv_anim_path_linear;
     a.ready_cb = NULL;
     a.act_time = 0;
