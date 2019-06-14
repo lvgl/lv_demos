@@ -138,10 +138,15 @@ void lv_test_group_1(void)
     lv_group_add_obj(g, obj);
     lv_btn_set_toggle(obj, true);
     lv_obj_set_event_cb(obj, general_event_handler);
-    lv_obj_set_protect(obj, LV_PROTECT_PRESS_LOST);
     obj = lv_label_create(obj, NULL);
     lv_label_set_text(obj, "Button");
 
+    LV_IMG_DECLARE(imgbtn_img_1);
+    LV_IMG_DECLARE(imgbtn_img_2);
+    obj = lv_imgbtn_create(win, NULL);
+    lv_imgbtn_set_src(obj, LV_BTN_STATE_REL, &imgbtn_img_1);
+    lv_imgbtn_set_src(obj, LV_BTN_STATE_PR, &imgbtn_img_2);
+    lv_group_add_obj(g, obj);
 
     obj = lv_cb_create(win, NULL);
     lv_obj_set_event_cb(obj, general_event_handler);
@@ -314,14 +319,6 @@ static void general_event_handler(lv_obj_t * obj, lv_event_t event)
 
         case LV_EVENT_RELEASED:
             printf("Released\n");
-            break;
-
-        case LV_EVENT_SELECTED:
-            if(lv_event_get_data() != NULL) {
-                printf("Selected: %d\n", *((uint16_t*)lv_event_get_data()));
-            } else {
-                printf("Selected\n");
-            }
             break;
 
         case LV_EVENT_FOCUSED:

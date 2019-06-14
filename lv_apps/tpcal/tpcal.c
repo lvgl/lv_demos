@@ -124,7 +124,7 @@ void tpcal_create(void)
     a.var = circ_area;
     a.start = hres / 2;
     a.end = CIRCLE_OFFSET;
-    a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_x;
+    a.exec_cb = (lv_anim_exec_xcb_t)lv_obj_set_x;
     a.path_cb = lv_anim_path_linear;
     a.ready_cb = NULL;
     a.act_time = -500;
@@ -137,7 +137,7 @@ void tpcal_create(void)
 
     a.start = vres / 2;
     a.end = CIRCLE_OFFSET;
-    a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_y;
+    a.exec_cb = (lv_anim_exec_xcb_t)lv_obj_set_y;
     a.ready_cb = NULL;
     a.time = 200;
     lv_anim_create(&a);
@@ -197,7 +197,7 @@ static void btn_event_cb(lv_obj_t * scr, lv_event_t event)
             a.var = circ_area;
             a.start = CIRCLE_OFFSET;
             a.end = hres - CIRCLE_SIZE - CIRCLE_OFFSET;
-            a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_x;
+            a.exec_cb = (lv_anim_exec_xcb_t)lv_obj_set_x;
             a.path_cb = lv_anim_path_linear;
             a.ready_cb = NULL;
             a.act_time = 0;
@@ -210,7 +210,7 @@ static void btn_event_cb(lv_obj_t * scr, lv_event_t event)
 
             a.start = CIRCLE_OFFSET;
             a.end = CIRCLE_OFFSET;
-            a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_y;
+            a.exec_cb = (lv_anim_exec_xcb_t)lv_obj_set_y;
             a.ready_cb = NULL;
             a.time = 200;
             lv_anim_create(&a);
@@ -249,7 +249,7 @@ static void btn_event_cb(lv_obj_t * scr, lv_event_t event)
             a.var = circ_area;
             a.start = hres - CIRCLE_SIZE - CIRCLE_OFFSET;
             a.end = hres - CIRCLE_SIZE - CIRCLE_OFFSET;
-            a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_x;
+            a.exec_cb = (lv_anim_exec_xcb_t)lv_obj_set_x;
             a.path_cb = lv_anim_path_linear;
             a.ready_cb = NULL;
             a.act_time = 0;
@@ -262,7 +262,7 @@ static void btn_event_cb(lv_obj_t * scr, lv_event_t event)
 
             a.start = CIRCLE_OFFSET;
             a.end = vres - CIRCLE_SIZE - CIRCLE_OFFSET;
-            a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_y;
+            a.exec_cb = (lv_anim_exec_xcb_t)lv_obj_set_y;
             a.ready_cb = NULL;
             a.time = 200;
             lv_anim_create(&a);
@@ -301,7 +301,7 @@ static void btn_event_cb(lv_obj_t * scr, lv_event_t event)
             a.var = circ_area;
             a.start = hres - CIRCLE_SIZE - CIRCLE_OFFSET;
             a.end = CIRCLE_OFFSET;
-            a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_x;
+            a.exec_cb = (lv_anim_exec_xcb_t)lv_obj_set_x;
             a.path_cb = lv_anim_path_linear;
             a.ready_cb = NULL;
             a.act_time = 0;
@@ -314,7 +314,7 @@ static void btn_event_cb(lv_obj_t * scr, lv_event_t event)
 
             a.start = vres - CIRCLE_SIZE - CIRCLE_OFFSET;
             a.end = vres - CIRCLE_SIZE - CIRCLE_OFFSET;
-            a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_y;
+            a.exec_cb = (lv_anim_exec_xcb_t)lv_obj_set_y;
             a.ready_cb = NULL;
             a.time = 200;
             lv_anim_create(&a);

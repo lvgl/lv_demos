@@ -134,7 +134,7 @@ static void obj_mem_leak_tester(lv_task_t * param)
             lv_obj_set_pos(obj, 10, 5);
             a.playback = 1;
             a.repeat = 1;
-            a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_x;
+            a.exec_cb = (lv_anim_exec_xcb_t)lv_obj_set_x;
             a.var = obj;
             a.start = 10 ;
             a.end = 100 ;
@@ -145,7 +145,7 @@ static void obj_mem_leak_tester(lv_task_t * param)
             lv_obj_set_pos(obj, 60, 5);
             a.playback = 0;
             a.repeat = 1;
-            a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_x;
+            a.exec_cb = (lv_anim_exec_xcb_t)lv_obj_set_x;
             a.var = obj;
             a.start = 150 ;
             a.end = 200 ;
@@ -179,7 +179,7 @@ static void obj_mem_leak_tester(lv_task_t * param)
             obj = lv_kb_create(all_obj_h, NULL);
             lv_obj_set_size(obj, hres / 3, vres / 5);
             lv_obj_set_pos(obj, 30, 90);
-            a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_y;
+            a.exec_cb = (lv_anim_exec_xcb_t)lv_obj_set_y;
             a.var = obj;
             a.start = LV_VER_RES ;
             a.end = lv_obj_get_y(obj);
@@ -207,7 +207,7 @@ static void obj_mem_leak_tester(lv_task_t * param)
             lv_list_add(obj, LV_SYMBOL_OK, "List 4", NULL);
             lv_list_add(obj, LV_SYMBOL_OK, "List 5", NULL);
             lv_list_add(obj, LV_SYMBOL_OK, "List 6", NULL);
-            a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_height;
+            a.exec_cb = (lv_anim_exec_xcb_t)lv_obj_set_height;
             a.var = obj;
             a.start = 0;
             a.end = lv_obj_get_height(obj);

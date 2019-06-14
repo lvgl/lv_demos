@@ -75,7 +75,7 @@ void lv_tutorial_animations(void)
     a.var = btn1;
     a.start = -lv_obj_get_height(btn1);
     a.end = lv_obj_get_y(btn1);
-    a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_y;
+    a.exec_cb = (lv_anim_exec_xcb_t)lv_obj_set_y;
     a.path_cb = lv_anim_path_linear;
     a.ready_cb = NULL;
     a.act_time = -2000; /*Delay the animation*/
@@ -100,7 +100,7 @@ void lv_tutorial_animations(void)
     a.var = btn2;
     a.start = lv_obj_get_x(btn2);
     a.end = a.start + (100);
-    a.exec_cb = (lv_anim_exec_cb_t)lv_obj_set_x;
+    a.exec_cb = (lv_anim_exec_xcb_t)lv_obj_set_x;
     a.path_cb = lv_anim_path_linear;
     a.ready_cb = NULL;
     a.act_time = -1000;                         /*Negative number to set a delay*/
