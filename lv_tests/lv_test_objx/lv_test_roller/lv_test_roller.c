@@ -63,8 +63,7 @@ void lv_test_roller_1(void)
 
     lv_obj_t * roller3 = lv_roller_create(lv_disp_get_scr_act(NULL), roller2);
     lv_obj_align(roller3, roller2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
-    lv_roller_set_hor_fit(roller3, false);
-    lv_obj_set_width(roller3, LV_DPI);
+    lv_roller_set_fix_width(roller3, LV_DPI);
     lv_roller_set_align(roller3, LV_LABEL_ALIGN_RIGHT);
 
 }

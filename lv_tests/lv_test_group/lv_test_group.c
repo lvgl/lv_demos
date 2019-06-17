@@ -189,6 +189,7 @@ void lv_test_group_1(void)
     lv_group_add_obj(g, obj);
 
     obj = lv_list_create(win, NULL);
+    lv_obj_set_event_cb(obj, general_event_handler);
     lv_list_add(obj, LV_SYMBOL_FILE, "File 1", general_event_handler);
     lv_list_add(obj, LV_SYMBOL_FILE, "File 2", general_event_handler);
     lv_list_add(obj, LV_SYMBOL_FILE, "File 3", general_event_handler);
@@ -319,6 +320,18 @@ static void general_event_handler(lv_obj_t * obj, lv_event_t event)
 
         case LV_EVENT_RELEASED:
             printf("Released\n");
+            break;
+
+        case LV_EVENT_DRAG_BEGIN:
+            printf("Drag begin\n");
+            break;
+
+        case LV_EVENT_DRAG_END:
+            printf("Drag end\n");
+            break;
+
+        case LV_EVENT_DRAG_THROW_BEGIN:
+            printf("Drag throw begin\n");
             break;
 
         case LV_EVENT_FOCUSED:

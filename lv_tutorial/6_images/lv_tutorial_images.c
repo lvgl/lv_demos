@@ -84,11 +84,11 @@ typedef  FILE * pc_file_t;
  **********************/
 #if PC_FILES && LV_USE_FILESYSTEM
 /*Interface functions to standard C file functions (only the required ones to image handling)*/
-static lv_fs_res_t pcfs_open(void * file_p, const char * fn, lv_fs_mode_t mode);
-static lv_fs_res_t pcfs_close(void * file_p);
-static lv_fs_res_t pcfs_read(void * file_p, void * buf, uint32_t btr, uint32_t * br);
-static lv_fs_res_t pcfs_seek(void * file_p, uint32_t pos);
-static lv_fs_res_t pcfs_tell(void * file_p, uint32_t * pos_p);
+static lv_fs_res_t pcfs_open(lv_fs_drv_t * drv, void * file_p, const char * fn, lv_fs_mode_t mode);
+static lv_fs_res_t pcfs_close(lv_fs_drv_t * drv, void * file_p);
+static lv_fs_res_t pcfs_read(lv_fs_drv_t * drv, void * file_p, void * buf, uint32_t btr, uint32_t * br);
+static lv_fs_res_t pcfs_seek(lv_fs_drv_t * drv, void * file_p, uint32_t pos);
+static lv_fs_res_t pcfs_tell(lv_fs_drv_t * drv, void * file_p, uint32_t * pos_p);
 #endif
 
 /**********************
@@ -132,12 +132,12 @@ void lv_tutorial_image(void)
 
     pcfs_drv.file_size = sizeof(pc_file_t);       /*Set up fields...*/
     pcfs_drv.letter = 'P';
-    pcfs_drv.open = pcfs_open;
-    pcfs_drv.close = pcfs_close;
-    pcfs_drv.read = pcfs_read;
-    pcfs_drv.seek = pcfs_seek;
-    pcfs_drv.tell = pcfs_tell;
-    lv_fs_add_drv(&pcfs_drv);
+    pcfs_drv.open_cb = pcfs_open;
+    pcfs_drv.close_cb = pcfs_close;
+    pcfs_drv.read_cb = pcfs_read;
+    pcfs_drv.seek_cb = pcfs_seek;
+    pcfs_drv.tell_cb = pcfs_tell;
+    lv_fs_drv_register(&pcfs_drv);
 
 
     lv_obj_t * img_bin = lv_img_create(scr, NULL); /*Create an image object*/
@@ -170,14 +170,17 @@ void lv_tutorial_image(void)
 #if PC_FILES && LV_USE_FILESYSTEM
 /**
  * Open a file from the PC
+ * @param drv pointer to the current driver
  * @param file_p pointer to a FILE* variable
  * @param fn name of the file.
  * @param mode element of 'fs_mode_t' enum or its 'OR' connection (e.g. FS_MODE_WR | FS_MODE_RD)
  * @return LV_FS_RES_OK: no error, the file is opened
  *         any error from lv_fs_res_t enum
  */
-static lv_fs_res_t pcfs_open(void * file_p, const char * fn, lv_fs_mode_t mode)
+static lv_fs_res_t pcfs_open(lv_fs_drv_t * drv, void * file_p, const char * fn, lv_fs_mode_t mode)
 {
+    (void) drv; /*Unused*/
+
     errno = 0;
 
     const char * flags = "";
@@ -207,12 +210,15 @@ static lv_fs_res_t pcfs_open(void * file_p, const char * fn, lv_fs_mode_t mode)
 
 /**
  * Close an opened file
+ * @param drv pointer to the current driver
  * @param file_p pointer to a FILE* variable. (opened with lv_ufs_open)
  * @return LV_FS_RES_OK: no error, the file is read
  *         any error from lv__fs_res_t enum
  */
-static lv_fs_res_t pcfs_close(void * file_p)
+static lv_fs_res_t pcfs_close(lv_fs_drv_t * drv, void * file_p)
 {
+    (void) drv; /*Unused*/
+
     pc_file_t * fp = file_p;        /*Just avoid the confusing casings*/
     fclose(*fp);
     return LV_FS_RES_OK;
@@ -220,6 +226,7 @@ static lv_fs_res_t pcfs_close(void * file_p)
 
 /**
  * Read data from an opened file
+ * @param drv pointer to the current driver
  * @param file_p pointer to a FILE variable.
  * @param buf pointer to a memory block where to store the read data
  * @param btr number of Bytes To Read
@@ -227,8 +234,10 @@ static lv_fs_res_t pcfs_close(void * file_p)
  * @return LV_FS_RES_OK: no error, the file is read
  *         any error from lv__fs_res_t enum
  */
-static lv_fs_res_t pcfs_read(void * file_p, void * buf, uint32_t btr, uint32_t * br)
+static lv_fs_res_t pcfs_read(lv_fs_drv_t * drv, void * file_p, void * buf, uint32_t btr, uint32_t * br)
 {
+    (void) drv; /*Unused*/
+
     pc_file_t * fp = file_p;        /*Just avoid the confusing casings*/
     *br = fread(buf, 1, btr, *fp);
     return LV_FS_RES_OK;
@@ -236,13 +245,16 @@ static lv_fs_res_t pcfs_read(void * file_p, void * buf, uint32_t btr, uint32_t *
 
 /**
  * Set the read write pointer. Also expand the file size if necessary.
+ * @param drv pointer to the current driver
  * @param file_p pointer to a FILE* variable. (opened with lv_ufs_open )
  * @param pos the new position of read write pointer
  * @return LV_FS_RES_OK: no error, the file is read
  *         any error from lv__fs_res_t enum
  */
-static lv_fs_res_t pcfs_seek(void * file_p, uint32_t pos)
+static lv_fs_res_t pcfs_seek(lv_fs_drv_t * drv, void * file_p, uint32_t pos)
 {
+    (void) drv; /*Unused*/
+
     pc_file_t * fp = file_p;        /*Just avoid the confusing casings*/
     fseek(*fp, pos, SEEK_SET);
     return LV_FS_RES_OK;
@@ -250,13 +262,15 @@ static lv_fs_res_t pcfs_seek(void * file_p, uint32_t pos)
 
 /**
  * Give the position of the read write pointer
+ * @param drv pointer to the current driver
  * @param file_p pointer to a FILE* variable.
  * @param pos_p pointer to to store the result
  * @return LV_FS_RES_OK: no error, the file is read
  *         any error from lv__fs_res_t enum
  */
-static lv_fs_res_t pcfs_tell(void * file_p, uint32_t * pos_p)
+static lv_fs_res_t pcfs_tell(lv_fs_drv_t * drv, void * file_p, uint32_t * pos_p)
 {
+    (void) drv; /*Unused*/
     pc_file_t * fp = file_p;        /*Just avoid the confusing casings*/
     *pos_p = ftell(*fp);
     return LV_FS_RES_OK;

@@ -68,7 +68,7 @@ void lv_test_btnm_1(void)
     lv_btnm_set_map(btnm2, btnm_map);
     lv_obj_set_size(btnm2, hres / 2, vres / 3);
     lv_obj_align(btnm2, btnm1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
-    lv_btnm_set_btn_ctrl(btnm2, 2, LV_BTNM_CTRL_TGL_STATE, true);
+    lv_btnm_set_btn_ctrl(btnm2, 2, LV_BTNM_CTRL_TGL_STATE);
     lv_obj_set_event_cb(btnm2, btnm_event_cb);
     lv_btnm_set_style(btnm2, LV_BTNM_STYLE_BTN_REL, &rel);
     lv_btnm_set_style(btnm2, LV_BTNM_STYLE_BTN_PR, &pr);
