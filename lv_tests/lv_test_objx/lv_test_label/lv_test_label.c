@@ -116,7 +116,7 @@ void lv_test_label_2(void)
     lv_label_set_body_draw(label3, true);
     lv_obj_set_style(label3, &lv_style_plain_color);
     lv_label_set_text(label3, "Long line to roll!");
-    lv_label_set_long_mode(label3, LV_LABEL_LONG_ROLL);
+    lv_label_set_long_mode(label3, LV_LABEL_LONG_SROLL);
     lv_obj_align(label3, label2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);
     lv_obj_set_size(label3, 100, 50);
 
@@ -126,7 +126,7 @@ void lv_test_label_2(void)
     lv_obj_set_style(label4, &lv_style_plain_color);
     lv_label_set_text(label4, "Long line to roll circularly!");
 //    lv_label_set_body_draw(label4, true);
-    lv_label_set_long_mode(label4, LV_LABEL_LONG_ROLL_CIRC);
+    lv_label_set_long_mode(label4, LV_LABEL_LONG_SROLL_CIRC);
     lv_obj_align(label4, label3, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
 
     /* LV_LABEL_LONG_DOTS (set size and a long text)

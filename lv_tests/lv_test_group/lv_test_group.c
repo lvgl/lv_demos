@@ -285,7 +285,7 @@ static void win_btn_event_handler(lv_obj_t * btn, lv_event_t event)
 static void group_focus_cb(lv_group_t * group)
 {
     lv_obj_t * f = lv_group_get_focused(group);
-    if(f != win) lv_win_focus(win, f, 200);
+    if(f != win) lv_win_focus(win, f, LV_ANIM_ON);
 }
 
 static void general_event_handler(lv_obj_t * obj, lv_event_t event)

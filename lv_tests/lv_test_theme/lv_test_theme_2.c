@@ -304,7 +304,7 @@ static void theme_select_event_handler(lv_obj_t * roller, lv_event_t event)
         lv_obj_set_pos(content,  0, vres / 2);
     }
 
-        lv_page_focus(sb, roller, 200);
+        lv_page_focus(sb, roller, LV_ANIM_ON);
     }
 }
 
@@ -319,7 +319,7 @@ static void hue_select_event_cb(lv_obj_t * roller, lv_event_t event)
 
         lv_theme_set_current(th_act);
 
-        lv_page_focus(sb, roller, 200);
+        lv_page_focus(sb, roller, LV_ANIM_ON);
     }
 }
 
