@@ -188,20 +188,21 @@ static void create_tab1(lv_obj_t * parent)
     h = lv_cont_create(parent, h);
 
     lv_obj_t * list = lv_list_create(h, NULL);
-    lv_obj_t * list_btn;
-    list_btn = lv_list_add(list, LV_SYMBOL_GPS,  "GPS",  NULL);
     lv_obj_set_size(list, lv_disp_get_hor_res(NULL) / 4, lv_disp_get_ver_res(NULL) / 2);
+    lv_obj_t * list_btn;
+    list_btn = lv_list_add_btn(list, LV_SYMBOL_GPS,  "GPS");
     lv_btn_set_toggle(list_btn, true);
-    lv_list_add(list, LV_SYMBOL_WIFI, "WiFi", NULL);
-    lv_list_add(list, LV_SYMBOL_GPS, "GPS", NULL);
-    lv_list_add(list, LV_SYMBOL_AUDIO, "Audio", NULL);
-    lv_list_add(list, LV_SYMBOL_VIDEO, "Video", NULL);
-    lv_list_add(list, LV_SYMBOL_CALL, "Call", NULL);
-    lv_list_add(list, LV_SYMBOL_BELL, "Bell", NULL);
-    lv_list_add(list, LV_SYMBOL_FILE, "File", NULL);
-    lv_list_add(list, LV_SYMBOL_EDIT, "Edit", NULL);
-    lv_list_add(list, LV_SYMBOL_CUT,  "Cut",  NULL);
-    lv_list_add(list, LV_SYMBOL_COPY, "Copy", NULL);
+
+    lv_list_add_btn(list, LV_SYMBOL_WIFI, "WiFi");
+    lv_list_add_btn(list, LV_SYMBOL_GPS, "GPS");
+    lv_list_add_btn(list, LV_SYMBOL_AUDIO, "Audio");
+    lv_list_add_btn(list, LV_SYMBOL_VIDEO, "Video");
+    lv_list_add_btn(list, LV_SYMBOL_CALL, "Call");
+    lv_list_add_btn(list, LV_SYMBOL_BELL, "Bell");
+    lv_list_add_btn(list, LV_SYMBOL_FILE, "File");
+    lv_list_add_btn(list, LV_SYMBOL_EDIT, "Edit");
+    lv_list_add_btn(list, LV_SYMBOL_CUT,  "Cut");
+    lv_list_add_btn(list, LV_SYMBOL_COPY, "Copy");
 
     lv_obj_t * roller = lv_roller_create(h, NULL);
     lv_roller_set_options(roller, "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday", true);
@@ -262,8 +263,9 @@ static void create_tab3(lv_obj_t * parent)
 {
     /*Create a Window*/
     lv_obj_t * win = lv_win_create(parent, NULL);
-    lv_win_add_btn(win, LV_SYMBOL_CLOSE, lv_win_close_event);
-    lv_win_add_btn(win, LV_SYMBOL_DOWN, NULL);
+    lv_obj_t * win_btn = lv_win_add_btn(win, LV_SYMBOL_CLOSE);
+    lv_obj_set_event_cb(win_btn, lv_win_close_event_cb);
+    lv_win_add_btn(win, LV_SYMBOL_DOWN);
     lv_obj_set_size(win, lv_disp_get_hor_res(NULL) / 2, lv_disp_get_ver_res(NULL) / 2);
     lv_obj_set_pos(win, LV_DPI / 20, LV_DPI / 20);
     lv_obj_set_top(win, true);

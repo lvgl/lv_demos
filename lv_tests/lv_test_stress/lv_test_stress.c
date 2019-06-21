@@ -201,12 +201,12 @@ static void obj_mem_leak_tester(lv_task_t * param)
         case 15: /*Wait a little to see the previous results*/
             obj = lv_list_create(all_obj_h, NULL);
             lv_obj_set_pos(obj, 40, 50);
-            lv_list_add(obj, LV_SYMBOL_OK, "List 1", NULL);
-            lv_list_add(obj, LV_SYMBOL_OK, "List 2", NULL);
-            lv_list_add(obj, LV_SYMBOL_OK, "List 3", NULL);
-            lv_list_add(obj, LV_SYMBOL_OK, "List 4", NULL);
-            lv_list_add(obj, LV_SYMBOL_OK, "List 5", NULL);
-            lv_list_add(obj, LV_SYMBOL_OK, "List 6", NULL);
+            lv_list_add_btn(obj, LV_SYMBOL_OK, "List 1");
+            lv_list_add_btn(obj, LV_SYMBOL_OK, "List 2");
+            lv_list_add_btn(obj, LV_SYMBOL_OK, "List 3");
+            lv_list_add_btn(obj, LV_SYMBOL_OK, "List 4");
+            lv_list_add_btn(obj, LV_SYMBOL_OK, "List 5");
+            lv_list_add_btn(obj, LV_SYMBOL_OK, "List 6");
             a.exec_cb = (lv_anim_exec_xcb_t)lv_obj_set_height;
             a.var = obj;
             a.start = 0;
@@ -216,8 +216,8 @@ static void obj_mem_leak_tester(lv_task_t * param)
             break;
         case 16:
             obj = lv_win_create(all_obj_h, NULL);
-            lv_win_add_btn(obj, LV_SYMBOL_CLOSE, NULL);
-            lv_win_add_btn(obj, LV_SYMBOL_OK, NULL);
+            lv_win_add_btn(obj, LV_SYMBOL_CLOSE);
+            lv_win_add_btn(obj, LV_SYMBOL_OK);
             lv_win_set_style(obj, LV_WIN_STYLE_BG, &lv_style_pretty);
             lv_obj_set_size(obj, hres / 3, vres / 3);
             lv_obj_set_pos(obj, 20, 100);

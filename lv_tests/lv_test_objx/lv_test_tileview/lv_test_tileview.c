@@ -91,25 +91,25 @@ void lv_test_tileview_1(void)
     lv_tileview_add_element(t, list12);
 
     lv_obj_t * list_btn;
-    list_btn = lv_list_add(list12, NULL, "One", NULL);
+    list_btn = lv_list_add_btn(list12, NULL, "One");
     lv_tileview_add_element(t, list_btn);
 
-    list_btn = lv_list_add(list12, NULL, "Two", NULL);
+    list_btn = lv_list_add_btn(list12, NULL, "Two");
     lv_tileview_add_element(t, list_btn);
 
-    list_btn = lv_list_add(list12, NULL, "Three", NULL);
+    list_btn = lv_list_add_btn(list12, NULL, "Three");
     lv_tileview_add_element(t, list_btn);
 
-    list_btn = lv_list_add(list12, NULL, "Four", NULL);
+    list_btn = lv_list_add_btn(list12, NULL, "Four");
     lv_tileview_add_element(t, list_btn);
 
-    list_btn = lv_list_add(list12, NULL, "Five", NULL);
+    list_btn = lv_list_add_btn(list12, NULL, "Five");
     lv_tileview_add_element(t, list_btn);
 
-    list_btn = lv_list_add(list12, NULL, "Six", NULL);
+    list_btn = lv_list_add_btn(list12, NULL, "Six");
     lv_tileview_add_element(t, list_btn);
 
-    list_btn = lv_list_add(list12, NULL, "Seven", NULL);
+    list_btn = lv_list_add_btn(list12, NULL, "Seven");
     lv_tileview_add_element(t, list_btn);
 
     /*x1, y0 container*/

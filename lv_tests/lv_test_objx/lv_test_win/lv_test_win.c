@@ -48,9 +48,9 @@ void lv_test_win_1(void)
     lv_obj_t * win2 = lv_win_create(lv_disp_get_scr_act(NULL), win1);
     lv_obj_align(win2, NULL, LV_ALIGN_IN_TOP_RIGHT, 0, 0);
     lv_win_set_title(win2, "Random title");
-    lv_win_add_btn(win2, LV_SYMBOL_CLOSE, NULL);
-    lv_win_add_btn(win2, LV_SYMBOL_OK, NULL);
-    lv_win_add_btn(win2, LV_SYMBOL_EDIT, NULL);
+    lv_win_add_btn(win2, LV_SYMBOL_CLOSE);
+    lv_win_add_btn(win2, LV_SYMBOL_OK);
+    lv_win_add_btn(win2, LV_SYMBOL_EDIT);
 
     lv_obj_t * label = lv_label_create(win2, NULL);
     lv_obj_set_pos(label, 10, 10);
@@ -68,8 +68,6 @@ void lv_test_win_1(void)
     lv_obj_align(win3, NULL, LV_ALIGN_IN_BOTTOM_LEFT, 0, 0);
     lv_win_set_style(win3, LV_WIN_STYLE_HEADER, &header);
     lv_win_set_style(win3, LV_WIN_STYLE_BTN_REL, &lv_style_transp);
-    lv_win_set_style(win3, LV_WIN_STYLE_CONTENT_BG, &lv_style_plain_color);
-    lv_win_set_style(win3, LV_WIN_STYLE_CONTENT_SCRL, &lv_style_plain);
     lv_win_set_style(win3, LV_WIN_STYLE_BG, &lv_style_plain_color);
     lv_win_set_btn_size(win3, LV_DPI / 3);
 

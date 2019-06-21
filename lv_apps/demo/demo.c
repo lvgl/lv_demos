@@ -288,13 +288,27 @@ static void list_create(lv_obj_t * parent)
     lv_list_set_style(list, LV_LIST_STYLE_BTN_PR, &style_btn_pr);
     lv_obj_align(list, NULL, LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 4);
 
-    lv_list_add(list, LV_SYMBOL_FILE, "New", list_btn_event_handler);
-    lv_list_add(list, LV_SYMBOL_DIRECTORY, "Open", list_btn_event_handler);
-    lv_list_add(list, LV_SYMBOL_TRASH, "Delete", list_btn_event_handler);
-    lv_list_add(list, LV_SYMBOL_EDIT, "Edit", list_btn_event_handler);
-    lv_list_add(list, LV_SYMBOL_SAVE, "Save", list_btn_event_handler);
-    lv_list_add(list, LV_SYMBOL_WIFI, "WiFi", list_btn_event_handler);
-    lv_list_add(list, LV_SYMBOL_GPS, "GPS", list_btn_event_handler);
+    lv_obj_t * list_btn;
+    list_btn = lv_list_add_btn(list, LV_SYMBOL_FILE, "New");
+    lv_obj_set_event_cb(list_btn, list_btn_event_handler);
+
+    list_btn = lv_list_add_btn(list, LV_SYMBOL_DIRECTORY, "Open");
+    lv_obj_set_event_cb(list_btn, list_btn_event_handler);
+
+    list_btn = lv_list_add_btn(list, LV_SYMBOL_TRASH, "Delete");
+    lv_obj_set_event_cb(list_btn, list_btn_event_handler);
+
+    list_btn = lv_list_add_btn(list, LV_SYMBOL_EDIT, "Edit");
+    lv_obj_set_event_cb(list_btn, list_btn_event_handler);
+
+    list_btn = lv_list_add_btn(list, LV_SYMBOL_SAVE, "Save");
+    lv_obj_set_event_cb(list_btn, list_btn_event_handler);
+
+    list_btn = lv_list_add_btn(list, LV_SYMBOL_WIFI, "WiFi");
+    lv_obj_set_event_cb(list_btn, list_btn_event_handler);
+
+    list_btn = lv_list_add_btn(list, LV_SYMBOL_GPS, "GPS");
+    lv_obj_set_event_cb(list_btn, list_btn_event_handler);
 
     lv_obj_t * mbox = lv_mbox_create(parent, NULL);
     lv_mbox_set_text(mbox, "Click a button to copy its text to the Text area ");

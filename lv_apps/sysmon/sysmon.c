@@ -60,7 +60,8 @@ void sysmon_create(void)
     lv_coord_t vres = lv_disp_get_ver_res(NULL);
 
     win = lv_win_create(lv_disp_get_scr_act(NULL), NULL);
-    lv_win_add_btn(win, LV_SYMBOL_CLOSE, win_close_action);
+    lv_obj_t * win_btn = lv_win_add_btn(win, LV_SYMBOL_CLOSE);
+    lv_obj_set_event_cb(win_btn, win_close_action);
 
     /*Make the window content responsive*/
     lv_win_set_layout(win, LV_LAYOUT_PRETTY);

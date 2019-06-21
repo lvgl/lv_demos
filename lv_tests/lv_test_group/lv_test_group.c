@@ -106,26 +106,32 @@ void lv_test_group_1(void)
     win = lv_win_create(lv_disp_get_scr_act(NULL), NULL);
     lv_win_set_title(win, "Group test");
     lv_page_set_scrl_layout(lv_win_get_content(win), LV_LAYOUT_PRETTY);
-    lv_win_set_style(win, LV_WIN_STYLE_CONTENT_SCRL, &win_style);
+    lv_win_set_style(win, LV_WIN_STYLE_CONTENT, &win_style);
     lv_group_add_obj(g, lv_win_get_content(win));
 
-    lv_obj_t * win_btn = lv_win_add_btn(win, LV_SYMBOL_RIGHT, win_btn_event_handler);
+    lv_obj_t * win_btn = lv_win_add_btn(win, LV_SYMBOL_RIGHT);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
+    lv_obj_set_event_cb(win_btn, win_btn_event_handler);
 
-    win_btn = lv_win_add_btn(win, LV_SYMBOL_NEXT, win_btn_event_handler);
+    win_btn = lv_win_add_btn(win, LV_SYMBOL_NEXT);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
+    lv_obj_set_event_cb(win_btn, win_btn_event_handler);
 
-    win_btn = lv_win_add_btn(win, LV_SYMBOL_OK, win_btn_event_handler);
+    win_btn = lv_win_add_btn(win, LV_SYMBOL_OK);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
+    lv_obj_set_event_cb(win_btn, win_btn_event_handler);
 
-    win_btn = lv_win_add_btn(win, LV_SYMBOL_PREV, win_btn_event_handler);
+    win_btn = lv_win_add_btn(win, LV_SYMBOL_PREV);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
+    lv_obj_set_event_cb(win_btn, win_btn_event_handler);
 
-    win_btn = lv_win_add_btn(win, LV_SYMBOL_LEFT, win_btn_event_handler);
+    win_btn = lv_win_add_btn(win, LV_SYMBOL_LEFT);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
+    lv_obj_set_event_cb(win_btn, win_btn_event_handler);
 
-    win_btn = lv_win_add_btn(win, LV_SYMBOL_DUMMY"a", win_btn_event_handler);
+    win_btn = lv_win_add_btn(win, LV_SYMBOL_DUMMY"a");
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
+    lv_obj_set_event_cb(win_btn, win_btn_event_handler);
 
     lv_obj_t * obj;
 
@@ -190,17 +196,19 @@ void lv_test_group_1(void)
 
     obj = lv_list_create(win, NULL);
     lv_obj_set_event_cb(obj, general_event_handler);
-    lv_list_add(obj, LV_SYMBOL_FILE, "File 1", general_event_handler);
-    lv_list_add(obj, LV_SYMBOL_FILE, "File 2", general_event_handler);
-    lv_list_add(obj, LV_SYMBOL_FILE, "File 3", general_event_handler);
-    lv_list_add(obj, LV_SYMBOL_FILE, "File 4", general_event_handler);
-    lv_list_add(obj, LV_SYMBOL_FILE, "File 5", general_event_handler);
-    lv_list_add(obj, LV_SYMBOL_FILE, "File 6", general_event_handler);
+    const char * list_txts[] = {"File 1", "File 2", "File 3", "File 4", "File 5", "File 6", ""};
+
+    uint32_t i;
+    for(i = 0; list_txts[i][0] != '\0'; i++) {
+        lv_obj_t * b;
+        b = lv_list_add_btn(obj, LV_SYMBOL_FILE, list_txts[i]);
+        lv_obj_set_event_cb(b, general_event_handler);
+    }
+
     lv_group_add_obj(g, obj);
 
     obj = lv_page_create(win, NULL);
     lv_obj_set_size(obj, 2 * LV_DPI, LV_DPI);
-    lv_page_set_arrow_scroll(obj, true);
     lv_group_add_obj(g, obj);
 
     obj = lv_label_create(obj, NULL);
