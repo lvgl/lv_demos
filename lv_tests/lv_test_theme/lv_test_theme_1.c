@@ -157,7 +157,7 @@ static void create_tab1(lv_obj_t * parent)
     lv_sw_set_anim_time(sw, 250);
 
     sw = lv_sw_create(sw_h, sw);
-    lv_sw_on(sw, false);
+    lv_sw_on(sw, LV_ANIM_OFF);
 
 
     lv_obj_t * bar = lv_bar_create(h, NULL);

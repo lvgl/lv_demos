@@ -45,11 +45,11 @@ void lv_test_tileview_1(void)
                    {1,0},          /*First row: only the middle tile*/
             {0,1}, {1,1}, {1,2},   /*Second row: all tree tiles */
                    {2,1}, {2,2},   /*Third row: middle and right tile*/
-            {LV_COORD_MIN, LV_COORD_MIN}};
+            };
 
     lv_obj_t * t;
     t = lv_tileview_create(lv_disp_get_scr_act(NULL), NULL);
-    lv_tileview_set_valid_positions(t, vp);
+    lv_tileview_set_valid_positions(t, vp, 6);
     lv_tileview_set_edge_flash(t, true);
     lv_obj_set_size(t, hres, vres);
     lv_obj_t * label;
@@ -143,7 +143,7 @@ void lv_test_tileview_1(void)
     lv_obj_align(label, NULL, LV_ALIGN_CENTER, 0, 0);
 
     /*Focus on a tile (the list)*/
-//    lv_tileview_set_tile_act(t, 1, 2, true);
+    lv_tileview_set_tile_act(t, 1, 2, true);
 
 }
 

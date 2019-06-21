@@ -185,48 +185,60 @@ void lv_test_chart_2(uint8_t chart)
 		case 0:
 		{
 			lv_label_set_text(chart_label, "Chart 0");
-			lv_chart_set_y_ticks(chart_axes, "0\n" "1\n" "2\n" "3\n" "4\n" "Y[$]", 2, 0, 0, 0 );
-			lv_chart_set_x_ticks(chart_axes, "0\n" "1\n" "2\n" "3\n" "4\n" "X[%]", 2, 0, 0, 0 );
+			lv_chart_set_x_tick_length(chart_axes, LV_CHART_TICK_LENGTH_AUTO, LV_CHART_TICK_LENGTH_AUTO);
+            lv_chart_set_y_tick_length(chart_axes, LV_CHART_TICK_LENGTH_AUTO, LV_CHART_TICK_LENGTH_AUTO);
+			lv_chart_set_x_tick_texts(chart_axes, "0\n" "1\n" "2\n" "3\n" "4\n" "X[%]", 2, 0 );
+			lv_chart_set_y_tick_texts(chart_axes, "0\n" "1\n" "2\n" "3\n" "4\n" "Y[$]", 2, 0 );
 			break;
 		}
 
 		case 1:
 		{
 			lv_label_set_text(chart_label, "Chart 1");
-			lv_chart_set_y_ticks(chart_axes, "Y[$]\n" "1\n" "2\n" "3\n" "4", 5, 0, 0, LV_CHART_AXIS_DRAW_LAST_TICK );
-			lv_chart_set_x_ticks(chart_axes, "X[%]\n" "1\n" "2\n" "3\n" "4", 10, 0, 0, LV_CHART_AXIS_DRAW_LAST_TICK );
+            lv_chart_set_x_tick_length(chart_axes, LV_CHART_TICK_LENGTH_AUTO, LV_CHART_TICK_LENGTH_AUTO);
+            lv_chart_set_y_tick_length(chart_axes, LV_CHART_TICK_LENGTH_AUTO, LV_CHART_TICK_LENGTH_AUTO);
+            lv_chart_set_x_tick_texts(chart_axes, "X[%]\n" "1\n" "2\n" "3\n" "4", 10, LV_CHART_AXIS_DRAW_LAST_TICK);
+			lv_chart_set_y_tick_texts(chart_axes, "Y[$]\n" "1\n" "2\n" "3\n" "4", 5, LV_CHART_AXIS_DRAW_LAST_TICK);
 			break;
 		}
 
 		case 2:
 		{
 			lv_label_set_text(chart_label, "Chart 2");
-			lv_chart_set_y_ticks(chart_axes, "Down\n" "Y\n" "Up", 1, 0, 0, LV_CHART_AXIS_DRAW_LAST_TICK );
-			lv_chart_set_x_ticks(chart_axes, "Left\n" "X\n" "Right", 1, 0, 0, LV_CHART_AXIS_DRAW_LAST_TICK );
+            lv_chart_set_x_tick_length(chart_axes, LV_CHART_TICK_LENGTH_AUTO, LV_CHART_TICK_LENGTH_AUTO);
+            lv_chart_set_y_tick_length(chart_axes, LV_CHART_TICK_LENGTH_AUTO, LV_CHART_TICK_LENGTH_AUTO);
+            lv_chart_set_x_tick_texts(chart_axes, "Left\n" "X\n" "Right", 1, LV_CHART_AXIS_DRAW_LAST_TICK);
+			lv_chart_set_y_tick_texts(chart_axes, "Down\n" "Y\n" "Up", 1, LV_CHART_AXIS_DRAW_LAST_TICK );
 			break;
 		}
 
 		case 3:
 		{
 			lv_label_set_text(chart_label, "Chart 3");
-			lv_chart_set_y_ticks(chart_axes, "0\n" "0.2\n" "0.4\n" "0.6\n" "0.8\n" "P[kW]", 2, 8, 2, 0);
-			lv_chart_set_x_ticks(chart_axes, "0\n" "\n" "6\n" "\n" "12\n" "\n" "18\n" "\n" "t[h]", 3, 12, 6, 0 );
+            lv_chart_set_x_tick_length(chart_axes, 8, 2);
+            lv_chart_set_y_tick_length(chart_axes, 12, 6);
+            lv_chart_set_x_tick_texts(chart_axes, "0\n" "\n" "6\n" "\n" "12\n" "\n" "18\n" "\n" "t[h]", 3, LV_CHART_AXIS_SKIP_LAST_TICK);
+			lv_chart_set_y_tick_texts(chart_axes, "0\n" "0.2\n" "0.4\n" "0.6\n" "0.8\n" "P[kW]", 2, LV_CHART_AXIS_SKIP_LAST_TICK);
 			break;
 		}
 
 		case 4:
 		{
 			lv_label_set_text(chart_label, "Chart 4");
-			lv_chart_set_y_ticks(chart_axes, NULL, 10, 0, 0, LV_CHART_AXIS_DRAW_LAST_TICK );
-			lv_chart_set_x_ticks(chart_axes, NULL, 6, 0, 0, LV_CHART_AXIS_DRAW_LAST_TICK );
+            lv_chart_set_x_tick_length(chart_axes, LV_CHART_TICK_LENGTH_AUTO, LV_CHART_TICK_LENGTH_AUTO);
+            lv_chart_set_y_tick_length(chart_axes, LV_CHART_TICK_LENGTH_AUTO, LV_CHART_TICK_LENGTH_AUTO);
+            lv_chart_set_x_tick_texts(chart_axes, NULL, 6, LV_CHART_AXIS_DRAW_LAST_TICK);
+			lv_chart_set_y_tick_texts(chart_axes, NULL, 10, LV_CHART_AXIS_DRAW_LAST_TICK);
 			break;
 		}
 
 		case 5:
 		{
 			lv_label_set_text(chart_label, "Chart 5");
-			lv_chart_set_y_ticks(chart_axes, "\n\n\n\n\n\n\n\n\n\n", 2, 0, 0, LV_CHART_AXIS_DRAW_LAST_TICK );
-			lv_chart_set_x_ticks(chart_axes, "\n\n\n\n\n", 5, 10, 4, LV_CHART_AXIS_DRAW_LAST_TICK );
+            lv_chart_set_y_tick_length(chart_axes, LV_CHART_TICK_LENGTH_AUTO, LV_CHART_TICK_LENGTH_AUTO);
+            lv_chart_set_x_tick_length(chart_axes, 10, 4);
+            lv_chart_set_x_tick_texts(chart_axes, "\n\n\n\n\n", 5, LV_CHART_AXIS_DRAW_LAST_TICK);
+			lv_chart_set_y_tick_texts(chart_axes, "\n\n\n\n\n\n\n\n\n\n", 2, LV_CHART_AXIS_DRAW_LAST_TICK);
 			break;
 		}
 

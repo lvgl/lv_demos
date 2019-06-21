@@ -173,7 +173,7 @@ static void obj_mem_leak_tester(lv_task_t * param)
             break;
         case 7:             /*Switch tests bar and slider memory leak too*/
             obj = lv_sw_create(page, NULL);
-            lv_sw_on(obj, false);
+            lv_sw_on(obj, LV_ANIM_OFF);
             break;
         case 8:     /*Kb tests butm too*/
             obj = lv_kb_create(all_obj_h, NULL);
