@@ -85,7 +85,7 @@ void tpcal_create(void)
 
     lv_obj_t * scr = lv_obj_create(NULL, NULL);
     lv_obj_set_size(scr, TP_MAX_VALUE, TP_MAX_VALUE);
-    lv_disp_set_scr_act(scr);
+    lv_disp_load_scr(scr);
 
     /*Create a big transparent button screen to receive clicks*/
     big_btn = lv_btn_create(lv_disp_get_scr_act(NULL), NULL);
@@ -356,7 +356,7 @@ static void btn_event_cb(lv_obj_t * scr, lv_event_t event)
         lv_obj_set_pos(label_main, (hres - lv_obj_get_width(label_main)) / 2,
                        (vres - lv_obj_get_height(label_main)) / 2);
     } else if(state == TP_CAL_STATE_WAIT_LEAVE) {
-        lv_disp_set_scr_act(prev_scr);
+        lv_disp_load_scr(prev_scr);
 
         /*
          * TODO Process 'p' points here to calibrate the touch pad

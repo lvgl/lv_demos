@@ -94,7 +94,7 @@ void lv_tutorial_objects(void)
      * Screen can be created from any type object type
      * Now a Page is used which is an objects with scrollable content*/
     lv_obj_t * scr = lv_page_create(NULL, NULL);
-    lv_disp_set_scr_act(scr);
+    lv_disp_load_scr(scr);
 
     /****************
      * ADD A TITLE

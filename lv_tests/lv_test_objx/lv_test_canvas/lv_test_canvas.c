@@ -59,7 +59,7 @@ void lv_test_canvas_1(void)
     static lv_color_t cbuf[LV_CANVAS_BUF_SIZE_TRUE_COLOR(CANVAS_WIDTH, CANVAS_HEIGHT)];
     lv_canvas_set_buffer(canvas, cbuf, CANVAS_WIDTH, CANVAS_HEIGHT, LV_IMG_CF_TRUE_COLOR);
     lv_obj_set_pos(canvas, 10, 10);
-    lv_canvas_fill_bg(canvas, LV_COLOR_LIGHT_GRAY);
+    lv_canvas_fill_bg(canvas, LV_COLOR_SILVER);
 
     lv_canvas_draw_rect(canvas, 40, 10, 50, 30, &style);
 
@@ -82,7 +82,7 @@ void lv_test_canvas_1(void)
     img.header.w = CANVAS_WIDTH;
     img.header.h = CANVAS_HEIGHT;
 
-    lv_canvas_fill_bg(canvas, LV_COLOR_LIGHT_GRAY);
+    lv_canvas_fill_bg(canvas, LV_COLOR_SILVER);
     lv_canvas_rotate(canvas, &img, 30, 0, 0, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
 #endif
 }

@@ -137,7 +137,7 @@ void lv_test_group_1(void)
 
     obj = lv_spinbox_create(win, NULL);
     lv_obj_set_event_cb(obj, general_event_handler);
-
+    lv_spinbox_set_digit_format(obj, 5, 2);
     lv_group_add_obj(g, obj);
 
     obj = lv_btn_create(win, NULL);

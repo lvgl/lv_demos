@@ -99,7 +99,7 @@ void lv_test_theme_2(void)
     lv_theme_set_current(th_act);
 
     lv_obj_t * scr = lv_obj_create(NULL, NULL);
-    lv_disp_set_scr_act(scr);
+    lv_disp_load_scr(scr);
 
     header_create();
     sb_create();
