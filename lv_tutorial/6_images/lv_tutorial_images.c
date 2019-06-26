@@ -96,6 +96,8 @@ static lv_fs_res_t pcfs_tell(lv_fs_drv_t * drv, void * file_p, uint32_t * pos_p)
  **********************/
 /*Declare the "source code image" which is stored in the flash*/
 LV_IMG_DECLARE(red_flower)
+LV_IMG_DECLARE(red_rose_16);
+LV_IMG_DECLARE(flower_icon_alpha);
 
 /**********************
  *      MACROS
@@ -116,10 +118,25 @@ void lv_tutorial_image(void)
      * IMAGE FROM SOURCE CODE
      *************************/
 
-    lv_obj_t * img_src = lv_img_create(scr, NULL); /*Crate an image object*/
-    lv_img_set_src(img_src, &red_flower);  /*Set the created file as image (a red fl  ower)*/
-    lv_obj_set_pos(img_src, 10, 10);      /*Set the positions*/
-    lv_obj_set_drag(img_src, true);
+    lv_obj_t * img_var = lv_img_create(scr, NULL); /*Crate an image object*/
+    lv_img_set_src(img_var, &red_flower);  /*Set the created file as image (a red flower)*/
+    lv_obj_set_pos(img_var, 10, 10);      /*Set the positions*/
+    lv_obj_set_drag(img_var, true);
+
+    img_var = lv_img_create(scr, NULL); /*Crate an image object*/
+    lv_img_set_src(img_var, &red_rose_16);  /*Set the created file as image (a red rose)*/
+    lv_obj_set_pos(img_var, 10, 100);      /*Set the positions*/
+    lv_obj_set_drag(img_var, true);
+
+    static lv_style_t style_red;
+    lv_style_copy(&style_red, &lv_style_plain);
+    style_red.image.color = LV_COLOR_RED;
+
+    img_var = lv_img_create(scr, NULL); /*Crate an image object*/
+    lv_img_set_src(img_var, &flower_icon_alpha);  /*Set the created file as image (a red flower icon)*/
+    lv_img_set_style(img_var, LV_IMG_STYLE_MAIN, &style_red);
+    lv_obj_set_pos(img_var, 10, 200);      /*Set the positions*/
+    lv_obj_set_drag(img_var, true);
 
 #if PC_FILES && LV_USE_FILESYSTEM
     /**************************
@@ -153,14 +170,29 @@ void lv_tutorial_image(void)
     lv_img_set_src(img_bin, "P:/lv_examples/lv_tutorial/6_images/blue_flower_32.bin");
 #endif
 
-    lv_obj_align(img_bin, img_src, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);     /*Align next to the source image*/
+    lv_obj_set_pos(img_bin, 150, 10);     /*Align next to the source image*/
+    lv_obj_set_drag(img_bin, true);
+
+    img_bin = lv_img_create(scr, NULL); /*Crate an image object*/
+    lv_img_set_src(img_bin, "P:/lv_examples/lv_tutorial/6_images/blue_rose_16.bin");  /*Set the created file as image (a red rose)*/
+    lv_obj_set_pos(img_bin, 150, 100);      /*Set the positions*/
+    lv_obj_set_drag(img_bin, true);
+
+    static lv_style_t style_blue;
+    lv_style_copy(&style_blue, &lv_style_plain);
+    style_blue.image.color = LV_COLOR_BLUE;
+
+    img_bin = lv_img_create(scr, NULL); /*Crate an image object*/
+    lv_img_set_src(img_bin, "P:/lv_examples/lv_tutorial/6_images/flower_icon_alpha.bin");  /*Set the created file as image (a red flower icon)*/
+    lv_img_set_style(img_bin, LV_IMG_STYLE_MAIN, &style_blue);
+    lv_obj_set_pos(img_bin, 150, 200);      /*Set the positions*/
     lv_obj_set_drag(img_bin, true);
 #endif
 
     lv_obj_t * img_symbol = lv_img_create(scr, NULL);
     lv_img_set_src(img_symbol, LV_SYMBOL_OK);
     lv_obj_set_drag(img_symbol, true);
-//    lv_obj_align(img_symbol, img_src, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);     /*Align next to the source image*/
+    lv_obj_set_pos(img_symbol, 300, 10);      /*Set the positions*/
 }
 
 /**********************
