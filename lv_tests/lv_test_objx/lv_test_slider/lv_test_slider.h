@@ -21,7 +21,7 @@ extern "C" {
 #include "../../../../lv_ex_conf.h"
 #endif
 
-#if USE_LV_SLIDER && USE_LV_TESTS
+#if LV_USE_SLIDER && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -44,10 +44,10 @@ void lv_test_slider_1(void);
  *      MACROS
  **********************/
 
-#endif /*USE_LV_SLIDER*/
+#endif /*LV_USE_SLIDER*/
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
 
-#endif /*USE_LV_SLIDER && USE_LV_TESTS*/
+#endif /*LV_USE_SLIDER && LV_USE_TESTS*/

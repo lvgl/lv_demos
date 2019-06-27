@@ -21,7 +21,7 @@ extern "C" {
 #include "../../../../lv_ex_conf.h"
 #endif
 
-#if USE_LV_TABVIEW && USE_LV_TESTS
+#if LV_USE_TABVIEW && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -39,12 +39,13 @@ extern "C" {
  * Create tab views to test their functionalities
  */
 void lv_test_tabview_1(void);
+void lv_test_tabview_2(void);
 
 /**********************
  *      MACROS
  **********************/
 
-#endif /*USE_LV_TABVIEW && USE_LV_TESTS*/
+#endif /*LV_USE_TABVIEW && LV_USE_TESTS*/
 
 #ifdef __cplusplus
 } /* extern "C" */

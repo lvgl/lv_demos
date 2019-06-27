@@ -9,7 +9,7 @@
 #include "lv_test_task.h"
 #include <stdio.h>
 
-#if USE_LV_TESTS
+#if LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -29,7 +29,7 @@ typedef struct {
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static void delay_task(void * param);
+static void delay_task(lv_task_t * task);
 
 /**********************
  *  STATIC VARIABLES
@@ -149,9 +149,9 @@ void lv_test_task_3(void)
  **********************/
 
 
-static void delay_task(void * param)
+static void delay_task(lv_task_t * task)
 {
-    lv_test_task_dsc_t * dsc = param;
+    lv_test_task_dsc_t * dsc = task->user_data;
 #if LV_EX_PRINTF
     printf("%s: %d\n", dsc->name, dsc->delay);
 #endif

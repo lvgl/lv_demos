@@ -12,7 +12,7 @@
  *
  * INPUT DEVICE DRIVER
  * - Similarly to touchpad you need to register an 'lv_indev_drv_t' driver
- * - For control keys you should use LV_GROUP_KEY_... from lv_group.h (e.g. LV_GROUP_KEY_NEXT)
+ * - For control keys you should use LV_KEY_... from lv_group.h (e.g. LV_KEY_NEXT)
  * -
  *
  *
@@ -29,7 +29,7 @@
  *      INCLUDES
  *********************/
 #include "lv_tutorial_keyboard.h"
-#if USE_LV_TUTORIALS && USE_LV_GROUP
+#if LV_USE_TUTORIALS && LV_USE_GROUP
 
 /*********************
  *      DEFINES
@@ -44,11 +44,10 @@
  **********************/
 static void gui_create(void);
 static void kaypad_create(void);
-static bool emulated_keypad_read(lv_indev_data_t * data);
-static lv_res_t mbox_action(lv_obj_t * btn, const char * txt);
-static lv_res_t enable_action(lv_obj_t * btn);
-static lv_res_t keypad_btn_press(lv_obj_t * btn);
-static lv_res_t keypad_btn_release(lv_obj_t * btn);
+static bool emulated_keypad_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data);
+static void mbox_event_cb(lv_obj_t * mbox, lv_event_t event);
+static void keypad_event_cb(lv_obj_t * btn, lv_event_t event);
+static void message_btn_event_cb(lv_obj_t * btn, lv_event_t event);
 
 /**********************
  *  STATIC VARIABLES
@@ -78,7 +77,7 @@ void lv_tutorial_keyboard(lv_indev_t * kp_indev)
     lv_indev_drv_t  kp_drv;
     lv_indev_drv_init(&kp_drv);
     kp_drv.type = LV_INDEV_TYPE_KEYPAD;
-    kp_drv.read = emulated_keypad_read;
+    kp_drv.read_cb = emulated_keypad_read;
     emulated_kp_indev = lv_indev_drv_register(&kp_drv);
 
     /*Create an object group*/
@@ -104,15 +103,18 @@ void lv_tutorial_keyboard(lv_indev_t * kp_indev)
  */
 static void gui_create(void)
 {
+    lv_obj_t * scr = lv_disp_get_scr_act(NULL);     /*Get the current screen*/
+
     /*Create a drop down list*/
-    lv_obj_t * ddlist = lv_ddlist_create(lv_scr_act(), NULL);
+    lv_obj_t * ddlist = lv_ddlist_create(scr, NULL);
     lv_ddlist_set_options(ddlist, "Low\nMedium\nHigh");
     lv_obj_set_pos(ddlist, LV_DPI / 4, LV_DPI / 4);
     lv_group_add_obj(g, ddlist);                    /*Add the object to the group*/
 
     /*Create a holder and check boxes on it*/
-    lv_obj_t * holder = lv_cont_create(lv_scr_act(), NULL);   /*Create a transparent holder*/
-    lv_cont_set_fit(holder, true, true);
+    lv_obj_t * holder = lv_cont_create(scr, NULL);   /*Create a transparent holder*/
+    lv_cont_set_fit(holder, LV_FIT_TIGHT);
+
     lv_cont_set_layout(holder, LV_LAYOUT_COL_L);
     lv_obj_set_style(holder, &lv_style_transp);
     lv_obj_align(holder, ddlist, LV_ALIGN_OUT_RIGHT_TOP, LV_DPI / 4, 0);
@@ -128,16 +130,16 @@ static void gui_create(void)
     lv_cb_set_text(cb, "Blue");
 
     /*Create a sliders*/
-    lv_obj_t * slider = lv_slider_create(lv_scr_act(), NULL);
+    lv_obj_t * slider = lv_slider_create(scr, NULL);
     lv_obj_set_size(slider, LV_DPI, LV_DPI / 3);
     lv_obj_align(slider, holder, LV_ALIGN_OUT_RIGHT_TOP, LV_DPI / 4, 0);
     lv_bar_set_range(slider, 0, 20);
     lv_group_add_obj(g, slider);                    /*Add to the group*/
 
     /*Create a button*/
-    btn_enable = lv_btn_create(lv_scr_act(), NULL);
-    lv_btn_set_action(btn_enable, LV_BTN_ACTION_CLICK, enable_action);
-    lv_cont_set_fit(btn_enable, true, true);
+    btn_enable = lv_btn_create(scr, NULL);
+    lv_obj_set_event_cb(btn_enable, message_btn_event_cb);
+    lv_btn_set_fit(btn_enable, LV_FIT_TIGHT);
     lv_group_add_obj(g, btn_enable);                /*Add to the group*/
     lv_obj_t * l = lv_label_create(btn_enable, NULL);
     lv_label_set_text(l, "Message");
@@ -159,41 +161,38 @@ static void gui_create(void)
  */
 static void kaypad_create(void)
 {
+    lv_obj_t * scr = lv_disp_get_scr_act(NULL);     /*Get the current screen*/
+
     /*Next button*/
-    lv_obj_t * btn_next = lv_btn_create(lv_scr_act(), NULL);
-    lv_btn_set_action(btn_next, LV_BTN_ACTION_PR, keypad_btn_press);
-    lv_btn_set_action(btn_next, LV_BTN_ACTION_CLICK, keypad_btn_release);
-    lv_btn_set_action(btn_next, LV_BTN_ACTION_LONG_PR, keypad_btn_release);
-    lv_btn_set_fit(btn_next, true, true);
-    lv_obj_set_free_num(btn_next, LV_GROUP_KEY_NEXT);
+    lv_obj_t * btn_next = lv_btn_create(scr, NULL);
+    lv_obj_set_event_cb(btn_next, keypad_event_cb);
+    lv_btn_set_fit(btn_next, LV_FIT_TIGHT);
     lv_obj_t * l = lv_label_create(btn_next, NULL);
     lv_label_set_text(l, "Next");
     lv_obj_align(btn_next, NULL, LV_ALIGN_IN_BOTTOM_LEFT, LV_DPI / 4, - LV_DPI / 4);
 
     /*Increment button*/
-    lv_obj_t * btn_inc = lv_btn_create(lv_scr_act(), btn_next);
-    lv_obj_set_free_num(btn_inc, LV_GROUP_KEY_LEFT);
+    lv_obj_t * btn_inc = lv_btn_create(scr, btn_next);
     l = lv_label_create(btn_inc, NULL);
     lv_label_set_text(l, "Dec");
     lv_obj_align(btn_inc, btn_next, LV_ALIGN_OUT_RIGHT_MID, LV_DPI / 4, 0);
 
     /*Decrement button*/
-    lv_obj_t * btn_dec = lv_btn_create(lv_scr_act(), btn_next);
-    lv_obj_set_free_num(btn_dec, LV_GROUP_KEY_RIGHT);
+    lv_obj_t * btn_dec = lv_btn_create(scr, btn_next);
     l = lv_label_create(btn_dec, NULL);
     lv_label_set_text(l, "Inc");
     lv_obj_align(btn_dec, btn_inc, LV_ALIGN_OUT_RIGHT_MID, LV_DPI / 4, 0);
 
     /*Enter button*/
-    lv_obj_t * btn_enter = lv_btn_create(lv_scr_act(), btn_next);
-    lv_obj_set_free_num(btn_enter, LV_GROUP_KEY_ENTER);
+    lv_obj_t * btn_enter = lv_btn_create(scr, btn_next);
     l = lv_label_create(btn_enter, NULL);
     lv_label_set_text(l, "Enter");
     lv_obj_align(btn_enter, btn_dec, LV_ALIGN_OUT_RIGHT_MID, LV_DPI / 4, 0);
 }
 
-static bool emulated_keypad_read(lv_indev_data_t * data)
+static bool emulated_keypad_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data)
 {
+    (void)indev_drv;                /*Unused*/
     data->key = last_key;
     data->state = last_state;
     return false;
@@ -205,23 +204,26 @@ static bool emulated_keypad_read(lv_indev_data_t * data)
  * @param indev_proc pointer to the caller display input or NULL if the encoder used
  * @return LV_RES_OK: because the button is not deleted
  */
-static lv_res_t enable_action(lv_obj_t * btn)
+static void message_btn_event_cb(lv_obj_t * btn, lv_event_t event)
 {
+    if(event != LV_EVENT_RELEASED) return;  /*We only care only with the release event*/
+
     /*If the butto nsi released the show message box to be sure about the Enable*/
     if(lv_btn_get_state(btn) == LV_BTN_STATE_REL) {
         /* Create a dark screen sized bg. with opacity to show
          * the other objects are not available now*/
-        lv_obj_set_style(lv_layer_top(), &style_mbox_bg);
-        lv_obj_set_click(lv_layer_top(), false);     /*It should be `true` but it'd block the emulated keyboard too*/
+        lv_obj_set_style(lv_disp_get_layer_top(NULL), &style_mbox_bg);
+        lv_obj_set_click(lv_disp_get_layer_top(NULL), false);     /*It should be `true` but it'd block the emulated keyboard too*/
 
         /*Create a message box*/
-        lv_obj_t * mbox = lv_mbox_create(lv_layer_top(), NULL);
+        lv_obj_t * mbox = lv_mbox_create(lv_disp_get_layer_top(NULL), NULL);
         lv_mbox_set_text(mbox, "Turn on something?");
+        lv_obj_set_event_cb(mbox, mbox_event_cb);
         lv_group_add_obj(g, mbox);          /*Add to he group*/
 
         /*Add two buttons*/
         static const char * btns[] = {"Yes", "No", ""};
-        lv_mbox_add_btns(mbox, btns, mbox_action);
+        lv_mbox_add_btns(mbox, btns);
 
         lv_obj_align(mbox, NULL, LV_ALIGN_CENTER, 0, - LV_DPI / 2);
 
@@ -233,61 +235,57 @@ static lv_res_t enable_action(lv_obj_t * btn)
     else {
         lv_btn_set_state(btn_enable, LV_BTN_STATE_REL);
     }
-    return LV_RES_OK;
 }
 
 /**
  * Called when a message box button is clicked
- * @param btn pointer to the 'Yes' button
- * @return LV_ACTION_RES_INV: because the button along with the message box will be deleted
+ * @param mbox pointer to message box
+ * @param event event type
  */
-static lv_res_t mbox_action(lv_obj_t * btn, const char * txt)
+static void mbox_event_cb(lv_obj_t * mbox, lv_event_t event)
 {
-    lv_group_focus_freeze(g, false);        /*Release the freeze*/
-    lv_obj_t * mbox = lv_mbox_get_from_btn(btn);
+    if(event != LV_EVENT_CLICKED) return;
 
-    /*Revert the top layer to not block*/
-    lv_obj_set_style(lv_layer_top(), &lv_style_transp);
-    lv_obj_set_click(lv_layer_top(), false);
+    const char * btn_txt = lv_mbox_get_active_btn_text(mbox);
+    if(btn_txt) {
+        lv_group_focus_freeze(g, false);        /*Release the freeze*/
 
+        /*Revert the top layer to not block*/
+        lv_obj_set_style(lv_disp_get_layer_top(NULL), &lv_style_transp);
+        lv_obj_set_click(lv_disp_get_layer_top(NULL), false);
 
-    /*Mark the enabled state by toggling the button*/
-    if(strcmp(txt, "No") == 0)  lv_btn_set_state(btn_enable, LV_BTN_STATE_REL);
-    else if(strcmp(txt, "Yes") == 0)  lv_btn_set_state(btn_enable, LV_BTN_STATE_TGL_REL);
+        /*Mark the enabled state by toggling the button*/
+        if(strcmp(btn_txt, "No") == 0)  lv_btn_set_state(btn_enable, LV_BTN_STATE_REL);
+        else if(strcmp(btn_txt, "Yes") == 0)  lv_btn_set_state(btn_enable, LV_BTN_STATE_TGL_REL);
 
-    lv_obj_del(mbox);
-
-    return LV_RES_INV;
+        lv_obj_del(mbox);
+    }
 }
 
 /**
- * Called when the Keypad button is pressed
+ * Called the handle the emulated keys' events
  * @param btn pointer to the button
- * @param indev_proc pointer to the caller display input
  * @return LV_RES_OK: because the button is not deleted
  */
-static lv_res_t keypad_btn_press(lv_obj_t * btn)
+static void keypad_event_cb(lv_obj_t * btn, lv_event_t event)
 {
-    last_key = lv_obj_get_free_num(btn);    /*Save the key*/
-    last_state = LV_INDEV_STATE_PR;         /*Save the state*/
+    if(event == LV_EVENT_PRESSED) {
 
-    return LV_RES_OK;
-}
+        lv_obj_t * label = lv_obj_get_child(btn, NULL);
+        const char * txt = lv_label_get_text(label);
 
-/**
- * Called when the Next button is released
- * @param btn pointer to the button
- * @param indev_proc pointer to the caller display input
- * @return LV_RES_OK: because the button is not deleted
- */
-static lv_res_t keypad_btn_release(lv_obj_t * btn)
-{
-    (void)btn;      /*Unused*/
+        if(strcmp(txt, "Next") == 0)        last_key = LV_KEY_NEXT;
+        else if (strcmp(txt, "Inc") == 0)   last_key = LV_KEY_UP;
+        else if (strcmp(txt, "Dec") == 0)   last_key = LV_KEY_DOWN;
+        else if (strcmp(txt, "Enter") == 0) last_key = LV_KEY_ENTER;
+        else last_key = 0;
 
-    last_state = LV_INDEV_STATE_REL;        /*Save the new state but leave the last key*/
+        last_state = LV_INDEV_STATE_PR;         /*Save the state*/
+    } else if(event == LV_EVENT_RELEASED || event == LV_EVENT_PRESS_LOST) {
+        last_state = LV_INDEV_STATE_REL;
+    }
 
-    return LV_RES_OK;
 }
 
 
-#endif /*USE_LV_TUTORIALS*/
+#endif /*LV_USE_TUTORIALS*/

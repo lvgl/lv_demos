@@ -10,7 +10,7 @@
 
 #include "lv_test_btnm.h"
 
-#if  USE_LV_BTNM && USE_LV_TESTS
+#if  LV_USE_BTNM && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -23,16 +23,12 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static lv_res_t btnm_action(lv_obj_t * btnm, const char * txt);
+static void btnm_event_cb(lv_obj_t * btnm, lv_event_t event);
 
 /**********************
  *  STATIC VARIABLES
  **********************/
-#if LV_TXT_UTF8 != 0
 static const char * btnm_map[] = {"One line", "\n", "\212", "\242Ina", "\204üŰöŐ", "\221éÉ", "\n", "\214", "\202Left", ""};
-#else
-static const char * btnm_map[] = {"One line", "\n", "\212", "\242Ina", "\204long", "\221short", "\n", "\214", "\202Left", ""};
-#endif
 /**********************
  *      MACROS
  **********************/
@@ -46,9 +42,12 @@ static const char * btnm_map[] = {"One line", "\n", "\212", "\242Ina", "\204long
  */
 void lv_test_btnm_1(void)
 {
+    lv_coord_t hres = lv_disp_get_hor_res(NULL);
+    lv_coord_t vres = lv_disp_get_ver_res(NULL);
+
     /* Default object
      * GOAL: A button matrix with default buttons */
-    lv_obj_t * btnm1 = lv_btnm_create(lv_scr_act(), NULL);
+    lv_obj_t * btnm1 = lv_btnm_create(lv_disp_get_scr_act(NULL), NULL);
 
     /* Test map, size and position. Also try some features.
      * GOAL: A button matrix with default buttons.  */
@@ -65,32 +64,34 @@ void lv_test_btnm_1(void)
     pr.text.color = LV_COLOR_WHITE;
 
 
-    lv_obj_t * btnm2 = lv_btnm_create(lv_scr_act(), NULL);
+    lv_obj_t * btnm2 = lv_btnm_create(lv_disp_get_scr_act(NULL), NULL);
     lv_btnm_set_map(btnm2, btnm_map);
-    lv_obj_set_size(btnm2, LV_HOR_RES / 2, LV_VER_RES / 3);
+    lv_obj_set_size(btnm2, hres / 2, vres / 3);
     lv_obj_align(btnm2, btnm1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 20);
-    lv_btnm_set_toggle(btnm2, true, 2);
-    lv_btnm_set_action(btnm2, btnm_action);
+    lv_btnm_set_btn_ctrl(btnm2, 2, LV_BTNM_CTRL_TGL_STATE);
+    lv_obj_set_event_cb(btnm2, btnm_event_cb);
     lv_btnm_set_style(btnm2, LV_BTNM_STYLE_BTN_REL, &rel);
     lv_btnm_set_style(btnm2, LV_BTNM_STYLE_BTN_PR, &pr);
-
-
-    lv_obj_t * btnm3 = lv_btnm_create(lv_scr_act(), btnm2);
-    lv_obj_align(btnm3, btnm1, LV_ALIGN_OUT_BOTTOM_RIGHT, 0, 20);
 }
 
 /**********************
  *   STATIC FUNCTIONS
  **********************/
 
-static lv_res_t btnm_action(lv_obj_t * btnm, const char * txt)
+static void btnm_event_cb(lv_obj_t * btnm, lv_event_t event)
 {
     (void) btnm; /*Unused*/
 
+    if(event != LV_EVENT_CLICKED) return;
+
+
+
 #if LV_EX_PRINTF
-    printf("Key pressed: %s\n", txt);
+    const char * txt = lv_btnm_get_active_btn_text(btnm);
+    if(txt) {
+        printf("Key pressed: %s\n", txt);
+    }
 #endif
-    return LV_RES_OK;
 }
 
-#endif /* USE_LV_BTNM && USE_LV_TESTS*/
+#endif /* LV_USE_BTNM && LV_USE_TESTS*/

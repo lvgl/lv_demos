@@ -24,7 +24,7 @@
  *      INCLUDES
  *********************/
 #include "lv_tutorial_animations.h"
-#if USE_LV_TUTORIALS && USE_LV_ANIMATION
+#if LV_USE_TUTORIALS && LV_USE_ANIMATION
 
 /*********************
  *      DEFINES
@@ -56,12 +56,13 @@ lv_style_t btn3_style;
  */
 void lv_tutorial_animations(void)
 {
-    lv_obj_t * label;
+    lv_obj_t * scr = lv_disp_get_scr_act(NULL);     /*Get the current screen*/
 
+    lv_obj_t * label;
 
     /*Create a button the demonstrate built-in animations*/
     lv_obj_t * btn1;
-    btn1 = lv_btn_create(lv_scr_act(), NULL);
+    btn1 = lv_btn_create(scr, NULL);
     lv_obj_set_pos(btn1, 10, 10);       /*Set a position. It will be the animation's destination*/
     lv_obj_set_size(btn1, 80, 50);
 
@@ -70,11 +71,25 @@ void lv_tutorial_animations(void)
 
     /* Float in the button using a built-in function
      * Delay the animation with 2000 ms and float in 300 ms. NULL means no end callback*/
-    lv_obj_animate(btn1, LV_ANIM_FLOAT_TOP | LV_ANIM_IN, 300, 2000, NULL);
+    lv_anim_t a;
+    a.var = btn1;
+    a.start = -lv_obj_get_height(btn1);
+    a.end = lv_obj_get_y(btn1);
+    a.exec_cb = (lv_anim_exec_xcb_t)lv_obj_set_y;
+    a.path_cb = lv_anim_path_linear;
+    a.ready_cb = NULL;
+    a.act_time = -2000; /*Delay the animation*/
+    a.time = 300;
+    a.playback = 0;
+    a.playback_pause = 0;
+    a.repeat = 0;
+    a.repeat_pause = 0;
+    a.user_data = NULL;
+    lv_anim_create(&a);
 
     /*Create a button to demonstrate user defined animations*/
     lv_obj_t * btn2;
-    btn2 = lv_btn_create(lv_scr_act(), NULL);
+    btn2 = lv_btn_create(scr, NULL);
     lv_obj_set_pos(btn2, 10, 80);       /*Set a position. It will be the animation's destination*/
     lv_obj_set_size(btn2, 80, 50);
 
@@ -82,13 +97,12 @@ void lv_tutorial_animations(void)
     lv_label_set_text(label, "Move");
 
     /*Create an animation to move the button continuously left to right*/
-    lv_anim_t a;
     a.var = btn2;
     a.start = lv_obj_get_x(btn2);
     a.end = a.start + (100);
-    a.fp = (lv_anim_fp_t)lv_obj_set_x;
-    a.path = lv_anim_path_linear;
-    a.end_cb = NULL;
+    a.exec_cb = (lv_anim_exec_xcb_t)lv_obj_set_x;
+    a.path_cb = lv_anim_path_linear;
+    a.ready_cb = NULL;
     a.act_time = -1000;                         /*Negative number to set a delay*/
     a.time = 400;                               /*Animate in 400 ms*/
     a.playback = 1;                             /*Make the animation backward too when it's ready*/
@@ -99,7 +113,7 @@ void lv_tutorial_animations(void)
 
     /*Create a button to demonstrate the style animations*/
     lv_obj_t * btn3;
-    btn3 = lv_btn_create(lv_scr_act(), NULL);
+    btn3 = lv_btn_create(scr, NULL);
     lv_obj_set_pos(btn3, 10, 150);       /*Set a position. It will be the animation's destination*/
     lv_obj_set_size(btn3, 80, 50);
 
@@ -111,17 +125,12 @@ void lv_tutorial_animations(void)
     lv_btn_set_style(btn3, LV_BTN_STATE_REL, &btn3_style);
 
     /*Animate the new style*/
-    lv_style_anim_t sa;
-    sa.style_anim = &btn3_style;            /*This style will be animated*/
-    sa.style_start = &lv_style_btn_rel;     /*Style in the beginning (can be 'style_anim' as well)*/
-    sa.style_end = &lv_style_pretty;        /*Style at the and (can be 'style_anim' as well)*/
-    sa.act_time = -500;                     /*These parameters are the same as with the normal animation*/
-    sa.time = 1000;
-    sa.playback = 1;
-    sa.playback_pause = 500;
-    sa.repeat = 1;
-    sa.repeat_pause = 500;
-    sa.end_cb = NULL;
+    lv_anim_t sa;
+    lv_style_anim_init(&sa);
+    lv_style_anim_set_styles(&sa, &btn3_style, &lv_style_btn_rel, &lv_style_pretty);
+    lv_style_anim_set_time(&sa, 500, 500);
+    lv_style_anim_set_playback(&sa, 500);
+    lv_style_anim_set_repeat(&sa, 500);
     lv_style_anim_create(&sa);
 }
 
@@ -129,5 +138,5 @@ void lv_tutorial_animations(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_TUTORIALS && USE_LV_ANIMATION*/
+#endif /*LV_USE_TUTORIALS && LV_USE_ANIMATION*/
 

@@ -7,7 +7,7 @@
  *      INCLUDES
  *********************/
 #include "lv_test_table.h"
-#if USE_LV_TABLE && USE_LV_TESTS
+#if LV_USE_TABLE && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -46,7 +46,8 @@ void lv_test_table_1(void)
     static lv_style_t cell_head_style;
     lv_style_copy(&cell_head_style, &lv_style_plain);
     cell_head_style.body.border.width = 1;
-    cell_head_style.body.padding.ver = 20;
+    cell_head_style.body.padding.top = 20;
+    cell_head_style.body.padding.bottom = 20;
     cell_head_style.line.width = 1;
     cell_head_style.text.color = LV_COLOR_RED;
     cell_head_style.text.line_space = 0;
@@ -54,7 +55,7 @@ void lv_test_table_1(void)
     cell_head_style.text.letter_space = 3;
 
     /* Create a default object*/
-    lv_obj_t * table1 = lv_table_create(lv_scr_act(), NULL);
+    lv_obj_t * table1 = lv_table_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_set_pos(table1, 10, 10);
     lv_table_set_style(table1, LV_TABLE_STYLE_CELL1, &cell1_style);
     lv_table_set_style(table1, LV_TABLE_STYLE_CELL2, &cell_head_style);
@@ -105,10 +106,10 @@ void lv_test_table_1(void)
  */
 void lv_test_table_2(void)
 {
-    lv_obj_t * page = lv_page_create(lv_scr_act(), NULL);
+    lv_obj_t * page = lv_page_create(lv_disp_get_scr_act(NULL), NULL);
     lv_page_set_style(page, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
     lv_page_set_style(page, LV_PAGE_STYLE_SCRL, &lv_style_transp_fit);
-    lv_page_set_scrl_fit(page, true, true);
+    lv_page_set_scrl_fit(page, LV_FIT_TIGHT);
     lv_obj_set_size(page, 200, 200);
 
     static lv_style_t cell_style;
@@ -129,4 +130,4 @@ void lv_test_table_2(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_TABLE && USE_LV_TESTS*/
+#endif /*LV_USE_TABLE && LV_USE_TESTS*/

@@ -21,7 +21,7 @@ extern "C" {
 #include "../../../../lv_ex_conf.h"
 #endif
 
-#if USE_LV_BTN && USE_LV_TESTS
+#if LV_USE_BTN && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -39,12 +39,13 @@ extern "C" {
  * Create charts to test their functionalities
  */
 void lv_test_chart_1(void);
+void lv_test_chart_2(uint8_t chart);
 
 /**********************
  *      MACROS
  **********************/
 
-#endif /*USE_LV_BTN && USE_LV_TESTS*/
+#endif /*LV_USE_BTN && LV_USE_TESTS*/
 
 #ifdef __cplusplus
 } /* extern "C" */

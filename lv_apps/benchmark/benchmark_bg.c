@@ -1,8 +1,7 @@
-#include "lv_conf.h"
+#include "lvgl/lvgl.h"
 #include "lv_ex_conf.h"
-#include "lvgl/lv_draw/lv_draw_img.h"
  
-#if USE_LV_BENCHMARK
+#if LV_USE_BENCHMARK
 
 #ifndef LV_ATTRIBUTE_MEM_ALIGN
 #define LV_ATTRIBUTE_MEM_ALIGN
@@ -232,4 +231,4 @@ lv_img_dsc_t benchmark_bg = {
   .data = benchmark_bg_map,
 };
 
-#endif /*USE_LV_BENCHMARK*/
+#endif /*LV_USE_BENCHMARK*/

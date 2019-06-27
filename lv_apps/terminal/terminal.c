@@ -7,15 +7,13 @@
  *      INCLUDES
  *********************/
 #include "terminal.h"
-#if USE_LV_TERMINAL
+#if LV_USE_TERMINAL
 
 /*********************
  *      DEFINES
  *********************/
 #define TERMINAL_ANIM_TIME   100 /*[ms]*/
 #define TERMINAL_NO_INPUT    0   /*Do not create Text area and Keyboard*/
-#define TERMINAL_WIDTH       (LV_HOR_RES / 2)
-#define TERMINAL_HEIGHT      (LV_VER_RES)
 #define TERMINAL_LOG_LENGTH  512        /*Characters*/
 
 /**********************
@@ -25,8 +23,8 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static lv_res_t clr_click_action(lv_obj_t * btn);
-static lv_res_t win_close_action(lv_obj_t * btn);
+static void clr_event_cb(lv_obj_t * btn, lv_event_t event);
+static void win_close_action(lv_obj_t * btn, lv_event_t event);
 
 /**********************
  *  STATIC VARIABLES
@@ -52,16 +50,22 @@ lv_obj_t * terminal_create(void)
 {
     static lv_style_t style_bg;
     lv_style_copy(&style_bg, &lv_style_pretty);
-    style_bg.body.main_color = LV_COLOR_MAKE(0x30, 0x30, 0x30);
-    style_bg.body.grad_color = LV_COLOR_MAKE(0x30, 0x30, 0x30);
+    style_bg.body.main_color = lv_color_make(0x30, 0x30, 0x30);
+    style_bg.body.grad_color = lv_color_make(0x30, 0x30, 0x30);
     style_bg.body.border.color = LV_COLOR_WHITE;
-    style_bg.text.color = LV_COLOR_MAKE(0xE0, 0xE0, 0xE0);
+    style_bg.text.color = lv_color_make(0xE0, 0xE0, 0xE0);
 
-    win = lv_win_create(lv_scr_act(), NULL);
+
+
+    lv_coord_t hres = lv_disp_get_hor_res(NULL);
+    lv_coord_t vres = lv_disp_get_ver_res(NULL);
+
+    win = lv_win_create(lv_disp_get_scr_act(NULL), NULL);
     lv_win_set_style(win, LV_WIN_STYLE_BG, &style_bg);
-    lv_obj_set_size(win, TERMINAL_WIDTH, TERMINAL_HEIGHT);
+    lv_obj_set_size(win, hres, vres);
     lv_win_set_sb_mode(win, LV_SB_MODE_AUTO);
-    lv_win_add_btn(win, SYMBOL_CLOSE, win_close_action);
+    lv_obj_t * win_btn = lv_win_add_btn(win, LV_SYMBOL_CLOSE);
+    lv_obj_set_event_cb(win_btn, win_close_action);
 
     /*Make the window's content responsive*/
     lv_win_set_layout(win, LV_LAYOUT_PRETTY);
@@ -74,8 +78,8 @@ lv_obj_t * terminal_create(void)
 
     /*Create a clear button*/
     clr_btn = lv_btn_create(win, NULL);
-    lv_cont_set_fit(clr_btn, true, true);
-    lv_btn_set_action(clr_btn, LV_BTN_ACTION_CLICK, clr_click_action);
+    lv_btn_set_fit(clr_btn, LV_FIT_TIGHT);
+    lv_obj_set_event_cb(clr_btn, clr_event_cb);
     lv_obj_t * btn_label = lv_label_create(clr_btn, NULL);
     lv_label_set_text(btn_label, "Clear");
 
@@ -142,16 +146,16 @@ void terminal_add(const char * txt_in)
 /**
  * Called when the Clear button is click to clear the text of the terminal
  * @param btn pointer to the clear button
- * @return LV_ACTION_RES_OK because the button is not deleted
+ * @param event the current event
  */
-static lv_res_t clr_click_action(lv_obj_t * btn)
+static void clr_event_cb(lv_obj_t * btn, lv_event_t event)
 {
     (void) btn;    /*Unused*/
 
+    if(event != LV_EVENT_CLICKED) return;
+
     txt_log[0] = '\0';
     lv_label_set_static_text(label, txt_log);   /*Refresh the text*/
-
-    return LV_RES_OK;
 }
 
 /**
@@ -159,13 +163,14 @@ static lv_res_t clr_click_action(lv_obj_t * btn)
  * @param btn pointer to the close button
  * @return LV_ACTION_RES_INV because the button is deleted in the function
  */
-static lv_res_t win_close_action(lv_obj_t * btn)
+static void win_close_action(lv_obj_t * btn, lv_event_t event)
 {
     (void) btn;    /*Unused*/
 
+    if(event != LV_EVENT_CLICKED) return;
+
     lv_obj_del(win);
     win = NULL;
-    return LV_RES_INV;
 }
 
-#endif /*USE_LV_TERMINAL*/
+#endif /*LV_USE_TERMINAL*/

@@ -1,8 +1,7 @@
-#include "lv_conf.h"
+#include "lvgl/lvgl.h"
 #include "lv_ex_conf.h"
-#include "lvgl/lv_draw/lv_draw_img.h"
 
-#if USE_LV_TESTS && USE_LV_IMGBTN
+#if LV_USE_TESTS && LV_USE_IMGBTN
 
 const uint8_t imgbtn_img_3_map[] = {
 #if LV_COLOR_DEPTH == 1 || LV_COLOR_DEPTH == 8
@@ -187,4 +186,4 @@ lv_img_dsc_t imgbtn_img_3 = {
     .data = imgbtn_img_3_map,
 };
 
-#endif  /*USE_LV_TESTS && USE_LV_IMGBTN*/
+#endif  /*LV_USE_TESTS && LV_USE_IMGBTN*/

@@ -8,9 +8,7 @@
  *********************/
 #include "stdio.h"
 #include "lv_test_group.h"
-#if USE_LV_GROUP && USE_LV_TESTS
-
-#include "lvgl/lv_hal/lv_hal_indev.h"
+#if LV_USE_GROUP && LV_USE_TESTS
 
 #if LV_EX_KEYBOARD || LV_EX_MOUSEWHEEL
 #include "lv_drv_conf.h"
@@ -36,18 +34,12 @@
  *  STATIC PROTOTYPES
  **********************/
 /*To emulate some keys on the window header*/
-static bool win_btn_read(lv_indev_data_t * data);
-static lv_res_t win_btn_press(lv_obj_t * btn);
-static lv_res_t win_btn_click(lv_obj_t * btn);
+static bool win_btn_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data);
+static void win_btn_event_handler(lv_obj_t * btn, lv_event_t event);
 
 static void group_focus_cb(lv_group_t * group);
 
-/*Dummy action functions*/
-static lv_res_t press_action(lv_obj_t * btn);
-static lv_res_t select_action(lv_obj_t * btn);
-static lv_res_t change_action(lv_obj_t * btn);
-static lv_res_t click_action(lv_obj_t * btn);
-static lv_res_t long_press_action(lv_obj_t * btn);
+static void general_event_handler(lv_obj_t * obj, lv_event_t event);
 
 /**********************
  *  STATIC VARIABLES
@@ -65,51 +57,39 @@ static lv_obj_t * win;
  *   GLOBAL FUNCTIONS
  **********************/
 
-
-bool ta_chk(lv_obj_t * ta, uint32_t c)
-{
-    static bool run;
-
-    /*Prevent to be called from every `lv_ta_add_char`*/
-    if(run) return true;
-
-    run = true;
-
-    lv_ta_add_char(ta, c);
-    lv_ta_add_char(ta, '.');
-
-    run = false;
-    return false;
-}
-
 /**
  * Create base groups to test their functionalities
  */
 void lv_test_group_1(void)
 {
+    lv_coord_t hres = lv_disp_get_hor_res(NULL);
+    lv_coord_t vres = lv_disp_get_ver_res(NULL);
 
     g = lv_group_create();
     lv_group_set_focus_cb(g, group_focus_cb);
 
     /*A keyboard will be simulated*/
     lv_indev_drv_t sim_kb_drv;
+    lv_indev_drv_init(&sim_kb_drv);
     sim_kb_drv.type = LV_INDEV_TYPE_KEYPAD;
-    sim_kb_drv.read = win_btn_read;
+    sim_kb_drv.read_cb = win_btn_read;
     lv_indev_t * win_kb_indev = lv_indev_drv_register(&sim_kb_drv);
     lv_indev_set_group(win_kb_indev, g);
 
 #if LV_EX_KEYBOARD
-    lv_indev_drv_t rael_kb_drv;
-    rael_kb_drv.type = LV_INDEV_TYPE_KEYPAD;
-    rael_kb_drv.read = keyboard_read;
-    lv_indev_t * real_kb_indev = lv_indev_drv_register(&rael_kb_drv);
+    lv_indev_drv_t real_kb_drv;
+    lv_indev_drv_init(&real_kb_drv);
+    real_kb_drv.type = LV_INDEV_TYPE_KEYPAD;
+    real_kb_drv.read_cb = keyboard_read;
+    lv_indev_t * real_kb_indev = lv_indev_drv_register(&real_kb_drv);
     lv_indev_set_group(real_kb_indev, g);
 #endif
 
 #if LV_EX_MOUSEWHEEL
     lv_indev_drv_t enc_drv;
+    lv_indev_drv_init(&enc_drv);
     enc_drv.type = LV_INDEV_TYPE_ENCODER;
-    enc_drv.read = mousewheel_read;
+    enc_drv.read_cb = mousewheel_read;
     lv_indev_t * enc_indev = lv_indev_drv_register(&enc_drv);
     lv_indev_set_group(enc_indev, g);
 #endif
@@ -117,163 +97,138 @@ void lv_test_group_1(void)
     /*Create a window to hold all the objects*/
     static lv_style_t win_style;
     lv_style_copy(&win_style, &lv_style_transp);
-    win_style.body.padding.hor = LV_DPI / 4;
-    win_style.body.padding.ver = LV_DPI / 4;
-    win_style.body.padding.inner = LV_DPI / 4;
+    win_style.body.padding.left= LV_DPI / 6;
+    win_style.body.padding.right = LV_DPI / 6;
+    win_style.body.padding.top = LV_DPI / 6;
+    win_style.body.padding.bottom = LV_DPI / 6;
+    win_style.body.padding.inner = LV_DPI / 6;
 
-    win = lv_win_create(lv_scr_act(), NULL);
+    win = lv_win_create(lv_disp_get_scr_act(NULL), NULL);
     lv_win_set_title(win, "Group test");
     lv_page_set_scrl_layout(lv_win_get_content(win), LV_LAYOUT_PRETTY);
-    lv_win_set_style(win, LV_WIN_STYLE_CONTENT_SCRL, &win_style);
+    lv_win_set_style(win, LV_WIN_STYLE_CONTENT, &win_style);
     lv_group_add_obj(g, lv_win_get_content(win));
 
-    lv_obj_t * win_btn = lv_win_add_btn(win, SYMBOL_RIGHT, win_btn_click);
-    lv_btn_set_action(win_btn, LV_BTN_ACTION_PR, win_btn_press);
-    lv_obj_set_free_num(win_btn, LV_GROUP_KEY_RIGHT);
+    lv_obj_t * win_btn = lv_win_add_btn(win, LV_SYMBOL_RIGHT);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
+    lv_obj_set_event_cb(win_btn, win_btn_event_handler);
 
-    win_btn = lv_win_add_btn(win, SYMBOL_NEXT, win_btn_click);
-    lv_btn_set_action(win_btn, LV_BTN_ACTION_PR, win_btn_press);
-    lv_obj_set_free_num(win_btn, LV_GROUP_KEY_NEXT);
+    win_btn = lv_win_add_btn(win, LV_SYMBOL_NEXT);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
+    lv_obj_set_event_cb(win_btn, win_btn_event_handler);
 
-    win_btn = lv_win_add_btn(win, SYMBOL_OK, win_btn_click);
-    lv_btn_set_action(win_btn, LV_BTN_ACTION_PR, win_btn_press);
-    lv_obj_set_free_num(win_btn, LV_GROUP_KEY_ENTER);
+    win_btn = lv_win_add_btn(win, LV_SYMBOL_OK);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
+    lv_obj_set_event_cb(win_btn, win_btn_event_handler);
 
-    win_btn = lv_win_add_btn(win, SYMBOL_PREV, win_btn_click);
-    lv_btn_set_action(win_btn, LV_BTN_ACTION_PR, win_btn_press);
-    lv_obj_set_free_num(win_btn, LV_GROUP_KEY_PREV);
+    win_btn = lv_win_add_btn(win, LV_SYMBOL_PREV);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
+    lv_obj_set_event_cb(win_btn, win_btn_event_handler);
 
-    win_btn = lv_win_add_btn(win, SYMBOL_LEFT, win_btn_click);
-    lv_btn_set_action(win_btn, LV_BTN_ACTION_PR, win_btn_press);
-    lv_obj_set_free_num(win_btn, LV_GROUP_KEY_LEFT);
+    win_btn = lv_win_add_btn(win, LV_SYMBOL_LEFT);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
+    lv_obj_set_event_cb(win_btn, win_btn_event_handler);
 
-    win_btn = lv_win_add_btn(win, SYMBOL_DUMMY"a", win_btn_click);
-    lv_btn_set_action(win_btn, LV_BTN_ACTION_PR, win_btn_press);
-    lv_obj_set_free_num(win_btn, 'a');
+    win_btn = lv_win_add_btn(win, LV_SYMBOL_DUMMY"a");
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
+    lv_obj_set_event_cb(win_btn, win_btn_event_handler);
 
     lv_obj_t * obj;
 
-    obj = lv_obj_create(win, NULL);
-    lv_obj_set_style(obj, &lv_style_plain_color);
-    lv_group_add_obj(g, obj);
-
-    obj = lv_label_create(win, NULL);
+    obj = lv_spinbox_create(win, NULL);
+    lv_obj_set_event_cb(obj, general_event_handler);
+    lv_spinbox_set_digit_format(obj, 5, 2);
     lv_group_add_obj(g, obj);
 
     obj = lv_btn_create(win, NULL);
     lv_group_add_obj(g, obj);
     lv_btn_set_toggle(obj, true);
-    lv_btn_set_action(obj, LV_BTN_ACTION_CLICK, click_action);
-    lv_btn_set_action(obj, LV_BTN_ACTION_PR, press_action);
-    lv_btn_set_action(obj, LV_BTN_ACTION_LONG_PR, long_press_action);
+    lv_obj_set_event_cb(obj, general_event_handler);
     obj = lv_label_create(obj, NULL);
     lv_label_set_text(obj, "Button");
 
-    obj = lv_cb_create(win, NULL);
-    lv_cb_set_action(obj, select_action);
+    LV_IMG_DECLARE(imgbtn_img_1);
+    LV_IMG_DECLARE(imgbtn_img_2);
+    obj = lv_imgbtn_create(win, NULL);
+    lv_imgbtn_set_src(obj, LV_BTN_STATE_REL, &imgbtn_img_1);
+    lv_imgbtn_set_src(obj, LV_BTN_STATE_PR, &imgbtn_img_2);
     lv_group_add_obj(g, obj);
 
-    obj = lv_bar_create(win, NULL);
-    lv_bar_set_value(obj, 60);
+    obj = lv_cb_create(win, NULL);
+    lv_obj_set_event_cb(obj, general_event_handler);
     lv_group_add_obj(g, obj);
 
     obj = lv_slider_create(win, NULL);
     lv_slider_set_range(obj, 0, 10);
-    lv_slider_set_action(obj, change_action);
+    lv_obj_set_event_cb(obj, general_event_handler);
     lv_group_add_obj(g, obj);
 
     obj = lv_sw_create(win, NULL);
-    lv_sw_set_action(obj, change_action);
+    lv_obj_set_event_cb(obj, general_event_handler);
     lv_group_add_obj(g, obj);
 
     obj = lv_ddlist_create(win, NULL);
     lv_ddlist_set_options(obj, "Item1\nItem2\nItem3\nItem4\nItem5\nItem6");
     lv_ddlist_set_fix_height(obj, LV_DPI);
-    lv_ddlist_set_action(obj, select_action);
+    lv_obj_set_event_cb(obj, general_event_handler);
     lv_group_add_obj(g, obj);
 
     obj = lv_roller_create(win, NULL);
-    lv_roller_set_action(obj, select_action);
-    lv_group_add_obj(g, obj);
-
-    obj = lv_btnm_create(win, NULL);
-    lv_obj_set_size(obj, LV_HOR_RES / 2, LV_VER_RES / 3);
+    lv_obj_set_event_cb(obj, general_event_handler);
     lv_group_add_obj(g, obj);
 
     lv_obj_t * ta = lv_ta_create(win, NULL);
     lv_ta_set_cursor_type(ta, LV_CURSOR_BLOCK);
+    lv_obj_set_event_cb(ta, general_event_handler);
     lv_group_add_obj(g, ta);
 
     obj = lv_kb_create(win, NULL);
-    lv_obj_set_size(obj, LV_HOR_RES - LV_DPI, LV_VER_RES / 2);
+    lv_obj_set_size(obj, hres - LV_DPI, vres / 2);
     lv_kb_set_ta(obj, ta);
+    lv_kb_set_cursor_manage(obj, true);
     lv_group_add_obj(g, obj);
 
     static const char * mbox_btns[] = {"Yes", "No", ""};
     obj = lv_mbox_create(win, NULL);
-    lv_mbox_add_btns(obj, mbox_btns, NULL);
+    lv_mbox_add_btns(obj, mbox_btns);
+    lv_obj_set_event_cb(obj, general_event_handler);
     lv_group_add_obj(g, obj);
 
     obj = lv_list_create(win, NULL);
-    lv_list_add(obj, SYMBOL_FILE, "File 1", click_action);
-    lv_list_add(obj, SYMBOL_FILE, "File 2", click_action);
-    lv_list_add(obj, SYMBOL_FILE, "File 3", click_action);
-    lv_list_add(obj, SYMBOL_FILE, "File 4", click_action);
-    lv_list_add(obj, SYMBOL_FILE, "File 5", click_action);
-    lv_list_add(obj, SYMBOL_FILE, "File 6", click_action);
+    lv_obj_set_event_cb(obj, general_event_handler);
+    const char * list_txts[] = {"File 1", "File 2", "File 3", "File 4", "File 5", "File 6", ""};
+
+    uint32_t i;
+    for(i = 0; list_txts[i][0] != '\0'; i++) {
+        lv_obj_t * b;
+        b = lv_list_add_btn(obj, LV_SYMBOL_FILE, list_txts[i]);
+        lv_obj_set_event_cb(b, general_event_handler);
+    }
+
     lv_group_add_obj(g, obj);
 
     obj = lv_page_create(win, NULL);
     lv_obj_set_size(obj, 2 * LV_DPI, LV_DPI);
-    lv_page_set_arrow_scroll(obj, true);
     lv_group_add_obj(g, obj);
+
     obj = lv_label_create(obj, NULL);
     lv_label_set_text(obj, "I'm a page\nwith a long \ntext.\n\n"
                       "You can try \nto scroll me\nwith UP and DOWN\nbuttons.");
     lv_label_set_align(obj, LV_LABEL_ALIGN_CENTER);
     lv_obj_align(obj, NULL, LV_ALIGN_CENTER, 0, 0);
 
-    obj = lv_lmeter_create(win, NULL);
-    lv_lmeter_set_value(obj, 60);
-    lv_group_add_obj(g, obj);
-
-#if LV_COMPILER_NON_CONST_INIT_SUPPORTED
-    static lv_color_t needle_color[] = {LV_COLOR_RED};
-#else
-    static lv_color_t needle_color[] = { 0 };
-#endif
-    obj = lv_gauge_create(win, NULL);
-    lv_gauge_set_needle_count(obj, 1, needle_color);
-    lv_gauge_set_value(obj, 0, 80);
-    lv_group_add_obj(g, obj);
-
-    obj = lv_chart_create(win, NULL);
-    lv_chart_series_t * ser = lv_chart_add_series(obj, LV_COLOR_RED);
-    lv_chart_set_next(obj, ser, 40);
-    lv_chart_set_next(obj, ser, 30);
-    lv_chart_set_next(obj, ser, 35);
-    lv_chart_set_next(obj, ser, 50);
-    lv_chart_set_next(obj, ser, 60);
-    lv_chart_set_next(obj, ser, 75);
-    lv_chart_set_next(obj, ser, 80);
-    lv_group_add_obj(g, obj);
-
-    obj = lv_led_create(win, NULL);
-    lv_group_add_obj(g, obj);
-
     obj = lv_tabview_create(win, NULL);
-    lv_obj_set_size(obj, LV_HOR_RES / 2, LV_VER_RES / 2);
-    lv_tabview_add_tab(obj, "Tab 1");
-    lv_tabview_add_tab(obj, "Tab 2");
+    lv_obj_set_size(obj, hres / 2, vres / 2);
+    lv_obj_t * t1 = lv_tabview_add_tab(obj, "Tab 1");
+    lv_obj_t * t2 = lv_tabview_add_tab(obj, "Tab 2");
+    lv_obj_set_event_cb(obj, general_event_handler);
     lv_group_add_obj(g, obj);
 
-    lv_group_focus_obj(lv_group_get_focused(g));
+    obj = lv_label_create(t1, NULL);
+    lv_label_set_text(obj, "This is the content\nof the first tab");
+
+    obj = lv_label_create(t2, NULL);
+    lv_label_set_text(obj, "This is the content\nof the second tab");
 }
 
 
@@ -283,30 +238,18 @@ void lv_test_group_1(void)
 
 /**
  * Read function for the input device which emulates keys on the window header
- * @param data store the last key and its staee here
+ * @param indev_drv pointer to the related input device driver
+ * @param data store the last key and its state here
  * @return false because the reading in not buffered
  */
-static bool win_btn_read(lv_indev_data_t * data)
+static bool win_btn_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data)
 {
+    (void) indev_drv;      /*Unused*/
+
     data->state = last_key_state;
     data->key = last_key;
 
-
     return false;
-}
-
-/**
- * Called when a control button on the window header is pressed to change the key state to PRESSED
- * @param btn pointer t to a button on the window header
- * @return LV_RES_OK  because the button is not deleted
- */
-static lv_res_t win_btn_press(lv_obj_t * btn)
-{
-    LV_OBJ_FREE_NUM_TYPE c = lv_obj_get_free_num(btn);
-    last_key_state = LV_INDEV_STATE_PR;
-    last_key = c;
-
-    return LV_RES_OK;
 }
 
 /**
@@ -314,73 +257,101 @@ static lv_res_t win_btn_press(lv_obj_t * btn)
  * @param btn pointer t to a button on the window header
  * @return LV_RES_OK  because the button is not deleted
  */
-static lv_res_t win_btn_click(lv_obj_t * btn)
+static void win_btn_event_handler(lv_obj_t * btn, lv_event_t event)
 {
     (void) btn; /*Unused*/
-    last_key_state = LV_INDEV_STATE_REL;
-    return LV_RES_OK;
+
+    uint32_t key = 0;
+
+    lv_obj_t * label = lv_obj_get_child(btn, NULL);
+    const char * txt = lv_label_get_text(label);
+
+    if(strcmp(txt, LV_SYMBOL_PREV) == 0) key = LV_KEY_PREV;
+    else if(strcmp(txt, LV_SYMBOL_NEXT) == 0) key = LV_KEY_NEXT;
+    else if(strcmp(txt, LV_SYMBOL_LEFT) == 0) key = LV_KEY_LEFT;
+    else if(strcmp(txt, LV_SYMBOL_RIGHT) == 0) key = LV_KEY_RIGHT;
+    else if(strcmp(txt, LV_SYMBOL_OK) == 0) key = LV_KEY_ENTER;
+    else key = 'a';
+
+    switch(event) {
+        case LV_EVENT_PRESSED:
+            last_key_state = LV_INDEV_STATE_PR;
+            last_key = key;
+            break;
+
+        case LV_EVENT_CLICKED:
+        case LV_EVENT_PRESS_LOST:
+            last_key_state = LV_INDEV_STATE_REL;
+            last_key = 0;
+            break;
+        default:
+            break;
+    }
 }
 
 
 static void group_focus_cb(lv_group_t * group)
 {
     lv_obj_t * f = lv_group_get_focused(group);
-    if(f != win) lv_win_focus(win, f, 200);
+    if(f != win) lv_win_focus(win, f, LV_ANIM_ON);
 }
 
-/*
- * Dummy action functions
- */
-
-static lv_res_t press_action(lv_obj_t * btn)
+static void general_event_handler(lv_obj_t * obj, lv_event_t event)
 {
-    (void) btn; /*Unused*/
+    (void) obj; /*Unused*/
 
 #if LV_EX_PRINTF
-    printf("Press\n");
+    switch(event) {
+        case LV_EVENT_PRESSED:
+            printf("Pressed\n");
+            break;
+
+        case LV_EVENT_SHORT_CLICKED:
+            printf("Short clicked\n");
+            break;
+
+        case LV_EVENT_CLICKED:
+            printf("Clicked\n");
+            break;
+
+        case LV_EVENT_LONG_PRESSED:
+            printf("Long press\n");
+            break;
+
+        case LV_EVENT_LONG_PRESSED_REPEAT:
+            printf("Long press repeat\n");
+            break;
+
+        case LV_EVENT_VALUE_CHANGED:
+            printf("Value changed: %s\n", lv_event_get_data() ? (const char *)lv_event_get_data() : "");
+            break;
+
+        case LV_EVENT_RELEASED:
+            printf("Released\n");
+            break;
+
+        case LV_EVENT_DRAG_BEGIN:
+            printf("Drag begin\n");
+            break;
+
+        case LV_EVENT_DRAG_END:
+            printf("Drag end\n");
+            break;
+
+        case LV_EVENT_DRAG_THROW_BEGIN:
+            printf("Drag throw begin\n");
+            break;
+
+        case LV_EVENT_FOCUSED:
+            printf("Foused\n");
+            break;
+        case LV_EVENT_DEFOCUSED:
+            printf("Defocused\n");
+            break;
+        default:
+            break;
+    }
 #endif
-    return LV_RES_OK;
 }
 
-static lv_res_t select_action(lv_obj_t * btn)
-{
-    (void) btn; /*Unused*/
-
-#if LV_EX_PRINTF
-    printf("Select\n");
-#endif
-    return LV_RES_OK;
-}
-
-static lv_res_t change_action(lv_obj_t * btn)
-{
-    (void) btn; /*Unused*/
-
-#if LV_EX_PRINTF
-    printf("Change\n");
-#endif
-    return LV_RES_OK;
-}
-
-static lv_res_t click_action(lv_obj_t * btn)
-{
-    (void) btn; /*Unused*/
-
-#if LV_EX_PRINTF
-    printf("Click\n");
-#endif
-    return LV_RES_OK;
-}
-
-static lv_res_t long_press_action(lv_obj_t * btn)
-{
-    (void) btn; /*Unused*/
-
-#if LV_EX_PRINTF
-    printf("Long press\n");
-#endif
-    return LV_RES_OK;
-}
-
-
-#endif /* USE_LV_GROUP && USE_LV_TESTS */
+#endif /* LV_USE_GROUP && LV_USE_TESTS */

@@ -9,7 +9,7 @@
 
 #include "lv_test_kb.h"
 
-#if USE_LV_KB != 0
+#if LV_USE_KB && LV_USE_TESTS
 
 /*********************
  *      DEFINES
@@ -41,11 +41,11 @@
 void lv_test_kb_1(void)
 {
 
-    lv_obj_t * ta = lv_ta_create(lv_scr_act(), NULL);
+    lv_obj_t * ta = lv_ta_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_align(ta, NULL, LV_ALIGN_IN_TOP_MID, 0, 30);
 
     /* Default object*/
-    lv_obj_t * kb1 = lv_kb_create(lv_scr_act(), NULL);
+    lv_obj_t * kb1 = lv_kb_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_align(kb1, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, 0);
     lv_kb_set_ta(kb1, ta);
 }
@@ -56,12 +56,15 @@ void lv_test_kb_1(void)
 void lv_test_kb_2(void)
 {
 
-    lv_obj_t * ta = lv_ta_create(lv_scr_act(), NULL);
+    lv_coord_t hres = lv_disp_get_hor_res(NULL);
+    lv_coord_t vres = lv_disp_get_ver_res(NULL);
+
+    lv_obj_t * ta = lv_ta_create(lv_disp_get_scr_act(NULL), NULL);
     lv_obj_align(ta, NULL, LV_ALIGN_IN_TOP_MID, 0, 30);
 
     /* Default object*/
-    lv_obj_t * kb1 = lv_kb_create(lv_scr_act(), NULL);
-    lv_obj_set_size(kb1, LV_HOR_RES / 2, LV_VER_RES / 4);
+    lv_obj_t * kb1 = lv_kb_create(lv_disp_get_scr_act(NULL), NULL);
+    lv_obj_set_size(kb1, hres / 2, vres / 4);
     lv_obj_align(kb1, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, 0);
     lv_kb_set_ta(kb1, ta);
 
@@ -72,8 +75,10 @@ void lv_test_kb_2(void)
     lv_style_copy(&bg, &lv_style_plain_color);
     bg.body.main_color = LV_COLOR_NAVY;
     bg.body.grad_color = LV_COLOR_NAVY;
-    bg.body.padding.hor = 0;
-    bg.body.padding.ver = 10;
+    bg.body.padding.left = 0;
+    bg.body.padding.right = 0;
+    bg.body.padding.top = 10;
+    bg.body.padding.bottom = 10;
     bg.body.padding.inner = 0;
 
     lv_style_copy(&rel, &lv_style_plain);
@@ -93,4 +98,4 @@ void lv_test_kb_2(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_KB && USE_LV_TESTS*/
+#endif /*LV_USE_KB && LV_USE_TESTS*/

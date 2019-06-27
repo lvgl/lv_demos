@@ -22,6 +22,7 @@ include $(LVGL_DIR)/lv_examples/lv_tests/lv_test_objx/lv_test_list/lv_test_list.
 include $(LVGL_DIR)/lv_examples/lv_tests/lv_test_objx/lv_test_lmeter/lv_test_lmeter.mk
 include $(LVGL_DIR)/lv_examples/lv_tests/lv_test_objx/lv_test_mbox/lv_test_mbox.mk
 include $(LVGL_DIR)/lv_examples/lv_tests/lv_test_objx/lv_test_page/lv_test_page.mk
+include $(LVGL_DIR)/lv_examples/lv_tests/lv_test_objx/lv_test_preload/lv_test_preload.mk
 include $(LVGL_DIR)/lv_examples/lv_tests/lv_test_objx/lv_test_roller/lv_test_roller.mk
 include $(LVGL_DIR)/lv_examples/lv_tests/lv_test_objx/lv_test_slider/lv_test_slider.mk
 include $(LVGL_DIR)/lv_examples/lv_tests/lv_test_objx/lv_test_sw/lv_test_sw.mk

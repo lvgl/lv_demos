@@ -21,7 +21,7 @@ extern "C" {
 #include "../../../lv_ex_conf.h"
 #endif
 
-#if USE_LV_DEMO
+#if LV_USE_DEMO
 
 /*********************
  *      DEFINES
@@ -51,7 +51,7 @@ void terminal_add(const char * txt_in);
  *      MACROS
  **********************/
 
-#endif /*USE_LV_TERMINAL*/
+#endif /*LV_USE_TERMINAL*/
 
 #ifdef __cplusplus
 } /* extern "C" */

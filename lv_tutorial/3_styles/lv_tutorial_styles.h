@@ -21,7 +21,7 @@ lv_tutorialtern "C" {
 #include "../../../lv_ex_conf.h"
 #endif
 
-#if USE_LV_TUTORIALS
+#if LV_USE_TUTORIALS
 
     /*********************
      *      DEFINES
@@ -40,7 +40,7 @@ lv_tutorialtern "C" {
      *      MACROS
      **********************/
 
-#endif /*USE_LV_TUTORIALS*/
+#endif /*LV_USE_TUTORIALS*/
 
 #ifdef __cplusplus
 } /* lv_tutorialtern "C" */

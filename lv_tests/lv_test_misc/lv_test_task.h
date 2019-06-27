@@ -21,7 +21,7 @@ extern "C" {
 #include "../../../lv_ex_conf.h"
 #endif
 
-#if USE_LV_TESTS
+#if LV_USE_TESTS
 
 /*********************
  *      DEFINES

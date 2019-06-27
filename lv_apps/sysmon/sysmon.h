@@ -20,7 +20,7 @@ extern "C" {
 #include "../../../lvgl/lvgl.h"
 #include "../../../lv_ex_conf.h"
 #endif
-#if USE_LV_DEMO
+#if LV_USE_DEMO
 
 /*********************
  *      DEFINES
@@ -43,7 +43,7 @@ void sysmon_create(void);
  *      MACROS
  **********************/
 
-#endif /*USE_LV_SYSMON*/
+#endif /*LV_USE_SYSMON*/
 
 #ifdef __cplusplus
 } /* extern "C" */

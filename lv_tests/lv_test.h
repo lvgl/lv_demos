@@ -19,7 +19,7 @@ extern "C" {
 #include "../../lv_ex_conf.h"
 #endif
 
-#if USE_LV_TESTS
+#if LV_USE_TESTS
 
 #include "../lv_examples.h"
 
@@ -60,6 +60,8 @@ extern "C" {
 
 #include "lv_test_group/lv_test_group.h"
 
+#include "lv_test_stress/lv_test_stress.h"
+
 /*********************
  *      DEFINES
  *********************/
@@ -76,7 +78,7 @@ extern "C" {
  *      MACROS
  **********************/
 
-#endif /* USE_LV_TESTS */
+#endif /* LV_USE_TESTS */
 
 #ifdef __cplusplus
 } /* extern "C" */

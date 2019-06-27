@@ -1,8 +1,7 @@
-#include "lv_conf.h"
+#include "lvgl/lvgl.h"
 #include "lv_ex_conf.h"
-#include "lvgl/lv_draw/lv_draw_img.h"
 
-#if USE_LV_TESTS
+#if LV_USE_TESTS
 
 const uint8_t img_flower_icon_map[] = {
 #if LV_COLOR_DEPTH == 1 || LV_COLOR_DEPTH == 8

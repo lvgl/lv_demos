@@ -14,7 +14,7 @@
  * To address this issue you can use 'themes'.
  * The themes are style collections for every object type with all the required styles.
  *
- * In 'lv_conf.h' you can enable the themes. E.g.: USE_LV_THEME_ALIEN   1
+ * In 'lv_conf.h' you can enable the themes. E.g.: LV_USE_THEME_ALIEN   1
  *
  * When you initialize a theme you can assign a HUE (from HSV color space) and a font:
  * For example to initialize the 'Alien' theme with a greenish color:
@@ -31,7 +31,7 @@
  *********************/
 
 #include "lv_tutorial_themes.h"
-#if USE_LV_TUTORIALS && USE_LV_THEME_ALIEN
+#if LV_USE_TUTORIALS && LV_USE_THEME_ALIEN
 
 #include "../2_objects/lv_tutorial_objects.h"
 
@@ -82,4 +82,4 @@ void lv_tutorial_themes(void)
  *   STATIC FUNCTIONS
  **********************/
 
-#endif /*USE_LV_TUTORIALS*/
+#endif /*LV_USE_TUTORIALS*/
