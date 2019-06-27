@@ -46,8 +46,6 @@ void lv_test_theme_1(lv_theme_t * th)
     th = lv_theme_get_current();    /*If `LV_THEME_LIVE_UPDATE  1` `th` is not used directly so get the real theme after set*/
     lv_obj_t * scr = lv_cont_create(NULL, NULL);
     lv_disp_load_scr(scr);
-    lv_cont_set_style(scr, LV_CONT_STYLE_MAIN, th->style.bg);
-
 
     lv_obj_t * tv = lv_tabview_create(scr, NULL);
     lv_obj_set_size(tv, lv_disp_get_hor_res(NULL), lv_disp_get_ver_res(NULL));
