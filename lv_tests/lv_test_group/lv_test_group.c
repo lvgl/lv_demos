@@ -108,6 +108,7 @@ void lv_test_group_1(void)
     lv_page_set_scrl_layout(lv_win_get_content(win), LV_LAYOUT_PRETTY);
     lv_win_set_style(win, LV_WIN_STYLE_CONTENT, &win_style);
     lv_group_add_obj(g, lv_win_get_content(win));
+    lv_obj_set_event_cb(lv_win_get_content(win), general_event_handler);
 
     lv_obj_t * win_btn = lv_win_add_btn(win, LV_SYMBOL_RIGHT);
     lv_obj_set_protect(win_btn, LV_PROTECT_CLICK_FOCUS);
@@ -135,6 +136,7 @@ void lv_test_group_1(void)
 
     lv_obj_t * obj;
 
+
     obj = lv_spinbox_create(win, NULL);
     lv_obj_set_event_cb(obj, general_event_handler);
     lv_spinbox_set_digit_format(obj, 5, 2);
@@ -152,6 +154,7 @@ void lv_test_group_1(void)
     obj = lv_imgbtn_create(win, NULL);
     lv_imgbtn_set_src(obj, LV_BTN_STATE_REL, &imgbtn_img_1);
     lv_imgbtn_set_src(obj, LV_BTN_STATE_PR, &imgbtn_img_2);
+    lv_obj_set_event_cb(obj, general_event_handler);
     lv_group_add_obj(g, obj);
 
     obj = lv_cb_create(win, NULL);
@@ -343,7 +346,7 @@ static void general_event_handler(lv_obj_t * obj, lv_event_t event)
             break;
 
         case LV_EVENT_FOCUSED:
-            printf("Foused\n");
+            printf("Focused\n");
             break;
         case LV_EVENT_DEFOCUSED:
             printf("Defocused\n");

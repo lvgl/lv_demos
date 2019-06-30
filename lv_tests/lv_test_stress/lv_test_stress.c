@@ -32,11 +32,6 @@ static void mem_monitor(lv_task_t *);
 static lv_obj_t * all_obj_h;
 static lv_obj_t * alloc_label;
 static lv_obj_t * alloc_ta;
-#if LV_COMPILER_NON_CONST_INIT_SUPPORTED
-static const lv_color_t needle_colors[1] = {LV_COLOR_RED};
-#else
-static const lv_color_t needle_colors[1] = { 0 };
-#endif
 static const char * mbox_btns[] = {"Ok", "Cancel", ""};
 LV_IMG_DECLARE(img_flower_icon)
 
@@ -110,6 +105,7 @@ static void mem_monitor(lv_task_t * param)
 static void obj_mem_leak_tester(lv_task_t * param)
 {
     (void) param;    /*Unused*/
+    static const lv_color_t needle_colors[1] = {LV_COLOR_RED};  /*For gauge*/
 
     lv_coord_t hres = lv_disp_get_hor_res(NULL);
     lv_coord_t vres = lv_disp_get_ver_res(NULL);
