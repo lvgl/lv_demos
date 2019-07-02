@@ -182,6 +182,7 @@ static void content_create(void)
     }
 
     lv_page_set_scrl_layout(content, LV_LAYOUT_PRETTY);
+    lv_page_set_scrl_fit2(content, LV_FIT_FLOOD, LV_FIT_TIGHT);
 
     lv_coord_t max_w = lv_page_get_fit_width(content);
 
@@ -261,7 +262,7 @@ static void content_create(void)
     lv_obj_set_size(gauge, LV_MATH_MIN(max_w, LV_DPI * 3 / 2), LV_MATH_MIN(max_w, LV_DPI * 3 / 2));
     lv_obj_set_click(gauge, false);
 
-    /*Test area*/
+    /*Text area*/
     lv_obj_t * ta = lv_ta_create(content, NULL);
     lv_obj_set_width(ta, LV_MATH_MIN(max_w, LV_DPI * 3 / 2));
     lv_ta_set_one_line(ta, true);
@@ -269,7 +270,7 @@ static void content_create(void)
 
     /*Keyboard*/
     lv_obj_t * kb = lv_kb_create(content, NULL);
-    lv_obj_set_width(kb, LV_MATH_MIN(max_w, LV_DPI * 3));
+    lv_obj_set_width(kb, max_w - LV_DPI / 4);
     lv_kb_set_ta(kb, ta);
 
     lv_obj_t * mbox = lv_mbox_create(lv_disp_get_scr_act(NULL), NULL);
