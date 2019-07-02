@@ -212,7 +212,6 @@ static void text_area_event_handler(lv_obj_t * text_area, lv_event_t event)
             a.playback_pause = 0;
             a.repeat = 0;
             a.repeat_pause = 0;
-            a.user_data = NULL;
             lv_anim_create(&a);
 #endif
         }
@@ -246,7 +245,6 @@ static void keyboard_event_cb(lv_obj_t * keyboard, lv_event_t event)
         a.playback_pause = 0;
         a.repeat = 0;
         a.repeat_pause = 0;
-        a.user_data = NULL;
         lv_anim_create(&a);
 #else
         lv_obj_del(kb);
