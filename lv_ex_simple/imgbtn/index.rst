@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: /lv_examples/lv_ex_simple/imgbtn/lv_ex_imgbtn_1.*
+.. image:: imgbtn/lv_ex_imgbtn_1.*
   :alt: Image button example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: /lv_examples/lv_ex_simple/imgbtn/lv_ex_imgbtn_1.c
+    .. literalinclude:: imgbtn/lv_ex_imgbtn_1.c
       :language: c
 
 MicroPython

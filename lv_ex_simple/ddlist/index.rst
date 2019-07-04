@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: /lv_examples/lv_ex_simple/ddlist/lv_ex_ddlist_1.*
+.. image:: ddlist/lv_ex_ddlist_1.*
   :alt: Simple Drop down list example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: /lv_examples/lv_ex_simple/ddlist/lv_ex_ddlist_1.c
+    .. literalinclude:: ddlist/lv_ex_ddlist_1.c
       :language: c
 
 MicroPython

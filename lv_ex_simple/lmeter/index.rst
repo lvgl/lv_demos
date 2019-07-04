@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: /lv_examples/lv_ex_simple/lmeter/lv_ex_lmeter_1.*
+.. image:: lmeter/lv_ex_lmeter_1.*
   :alt: Line meter example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: /lv_examples/lv_ex_simple/lmeter/lv_ex_lmeter_1.c
+    .. literalinclude:: lmeter/lv_ex_lmeter_1.c
       :language: c
 
 MicroPython

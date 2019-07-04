@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: /lv_examples/lv_ex_simple/ta/lv_ex_ta_1.*
+.. image:: ta/lv_ex_ta_1.*
   :alt: Text area example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: /lv_examples/lv_ex_simple/ta/lv_ex_ta_1.c
+    .. literalinclude:: ta/lv_ex_ta_1.c
       :language: c
 
 MicroPython

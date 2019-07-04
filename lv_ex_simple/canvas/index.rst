@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: /lv_examples/lv_ex_simple/canvas/lv_ex_canvas_1.*
+.. image:: canvas/lv_ex_canvas_1.*
   :alt: Simple Canvas example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: /lv_examples/lv_ex_simple/canvas/lv_ex_canvas_1.c
+    .. literalinclude:: canvas/lv_ex_canvas_1.c
       :language: c
 
 MicroPython

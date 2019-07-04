@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: /lv_examples/lv_ex_simple/chart/lv_ex_chart_1.png
+.. image:: chart/lv_ex_chart_1.png
   :alt: Simple Chart example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: /lv_examples/lv_ex_simple/chart/lv_ex_chart_1.c
+    .. literalinclude:: chart/lv_ex_chart_1.c
       :language: c
 
 MicroPython

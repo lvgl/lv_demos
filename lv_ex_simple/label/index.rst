@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: /lv_examples/lv_ex_simple/label/lv_ex_label_1.*
+.. image:: label/lv_ex_label_1.*
   :alt: Label example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: /lv_examples/lv_ex_simple/label/lv_ex_label_1.c
+    .. literalinclude:: label/lv_ex_label_1.c
       :language: c
 
 MicroPython

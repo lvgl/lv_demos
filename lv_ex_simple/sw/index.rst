@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: /lv_examples/lv_ex_simple/sw/lv_ex_sw_1.*
+.. image:: sw/lv_ex_sw_1.*
   :alt: Switch example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: /lv_examples/lv_ex_simple/sw/lv_ex_sw_1.c
+    .. literalinclude:: sw/lv_ex_sw_1.c
       :language: c
 
 MicroPython

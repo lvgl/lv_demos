@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: /lv_examples/lv_ex_simple/cb/lv_ex_cb_1.*
+.. image:: cb/lv_ex_cb_1.*
   :alt: Simple Chekbox example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: /lv_examples/lv_ex_simple/cb/lv_ex_cb_1.c
+    .. literalinclude:: cb/lv_ex_cb_1.c
       :language: c
 
 MicroPython

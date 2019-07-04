@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: /lv_examples/lv_ex_simple/slider/lv_ex_slider_1.*
+.. image:: slider/lv_ex_slider_1.*
   :alt: Slider example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: /lv_examples/lv_ex_simple/slider/lv_ex_slider_1.c
+    .. literalinclude:: slider/lv_ex_slider_1.c
       :language: c
 
 MicroPython
