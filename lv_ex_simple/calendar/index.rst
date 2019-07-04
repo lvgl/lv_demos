@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: calendar/lv_ex_calendar_1.*
+.. image:: /examples/calendar/lv_ex_calendar_1.*
   :alt: Simple Calendar example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: calendar/lv_ex_calendar_1.c
+    .. literalinclude:: /examples/calendar/lv_ex_calendar_1.c
       :language: c
 
 MicroPython

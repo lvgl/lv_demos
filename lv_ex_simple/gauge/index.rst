@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: gauge/lv_ex_gauge_1.png
+.. image:: /examples/gauge/lv_ex_gauge_1.png
   :alt: Simple Gauge example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: gauge/lv_ex_gauge_1.c
+    .. literalinclude:: /examples/gauge/lv_ex_gauge_1.c
       :language: c
 
 MicroPython

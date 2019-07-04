@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: win/lv_ex_win_1.*
+.. image:: /examples/win/lv_ex_win_1.*
   :alt: Window example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: win/lv_ex_win_1.c
+    .. literalinclude:: /examples/win/lv_ex_win_1.c
       :language: c
 
 MicroPython

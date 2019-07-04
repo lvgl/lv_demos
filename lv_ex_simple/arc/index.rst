@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: arc/lv_ex_arc_1.png
+.. image:: /examples/arc/lv_ex_arc_1.png
   :alt: Arc in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: arc/lv_ex_arc_1.c
+    .. literalinclude:: /examples/arc/lv_ex_arc_1.c
       :language: c
 
 MicroPython

@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: kb/lv_ex_kb_1.*
+.. image:: /examples/kb/lv_ex_kb_1.*
   :alt: Keyboard example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: kb/lv_ex_kb_1.c
+    .. literalinclude:: /examples/kb/lv_ex_kb_1.c
       :language: c
 
 MicroPython

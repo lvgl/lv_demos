@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: line/lv_ex_line_1.png
+.. image:: /examples/line/lv_ex_line_1.png
   :alt: Line example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: line/lv_ex_line_1.c
+    .. literalinclude:: /examples/line/lv_ex_line_1.c
       :language: c
 
 MicroPython

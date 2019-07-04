@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: tileview/lv_ex_tileview_1.*
+.. image:: /examples/tileview/lv_ex_tileview_1.*
   :alt: Tileview example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: tileview/lv_ex_tileview_1.c
+    .. literalinclude:: /examples/tileview/lv_ex_tileview_1.c
       :language: c
 
 MicroPython

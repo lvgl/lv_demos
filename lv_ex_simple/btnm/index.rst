@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: btnm/lv_ex_btnm_1.*
+.. image:: /examples/btnm/lv_ex_btnm_1.*
   :alt: Simple Button matrix example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: btnm/lv_ex_btnm_1.c
+    .. literalinclude:: /examples/btnm/lv_ex_btnm_1.c
       :language: c
 
 MicroPython

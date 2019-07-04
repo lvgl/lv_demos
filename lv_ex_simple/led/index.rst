@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: led/lv_ex_led_1.png
+.. image:: /examples/led/lv_ex_led_1.png
   :alt: LED example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: led/lv_ex_led_1.c
+    .. literalinclude:: /examples/led/lv_ex_led_1.c
       :language: c
 
 MicroPython

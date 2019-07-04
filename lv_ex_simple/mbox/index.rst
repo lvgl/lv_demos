@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: mbox/lv_ex_mbox_1.*
+.. image:: /examples/mbox/lv_ex_mbox_1.*
   :alt: Message box example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: mbox/lv_ex_mbox_1.c
+    .. literalinclude:: /examples/mbox/lv_ex_mbox_1.c
       :language: c
 
 MicroPython

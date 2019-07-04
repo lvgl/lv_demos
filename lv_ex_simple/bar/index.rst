@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: bar/bar_1.*
+.. image:: /examples/bar/lv_ex_bar_1.*
   :alt: Bar example in LittlevGL
 
 .. container:: toggle
@@ -10,13 +10,13 @@ C
     
       code
 
-    .. literalinclude:: bar/bar_1.c
+    .. literalinclude:: /examples/bar/lv_ex_bar_1.c
       :language: c
 
 MicroPython
 ^^^^^^^^^^^
 
-.. image:: bar/bar_1.*
+.. image:: /examples/bar/lv_ex_bar_1.*
   :alt: Bar example in LittlevGL with MicroPython
 
 .. container:: toggle
@@ -25,6 +25,6 @@ MicroPython
     
       code
 
-    .. literalinclude:: bar/bar_1.py
+    .. literalinclude:: /examples/bar/lv_ex_bar_1.py
       :language: python
 

@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: spinbox/lv_ex_spinbox_1.*
+.. image:: /examples/spinbox/lv_ex_spinbox_1.*
   :alt: Spinbox example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: spinbox/lv_ex_spinbox_1.c
+    .. literalinclude:: /examples/spinbox/lv_ex_spinbox_1.c
       :language: c
 
 MicroPython

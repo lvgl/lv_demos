@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: roller/lv_ex_roller_1.*
+.. image:: /examples/roller/lv_ex_roller_1.*
   :alt: Roller example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: roller/lv_ex_roller_1.c
+    .. literalinclude:: /examples/roller/lv_ex_roller_1.c
       :language: c
 
 MicroPython
