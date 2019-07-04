@@ -207,9 +207,9 @@ static void refr_monitor(lv_disp_drv_t * disp_drv, uint32_t time_ms, uint32_t px
     lv_obj_invalidate(lv_disp_get_scr_act(disp));
 
     if(refr_cnt >= TEST_CYCLE_NUM) {
-        float time_avg = (float)time_sum / (float)TEST_CYCLE_NUM;
+        int time_avg = (int)time_sum / (int)TEST_CYCLE_NUM;
         char buf[256];
-        sprintf(buf, "Screen load: %0.1f ms\nAverage of %d", time_avg, TEST_CYCLE_NUM);
+        sprintf(buf, "Screen load: %d ms\nAverage of %d", time_avg, TEST_CYCLE_NUM);
         lv_label_set_text(result_label, buf);
         disp_drv->monitor_cb = NULL;
     } else {
