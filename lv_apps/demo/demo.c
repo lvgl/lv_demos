@@ -31,7 +31,7 @@ static void chart_create(lv_obj_t * parent);
 static void slider_event_handler(lv_obj_t * slider, lv_event_t event);
 static void list_btn_event_handler(lv_obj_t * slider, lv_event_t event);
 #if LV_DEMO_SLIDE_SHOW
-static void tab_switcher(void * tv);
+static void tab_switcher(lv_task_t * task);
 #endif
 
 /**********************
@@ -437,10 +437,10 @@ static void list_btn_event_handler(lv_obj_t * btn, lv_event_t event)
 /**
  * Called periodically (lv_task) to switch to the next tab
  */
-static void tab_switcher(void * tv)
+static void tab_switcher(lv_task_t * task)
 {
     static uint8_t tab = 0;
-
+    lv_obj_t * tv = task->user_data;
     tab++;
     if(tab >= 3) tab = 0;
     lv_tabview_set_tab_act(tv, tab, true);
