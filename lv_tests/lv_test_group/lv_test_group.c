@@ -60,7 +60,7 @@ static lv_obj_t * win;
 /**
  * Create base groups to test their functionalities
  */
-void lv_test_group_1(void)
+lv_group_t *lv_test_group_1(void)
 {
     lv_coord_t hres = lv_disp_get_hor_res(NULL);
     lv_coord_t vres = lv_disp_get_ver_res(NULL);
@@ -232,6 +232,7 @@ void lv_test_group_1(void)
 
     obj = lv_label_create(t2, NULL);
     lv_label_set_text(obj, "This is the content\nof the second tab");
+    return g;
 }
 
 

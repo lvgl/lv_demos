@@ -38,7 +38,7 @@ extern "C" {
 /**
  * Create base groups to test their functionalities
  */
-void lv_test_group_1(void);
+lv_group_t *lv_test_group_1(void);
 
 /**********************
  *      MACROS
