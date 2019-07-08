@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: /lv_examples/lv_ex_preload/lv_preload_1.*
+.. image:: /lv_examples/lv_ex_preload/lv_ex_preload_1.*
   :alt: Preloader example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: /lv_examples/lv_ex_preload/lv_preload_1.c
+    .. literalinclude:: /lv_examples/lv_ex_preload/lv_ex_preload_1.c
       :language: c
 
 MicroPython

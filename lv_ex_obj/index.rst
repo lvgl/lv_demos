@@ -1,7 +1,7 @@
 C
 ^
 
-.. image:: /lv_examples/lv_ex_obj/lv_obj_1.*
+.. image:: /lv_examples/lv_ex_obj/lv_ex_obj_1.*
   :alt: Simeple Base object example in LittlevGL
 
 .. container:: toggle
@@ -10,7 +10,7 @@ C
     
       code
 
-    .. literalinclude:: /lv_examples/lv_ex_obj/lv_obj_1.c
+    .. literalinclude:: /lv_examples/lv_ex_obj/lv_ex_obj_1.c
       :language: c
 
 MicroPython
