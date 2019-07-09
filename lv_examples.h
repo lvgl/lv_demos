@@ -69,6 +69,7 @@ void lv_ex_page_1(void);
 void lv_ex_preload_1(void);
 void lv_ex_roller_1(void);
 void lv_ex_slider_1(void);
+void lv_ex_slider_2(void);
 void lv_ex_spinbox_1(void);
 void lv_ex_sw_1(void);
 void lv_ex_ta_1(void);
