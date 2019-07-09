@@ -17,6 +17,7 @@ include $(LVGL_DIR)/lv_examples/src/lv_ex_line/lv_ex_line_1.c
 include $(LVGL_DIR)/lv_examples/src/lv_ex_list/lv_ex_list_1.c
 include $(LVGL_DIR)/lv_examples/src/lv_ex_lmeter/lv_ex_lmeter_1.c
 include $(LVGL_DIR)/lv_examples/src/lv_ex_mbox/lv_ex_mbox_1.c
+include $(LVGL_DIR)/lv_examples/src/lv_ex_mbox/lv_ex_mbox_2.c
 include $(LVGL_DIR)/lv_examples/src/lv_ex_page/lv_ex_page_1.c
 include $(LVGL_DIR)/lv_examples/src/lv_ex_preload/lv_ex_preload_1.c
 include $(LVGL_DIR)/lv_examples/src/lv_ex_roller/lv_ex_roller_1.c

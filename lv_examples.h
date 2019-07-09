@@ -62,6 +62,7 @@ void lv_ex_line_1(void);
 void lv_ex_list_1(void);
 void lv_ex_lmeter_1(void);
 void lv_ex_mbox_1(void);
+void lv_ex_mbox_2(void);
 void lv_ex_misc_1(void);
 void lv_ex_obj_1(void);
 void lv_ex_page_1(void);
