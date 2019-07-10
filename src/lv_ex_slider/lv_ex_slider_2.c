@@ -54,9 +54,10 @@ void lv_ex_slider_2(void)
     lv_obj_align(slider_label, slider, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
     
     /* Create an informative label */
-    
     lv_obj_t * info = lv_label_create(lv_scr_act(), NULL);
-    lv_label_set_text(info, "Welcome to the slider+label demo!\nMove the slider and see that the label updates to match it.");
+    lv_label_set_text(info, "Welcome to the slider+label demo!\n"
+                            "Move the slider and see that the label\n"
+                            "updates to match it.");
     lv_obj_align(info, NULL, LV_ALIGN_IN_TOP_LEFT, 10, 10);
 }
 
