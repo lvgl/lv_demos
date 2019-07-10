@@ -26,7 +26,7 @@ static lv_obj_t *mbox, *info;
 static const char welcome_info[] = "Welcome to the modal message box demo!\n"
                                  "Press the button to display the message box.";
 
-static const char in_msg_info[] = "Notice that you cannot touch the message box button again "
+static const char in_msg_info[] = "Notice that you cannot touch the button again "
 				  "while the message box is open.";
 
 /**********************
