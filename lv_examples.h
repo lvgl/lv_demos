@@ -54,6 +54,7 @@ void lv_ex_cont_1(void);
 void lv_ex_ddlist_1(void);
 void lv_ex_gauge_1(void);
 void lv_ex_img_1(void);
+void lv_ex_img_2(void);
 void lv_ex_imgbtn_1(void);
 void lv_ex_kb_1(void);
 void lv_ex_label_1(void);
