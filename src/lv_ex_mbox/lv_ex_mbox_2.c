@@ -24,10 +24,10 @@ static void btn_event_cb(lv_obj_t *btn, lv_event_t evt);
 static lv_obj_t *mbox, *info;
 
 static const char welcome_info[] = "Welcome to the modal message box demo!\n"
-                                 "Press the button to display the message box.";
+                                   "Press the button to display a message box.";
 
-static const char in_msg_info[] = "Notice that you cannot touch the message box button again "
-				  "while the message box is open.";
+static const char in_msg_info[] = "Notice that you cannot touch "
+                                  "the button again while the message box is open.";
 
 /**********************
  *   GLOBAL FUNCTIONS
@@ -49,8 +49,8 @@ void lv_ex_mbox_2(void)
 	info = lv_label_create(lv_scr_act(), NULL);
 	lv_label_set_text(info, welcome_info);
 	lv_label_set_long_mode(info, LV_LABEL_LONG_BREAK); /* Make sure text will wrap */
-	lv_obj_set_width(label, LV_HOR_RES);
-	lv_obj_align(info, NULL, LV_ALIGN_IN_BOTTOM_LEFT, 20, -20);
+	lv_obj_set_width(info, LV_HOR_RES - 10);
+	lv_obj_align(info, NULL, LV_ALIGN_IN_BOTTOM_LEFT, 5, -5);
 
 }
 
@@ -101,10 +101,12 @@ static void btn_event_cb(lv_obj_t *btn, lv_event_t evt)
 		/* Fade the message box in with an animation */
 		lv_anim_t a;
 		lv_anim_init(&a);
-		lv_anim_set_time(&a, 1000, 0);
+		lv_anim_set_time(&a, 500, 0);
 		lv_anim_set_values(&a, LV_OPA_TRANSP, LV_OPA_COVER);
 		lv_anim_set_exec_cb(&a, obj, (lv_anim_exec_xcb_t)lv_obj_set_opa_scale);
 		lv_anim_create(&a);
+
 		lv_label_set_text(info, in_msg_info);
+	    lv_obj_align(info, NULL, LV_ALIGN_IN_BOTTOM_LEFT, 5, -5);
 	}
 }
