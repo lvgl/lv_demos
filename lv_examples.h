@@ -75,6 +75,7 @@ void lv_ex_slider_2(void);
 void lv_ex_spinbox_1(void);
 void lv_ex_sw_1(void);
 void lv_ex_ta_1(void);
+void lv_ex_ta_2(void);
 void lv_ex_table_1(void);
 void lv_ex_tabview_1(void);
 void lv_ex_tileview_1(void);
