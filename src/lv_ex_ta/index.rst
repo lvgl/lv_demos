@@ -12,6 +12,19 @@ C
 
     .. literalinclude:: /lv_examples/src/lv_ex_ta/lv_ex_ta_1.c
       :language: c
+      
+      
+.. image:: /lv_examples/src/lv_ex_ta/lv_ex_ta_2.*
+  :alt: Form with password field in LittlevGL
+
+.. container:: toggle
+
+    .. container:: header
+    
+      code
+
+    .. literalinclude:: /lv_examples/src/lv_ex_ta/lv_ex_ta_2.c
+      :language: c
 
 MicroPython
 ^^^^^^^^^^^
