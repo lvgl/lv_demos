@@ -20,7 +20,7 @@ extern "C" {
 #include "../../../lvgl/lvgl.h"
 #include "../../../lv_ex_conf.h"
 #endif
-#if LV_USE_DEMO
+#if LV_USE_SYSMON
 
 /*********************
  *      DEFINES
