@@ -50,7 +50,7 @@ void lv_ex_slider_2(void)
     /* Create a label below the slider */
     slider_label = lv_label_create(lv_scr_act(), NULL);
     lv_label_set_text(slider_label, "0");
-    lv_label_set_align(slider_label, LV_LABEL_ALIGN_CENTER);
+    lv_obj_set_auto_realign(slider_label, true);
     lv_obj_align(slider_label, slider, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
     
     /* Create an informative label */
@@ -71,6 +71,5 @@ static void slider_event_cb(lv_obj_t * slider, lv_event_t event)
         static char buf[4]; /* max 3 bytes for number plus 1 null terminating byte */
         snprintf(buf, 4, "%u", lv_slider_get_value(slider));
         lv_label_set_text(slider_label, buf);
-        lv_obj_align(slider_label, slider, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
     }
 }
