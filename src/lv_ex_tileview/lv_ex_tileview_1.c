@@ -42,6 +42,15 @@ void lv_ex_tileview_1(void)
     list_btn = lv_list_add_btn(list, NULL, "Five");
     lv_tileview_add_element(tileview, list_btn);
 
+    list_btn = lv_list_add_btn(list, NULL, "Six");
+    lv_tileview_add_element(tileview, list_btn);
+
+    list_btn = lv_list_add_btn(list, NULL, "Seven");
+    lv_tileview_add_element(tileview, list_btn);
+
+    list_btn = lv_list_add_btn(list, NULL, "Eight");
+    lv_tileview_add_element(tileview, list_btn);
+
     /*Tile3: a button*/
     lv_obj_t * tile3 = lv_obj_create(tileview, tile1);
     lv_obj_set_pos(tile3, LV_HOR_RES, LV_VER_RES);
