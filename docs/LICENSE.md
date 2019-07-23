@@ -1,3 +1,9 @@
+```eval_rst
+:github_url: https://github.com/littlevgl/docs/blob/master/en/lv_examples/docs/LICENSE.md
+```
+```eval_rst
+:github_url: https://github.com/littlevgl/docs/blob/master/lv_examples/docs/LICENSE.md
+```
 MIT License
 
 Copyright (c) 2016 Gábor Kiss-Vámosi

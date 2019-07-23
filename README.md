@@ -1,3 +1,9 @@
+```eval_rst
+:github_url: https://github.com/littlevgl/docs/blob/master/en/lv_examples/README.md
+```
+```eval_rst
+:github_url: https://github.com/littlevgl/docs/blob/master/lv_examples/README.md
+```
 # Examples for Littlev Graphics Library
 
 LittlevGL is a free and open-source graphics library providing everything you need to create a Graphical User Interface (GUI) on embedded systems with easy-to-use graphical elements, beautiful visual effects and low memory footprint.

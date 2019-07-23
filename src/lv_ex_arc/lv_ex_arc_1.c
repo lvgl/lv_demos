@@ -3,7 +3,7 @@
 void lv_ex_arc_1(void) 
 {
   /*Create style for the Arcs*/
-  lv_style_t style;
+  static lv_style_t style;
   lv_style_copy(&style, &lv_style_plain);
   style.line.color = LV_COLOR_BLUE;           /*Arc color*/
   style.line.width = 8;                       /*Arc width*/
