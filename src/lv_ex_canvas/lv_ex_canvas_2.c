@@ -4,7 +4,7 @@
 #define CANVAS_HEIGHT  50
 
 /**
- * Create a transparent canvas with Chrome keying with indexed color format (palette).
+ * Create a transparent canvas with Chroma keying and indexed color format (palette).
  */
 void lv_ex_canvas_2(void)
 {
