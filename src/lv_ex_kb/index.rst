@@ -1,6 +1,9 @@
 C
 ^
 
+Keyboard with text area 
+"""""""""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_kb/lv_ex_kb_1.*
   :alt: Keyboard example in LittlevGL
 

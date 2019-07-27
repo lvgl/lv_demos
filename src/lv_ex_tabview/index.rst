@@ -1,8 +1,11 @@
 C
 ^
 
+Simple Tabview 
+"""""""""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_tabview/lv_ex_tabview_1.*
-  :alt: Bar example in LittlevGL
+  :alt: Tabview example in LittlevGL
 
 .. container:: toggle
 

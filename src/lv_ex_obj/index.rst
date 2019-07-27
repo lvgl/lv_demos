@@ -1,6 +1,9 @@
 C
 ^
 
+Base obejcts with custom styles 
+""""""""""""""""""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_obj/lv_ex_obj_1.*
   :alt: Simeple Base object example in LittlevGL
 

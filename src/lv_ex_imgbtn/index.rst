@@ -1,6 +1,9 @@
 C
 ^
 
+Simple Image button 
+"""""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_imgbtn/lv_ex_imgbtn_1.*
   :alt: Image button example in LittlevGL
 

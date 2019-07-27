@@ -1,6 +1,9 @@
 C
 ^
 
+Preloader with custom style 
+""""""""""""""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_preload/lv_ex_preload_1.*
   :alt: Preloader example in LittlevGL
 

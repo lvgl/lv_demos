@@ -1,6 +1,9 @@
 C
 ^
 
+Slider with custo mstyle
+"""""""""""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_slider/lv_ex_slider_1.*
   :alt: Slider example in LittlevGL
 
@@ -14,8 +17,11 @@ C
       :language: c
 
 
+Set value with slider 
+"""""""""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_slider/lv_ex_slider_2.*
-  :alt: Slider example in LittlevGL
+  :alt: Set value with slider in LittlevGL
 
 .. container:: toggle
 

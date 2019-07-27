@@ -1,6 +1,9 @@
 C
 ^
 
+Simple Switch 
+"""""""""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_sw/lv_ex_sw_1.*
   :alt: Switch example in LittlevGL
 

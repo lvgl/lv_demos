@@ -1,6 +1,9 @@
 C
 ^
 
+Drawing on the calvas and rotate 
+""""""""""""""""""""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_canvas/lv_ex_canvas_1.*
   :alt: Simple Canvas example in LittlevGL
 
@@ -12,6 +15,9 @@ C
 
     .. literalinclude:: /lv_examples/src/lv_ex_canvas/lv_ex_canvas_1.c
       :language: c
+
+Transparent canvas with chrome keying
+""""""""""""""""""""""""""""""""""""""
 
 .. image:: /lv_examples/src/lv_ex_canvas/lv_ex_canvas_2.*
   :alt: Handle transparency on a canvas with indexed color format

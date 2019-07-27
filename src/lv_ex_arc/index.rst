@@ -1,6 +1,9 @@
 C
 ^
 
+Simple Arc 
+""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_arc/lv_ex_arc_1.png
   :alt: Arc in LittlevGL
 

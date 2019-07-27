@@ -1,6 +1,9 @@
 C
 ^
 
+Simple window 
+"""""""""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_win/lv_ex_win_1.*
   :alt: Window example in LittlevGL
 

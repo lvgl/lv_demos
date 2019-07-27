@@ -1,6 +1,9 @@
 C
 ^
 
+Simple Line 
+""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_line/lv_ex_line_1.png
   :alt: Line example in LittlevGL
 

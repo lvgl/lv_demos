@@ -1,6 +1,9 @@
 C
 ^
 
+Simple Text area
+"""""""""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_ta/lv_ex_ta_1.*
   :alt: Text area example in LittlevGL
 
@@ -14,6 +17,9 @@ C
       :language: c
       
       
+Text are with password field 
+"""""""""""""""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_ta/lv_ex_ta_2.*
   :alt: Form with password field in LittlevGL
 

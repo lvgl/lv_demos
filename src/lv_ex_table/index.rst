@@ -1,8 +1,11 @@
 C
 ^
 
+Simple table 
+"""""""""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_table/lv_ex_table_1.*
-  :alt: Bar example in LittlevGL
+  :alt: Table example in LittlevGL
 
 .. container:: toggle
 

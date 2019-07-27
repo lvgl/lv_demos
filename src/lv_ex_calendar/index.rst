@@ -1,6 +1,8 @@
 C
 ^
 
+Calendar with day select
+"""""""""""""""""""""""""
 .. image:: /lv_examples/src/lv_ex_calendar/lv_ex_calendar_1.*
   :alt: Simple Calendar example in LittlevGL
 

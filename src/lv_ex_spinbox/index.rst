@@ -1,6 +1,9 @@
 C
 ^
 
+Simple Spinbox 
+"""""""""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_spinbox/lv_ex_spinbox_1.*
   :alt: Spinbox example in LittlevGL
 

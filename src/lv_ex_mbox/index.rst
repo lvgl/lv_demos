@@ -1,6 +1,9 @@
 C
 ^
 
+Simple Message box 
+"""""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_mbox/lv_ex_mbox_1.*
   :alt: Message box example in LittlevGL
 
@@ -14,6 +17,9 @@ C
       :language: c
 
 
+
+Modal 
+""""""""""""""""
 
 .. image:: /lv_examples/src/lv_ex_mbox/lv_ex_mbox_2.*
   :alt: Modal Message box example in LittlevGL

@@ -1,6 +1,9 @@
 C
 ^
 
+Simple Line meter
+""""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_lmeter/lv_ex_lmeter_1.*
   :alt: Line meter example in LittlevGL
 

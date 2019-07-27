@@ -1,6 +1,9 @@
 C
 ^
 
+Simple Roller 
+""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_roller/lv_ex_roller_1.*
   :alt: Roller example in LittlevGL
 

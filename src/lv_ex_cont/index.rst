@@ -1,6 +1,9 @@
 C
 ^
 
+Container with auto-fit
+"""""""""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_cont/lv_ex_cont_1.*
   :alt: Container example in LittlevGL
 

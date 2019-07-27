@@ -1,6 +1,9 @@
 C
 ^
 
+Label recoloring and scrolling 
+"""""""""""""""""""""""""""""""
+
 .. image:: /lv_examples/src/lv_ex_label/lv_ex_label_1.*
   :alt: Label example in LittlevGL
 
@@ -12,6 +15,10 @@ C
 
     .. literalinclude:: /lv_examples/src/lv_ex_label/lv_ex_label_1.c
       :language: c
+
+
+Text shadow 
+""""""""""""
 
 .. image:: /lv_examples/src/lv_ex_label/lv_ex_label_2.*
   :alt: Label with shadow in LittlevGL
