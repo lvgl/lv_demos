@@ -1,7 +1,7 @@
 C
 ^
 
-Drawing on the calvas and rotate 
+Drawing on the Canvas and rotate 
 """"""""""""""""""""""""""""""""""
 
 .. image:: /lv_examples/src/lv_ex_canvas/lv_ex_canvas_1.*
@@ -16,7 +16,7 @@ Drawing on the calvas and rotate
     .. literalinclude:: /lv_examples/src/lv_ex_canvas/lv_ex_canvas_1.c
       :language: c
 
-Transparent canvas with chrome keying
+Transparent Canvas with chroma keying
 """"""""""""""""""""""""""""""""""""""
 
 .. image:: /lv_examples/src/lv_ex_canvas/lv_ex_canvas_2.*
