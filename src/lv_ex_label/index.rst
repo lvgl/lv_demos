@@ -32,6 +32,22 @@ Text shadow
     .. literalinclude:: /lv_examples/src/lv_ex_label/lv_ex_label_2.c
       :language: c
 
+Align labels 
+""""""""""""
+
+.. image:: /lv_examples/src/lv_ex_label/lv_ex_label_32.*
+  :alt: Align labels in LittlevGL
+
+.. container:: toggle
+
+    .. container:: header
+    
+      code
+
+    .. literalinclude:: /lv_examples/src/lv_ex_label/lv_ex_label_3.c
+      :language: c
+
+
 MicroPython
 ^^^^^^^^^^^
 

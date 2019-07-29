@@ -60,6 +60,7 @@ void lv_ex_imgbtn_1(void);
 void lv_ex_kb_1(void);
 void lv_ex_label_1(void);
 void lv_ex_label_2(void);
+void lv_ex_label_3(void);
 void lv_ex_led_1(void);
 void lv_ex_line_1(void);
 void lv_ex_list_1(void);

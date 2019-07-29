@@ -1,37 +1,4 @@
-/**
- * @file lv_ex_templ.c
- *
- */
-
-/*********************
- *      INCLUDES
- *********************/
-
 #include "lvgl/lvgl.h"
-
-/*********************
- *      DEFINES
- *********************/
-
-/**********************
- *      TYPEDEFS
- **********************/
-
-/**********************
- *  STATIC PROTOTYPES
- **********************/
-
-/**********************
- *  STATIC VARIABLES
- **********************/
-
-/**********************
- *      MACROS
- **********************/
-
-/**********************
- *   GLOBAL FUNCTIONS
- **********************/
 
 void lv_ex_label_2(void)
 {
@@ -51,7 +18,6 @@ void lv_ex_label_2(void)
                                   "It even works with\n\n"
                                   "newlines     and spaces.");
 
-    
     /*Set the same text for the shadow label*/
     lv_label_set_text(shadow_label, lv_label_get_text(main_label));
 
@@ -61,7 +27,3 @@ void lv_ex_label_2(void)
     /* Shift the second label down and to the right by 1 pixel */
     lv_obj_align(shadow_label, main_label, LV_ALIGN_IN_TOP_LEFT, 1, 1);
 }
-
-/**********************
- *   STATIC FUNCTIONS
- **********************/
