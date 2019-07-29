@@ -43,6 +43,7 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 void lv_ex_arc_1(void);
+void lv_ex_arc_2(void);
 void lv_ex_bar_1(void);
 void lv_ex_btn_1(void);
 void lv_ex_btnm_1(void);
