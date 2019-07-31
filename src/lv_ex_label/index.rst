@@ -35,7 +35,7 @@ Text shadow
 Align labels 
 """"""""""""
 
-.. image:: /lv_examples/src/lv_ex_label/lv_ex_label_32.*
+.. image:: /lv_examples/src/lv_ex_label/lv_ex_label_3.*
   :alt: Align labels in LittlevGL
 
 .. container:: toggle
