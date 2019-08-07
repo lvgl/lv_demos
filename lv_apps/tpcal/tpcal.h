@@ -22,7 +22,7 @@ extern "C" {
 #endif
 
 
-#if LV_USE_DEMO
+#if LV_USE_TPCAL
 
 /*********************
  *      DEFINES
