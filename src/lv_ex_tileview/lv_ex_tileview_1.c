@@ -24,7 +24,7 @@ void lv_ex_tileview_1(void)
     lv_obj_set_pos(list, 0, LV_VER_RES);
     lv_list_set_scroll_propagation(list, true);
     lv_list_set_sb_mode(list, LV_SB_MODE_OFF);
-    lv_tileview_add_element(list, list);
+    lv_tileview_add_element(tileview, list);
 
     lv_obj_t * list_btn;
     list_btn = lv_list_add_btn(list, NULL, "One");
