@@ -226,7 +226,7 @@ static lv_fs_res_t pcfs_open(lv_fs_drv_t * drv, void * file_p, const char * fn, 
     sprintf(buf, "./%s", fn);
 
     pc_file_t f = fopen(buf, flags);
-    if((long int)f <= 0) return LV_FS_RES_UNKNOWN;
+    if(f == NULL) return LV_FS_RES_UNKNOWN;
     else {
         fseek(f, 0, SEEK_SET);
 
