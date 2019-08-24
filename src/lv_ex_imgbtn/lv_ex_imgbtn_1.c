@@ -2,7 +2,7 @@
 
 void lv_ex_imgbtn_1(void)
 {
-    lv_style_t style_pr;
+    static lv_style_t style_pr;
     lv_style_copy(&style_pr, &lv_style_plain);
     style_pr.image.color = LV_COLOR_BLACK;
     style_pr.image.intense = LV_OPA_50;
