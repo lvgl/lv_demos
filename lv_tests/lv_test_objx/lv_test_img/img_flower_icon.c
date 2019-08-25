@@ -182,7 +182,7 @@ lv_img_dsc_t img_flower_icon = {
     .header.w = 40,
     .header.h = 40,
     .data_size = 1600 * LV_IMG_PX_SIZE_ALPHA_BYTE,
-    .header.cf = LV_IMG_CF_TRUE_COLOR_ALPHA,
+    .header.cf = LV_IMG_CF_TRUE_COLOR_CHROMA_KEYED,
     .data = img_flower_icon_map,
 };
 
