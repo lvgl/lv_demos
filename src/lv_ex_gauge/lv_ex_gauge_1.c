@@ -15,7 +15,10 @@ void lv_ex_gauge_1(void)
     style.line.color = LV_COLOR_RED;                  /*Line color after the critical value*/
 
     /*Describe the color for the needles*/
-    static lv_color_t needle_colors[] = {LV_COLOR_BLUE, LV_COLOR_ORANGE, LV_COLOR_PURPLE};
+    static lv_color_t needle_colors[3];
+    needle_colors[0] = LV_COLOR_BLUE;
+    needle_colors[1] = LV_COLOR_ORANGE;
+    needle_colors[2] = LV_COLOR_PURPLE;
 
     /*Create a gauge*/
     lv_obj_t * gauge1 = lv_gauge_create(lv_scr_act(), NULL);
