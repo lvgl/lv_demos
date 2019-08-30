@@ -27,6 +27,7 @@ static void content_create(void);
 static void theme_select_event_handler(lv_obj_t * roller, lv_event_t event);
 static void hue_select_event_cb(lv_obj_t * roller, lv_event_t event);
 static void init_all_themes(uint16_t hue);
+static void bar_set_value(lv_obj_t * bar, int16_t value);
 
 /**********************
  *  STATIC VARIABLES
@@ -210,7 +211,7 @@ static void content_create(void)
     a.var = bar;
     a.start = 0;
     a.end = 100;
-    a.exec_cb = (lv_anim_exec_xcb_t)lv_bar_set_value;
+    a.exec_cb = (lv_anim_exec_xcb_t)bar_set_value;
     a.path_cb = lv_anim_path_linear;
     a.ready_cb = NULL;
     a.act_time = 0;
@@ -356,6 +357,11 @@ static void init_all_themes(uint16_t hue)
 #if LV_USE_THEME_DEFAULT
     themes[i++] = lv_theme_default_init(hue, NULL);
 #endif
+}
+
+static void bar_set_value(lv_obj_t * bar, int16_t value)
+{
+    lv_bar_set_value(bar, value, LV_ANIM_OFF);
 }
 
 #endif /*LV_USE_TESTS*/
