@@ -49,8 +49,6 @@
 #include "lv_tutorial_responsive.h"
 #if  LV_USE_TUTORIALS
 
-#include "lvgl/lvgl.h"
-
 /*********************
  *      DEFINES
  *********************/
