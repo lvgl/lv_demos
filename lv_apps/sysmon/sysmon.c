@@ -97,6 +97,7 @@ void sysmon_create(void)
  *   STATIC FUNCTIONS
  **********************/
 
+#define SYSMON_STRING_BUFFER_SIZE 256
 /**
  * Called periodically to monitor the CPU and memory usage.
  * @param param unused
@@ -124,15 +125,16 @@ static void sysmon_task(lv_task_t * param)
     lv_chart_set_next(chart, mem_ser, mem_used_pct);
 
     /*Refresh the and windows*/
-    char buf_long[256];
-    sprintf(buf_long, "%s%s CPU: %d %%%s\n\n",
+    char buf_long[SYSMON_STRING_BUFFER_SIZE];
+    int len = 0;
+    len += snprintf(buf_long+len, SYSMON_STRING_BUFFER_SIZE-len, "%s%s CPU: %d %%%s\n\n",
             LV_TXT_COLOR_CMD,
             CPU_LABEL_COLOR,
             cpu_busy,
             LV_TXT_COLOR_CMD);
 
 #if LV_MEM_CUSTOM == 0
-    sprintf(buf_long, "%s"LV_TXT_COLOR_CMD"%s MEMORY: %d %%"LV_TXT_COLOR_CMD"\n"
+    len += snprintf(buf_long+len, SYSMON_STRING_BUFFER_SIZE-len, LV_TXT_COLOR_CMD"%s MEMORY: %d %%"LV_TXT_COLOR_CMD"\n"
             "Total: %d bytes\n"
             "Used: %d bytes\n"
             "Free: %d bytes\n"
@@ -144,8 +146,7 @@ static void sysmon_task(lv_task_t * param)
             (int)mem_mon.total_size - mem_mon.free_size, mem_mon.free_size, mem_mon.frag_pct);
 
 #else
-    sprintf(buf_long, "%s"LV_TXT_COLOR_CMD"%s MEMORY: N/A"LV_TXT_COLOR_CMD,
-            buf_long,
+    len += snprintf(buf_long+len, SYSMON_STRING_BUFFER_SIZE-len, LV_TXT_COLOR_CMD"%s MEMORY: N/A"LV_TXT_COLOR_CMD,
             MEM_LABEL_COLOR);
 #endif
     lv_label_set_text(info_label, buf_long);
