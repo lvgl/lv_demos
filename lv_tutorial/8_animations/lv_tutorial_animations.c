@@ -84,7 +84,9 @@ void lv_tutorial_animations(void)
     a.playback_pause = 0;
     a.repeat = 0;
     a.repeat_pause = 0;
+#if LV_USE_USER_DATA
     a.user_data = NULL;
+#endif
     lv_anim_create(&a);
 
     /*Create a button to demonstrate user defined animations*/
