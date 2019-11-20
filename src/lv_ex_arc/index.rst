@@ -34,4 +34,19 @@ Loader with Arc
 MicroPython
 ^^^^^^^^^^^
 
-No examples yet.
+Simple Arc 
+""""""""""""""""
+
+.. image:: /lv_examples/src/lv_ex_arc/lv_ex_arc_1.*
+  :alt: Arc example in LittlevGL with MicroPython
+
+.. container:: toggle
+
+    .. container:: header
+    
+      code
+
+    .. literalinclude:: /lv_examples/src/lv_ex_arc/lv_ex_arc_1.py
+      :language: python
+
+

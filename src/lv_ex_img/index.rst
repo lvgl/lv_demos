@@ -17,7 +17,7 @@ Image from variable and symbol
       :language: c
 
 
-Image reoloring 
+Image recoloring 
 """"""""""""""""
 
 .. image:: /lv_examples/src/lv_ex_img/lv_ex_img_2.*

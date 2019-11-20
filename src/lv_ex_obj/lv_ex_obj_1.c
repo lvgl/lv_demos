@@ -13,6 +13,7 @@ void lv_ex_obj_1(void)
     obj2 = lv_obj_create(lv_scr_act(), obj1);
     lv_obj_set_style(obj2, &lv_style_pretty_color);
     lv_obj_align(obj2, NULL, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_drag(obj2, true);
 
     static lv_style_t style_shadow;
     lv_style_copy(&style_shadow, &lv_style_pretty);
