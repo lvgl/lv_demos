@@ -81,3 +81,18 @@ Text shadow
 
     .. literalinclude:: /lv_examples/src/lv_ex_label/lv_ex_label_2.py
       :language: python
+
+Align labels
+""""""""""""
+
+.. image:: /lv_examples/src/lv_ex_label/lv_ex_label_3.*
+  :alt: Align labels in LittlevGL with MicroPython
+
+.. container:: toggle
+
+    .. container:: header
+
+      code
+
+    .. literalinclude:: /lv_examples/src/lv_ex_label/lv_ex_label_3.py
+      :language: python

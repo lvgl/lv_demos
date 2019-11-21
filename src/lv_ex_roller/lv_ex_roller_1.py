@@ -1,8 +1,8 @@
 def event_handler(obj, event):
     if event == lv.EVENT.VALUE_CHANGED:
-        idx = obj.get_selected()
-        option = obj.get_options().split("\n")[idx]
-        print("Selected month: %s" % option);
+        option = " "*10
+        obj.get_selected_str(option, len(option))
+        print("Selected month: %s" % option.strip())
 
 roller1 = lv.roller(lv.scr_act())
 roller1.set_options("\n".join([

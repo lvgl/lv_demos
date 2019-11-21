@@ -5,9 +5,14 @@ def kb_event_cb(event_kb, event):
     event_kb.def_event_cb(event)
 
 def ta_event_cb(ta, event):
-    if event == lv.EVENT.CLICKED:
+    if event == lv.EVENT.INSERT:
+        # get inserted value
+        ptr = lv.C_Pointer()
+        ptr.ptr_val = lv.event_get_data()
+        if ptr.str_val == "\n":
+            print("Ready")
+    elif event == lv.EVENT.CLICKED:
         # Focus on the clicked text area
-        # if kb is not None:
         kb.set_ta(ta)
 
 # Create the password box

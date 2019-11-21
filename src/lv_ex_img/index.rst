@@ -36,4 +36,17 @@ Image recoloring
 MicroPython
 ^^^^^^^^^^^
 
-No examples yet.
+Image from PNG file
+"""""""""""""""""""""""""""""""
+
+.. image:: /lv_examples/src/lv_ex_img/lv_ex_img_1.*
+  :alt: Simple Image example in LittlevGL with MicroPython
+
+.. container:: toggle
+
+    .. container:: header
+    
+      code
+
+    .. literalinclude:: /lv_examples/src/lv_ex_img/lv_ex_img_1.py
+      :language: python

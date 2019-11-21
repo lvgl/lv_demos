@@ -1,8 +1,9 @@
 def event_handler(obj, event):
     if event == lv.EVENT.VALUE_CHANGED:
-        idx = obj.get_selected()
-        option = obj.get_options().split("\n")[idx]
-        print("Option: %s" % option)
+        option = " "*10 # should be large enough to store the option
+        obj.get_selected_str(option, len(option))
+        # .strip() removes trailing spaces
+        print("Option: \"%s\"" % option.strip())
 
 # Create a drop down list
 ddlist = lv.ddlist(lv.scr_act())
