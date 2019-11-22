@@ -18,18 +18,10 @@ today.day = 23
 calendar.set_today_date(today)
 calendar.set_showed_date(today)
 
-# Highlight some days
-highlihted_days = [lv.calendar_date_t() for i in range(3)]
-highlihted_days[0].year = 2018
-highlihted_days[0].month = 10
-highlihted_days[0].day = 6
-
-highlihted_days[1].year = 2018
-highlihted_days[1].month = 10
-highlihted_days[1].day = 11
-
-highlihted_days[2].year = 2018
-highlihted_days[2].month = 11
-highlihted_days[2].day = 22
+highlihted_days = [
+    lv.calendar_date_t({'year':2018, 'month':10, 'day':6}),
+    lv.calendar_date_t({'year':2018, 'month':10, 'day':11}),
+    lv.calendar_date_t({'year':2018, 'month':11, 'day':22})
+]
 
 calendar.set_highlighted_dates(highlihted_days, len(highlihted_days))
