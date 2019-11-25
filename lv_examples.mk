@@ -10,6 +10,7 @@ include $(LVGL_DIR)/lv_examples/lv_tests/lv_test_objx/lv_test_cb/lv_test_cb.mk
 include $(LVGL_DIR)/lv_examples/lv_tests/lv_test_objx/lv_test_chart/lv_test_chart.mk
 include $(LVGL_DIR)/lv_examples/lv_tests/lv_test_objx/lv_test_canvas/lv_test_canvas.mk
 include $(LVGL_DIR)/lv_examples/lv_tests/lv_test_objx/lv_test_cont/lv_test_cont.mk
+include $(LVGL_DIR)/lv_examples/lv_tests/lv_test_objx/lv_test_cpicker/lv_test_cpicker.mk
 include $(LVGL_DIR)/lv_examples/lv_tests/lv_test_objx/lv_test_ddlist/lv_test_ddlist.mk
 include $(LVGL_DIR)/lv_examples/lv_tests/lv_test_objx/lv_test_gauge/lv_test_gauge.mk
 include $(LVGL_DIR)/lv_examples/lv_tests/lv_test_objx/lv_test_img/lv_test_img.mk
