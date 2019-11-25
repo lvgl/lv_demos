@@ -19,4 +19,17 @@ Preloader with custom style
 MicroPython
 ^^^^^^^^^^^
 
-No examples yet.
+Preloader with custom style 
+""""""""""""""""""""""""""""
+
+.. image:: /lv_examples/src/lv_ex_preload/lv_ex_preload_1.*
+  :alt: Preloader example in LittlevGL with MicroPython
+
+.. container:: toggle
+
+    .. container:: header
+
+      code
+
+    .. literalinclude:: /lv_examples/src/lv_ex_preload/lv_ex_preload_1.py
+      :language: python

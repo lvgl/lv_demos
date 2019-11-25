@@ -19,4 +19,17 @@ Simple table
 MicroPython
 ^^^^^^^^^^^
 
-No examples yet.
+Simple table
+"""""""""""""""""""""""
+
+.. image:: /lv_examples/src/lv_ex_table/lv_ex_table_1.*
+  :alt: Table example in LittlevGL with MicroPython
+
+.. container:: toggle
+
+    .. container:: header
+
+      code
+
+    .. literalinclude:: /lv_examples/src/lv_ex_table/lv_ex_table_1.py
+      :language: python

@@ -19,4 +19,17 @@ Container with auto-fit
 MicroPython
 ^^^^^^^^^^^
 
-No examples yet.
+Container with auto-fit
+"""""""""""""""""""""""
+
+.. image:: /lv_examples/src/lv_ex_cont/lv_ex_cont_1.*
+  :alt: Container example in LittlevGL with MicroPython
+
+.. container:: toggle
+
+    .. container:: header
+
+      code
+
+    .. literalinclude:: /lv_examples/src/lv_ex_cont/lv_ex_cont_1.py
+      :language: python

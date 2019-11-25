@@ -19,4 +19,17 @@ Simple Switch
 MicroPython
 ^^^^^^^^^^^
 
-No examples yet.
+Simple Switch 
+"""""""""""""""""""""""
+
+.. image:: /lv_examples/src/lv_ex_sw/lv_ex_sw_1.*
+  :alt: Switch example in LittlevGL with MicroPython
+
+.. container:: toggle
+
+    .. container:: header
+    
+      code
+
+    .. literalinclude:: /lv_examples/src/lv_ex_sw/lv_ex_sw_1.py
+      :language: python

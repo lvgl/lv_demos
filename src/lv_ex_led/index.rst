@@ -19,4 +19,17 @@ LED with custom style
 MicroPython
 ^^^^^^^^^^^
 
-No examples yet.
+LED with custom style
+"""""""""""""""""""""
+
+.. image:: /lv_examples/src/lv_ex_led/lv_ex_led_1.png
+  :alt: LED example in LittlevGL with MicroPython
+
+.. container:: toggle
+
+    .. container:: header
+
+      code
+
+    .. literalinclude:: /lv_examples/src/lv_ex_led/lv_ex_led_1.py
+      :language: python
