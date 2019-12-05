@@ -94,8 +94,8 @@ void terminal_add(const char * txt_in)
 {
     if(win == NULL) return;                 /*Check if the window is exists*/
 
-    uint16_t txt_len = strlen(txt_in);
-    uint16_t old_len = strlen(txt_log);
+    size_t txt_len = strlen(txt_in);
+    size_t old_len = strlen(txt_log);
 
     /*If the data is longer then the terminal ax size show the last part of data*/
     if(txt_len > TERMINAL_LOG_LENGTH) {

@@ -271,7 +271,7 @@ static lv_fs_res_t pcfs_read(lv_fs_drv_t * drv, void * file_p, void * buf, uint3
     (void) drv; /*Unused*/
 
     pc_file_t * fp = file_p;        /*Just avoid the confusing casings*/
-    *br = fread(buf, 1, btr, *fp);
+    *br = (uint32_t)fread(buf, 1, btr, *fp);
     return LV_FS_RES_OK;
 }
 

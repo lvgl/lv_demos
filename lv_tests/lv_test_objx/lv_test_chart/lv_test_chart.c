@@ -159,7 +159,7 @@ void lv_test_chart_2(uint8_t chart)
 	style_chart_axes.text.opa = LV_OPA_COVER;
 
 	lv_obj_t * chart_axes = lv_chart_create(lv_disp_get_scr_act(NULL), NULL);
-	lv_obj_set_size(chart_axes, (LV_HOR_RES * 0.70), (LV_VER_RES * 0.60) );
+	lv_obj_set_size(chart_axes, (LV_HOR_RES * 7) / 10, (LV_VER_RES * 6) / 10);
 	lv_obj_set_style(chart_axes, &style_chart_axes);
 	lv_obj_align(chart_axes, chart_label, LV_ALIGN_OUT_BOTTOM_MID, 0, 0);
 	lv_chart_set_margin(chart_axes, 100);
