@@ -40,6 +40,7 @@ extern "C" {
  */
 void lv_test_chart_1(void);
 void lv_test_chart_2(uint8_t chart);
+void lv_test_chart_3(lv_chart_type_t chart_type);
 
 /**********************
  *      MACROS

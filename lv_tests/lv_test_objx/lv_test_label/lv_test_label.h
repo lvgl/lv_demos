@@ -49,6 +49,10 @@ void lv_test_label_2(void);
  */
 void lv_test_label_3(void);
 
+/**
+ * Test mixed features
+ */
+void lv_test_label_4(void);
 /**********************
  *      MACROS
  **********************/
