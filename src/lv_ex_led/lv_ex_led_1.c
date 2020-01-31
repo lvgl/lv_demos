@@ -16,7 +16,7 @@ void lv_ex_led_1(void)
 
     /*Create a LED and switch it OFF*/
     lv_obj_t * led1  = lv_led_create(lv_scr_act(), NULL);
-    lv_obj_set_style(led1, LV_LED_STYLE_MAIN, &style_led);
+    lv_led_set_style(led1, LV_LED_STYLE_MAIN, &style_led);
     lv_obj_align(led1, NULL, LV_ALIGN_CENTER, -80, 0);
     lv_led_off(led1);
 
