@@ -1,4 +1,5 @@
 #include "lvgl/lvgl.h"
+#if LV_USE_LABEL
 
 static void text_changer(lv_task_t * t);
 
@@ -50,5 +51,6 @@ static void text_changer(lv_task_t * t)
 
     i++;
     if(texts[i] == NULL) i = 0;
-
 }
+
+#endif

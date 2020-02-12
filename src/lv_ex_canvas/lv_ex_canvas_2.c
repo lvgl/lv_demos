@@ -1,4 +1,5 @@
 #include "lvgl/lvgl.h"
+#if LV_USE_CANVAS
 
 #define CANVAS_WIDTH  50
 #define CANVAS_HEIGHT  50
@@ -40,3 +41,4 @@ void lv_ex_canvas_2(void)
     }
 
 }
+#endif

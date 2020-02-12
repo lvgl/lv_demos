@@ -1,4 +1,5 @@
 #include "lvgl/lvgl.h"
+#if LV_USE_WIN
 
 void lv_ex_win_1(void)
 {
@@ -23,3 +24,4 @@ void lv_ex_win_1(void)
                            "See the scroll bar on the right!");
 }
 
+#endif

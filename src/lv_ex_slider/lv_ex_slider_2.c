@@ -1,42 +1,9 @@
-/**
- * @file lv_ex_slider_2.c
- *
- */
-
-/*********************
- *      INCLUDES
- *********************/
-
 #include "lvgl/lvgl.h"
 #include <stdio.h>
-
-/*********************
- *      DEFINES
- *********************/
-
-/**********************
- *      TYPEDEFS
- **********************/
-
-/**********************
- *  STATIC PROTOTYPES
- **********************/
+#if LV_USE_SLIDER
 
 static void slider_event_cb(lv_obj_t * slider, lv_event_t event);
-
-/**********************
- *  STATIC VARIABLES
- **********************/
-
 static lv_obj_t * slider_label;
-
-/**********************
- *      MACROS
- **********************/
-
-/**********************
- *   GLOBAL FUNCTIONS
- **********************/
 
 void lv_ex_slider_2(void)
 {
@@ -61,10 +28,6 @@ void lv_ex_slider_2(void)
     lv_obj_align(info, NULL, LV_ALIGN_IN_TOP_LEFT, 10, 10);
 }
 
-/**********************
- *   STATIC FUNCTIONS
- **********************/
-
 static void slider_event_cb(lv_obj_t * slider, lv_event_t event)
 {
     if(event == LV_EVENT_VALUE_CHANGED) {
@@ -73,3 +36,5 @@ static void slider_event_cb(lv_obj_t * slider, lv_event_t event)
         lv_label_set_text(slider_label, buf);
     }
 }
+
+#endif

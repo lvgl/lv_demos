@@ -1,4 +1,5 @@
 #include "lvgl/lvgl.h"
+#if LV_USE_CONT
 
 void lv_ex_cont_1(void)
 {
@@ -14,9 +15,22 @@ void lv_ex_cont_1(void)
     label = lv_label_create(cont, NULL);
     lv_label_set_text(label, "Short text");
 
+    /*Refresh and pause here for a while to see how `fit` works*/
+    uint32_t t;
+    lv_refr_now(NULL);
+    t = lv_tick_get();
+    while(lv_tick_elaps(t) < 500);
+
     label = lv_label_create(cont, NULL);
     lv_label_set_text(label, "It is a long text");
+
+    /*Wait here too*/
+    lv_refr_now(NULL);
+    t = lv_tick_get();
+    while(lv_tick_elaps(t) < 500);
 
     label = lv_label_create(cont, NULL);
     lv_label_set_text(label, "Here is an even longer text");
 }
+
+#endif

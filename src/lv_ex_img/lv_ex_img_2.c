@@ -1,44 +1,15 @@
-/**
- * @file lv_ex_img_2.c
- *
- */
-
-/*********************
- *      INCLUDES
- *********************/
-
 #include "lvgl/lvgl.h"
+#if LV_USE_IMG
 
-/*********************
- *      DEFINES
- *********************/
 #define SLIDER_WIDTH 40
 
-/**********************
- *      TYPEDEFS
- **********************/
-
-/**********************
- *  STATIC PROTOTYPES
- **********************/
 static void create_sliders(void);
 static void slider_event_cb(lv_obj_t * slider, lv_event_t event);
 
-/**********************
- *  STATIC VARIABLES
- **********************/
 static lv_obj_t * red_slider, * green_slider, * blue_slider, * intense_slider;
 static lv_obj_t * img1;
 static lv_style_t img_style;
 LV_IMG_DECLARE(cogwheel);
-
-/**********************
- *      MACROS
- **********************/
-
-/**********************
- *   GLOBAL FUNCTIONS
- **********************/
 
 void lv_ex_img_2(void)
 {
@@ -62,10 +33,6 @@ void lv_ex_img_2(void)
     /* Save the image's style so the sliders can modify it */
     lv_style_copy(&img_style, lv_img_get_style(img1, LV_IMG_STYLE_MAIN));
 }
-
-/**********************
- *   STATIC FUNCTIONS
- **********************/
 
 static void slider_event_cb(lv_obj_t * slider, lv_event_t event)
 {
@@ -141,3 +108,5 @@ static void create_sliders(void)
 
     lv_obj_align(intense_slider, blue_slider, LV_ALIGN_OUT_RIGHT_MID, 10, 0);
 }
+
+#endif

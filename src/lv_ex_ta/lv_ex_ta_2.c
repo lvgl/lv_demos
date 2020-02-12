@@ -1,40 +1,11 @@
-/**
- * @file lv_ex_templ.c
- *
- */
-
-/*********************
- *      INCLUDES
- *********************/
 #include "lvgl/lvgl.h"
 #include <stdio.h>
+#if LV_USE_TA
 
-/*********************
- *      DEFINES
- *********************/
-
-/**********************
- *      TYPEDEFS
- **********************/
-
-/**********************
- *  STATIC PROTOTYPES
- **********************/
 static void kb_event_cb(lv_obj_t * event_kb, lv_event_t event);
 static void ta_event_cb(lv_obj_t * ta, lv_event_t event);
 
-/**********************
- *  STATIC VARIABLES
- **********************/
-
 static lv_obj_t * kb;
-/**********************
- *      MACROS
- **********************/
-
-/**********************
- *   GLOBAL FUNCTIONS
- **********************/
 
 void lv_ex_ta_2(void)
 {
@@ -74,16 +45,12 @@ void lv_ex_ta_2(void)
     lv_kb_set_cursor_manage(kb, true); /* Automatically show/hide cursors on text areas */
 }
 
-/**********************
- *   STATIC FUNCTIONS
- **********************/
-
 static void kb_event_cb(lv_obj_t * event_kb, lv_event_t event)
 {
     /* Just call the regular event handler */
     lv_kb_def_event_cb(event_kb, event);
-
 }
+
 static void ta_event_cb(lv_obj_t * ta, lv_event_t event)
 {
     if(event == LV_EVENT_CLICKED) {
@@ -99,3 +66,5 @@ static void ta_event_cb(lv_obj_t * ta, lv_event_t event)
         }
     }
 }
+
+#endif

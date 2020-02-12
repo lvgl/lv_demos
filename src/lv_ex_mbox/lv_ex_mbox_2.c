@@ -1,25 +1,8 @@
-/**
- * @file lv_ex_mbox_2.c
- *
- */
-
-/*********************
- *      INCLUDES
- *********************/
-
 #include "lvgl/lvgl.h"
-
-
-/**********************
- *  STATIC PROTOTYPES
- **********************/
+#if LV_USE_MBOX
 
 static void mbox_event_cb(lv_obj_t *obj, lv_event_t evt);
 static void btn_event_cb(lv_obj_t *btn, lv_event_t evt);
-
-/**********************
- *  STATIC VARIABLES
- **********************/
 
 static lv_obj_t *mbox, *info;
 
@@ -28,10 +11,6 @@ static const char welcome_info[] = "Welcome to the modal message box demo!\n"
 
 static const char in_msg_info[] = "Notice that you cannot touch "
                                   "the button again while the message box is open.";
-
-/**********************
- *   GLOBAL FUNCTIONS
- **********************/
 
 void lv_ex_mbox_2(void)
 {
@@ -53,10 +32,6 @@ void lv_ex_mbox_2(void)
 	lv_obj_align(info, NULL, LV_ALIGN_IN_BOTTOM_LEFT, 5, -5);
 
 }
-
-/**********************
- *   STATIC FUNCTIONS
- **********************/
 
 static void mbox_event_cb(lv_obj_t *obj, lv_event_t evt)
 {
@@ -110,3 +85,5 @@ static void btn_event_cb(lv_obj_t *btn, lv_event_t evt)
 	    lv_obj_align(info, NULL, LV_ALIGN_IN_BOTTOM_LEFT, 5, -5);
 	}
 }
+
+#endif

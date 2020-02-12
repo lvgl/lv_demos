@@ -1,5 +1,6 @@
 #include "lvgl/lvgl.h"
 #include <stdio.h>
+#if LV_USE_MBOX
 
 static void event_handler(lv_obj_t * obj, lv_event_t event)
 {
@@ -19,3 +20,5 @@ void lv_ex_mbox_1(void)
     lv_obj_set_event_cb(mbox1, event_handler);
     lv_obj_align(mbox1, NULL, LV_ALIGN_CENTER, 0, 0); /*Align to the corner*/
 }
+
+#endif

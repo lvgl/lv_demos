@@ -1,5 +1,6 @@
 #include "lvgl/lvgl.h"
 #include <stdio.h>
+#if LV_USE_BTN
 
 static void event_handler(lv_obj_t * obj, lv_event_t event)
 {
@@ -32,3 +33,4 @@ void lv_ex_btn_1(void)
     label = lv_label_create(btn2, NULL);
     lv_label_set_text(label, "Toggled");
 }
+#endif

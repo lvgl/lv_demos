@@ -1,4 +1,5 @@
 #include "lvgl/lvgl.h"
+#if LV_USE_LED
 
 void lv_ex_led_1(void)
 {
@@ -30,3 +31,5 @@ void lv_ex_led_1(void)
     lv_obj_align(led3, NULL, LV_ALIGN_CENTER, 80, 0);
     lv_led_on(led3);
 }
+
+#endif

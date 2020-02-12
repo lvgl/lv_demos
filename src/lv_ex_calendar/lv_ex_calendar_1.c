@@ -1,11 +1,14 @@
 #include "lvgl/lvgl.h"
+#include <stdio.h>
+
+#if LV_USE_CALENDAR
 
 static void event_handler(lv_obj_t * obj, lv_event_t event)
 {
-    if(event == LV_EVENT_CLICKED) {
+    if(event == LV_EVENT_VALUE_CHANGED) {
         lv_calendar_date_t * date = lv_calendar_get_pressed_date(obj);
         if(date) {
-            lv_calendar_set_today_date(obj, date);
+            printf("Clicked date: %02d.%02d.%d\n", date->day, date->month, date->year);
         }
     }
 }
@@ -42,3 +45,5 @@ void lv_ex_calendar_1(void)
 
     lv_calendar_set_highlighted_dates(calendar, highlihted_days, 3);
 }
+
+#endif

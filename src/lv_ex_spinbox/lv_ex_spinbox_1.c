@@ -1,5 +1,6 @@
 #include "lvgl/lvgl.h"
 #include <stdio.h>
+#if LV_USE_SPINBOX
 
 static void event_handler(lv_obj_t * obj, lv_event_t event)
 {
@@ -22,3 +23,5 @@ void lv_ex_spinbox_1(void)
     lv_obj_align(spinbox, NULL, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_event_cb(spinbox, event_handler);
 }
+
+#endif

@@ -1,4 +1,5 @@
 #include "lvgl/lvgl.h"
+#if LV_USE_KB
 
 void lv_ex_kb_1(void)
 {
@@ -28,3 +29,4 @@ void lv_ex_kb_1(void)
     /*Assign the text area to the keyboard*/
     lv_kb_set_ta(kb, ta);
 }
+#endif

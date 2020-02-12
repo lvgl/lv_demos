@@ -19,7 +19,7 @@ extern "C" {
  *      DEFINES
  *********************/
 /*Test  lvgl version*/
-#define LV_EXAMPLES_LVGL_REQ_MAJOR  6
+#define LV_EXAMPLES_LVGL_REQ_MAJOR  7
 #define LV_EXAMPLES_LVGL_REQ_MINOR  0
 #define LV_EXAMPLES_LVGL_REQ_PATCH  0
 
@@ -53,6 +53,7 @@ void lv_ex_cb_1(void);
 void lv_ex_chart_1(void);
 void lv_ex_cont_1(void);
 void lv_ex_ddlist_1(void);
+void lv_ex_ddlist_2(void);
 void lv_ex_gauge_1(void);
 void lv_ex_img_1(void);
 void lv_ex_img_2(void);

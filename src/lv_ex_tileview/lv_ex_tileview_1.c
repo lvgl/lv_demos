@@ -1,4 +1,5 @@
 #include "lvgl/lvgl.h"
+#if LV_USE_TILEVIEW
 
 void lv_ex_tileview_1(void)
 {
@@ -10,7 +11,6 @@ void lv_ex_tileview_1(void)
 
     lv_obj_t * tile1 = lv_obj_create(tileview, NULL);
     lv_obj_set_size(tile1, LV_HOR_RES, LV_VER_RES);
-    lv_obj_set_style(tile1, &lv_style_pretty);
     lv_tileview_add_element(tileview, tile1);
 
     /*Tile1: just a label*/
@@ -28,28 +28,13 @@ void lv_ex_tileview_1(void)
 
     lv_obj_t * list_btn;
     list_btn = lv_list_add_btn(list, NULL, "One");
-    lv_tileview_add_element(tileview, list_btn);
-
     list_btn = lv_list_add_btn(list, NULL, "Two");
-    lv_tileview_add_element(tileview, list_btn);
-
     list_btn = lv_list_add_btn(list, NULL, "Three");
-    lv_tileview_add_element(tileview, list_btn);
-
     list_btn = lv_list_add_btn(list, NULL, "Four");
-    lv_tileview_add_element(tileview, list_btn);
-
     list_btn = lv_list_add_btn(list, NULL, "Five");
-    lv_tileview_add_element(tileview, list_btn);
-
     list_btn = lv_list_add_btn(list, NULL, "Six");
-    lv_tileview_add_element(tileview, list_btn);
-
     list_btn = lv_list_add_btn(list, NULL, "Seven");
-    lv_tileview_add_element(tileview, list_btn);
-
     list_btn = lv_list_add_btn(list, NULL, "Eight");
-    lv_tileview_add_element(tileview, list_btn);
 
     /*Tile3: a button*/
     lv_obj_t * tile3 = lv_obj_create(tileview, tile1);
@@ -62,3 +47,5 @@ void lv_ex_tileview_1(void)
     label = lv_label_create(btn, NULL);
     lv_label_set_text(label, "Button");
 }
+
+#endif

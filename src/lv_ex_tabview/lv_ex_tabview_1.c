@@ -1,4 +1,5 @@
 #include "lvgl/lvgl.h"
+#if LV_USE_TABVIEW
 
 void lv_ex_tabview_1(void)
 {
@@ -29,3 +30,4 @@ void lv_ex_tabview_1(void)
     label = lv_label_create(tab3, NULL);
     lv_label_set_text(label, "Third tab");
 }
+#endif

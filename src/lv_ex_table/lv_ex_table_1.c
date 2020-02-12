@@ -1,4 +1,5 @@
 #include "lvgl/lvgl.h"
+#if LV_USE_TABLE
 
 void lv_ex_table_1(void)
 {
@@ -44,3 +45,5 @@ void lv_ex_table_1(void)
     lv_table_set_cell_value(table, 2, 1, "$4");
     lv_table_set_cell_value(table, 3, 1, "$6");
 }
+
+#endif

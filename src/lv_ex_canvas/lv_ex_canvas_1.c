@@ -1,4 +1,6 @@
 #include "lvgl/lvgl.h"
+#if LV_USE_CANVAS
+
 
 #define CANVAS_WIDTH  200
 #define CANVAS_HEIGHT  150
@@ -42,3 +44,5 @@ void lv_ex_canvas_1(void)
     lv_canvas_fill_bg(canvas, LV_COLOR_SILVER);
     lv_canvas_rotate(canvas, &img, 30, 0, 0, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
 }
+
+#endif

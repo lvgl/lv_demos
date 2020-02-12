@@ -1,5 +1,6 @@
 #include "lvgl/lvgl.h"
 #include <stdio.h>
+#if LV_USE_LIST
 
 static void event_handler(lv_obj_t * obj, lv_event_t event)
 {
@@ -16,7 +17,6 @@ void lv_ex_list_1(void)
     lv_obj_align(list1, NULL, LV_ALIGN_CENTER, 0, 0);
 
     /*Add buttons to the list*/
-
     lv_obj_t * list_btn;
 
     list_btn = lv_list_add_btn(list1, LV_SYMBOL_FILE, "New");
@@ -33,4 +33,12 @@ void lv_ex_list_1(void)
 
     list_btn = lv_list_add_btn(list1, LV_SYMBOL_SAVE, "Save");
     lv_obj_set_event_cb(list_btn, event_handler);
+
+    list_btn = lv_list_add_btn(list1, LV_SYMBOL_BELL, "Notify");
+    lv_obj_set_event_cb(list_btn, event_handler);
+
+    list_btn = lv_list_add_btn(list1, LV_SYMBOL_BATTERY_FULL, "Battery");
+    lv_obj_set_event_cb(list_btn, event_handler);
 }
+
+#endif

@@ -1,5 +1,6 @@
 #include "lvgl/lvgl.h"
 #include <stdio.h>
+#if LV_USE_TA
 
 lv_obj_t * ta1;
 
@@ -19,7 +20,6 @@ static void event_handler(lv_obj_t * obj, lv_event_t event)
     }
 }
 
-
 void lv_ex_ta_1(void)
 {
     ta1 = lv_ta_create(lv_scr_act(), NULL);
@@ -29,3 +29,5 @@ void lv_ex_ta_1(void)
     lv_ta_set_text(ta1, "A text in a Text Area");    /*Set an initial text*/
     lv_obj_set_event_cb(ta1, event_handler);
 }
+
+#endif

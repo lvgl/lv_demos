@@ -1,4 +1,6 @@
 #include "lvgl/lvgl.h"
+#if LV_USE_IMGBTN
+
 
 void lv_ex_imgbtn_1(void)
 {
@@ -26,3 +28,5 @@ void lv_ex_imgbtn_1(void)
     lv_obj_t * label = lv_label_create(imgbtn1, NULL);
     lv_label_set_text(label, "Button");
 }
+
+#endif

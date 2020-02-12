@@ -1,4 +1,5 @@
 #include "lvgl/lvgl.h"
+#if LV_USE_CHART
 
 void lv_ex_chart_1(void)
 {
@@ -43,3 +44,5 @@ void lv_ex_chart_1(void)
 
     lv_chart_refresh(chart); /*Required after direct set*/
 }
+
+#endif

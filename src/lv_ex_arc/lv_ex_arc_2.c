@@ -1,4 +1,5 @@
 #include "lvgl/lvgl.h" 
+#if LV_USE_ARC
 
 /**
  * An `lv_task` to call periodically to set the angles of the arc
@@ -6,15 +7,13 @@
  */
 static void arc_loader(lv_task_t * t)
 {
-    static int16_t a = 0;
+    static int16_t a = 270;
 
     a+=5;
-    if(a >= 359) a = 359;
 
-    if(a < 180) lv_arc_set_angles(t->user_data, 180-a ,180);
-    else lv_arc_set_angles(t->user_data, 540-a ,180);
+    lv_arc_set_end_angle(t->user_data, a);
 
-    if(a == 359) {
+    if(a >= 270 + 360) {
         lv_task_del(t);
         return;
     }
@@ -25,20 +24,15 @@ static void arc_loader(lv_task_t * t)
  */
 void lv_ex_arc_2(void)
 {
-  /*Create style for the Arcs*/
-  static lv_style_t style;
-  lv_style_copy(&style, &lv_style_plain);
-  style.line.color = LV_COLOR_NAVY;           /*Arc color*/
-  style.line.width = 8;                       /*Arc width*/
-
   /*Create an Arc*/
   lv_obj_t * arc = lv_arc_create(lv_scr_act(), NULL);
-  lv_arc_set_angles(arc, 180, 180);
-  lv_arc_set_style(arc, LV_ARC_STYLE_MAIN, &style);
+  lv_arc_set_bg_angles(arc, 0, 360);
+  lv_arc_set_angles(arc, 270, 270);
   lv_obj_align(arc, NULL, LV_ALIGN_CENTER, 0, 0);
 
   /* Create an `lv_task` to update the arc.
    * Store the `arc` in the user data*/
   lv_task_create(arc_loader, 20, LV_TASK_PRIO_LOWEST, arc);
-
 }
+
+#endif
