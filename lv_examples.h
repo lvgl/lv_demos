@@ -52,6 +52,7 @@ void lv_ex_canvas_1(void);
 void lv_ex_cb_1(void);
 void lv_ex_chart_1(void);
 void lv_ex_cont_1(void);
+void lv_ex_cpicker_1(void);
 void lv_ex_ddlist_1(void);
 void lv_ex_ddlist_2(void);
 void lv_ex_gauge_1(void);

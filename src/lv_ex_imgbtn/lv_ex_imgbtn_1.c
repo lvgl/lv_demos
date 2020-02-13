@@ -4,14 +4,14 @@
 
 void lv_ex_imgbtn_1(void)
 {
-    static lv_style_t style_pr;
-    lv_style_copy(&style_pr, &lv_style_plain);
-    style_pr.image.color = LV_COLOR_BLACK;
-    style_pr.image.intense = LV_OPA_50;
-    style_pr.text.color = lv_color_hex3(0xaaa);
-
     LV_IMG_DECLARE(imgbtn_green);
     LV_IMG_DECLARE(imgbtn_blue);
+
+    /*Darken the button when pressed*/
+    static lv_style_t style;
+    lv_style_init(&style);
+    lv_style_set_image_recolor_opa(&style, LV_STYLE_STATE_PRESSED, LV_OPA_30);
+    lv_style_set_image_recolor(&style, LV_STYLE_STATE_PRESSED, LV_COLOR_BLACK);
 
     /*Create an Image button*/
     lv_obj_t * imgbtn1 = lv_imgbtn_create(lv_scr_act(), NULL);
@@ -19,9 +19,8 @@ void lv_ex_imgbtn_1(void)
     lv_imgbtn_set_src(imgbtn1, LV_BTN_STATE_PR, &imgbtn_green);
     lv_imgbtn_set_src(imgbtn1, LV_BTN_STATE_TGL_REL, &imgbtn_blue);
     lv_imgbtn_set_src(imgbtn1, LV_BTN_STATE_TGL_PR, &imgbtn_blue);
-    lv_imgbtn_set_style(imgbtn1, LV_BTN_STATE_PR, &style_pr);        /*Use the darker style in the pressed state*/
-    lv_imgbtn_set_style(imgbtn1, LV_BTN_STATE_TGL_PR, &style_pr);
     lv_imgbtn_set_toggle(imgbtn1, true);
+    lv_obj_add_style(imgbtn1, LV_IMGBTN_PART_MAIN, &style);
     lv_obj_align(imgbtn1, NULL, LV_ALIGN_CENTER, 0, -40);
 
     /*Create a label on the Image button*/

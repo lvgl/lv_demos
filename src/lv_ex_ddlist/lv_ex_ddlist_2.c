@@ -23,6 +23,10 @@ void lv_ex_ddlist_2(void)
     lv_ddlist_set_text(ddlist, "Fruits");
     /*It will be called automatically when the size changes*/
     lv_obj_align(ddlist, NULL, LV_ALIGN_IN_TOP_RIGHT, 0, 20);
+
+    /*Copy the drop LEFT list*/
+    ddlist = lv_ddlist_create(lv_scr_act(), ddlist);
+    lv_obj_align(ddlist, NULL, LV_ALIGN_IN_TOP_RIGHT, 0, 100);
 }
 
 #endif

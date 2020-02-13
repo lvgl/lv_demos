@@ -29,7 +29,7 @@ void lv_ex_canvas_2(void)
     c1.full = 1;
 
     /*Transparent background*/
-    lv_canvas_fill_bg(canvas, c1);
+    lv_canvas_fill_bg(canvas, c1, LV_OPA_TRANSP);
 
     /*Create hole on the canvas*/
     uint32_t x;

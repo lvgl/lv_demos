@@ -8,17 +8,13 @@ void lv_ex_chart_1(void)
     chart = lv_chart_create(lv_scr_act(), NULL);
     lv_obj_set_size(chart, 200, 150);
     lv_obj_align(chart, NULL, LV_ALIGN_CENTER, 0, 0);
-    lv_chart_set_type(chart, LV_CHART_TYPE_POINT | LV_CHART_TYPE_LINE);   /*Show lines and points too*/
-    lv_chart_set_series_opa(chart, LV_OPA_70);                            /*Opacity of the data series*/
-    lv_chart_set_series_width(chart, 4);                                  /*Line width and point radious*/
-
-    lv_chart_set_range(chart, 0, 100);
+    lv_chart_set_type(chart, LV_CHART_TYPE_LINE);   /*Show lines and points too*/
 
     /*Add two data series*/
     lv_chart_series_t * ser1 = lv_chart_add_series(chart, LV_COLOR_RED);
     lv_chart_series_t * ser2 = lv_chart_add_series(chart, LV_COLOR_GREEN);
 
-    /*Set the next points on 'dl1'*/
+    /*Set the next points on 'ser1'*/
     lv_chart_set_next(chart, ser1, 10);
     lv_chart_set_next(chart, ser1, 10);
     lv_chart_set_next(chart, ser1, 10);
@@ -30,7 +26,7 @@ void lv_ex_chart_1(void)
     lv_chart_set_next(chart, ser1, 70);
     lv_chart_set_next(chart, ser1, 90);
 
-    /*Directly set points on 'dl2'*/
+    /*Directly set points on 'ser2'*/
     ser2->points[0] = 90;
     ser2->points[1] = 70;
     ser2->points[2] = 65;
