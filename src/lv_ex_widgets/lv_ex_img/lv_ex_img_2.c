@@ -19,15 +19,6 @@ void lv_ex_img_2(void)
     img1 = lv_img_create(lv_scr_act(), NULL);
     lv_img_set_src(img1, &cogwheel);
     lv_obj_align(img1, NULL, LV_ALIGN_IN_RIGHT_MID, -20, 0);
-
-    /* Create a message box for information */
-    static const char * btns[] ={"OK", ""};
-
-//    lv_obj_t * mbox = lv_mbox_create(lv_scr_act(), NULL);
-//
-//    lv_mbox_set_text(mbox, "Welcome to the image recoloring demo!\nThe first three sliders control the RGB value of the recoloring.\nThe last slider controls the intensity.");
-//    lv_mbox_add_btns(mbox, btns);
-//    lv_obj_align(mbox, NULL, LV_ALIGN_CENTER, 0, 0);
 }
 
 static void slider_event_cb(lv_obj_t * slider, lv_event_t event)

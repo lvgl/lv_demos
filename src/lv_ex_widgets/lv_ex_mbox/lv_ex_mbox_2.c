@@ -1,5 +1,5 @@
 #include "lvgl/lvgl.h"
-#if LV_USE_MBOX
+#if LV_USE_MSGBOX
 
 static void mbox_event_cb(lv_obj_t *obj, lv_event_t evt);
 static void btn_event_cb(lv_obj_t *btn, lv_event_t evt);
@@ -47,7 +47,7 @@ static void mbox_event_cb(lv_obj_t *obj, lv_event_t evt)
         lv_label_set_text(info, welcome_info);
     } else if(evt == LV_EVENT_VALUE_CHANGED) {
         /* A button was clicked */
-        lv_mbox_start_auto_close(mbox, 0);
+        lv_msgbox_start_auto_close(mbox, 0);
     }
 }
 
@@ -66,9 +66,9 @@ static void btn_event_cb(lv_obj_t *btn, lv_event_t evt)
         static const char * btns2[] = {"Ok", "Cancel", ""};
 
         /* Create the message box as a child of the modal background */
-        mbox = lv_mbox_create(obj, NULL);
-        lv_mbox_add_btns(mbox, btns2);
-        lv_mbox_set_text(mbox, "Hello world!");
+        mbox = lv_msgbox_create(obj, NULL);
+        lv_msgbox_add_btns(mbox, btns2);
+        lv_msgbox_set_text(mbox, "Hello world!");
         lv_obj_align(mbox, NULL, LV_ALIGN_CENTER, 0, 0);
         lv_obj_set_event_cb(mbox, mbox_event_cb);
 
