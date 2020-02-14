@@ -1,5 +1,5 @@
 #include "lvgl/lvgl.h"
-#if LV_USE_TEXTAREABLE
+#if LV_USE_TABLE
 
 void lv_ex_table_1(void)
 {

@@ -1,7 +1,7 @@
 #include "lvgl/lvgl.h"
 #if LV_USE_KEYBOARD
 
-void lv_ex_kb_1(void)
+void lv_ex_keyboard_1(void)
 {
     /*Create a keyboard and apply the styles*/
     lv_obj_t *kb = lv_keyboard_create(lv_scr_act(), NULL);

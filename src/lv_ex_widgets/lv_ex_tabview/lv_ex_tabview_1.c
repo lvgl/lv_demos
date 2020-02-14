@@ -1,5 +1,5 @@
 #include "lvgl/lvgl.h"
-#if LV_USE_TEXTAREABVIEW
+#if LV_USE_TABVIEW
 
 void lv_ex_tabview_1(void)
 {

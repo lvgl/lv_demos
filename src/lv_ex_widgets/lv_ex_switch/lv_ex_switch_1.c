@@ -9,7 +9,7 @@ static void event_handler(lv_obj_t * obj, lv_event_t event)
     }
 }
 
-void lv_ex_sw_1(void)
+void lv_ex_switch_1(void)
 {
     /*Create a switch and apply the styles*/
     lv_obj_t *sw1 = lv_switch_create(lv_scr_act(), NULL);

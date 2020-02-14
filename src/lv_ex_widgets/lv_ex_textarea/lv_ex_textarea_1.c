@@ -20,7 +20,7 @@ static void event_handler(lv_obj_t * obj, lv_event_t event)
     }
 }
 
-void lv_ex_ta_1(void)
+void lv_ex_textarea_1(void)
 {
     ta1 = lv_textarea_create(lv_scr_act(), NULL);
     lv_obj_set_size(ta1, 200, 100);

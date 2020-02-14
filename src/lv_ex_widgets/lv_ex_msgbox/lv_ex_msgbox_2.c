@@ -14,7 +14,7 @@ static const char welcome_info[] = "Welcome to the modal message box demo!\n"
 static const char in_msg_info[] = "Notice that you cannot touch "
         "the button again while the message box is open.";
 
-void lv_ex_mbox_2(void)
+void lv_ex_msgbox_2(void)
 {
     lv_style_init(&style_modal);
     lv_style_set_bg_color(&style_modal, LV_STATE_NORMAL, LV_COLOR_BLACK);
@@ -58,7 +58,7 @@ static void btn_event_cb(lv_obj_t *btn, lv_event_t evt)
 
         /* Create a base object for the modal background */
         lv_obj_t *obj = lv_obj_create(lv_scr_act(), NULL);
-        lv_obj_reset_style(obj, LV_OBJ_PART_MAIN);
+        lv_obj_reset_style_list(obj, LV_OBJ_PART_MAIN);
         lv_obj_add_style(obj, LV_OBJ_PART_MAIN, &style_modal);
         lv_obj_set_pos(obj, 0, 0);
         lv_obj_set_size(obj, LV_HOR_RES, LV_VER_RES);

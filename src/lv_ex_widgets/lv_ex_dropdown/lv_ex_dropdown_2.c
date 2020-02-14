@@ -6,7 +6,7 @@
 /**
  * Create a drop LEFT menu
  */
-void lv_ex_ddlist_2(void)
+void lv_ex_dropdown_2(void)
 {
     /*Create a drop down list*/
     lv_obj_t * ddlist = lv_dropdown_create(lv_scr_act(), NULL);

@@ -7,7 +7,7 @@ static void ta_event_cb(lv_obj_t * ta, lv_event_t event);
 
 static lv_obj_t * kb;
 
-void lv_ex_ta_2(void)
+void lv_ex_textarea_2(void)
 {
     /* Create the password box */
     lv_obj_t * pwd_ta = lv_textarea_create(lv_scr_act(), NULL);

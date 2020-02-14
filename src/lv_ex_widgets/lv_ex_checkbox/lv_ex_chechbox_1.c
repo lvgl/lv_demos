@@ -9,7 +9,7 @@ static void event_handler(lv_obj_t * obj, lv_event_t event)
     }
 }
 
-void lv_ex_cb_1(void)
+void lv_ex_chechbox_1(void)
 {
     lv_obj_t * cb = lv_checkbox_create(lv_scr_act(), NULL);
     lv_checkbox_set_text(cb, "I agree to terms and conditions.");

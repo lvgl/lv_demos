@@ -23,8 +23,10 @@
 static void controls_create(lv_obj_t * parent);
 static void visuals_create(lv_obj_t * parent);
 static void selectors_create(lv_obj_t * parent);
+static void lv_slider_event_cb(lv_obj_t * slider, lv_event_t e);
 static void lv_ta_event_cb(lv_obj_t * ta, lv_event_t e);
 static void lv_kb_event_cb(lv_obj_t * ta, lv_event_t e);
+static void bar_anim(lv_task_t * t);
 
 /**********************
  *  STATIC VARIABLES
@@ -48,7 +50,7 @@ static lv_style_t style_box;
 void lv_demo_widget(void)
 {
     tv = lv_tabview_create(lv_scr_act(), NULL);
-    lv_obj_set_style_int(tv, LV_TABVIEW_PART_TAB_BG, LV_STYLE_PAD_LEFT, LV_HOR_RES / 2);
+    _lv_obj_set_style_int(tv, LV_TABVIEW_PART_TAB_BG, LV_STYLE_PAD_LEFT, LV_HOR_RES / 2);
     t1 = lv_tabview_add_tab(tv, "Controls");
     t2 = lv_tabview_add_tab(tv, "Visuals");
     t3 = lv_tabview_add_tab(tv, "Selectors");
@@ -97,13 +99,24 @@ static void controls_create(lv_obj_t * parent)
     lv_switch_create(h, NULL);
 
     lv_obj_t * slider = lv_slider_create(h, NULL);
-    lv_bar_set_value(slider, 40, LV_ANIM_OFF);
+    lv_slider_set_value(slider, 40, LV_ANIM_OFF);
+    lv_obj_set_event_cb(slider, lv_slider_event_cb);
+
+    /*Use the knobs style value the display the current value in focused state*/
+    lv_obj_set_style_value_font(slider, LV_SLIDER_PART_KNOB, LV_STATE_NORMAL, LV_THEME_DEFAULT_FONT_SMALL);
+    lv_obj_set_style_value_ofs_y(slider, LV_SLIDER_PART_KNOB, LV_STATE_NORMAL, 0);
+    lv_obj_set_style_value_opa(slider, LV_SLIDER_PART_KNOB, LV_STATE_NORMAL, LV_OPA_TRANSP);
+    lv_obj_set_style_value_ofs_y(slider, LV_SLIDER_PART_KNOB, LV_STATE_FOCUSED, -18);
+    lv_obj_set_style_value_opa(slider, LV_SLIDER_PART_KNOB, LV_STATE_FOCUSED, LV_OPA_COVER);
+    lv_obj_set_style_transition_time(slider, LV_SLIDER_PART_BG, LV_STATE_FOCUSED, 300);
 
     slider = lv_slider_create(h, NULL);
     lv_slider_set_type(slider, LV_SLIDER_TYPE_RANGE);
     lv_slider_set_value(slider, 70, LV_ANIM_OFF);
     lv_slider_set_left_value(slider, 30, LV_ANIM_OFF);
-
+    lv_obj_set_style_value_font(slider, LV_SLIDER_PART_INDIC, LV_STATE_NORMAL, LV_THEME_DEFAULT_FONT_SMALL);
+    lv_obj_set_event_cb(slider, lv_slider_event_cb);
+    lv_event_send(slider, LV_EVENT_VALUE_CHANGED, NULL);      /*To refresh the text*/
 
     h = lv_cont_create(parent, h);
     lv_obj_set_style_value_str(h, LV_CONT_PART_MAIN, LV_STATE_NORMAL, "Text input");
@@ -134,8 +147,8 @@ static void visuals_create(lv_obj_t * parent)
     lv_obj_t * chart = lv_chart_create(parent, NULL);
     lv_chart_set_div_line_count(chart, 3, 0);
     lv_chart_set_point_count(chart, 8);
-    lv_obj_set_style_int(chart, LV_CHART_PART_BG, LV_STYLE_PAD_LEFT, 50);
-    lv_obj_set_style_int(chart, LV_CHART_PART_BG, LV_STYLE_PAD_BOTTOM, 30);
+    _lv_obj_set_style_int(chart, LV_CHART_PART_BG, LV_STYLE_PAD_LEFT, 50);
+    _lv_obj_set_style_int(chart, LV_CHART_PART_BG, LV_STYLE_PAD_BOTTOM, 30);
     lv_chart_set_y_tick_length(chart, 0, 0);
     lv_chart_set_x_tick_length(chart, 0, 0);
     lv_chart_set_y_tick_texts(chart, "600\n500\n400\n300\n200", 0, LV_CHART_AXIS_DRAW_LAST_TICK);
@@ -257,7 +270,26 @@ static void visuals_create(lv_obj_t * parent)
     lv_obj_set_size(lmeter, LV_DPI * 2, LV_DPI * 2);
     lv_linemeter_set_value(lmeter, 50);
 
-    lv_obj_t * gauge = lv_gauge_create(parent, NULL);
+    lv_gauge_create(parent, NULL);
+
+    /*Create a bar and use the backgrounds value style property to display the current value*/
+    lv_obj_t * bar = lv_bar_create(parent, NULL);
+    lv_obj_set_style_value_font(bar, LV_BAR_PART_BG, LV_STATE_NORMAL, LV_THEME_DEFAULT_FONT_SMALL);
+
+    lv_obj_t * h = lv_cont_create(parent, NULL);
+    lv_cont_set_layout(h, LV_LAYOUT_ROW_MID);
+    lv_cont_set_fit(h, LV_FIT_TIGHT);
+    lv_obj_add_style(h, LV_CONT_PART_MAIN, &style_box);
+    lv_obj_set_drag_parent(h, true);
+    lv_obj_set_style_value_str(h, LV_CONT_PART_MAIN, LV_STATE_NORMAL, "LEDs");
+
+    lv_obj_t * led = lv_led_create(h, NULL);
+    lv_led_off(led);
+
+    led = lv_led_create(h, NULL);
+    lv_led_on(led);
+
+    lv_task_create(bar_anim, 100, LV_TASK_PRIO_LOW, bar);
 }
 
 
@@ -300,6 +332,23 @@ static void selectors_create(lv_obj_t * parent)
 
 }
 
+static void lv_slider_event_cb(lv_obj_t * slider, lv_event_t e)
+{
+    if(e == LV_EVENT_VALUE_CHANGED) {
+        if(lv_slider_get_type(slider) == LV_SLIDER_TYPE_NORMAL) {
+            static char buf[16];
+            lv_snprintf(buf, sizeof(buf), "%d", lv_slider_get_value(slider));
+            lv_obj_set_style_value_str(slider, LV_SLIDER_PART_KNOB, LV_STATE_NORMAL, buf);
+        } else {
+            static char buf[32];
+            lv_snprintf(buf, sizeof(buf), "%d-%d", lv_slider_get_left_value(slider), lv_slider_get_value(slider));
+            lv_obj_set_style_value_str(slider, LV_SLIDER_PART_INDIC, LV_STATE_NORMAL, buf);
+        }
+
+    }
+
+}
+
 static void lv_ta_event_cb(lv_obj_t * ta, lv_event_t e)
 {
     if(e == LV_EVENT_FOCUSED) {
@@ -322,142 +371,18 @@ static void lv_kb_event_cb(lv_obj_t * kb, lv_event_t e)
     }
 }
 
-//
-//  lv_obj_t * arc = lv_arc_create(cont, NULL);
-//  lv_obj_set_size(arc, 200, 200);
-//
-//#if 1
-//
-//  static const char * btnm_map[] = {"Previous", "1", "2", "3", "Next", ""};
-//
-//
-//  lv_obj_t * btnm = lv_btnmatrix_create(cont, NULL);
-//  lv_group_add_obj(g1, btnm);
-//  lv_coord_t btnm_h = 18 * LV_DPI / 50;
-//  lv_obj_set_size(btnm, 7 * btnm_h, btnm_h);
-//  lv_btnmatrix_set_map(btnm, btnm_map);
-//  lv_btnmatrix_set_btn_ctrl_all(btnm, LV_BTNMATRIX_CTRL_CHECKABLE);
-//  lv_btnmatrix_set_one_toggle(btnm, true);
-//  lv_btnmatrix_set_btn_width(btnm, 0, 2);
-//  lv_btnmatrix_set_btn_width(btnm, 4, 2);
-//  lv_btnmatrix_set_btn_ctrl(btnm, 0, LV_BTNMATRIX_CTRL_INACTIVE);
-//
-//
-//  lv_obj_t * h2 = lv_cont_create(t1, h);
-//  subtitle = lv_label_create(h2, subtitle);
-//  lv_label_set_text(subtitle, "Scrolling");
-//
-//  lv_obj_t * page = lv_page_create(t1 ,NULL);
-//  lv_obj_set_size(page, LV_HOR_RES / 3,lv_obj_get_height(cont));
-//  lv_page_set_scroll_propagation(page, true);
-//
-//  label = lv_label_create(page, NULL);
-//  lv_label_set_long_mode(label, LV_LABEL_LONG_BREAK);
-//  lv_obj_set_width(label, lv_page_get_fit_width(page));
-//  lv_label_set_text(label ,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu quam lacus. Praesent rhoncus et orci sed vehicula. Etiam ut euismod metus. Etiam consequat orci ac mi dapibus, sed lacinia quam molestie. Cras convallis eros ut est fermentum, non fringilla velit placerat. In hac habitasse platea dictumst. Aliquam nec imperdiet elit, ut euismod orci. Morbi venenatis mattis sem, a lacinia massa ultricies non. Phasellus nec egestas justo. Duis quam mauris, congue vel ultricies vel, eleifend nec arcu. Vivamus ut accumsan purus.");
-//
-//
-//
-//
-//
-//     cont = lv_cont_create(t2, NULL);
-//     lv_obj_set_drag(cont, true);
-//     lv_cont_set_fit(cont, LV_FIT_TIGHT);
-//
-//
-//
-////     lv_group_add_obj(g, btn2);
-//#endif
-////
-//     lv_obj_set_drag(dd, true);
-////     lv_group_add_obj(g1, dd);
-//
-////     lv_obj_t * btn2 = lv_btn_create(lv_scr_act(), NULL);
-////     lv_obj_set_pos(btn2, 200, 200);
-////     lv_obj_set_drag(btn2, true);
-//
-//     lv_obj_t * win = lv_win_create(t2, NULL);
-//     lv_win_add_btn(win, LV_SYMBOL_CLOSE);
-//     lv_win_add_btn(win, LV_SYMBOL_OK);
-//
-//
-//#if 1
-//
-//     LV_IMG_DECLARE(icon_color);
-//     lv_obj_t * img = lv_img_create(t1, NULL);
-//     lv_img_set_src(img, &icon_color);
-//     lv_theme_apply(img, LV_THEME_CONT);
-////     lv_obj_set_style_int(img, LV_IMG_PART_MAIN, LV_STYLE_PAD_LEFT, 0);
-////     lv_obj_set_style_int(img, LV_IMG_PART_MAIN, LV_STYLE_PAD_RIGHT, -20);
-////     lv_obj_set_style_int(img, LV_IMG_PART_MAIN, LV_STYLE_PAD_TOP, 0);
-////     lv_obj_set_style_int(img, LV_IMG_PART_MAIN, LV_STYLE_PAD_BOTTOM, -20);
-////     lv_obj_set_style_int(img, LV_IMG_PART_MAIN, LV_STYLE_CLIP_CORNER, 1);
-////     lv_obj_set_style_int(img, LV_IMG_PART_MAIN, LV_STYLE_RADIUS, 200);
-//
-//
-////     lv_obj_t * kb = lv_keyboard_create(lv_scr_act(), NULL);
-////     lv_group_add_obj(g1, kb);
-////     lv_group_focus_obj(kb);
-////     lv_spinner_create(lv_scr_act(), NULL);
-//
-//     lv_gauge_create(win, NULL);
-//
-//
-//     #endif
-//
-//
-//
-////     lv_test_tileview_1();
-////
-////  volatile uint32_t t1 = lv_tick_get();
-////   lv_obj_t * cont = lv_cont_create(lv_scr_act(), NULL);
-////   lv_obj_set_size(cont, 220, 300);
-////   lv_obj_align(cont, NULL, LV_ALIGN_CENTER, 0, 0);
-////   lv_cont_set_layout(cont, LV_LAYOUT_PRETTY);
-////
-////
-////    lv_style_t s;
-////    lv_style_init(&s);
-////
-////    lv_style_set_color(&s, LV_STYLE_BORDER_COLOR, LV_COLOR_GREEN);
-////    lv_style_set_int(&s, LV_STYLE_LINE_WIDTH, 3);
-////    lv_style_set_int(&s, LV_STYLE_LINE_BLEND_MODE, 1);
-////    lv_style_set_color(&s, LV_STYLE_LINE_COLOR, LV_COLOR_BLUE);
-////    lv_style_set_color(&s, LV_STYLE_BORDER_COLOR, LV_COLOR_GREEN);
-////
-////    uint16_t i;
-////   lv_obj_t * b ;
-////   lv_obj_t * l;
-////   for(i = 0; i < 40; i++) {
-////       b= lv_btn_create(cont, NULL);
-//////   lv_obj_set_style_bg_color(b, LV_BTN_PART_MAIN, LV_STYLE_STATE_NORMAL, LV_COLOR_RED);
-////   lv_obj_set_style_value_str(b, LV_BTN_PART_MAIN, LV_STYLE_STATE_NORMAL, "xy");
-////   lv_obj_set_style_value_ofs_y(b, LV_BTN_PART_MAIN, LV_STYLE_STATE_NORMAL, 0);
-//////   lv_obj_set_style_value_ofs_y(b, LV_BTN_PART_MAIN, LV_STYLE_STATE_PRESSED, -15);
-//////   lv_obj_set_style_value_ofs_x(b, LV_BTN_PART_MAIN, LV_STYLE_STATE_NORMAL, 0);
-//////   lv_obj_set_style_value_ofs_x(b, LV_BTN_PART_MAIN, LV_STYLE_STATE_PRESSED, 10);
-////   lv_obj_set_style_value_ofs_y(b, LV_BTN_PART_MAIN, LV_STYLE_STATE_FOCUS, -5);
-////   lv_obj_set_style_value_align(b, LV_BTN_PART_MAIN, LV_STYLE_STATE_FOCUS, LV_ALIGN_OUT_TOP_LEFT);
-//////        lv_obj_set_size(b, 50, 30);
-//////        lv_obj_set_pos(b, (i%3) * 60 + 10, (i/3) * 40  + 10);
-////       lv_btn_set_fit(b, LV_FIT_TIGHT);
-//////        lv_obj_add_style_class(b, LV_BTN_PART_MAIN, &s);
-////
-////
-////
-////        l = lv_label_create(b, NULL);
-////       lv_label_set_text_fmt(l, "    ");
-////   }
-//
-////
-////   lv_obj_t * l = lv_label_create(lv_scr_act(), NULL);
-////   lv_obj_set_style_bg_color(l, LV_LABEL_PART_MAIN, LV_OBJ_STATE_NORMAL,LV_COLOR_RED);
-////   lv_obj_set_style_bg_opa(l, LV_LABEL_PART_MAIN, LV_OBJ_STATE_NORMAL,LV_OPA_COVER);
-////   lv_obj_set_style_pad_top(l, LV_LABEL_PART_MAIN, LV_OBJ_STATE_NORMAL,50);
-////   lv_obj_set_style_pad_bottom(l, LV_LABEL_PART_MAIN, LV_OBJ_STATE_NORMAL,10);
-////   lv_obj_set_style_pad_left(l, LV_LABEL_PART_MAIN, LV_OBJ_STATE_NORMAL,20);
-////   lv_obj_set_style_pad_right(l, LV_LABEL_PART_MAIN, LV_OBJ_STATE_NORMAL,30);
-////   lv_label_set_long_mode(l, LV_LABEL_LONG_CROP);
-////   lv_obj_set_width(l, 100);
-////   lv_label_set_text(l, "heje huja fogadom");
 
+static void bar_anim(lv_task_t * t)
+{
+    static uint32_t x = 0;
+    lv_obj_t * bar = t->user_data;
+
+    static char buf[64];
+    lv_snprintf(buf, sizeof(buf), "Copying %d/%d", x, lv_bar_get_max_value(bar));
+    lv_obj_set_style_value_str(bar, LV_BAR_PART_BG, LV_STATE_NORMAL, buf);
+
+    lv_bar_set_value(bar, x, LV_ANIM_OFF);
+    x++;
+    if(x > lv_bar_get_max_value(bar)) x = 0;
+
+}

@@ -9,7 +9,7 @@ static void event_handler(lv_obj_t * obj, lv_event_t event)
     }
 }
 
-void lv_ex_mbox_1(void)
+void lv_ex_msgbox_1(void)
 {
     static const char * btns[] ={"Apply", "Close", ""};
 

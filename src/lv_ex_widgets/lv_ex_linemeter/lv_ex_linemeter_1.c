@@ -1,7 +1,7 @@
 #include "lvgl/lvgl.h"
 #if LV_USE_LMETER
 
-void lv_ex_lmeter_1(void)
+void lv_ex_linemeter_1(void)
 {
     /*Create a line meter */
     lv_obj_t * lmeter;

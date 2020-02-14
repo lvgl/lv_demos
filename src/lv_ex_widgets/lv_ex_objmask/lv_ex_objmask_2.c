@@ -50,7 +50,7 @@ void lv_ex_objmask_2(void)
     /* Create and object with the gradient style on the object mask.
      * The text will be masked from the gradient*/
     lv_obj_t * bg = lv_obj_create(om, NULL);
-    lv_obj_reset_style(bg, LV_OBJ_PART_MAIN);
+    lv_obj_reset_style_list(bg, LV_OBJ_PART_MAIN);
     lv_obj_add_style(bg, LV_OBJ_PART_MAIN, &style_bg);
     lv_obj_set_size(bg, MASK_WIDTH, MASK_HEIGHT);
 

@@ -1,7 +1,7 @@
 #include "lvgl/lvgl.h"
 #if LV_USE_SPINNER
 
-void lv_ex_preload_1(void)
+void lv_ex_spinner_1(void)
 {
     /*Create a Preloader object*/
     lv_obj_t * preload = lv_spinner_create(lv_scr_act(), NULL);

@@ -12,7 +12,7 @@ static void event_handler(lv_obj_t * obj, lv_event_t event)
     }
 }
 
-void lv_ex_ddlist_1(void)
+void lv_ex_dropdown_1(void)
 {
 
     /*Create a normal drop down list*/
