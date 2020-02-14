@@ -6,8 +6,8 @@ void lv_ex_label_2(void)
     /* Create a style for the shadow*/
     static lv_style_t label_shadow_style;
     lv_style_init(&label_shadow_style);
-    lv_style_set_text_opa(&label_shadow_style, LV_STYLE_STATE_NORMAL, LV_OPA_70);
-    lv_style_set_text_color(&label_shadow_style, LV_STYLE_STATE_NORMAL, LV_COLOR_RED);
+    lv_style_set_text_opa(&label_shadow_style, LV_STATE_NORMAL, LV_OPA_70);
+    lv_style_set_text_color(&label_shadow_style, LV_STATE_NORMAL, LV_COLOR_RED);
 
     /*Create a label for the shadow first (it's in the background) */
     lv_obj_t * shadow_label = lv_label_create(lv_scr_act(), NULL);

@@ -36,8 +36,8 @@ static void slider_event_cb(lv_obj_t * slider, lv_event_t event)
         /* Recolor the image based on the sliders' values */
         lv_color_t color  = lv_color_make(lv_slider_get_value(red_slider), lv_slider_get_value(green_slider), lv_slider_get_value(blue_slider));
         lv_opa_t intense = lv_slider_get_value(intense_slider);
-        lv_obj_set_style_image_recolor_opa(img1, LV_IMG_PART_MAIN, LV_OBJ_STATE_NORMAL, intense);
-        lv_obj_set_style_image_recolor(img1, LV_IMG_PART_MAIN, LV_OBJ_STATE_NORMAL, color);
+        lv_obj_set_style_image_recolor_opa(img1, LV_IMG_PART_MAIN, LV_STATE_NORMAL, intense);
+        lv_obj_set_style_image_recolor(img1, LV_IMG_PART_MAIN, LV_STATE_NORMAL, color);
     }
 }
 
@@ -48,18 +48,18 @@ static void create_sliders(void)
     red_slider = lv_slider_create(lv_scr_act(), NULL);
     lv_slider_set_range(red_slider, 0, 255);
     lv_obj_set_size(red_slider, SLIDER_WIDTH, 200); /* Be sure it's a vertical slider */
-    lv_obj_set_style_bg_color(red_slider, LV_SLIDER_PART_INDIC, LV_OBJ_STATE_NORMAL, LV_COLOR_RED);
+    lv_obj_set_style_bg_color(red_slider, LV_SLIDER_PART_INDIC, LV_STATE_NORMAL, LV_COLOR_RED);
     lv_obj_set_event_cb(red_slider, slider_event_cb);
 
     /* Copy it for the other three sliders */
     green_slider = lv_slider_create(lv_scr_act(), red_slider);
-    lv_obj_set_style_bg_color(green_slider, LV_SLIDER_PART_INDIC, LV_OBJ_STATE_NORMAL, LV_COLOR_LIME);
+    lv_obj_set_style_bg_color(green_slider, LV_SLIDER_PART_INDIC, LV_STATE_NORMAL, LV_COLOR_LIME);
 
     blue_slider = lv_slider_create(lv_scr_act(), red_slider);
-    lv_obj_set_style_bg_color(blue_slider, LV_SLIDER_PART_INDIC, LV_OBJ_STATE_NORMAL, LV_COLOR_BLUE);
+    lv_obj_set_style_bg_color(blue_slider, LV_SLIDER_PART_INDIC, LV_STATE_NORMAL, LV_COLOR_BLUE);
 
     intense_slider = lv_slider_create(lv_scr_act(), red_slider);
-    lv_obj_set_style_bg_color(intense_slider, LV_SLIDER_PART_INDIC, LV_OBJ_STATE_NORMAL, LV_COLOR_SILVER);
+    lv_obj_set_style_bg_color(intense_slider, LV_SLIDER_PART_INDIC, LV_STATE_NORMAL, LV_COLOR_SILVER);
     lv_slider_set_value(intense_slider, 255, LV_ANIM_OFF);
 
     lv_obj_align(red_slider, NULL, LV_ALIGN_IN_LEFT_MID, 20, 0);

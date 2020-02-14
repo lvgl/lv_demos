@@ -1,10 +1,10 @@
 /**
- * @file lv_examples.h
+ * @file lv_demo_widgets.h
  *
  */
 
-#ifndef LV_EXAMPLES_H
-#define LV_EXAMPLES_H
+#ifndef LV_DEMO_WIDGETS_H
+#define LV_DEMO_WIDGETS_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,16 +13,10 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-#include "../lvgl/lvgl.h"
-#include "src/lv_ex_widgets/lv_ex_widgets.h"
 
 /*********************
  *      DEFINES
  *********************/
-/*Test  lvgl version*/
-#if LV_VERSION_CHECK(7, 0, 0) == 0
-#error "lv_examples: Wrong lvgl version"
-#endif
 
 /**********************
  *      TYPEDEFS
@@ -32,14 +26,12 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-
 /**********************
  *      MACROS
  **********************/
-
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
 
-#endif /*LV_EXAMPLES_H*/
+#endif /*LV_DEMO_WIDGETS_H*/

@@ -9,9 +9,9 @@ void lv_ex_line_1(void)
     /*Create style*/
     static lv_style_t style_line;
     lv_style_init(&style_line);
-    lv_style_set_line_width(&style_line, LV_STYLE_STATE_NORMAL, 8);
-    lv_style_set_line_color(&style_line, LV_STYLE_STATE_NORMAL, LV_COLOR_BLUE);
-    lv_style_set_line_rounded(&style_line, LV_STYLE_STATE_NORMAL, true);
+    lv_style_set_line_width(&style_line, LV_STATE_NORMAL, 8);
+    lv_style_set_line_color(&style_line, LV_STATE_NORMAL, LV_COLOR_BLUE);
+    lv_style_set_line_rounded(&style_line, LV_STATE_NORMAL, true);
 
     /*Create a line and apply the new style*/
     lv_obj_t * line1;
