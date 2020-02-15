@@ -219,12 +219,11 @@ static void visuals_create(lv_obj_t * parent)
 
     lv_obj_t * table1 = lv_table_create(page, NULL);
     lv_obj_set_click(table1, false);
-    lv_table_set_col_cnt(table1, 4);
+    lv_table_set_col_cnt(table1, 3);
     lv_table_set_row_cnt(table1, 7);
     lv_table_set_col_width(table1, 0, 30);
-    lv_table_set_col_width(table1, 1, 100);
-    lv_table_set_col_width(table1, 2, 100);
-    lv_table_set_col_width(table1, 3, 100);
+    lv_table_set_col_width(table1, 1, 110);
+    lv_table_set_col_width(table1, 2, 110);
 
     lv_table_set_cell_value(table1, 0, 0, "#");
     lv_table_set_cell_value(table1, 0, 1, "FIRST NAME");
@@ -234,32 +233,26 @@ static void visuals_create(lv_obj_t * parent)
     lv_table_set_cell_value(table1, 1, 0, "1");
     lv_table_set_cell_value(table1, 1, 1, "Mark");
     lv_table_set_cell_value(table1, 1, 2, "Otto");
-    lv_table_set_cell_value(table1, 1, 3, "@mdo");
 
     lv_table_set_cell_value(table1, 2, 0, "2");
     lv_table_set_cell_value(table1, 2, 1, "Jacob");
     lv_table_set_cell_value(table1, 2, 2, "Thoronton");
-    lv_table_set_cell_value(table1, 2, 3, "@fat");
 
     lv_table_set_cell_value(table1, 3, 0, "3");
     lv_table_set_cell_value(table1, 3, 1, "John");
     lv_table_set_cell_value(table1, 3, 2, "Doe");
-    lv_table_set_cell_value(table1, 3, 3, "@j_doe");
 
     lv_table_set_cell_value(table1, 4, 0, "4");
     lv_table_set_cell_value(table1, 4, 1, "Emily");
     lv_table_set_cell_value(table1, 4, 2, "Smith");
-    lv_table_set_cell_value(table1, 4, 3, "@e.smith");
 
     lv_table_set_cell_value(table1, 5, 0, "5");
     lv_table_set_cell_value(table1, 5, 1, "Samantha");
     lv_table_set_cell_value(table1, 5, 2, "Taylor");
-    lv_table_set_cell_value(table1, 5, 3, "@staylor");
 
     lv_table_set_cell_value(table1, 6, 0, "6");
     lv_table_set_cell_value(table1, 6, 1, "George");
     lv_table_set_cell_value(table1, 6, 2, "Black");
-    lv_table_set_cell_value(table1, 6, 3, "@black-g1");
 
     lv_obj_t * arc = lv_arc_create(parent, NULL);
     lv_arc_set_bg_angles(arc, 0, 360);
