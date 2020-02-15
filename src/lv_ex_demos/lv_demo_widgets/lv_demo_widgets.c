@@ -222,9 +222,9 @@ static void visuals_create(lv_obj_t * parent)
     lv_table_set_col_cnt(table1, 4);
     lv_table_set_row_cnt(table1, 7);
     lv_table_set_col_width(table1, 0, 30);
-    lv_table_set_col_width(table1, 1, 150);
-    lv_table_set_col_width(table1, 2, 150);
-    lv_table_set_col_width(table1, 3, 150);
+    lv_table_set_col_width(table1, 1, 100);
+    lv_table_set_col_width(table1, 2, 100);
+    lv_table_set_col_width(table1, 3, 100);
 
     lv_table_set_cell_value(table1, 0, 0, "#");
     lv_table_set_cell_value(table1, 0, 1, "FIRST NAME");
