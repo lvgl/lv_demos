@@ -353,10 +353,10 @@ static void lv_ta_event_cb(lv_obj_t * ta, lv_event_t e)
         if(kb == NULL) {
             lv_obj_set_height(tv, LV_VER_RES / 2);
             kb = lv_keyboard_create(lv_scr_act(), NULL);
-            lv_keyboard_set_ta(kb, ta);
             lv_obj_set_event_cb(kb, lv_kb_event_cb);
         }
         lv_page_focus(t1, ta, LV_ANIM_ON);
+        lv_keyboard_set_ta(kb, ta);
     }
 }
 
