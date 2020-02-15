@@ -350,22 +350,27 @@ static void lv_slider_event_cb(lv_obj_t * slider, lv_event_t e)
 static void lv_ta_event_cb(lv_obj_t * ta, lv_event_t e)
 {
     if(e == LV_EVENT_FOCUSED) {
-        lv_obj_set_height(tv, LV_VER_RES / 2);
-        kb = lv_keyboard_create(lv_scr_act(), NULL);
-        lv_keyboard_set_ta(kb, ta);
-        lv_obj_set_event_cb(kb, lv_kb_event_cb);
+        if(kb == NULL) {
+            lv_obj_set_height(tv, LV_VER_RES / 2);
+            kb = lv_keyboard_create(lv_scr_act(), NULL);
+            lv_keyboard_set_ta(kb, ta);
+            lv_obj_set_event_cb(kb, lv_kb_event_cb);
+        }
         lv_page_focus(t1, ta, LV_ANIM_ON);
     }
 }
 
 
-static void lv_kb_event_cb(lv_obj_t * kb, lv_event_t e)
+static void lv_kb_event_cb(lv_obj_t * _kb, lv_event_t e)
 {
     lv_keyboard_def_event_cb(kb, e);
 
     if(e == LV_EVENT_CANCEL) {
-        lv_obj_set_height(tv, LV_VER_RES);
-        lv_obj_del(kb);
+        if(kb) {
+            lv_obj_set_height(tv, LV_VER_RES);
+            lv_obj_del(kb);
+            kb = NULL;
+        }
     }
 }
 
