@@ -14,7 +14,9 @@ extern "C" {
  *      INCLUDES
  *********************/
 #include "../lvgl/lvgl.h"
+#include "../lv_ex_conf.h"
 #include "src/lv_ex_widgets/lv_ex_widgets.h"
+#include "src/lv_ex_demos/lv_demo_widgets/lv_demo_widgets.h"
 
 /*********************
  *      DEFINES

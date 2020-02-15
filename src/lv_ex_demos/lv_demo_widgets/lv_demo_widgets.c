@@ -1,13 +1,14 @@
 /**
- * @file lv_templ.c
+ * @file lv_demo_widgets.c
  *
  */
 
 /*********************
  *      INCLUDES
  *********************/
-#include "lv_demo_widgets.h"
+#include "../../../lv_examples.h"
 #include "lvgl/lvgl.h"
+#include "lv_demo_widgets.h"
 
 /*********************
  *      DEFINES
@@ -47,10 +48,14 @@ static lv_style_t style_box;
  *   GLOBAL FUNCTIONS
  **********************/
 
-void lv_demo_widget(void)
+void lv_demo_widgets(void)
 {
     tv = lv_tabview_create(lv_scr_act(), NULL);
-    _lv_obj_set_style_int(tv, LV_TABVIEW_PART_TAB_BG, LV_STYLE_PAD_LEFT, LV_HOR_RES / 2);
+
+    if(LV_HOR_RES_MAX >= 480) {
+        lv_obj_set_style_pad_left(tv, LV_TABVIEW_PART_TAB_BG, LV_STATE_NORMAL, LV_HOR_RES / 2);
+    }
+
     t1 = lv_tabview_add_tab(tv, "Controls");
     t2 = lv_tabview_add_tab(tv, "Visuals");
     t3 = lv_tabview_add_tab(tv, "Selectors");
