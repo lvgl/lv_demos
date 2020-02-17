@@ -113,7 +113,7 @@ static void controls_create(lv_obj_t * parent)
     lv_obj_set_style_value_opa(slider, LV_SLIDER_PART_KNOB, LV_STATE_NORMAL, LV_OPA_TRANSP);
     lv_obj_set_style_value_ofs_y(slider, LV_SLIDER_PART_KNOB, LV_STATE_FOCUSED, -18);
     lv_obj_set_style_value_opa(slider, LV_SLIDER_PART_KNOB, LV_STATE_FOCUSED, LV_OPA_COVER);
-    lv_obj_set_style_transition_time(slider, LV_SLIDER_PART_BG, LV_STATE_FOCUSED, 300);
+    lv_obj_set_style_transition_time(slider, LV_SLIDER_PART_BG, LV_STATE_NORMAL, 300);
 
     slider = lv_slider_create(h, NULL);
     lv_slider_set_type(slider, LV_SLIDER_TYPE_RANGE);
@@ -296,6 +296,7 @@ static void selectors_create(lv_obj_t * parent)
     lv_page_set_scrl_layout(parent, LV_LAYOUT_PRETTY);
 
     lv_obj_t * list = lv_list_create(parent, NULL);
+    lv_list_set_scroll_propagation(list, true);
 
     const char * txts[] = {LV_SYMBOL_SAVE, "Save", LV_SYMBOL_CUT, "Cut", LV_SYMBOL_COPY, "Copy",
             LV_SYMBOL_OK, "Apply", LV_SYMBOL_EDIT, "Edit", LV_SYMBOL_WIFI, "Wifi",
@@ -355,7 +356,7 @@ static void lv_ta_event_cb(lv_obj_t * ta, lv_event_t e)
             kb = lv_keyboard_create(lv_scr_act(), NULL);
             lv_obj_set_event_cb(kb, lv_kb_event_cb);
         }
-        lv_page_focus(t1, ta, LV_ANIM_ON);
+        lv_page_focus(t1, lv_textarea_get_label(ta), LV_ANIM_ON);
         lv_keyboard_set_ta(kb, ta);
     }
 }
