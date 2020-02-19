@@ -358,6 +358,8 @@ static void lv_ta_event_cb(lv_obj_t * ta, lv_event_t e)
         }
         lv_page_focus(t1, lv_textarea_get_label(ta), LV_ANIM_ON);
         lv_keyboard_set_ta(kb, ta);
+    } else if(e == LV_EVENT_DEFOCUSED) {
+        lv_textarea_set_cursor_hidden(ta, true);
     }
 }
 

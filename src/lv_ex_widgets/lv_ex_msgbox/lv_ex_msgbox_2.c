@@ -75,10 +75,11 @@ static void btn_event_cb(lv_obj_t *btn, lv_event_t evt)
         /* Fade the message box in with an animation */
         lv_anim_t a;
         lv_anim_init(&a);
-        lv_anim_set_time(&a, 500, 0);
+        lv_anim_set_var(&a, obj);
+        lv_anim_set_time(&a, 500);
         lv_anim_set_values(&a, LV_OPA_TRANSP, LV_OPA_50);
-        lv_anim_set_exec_cb(&a, obj, (lv_anim_exec_xcb_t)opa_anim);
-        lv_anim_create(&a);
+        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)opa_anim);
+        lv_anim_start(&a);
 
         lv_label_set_text(info, in_msg_info);
         lv_obj_align(info, NULL, LV_ALIGN_IN_BOTTOM_LEFT, 5, -5);

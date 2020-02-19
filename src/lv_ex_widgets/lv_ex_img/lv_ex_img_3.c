@@ -13,16 +13,17 @@ void lv_ex_img_3(void)
 
     lv_anim_t a;
     lv_anim_init(&a);
-    lv_anim_set_exec_cb(&a, img, (lv_anim_exec_xcb_t)lv_img_set_angle);
+    lv_anim_set_var(&a, img);
+    lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_img_set_angle);
     lv_anim_set_values(&a, 0, 359);
-    lv_anim_set_repeat(&a, 0);
-    lv_anim_set_time(&a, 5000, 0);
-    lv_anim_create(&a);
+    lv_anim_set_time(&a, 3000);
+    lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINIT);
+    lv_anim_start(&a);
 
-    lv_anim_set_exec_cb(&a, img, (lv_anim_exec_xcb_t)lv_img_set_zoom);
+    lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_img_set_zoom);
     lv_anim_set_values(&a, 128, 256);
-    lv_anim_set_playback(&a, 0);
-    lv_anim_create(&a);
+    lv_anim_set_playback_time(&a, 3000);
+    lv_anim_start(&a);
 
 }
 
