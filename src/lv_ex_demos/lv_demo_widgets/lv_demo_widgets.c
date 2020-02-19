@@ -77,7 +77,7 @@ void lv_demo_widgets(void)
 
 static void controls_create(lv_obj_t * parent)
 {
-    lv_page_set_scrl_layout(parent, LV_LAYOUT_PRETTY);
+    lv_page_set_scrl_layout(parent, LV_LAYOUT_PRETTY_TOP);
 
     static const char * btns[] = {"Cancel", "Ok", ""};
 
@@ -147,7 +147,7 @@ static void controls_create(lv_obj_t * parent)
 
 static void visuals_create(lv_obj_t * parent)
 {
-    lv_page_set_scrl_layout(parent, LV_LAYOUT_PRETTY);
+    lv_page_set_scrl_layout(parent, LV_LAYOUT_PRETTY_TOP);
 
     lv_obj_t * chart = lv_chart_create(parent, NULL);
     lv_chart_set_div_line_count(chart, 3, 0);
@@ -293,7 +293,7 @@ static void visuals_create(lv_obj_t * parent)
 
 static void selectors_create(lv_obj_t * parent)
 {
-    lv_page_set_scrl_layout(parent, LV_LAYOUT_PRETTY);
+    lv_page_set_scrl_layout(parent, LV_LAYOUT_PRETTY_MID);
 
     lv_obj_t * list = lv_list_create(parent, NULL);
     lv_list_set_scroll_propagation(list, true);
