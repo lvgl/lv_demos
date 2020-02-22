@@ -17,7 +17,7 @@ static const char in_msg_info[] = "Notice that you cannot touch "
 void lv_ex_msgbox_2(void)
 {
     lv_style_init(&style_modal);
-    lv_style_set_bg_color(&style_modal, LV_STATE_NORMAL, LV_COLOR_BLACK);
+    lv_style_set_bg_color(&style_modal, LV_STATE_DEFAULT, LV_COLOR_BLACK);
 
     /* Create a button, then set its position and event callback */
     lv_obj_t *btn = lv_btn_create(lv_scr_act(), NULL);
@@ -88,7 +88,7 @@ static void btn_event_cb(lv_obj_t *btn, lv_event_t evt)
 
 static void opa_anim(void * bg, lv_anim_value_t v)
 {
-    lv_obj_set_style_bg_opa(bg, LV_OBJ_PART_MAIN, LV_STATE_NORMAL, v);
+    lv_obj_set_style_bg_opa(bg, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, v);
 }
 
 #endif

@@ -1,7 +1,6 @@
 #include "lvgl/lvgl.h"
 #if LV_USE_IMGBTN
 
-
 void lv_ex_imgbtn_1(void)
 {
     LV_IMG_DECLARE(imgbtn_green);
@@ -10,8 +9,8 @@ void lv_ex_imgbtn_1(void)
     /*Darken the button when pressed*/
     static lv_style_t style;
     lv_style_init(&style);
-    lv_style_set_image_recolor_opa(&style, LV_STATE_NORMAL, LV_OPA_30);
-    lv_style_set_image_recolor(&style, LV_STATE_NORMAL, LV_COLOR_BLACK);
+    lv_style_set_image_recolor_opa(&style, LV_STATE_DEFAULT, LV_OPA_30);
+    lv_style_set_image_recolor(&style, LV_STATE_DEFAULT, LV_COLOR_BLACK);
 
     /*Create an Image button*/
     lv_obj_t * imgbtn1 = lv_imgbtn_create(lv_scr_act(), NULL);

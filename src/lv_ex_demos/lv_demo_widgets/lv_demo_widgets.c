@@ -53,7 +53,7 @@ void lv_demo_widgets(void)
     tv = lv_tabview_create(lv_scr_act(), NULL);
 
     if(LV_HOR_RES_MAX >= 480) {
-        lv_obj_set_style_pad_left(tv, LV_TABVIEW_PART_TAB_BG, LV_STATE_NORMAL, LV_HOR_RES / 2);
+        lv_obj_set_style_pad_left(tv, LV_TABVIEW_PART_TAB_BG, LV_STATE_DEFAULT, LV_HOR_RES / 2);
     }
 
     t1 = lv_tabview_add_tab(tv, "Controls");
@@ -61,9 +61,9 @@ void lv_demo_widgets(void)
     t3 = lv_tabview_add_tab(tv, "Selectors");
 
     lv_style_init(&style_box);
-    lv_style_set_value_align(&style_box, LV_STATE_NORMAL, LV_ALIGN_OUT_TOP_LEFT);
-    lv_style_set_value_ofs_y(&style_box, LV_STATE_NORMAL, 0);
-    lv_style_set_pad_inner(&style_box, LV_STATE_NORMAL, LV_DPI / 4);
+    lv_style_set_value_align(&style_box, LV_STATE_DEFAULT, LV_ALIGN_OUT_TOP_LEFT);
+    lv_style_set_value_ofs_y(&style_box, LV_STATE_DEFAULT, 0);
+    lv_style_set_pad_inner(&style_box, LV_STATE_DEFAULT, LV_DPI / 4);
 
     controls_create(t1);
     visuals_create(t2);
@@ -91,7 +91,7 @@ static void controls_create(lv_obj_t * parent)
     lv_obj_add_style(h, LV_CONT_PART_MAIN, &style_box);
     lv_obj_set_drag_parent(h, true);
 
-    lv_obj_set_style_value_str(h, LV_CONT_PART_MAIN, LV_STATE_NORMAL, "Basics");
+    lv_obj_set_style_value_str(h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, "Basics");
 
     lv_cont_set_fit2(h, LV_FIT_TIGHT, LV_FIT_TIGHT);
 
@@ -108,23 +108,23 @@ static void controls_create(lv_obj_t * parent)
     lv_obj_set_event_cb(slider, lv_slider_event_cb);
 
     /*Use the knobs style value the display the current value in focused state*/
-    lv_obj_set_style_value_font(slider, LV_SLIDER_PART_KNOB, LV_STATE_NORMAL, LV_THEME_DEFAULT_FONT_SMALL);
-    lv_obj_set_style_value_ofs_y(slider, LV_SLIDER_PART_KNOB, LV_STATE_NORMAL, 0);
-    lv_obj_set_style_value_opa(slider, LV_SLIDER_PART_KNOB, LV_STATE_NORMAL, LV_OPA_TRANSP);
+    lv_obj_set_style_value_font(slider, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, LV_THEME_DEFAULT_FONT_SMALL);
     lv_obj_set_style_value_ofs_y(slider, LV_SLIDER_PART_KNOB, LV_STATE_FOCUSED, -18);
     lv_obj_set_style_value_opa(slider, LV_SLIDER_PART_KNOB, LV_STATE_FOCUSED, LV_OPA_COVER);
-    lv_obj_set_style_transition_time(slider, LV_SLIDER_PART_BG, LV_STATE_NORMAL, 300);
+    lv_obj_set_style_trans_time(slider, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, 300);
+    lv_obj_set_style_trans_prop_5(slider, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, LV_STYLE_VALUE_OFS_Y);
+    lv_obj_set_style_trans_prop_6(slider, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, LV_STYLE_VALUE_OPA);
 
     slider = lv_slider_create(h, NULL);
     lv_slider_set_type(slider, LV_SLIDER_TYPE_RANGE);
     lv_slider_set_value(slider, 70, LV_ANIM_OFF);
     lv_slider_set_left_value(slider, 30, LV_ANIM_OFF);
-    lv_obj_set_style_value_font(slider, LV_SLIDER_PART_INDIC, LV_STATE_NORMAL, LV_THEME_DEFAULT_FONT_SMALL);
+    lv_obj_set_style_value_font(slider, LV_SLIDER_PART_INDIC, LV_STATE_DEFAULT, LV_THEME_DEFAULT_FONT_SMALL);
     lv_obj_set_event_cb(slider, lv_slider_event_cb);
     lv_event_send(slider, LV_EVENT_VALUE_CHANGED, NULL);      /*To refresh the text*/
 
     h = lv_cont_create(parent, h);
-    lv_obj_set_style_value_str(h, LV_CONT_PART_MAIN, LV_STATE_NORMAL, "Text input");
+    lv_obj_set_style_value_str(h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, "Text input");
 
     lv_obj_t * ta = lv_textarea_create(h, NULL);
     lv_textarea_set_text(ta, "");
@@ -259,27 +259,28 @@ static void visuals_create(lv_obj_t * parent)
     lv_table_set_cell_value(table1, 6, 1, "George");
     lv_table_set_cell_value(table1, 6, 2, "Black");
 
+    lv_obj_t * lmeter = lv_linemeter_create(parent, NULL);
+    lv_obj_set_size(lmeter,  3 * LV_DPI / 2, 3 * LV_DPI / 2);
+    lv_linemeter_set_value(lmeter, 50);
+
+    lv_obj_t * gauge = lv_gauge_create(parent, NULL);
+    lv_obj_set_size(gauge,  3 * LV_DPI / 2, 3 * LV_DPI / 2);
+
     lv_obj_t * arc = lv_arc_create(parent, NULL);
     lv_arc_set_bg_angles(arc, 0, 360);
     lv_arc_set_angles(arc, 270, 30);
-    lv_obj_set_size(arc, LV_DPI * 2, LV_DPI * 2);
-
-    lv_obj_t * lmeter = lv_linemeter_create(parent, NULL);
-    lv_obj_set_size(lmeter, LV_DPI * 2, LV_DPI * 2);
-    lv_linemeter_set_value(lmeter, 50);
-
-    lv_gauge_create(parent, NULL);
+    lv_obj_set_size(arc,  LV_DPI, LV_DPI);
 
     /*Create a bar and use the backgrounds value style property to display the current value*/
     lv_obj_t * bar = lv_bar_create(parent, NULL);
-    lv_obj_set_style_value_font(bar, LV_BAR_PART_BG, LV_STATE_NORMAL, LV_THEME_DEFAULT_FONT_SMALL);
+    lv_obj_set_style_value_font(bar, LV_BAR_PART_BG, LV_STATE_DEFAULT, LV_THEME_DEFAULT_FONT_SMALL);
 
     lv_obj_t * h = lv_cont_create(parent, NULL);
     lv_cont_set_layout(h, LV_LAYOUT_ROW_MID);
     lv_cont_set_fit(h, LV_FIT_TIGHT);
     lv_obj_add_style(h, LV_CONT_PART_MAIN, &style_box);
     lv_obj_set_drag_parent(h, true);
-    lv_obj_set_style_value_str(h, LV_CONT_PART_MAIN, LV_STATE_NORMAL, "LEDs");
+    lv_obj_set_style_value_str(h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, "LEDs");
 
     lv_obj_t * led = lv_led_create(h, NULL);
     lv_led_off(led);
@@ -337,11 +338,11 @@ static void lv_slider_event_cb(lv_obj_t * slider, lv_event_t e)
         if(lv_slider_get_type(slider) == LV_SLIDER_TYPE_NORMAL) {
             static char buf[16];
             lv_snprintf(buf, sizeof(buf), "%d", lv_slider_get_value(slider));
-            lv_obj_set_style_value_str(slider, LV_SLIDER_PART_KNOB, LV_STATE_NORMAL, buf);
+            lv_obj_set_style_value_str(slider, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, buf);
         } else {
             static char buf[32];
             lv_snprintf(buf, sizeof(buf), "%d-%d", lv_slider_get_left_value(slider), lv_slider_get_value(slider));
-            lv_obj_set_style_value_str(slider, LV_SLIDER_PART_INDIC, LV_STATE_NORMAL, buf);
+            lv_obj_set_style_value_str(slider, LV_SLIDER_PART_INDIC, LV_STATE_DEFAULT, buf);
         }
 
     }
@@ -385,7 +386,7 @@ static void bar_anim(lv_task_t * t)
 
     static char buf[64];
     lv_snprintf(buf, sizeof(buf), "Copying %d/%d", x, lv_bar_get_max_value(bar));
-    lv_obj_set_style_value_str(bar, LV_BAR_PART_BG, LV_STATE_NORMAL, buf);
+    lv_obj_set_style_value_str(bar, LV_BAR_PART_BG, LV_STATE_DEFAULT, buf);
 
     lv_bar_set_value(bar, x, LV_ANIM_OFF);
     x++;

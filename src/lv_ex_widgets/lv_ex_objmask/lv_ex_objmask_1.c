@@ -5,7 +5,7 @@ void lv_ex_objmask_1(void)
 {
 
     /*Set a very visible color for the screen to clearly see what happens*/
-    lv_obj_set_style_bg_color(lv_scr_act(), LV_OBJ_PART_MAIN, LV_STATE_NORMAL, lv_color_hex3(0xf33));
+    lv_obj_set_style_bg_color(lv_scr_act(), LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex3(0xf33));
 
     lv_obj_t * om = lv_objmask_create(lv_scr_act(), NULL);
     lv_obj_set_size(om, 200, 200);
@@ -24,7 +24,7 @@ void lv_ex_objmask_1(void)
 
     lv_obj_t * btn = lv_btn_create(cont, NULL);
     lv_obj_align(btn, NULL, LV_ALIGN_CENTER, 0, 0);
-    lv_obj_set_style_value_str(btn, LV_BTN_PART_MAIN, LV_STATE_NORMAL, "Button");
+    lv_obj_set_style_value_str(btn, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, "Button");
     uint32_t t;
 
     lv_refr_now(NULL);

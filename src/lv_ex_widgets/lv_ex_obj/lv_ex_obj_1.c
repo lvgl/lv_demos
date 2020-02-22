@@ -15,9 +15,9 @@ void lv_ex_obj_1(void)
 
     static lv_style_t style_shadow;
     lv_style_init(&style_shadow);
-    lv_style_set_shadow_width(&style_shadow, LV_STATE_NORMAL, 10);
-    lv_style_set_shadow_spread(&style_shadow, LV_STATE_NORMAL, 5);
-    lv_style_set_shadow_color(&style_shadow, LV_STATE_NORMAL, LV_COLOR_BLUE);
+    lv_style_set_shadow_width(&style_shadow, LV_STATE_DEFAULT, 10);
+    lv_style_set_shadow_spread(&style_shadow, LV_STATE_DEFAULT, 5);
+    lv_style_set_shadow_color(&style_shadow, LV_STATE_DEFAULT, LV_COLOR_BLUE);
 
     /*Copy the previous object (drag is already enabled)*/
     lv_obj_t * obj3;

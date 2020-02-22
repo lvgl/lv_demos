@@ -42,10 +42,10 @@ void lv_ex_objmask_2(void)
     /*Create a style with gradient*/
     static lv_style_t style_bg;
     lv_style_init(&style_bg);
-    lv_style_set_bg_opa(&style_bg, LV_STATE_NORMAL, LV_OPA_COVER);
-    lv_style_set_bg_color(&style_bg, LV_STATE_NORMAL, LV_COLOR_RED);
-    lv_style_set_bg_grad_color(&style_bg, LV_STATE_NORMAL, LV_COLOR_BLUE);
-    lv_style_set_bg_grad_dir(&style_bg, LV_STATE_NORMAL, LV_GRAD_DIR_HOR);
+    lv_style_set_bg_opa(&style_bg, LV_STATE_DEFAULT, LV_OPA_COVER);
+    lv_style_set_bg_color(&style_bg, LV_STATE_DEFAULT, LV_COLOR_RED);
+    lv_style_set_bg_grad_color(&style_bg, LV_STATE_DEFAULT, LV_COLOR_BLUE);
+    lv_style_set_bg_grad_dir(&style_bg, LV_STATE_DEFAULT, LV_GRAD_DIR_HOR);
 
     /* Create and object with the gradient style on the object mask.
      * The text will be masked from the gradient*/
