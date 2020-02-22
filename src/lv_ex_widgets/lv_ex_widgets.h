@@ -29,6 +29,7 @@ void lv_ex_arc_1(void);
 void lv_ex_arc_2(void);
 void lv_ex_bar_1(void);
 void lv_ex_btn_1(void);
+void lv_ex_btn_2(void);
 void lv_ex_btnmatrix_1(void);
 void lv_ex_calendar_1(void);
 void lv_ex_canvas_1(void);
