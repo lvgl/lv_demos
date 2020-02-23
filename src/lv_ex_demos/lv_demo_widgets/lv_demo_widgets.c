@@ -86,6 +86,7 @@ static void controls_create(lv_obj_t * parent)
     lv_obj_t * btnm = lv_msgbox_get_btnm(m);
     lv_btnmatrix_set_btn_ctrl(btnm, 1, LV_BTNMATRIX_CTRL_CHECK_STATE);
 
+
     lv_obj_t * h = lv_cont_create(parent, NULL);
     lv_cont_set_layout(h, LV_LAYOUT_COLUMN_LEFT);
     lv_obj_add_style(h, LV_CONT_PART_MAIN, &style_box);
@@ -132,6 +133,7 @@ static void controls_create(lv_obj_t * parent)
     lv_textarea_set_one_line(ta, true);
     lv_textarea_set_cursor_hidden(ta, true);
     lv_obj_set_event_cb(ta, lv_ta_event_cb);
+
     lv_theme_apply(ta, LV_THEME_TEXTAREA_ONELINE);
 
     ta = lv_textarea_create(h, ta);
