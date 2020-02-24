@@ -50,8 +50,8 @@ void lv_demo_stress(void)
     lv_style_init(&style_slow_trans);
     lv_style_set_bg_opa(&style_slow_trans, LV_STATE_DEFAULT, LV_OPA_COVER);
     lv_style_set_bg_color(&style_slow_trans, LV_STATE_DISABLED, LV_COLOR_SILVER);
-    lv_style_set_trans_prop_1(&style_slow_trans, LV_STATE_DEFAULT, LV_STYLE_BG_COLOR);
-    lv_style_set_trans_time(&style_slow_trans, LV_STATE_DEFAULT, TIME_STEP * 10);
+    lv_style_set_transition_prop_1(&style_slow_trans, LV_STATE_DEFAULT, LV_STYLE_BG_COLOR);
+    lv_style_set_transition_time(&style_slow_trans, LV_STATE_DEFAULT, TIME_STEP * 10);
 
     /* Holder for all object types */
     main_page = lv_page_create(lv_scr_act(), NULL);
@@ -128,14 +128,14 @@ static void obj_test_task_cb(lv_task_t * param)
         case 2:
             obj = lv_btn_create(main_page, NULL);
             lv_obj_set_size(obj, 100, 70);
-            lv_obj_set_style_value_str(obj, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, "Text from\nstyle");
+            lv_obj_set_style_local_value_str(obj, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, "Text from\nstyle");
             lv_obj_del_async(obj);  /*Delete on next call of `lv_task_handler` (so not now)*/
 
             obj = lv_btn_create(main_page, obj);
             lv_btn_set_fit(obj, LV_FIT_TIGHT);
-            lv_obj_set_style_pattern_image(obj, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_LEFT);
-            lv_obj_set_style_pattern_opa(obj, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_50);
-            lv_obj_set_style_pattern_repeat(obj, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, true);
+            lv_obj_set_style_local_pattern_image(obj, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_LEFT);
+            lv_obj_set_style_local_pattern_opa(obj, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_50);
+            lv_obj_set_style_local_pattern_repeat(obj, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, true);
             lv_page_focus(main_page, obj, LV_ANIM_ON);
             break;
 

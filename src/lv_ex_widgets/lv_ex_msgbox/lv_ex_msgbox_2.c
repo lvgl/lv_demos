@@ -88,7 +88,7 @@ static void btn_event_cb(lv_obj_t *btn, lv_event_t evt)
 
 static void opa_anim(void * bg, lv_anim_value_t v)
 {
-    lv_obj_set_style_bg_opa(bg, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, v);
+    lv_obj_set_style_local_bg_opa(bg, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, v);
 }
 
 #endif

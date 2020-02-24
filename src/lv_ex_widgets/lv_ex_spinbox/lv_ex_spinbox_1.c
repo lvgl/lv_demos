@@ -34,13 +34,13 @@ void lv_ex_spinbox_1(void)
     lv_obj_set_size(btn, h, h);
     lv_obj_align(btn, spinbox, LV_ALIGN_OUT_RIGHT_MID, 5, 0);
     lv_theme_apply(btn, LV_THEME_SPINBOX_BTN);
-    lv_obj_set_style_value_str(btn, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_PLUS);
+    lv_obj_set_style_local_value_str(btn, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_PLUS);
     lv_obj_set_event_cb(btn, lv_spinbox_increment_event_cb);
 
     btn = lv_btn_create(lv_scr_act(), btn);
     lv_obj_align(btn, spinbox, LV_ALIGN_OUT_LEFT_MID, -5, 0);
     lv_obj_set_event_cb(btn, lv_spinbox_decrement_event_cb);
-    lv_obj_set_style_value_str(btn, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_MINUS);
+    lv_obj_set_style_local_value_str(btn, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_MINUS);
 }
 
 #endif
