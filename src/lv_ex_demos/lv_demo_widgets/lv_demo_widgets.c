@@ -83,7 +83,7 @@ static void controls_create(lv_obj_t * parent)
 
     lv_obj_t * m = lv_msgbox_create(lv_scr_act(), NULL);
     lv_msgbox_add_btns(m, btns);
-    lv_obj_t * btnm = lv_msgbox_get_btnm(m);
+    lv_obj_t * btnm = lv_msgbox_get_btnmatrix(m);
     lv_btnmatrix_set_btn_ctrl(btnm, 1, LV_BTNMATRIX_CTRL_CHECK_STATE);
 
 
@@ -111,6 +111,7 @@ static void controls_create(lv_obj_t * parent)
     /*Use the knobs style value the display the current value in focused state*/
     lv_obj_set_style_local_value_font(slider, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, LV_THEME_DEFAULT_FONT_SMALL);
     lv_obj_set_style_local_value_ofs_y(slider, LV_SLIDER_PART_KNOB, LV_STATE_FOCUSED, -18);
+    lv_obj_set_style_local_value_opa(slider, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, LV_OPA_TRANSP);
     lv_obj_set_style_local_value_opa(slider, LV_SLIDER_PART_KNOB, LV_STATE_FOCUSED, LV_OPA_COVER);
     lv_obj_set_style_local_transition_time(slider, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, 300);
     lv_obj_set_style_local_transition_prop_5(slider, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, LV_STYLE_VALUE_OFS_Y);
@@ -132,6 +133,7 @@ static void controls_create(lv_obj_t * parent)
     lv_textarea_set_placeholder_text(ta, "E-mail address");
     lv_textarea_set_one_line(ta, true);
     lv_textarea_set_cursor_hidden(ta, true);
+    lv_textarea_set_text_align(ta, LV_LABEL_ALIGN_CENTER);
     lv_obj_set_event_cb(ta, lv_ta_event_cb);
 
     lv_theme_apply(ta, LV_THEME_TEXTAREA_ONELINE);
