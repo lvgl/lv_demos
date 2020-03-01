@@ -1,24 +1,23 @@
 #include "lvgl/lvgl.h"
 
+
 /**
- * Using the background style properties
+ * Using the outline style properties
  */
-void lv_ex_style_1(void)
+void lv_ex_style_3(void)
 {
     static lv_style_t style;
     lv_style_init(&style);
-    lv_style_set_radius(&style, LV_STATE_DEFAULT, 5);
 
-    /*Make a gradient*/
+    /*Set a background color and a radius*/
+    lv_style_set_radius(&style, LV_STATE_DEFAULT, 5);
     lv_style_set_bg_opa(&style, LV_STATE_DEFAULT, LV_OPA_COVER);    /*Transparent by default*/
     lv_style_set_bg_color(&style, LV_STATE_DEFAULT, LV_COLOR_RED);
-    lv_style_set_bg_grad_color(&style, LV_STATE_DEFAULT, LV_COLOR_BLUE);
-    lv_style_set_bg_grad_dir(&style, LV_STATE_DEFAULT, LV_GRAD_DIR_VER);
 
-    /*Shift the gradient to the bottom*/
-    lv_style_set_bg_main_stop(&style, LV_STATE_DEFAULT, 128);
-    lv_style_set_bg_grad_stop(&style, LV_STATE_DEFAULT, 192);
-
+    /*Add outline*/
+    lv_style_set_outline_width(&style, LV_STATE_DEFAULT, 2);
+    lv_style_set_outline_color(&style, LV_STATE_DEFAULT, LV_COLOR_BLUE);
+    lv_style_set_outline_pad(&style, LV_STATE_DEFAULT, 8);
 
     /*Create an object with the new style*/
     lv_obj_t * obj = lv_obj_create(lv_scr_act(), NULL);
