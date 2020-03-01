@@ -87,6 +87,9 @@ static void controls_create(lv_obj_t * parent)
     lv_btnmatrix_set_btn_ctrl(btnm, 1, LV_BTNMATRIX_CTRL_CHECK_STATE);
 
 
+    /*Add some extra top padding to make space for the box titles.*/
+    lv_obj_set_style_local_pad_top(parent, LV_PAGE_PART_SCRL, LV_STATE_DEFAULT, LV_DPI/3);
+
     lv_obj_t * h = lv_cont_create(parent, NULL);
     lv_cont_set_layout(h, LV_LAYOUT_COLUMN_LEFT);
     lv_obj_add_style(h, LV_CONT_PART_MAIN, &style_box);

@@ -76,7 +76,7 @@ static void obj_test_task_cb(lv_task_t * param)
 
             lv_mem_monitor_t mon;
             lv_mem_monitor(&mon);
-            LV_LOG_USER("mem leak since start: %d, frag: %3d %%\n",  mem_free_start - mon.free_size, mon.frag_pct);
+            LV_LOG_USER("mem leak since start: %d, frag: %3d %%",  mem_free_start - mon.free_size, mon.frag_pct);
         }
             break;
         case 0:
