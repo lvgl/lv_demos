@@ -3,7 +3,7 @@ C
 
 Calendar with day select
 """""""""""""""""""""""""
-.. image:: /lv_examples/src/lv_ex_calendar/lv_ex_calendar_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_calendar/lv_ex_calendar_1.*
   :alt: Simple Calendar example in LittlevGL
 
 .. container:: toggle
@@ -12,7 +12,7 @@ Calendar with day select
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_calendar/lv_ex_calendar_1.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_calendar/lv_ex_calendar_1.c
       :language: c
 
 MicroPython
@@ -20,7 +20,7 @@ MicroPython
 
 Calendar with day select
 """""""""""""""""""""""""
-.. image:: /lv_examples/src/lv_ex_calendar/lv_ex_calendar_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_calendar/lv_ex_calendar_1.*
   :alt: Simple Calendar example in LittlevGL with MicroPython
 
 .. container:: toggle
@@ -29,5 +29,5 @@ Calendar with day select
 
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_calendar/lv_ex_calendar_1.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_calendar/lv_ex_calendar_1.py
       :language: python

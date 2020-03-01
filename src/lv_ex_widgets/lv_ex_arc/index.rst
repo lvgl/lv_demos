@@ -4,7 +4,7 @@ C
 Simple Arc 
 """"""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_arc/lv_ex_arc_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_arc/lv_ex_arc_1.*
   :alt: Arc in LittlevGL
 
 .. container:: toggle
@@ -13,13 +13,13 @@ Simple Arc
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_arc/lv_ex_arc_1.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_arc/lv_ex_arc_1.c
       :language: c
       
 Loader with Arc 
 """"""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_arc/lv_ex_arc_2.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_arc/lv_ex_arc_2.*
   :alt: Loader with Arc in LittlevGL
 
 .. container:: toggle
@@ -28,7 +28,7 @@ Loader with Arc
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_arc/lv_ex_arc_2.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_arc/lv_ex_arc_2.c
       :language: c
 
 MicroPython
@@ -37,7 +37,7 @@ MicroPython
 Simple Arc 
 """"""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_arc/lv_ex_arc_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_arc/lv_ex_arc_1.*
   :alt: Arc example in LittlevGL with MicroPython
 
 .. container:: toggle
@@ -46,13 +46,13 @@ Simple Arc
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_arc/lv_ex_arc_1.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_arc/lv_ex_arc_1.py
       :language: python
 
 Loader with Arc 
 """"""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_arc/lv_ex_arc_2.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_arc/lv_ex_arc_2.*
   :alt: Loader with Arc in LittlevGL with MicroPython
 
 .. container:: toggle
@@ -61,5 +61,5 @@ Loader with Arc
 
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_arc/lv_ex_arc_2.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_arc/lv_ex_arc_2.py
       :language: python

@@ -4,7 +4,7 @@ C
 Simple Line 
 """"""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_line/lv_ex_line_1.png
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_line/lv_ex_line_1.png
   :alt: Line example in LittlevGL
 
 .. container:: toggle
@@ -13,7 +13,7 @@ Simple Line
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_line/lv_ex_line_1.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_line/lv_ex_line_1.c
       :language: c
 
 MicroPython
@@ -22,7 +22,7 @@ MicroPython
 Simple Line 
 """"""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_line/lv_ex_line_1.png
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_line/lv_ex_line_1.png
   :alt: Line example in LittlevGL with MicroPython
 
 .. container:: toggle
@@ -31,5 +31,5 @@ Simple Line
 
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_line/lv_ex_line_1.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_line/lv_ex_line_1.py
       :language: python

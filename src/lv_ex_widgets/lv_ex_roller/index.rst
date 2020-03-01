@@ -4,7 +4,7 @@ C
 Simple Roller 
 """"""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_roller/lv_ex_roller_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_roller/lv_ex_roller_1.*
   :alt: Roller example in LittlevGL
 
 .. container:: toggle
@@ -13,7 +13,7 @@ Simple Roller
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_roller/lv_ex_roller_1.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_roller/lv_ex_roller_1.c
       :language: c
 
 MicroPython
@@ -22,7 +22,7 @@ MicroPython
 Simple Roller
 """"""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_roller/lv_ex_roller_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_roller/lv_ex_roller_1.*
   :alt: Roller example in LittlevGL
 
 .. container:: toggle
@@ -31,5 +31,5 @@ Simple Roller
 
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_roller/lv_ex_roller_1.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_roller/lv_ex_roller_1.py
       :language: python

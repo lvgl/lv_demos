@@ -4,7 +4,7 @@ C
 Drawing on the Canvas and rotate 
 """"""""""""""""""""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_canvas/lv_ex_canvas_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_canvas/lv_ex_canvas_1.*
   :alt: Simple Canvas example in LittlevGL
 
 .. container:: toggle
@@ -13,13 +13,13 @@ Drawing on the Canvas and rotate
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_canvas/lv_ex_canvas_1.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_canvas/lv_ex_canvas_1.c
       :language: c
 
 Transparent Canvas with chroma keying
 """"""""""""""""""""""""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_canvas/lv_ex_canvas_2.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_canvas/lv_ex_canvas_2.*
   :alt: Handle transparency on a canvas with indexed color format
 
 .. container:: toggle
@@ -28,7 +28,7 @@ Transparent Canvas with chroma keying
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_canvas/lv_ex_canvas_2.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_canvas/lv_ex_canvas_2.c
       :language: c
 
 
@@ -38,7 +38,7 @@ MicroPython
 Drawing on the Canvas and rotate
 """"""""""""""""""""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_canvas/lv_ex_canvas_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_canvas/lv_ex_canvas_1.*
   :alt: Simple Canvas example in LittlevGL with Micropython
 
 .. container:: toggle
@@ -47,13 +47,13 @@ Drawing on the Canvas and rotate
 
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_canvas/lv_ex_canvas_1.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_canvas/lv_ex_canvas_1.py
       :language: python
 
 Transparent Canvas with chroma keying
 """"""""""""""""""""""""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_canvas/lv_ex_canvas_2.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_canvas/lv_ex_canvas_2.*
   :alt: Handle transparency on a canvas with indexed color format with Micropython
 
 .. container:: toggle
@@ -62,6 +62,6 @@ Transparent Canvas with chroma keying
 
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_canvas/lv_ex_canvas_2.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_canvas/lv_ex_canvas_2.py
       :language: python
 

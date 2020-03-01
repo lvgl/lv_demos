@@ -4,7 +4,7 @@ C
 Simple List 
 """"""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_list/lv_ex_list_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_list/lv_ex_list_1.*
   :alt: List example in LittlevGL
 
 .. container:: toggle
@@ -13,7 +13,7 @@ Simple List
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_list/lv_ex_list_1.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_list/lv_ex_list_1.c
       :language: c
 
 MicroPython
@@ -22,7 +22,7 @@ MicroPython
 Simple List 
 """"""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_list/lv_ex_list_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_list/lv_ex_list_1.*
   :alt: List example in LittlevGL with MicroPython
 
 .. container:: toggle
@@ -31,5 +31,5 @@ Simple List
 
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_list/lv_ex_list_1.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_list/lv_ex_list_1.py
       :language: python

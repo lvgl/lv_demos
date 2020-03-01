@@ -4,7 +4,7 @@ C
 Simple Spinbox 
 """""""""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_spinbox/lv_ex_spinbox_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_spinbox/lv_ex_spinbox_1.*
   :alt: Spinbox example in LittlevGL
 
 .. container:: toggle
@@ -13,7 +13,7 @@ Simple Spinbox
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_spinbox/lv_ex_spinbox_1.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_spinbox/lv_ex_spinbox_1.c
       :language: c
 
 MicroPython
@@ -22,7 +22,7 @@ MicroPython
 Simple Spinbox
 """""""""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_spinbox/lv_ex_spinbox_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_spinbox/lv_ex_spinbox_1.*
   :alt: Spinbox example in LittlevGL with MicroPython
 
 .. container:: toggle
@@ -31,5 +31,5 @@ Simple Spinbox
 
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_spinbox/lv_ex_spinbox_1.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_spinbox/lv_ex_spinbox_1.py
       :language: python

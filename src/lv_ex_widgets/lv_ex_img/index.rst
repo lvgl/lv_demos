@@ -4,7 +4,7 @@ C
 Image from variable and symbol 
 """""""""""""""""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_img/lv_ex_img_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_img/lv_ex_img_1.*
   :alt: Simple Image example in LittlevGL
 
 .. container:: toggle
@@ -13,14 +13,14 @@ Image from variable and symbol
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_img/lv_ex_img_1.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_img/lv_ex_img_1.c
       :language: c
 
 
 Image recoloring 
 """"""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_img/lv_ex_img_2.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_img/lv_ex_img_2.*
   :alt: Image recolor example in LittlevGL
 
 .. container:: toggle
@@ -29,7 +29,7 @@ Image recoloring
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_img/lv_ex_img_2.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_img/lv_ex_img_2.c
       :language: c
 
 
@@ -39,7 +39,7 @@ MicroPython
 Image from PNG file
 """""""""""""""""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_img/lv_ex_img_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_img/lv_ex_img_1.*
   :alt: Simple Image example in LittlevGL with MicroPython
 
 .. container:: toggle
@@ -48,5 +48,5 @@ Image from PNG file
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_img/lv_ex_img_1.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_img/lv_ex_img_1.py
       :language: python

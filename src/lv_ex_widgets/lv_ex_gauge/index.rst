@@ -4,7 +4,7 @@ C
 Simple Gauge 
 """"""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_gauge/lv_ex_gauge_1.png
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_gauge/lv_ex_gauge_1.png
   :alt: Simple Gauge example in LittlevGL
 
 .. container:: toggle
@@ -13,7 +13,7 @@ Simple Gauge
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_gauge/lv_ex_gauge_1.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_gauge/lv_ex_gauge_1.c
       :language: c
 
 MicroPython
@@ -22,7 +22,7 @@ MicroPython
 Simple Gauge
 """"""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_gauge/lv_ex_gauge_1.png
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_gauge/lv_ex_gauge_1.png
   :alt: Simple Gauge example in LittlevGL with MicroPython
 
 .. container:: toggle
@@ -31,5 +31,5 @@ Simple Gauge
 
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_gauge/lv_ex_gauge_1.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_gauge/lv_ex_gauge_1.py
       :language: python

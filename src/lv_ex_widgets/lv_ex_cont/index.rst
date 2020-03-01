@@ -4,7 +4,7 @@ C
 Container with auto-fit
 """""""""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_cont/lv_ex_cont_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_cont/lv_ex_cont_1.*
   :alt: Container example in LittlevGL
 
 .. container:: toggle
@@ -13,7 +13,7 @@ Container with auto-fit
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_cont/lv_ex_cont_1.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_cont/lv_ex_cont_1.c
       :language: c
 
 MicroPython
@@ -22,7 +22,7 @@ MicroPython
 Container with auto-fit
 """""""""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_cont/lv_ex_cont_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_cont/lv_ex_cont_1.*
   :alt: Container example in LittlevGL with MicroPython
 
 .. container:: toggle
@@ -31,5 +31,5 @@ Container with auto-fit
 
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_cont/lv_ex_cont_1.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_cont/lv_ex_cont_1.py
       :language: python

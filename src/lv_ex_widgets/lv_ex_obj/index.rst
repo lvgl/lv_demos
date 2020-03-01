@@ -4,7 +4,7 @@ C
 Base obejcts with custom styles 
 """"""""""""""""""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_obj/lv_ex_obj_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_obj/lv_ex_obj_1.*
   :alt: Simeple Base object example in LittlevGL
 
 .. container:: toggle
@@ -13,7 +13,7 @@ Base obejcts with custom styles
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_obj/lv_ex_obj_1.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_obj/lv_ex_obj_1.c
       :language: c
 
 MicroPython
@@ -22,7 +22,7 @@ MicroPython
 Base obejcts with custom styles
 """"""""""""""""""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_obj/lv_ex_obj_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_obj/lv_ex_obj_1.*
   :alt: Simeple Base object example in LittlevGL with MicroPython
 
 .. container:: toggle
@@ -31,5 +31,5 @@ Base obejcts with custom styles
 
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_obj/lv_ex_obj_1.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_obj/lv_ex_obj_1.py
       :language: python

@@ -4,7 +4,7 @@ C
 Simple Image button 
 """""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_imgbtn/lv_ex_imgbtn_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_imgbtn/lv_ex_imgbtn_1.*
   :alt: Image button example in LittlevGL
 
 .. container:: toggle
@@ -13,7 +13,7 @@ Simple Image button
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_imgbtn/lv_ex_imgbtn_1.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_imgbtn/lv_ex_imgbtn_1.c
       :language: c
 
 MicroPython

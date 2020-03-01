@@ -4,7 +4,7 @@ C
 Disc color picker
 """""""""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_cpicker/lv_ex_cpicker_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_cpicker/lv_ex_cpicker_1.*
   :alt: Color picker example in LittlevGL
 
 .. container:: toggle
@@ -13,7 +13,7 @@ Disc color picker
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_cont/lv_ex_cpicker_1.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_cont/lv_ex_cpicker_1.c
       :language: c
 
 MicroPython

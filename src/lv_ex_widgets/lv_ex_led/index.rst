@@ -4,7 +4,7 @@ C
 LED with custom style
 """""""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_led/lv_ex_led_1.png
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_led/lv_ex_led_1.png
   :alt: LED example in LittlevGL
 
 .. container:: toggle
@@ -13,7 +13,7 @@ LED with custom style
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_led/lv_ex_led_1.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_led/lv_ex_led_1.c
       :language: c
 
 MicroPython
@@ -22,7 +22,7 @@ MicroPython
 LED with custom style
 """""""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_led/lv_ex_led_1.png
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_led/lv_ex_led_1.png
   :alt: LED example in LittlevGL with MicroPython
 
 .. container:: toggle
@@ -31,5 +31,5 @@ LED with custom style
 
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_led/lv_ex_led_1.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_led/lv_ex_led_1.py
       :language: python

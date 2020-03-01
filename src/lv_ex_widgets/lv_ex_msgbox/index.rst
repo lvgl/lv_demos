@@ -4,7 +4,7 @@ C
 Simple Message box 
 """""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_mbox/lv_ex_mbox_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_mbox/lv_ex_mbox_1.*
   :alt: Message box example in LittlevGL
 
 .. container:: toggle
@@ -13,7 +13,7 @@ Simple Message box
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_mbox/lv_ex_mbox_1.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_mbox/lv_ex_mbox_1.c
       :language: c
 
 
@@ -21,7 +21,7 @@ Simple Message box
 Modal 
 """"""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_mbox/lv_ex_mbox_2.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_mbox/lv_ex_mbox_2.*
   :alt: Modal Message box example in LittlevGL
 
 .. container:: toggle
@@ -30,7 +30,7 @@ Modal
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_mbox/lv_ex_mbox_2.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_mbox/lv_ex_mbox_2.c
       :language: c
 
 
@@ -40,7 +40,7 @@ MicroPython
 Simple Message box
 """""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_mbox/lv_ex_mbox_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_mbox/lv_ex_mbox_1.*
   :alt: Message box example in LittlevGL with MicroPython
 
 .. container:: toggle
@@ -49,7 +49,7 @@ Simple Message box
 
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_mbox/lv_ex_mbox_1.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_mbox/lv_ex_mbox_1.py
       :language: python
 
 
@@ -57,7 +57,7 @@ Simple Message box
 Modal
 """"""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_mbox/lv_ex_mbox_2.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_mbox/lv_ex_mbox_2.*
   :alt: Modal Message box example in LittlevGL with MicroPython
 
 .. container:: toggle
@@ -66,5 +66,5 @@ Modal
 
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_mbox/lv_ex_mbox_2.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_mbox/lv_ex_mbox_2.py
       :language: python

@@ -3,7 +3,7 @@ C
 Simple Bar 
 """"""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_bar/lv_ex_bar_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_bar/lv_ex_bar_1.*
   :alt: Bar example in LittlevGL
 
 .. container:: toggle
@@ -12,7 +12,7 @@ Simple Bar
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_bar/lv_ex_bar_1.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_bar/lv_ex_bar_1.c
       :language: c
 
 MicroPython
@@ -21,7 +21,7 @@ MicroPython
 Simple Bar 
 """"""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_bar/lv_ex_bar_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_bar/lv_ex_bar_1.*
   :alt: Bar example in LittlevGL with MicroPython
 
 .. container:: toggle
@@ -30,6 +30,6 @@ Simple Bar
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_bar/lv_ex_bar_1.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_bar/lv_ex_bar_1.py
       :language: python
 

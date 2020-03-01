@@ -4,7 +4,7 @@ C
 Label recoloring and scrolling 
 """""""""""""""""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_label/lv_ex_label_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_label/lv_ex_label_1.*
   :alt: Label example in LittlevGL
 
 .. container:: toggle
@@ -13,14 +13,14 @@ Label recoloring and scrolling
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_label/lv_ex_label_1.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_label/lv_ex_label_1.c
       :language: c
 
 
 Text shadow 
 """"""""""""
 
-.. image:: /lv_examples/src/lv_ex_label/lv_ex_label_2.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_label/lv_ex_label_2.*
   :alt: Label with shadow in LittlevGL
 
 .. container:: toggle
@@ -29,13 +29,13 @@ Text shadow
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_label/lv_ex_label_2.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_label/lv_ex_label_2.c
       :language: c
 
 Align labels 
 """"""""""""
 
-.. image:: /lv_examples/src/lv_ex_label/lv_ex_label_3.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_label/lv_ex_label_3.*
   :alt: Align labels in LittlevGL
 
 .. container:: toggle
@@ -44,7 +44,7 @@ Align labels
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_label/lv_ex_label_3.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_label/lv_ex_label_3.c
       :language: c
 
 
@@ -54,7 +54,7 @@ MicroPython
 Label recoloring and scrolling 
 """""""""""""""""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_label/lv_ex_label_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_label/lv_ex_label_1.*
   :alt: Label example in LittlevGL with MicroPython
 
 .. container:: toggle
@@ -63,14 +63,14 @@ Label recoloring and scrolling
 
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_label/lv_ex_label_1.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_label/lv_ex_label_1.py
       :language: python
 
 
 Text shadow 
 """"""""""""
 
-.. image:: /lv_examples/src/lv_ex_label/lv_ex_label_2.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_label/lv_ex_label_2.*
   :alt: Label with shadow in LittlevGL with MicroPython
 
 .. container:: toggle
@@ -79,13 +79,13 @@ Text shadow
 
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_label/lv_ex_label_2.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_label/lv_ex_label_2.py
       :language: python
 
 Align labels
 """"""""""""
 
-.. image:: /lv_examples/src/lv_ex_label/lv_ex_label_3.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_label/lv_ex_label_3.*
   :alt: Align labels in LittlevGL with MicroPython
 
 .. container:: toggle
@@ -94,5 +94,5 @@ Align labels
 
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_label/lv_ex_label_3.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_label/lv_ex_label_3.py
       :language: python

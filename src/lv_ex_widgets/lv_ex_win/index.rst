@@ -4,7 +4,7 @@ C
 Simple window 
 """""""""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_win/lv_ex_win_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_win/lv_ex_win_1.*
   :alt: Window example in LittlevGL
 
 .. container:: toggle
@@ -13,7 +13,7 @@ Simple window
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_win/lv_ex_win_1.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_win/lv_ex_win_1.c
       :language: c
 
 MicroPython
@@ -22,7 +22,7 @@ MicroPython
 Simple window 
 """""""""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_win/lv_ex_win_1.*
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_win/lv_ex_win_1.*
   :alt: Window example in LittlevGL
 
 .. container:: toggle
@@ -31,5 +31,5 @@ Simple window
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_win/lv_ex_win_1.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_win/lv_ex_win_1.py
       :language: python

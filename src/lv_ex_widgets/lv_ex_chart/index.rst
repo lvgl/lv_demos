@@ -3,7 +3,7 @@ C
 
 Line Chart 
 """"""""""""""""
-.. image:: /lv_examples/src/lv_ex_chart/lv_ex_chart_1.png
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_chart/lv_ex_chart_1.png
   :alt: Simple Chart example in LittlevGL
 
 .. container:: toggle
@@ -12,7 +12,7 @@ Line Chart
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_chart/lv_ex_chart_1.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_chart/lv_ex_chart_1.c
       :language: c
 
 MicroPython
@@ -20,7 +20,7 @@ MicroPython
 
 Line Chart 
 """"""""""""""""
-.. image:: /lv_examples/src/lv_ex_chart/lv_ex_chart_1.png
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_chart/lv_ex_chart_1.png
   :alt: Simple Chart example in LittlevGL
 
 .. container:: toggle
@@ -29,5 +29,5 @@ Line Chart
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_chart/lv_ex_chart_1.py
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_chart/lv_ex_chart_1.py
       :language: python
