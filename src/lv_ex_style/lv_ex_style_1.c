@@ -10,8 +10,8 @@ void lv_ex_style_1(void)
     lv_style_set_radius(&style, LV_STATE_DEFAULT, 5);
 
     /*Make a gradient*/
-    lv_style_set_bg_opa(&style, LV_STATE_DEFAULT, LV_OPA_COVER);    /*Transparent by default*/
-    lv_style_set_bg_color(&style, LV_STATE_DEFAULT, LV_COLOR_RED);
+    lv_style_set_bg_opa(&style, LV_STATE_DEFAULT, LV_OPA_COVER);
+    lv_style_set_bg_color(&style, LV_STATE_DEFAULT, LV_COLOR_SILVER);
     lv_style_set_bg_grad_color(&style, LV_STATE_DEFAULT, LV_COLOR_BLUE);
     lv_style_set_bg_grad_dir(&style, LV_STATE_DEFAULT, LV_GRAD_DIR_VER);
 

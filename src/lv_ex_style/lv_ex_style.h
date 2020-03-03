@@ -1,10 +1,10 @@
 /**
- * @file lv_examples.h
+ * @file lv_ex_widgets.h
  *
  */
 
-#ifndef LV_EXAMPLES_H
-#define LV_EXAMPLES_H
+#ifndef LV_EX_STYLE_H
+#define LV_EX_STYLE_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,19 +13,10 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-#include "../lvgl/lvgl.h"
-#include "../lv_ex_conf.h"
-#include "src/lv_ex_widgets/lv_ex_widgets.h"
-#include "src/lv_ex_style/lv_ex_style.h"
-#include "src/lv_demo_widgets/lv_demo_widgets.h"
 
 /*********************
  *      DEFINES
  *********************/
-/*Test  lvgl version*/
-#if LV_VERSION_CHECK(7, 0, 0) == 0
-#error "lv_examples: Wrong lvgl version"
-#endif
 
 /**********************
  *      TYPEDEFS
@@ -34,15 +25,23 @@ extern "C" {
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
-
+void lv_ex_style_1(void);
+void lv_ex_style_2(void);
+void lv_ex_style_3(void);
+void lv_ex_style_4(void);
+void lv_ex_style_5(void);
+void lv_ex_style_6(void);
+void lv_ex_style_7(void);
+void lv_ex_style_8(void);
+void lv_ex_style_9(void);
+void lv_ex_style_10(void);
 
 /**********************
  *      MACROS
  **********************/
 
-
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
 
-#endif /*LV_EXAMPLES_H*/
+#endif /*LV_EX_STYLE_H*/
