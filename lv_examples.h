@@ -14,7 +14,19 @@ extern "C" {
  *      INCLUDES
  *********************/
 #include "../lvgl/lvgl.h"
+
+#if defined(LV_EX_CONF_PATH)
+#define __LV_TO_STR_AUX(x) #x
+#define __LV_TO_STR(x) __LV_TO_STR_AUX(x)
+#include __LV_TO_STR(LV_EX_CONF_PATH)
+#undef __LV_TO_STR_AUX
+#undef __LV_TO_STR
+#elif defined(LV_EX_CONF_INCLUDE_SIMPLE)
+#include "lv_ex_conf.h"
+#else
 #include "../lv_ex_conf.h"
+#endif
+
 #include "src/lv_ex_widgets/lv_ex_widgets.h"
 #include "src/lv_ex_style/lv_ex_style.h"
 #include "src/lv_demo_widgets/lv_demo_widgets.h"
