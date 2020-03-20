@@ -28,6 +28,9 @@ static void lv_slider_event_cb(lv_obj_t * slider, lv_event_t e);
 static void lv_ta_event_cb(lv_obj_t * ta, lv_event_t e);
 static void lv_kb_event_cb(lv_obj_t * ta, lv_event_t e);
 static void bar_anim(lv_task_t * t);
+static void lv_spinbox_increment_event_cb(lv_obj_t * btn, lv_event_t e);
+static void lv_spinbox_decrement_event_cb(lv_obj_t * btn, lv_event_t e);
+static void tab_changer_task_cb(lv_task_t * task);
 
 /**********************
  *  STATIC VARIABLES
@@ -37,6 +40,7 @@ static lv_obj_t * t1;
 static lv_obj_t * t2;
 static lv_obj_t * t3;
 static lv_obj_t * kb;
+static lv_obj_t * spinbox;
 
 static lv_style_t style_box;
 
@@ -60,14 +64,17 @@ void lv_demo_widgets(void)
     t2 = lv_tabview_add_tab(tv, "Visuals");
     t3 = lv_tabview_add_tab(tv, "Selectors");
 
+
     lv_style_init(&style_box);
     lv_style_set_value_align(&style_box, LV_STATE_DEFAULT, LV_ALIGN_OUT_TOP_LEFT);
-    lv_style_set_value_ofs_y(&style_box, LV_STATE_DEFAULT, 0);
+    lv_style_set_value_ofs_y(&style_box, LV_STATE_DEFAULT, - LV_DPI / 20);
     lv_style_set_pad_inner(&style_box, LV_STATE_DEFAULT, LV_DPI / 4);
 
     controls_create(t1);
     visuals_create(t2);
     selectors_create(t3);
+
+//    lv_task_create(tab_changer_task_cb, 5000, LV_TASK_PRIO_LOW, NULL);
 }
 
 /**********************
@@ -124,6 +131,7 @@ static void controls_create(lv_obj_t * parent)
     lv_slider_set_type(slider, LV_SLIDER_TYPE_RANGE);
     lv_slider_set_value(slider, 70, LV_ANIM_OFF);
     lv_slider_set_left_value(slider, 30, LV_ANIM_OFF);
+    lv_obj_set_style_local_value_ofs_y(slider, LV_SLIDER_PART_INDIC, LV_STATE_DEFAULT, -14);
     lv_obj_set_style_local_value_font(slider, LV_SLIDER_PART_INDIC, LV_STATE_DEFAULT, LV_THEME_DEFAULT_FONT_SMALL);
     lv_obj_set_event_cb(slider, lv_slider_event_cb);
     lv_event_send(slider, LV_EVENT_VALUE_CHANGED, NULL);      /*To refresh the text*/
@@ -136,10 +144,7 @@ static void controls_create(lv_obj_t * parent)
     lv_textarea_set_placeholder_text(ta, "E-mail address");
     lv_textarea_set_one_line(ta, true);
     lv_textarea_set_cursor_hidden(ta, true);
-    lv_textarea_set_text_align(ta, LV_LABEL_ALIGN_CENTER);
     lv_obj_set_event_cb(ta, lv_ta_event_cb);
-
-    lv_theme_apply(ta, LV_THEME_TEXTAREA_ONELINE);
 
     ta = lv_textarea_create(h, ta);
     lv_textarea_set_pwd_mode(ta, true);
@@ -166,8 +171,8 @@ static void visuals_create(lv_obj_t * parent)
     lv_chart_set_y_tick_texts(chart, "600\n500\n400\n300\n200", 0, LV_CHART_AXIS_DRAW_LAST_TICK);
     lv_chart_set_x_tick_texts(chart, "Jan\nFeb\nMar\nApr\nMay\nJun\nJul\nAug", 0, LV_CHART_AXIS_DRAW_LAST_TICK);
     lv_chart_set_type(chart, LV_CHART_TYPE_LINE);
-    lv_chart_series_t * s1 = lv_chart_add_series(chart, lv_color_hex(0xae7af8));
-    lv_chart_series_t * s2 = lv_chart_add_series(chart, lv_color_hex(0x0080ff));
+    lv_chart_series_t * s1 = lv_chart_add_series(chart, LV_THEME_DEFAULT_COLOR_PRIMARY);
+    lv_chart_series_t * s2 = lv_chart_add_series(chart, LV_THEME_DEFAULT_COLOR_SECONDARY);
 
     lv_chart_set_next(chart, s1, 10);
     lv_chart_set_next(chart, s1, 90);
@@ -196,8 +201,8 @@ static void visuals_create(lv_obj_t * parent)
     lv_obj_t * chart2 = lv_chart_create(parent, chart);
     lv_chart_set_type(chart2, LV_CHART_TYPE_COLUMN);
 
-    s1 = lv_chart_add_series(chart2, lv_color_hex(0xae7af8));
-    s2 = lv_chart_add_series(chart2, lv_color_hex(0x0080ff));
+    s1 = lv_chart_add_series(chart2, LV_THEME_DEFAULT_COLOR_PRIMARY);
+    s2 = lv_chart_add_series(chart2, LV_THEME_DEFAULT_COLOR_SECONDARY);
 
     lv_chart_set_next(chart2, s1, 10);
     lv_chart_set_next(chart2, s1, 90);
@@ -233,38 +238,37 @@ static void visuals_create(lv_obj_t * parent)
     lv_obj_set_click(table1, false);
     lv_table_set_col_cnt(table1, 3);
     lv_table_set_row_cnt(table1, 7);
-    lv_table_set_col_width(table1, 0, 30);
-    lv_table_set_col_width(table1, 1, 110);
-    lv_table_set_col_width(table1, 2, 110);
+    lv_table_set_col_width(table1, 0, LV_MATH_MAX(40, 1 * LV_HOR_RES / 10));
+    lv_table_set_col_width(table1, 1, LV_MATH_MAX(120, 2 * LV_HOR_RES / 10));
+    lv_table_set_col_width(table1, 2, LV_MATH_MAX(120, 2 * LV_HOR_RES / 10));
 
     lv_table_set_cell_value(table1, 0, 0, "#");
-    lv_table_set_cell_value(table1, 0, 1, "FIRST NAME");
-    lv_table_set_cell_value(table1, 0, 2, "LAST NAME");
-    lv_table_set_cell_value(table1, 0, 3, "USER NAME");
+    lv_table_set_cell_value(table1, 0, 1, "NAME");
+    lv_table_set_cell_value(table1, 0, 2, "CITY");
 
     lv_table_set_cell_value(table1, 1, 0, "1");
     lv_table_set_cell_value(table1, 1, 1, "Mark");
-    lv_table_set_cell_value(table1, 1, 2, "Otto");
+    lv_table_set_cell_value(table1, 1, 2, "Moscow");
 
     lv_table_set_cell_value(table1, 2, 0, "2");
     lv_table_set_cell_value(table1, 2, 1, "Jacob");
-    lv_table_set_cell_value(table1, 2, 2, "Thoronton");
+    lv_table_set_cell_value(table1, 2, 2, "New York");
 
     lv_table_set_cell_value(table1, 3, 0, "3");
     lv_table_set_cell_value(table1, 3, 1, "John");
-    lv_table_set_cell_value(table1, 3, 2, "Doe");
+    lv_table_set_cell_value(table1, 3, 2, "Oslo");
 
     lv_table_set_cell_value(table1, 4, 0, "4");
     lv_table_set_cell_value(table1, 4, 1, "Emily");
-    lv_table_set_cell_value(table1, 4, 2, "Smith");
+    lv_table_set_cell_value(table1, 4, 2, "London");
 
     lv_table_set_cell_value(table1, 5, 0, "5");
     lv_table_set_cell_value(table1, 5, 1, "Samantha");
-    lv_table_set_cell_value(table1, 5, 2, "Taylor");
+    lv_table_set_cell_value(table1, 5, 2, "Texas");
 
     lv_table_set_cell_value(table1, 6, 0, "6");
     lv_table_set_cell_value(table1, 6, 1, "George");
-    lv_table_set_cell_value(table1, 6, 2, "Black");
+    lv_table_set_cell_value(table1, 6, 2, "Athen");
 
     lv_obj_t * lmeter = lv_linemeter_create(parent, NULL);
     lv_obj_set_size(lmeter,  3 * LV_DPI / 2, 3 * LV_DPI / 2);
@@ -337,6 +341,33 @@ static void selectors_create(lv_obj_t * parent)
     lv_dropdown_set_options(dd, "Alpha\nBravo\nCharlie\nDelta\nEcho\nFoxtrot\nGolf\nHotel\nIndia\nJuliette\nKilo\nLima\nMike\nNovember\n"
             "Oscar\nPapa\nQuebec\nRomeo\nSierra\nTango\nUniform\nVictor\nWhiskey\nXray\nYankee\nZulu");
 
+
+    lv_obj_t * holder = lv_cont_create(parent, NULL);
+    lv_obj_reset_style_list(holder, LV_CONT_PART_MAIN);
+    lv_cont_set_fit(holder, LV_FIT_TIGHT);
+
+    spinbox = lv_spinbox_create(holder , NULL);
+    lv_spinbox_set_range(spinbox, -1000, 90000);
+    lv_spinbox_set_digit_format(spinbox, 5, 2);
+    lv_spinbox_step_prev(spinbox);
+    lv_obj_set_width(spinbox, 100);
+    lv_obj_align(spinbox, NULL, LV_ALIGN_CENTER, 0, 0);
+
+    lv_coord_t h = lv_obj_get_height(spinbox);
+    btn = lv_btn_create(holder, NULL);
+    lv_obj_set_size(btn, h, h);
+    lv_obj_align(btn, spinbox, LV_ALIGN_OUT_RIGHT_MID, 5, 0);
+    lv_theme_apply(btn, LV_THEME_SPINBOX_BTN);
+    lv_obj_set_style_local_value_str(btn, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_PLUS);
+    lv_obj_set_event_cb(btn, lv_spinbox_increment_event_cb);
+
+    btn = lv_btn_create(holder, btn);
+    lv_obj_align(btn, spinbox, LV_ALIGN_OUT_LEFT_MID, -5, 0);
+    lv_obj_set_event_cb(btn, lv_spinbox_decrement_event_cb);
+    lv_obj_set_style_local_value_str(btn, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_MINUS);
+
+
+    lv_obj_t * roller = lv_roller_create(parent, NULL);
 }
 
 static void lv_slider_event_cb(lv_obj_t * slider, lv_event_t e)
@@ -364,8 +395,9 @@ static void lv_ta_event_cb(lv_obj_t * ta, lv_event_t e)
             kb = lv_keyboard_create(lv_scr_act(), NULL);
             lv_obj_set_event_cb(kb, lv_kb_event_cb);
         }
+        lv_textarea_set_cursor_hidden(ta, false);
         lv_page_focus(t1, lv_textarea_get_label(ta), LV_ANIM_ON);
-        lv_keyboard_set_ta(kb, ta);
+        lv_keyboard_set_textarea(kb, ta);
     } else if(e == LV_EVENT_DEFOCUSED) {
         lv_textarea_set_cursor_hidden(ta, true);
     }
@@ -399,4 +431,27 @@ static void bar_anim(lv_task_t * t)
     x++;
     if(x > lv_bar_get_max_value(bar)) x = 0;
 
+}
+
+static void lv_spinbox_increment_event_cb(lv_obj_t * btn, lv_event_t e)
+{
+    if(e == LV_EVENT_SHORT_CLICKED || e == LV_EVENT_LONG_PRESSED_REPEAT) {
+        lv_spinbox_increment(spinbox);
+    }
+}
+
+static void lv_spinbox_decrement_event_cb(lv_obj_t * btn, lv_event_t e)
+{
+    if(e == LV_EVENT_SHORT_CLICKED || e == LV_EVENT_LONG_PRESSED_REPEAT) {
+        lv_spinbox_decrement(spinbox);
+    }
+}
+
+static void tab_changer_task_cb(lv_task_t * task)
+{
+    uint16_t act = lv_tabview_get_tab_act(tv);
+    act++;
+    if(act >= 3) act = 0;
+
+    lv_tabview_set_tab_act(tv, act, LV_ANIM_ON);
 }

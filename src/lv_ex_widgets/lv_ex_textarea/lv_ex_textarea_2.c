@@ -17,7 +17,6 @@ void lv_ex_textarea_2(void)
     lv_obj_set_width(pwd_ta, LV_HOR_RES / 2 - 20);
     lv_obj_set_pos(pwd_ta, 5, 20);
     lv_obj_set_event_cb(pwd_ta, ta_event_cb);
-    lv_theme_apply(pwd_ta, LV_THEME_TEXTAREA_ONELINE);
 
     /* Create a label and position it above the text box */
     lv_obj_t * pwd_label = lv_label_create(lv_scr_act(), NULL);
@@ -40,7 +39,7 @@ void lv_ex_textarea_2(void)
     lv_obj_set_event_cb(kb, kb_event_cb); /* Setting a custom event handler stops the keyboard from closing automatically */
     lv_obj_set_size(kb,  LV_HOR_RES - 10, 140);
 
-    lv_keyboard_set_ta(kb, pwd_ta); /* Focus it on one of the text areas to start */
+    lv_keyboard_set_textarea(kb, pwd_ta); /* Focus it on one of the text areas to start */
     lv_keyboard_set_cursor_manage(kb, true); /* Automatically show/hide cursors on text areas */
 }
 
@@ -55,7 +54,7 @@ static void ta_event_cb(lv_obj_t * ta, lv_event_t event)
     if(event == LV_EVENT_CLICKED) {
         /* Focus on the clicked text area */
         if(kb != NULL)
-            lv_keyboard_set_ta(kb, ta);
+            lv_keyboard_set_textarea(kb, ta);
     }
 
     else if(event == LV_EVENT_INSERT) {

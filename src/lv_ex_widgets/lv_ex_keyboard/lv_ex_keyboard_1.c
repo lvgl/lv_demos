@@ -13,6 +13,6 @@ void lv_ex_keyboard_1(void)
     lv_textarea_set_text(ta, "");
 
     /*Assign the text area to the keyboard*/
-    lv_keyboard_set_ta(kb, ta);
+    lv_keyboard_set_textarea(kb, ta);
 }
 #endif

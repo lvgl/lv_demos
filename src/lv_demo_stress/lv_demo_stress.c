@@ -50,7 +50,6 @@ void lv_demo_stress(void)
     lv_style_set_transition_prop_1(&style_slow_trans, LV_STATE_DEFAULT, LV_STYLE_BG_COLOR);
     lv_style_set_transition_time(&style_slow_trans, LV_STATE_DEFAULT, TIME_STEP * 10);
 
-
     lv_mem_monitor_t mon;
     lv_mem_monitor(&mon);
     mem_free_start = mon.free_size;
@@ -425,7 +424,7 @@ static void obj_test_task_cb(lv_task_t * param)
             lv_checkbox_set_checked(obj, true);
 
             obj = lv_checkbox_create(main_page, obj);
-            lv_checkbox_set_inactive(obj);
+            lv_checkbox_set_disabled(obj);
             auto_del(obj, TIME_STEP * 1 + 60);
 
             lv_page_scroll_ver(main_page, LV_DPI);
