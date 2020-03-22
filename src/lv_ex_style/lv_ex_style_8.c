@@ -26,8 +26,8 @@ void lv_ex_style_8(void)
     /*Create an object with the new style*/
     lv_obj_t * obj = lv_img_create(lv_scr_act(), NULL);
     lv_obj_add_style(obj, LV_IMG_PART_MAIN, &style);
-    LV_IMG_DECLARE(cogwheel);
-    lv_img_set_src(obj, &cogwheel);
+    LV_IMG_DECLARE(img_cogwheel_argb);
+    lv_img_set_src(obj, &img_cogwheel_argb);
     lv_obj_align(obj, NULL, LV_ALIGN_CENTER, 0, 0);
 }
 

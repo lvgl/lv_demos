@@ -8,7 +8,7 @@ static void slider_event_cb(lv_obj_t * slider, lv_event_t event);
 
 static lv_obj_t * red_slider, * green_slider, * blue_slider, * intense_slider;
 static lv_obj_t * img1;
-LV_IMG_DECLARE(cogwheel);
+LV_IMG_DECLARE(img_cogwheel_argb);
 
 void lv_ex_img_2(void)
 {
@@ -17,7 +17,7 @@ void lv_ex_img_2(void)
 
     /* Now create the actual image */
     img1 = lv_img_create(lv_scr_act(), NULL);
-    lv_img_set_src(img1, &cogwheel);
+    lv_img_set_src(img1, &img_cogwheel_argb);
     lv_obj_align(img1, NULL, LV_ALIGN_IN_RIGHT_MID, -20, 0);
 }
 
