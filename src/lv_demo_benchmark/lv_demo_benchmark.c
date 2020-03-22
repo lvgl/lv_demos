@@ -14,7 +14,7 @@
  *      DEFINES
  *********************/
 #define RND_NUM         64
-#define SCENE_TIME      200        /*ms*/
+#define SCENE_TIME      1000      /*ms*/
 #define ANIM_TIME_MIN   ((2 * SCENE_TIME) / 10)
 #define ANIM_TIME_MAX   (SCENE_TIME)
 #define OBJ_NUM         8
@@ -32,7 +32,7 @@
 #define SHADOW_SPREAD_LARGE LV_MATH_MAX(LV_DPI / 30, 2)
 #define IMG_WIDH        100
 #define IMG_HEIGHT      100
-#define IMG_NUM         LV_MATH_MAX((LV_HOR_RES * LV_VER_RES) / 4 / IMG_WIDH / IMG_HEIGHT, 1)
+#define IMG_NUM         LV_MATH_MAX((LV_HOR_RES * LV_VER_RES) / 5 / IMG_WIDH / IMG_HEIGHT, 1)
 #define IMG_ZOOM_MIN    128
 #define IMG_ZOOM_MAX    (256 + 64)
 #define TXT "hello world\nit is a multi line text to test\nthe performance of text rendering"
@@ -492,11 +492,10 @@ static void add_text_cb(void)
  *  STATIC VARIABLES
  **********************/
 static scene_dsc_t scenes[] = {
-        /* Weight from 1..10*/
         {.name = "Rectangle",                    .weight = 30, .create_cb = rectangle_cb},
         {.name = "Rectangle rounded",            .weight = 20, .create_cb = rectangle_rounded_cb},
         {.name = "Circle",                       .weight = 10, .create_cb = rectangle_circle_cb},
-//
+
         {.name = "Border",                       .weight = 20, .create_cb = border_cb},
         {.name = "Border rounded",               .weight = 30, .create_cb = border_rounded_cb},
         {.name = "Circle border",                .weight = 10, .create_cb = border_circle_cb},
@@ -510,7 +509,7 @@ static scene_dsc_t scenes[] = {
         {.name = "Shadow small offset",        .weight = 5, .create_cb = shadow_small_ofs_cb},
         {.name = "Shadow large",                 .weight = 5, .create_cb = shadow_large_cb},
         {.name = "Shadow large offset",        .weight = 3, .create_cb = shadow_large_ofs_cb},
-//
+
         {.name = "Image RGB",                    .weight = 20, .create_cb = img_rgb_cb},
         {.name = "Image ARGB",                   .weight = 20, .create_cb = img_argb_cb},
         {.name = "Image chorma keyed",           .weight = 5, .create_cb = img_ckey_cb},
@@ -544,11 +543,11 @@ static scene_dsc_t scenes[] = {
         {.name = "Text medium",                  .weight = 30, .create_cb = txt_medium_cb},
         {.name = "Text large",                   .weight = 20, .create_cb = txt_large_cb},
 
-//        {.name = "Text small compressed",       .weight = 10, .create_cb = txt_small_compr_cb},
-//        {.name = "Text medium compressed",      .weight = 10, .create_cb = txt_medium_compr_cb},
-//        {.name = "Text large compressed",       .weight = 10, .create_cb = txt_large_compr_cb},
+        {.name = "Text small compressed",       .weight = 10, .create_cb = txt_small_compr_cb},
+        {.name = "Text medium compressed",      .weight = 10, .create_cb = txt_medium_compr_cb},
+        {.name = "Text large compressed",       .weight = 10, .create_cb = txt_large_compr_cb},
 
-//        {.name = "Line",                        .weight = 10, .create_cb = line_cb},
+        {.name = "Line",                        .weight = 10, .create_cb = line_cb},
 //
 //        {.name = "Arc think",                   .weight = 10, .create_cb = arc_think_cb},
 //        {.name = "Arc thick",                   .weight = 10, .create_cb = arc_thick_cb},
@@ -612,7 +611,7 @@ void lv_demo_benchmark(void)
     lv_obj_set_pos(title, LV_DPI / 30, LV_DPI / 30);
 
     subtitle = lv_label_create(scr, NULL);
-    lv_obj_align(subtitle, title, LV_ALIGN_OUT_BOTTOM_LEFT, LV_DPI / 10, LV_DPI / 30);
+    lv_obj_align(subtitle, title, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 0);
 
     scene_bg = lv_obj_create(scr, NULL);
     lv_obj_reset_style_list(scene_bg, LV_OBJ_PART_MAIN);
@@ -660,7 +659,7 @@ static void scene_next_task_cb(lv_task_t * task)
     }
 
     if(scenes[scene_act].create_cb) {
-        lv_label_set_text_fmt(title, "%d/%d: %s%s", scene_act * 2 + (opa_mode ? 1 : 0), sizeof(scenes) / sizeof(scene_dsc_t),  scenes[scene_act].name, opa_mode ? " + opa" : "");
+        lv_label_set_text_fmt(title, "%d/%d: %s%s", scene_act * 2 + (opa_mode ? 1 : 0), sizeof(scenes) / sizeof(scene_dsc_t) * 2,  scenes[scene_act].name, opa_mode ? " + opa" : "");
         if(opa_mode) {
             lv_label_set_text_fmt(subtitle, "Result of \"%s\": %d FPS", scenes[scene_act].name, scenes[scene_act].fps_normal);
         } else {
@@ -680,20 +679,99 @@ static void scene_next_task_cb(lv_task_t * task)
     /*Ready*/
     else {
         uint32_t weight_sum = 0;
+        uint32_t weight_normal_sum = 0;
+        uint32_t weight_opa_sum = 0;
         uint32_t fps_sum = 0;
+        uint32_t fps_normal_sum = 0;
+        uint32_t fps_opa_sum = 0;
         uint32_t i;
         for(i = 0; scenes[i].create_cb; i++) {
-            fps_sum += scenes[i].fps_normal * scenes[i].weight;
-            weight_sum += scenes[i].weight;
+            fps_normal_sum += scenes[i].fps_normal * scenes[i].weight;
+            weight_normal_sum += scenes[i].weight;
 
             uint32_t w = LV_MATH_MAX(scenes[i].weight / 2, 1);
-            fps_sum += scenes[i].fps_opa * w;
-            weight_sum += w;
+            fps_opa_sum += scenes[i].fps_opa * w;
+            weight_opa_sum += w;
         }
 
+
+        fps_sum = fps_normal_sum + fps_opa_sum;
+        weight_sum = weight_normal_sum + weight_opa_sum;
+
         uint32_t fps_weighted = fps_sum / weight_sum;
+        uint32_t fps_normal_weighted = fps_normal_sum / weight_normal_sum;
+        uint32_t fps_opa_weighted = fps_opa_sum / weight_opa_sum;
+        uint32_t opa_speed_pct =  (fps_opa_weighted * 100) / fps_normal_weighted;
+
+        lv_obj_clean(lv_scr_act());
+        scene_bg = NULL;
+
+
+        lv_obj_t* page = lv_page_create(lv_scr_act(), NULL);
+        lv_obj_set_size(page, LV_HOR_RES, LV_VER_RES);
+
+        title = lv_label_create(page, NULL);
         lv_label_set_text_fmt(title, "Weighted FPS: %d", fps_weighted);
-        lv_label_set_text(subtitle, "");
+
+        subtitle = lv_label_create(page, NULL);
+        lv_label_set_text_fmt(subtitle, "Opa. speed: %d", opa_speed_pct);
+
+        lv_coord_t w = lv_page_get_fit_width(page) - 10;
+        lv_obj_t * table = lv_table_create(page, NULL);
+        lv_obj_set_click(table, false);
+        lv_table_set_col_cnt(table, 2);
+        lv_table_set_row_cnt(table, (sizeof(scenes) / sizeof(scene_dsc_t) - 1) * 2);
+        lv_table_set_col_width(table, 0, (w * 3) / 4);
+        lv_table_set_col_width(table, 1, w  / 4);
+
+        static lv_style_t style_cell_slow;
+        static lv_style_t style_cell_very_slow;
+
+        lv_style_init(&style_cell_slow);
+        lv_style_set_text_color(&style_cell_slow, LV_STATE_DEFAULT, LV_COLOR_ORANGE);
+
+        lv_style_init(&style_cell_very_slow);
+        lv_style_set_text_color(&style_cell_very_slow, LV_STATE_DEFAULT, LV_COLOR_RED);
+
+        lv_obj_add_style(table, LV_TABLE_PART_CELL2, &style_cell_slow);
+        lv_obj_add_style(table, LV_TABLE_PART_CELL3, &style_cell_very_slow);
+
+
+        for(i = 0; i < sizeof(scenes) / sizeof(scene_dsc_t) - 1; i++) {
+            char buf[256];
+            lv_table_set_cell_value(table, i * 2, 0, scenes[i].name);
+
+            lv_snprintf(buf, sizeof(buf), "%d", scenes[i].fps_normal);
+            lv_table_set_cell_value(table, i * 2, 1, buf);
+
+            if(scenes[i].fps_normal < 10) {
+                lv_table_set_cell_type(table, i * 2, 0, 3);
+                lv_table_set_cell_type(table, i * 2, 1, 3);
+            }
+            else if(scenes[i].fps_normal < 20) {
+                lv_table_set_cell_type(table, i * 2, 0, 2);
+                lv_table_set_cell_type(table, i * 2, 1, 2);
+            }
+
+            lv_snprintf(buf, sizeof(buf), "%s + opa", scenes[i].name);
+            lv_table_set_cell_value(table, i * 2 + 1, 0, buf);
+
+            lv_snprintf(buf, sizeof(buf), "%d", scenes[i].fps_opa);
+            lv_table_set_cell_value(table, i * 2 + 1, 1, buf);
+
+
+            if(scenes[i].fps_opa < 10) {
+                lv_table_set_cell_type(table, i * 2 + 1, 0, 3);
+                lv_table_set_cell_type(table, i * 2 + 1, 1, 3);
+            }
+            else if(scenes[i].fps_opa < 20) {
+                lv_table_set_cell_type(table, i * 2 + 1, 0, 2);
+                lv_table_set_cell_type(table, i * 2 + 1, 1, 2);
+            }
+        }
+
+        lv_page_set_scrl_layout(page, LV_LAYOUT_COLUMN_LEFT);
+
     }
 }
 
@@ -733,8 +811,6 @@ static void img_create(lv_style_t * style, const void * src, bool rotate, bool z
         lv_obj_add_style(obj, LV_OBJ_PART_MAIN, style);
         lv_img_set_src(obj, src);
         lv_obj_set_style_local_image_recolor(obj, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(rnd_next(0, 0xFFFFF0)));
-//        lv_obj_set_style_local_border_color(obj, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(rnd_next(0, 0xFFFFF0)));
-//        lv_obj_set_style_local_shadow_color(obj, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(rnd_next(0, 0xFFFFF0)));
 
         if(rotate) lv_img_set_angle(obj, rnd_next(0, 3599));
         if(zoom) lv_img_set_zoom(obj, rnd_next(IMG_ZOOM_MIN, IMG_ZOOM_MAX));
