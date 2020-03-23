@@ -9,7 +9,7 @@
 #include "../../lv_examples.h"
 #include "lvgl/lvgl.h"
 #include "lv_demo_keypad_encoder.h"
-#if LV_USE_KEYBOARD
+#if USE_KEYBOARD
 #include "lv_drivers/indev/keyboard.h"
 #endif
 
@@ -73,7 +73,7 @@ void lv_demo_keypad_encoder(void)
     g = lv_group_create();
     lv_group_set_focus_cb(g, focus_cb);
 
-#if LV_USE_KEYBOARD
+#if USE_KEYBOARD
     lv_indev_drv_t kb_drv;
     lv_indev_drv_init(&kb_drv);
     kb_drv.type = LV_INDEV_TYPE_KEYPAD;
