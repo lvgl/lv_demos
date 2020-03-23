@@ -14,7 +14,7 @@
  *      DEFINES
  *********************/
 #define RND_NUM         64
-#define SCENE_TIME      200        /*ms*/
+#define SCENE_TIME      50      /*ms*/
 #define ANIM_TIME_MIN   ((2 * SCENE_TIME) / 10)
 #define ANIM_TIME_MAX   (SCENE_TIME)
 #define OBJ_NUM         8
@@ -32,7 +32,7 @@
 #define SHADOW_SPREAD_LARGE LV_MATH_MAX(LV_DPI / 30, 2)
 #define IMG_WIDH        100
 #define IMG_HEIGHT      100
-#define IMG_NUM         LV_MATH_MAX((LV_HOR_RES * LV_VER_RES) / 4 / IMG_WIDH / IMG_HEIGHT, 1)
+#define IMG_NUM         LV_MATH_MAX((LV_HOR_RES * LV_VER_RES) / 5 / IMG_WIDH / IMG_HEIGHT, 1)
 #define IMG_ZOOM_MIN    128
 #define IMG_ZOOM_MAX    (256 + 64)
 #define TXT "hello world\nit is a multi line text to test\nthe performance of text rendering"
@@ -70,12 +70,17 @@ LV_IMG_DECLARE(img_cogwheel_chroma_keyed);
 LV_IMG_DECLARE(img_cogwheel_indexed16);
 LV_IMG_DECLARE(img_cogwheel_alpha16);
 
+LV_FONT_DECLARE(lv_font_roboto_12_compr_az);
+LV_FONT_DECLARE(lv_font_roboto_16_compr_az);
+LV_FONT_DECLARE(lv_font_roboto_28_compr_az);
+
 static void monitor_cb(lv_disp_drv_t * drv, uint32_t time, uint32_t px);
 static void scene_next_task_cb(lv_task_t * task);
 static void rect_create(lv_style_t * style);
 static void img_create(lv_style_t * style, const void * src, bool rotate, bool zoom, bool aa);
 static void txt_create(lv_style_t * style);
 static void line_create(lv_style_t * style);
+static void fall_anim(lv_obj_t * obj);
 static void rnd_reset(void);
 static uint32_t rnd_next(uint32_t min, uint32_t max);
 
@@ -417,16 +422,28 @@ static void txt_large_cb(void)
 
 static void txt_small_compr_cb(void)
 {
+    lv_style_reset(&style_common);
+    lv_style_set_text_font(&style_common, LV_STATE_DEFAULT, &lv_font_roboto_12_compr_az);
+    lv_style_set_text_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
+    txt_create(&style_common);
 
 }
 
 static void txt_medium_compr_cb(void)
 {
+    lv_style_reset(&style_common);
+    lv_style_set_text_font(&style_common, LV_STATE_DEFAULT, &lv_font_roboto_16_compr_az);
+    lv_style_set_text_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
+    txt_create(&style_common);
 
 }
 
 static void txt_large_compr_cb(void)
 {
+    lv_style_reset(&style_common);
+    lv_style_set_text_font(&style_common, LV_STATE_DEFAULT, &lv_font_roboto_28_compr_az);
+    lv_style_set_text_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
+    txt_create(&style_common);
 
 }
 
@@ -497,49 +514,49 @@ static scene_dsc_t scenes[] = {
         {.name = "Rectangle rounded",            .weight = 20, .create_cb = rectangle_rounded_cb},
         {.name = "Circle",                       .weight = 10, .create_cb = rectangle_circle_cb},
 //
-        {.name = "Border",                       .weight = 20, .create_cb = border_cb},
-        {.name = "Border rounded",               .weight = 30, .create_cb = border_rounded_cb},
-        {.name = "Circle border",                .weight = 10, .create_cb = border_circle_cb},
-        {.name = "Border top",                   .weight = 3, .create_cb = border_top_cb},
-        {.name = "Border left",                  .weight = 3, .create_cb = border_left_cb},
-        {.name = "Border top + left",            .weight = 3, .create_cb = border_top_left_cb},
-        {.name = "Border left + right",          .weight = 3, .create_cb = border_left_right_cb},
-        {.name = "Border top + bottom",          .weight = 3, .create_cb = border_top_bottom_cb},
-
-        {.name = "Shadow small",                 .weight = 3, .create_cb = shadow_small_cb},
-        {.name = "Shadow small offset",        .weight = 5, .create_cb = shadow_small_ofs_cb},
-        {.name = "Shadow large",                 .weight = 5, .create_cb = shadow_large_cb},
-        {.name = "Shadow large offset",        .weight = 3, .create_cb = shadow_large_ofs_cb},
+//        {.name = "Border",                       .weight = 20, .create_cb = border_cb},
+//        {.name = "Border rounded",               .weight = 30, .create_cb = border_rounded_cb},
+//        {.name = "Circle border",                .weight = 10, .create_cb = border_circle_cb},
+//        {.name = "Border top",                   .weight = 3, .create_cb = border_top_cb},
+//        {.name = "Border left",                  .weight = 3, .create_cb = border_left_cb},
+//        {.name = "Border top + left",            .weight = 3, .create_cb = border_top_left_cb},
+//        {.name = "Border left + right",          .weight = 3, .create_cb = border_left_right_cb},
+//        {.name = "Border top + bottom",          .weight = 3, .create_cb = border_top_bottom_cb},
 //
-        {.name = "Image RGB",                    .weight = 20, .create_cb = img_rgb_cb},
-        {.name = "Image ARGB",                   .weight = 20, .create_cb = img_argb_cb},
-        {.name = "Image chorma keyed",           .weight = 5, .create_cb = img_ckey_cb},
-        {.name = "Image indexed",                .weight = 5, .create_cb = img_index_cb},
-        {.name = "Image alpha only",             .weight = 5, .create_cb = img_alpha_cb},
-
-        {.name = "Image RGB recolor",            .weight = 5, .create_cb = img_rgb_recolor_cb},
-        {.name = "Image ARGB recolor",           .weight = 20, .create_cb = img_argb_recolor_cb},
-        {.name = "Image chorma keyed recolor",   .weight = 3, .create_cb = img_ckey_recolor_cb},
-        {.name = "Image indexed recolor",        .weight = 3, .create_cb = img_index_recolor_cb},
-
-        {.name = "Image RGB rotate",             .weight = 3, .create_cb = img_rgb_rot_cb},
-        {.name = "Image RGB rotate anti aliased",  .weight = 3, .create_cb = img_rgb_rot_aa_cb},
-        {.name = "Image ARGB rotate",            .weight = 5, .create_cb = img_argb_rot_cb},
-        {.name = "Image ARGB rotate anti aliased", .weight = 5, .create_cb = img_argb_rot_aa_cb},
-        {.name = "Image RGB zoom",               .weight = 3, .create_cb = img_rgb_zoom_cb},
-        {.name = "Image RGB zoom anti aliased",    .weight = 3, .create_cb = img_rgb_zoom_aa_cb},
-        {.name = "Image ARGB zoom",              .weight = 5, .create_cb = img_argb_zoom_cb},
-        {.name = "Image ARGB zoom anti aliased",   .weight = 5, .create_cb = img_argb_zoom_aa_cb},
-
+//        {.name = "Shadow small",                 .weight = 3, .create_cb = shadow_small_cb},
+//        {.name = "Shadow small offset",        .weight = 5, .create_cb = shadow_small_ofs_cb},
+//        {.name = "Shadow large",                 .weight = 5, .create_cb = shadow_large_cb},
+//        {.name = "Shadow large offset",        .weight = 3, .create_cb = shadow_large_ofs_cb},
 //
-//        {.name = "Image RGB tiled",              .weight = 10, .create_cb = img_rgb_tile_cb},
-//        {.name = "Image ARGB tiled",             .weight = 10, .create_cb = img_argb_tile_cb},
-//        {.name = "Image chorma keyed tiled",     .weight = 10, .create_cb = img_ckey_tile_cb},
-//        {.name = "Image indexed tiled",          .weight = 10, .create_cb = img_index_tile_cb},
-//        {.name = "Image alpha only tiled",       .weight = 10, .create_cb = img_alpha_tile_cb},
+//        {.name = "Image RGB",                    .weight = 20, .create_cb = img_rgb_cb},
+//        {.name = "Image ARGB",                   .weight = 20, .create_cb = img_argb_cb},
+//        {.name = "Image chorma keyed",           .weight = 5, .create_cb = img_ckey_cb},
+//        {.name = "Image indexed",                .weight = 5, .create_cb = img_index_cb},
+//        {.name = "Image alpha only",             .weight = 5, .create_cb = img_alpha_cb},
 //
-
-
+//        {.name = "Image RGB recolor",            .weight = 5, .create_cb = img_rgb_recolor_cb},
+//        {.name = "Image ARGB recolor",           .weight = 20, .create_cb = img_argb_recolor_cb},
+//        {.name = "Image chorma keyed recolor",   .weight = 3, .create_cb = img_ckey_recolor_cb},
+//        {.name = "Image indexed recolor",        .weight = 3, .create_cb = img_index_recolor_cb},
+//
+//        {.name = "Image RGB rotate",             .weight = 3, .create_cb = img_rgb_rot_cb},
+//        {.name = "Image RGB rotate anti aliased",  .weight = 3, .create_cb = img_rgb_rot_aa_cb},
+//        {.name = "Image ARGB rotate",            .weight = 5, .create_cb = img_argb_rot_cb},
+//        {.name = "Image ARGB rotate anti aliased", .weight = 5, .create_cb = img_argb_rot_aa_cb},
+//        {.name = "Image RGB zoom",               .weight = 3, .create_cb = img_rgb_zoom_cb},
+//        {.name = "Image RGB zoom anti aliased",    .weight = 3, .create_cb = img_rgb_zoom_aa_cb},
+//        {.name = "Image ARGB zoom",              .weight = 5, .create_cb = img_argb_zoom_cb},
+//        {.name = "Image ARGB zoom anti aliased",   .weight = 5, .create_cb = img_argb_zoom_aa_cb},
+//
+////
+////        {.name = "Image RGB tiled",              .weight = 10, .create_cb = img_rgb_tile_cb},
+////        {.name = "Image ARGB tiled",             .weight = 10, .create_cb = img_argb_tile_cb},
+////        {.name = "Image chorma keyed tiled",     .weight = 10, .create_cb = img_ckey_tile_cb},
+////        {.name = "Image indexed tiled",          .weight = 10, .create_cb = img_index_tile_cb},
+////        {.name = "Image alpha only tiled",       .weight = 10, .create_cb = img_alpha_tile_cb},
+////
+//
+//
         {.name = "Text small",                   .weight = 20, .create_cb = txt_small_cb},
         {.name = "Text medium",                  .weight = 30, .create_cb = txt_medium_cb},
         {.name = "Text large",                   .weight = 20, .create_cb = txt_large_cb},
@@ -612,7 +629,7 @@ void lv_demo_benchmark(void)
     lv_obj_set_pos(title, LV_DPI / 30, LV_DPI / 30);
 
     subtitle = lv_label_create(scr, NULL);
-    lv_obj_align(subtitle, title, LV_ALIGN_OUT_BOTTOM_LEFT, LV_DPI / 10, LV_DPI / 30);
+    lv_obj_align(subtitle, title, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 0);
 
     scene_bg = lv_obj_create(scr, NULL);
     lv_obj_reset_style_list(scene_bg, LV_OBJ_PART_MAIN);
@@ -642,6 +659,14 @@ static void monitor_cb(lv_disp_drv_t * drv, uint32_t time, uint32_t px)
 
 static void scene_next_task_cb(lv_task_t * task)
 {
+
+
+    lv_mem_monitor_t mon;
+    lv_mem_monitor(&mon);
+    printf("used: %6d (%3d %%), frag: %3d %%, biggest free: %6d\n",
+           (int)mon.total_size - mon.free_size, mon.used_pct, mon.frag_pct,
+           (int)mon.free_biggest_size);
+
     lv_obj_clean(scene_bg);
 
     if(opa_mode) {
@@ -660,7 +685,7 @@ static void scene_next_task_cb(lv_task_t * task)
     }
 
     if(scenes[scene_act].create_cb) {
-        lv_label_set_text_fmt(title, "%d/%d: %s%s", scene_act * 2 + (opa_mode ? 1 : 0), sizeof(scenes) / sizeof(scene_dsc_t),  scenes[scene_act].name, opa_mode ? " + opa" : "");
+        lv_label_set_text_fmt(title, "%d/%d: %s%s", scene_act * 2 + (opa_mode ? 1 : 0), sizeof(scenes) / sizeof(scene_dsc_t) * 2,  scenes[scene_act].name, opa_mode ? " + opa" : "");
         if(opa_mode) {
             lv_label_set_text_fmt(subtitle, "Result of \"%s\": %d FPS", scenes[scene_act].name, scenes[scene_act].fps_normal);
         } else {
@@ -680,20 +705,152 @@ static void scene_next_task_cb(lv_task_t * task)
     /*Ready*/
     else {
         uint32_t weight_sum = 0;
+        uint32_t weight_normal_sum = 0;
+        uint32_t weight_opa_sum = 0;
         uint32_t fps_sum = 0;
+        uint32_t fps_normal_sum = 0;
+        uint32_t fps_opa_sum = 0;
         uint32_t i;
         for(i = 0; scenes[i].create_cb; i++) {
-            fps_sum += scenes[i].fps_normal * scenes[i].weight;
-            weight_sum += scenes[i].weight;
+            fps_normal_sum += scenes[i].fps_normal * scenes[i].weight;
+            weight_normal_sum += scenes[i].weight;
 
             uint32_t w = LV_MATH_MAX(scenes[i].weight / 2, 1);
-            fps_sum += scenes[i].fps_opa * w;
-            weight_sum += w;
+            fps_opa_sum += scenes[i].fps_opa * w;
+            weight_opa_sum += w;
         }
 
+
+        fps_sum = fps_normal_sum + fps_opa_sum;
+        weight_sum = weight_normal_sum + weight_opa_sum;
+
         uint32_t fps_weighted = fps_sum / weight_sum;
+        uint32_t fps_normal_weighted = fps_normal_sum / weight_normal_sum;
+        uint32_t fps_opa_weighted = fps_opa_sum / weight_opa_sum;
+        uint32_t opa_speed_pct =  (fps_opa_weighted * 100) / fps_normal_weighted;
+
+        lv_obj_clean(lv_scr_act());
+        scene_bg = NULL;
+
+
+        lv_obj_t* page = lv_page_create(lv_scr_act(), NULL);
+        lv_obj_set_size(page, LV_HOR_RES, LV_VER_RES);
+
+        title = lv_label_create(page, NULL);
         lv_label_set_text_fmt(title, "Weighted FPS: %d", fps_weighted);
-        lv_label_set_text(subtitle, "");
+
+        subtitle = lv_label_create(page, NULL);
+        lv_label_set_text_fmt(subtitle, "Opa. speed: %d", opa_speed_pct);
+
+        lv_coord_t w = lv_page_get_fit_width(page) - 10;
+        lv_obj_t * table = lv_table_create(page, NULL);
+        lv_obj_set_click(table, false);
+        lv_table_set_col_cnt(table, 2);
+        lv_table_set_col_width(table, 0, (w * 3) / 4);
+        lv_table_set_col_width(table, 1, w  / 4);
+
+        static lv_style_t style_cell_slow;
+        static lv_style_t style_cell_very_slow;
+        static lv_style_t style_cell_title;
+
+        lv_style_init(&style_cell_title);
+        lv_style_set_bg_color(&style_cell_title, LV_STATE_DEFAULT, LV_COLOR_GRAY);
+        lv_style_set_bg_opa(&style_cell_title, LV_STATE_DEFAULT, LV_OPA_50);
+
+        lv_style_init(&style_cell_slow);
+        lv_style_set_text_color(&style_cell_slow, LV_STATE_DEFAULT, LV_COLOR_ORANGE);
+
+        lv_style_init(&style_cell_very_slow);
+        lv_style_set_text_color(&style_cell_very_slow, LV_STATE_DEFAULT, LV_COLOR_RED);
+
+        lv_obj_add_style(table, LV_TABLE_PART_CELL2, &style_cell_slow);
+        lv_obj_add_style(table, LV_TABLE_PART_CELL3, &style_cell_very_slow);
+        lv_obj_add_style(table, LV_TABLE_PART_CELL4, &style_cell_title);
+
+
+        uint16_t row = 0;
+        lv_table_set_cell_merge_right(table, row, 0, true);
+        lv_table_set_cell_value(table, row, 0, "Slow but common cases");
+        lv_table_set_cell_type(table, row, 0, 4);
+        row++;
+        char buf[256];
+        for(i = 0; i < sizeof(scenes) / sizeof(scene_dsc_t) - 1; i++) {
+
+            if(scenes[i].fps_normal < 20 && scenes[i].weight >= 10) {
+                lv_table_set_cell_value(table, row, 0, scenes[i].name);
+
+                lv_snprintf(buf, sizeof(buf), "%d", scenes[i].fps_normal);
+                lv_table_set_cell_value(table, row, 1, buf);
+
+                lv_table_set_cell_type(table, row, 0, 2);
+                lv_table_set_cell_type(table, row, 1, 2);
+
+                row++;
+            }
+
+            if(scenes[i].fps_opa < 20 && LV_MATH_MAX(scenes[i].weight / 2, 1) >= 10) {
+                lv_snprintf(buf, sizeof(buf), "%s + opa", scenes[i].name);
+                lv_table_set_cell_value(table, row, 0, buf);
+
+                lv_snprintf(buf, sizeof(buf), "%d", scenes[i].fps_opa);
+                lv_table_set_cell_value(table, row, 1, buf);
+
+                lv_table_set_cell_type(table, row, 0, 2);
+                lv_table_set_cell_type(table, row, 1, 2);
+
+                row++;
+            }
+        }
+
+        /*No slow but common cases*/
+        if(row == 1) {
+            lv_table_set_cell_merge_right(table, row, 0, true);
+            lv_table_set_cell_value(table, row, 0, "All good");
+            row++;
+        }
+
+        lv_table_set_cell_merge_right(table, row, 0, true);
+        lv_table_set_cell_value(table, row, 0, "All cases");
+        lv_table_set_cell_type(table, row, 0, 4);
+        row++;
+
+        for(i = 0; i < sizeof(scenes) / sizeof(scene_dsc_t) - 1; i++) {
+            lv_table_set_cell_value(table, row, 0, scenes[i].name);
+
+            lv_snprintf(buf, sizeof(buf), "%d", scenes[i].fps_normal);
+            lv_table_set_cell_value(table, row, 1, buf);
+
+            if(scenes[i].fps_normal < 10) {
+                lv_table_set_cell_type(table, row, 0, 3);
+                lv_table_set_cell_type(table, row, 1, 3);
+            }
+            else if(scenes[i].fps_normal < 20) {
+                lv_table_set_cell_type(table, row, 0, 2);
+                lv_table_set_cell_type(table, row, 1, 2);
+            }
+
+            row++;
+
+            lv_snprintf(buf, sizeof(buf), "%s + opa", scenes[i].name);
+            lv_table_set_cell_value(table, row, 0, buf);
+
+            lv_snprintf(buf, sizeof(buf), "%d", scenes[i].fps_opa);
+            lv_table_set_cell_value(table, row, 1, buf);
+
+
+            if(scenes[i].fps_opa < 10) {
+                lv_table_set_cell_type(table, row, 0, 3);
+                lv_table_set_cell_type(table, row, 1, 3);
+            }
+            else if(scenes[i].fps_opa < 20) {
+                lv_table_set_cell_type(table, row, 0, 2);
+                lv_table_set_cell_type(table, row, 1, 2);
+            }
+            row++;
+        }
+
+        lv_page_set_scrl_layout(page, LV_LAYOUT_COLUMN_LEFT);
+
     }
 }
 
@@ -710,16 +867,8 @@ static void rect_create(lv_style_t * style)
         lv_obj_set_style_local_shadow_color(obj, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(rnd_next(0, 0xFFFFF0)));
 
         lv_obj_set_size(obj, rnd_next(OBJ_SIZE_MIN, OBJ_SIZE_MAX), rnd_next(OBJ_SIZE_MIN, OBJ_SIZE_MAX));
-        lv_obj_set_x(obj, rnd_next(0, lv_obj_get_width(scene_bg) - lv_obj_get_width(obj)));
 
-        lv_anim_t a;
-        lv_anim_init(&a);
-        lv_anim_set_var(&a, obj);
-        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_obj_set_y);
-        lv_anim_set_values(&a, -lv_obj_get_height(obj), lv_obj_get_height(scene_bg) + lv_obj_get_height(obj));
-        lv_anim_set_time(&a, rnd_next(ANIM_TIME_MIN, ANIM_TIME_MAX));
-        lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINIT);
-        lv_anim_start(&a);
+        fall_anim(obj);
     }
 }
 
@@ -733,23 +882,12 @@ static void img_create(lv_style_t * style, const void * src, bool rotate, bool z
         lv_obj_add_style(obj, LV_OBJ_PART_MAIN, style);
         lv_img_set_src(obj, src);
         lv_obj_set_style_local_image_recolor(obj, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(rnd_next(0, 0xFFFFF0)));
-//        lv_obj_set_style_local_border_color(obj, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(rnd_next(0, 0xFFFFF0)));
-//        lv_obj_set_style_local_shadow_color(obj, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(rnd_next(0, 0xFFFFF0)));
 
         if(rotate) lv_img_set_angle(obj, rnd_next(0, 3599));
         if(zoom) lv_img_set_zoom(obj, rnd_next(IMG_ZOOM_MIN, IMG_ZOOM_MAX));
         lv_img_set_antialias(obj, aa);
 
-        lv_obj_set_x(obj, rnd_next(0, lv_obj_get_width(scene_bg) - lv_obj_get_width(obj)));
-
-        lv_anim_t a;
-        lv_anim_init(&a);
-        lv_anim_set_var(&a, obj);
-        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_obj_set_y);
-        lv_anim_set_values(&a, -lv_obj_get_height(obj), lv_obj_get_height(scene_bg) + lv_obj_get_height(obj));
-        lv_anim_set_time(&a, rnd_next(ANIM_TIME_MIN, ANIM_TIME_MAX));
-        lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINIT);
-        lv_anim_start(&a);
+        fall_anim(obj);
     }
 }
 
@@ -764,16 +902,8 @@ static void txt_create(lv_style_t * style)
         lv_obj_set_style_local_text_color(obj, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(rnd_next(0, 0xFFFFF0)));
 
         lv_label_set_text(obj, TXT);
-        lv_obj_set_x(obj, rnd_next(0, lv_obj_get_width(scene_bg) - lv_obj_get_width(obj)));
 
-        lv_anim_t a;
-        lv_anim_init(&a);
-        lv_anim_set_var(&a, obj);
-        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_obj_set_y);
-        lv_anim_set_values(&a, -lv_obj_get_height(obj), lv_obj_get_height(scene_bg) + lv_obj_get_height(obj));
-        lv_anim_set_time(&a, rnd_next(ANIM_TIME_MIN, ANIM_TIME_MAX));
-        lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINIT);
-        lv_anim_start(&a);
+        fall_anim(obj);
     }
 }
 
@@ -800,19 +930,26 @@ static void line_create(lv_style_t * style)
 
         lv_line_set_points(obj, points[i], LINE_POINT_NUM);
         lv_line_set_auto_size(obj, true);
-        lv_obj_set_x(obj, rnd_next(0, lv_obj_get_width(scene_bg) - lv_obj_get_width(obj)));
 
-        lv_anim_t a;
-        lv_anim_init(&a);
-        lv_anim_set_var(&a, obj);
-        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_obj_set_y);
-        lv_anim_set_values(&a, -lv_obj_get_height(obj), lv_obj_get_height(scene_bg) + lv_obj_get_height(obj));
-        lv_anim_set_time(&a, rnd_next(ANIM_TIME_MIN, ANIM_TIME_MAX));
-        lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINIT);
-        lv_anim_start(&a);
+        fall_anim(obj);
+
     }
 }
 
+
+static void fall_anim(lv_obj_t * obj)
+{
+    lv_obj_set_x(obj, rnd_next(0, lv_obj_get_width(scene_bg) - lv_obj_get_width(obj)));
+
+    lv_anim_t a;
+    lv_anim_init(&a);
+    lv_anim_set_var(&a, obj);
+    lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_obj_set_y);
+    lv_anim_set_values(&a, -lv_obj_get_height(obj), lv_obj_get_height(scene_bg) + lv_obj_get_height(obj));
+    lv_anim_set_time(&a, rnd_next(ANIM_TIME_MIN, ANIM_TIME_MAX));
+    lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINIT);
+    lv_anim_start(&a);
+}
 
 static void rnd_reset(void)
 {
