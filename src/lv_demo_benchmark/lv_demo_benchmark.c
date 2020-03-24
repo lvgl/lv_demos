@@ -14,7 +14,7 @@
  *      DEFINES
  *********************/
 #define RND_NUM         64
-#define SCENE_TIME      1000      /*ms*/
+#define SCENE_TIME      5000      /*ms*/
 #define ANIM_TIME_MIN   ((2 * SCENE_TIME) / 10)
 #define ANIM_TIME_MAX   (SCENE_TIME)
 #define OBJ_NUM         8
@@ -36,11 +36,13 @@
 #define IMG_ZOOM_MIN    128
 #define IMG_ZOOM_MAX    (256 + 64)
 #define TXT "hello world\nit is a multi line text to test\nthe performance of text rendering"
+//#define TXT "helloworld\nitisamultilinetexttotest\ntheperformanceoftextrendering"
 #define LINE_WIDTH  LV_MATH_MAX(LV_DPI / 50, 2)
 #define LINE_POINT_NUM  8
 #define LINE_POINT_DIFF_MIN (LV_DPI / 10)
 #define LINE_POINT_DIFF_MAX LV_MATH_MAX(LV_HOR_RES / (LINE_POINT_NUM + 2), LINE_POINT_DIFF_MIN * 2)
-
+#define ARC_WIDTH_THIN LV_MATH_MAX(LV_DPI / 50, 2)
+#define ARC_WIDTH_THICK LV_MATH_MAX(LV_DPI / 10, 5)
 /**********************
  *      TYPEDEFS
  **********************/
@@ -80,6 +82,7 @@ static void rect_create(lv_style_t * style);
 static void img_create(lv_style_t * style, const void * src, bool rotate, bool zoom, bool aa);
 static void txt_create(lv_style_t * style);
 static void line_create(lv_style_t * style);
+static void arc_create(lv_style_t * style);
 static void fall_anim(lv_obj_t * obj);
 static void rnd_reset(void);
 static uint32_t rnd_next(uint32_t min, uint32_t max);
@@ -460,10 +463,18 @@ static void line_cb(void)
 static void arc_think_cb(void)
 {
 
+    lv_style_reset(&style_common);
+    lv_style_set_line_width(&style_common, LV_STATE_DEFAULT, ARC_WIDTH_THIN);
+    lv_style_set_line_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
+    arc_create(&style_common);
 }
 
 static void arc_thick_cb(void)
 {
+    lv_style_reset(&style_common);
+    lv_style_set_line_width(&style_common, LV_STATE_DEFAULT, ARC_WIDTH_THICK);
+    lv_style_set_line_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
+    arc_create(&style_common);
 
 }
 
@@ -509,57 +520,57 @@ static void add_text_cb(void)
  *  STATIC VARIABLES
  **********************/
 static scene_dsc_t scenes[] = {
-        {.name = "Rectangle",                    .weight = 30, .create_cb = rectangle_cb},
-        {.name = "Rectangle rounded",            .weight = 20, .create_cb = rectangle_rounded_cb},
-        {.name = "Circle",                       .weight = 10, .create_cb = rectangle_circle_cb},
-
-        {.name = "Border",                       .weight = 20, .create_cb = border_cb},
-        {.name = "Border rounded",               .weight = 30, .create_cb = border_rounded_cb},
-        {.name = "Circle border",                .weight = 10, .create_cb = border_circle_cb},
-        {.name = "Border top",                   .weight = 3, .create_cb = border_top_cb},
-        {.name = "Border left",                  .weight = 3, .create_cb = border_left_cb},
-        {.name = "Border top + left",            .weight = 3, .create_cb = border_top_left_cb},
-        {.name = "Border left + right",          .weight = 3, .create_cb = border_left_right_cb},
-        {.name = "Border top + bottom",          .weight = 3, .create_cb = border_top_bottom_cb},
-
-        {.name = "Shadow small",                 .weight = 3, .create_cb = shadow_small_cb},
-        {.name = "Shadow small offset",        .weight = 5, .create_cb = shadow_small_ofs_cb},
-        {.name = "Shadow large",                 .weight = 5, .create_cb = shadow_large_cb},
-        {.name = "Shadow large offset",        .weight = 3, .create_cb = shadow_large_ofs_cb},
-
-        {.name = "Image RGB",                    .weight = 20, .create_cb = img_rgb_cb},
-        {.name = "Image ARGB",                   .weight = 20, .create_cb = img_argb_cb},
-        {.name = "Image chorma keyed",           .weight = 5, .create_cb = img_ckey_cb},
-        {.name = "Image indexed",                .weight = 5, .create_cb = img_index_cb},
-        {.name = "Image alpha only",             .weight = 5, .create_cb = img_alpha_cb},
-
-        {.name = "Image RGB recolor",            .weight = 5, .create_cb = img_rgb_recolor_cb},
-        {.name = "Image ARGB recolor",           .weight = 20, .create_cb = img_argb_recolor_cb},
-        {.name = "Image chorma keyed recolor",   .weight = 3, .create_cb = img_ckey_recolor_cb},
-        {.name = "Image indexed recolor",        .weight = 3, .create_cb = img_index_recolor_cb},
-
-        {.name = "Image RGB rotate",             .weight = 3, .create_cb = img_rgb_rot_cb},
-        {.name = "Image RGB rotate anti aliased",  .weight = 3, .create_cb = img_rgb_rot_aa_cb},
-        {.name = "Image ARGB rotate",            .weight = 5, .create_cb = img_argb_rot_cb},
-        {.name = "Image ARGB rotate anti aliased", .weight = 5, .create_cb = img_argb_rot_aa_cb},
-        {.name = "Image RGB zoom",               .weight = 3, .create_cb = img_rgb_zoom_cb},
-        {.name = "Image RGB zoom anti aliased",    .weight = 3, .create_cb = img_rgb_zoom_aa_cb},
-        {.name = "Image ARGB zoom",              .weight = 5, .create_cb = img_argb_zoom_cb},
-        {.name = "Image ARGB zoom anti aliased",   .weight = 5, .create_cb = img_argb_zoom_aa_cb},
-
-        {.name = "Text small",                   .weight = 20, .create_cb = txt_small_cb},
-        {.name = "Text medium",                  .weight = 30, .create_cb = txt_medium_cb},
-        {.name = "Text large",                   .weight = 20, .create_cb = txt_large_cb},
-
-        {.name = "Text small compressed",       .weight = 10, .create_cb = txt_small_compr_cb},
-        {.name = "Text medium compressed",      .weight = 10, .create_cb = txt_medium_compr_cb},
-        {.name = "Text large compressed",       .weight = 10, .create_cb = txt_large_compr_cb},
-
-        {.name = "Line",                        .weight = 10, .create_cb = line_cb},
+//        {.name = "Rectangle",                    .weight = 30, .create_cb = rectangle_cb},
+//        {.name = "Rectangle rounded",            .weight = 20, .create_cb = rectangle_rounded_cb},
+//        {.name = "Circle",                       .weight = 10, .create_cb = rectangle_circle_cb},
 //
-//        {.name = "Arc think",                   .weight = 10, .create_cb = arc_think_cb},
-//        {.name = "Arc thick",                   .weight = 10, .create_cb = arc_thick_cb},
+//        {.name = "Border",                       .weight = 20, .create_cb = border_cb},
+//        {.name = "Border rounded",               .weight = 30, .create_cb = border_rounded_cb},
+//        {.name = "Circle border",                .weight = 10, .create_cb = border_circle_cb},
+//        {.name = "Border top",                   .weight = 3, .create_cb = border_top_cb},
+//        {.name = "Border left",                  .weight = 3, .create_cb = border_left_cb},
+//        {.name = "Border top + left",            .weight = 3, .create_cb = border_top_left_cb},
+//        {.name = "Border left + right",          .weight = 3, .create_cb = border_left_right_cb},
+//        {.name = "Border top + bottom",          .weight = 3, .create_cb = border_top_bottom_cb},
 //
+//        {.name = "Shadow small",                 .weight = 3, .create_cb = shadow_small_cb},
+//        {.name = "Shadow small offset",        .weight = 5, .create_cb = shadow_small_ofs_cb},
+//        {.name = "Shadow large",                 .weight = 5, .create_cb = shadow_large_cb},
+//        {.name = "Shadow large offset",        .weight = 3, .create_cb = shadow_large_ofs_cb},
+//
+//        {.name = "Image RGB",                    .weight = 20, .create_cb = img_rgb_cb},
+//        {.name = "Image ARGB",                   .weight = 20, .create_cb = img_argb_cb},
+//        {.name = "Image chorma keyed",           .weight = 5, .create_cb = img_ckey_cb},
+//        {.name = "Image indexed",                .weight = 5, .create_cb = img_index_cb},
+//        {.name = "Image alpha only",             .weight = 5, .create_cb = img_alpha_cb},
+//
+//        {.name = "Image RGB recolor",            .weight = 5, .create_cb = img_rgb_recolor_cb},
+//        {.name = "Image ARGB recolor",           .weight = 20, .create_cb = img_argb_recolor_cb},
+//        {.name = "Image chorma keyed recolor",   .weight = 3, .create_cb = img_ckey_recolor_cb},
+//        {.name = "Image indexed recolor",        .weight = 3, .create_cb = img_index_recolor_cb},
+//
+//        {.name = "Image RGB rotate",             .weight = 3, .create_cb = img_rgb_rot_cb},
+//        {.name = "Image RGB rotate anti aliased",  .weight = 3, .create_cb = img_rgb_rot_aa_cb},
+//        {.name = "Image ARGB rotate",            .weight = 5, .create_cb = img_argb_rot_cb},
+//        {.name = "Image ARGB rotate anti aliased", .weight = 5, .create_cb = img_argb_rot_aa_cb},
+//        {.name = "Image RGB zoom",               .weight = 3, .create_cb = img_rgb_zoom_cb},
+//        {.name = "Image RGB zoom anti aliased",    .weight = 3, .create_cb = img_rgb_zoom_aa_cb},
+//        {.name = "Image ARGB zoom",              .weight = 5, .create_cb = img_argb_zoom_cb},
+//        {.name = "Image ARGB zoom anti aliased",   .weight = 5, .create_cb = img_argb_zoom_aa_cb},
+
+//        {.name = "Text small",                   .weight = 20, .create_cb = txt_small_cb},
+//        {.name = "Text medium",                  .weight = 30, .create_cb = txt_medium_cb},
+//        {.name = "Text large",                   .weight = 20, .create_cb = txt_large_cb},
+
+//        {.name = "Text small compressed",       .weight = 3, .create_cb = txt_small_compr_cb},
+//        {.name = "Text medium compressed",      .weight = 5, .create_cb = txt_medium_compr_cb},
+//        {.name = "Text large compressed",       .weight = 10, .create_cb = txt_large_compr_cb},
+
+//        {.name = "Line",                        .weight = 10, .create_cb = line_cb},
+//
+        {.name = "Arc think",                   .weight = 10, .create_cb = arc_think_cb},
+        {.name = "Arc thick",                   .weight = 10, .create_cb = arc_thick_cb},
+
 //        {.name = "Polygon",                     .weight = 10, .create_cb = poly_cb},
 //
 //        {.name = "Additive rectangle",          .weight = 10, .create_cb = add_rectangle_cb},
@@ -649,14 +660,6 @@ static void monitor_cb(lv_disp_drv_t * drv, uint32_t time, uint32_t px)
 
 static void scene_next_task_cb(lv_task_t * task)
 {
-
-
-    lv_mem_monitor_t mon;
-    lv_mem_monitor(&mon);
-    printf("used: %6d (%3d %%), frag: %3d %%, biggest free: %6d\n",
-           (int)mon.total_size - mon.free_size, mon.used_pct, mon.frag_pct,
-           (int)mon.free_biggest_size);
-
     lv_obj_clean(scene_bg);
 
     if(opa_mode) {
@@ -715,9 +718,10 @@ static void scene_next_task_cb(lv_task_t * task)
         weight_sum = weight_normal_sum + weight_opa_sum;
 
         uint32_t fps_weighted = fps_sum / weight_sum;
-        uint32_t fps_normal_weighted = fps_normal_sum / weight_normal_sum;
-        uint32_t fps_opa_weighted = fps_opa_sum / weight_opa_sum;
-        uint32_t opa_speed_pct =  (fps_opa_weighted * 100) / fps_normal_weighted;
+        uint32_t fps_normal_unweighted = fps_normal_sum / weight_normal_sum;
+        uint32_t fps_opa_unweighted = fps_opa_sum / weight_opa_sum;
+
+        uint32_t opa_speed_pct =  (fps_opa_unweighted * 100) / fps_normal_unweighted;
 
         lv_obj_clean(lv_scr_act());
         scene_bg = NULL;
@@ -793,7 +797,7 @@ static void scene_next_task_cb(lv_task_t * task)
             }
         }
 
-        /*No slow but common cases*/
+        /*No 'slow but common cases'*/
         if(row == 1) {
             lv_table_set_cell_merge_right(table, row, 0, true);
             lv_table_set_cell_value(table, row, 0, "All good");
@@ -837,6 +841,8 @@ static void scene_next_task_cb(lv_task_t * task)
                 lv_table_set_cell_type(table, row, 0, 2);
                 lv_table_set_cell_type(table, row, 1, 2);
             }
+
+            row++;
         }
 
         lv_page_set_scrl_layout(page, LV_LAYOUT_COLUMN_LEFT);
@@ -927,6 +933,36 @@ static void line_create(lv_style_t * style)
 }
 
 
+static void arc_create(lv_style_t * style)
+{
+    uint32_t i;
+    for(i = 0; i < OBJ_NUM; i++) {
+        lv_obj_t * obj = lv_arc_create(scene_bg, NULL);
+        lv_obj_reset_style_list(obj, LV_ARC_PART_BG);
+        lv_obj_reset_style_list(obj, LV_ARC_PART_INDIC);
+        lv_obj_set_size(obj, rnd_next(OBJ_SIZE_MIN, OBJ_SIZE_MAX), rnd_next(OBJ_SIZE_MIN, OBJ_SIZE_MAX));
+        lv_obj_add_style(obj, LV_ARC_PART_INDIC, style);
+        lv_obj_set_style_local_line_color(obj, LV_ARC_PART_INDIC, LV_STATE_DEFAULT, lv_color_hex(rnd_next(0, 0xFFFFF0)));
+
+        lv_arc_set_start_angle(obj, 0);
+
+        uint32_t t = rnd_next(ANIM_TIME_MIN / 4, ANIM_TIME_MAX / 4);
+
+        lv_anim_t a;
+        lv_anim_init(&a);
+        lv_anim_set_var(&a, obj);
+        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_arc_set_end_angle);
+        lv_anim_set_values(&a, 0, 359);
+        lv_anim_set_time(&a, t);
+        lv_anim_set_playback_time(&a, t);
+        lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINIT);
+        lv_anim_start(&a);
+
+        fall_anim(obj);
+    }
+}
+
+
 static void fall_anim(lv_obj_t * obj)
 {
     lv_obj_set_x(obj, rnd_next(0, lv_obj_get_width(scene_bg) - lv_obj_get_width(obj)));
@@ -938,7 +974,9 @@ static void fall_anim(lv_obj_t * obj)
     lv_anim_set_values(&a, -lv_obj_get_height(obj), lv_obj_get_height(scene_bg) + lv_obj_get_height(obj));
     lv_anim_set_time(&a, rnd_next(ANIM_TIME_MIN, ANIM_TIME_MAX));
     lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINIT);
+    a.act_time = a.time / 2;    /*To start fro mteh middle*/
     lv_anim_start(&a);
+
 }
 
 static void rnd_reset(void)
