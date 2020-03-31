@@ -14,7 +14,7 @@
  *      DEFINES
  *********************/
 #define RND_NUM         64
-#define SCENE_TIME      5000      /*ms*/
+#define SCENE_TIME      3000      /*ms*/
 #define ANIM_TIME_MIN   ((2 * SCENE_TIME) / 10)
 #define ANIM_TIME_MAX   (SCENE_TIME)
 #define OBJ_NUM         8
@@ -38,7 +38,7 @@
 #define TXT "hello world\nit is a multi line text to test\nthe performance of text rendering"
 //#define TXT "helloworld\nitisamultilinetexttotest\ntheperformanceoftextrendering"
 #define LINE_WIDTH  LV_MATH_MAX(LV_DPI / 50, 2)
-#define LINE_POINT_NUM  8
+#define LINE_POINT_NUM  16
 #define LINE_POINT_DIFF_MIN (LV_DPI / 10)
 #define LINE_POINT_DIFF_MAX LV_MATH_MAX(LV_HOR_RES / (LINE_POINT_NUM + 2), LINE_POINT_DIFF_MIN * 2)
 #define ARC_WIDTH_THIN LV_MATH_MAX(LV_DPI / 50, 2)
@@ -50,11 +50,11 @@
 typedef struct {
     const char * name;
     void (*create_cb)(void);
-    uint32_t px_sum_normal;
     uint32_t time_sum_normal;
-    uint32_t fps_normal;
-    uint32_t px_sum_opa;
     uint32_t time_sum_opa;
+    uint32_t refr_cnt_normal;
+    uint32_t refr_cnt_opa;
+    uint32_t fps_normal;
     uint32_t fps_opa;
     uint8_t weight;
 }scene_dsc_t;
@@ -523,7 +523,7 @@ static scene_dsc_t scenes[] = {
 //        {.name = "Rectangle",                    .weight = 30, .create_cb = rectangle_cb},
 //        {.name = "Rectangle rounded",            .weight = 20, .create_cb = rectangle_rounded_cb},
 //        {.name = "Circle",                       .weight = 10, .create_cb = rectangle_circle_cb},
-//
+////
 //        {.name = "Border",                       .weight = 20, .create_cb = border_cb},
 //        {.name = "Border rounded",               .weight = 30, .create_cb = border_rounded_cb},
 //        {.name = "Circle border",                .weight = 10, .create_cb = border_circle_cb},
@@ -534,7 +534,7 @@ static scene_dsc_t scenes[] = {
 //        {.name = "Border top + bottom",          .weight = 3, .create_cb = border_top_bottom_cb},
 //
 //        {.name = "Shadow small",                 .weight = 3, .create_cb = shadow_small_cb},
-//        {.name = "Shadow small offset",        .weight = 5, .create_cb = shadow_small_ofs_cb},
+        {.name = "Shadow small offset",        .weight = 5, .create_cb = shadow_small_ofs_cb},
 //        {.name = "Shadow large",                 .weight = 5, .create_cb = shadow_large_cb},
 //        {.name = "Shadow large offset",        .weight = 3, .create_cb = shadow_large_ofs_cb},
 //
@@ -557,22 +557,22 @@ static scene_dsc_t scenes[] = {
 //        {.name = "Image RGB zoom anti aliased",    .weight = 3, .create_cb = img_rgb_zoom_aa_cb},
 //        {.name = "Image ARGB zoom",              .weight = 5, .create_cb = img_argb_zoom_cb},
 //        {.name = "Image ARGB zoom anti aliased",   .weight = 5, .create_cb = img_argb_zoom_aa_cb},
-
+////
 //        {.name = "Text small",                   .weight = 20, .create_cb = txt_small_cb},
 //        {.name = "Text medium",                  .weight = 30, .create_cb = txt_medium_cb},
 //        {.name = "Text large",                   .weight = 20, .create_cb = txt_large_cb},
-
+////
 //        {.name = "Text small compressed",       .weight = 3, .create_cb = txt_small_compr_cb},
 //        {.name = "Text medium compressed",      .weight = 5, .create_cb = txt_medium_compr_cb},
 //        {.name = "Text large compressed",       .weight = 10, .create_cb = txt_large_compr_cb},
-
+////
 //        {.name = "Line",                        .weight = 10, .create_cb = line_cb},
 //
-        {.name = "Arc think",                   .weight = 10, .create_cb = arc_think_cb},
-        {.name = "Arc thick",                   .weight = 10, .create_cb = arc_thick_cb},
+//        {.name = "Arc think",                   .weight = 10, .create_cb = arc_think_cb},
+//        {.name = "Arc thick",                   .weight = 10, .create_cb = arc_thick_cb},
 
 //        {.name = "Polygon",                     .weight = 10, .create_cb = poly_cb},
-//
+
 //        {.name = "Additive rectangle",          .weight = 10, .create_cb = add_rectangle_cb},
 //        {.name = "Additive border",             .weight = 10, .create_cb = add_border_cb},
 //        {.name = "Additive shadow",             .weight = 10, .create_cb = add_shadow_cb},
@@ -650,12 +650,14 @@ void lv_demo_benchmark(void)
 static void monitor_cb(lv_disp_drv_t * drv, uint32_t time, uint32_t px)
 {
     if(opa_mode) {
-        scenes[scene_act].px_sum_opa += px;
+        scenes[scene_act].refr_cnt_opa ++;
         scenes[scene_act].time_sum_opa += time;
     } else {
-        scenes[scene_act].px_sum_normal += px;
+        scenes[scene_act].refr_cnt_normal ++;
         scenes[scene_act].time_sum_normal += time;
     }
+
+    lv_obj_invalidate(lv_scr_act());
 }
 
 static void scene_next_task_cb(lv_task_t * task)
@@ -665,7 +667,7 @@ static void scene_next_task_cb(lv_task_t * task)
     if(opa_mode) {
         if(scene_act >= 0) {
             if(scenes[scene_act].time_sum_opa == 0) scenes[scene_act].time_sum_opa = 1;
-            scenes[scene_act].fps_opa = (uint64_t)((uint64_t)scenes[scene_act].px_sum_opa * 1000) / scenes[scene_act].time_sum_opa / LV_HOR_RES / LV_VER_RES;
+            scenes[scene_act].fps_opa = (1000 * scenes[scene_act].refr_cnt_opa) / scenes[scene_act].time_sum_opa;
             if(scenes[scene_act].create_cb) scene_act++;    /*If still there are scenes go to the next*/
         } else {
             scene_act ++;
@@ -673,7 +675,7 @@ static void scene_next_task_cb(lv_task_t * task)
         opa_mode = false;
     } else {
         if(scenes[scene_act].time_sum_normal == 0) scenes[scene_act].time_sum_normal = 1;
-        scenes[scene_act].fps_normal = (uint64_t)((uint64_t)scenes[scene_act].px_sum_normal * 1000) / scenes[scene_act].time_sum_normal / LV_HOR_RES / LV_VER_RES;
+        scenes[scene_act].fps_normal = (1000 * scenes[scene_act].refr_cnt_normal) / scenes[scene_act].time_sum_normal;
         opa_mode = true;
     }
 
@@ -967,14 +969,16 @@ static void fall_anim(lv_obj_t * obj)
 {
     lv_obj_set_x(obj, rnd_next(0, lv_obj_get_width(scene_bg) - lv_obj_get_width(obj)));
 
+    uint32_t t = rnd_next(ANIM_TIME_MIN, ANIM_TIME_MAX);
+
     lv_anim_t a;
     lv_anim_init(&a);
     lv_anim_set_var(&a, obj);
     lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_obj_set_y);
-    lv_anim_set_values(&a, -lv_obj_get_height(obj), lv_obj_get_height(scene_bg) + lv_obj_get_height(obj));
-    lv_anim_set_time(&a, rnd_next(ANIM_TIME_MIN, ANIM_TIME_MAX));
+    lv_anim_set_values(&a, 0, lv_obj_get_height(scene_bg) - lv_obj_get_height(obj));
+    lv_anim_set_time(&a, t);
+    lv_anim_set_playback_time(&a, t);
     lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINIT);
-    a.act_time = a.time / 2;    /*To start fro mteh middle*/
     lv_anim_start(&a);
 
 }

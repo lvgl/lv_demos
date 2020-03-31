@@ -271,11 +271,9 @@ static void visuals_create(lv_obj_t * parent)
     lv_table_set_cell_value(table1, 6, 2, "Athen");
 
     lv_obj_t * lmeter = lv_linemeter_create(parent, NULL);
-    lv_obj_set_size(lmeter,  3 * LV_DPI / 2, 3 * LV_DPI / 2);
     lv_linemeter_set_value(lmeter, 50);
 
     lv_obj_t * gauge = lv_gauge_create(parent, NULL);
-    lv_obj_set_size(gauge,  3 * LV_DPI / 2, 3 * LV_DPI / 2);
 
     lv_obj_t * arc = lv_arc_create(parent, NULL);
     lv_arc_set_bg_angles(arc, 0, 360);
@@ -310,7 +308,7 @@ static void selectors_create(lv_obj_t * parent)
     lv_obj_t * list = lv_list_create(parent, NULL);
     lv_list_set_scroll_propagation(list, true);
 
-    const char * txts[] = {LV_SYMBOL_SAVE, "Save", LV_SYMBOL_CUT, "Cut", LV_SYMBOL_COPY, "Copy",
+    const char * txts[] = {LV_SYMBOL_SAVE, "Save valamit jol elementek ide nincs! Nincs kecmec!", LV_SYMBOL_CUT, "Cut", LV_SYMBOL_COPY, "Copy",
             LV_SYMBOL_OK, "Apply", LV_SYMBOL_EDIT, "Edit", LV_SYMBOL_WIFI, "Wifi",
             LV_SYMBOL_BLUETOOTH, "Bluetooth",  LV_SYMBOL_GPS, "GPS", LV_SYMBOL_USB, "USB",
             LV_SYMBOL_SD_CARD, "SD card", LV_SYMBOL_CLOSE, "Close", NULL};
