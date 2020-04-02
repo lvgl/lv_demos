@@ -1,11 +1,11 @@
 C
 ^
 
-Preloader with custom style 
+Simple spinner 
 """"""""""""""""""""""""""""
 
-.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_preload/lv_ex_preload_1.*
-  :alt: Preloader example in LittlevGL
+.. image:: /lv_examples/src/lv_ex_spinner/lv_ex_spinner/lv_ex_spinner_1.*
+  :alt: Spinner example in LittlevGL
 
 .. container:: toggle
 
@@ -13,23 +13,8 @@ Preloader with custom style
     
       code
 
-    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_preload/lv_ex_preload_1.c
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_spinner/lv_ex_spinner_1.c
       :language: c
 
 MicroPython
 ^^^^^^^^^^^
-
-Preloader with custom style 
-""""""""""""""""""""""""""""
-
-.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_preload/lv_ex_preload_1.*
-  :alt: Preloader example in LittlevGL with MicroPython
-
-.. container:: toggle
-
-    .. container:: header
-
-      code
-
-    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_preload/lv_ex_preload_1.py
-      :language: python

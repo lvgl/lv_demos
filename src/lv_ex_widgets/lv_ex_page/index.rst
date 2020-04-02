@@ -19,17 +19,4 @@ Page with scrollbar
 MicroPython
 ^^^^^^^^^^^
 
-Page with scrollbar 
-"""""""""""""""""""
-
-.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_page/lv_ex_page_1.*
-  :alt: Page example in LittlevGL with MicroPython
-
-.. container:: toggle
-
-    .. container:: header
-
-      code
-
-    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_page/lv_ex_page_1.py
-      :language: python
+No examples yet.
