@@ -120,7 +120,7 @@ static void controls_create(lv_obj_t * parent)
 
     /*Use the knobs style value the display the current value in focused state*/
     lv_obj_set_style_local_value_font(slider, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, LV_THEME_DEFAULT_FONT_SMALL);
-    lv_obj_set_style_local_value_ofs_y(slider, LV_SLIDER_PART_KNOB, LV_STATE_FOCUSED, -18);
+    lv_obj_set_style_local_value_ofs_y(slider, LV_SLIDER_PART_KNOB, LV_STATE_FOCUSED, - LV_DPI/8);
     lv_obj_set_style_local_value_opa(slider, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, LV_OPA_TRANSP);
     lv_obj_set_style_local_value_opa(slider, LV_SLIDER_PART_KNOB, LV_STATE_FOCUSED, LV_OPA_COVER);
     lv_obj_set_style_local_transition_time(slider, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, 300);
@@ -131,13 +131,14 @@ static void controls_create(lv_obj_t * parent)
     lv_slider_set_type(slider, LV_SLIDER_TYPE_RANGE);
     lv_slider_set_value(slider, 70, LV_ANIM_OFF);
     lv_slider_set_left_value(slider, 30, LV_ANIM_OFF);
-    lv_obj_set_style_local_value_ofs_y(slider, LV_SLIDER_PART_INDIC, LV_STATE_DEFAULT, -14);
+    lv_obj_set_style_local_value_ofs_y(slider, LV_SLIDER_PART_INDIC, LV_STATE_DEFAULT, - LV_DPI / 8);
     lv_obj_set_style_local_value_font(slider, LV_SLIDER_PART_INDIC, LV_STATE_DEFAULT, LV_THEME_DEFAULT_FONT_SMALL);
     lv_obj_set_event_cb(slider, lv_slider_event_cb);
     lv_event_send(slider, LV_EVENT_VALUE_CHANGED, NULL);      /*To refresh the text*/
 
     h = lv_cont_create(parent, h);
     lv_obj_set_style_local_value_str(h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, "Text input");
+    lv_obj_set_style_local_pad_inner(h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_DPI / 10);
 
     lv_obj_t * ta = lv_textarea_create(h, NULL);
     lv_textarea_set_text(ta, "");
@@ -162,10 +163,18 @@ static void visuals_create(lv_obj_t * parent)
     lv_page_set_scrl_layout(parent, LV_LAYOUT_PRETTY_TOP);
 
     lv_obj_t * chart = lv_chart_create(parent, NULL);
+    if(lv_obj_get_width(chart) > lv_page_get_fit_width(parent)) {
+        lv_obj_set_width(chart, lv_page_get_fit_width(parent));
+    }
+    if(lv_obj_get_height(chart) > lv_page_get_fit_height(parent)) {
+        lv_obj_set_height(chart, lv_page_get_fit_height(parent));
+    }
     lv_chart_set_div_line_count(chart, 3, 0);
     lv_chart_set_point_count(chart, 8);
-    _lv_obj_set_style_local_int(chart, LV_CHART_PART_BG, LV_STYLE_PAD_LEFT, 50);
-    _lv_obj_set_style_local_int(chart, LV_CHART_PART_BG, LV_STYLE_PAD_BOTTOM, 30);
+    lv_obj_set_style_local_pad_left(chart,  LV_CHART_PART_BG, LV_STATE_DEFAULT, 4 * (LV_DPI / 10));
+    lv_obj_set_style_local_pad_bottom(chart,  LV_CHART_PART_BG, LV_STATE_DEFAULT, 3 * (LV_DPI / 10));
+    lv_obj_set_style_local_pad_right(chart,  LV_CHART_PART_BG, LV_STATE_DEFAULT, 3 * (LV_DPI / 10));
+    lv_obj_set_style_local_pad_top(chart,  LV_CHART_PART_BG, LV_STATE_DEFAULT, 2 * (LV_DPI / 10));
     lv_chart_set_y_tick_length(chart, 0, 0);
     lv_chart_set_x_tick_length(chart, 0, 0);
     lv_chart_set_y_tick_texts(chart, "600\n500\n400\n300\n200", 0, LV_CHART_AXIS_DRAW_LAST_TICK);
@@ -229,12 +238,14 @@ static void visuals_create(lv_obj_t * parent)
     lv_chart_set_next(chart2, s2, 47);
 
     lv_obj_t * page = lv_page_create(parent ,NULL);
-    lv_obj_set_size(page, LV_HOR_RES / 3, LV_DPI * 2);
+    lv_obj_set_height(page, lv_page_get_fit_height(parent));
+
     lv_page_set_scroll_propagation(page, true);
     lv_cont_set_fit2(page, LV_FIT_TIGHT, LV_FIT_NONE);
     lv_page_set_scrl_fit(page, LV_FIT_TIGHT);
 
     lv_obj_t * table1 = lv_table_create(page, NULL);
+
     lv_obj_set_click(table1, false);
     lv_table_set_col_cnt(table1, 3);
     lv_table_set_row_cnt(table1, 7);
@@ -308,6 +319,8 @@ static void selectors_create(lv_obj_t * parent)
     lv_obj_t * list = lv_list_create(parent, NULL);
     lv_list_set_scroll_propagation(list, true);
 
+    if(lv_obj_get_height(list) > lv_page_get_fit_height(parent)) lv_obj_set_height(list, lv_page_get_fit_height(parent));
+
     const char * txts[] = {LV_SYMBOL_SAVE, "Save valamit jol elementek ide nincs! Nincs kecmec!", LV_SYMBOL_CUT, "Cut", LV_SYMBOL_COPY, "Copy",
             LV_SYMBOL_OK, "Apply", LV_SYMBOL_EDIT, "Edit", LV_SYMBOL_WIFI, "Wifi",
             LV_SYMBOL_BLUETOOTH, "Bluetooth",  LV_SYMBOL_GPS, "GPS", LV_SYMBOL_USB, "USB",
@@ -332,6 +345,11 @@ static void selectors_create(lv_obj_t * parent)
             {.year = 2020, .month = 1, .day = 9},
     };
 
+
+    lv_coord_t w_max = lv_page_get_fit_width(parent);
+    lv_coord_t h_max = lv_obj_get_height(parent) - LV_DPI / 10;
+    lv_obj_set_size(cal, LV_MATH_MIN(h_max, w_max), LV_MATH_MIN(h_max, w_max));
+
     lv_calendar_set_highlighted_dates(cal, hl, 2);
 
     lv_obj_t * dd = lv_dropdown_create(parent, NULL);
@@ -348,7 +366,7 @@ static void selectors_create(lv_obj_t * parent)
     lv_spinbox_set_range(spinbox, -1000, 90000);
     lv_spinbox_set_digit_format(spinbox, 5, 2);
     lv_spinbox_step_prev(spinbox);
-    lv_obj_set_width(spinbox, 100);
+    lv_obj_set_width(spinbox, 2 * LV_DPI / 3);
     lv_obj_align(spinbox, NULL, LV_ALIGN_CENTER, 0, 0);
 
     lv_coord_t h = lv_obj_get_height(spinbox);
