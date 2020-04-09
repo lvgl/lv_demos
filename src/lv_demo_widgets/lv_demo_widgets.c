@@ -103,7 +103,7 @@ static void controls_create(lv_obj_t * parent)
 
     static const char * btns[] = {"Cancel", "Ok", ""};
 
-    lv_obj_t * m = lv_msgbox_create(lv_scr_act(), NULL);
+    lv_obj_t * m = lv_msgbox_create(lv_layer_top(), NULL);
     lv_msgbox_add_btns(m, btns);
     lv_obj_t * btnm = lv_msgbox_get_btnmatrix(m);
     lv_btnmatrix_set_btn_ctrl(btnm, 1, LV_BTNMATRIX_CTRL_CHECK_STATE);
@@ -355,6 +355,8 @@ static void visuals_create(lv_obj_t * parent)
     lv_obj_add_style(led_h, LV_CONT_PART_MAIN, &style_box);
     lv_obj_set_drag_parent(led_h, true);
     lv_obj_set_style_local_value_str(led_h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, "LEDs");
+    lv_obj_set_style_local_pad_left(led_h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_DPI / 5);
+    lv_obj_set_style_local_pad_right(led_h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_DPI / 5 + 10);
 
     lv_obj_t * led = lv_led_create(led_h, NULL);
     lv_coord_t led_size = lv_obj_get_height_fit(led_h);
@@ -472,7 +474,7 @@ static void selectors_create(lv_obj_t * parent)
     static lv_style_t style_cell4;
     lv_style_init(&style_cell4);
     lv_style_set_bg_opa(&style_cell4, LV_STATE_DEFAULT, LV_OPA_50);
-    lv_style_set_bg_color(&style_cell4, LV_STATE_DEFAULT, LV_COLOR_GRAY);
+    lv_style_set_bg_color(&style_cell4, LV_STATE_DEFAULT, lv_color_hex3(0xaaa));
 
     lv_obj_t * page = lv_page_create(parent ,NULL);
     lv_obj_set_size(page, grid_w, grid_h);
