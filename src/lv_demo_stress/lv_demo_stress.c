@@ -221,8 +221,7 @@ static void obj_test_task_cb(lv_task_t * param)
         case 11:
             obj = lv_dropdown_create(main_page, NULL);
             lv_dropdown_set_options(obj, "Zero\nOne\nTwo\nThree\nFour\nFive\nSix\nSeven\nEight");
-            lv_dropdown_set_anim_time(obj, TIME_STEP);
-            lv_dropdown_open(obj, LV_ANIM_ON);
+            lv_dropdown_open(obj);
             lv_dropdown_set_selected(obj, 2);
             auto_del(obj, TIME_STEP * 3 + 11);
             break;
