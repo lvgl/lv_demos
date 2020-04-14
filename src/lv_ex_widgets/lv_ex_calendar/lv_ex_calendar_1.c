@@ -16,7 +16,7 @@ static void event_handler(lv_obj_t * obj, lv_event_t event)
 void lv_ex_calendar_1(void)
 {
     lv_obj_t  * calendar = lv_calendar_create(lv_scr_act(), NULL);
-    lv_obj_set_size(calendar, 230, 230);
+    lv_obj_set_size(calendar, 235, 235);
     lv_obj_align(calendar, NULL, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_event_cb(calendar, event_handler);
 

@@ -9,9 +9,7 @@
 #include "../../lv_examples.h"
 #include "lvgl/lvgl.h"
 #include "lv_demo_keypad_encoder.h"
-#if USE_KEYBOARD
-#include "lv_drivers/indev/keyboard.h"
-#endif
+//#include "lv_drivers/indev/keyboard.h"
 
 /*********************
  *      DEFINES
@@ -26,9 +24,10 @@
  **********************/
 static void selectors_create(lv_obj_t * parent);
 static void text_input_create(lv_obj_t * parent);
-static void containers_create(lv_obj_t * parent);
+static void msgbox_create(void);
 
 static void focus_cb(lv_group_t * g);
+static void msgbox_event_cb(lv_obj_t * msgbox, lv_event_t e);
 static void tv_event_cb(lv_obj_t * ta, lv_event_t e);
 static void ta_event_cb(lv_obj_t * ta, lv_event_t e);
 static void kb_event_cb(lv_obj_t * kb, lv_event_t e);
@@ -50,8 +49,8 @@ struct {
     lv_obj_t * spinbox;
     lv_obj_t * dropdown;
     lv_obj_t * roller;
-    lv_obj_t * cpicker;
     lv_obj_t * list;
+    lv_obj_t * cpicker;
 }selector_objs;
 
 struct {
@@ -84,15 +83,16 @@ void lv_demo_keypad_encoder(void)
 
     tv = lv_tabview_create(lv_scr_act(), NULL);
     lv_obj_set_event_cb(tv, tv_event_cb);
-    lv_group_add_obj(g, tv);
 
     t1 = lv_tabview_add_tab(tv, "Selectors");
     t2 = lv_tabview_add_tab(tv, "Text input");
-    t3 = lv_tabview_add_tab(tv, "Containers");
+
+    lv_group_add_obj(g, tv);
 
     selectors_create(t1);
     text_input_create(t2);
-    containers_create(t3);
+
+    msgbox_create();
 }
 
 /**********************
@@ -103,34 +103,28 @@ static void selectors_create(lv_obj_t * parent)
 {
     lv_page_set_scrl_layout(parent, LV_LAYOUT_PRETTY_TOP);
 
-
    selector_objs.btn = lv_btn_create(parent, NULL);
-   lv_group_add_obj(g, selector_objs.btn);
 
    lv_obj_t * label = lv_label_create(selector_objs.btn, NULL);
    lv_label_set_text(label, "Button");
 
    selector_objs.cb = lv_checkbox_create(parent, NULL);
-   lv_group_add_obj(g, selector_objs.cb);
 
    selector_objs.slider = lv_slider_create(parent, NULL);
    lv_slider_set_range(selector_objs.slider, 0, 10);
-   lv_group_add_obj(g, selector_objs.slider);
 
    selector_objs.sw = lv_switch_create(parent, NULL);
-   lv_group_add_obj(g, selector_objs.sw);
 
    selector_objs.spinbox = lv_spinbox_create(parent, NULL);
-   lv_group_add_obj(g, selector_objs.spinbox);
 
    selector_objs.dropdown = lv_dropdown_create(parent, NULL);
-   lv_group_add_obj(g, selector_objs.dropdown);
 
    selector_objs.roller = lv_roller_create(parent, NULL);
-   lv_group_add_obj(g, selector_objs.roller);
 
    selector_objs.list = lv_list_create(parent, NULL);
-   lv_obj_set_height(selector_objs.list, LV_DPI * 2);
+   if(lv_obj_get_height(selector_objs.list) > lv_page_get_height_fit(parent)) {
+       lv_obj_set_height(selector_objs.list, lv_page_get_height_fit(parent));
+   }
    lv_list_add_btn(selector_objs.list, LV_SYMBOL_OK, "Apply");
    lv_list_add_btn(selector_objs.list, LV_SYMBOL_CLOSE, "Close");
    lv_list_add_btn(selector_objs.list, LV_SYMBOL_EYE_OPEN, "Show");
@@ -138,29 +132,54 @@ static void selectors_create(lv_obj_t * parent)
    lv_list_add_btn(selector_objs.list, LV_SYMBOL_TRASH, "Delete");
    lv_list_add_btn(selector_objs.list, LV_SYMBOL_COPY, "Copy");
    lv_list_add_btn(selector_objs.list, LV_SYMBOL_PASTE, "Paste");
-   lv_group_add_obj(g, selector_objs.list);
 
    selector_objs.cpicker = lv_cpicker_create(parent, NULL);
-   lv_group_add_obj(g, selector_objs.cpicker);
 }
 
 static void text_input_create(lv_obj_t * parent)
 {
     textinput_objs.ta1 = lv_textarea_create(parent, NULL);
     lv_obj_set_event_cb(textinput_objs.ta1, ta_event_cb);
-    lv_obj_align(textinput_objs.ta1, NULL, LV_ALIGN_IN_TOP_MID, 0, 20);
+    lv_obj_align(textinput_objs.ta1, NULL, LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 20);
+    lv_textarea_set_one_line(textinput_objs.ta1, true);
     lv_textarea_set_cursor_hidden(textinput_objs.ta1, true);
 
     textinput_objs.ta2 = lv_textarea_create(parent, textinput_objs.ta1);
-    lv_obj_align(textinput_objs.ta2, NULL, LV_ALIGN_IN_TOP_MID, 0, 100);
+    lv_obj_align(textinput_objs.ta2, textinput_objs.ta1, LV_ALIGN_OUT_BOTTOM_MID, 0, LV_DPI / 20);
 
     textinput_objs.kb = NULL;
-
 }
 
-static void containers_create(lv_obj_t * parent)
+static void msgbox_create(void)
 {
+    lv_obj_t * mbox = lv_msgbox_create(lv_layer_top(), NULL);
+    lv_msgbox_set_text(mbox, "Welcome to the keyboard and encoder demo");
+    lv_obj_set_event_cb(mbox, msgbox_event_cb);
+    lv_group_add_obj(g, mbox);
+    lv_group_focus_obj(mbox);
+    lv_group_focus_freeze(g, true);
 
+    static const char * btns[] = {"Ok", "Cancel", ""};
+    lv_msgbox_add_btns(mbox, btns);
+    lv_obj_align(mbox, NULL, LV_ALIGN_CENTER, 0, 0);
+
+    lv_obj_set_style_local_bg_opa(lv_layer_top(), LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_70);
+    lv_obj_set_style_local_bg_color(lv_layer_top(), LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_GRAY);
+    lv_obj_set_click(lv_layer_top(), true);
+}
+
+
+static void msgbox_event_cb(lv_obj_t * msgbox, lv_event_t e)
+{
+    if(e == LV_EVENT_CLICKED) {
+        uint16_t b = lv_msgbox_get_active_btn(msgbox);
+        if(b == 0 || b == 1) {
+            lv_obj_del(msgbox);
+            lv_obj_reset_style_list(lv_layer_top(), LV_OBJ_PART_MAIN);
+            lv_obj_set_click(lv_layer_top(), false);
+            lv_event_send(tv, LV_EVENT_REFRESH, NULL);
+        }
+    }
 }
 
 static void focus_cb(lv_group_t * g)
@@ -184,7 +203,7 @@ static void focus_cb(lv_group_t * g)
 
 static void tv_event_cb(lv_obj_t * ta, lv_event_t e)
 {
-    if(e == LV_EVENT_VALUE_CHANGED) {
+    if(e == LV_EVENT_VALUE_CHANGED || e == LV_EVENT_REFRESH) {
         lv_group_remove_all_objs(g);
 
         uint16_t tab = lv_tabview_get_tab_act(tv);

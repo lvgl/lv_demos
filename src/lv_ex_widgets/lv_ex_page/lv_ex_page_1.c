@@ -11,7 +11,7 @@ void lv_ex_page_1(void)
     /*Create a label on the page*/
     lv_obj_t * label = lv_label_create(page, NULL);
     lv_label_set_long_mode(label, LV_LABEL_LONG_BREAK);            /*Automatically break long lines*/
-    lv_obj_set_width(label, lv_page_get_fit_width(page));          /*Set the label width to max value to not show hor. scroll bars*/
+    lv_obj_set_width(label, lv_page_get_width_fit(page));          /*Set the label width to max value to not show hor. scroll bars*/
     lv_label_set_text(label, "Lorem ipsum dolor sit amet, consectetur adipiscing elit,\n"
                              "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n"
                              "Ut enim ad minim veniam, quis nostrud exercitation ullamco\n"

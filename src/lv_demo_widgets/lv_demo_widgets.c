@@ -61,11 +61,12 @@ void lv_demo_widgets(void)
 {
     tv = lv_tabview_create(lv_scr_act(), NULL);
 
-    if(LV_HOR_RES_MAX >= 480) {
+    lv_disp_size_t disp_size = lv_disp_get_size_category(NULL);
+    if(disp_size >= LV_DISP_SIZE_MEDIUM) {
         lv_obj_set_style_local_pad_left(tv, LV_TABVIEW_PART_TAB_BG, LV_STATE_DEFAULT, LV_HOR_RES / 2);
         lv_obj_t * sw = lv_switch_create(lv_scr_act(), NULL);
         lv_obj_set_event_cb(sw, color_chg_event_cb);
-        lv_obj_set_pos(sw, LV_DPI / 35, LV_DPI / 35);
+        lv_obj_set_pos(sw, LV_DPX(10), LV_DPX(10));
         lv_obj_set_style_local_value_str(sw, LV_SWITCH_PART_BG, LV_STATE_DEFAULT, "Dark");
         lv_obj_set_style_local_value_align(sw, LV_SWITCH_PART_BG, LV_STATE_DEFAULT, LV_ALIGN_OUT_RIGHT_MID);
         lv_obj_set_style_local_value_ofs_x(sw, LV_SWITCH_PART_BG, LV_STATE_DEFAULT, LV_DPI/35);
@@ -78,8 +79,8 @@ void lv_demo_widgets(void)
 
     lv_style_init(&style_box);
     lv_style_set_value_align(&style_box, LV_STATE_DEFAULT, LV_ALIGN_OUT_TOP_LEFT);
-    lv_style_set_value_ofs_y(&style_box, LV_STATE_DEFAULT, - LV_DPI / 20);
-    lv_style_set_margin_top(&style_box, LV_STATE_DEFAULT, LV_DPI / 7);
+    lv_style_set_value_ofs_y(&style_box, LV_STATE_DEFAULT, - LV_DPX(10));
+    lv_style_set_margin_top(&style_box, LV_STATE_DEFAULT, LV_DPX(30));
 
     controls_create(t1);
     visuals_create(t2);
@@ -97,23 +98,17 @@ static void controls_create(lv_obj_t * parent)
 {
     lv_page_set_scrl_layout(parent, LV_LAYOUT_PRETTY_TOP);
 
-    uint8_t div = 1;
-    if(LV_HOR_RES > 480) div = 2;
-    lv_coord_t grid_w = lv_page_get_width_grid(parent, div, 1);
+    lv_disp_size_t disp_size = lv_disp_get_size_category(NULL);
+    lv_coord_t grid_w = lv_page_get_width_grid(parent, disp_size <= LV_DISP_SIZE_SMALL ? 1 : 2, 1);
 
     static const char * btns[] = {"Cancel", "Ok", ""};
 
-    lv_obj_t * m = lv_msgbox_create(lv_layer_top(), NULL);
+    lv_obj_t * m = lv_msgbox_create(lv_scr_act(), NULL);
     lv_msgbox_add_btns(m, btns);
     lv_obj_t * btnm = lv_msgbox_get_btnmatrix(m);
     lv_btnmatrix_set_btn_ctrl(btnm, 1, LV_BTNMATRIX_CTRL_CHECK_STATE);
 
-
-    /*Add some extra top padding to make space for the box titles.*/
-//    lv_obj_set_style_local_pad_top(parent, LV_PAGE_PART_SCRL, LV_STATE_DEFAULT, LV_DPI/4);
-
     lv_obj_t * h = lv_cont_create(parent, NULL);
-//    lv_obj_set_style_local_pad_inner(h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_DPI/4);
     lv_cont_set_layout(h, LV_LAYOUT_PRETTY_MID);
     lv_obj_add_style(h, LV_CONT_PART_MAIN, &style_box);
     lv_obj_set_drag_parent(h, true);
@@ -124,7 +119,7 @@ static void controls_create(lv_obj_t * parent)
     lv_obj_set_width(h, grid_w);
     lv_obj_t * btn = lv_btn_create(h, NULL);
     lv_btn_set_fit2(btn, LV_FIT_NONE, LV_FIT_TIGHT);
-    lv_obj_set_width(btn, lv_obj_get_width_grid(h, 2, 1));
+    lv_obj_set_width(btn, lv_obj_get_width_grid(h, disp_size <= LV_DISP_SIZE_SMALL ? 1 : 2, 1));
     lv_obj_t * label = lv_label_create(btn, NULL);
     lv_label_set_text(label ,"Button");
 
@@ -137,35 +132,33 @@ static void controls_create(lv_obj_t * parent)
 
     lv_checkbox_create(h, NULL);
 
-    lv_coord_t max_w = lv_obj_get_width_fit(h);
+    lv_coord_t fit_w = lv_obj_get_width_fit(h);
 
     lv_obj_t * slider = lv_slider_create(h, NULL);
     lv_slider_set_value(slider, 40, LV_ANIM_OFF);
     lv_obj_set_event_cb(slider, slider_event_cb);
-    lv_obj_set_width_margin(slider, max_w);
+    lv_obj_set_width_margin(slider, fit_w);
 
     /*Use the knobs style value the display the current value in focused state*/
-    lv_obj_set_style_local_margin_top(slider, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, LV_DPI / 7);
-    lv_obj_set_style_local_value_font(slider, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, LV_THEME_DEFAULT_FONT_SMALL);
-    lv_obj_set_style_local_value_ofs_y(slider, LV_SLIDER_PART_KNOB, LV_STATE_FOCUSED, - LV_DPI/8);
+    lv_obj_set_style_local_margin_top(slider, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, LV_DPX(25));
+    lv_obj_set_style_local_value_font(slider, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, lv_theme_get_font_small());
+    lv_obj_set_style_local_value_ofs_y(slider, LV_SLIDER_PART_KNOB, LV_STATE_FOCUSED, - LV_DPX(25));
     lv_obj_set_style_local_value_opa(slider, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, LV_OPA_TRANSP);
     lv_obj_set_style_local_value_opa(slider, LV_SLIDER_PART_KNOB, LV_STATE_FOCUSED, LV_OPA_COVER);
     lv_obj_set_style_local_transition_time(slider, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, 300);
     lv_obj_set_style_local_transition_prop_5(slider, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, LV_STYLE_VALUE_OFS_Y);
     lv_obj_set_style_local_transition_prop_6(slider, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, LV_STYLE_VALUE_OPA);
 
-    slider = lv_slider_create(h, NULL);
-    lv_obj_set_width_margin(slider, max_w);
+    slider = lv_slider_create(h, slider);
     lv_slider_set_type(slider, LV_SLIDER_TYPE_RANGE);
     lv_slider_set_value(slider, 70, LV_ANIM_OFF);
     lv_slider_set_left_value(slider, 30, LV_ANIM_OFF);
-    lv_obj_set_style_local_margin_top(slider, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, LV_DPI / 7);
-    lv_obj_set_style_local_value_ofs_y(slider, LV_SLIDER_PART_INDIC, LV_STATE_DEFAULT, - LV_DPI / 8);
-    lv_obj_set_style_local_value_font(slider, LV_SLIDER_PART_INDIC, LV_STATE_DEFAULT, LV_THEME_DEFAULT_FONT_SMALL);
+    lv_obj_set_style_local_value_ofs_y(slider, LV_SLIDER_PART_INDIC, LV_STATE_DEFAULT, - LV_DPX(25));
+    lv_obj_set_style_local_value_font(slider, LV_SLIDER_PART_INDIC, LV_STATE_DEFAULT, lv_theme_get_font_small());
     lv_obj_set_style_local_value_opa(slider, LV_SLIDER_PART_INDIC, LV_STATE_DEFAULT, LV_OPA_COVER);
     lv_obj_set_event_cb(slider, slider_event_cb);
     lv_event_send(slider, LV_EVENT_VALUE_CHANGED, NULL);      /*To refresh the text*/
-    if(lv_obj_get_width(slider) > max_w) lv_obj_set_width(slider, max_w);
+    if(lv_obj_get_width(slider) > fit_w) lv_obj_set_width(slider, fit_w);
 
     h = lv_cont_create(parent, h);
     lv_cont_set_fit(h, LV_FIT_NONE);
@@ -197,16 +190,21 @@ static void visuals_create(lv_obj_t * parent)
 {
     lv_page_set_scrl_layout(parent, LV_LAYOUT_PRETTY_TOP);
 
-    uint8_t div = 1;
-    lv_coord_t grid_h = lv_page_get_height_grid(parent, 1, 1);
-    lv_coord_t grid_w = lv_page_get_width_grid(parent, div, 1);
+    lv_disp_size_t disp_size = lv_disp_get_size_category(NULL);
+
+    lv_coord_t grid_h_chart = lv_page_get_height_grid(parent, 1, 1);
+    lv_coord_t grid_w_chart = lv_page_get_width_grid(parent, disp_size <= LV_DISP_SIZE_LARGE ? 1 : 2, 1);
 
     lv_obj_t * chart = lv_chart_create(parent, NULL);
     lv_obj_add_style(chart, LV_CHART_PART_BG, &style_box);
+    if(disp_size <= LV_DISP_SIZE_SMALL) {
+        lv_obj_set_style_local_text_font(chart, LV_CHART_PART_SERIES_BG, LV_STATE_DEFAULT, lv_theme_get_font_small());
+
+    }
     lv_obj_set_drag_parent(chart, true);
     lv_obj_set_style_local_value_str(chart, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, "Line chart");
-    lv_obj_set_width_margin(chart, grid_w);
-    lv_obj_set_height_margin(chart, grid_h);
+    lv_obj_set_width_margin(chart, grid_w_chart);
+    lv_obj_set_height_margin(chart, grid_h_chart);
     lv_chart_set_div_line_count(chart, 3, 0);
     lv_chart_set_point_count(chart, 8);
     lv_obj_set_style_local_pad_left(chart,  LV_CHART_PART_BG, LV_STATE_DEFAULT, 4 * (LV_DPI / 10));
@@ -275,11 +273,10 @@ static void visuals_create(lv_obj_t * parent)
     lv_chart_set_next(chart2, s2, 5);
     lv_chart_set_next(chart2, s2, 47);
 
-
-    uint8_t div_meter = 1;
-    if(LV_HOR_RES > 320) div_meter = 2;
-    if(LV_HOR_RES > 600) div_meter = 3;
-    lv_coord_t grid_w_meter = lv_page_get_width_grid(parent, div_meter, 1);
+    lv_coord_t grid_w_meter;
+    if(disp_size <= LV_DISP_SIZE_SMALL) grid_w_meter = lv_page_get_width_grid(parent, 1, 1);
+    else if(disp_size <= LV_DISP_SIZE_MEDIUM) grid_w_meter = lv_page_get_width_grid(parent, 2, 1);
+    else grid_w_meter = lv_page_get_width_grid(parent, 3, 1);
 
     lv_obj_t * lmeter = lv_linemeter_create(parent, NULL);
     lv_obj_set_drag_parent(lmeter, true);
@@ -290,7 +287,7 @@ static void visuals_create(lv_obj_t * parent)
 
     lv_obj_t * label = lv_label_create(lmeter, NULL);
     lv_obj_align(label, lmeter, LV_ALIGN_CENTER, 0, 0);
-    lv_obj_set_style_local_text_font(label, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, LV_THEME_DEFAULT_FONT_TITLE);
+    lv_obj_set_style_local_text_font(label, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_theme_get_font_title());
 
     lv_anim_t a;
     lv_anim_init(&a);
@@ -339,10 +336,14 @@ static void visuals_create(lv_obj_t * parent)
     lv_cont_set_fit2(bar_h, LV_FIT_NONE, LV_FIT_TIGHT);
     lv_obj_add_style(bar_h, LV_CONT_PART_MAIN, &style_box);
     lv_obj_set_style_local_value_str(bar_h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, "Bar");
-    lv_obj_set_width(bar_h, lv_page_get_width_grid(parent, 3, 2));
+
+    if(disp_size <= LV_DISP_SIZE_SMALL) lv_obj_set_width(bar_h, lv_page_get_width_grid(parent, 1, 1));
+    else if(disp_size <= LV_DISP_SIZE_MEDIUM) lv_obj_set_width(bar_h, lv_page_get_width_grid(parent, 2, 1));
+    else lv_obj_set_width(bar_h, lv_page_get_width_grid(parent, 3, 2));
 
     lv_obj_t * bar = lv_bar_create(bar_h, NULL);
-    lv_obj_set_style_local_value_font(bar, LV_BAR_PART_BG, LV_STATE_DEFAULT, LV_THEME_DEFAULT_FONT_SMALL);
+    lv_obj_set_width(bar, lv_obj_get_width_fit(bar_h));
+    lv_obj_set_style_local_value_font(bar, LV_BAR_PART_BG, LV_STATE_DEFAULT, lv_theme_get_font_small());
     lv_obj_set_style_local_value_align(bar, LV_BAR_PART_BG, LV_STATE_DEFAULT, LV_ALIGN_OUT_BOTTOM_MID);
     lv_obj_set_style_local_value_ofs_y(bar, LV_BAR_PART_BG, LV_STATE_DEFAULT, LV_DPI / 20);
     lv_obj_set_style_local_margin_bottom(bar, LV_BAR_PART_BG, LV_STATE_DEFAULT, LV_DPI / 7);
@@ -350,13 +351,14 @@ static void visuals_create(lv_obj_t * parent)
 
     lv_obj_t * led_h = lv_cont_create(parent, NULL);
     lv_cont_set_layout(led_h, LV_LAYOUT_PRETTY_MID);
-    lv_obj_set_width(led_h, lv_page_get_width_grid(parent, 3, 1));
+    if(disp_size <= LV_DISP_SIZE_SMALL) lv_obj_set_width(led_h, lv_page_get_width_grid(parent, 1, 1));
+    else if(disp_size <= LV_DISP_SIZE_MEDIUM) lv_obj_set_width(led_h, lv_page_get_width_grid(parent, 2, 1));
+    else lv_obj_set_width(led_h, lv_page_get_width_grid(parent, 3, 1));
+
     lv_obj_set_height(led_h, lv_obj_get_height(bar_h));
     lv_obj_add_style(led_h, LV_CONT_PART_MAIN, &style_box);
     lv_obj_set_drag_parent(led_h, true);
     lv_obj_set_style_local_value_str(led_h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, "LEDs");
-    lv_obj_set_style_local_pad_left(led_h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_DPI / 5);
-    lv_obj_set_style_local_pad_right(led_h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_DPI / 5 + 10);
 
     lv_obj_t * led = lv_led_create(led_h, NULL);
     lv_coord_t led_size = lv_obj_get_height_fit(led_h);
@@ -364,7 +366,15 @@ static void visuals_create(lv_obj_t * parent)
     lv_led_off(led);
 
     led = lv_led_create(led_h, led);
+    lv_led_set_bright(led, (LV_LED_BRIGHT_MAX - LV_LED_BRIGHT_MIN) / 2 + LV_LED_BRIGHT_MIN);
+
+    led = lv_led_create(led_h, led);
     lv_led_on(led);
+
+    if(disp_size == LV_DISP_SIZE_MEDIUM) {
+        lv_obj_add_protect(led_h, LV_PROTECT_POS);
+        lv_obj_align(led_h, bar_h, LV_ALIGN_OUT_BOTTOM_MID, 0, lv_obj_get_style_margin_top(led_h, LV_OBJ_PART_MAIN) + lv_obj_get_style_pad_inner(parent, LV_PAGE_PART_SCRL));
+    }
 
     lv_task_create(bar_anim, 100, LV_TASK_PRIO_LOW, bar);
 }
@@ -374,14 +384,18 @@ static void selectors_create(lv_obj_t * parent)
 {
     lv_page_set_scrl_layout(parent, LV_LAYOUT_PRETTY_MID);
 
-    uint8_t div = 1;
-    if(LV_HOR_RES > 480) div = 2;
+    lv_disp_size_t disp_size = lv_disp_get_size_category(NULL);
     lv_coord_t grid_h = lv_page_get_height_grid(parent, 1, 1);
-    lv_coord_t grid_w = lv_page_get_width_grid(parent, div, 1);
+    lv_coord_t grid_w = lv_page_get_width_grid(parent, disp_size <= LV_DISP_SIZE_SMALL ? 1 : 2, 1);
 
     lv_obj_t * cal = lv_calendar_create(parent, NULL);
-    lv_obj_set_size(cal, LV_MATH_MIN(grid_h, grid_w), LV_MATH_MIN(grid_h, grid_w));
-
+    lv_obj_set_drag_parent(cal, true);
+    if(disp_size > LV_DISP_SIZE_SMALL) {
+        lv_obj_set_size(cal, LV_MATH_MIN(grid_h, grid_w), LV_MATH_MIN(grid_h, grid_w));
+    } else {
+        lv_obj_set_size(cal, grid_w, grid_w);
+        lv_obj_set_style_local_text_font(cal, LV_CALENDAR_PART_BG, LV_STATE_DEFAULT, &lv_font_montserrat_12);
+    }
 
     static lv_calendar_date_t hl[] = {
             {.year = 2020, .month = 1, .day = 5},
@@ -391,13 +405,21 @@ static void selectors_create(lv_obj_t * parent)
 
     lv_obj_t * btn;
     lv_obj_t * h = lv_cont_create(parent, NULL);
-    lv_obj_set_click(h, false);
-    lv_obj_set_style_local_bg_opa(h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_TRANSP);
-    lv_obj_set_style_local_border_opa(h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_TRANSP);
-    lv_obj_set_style_local_pad_left(h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 0);
-    lv_obj_set_style_local_pad_right(h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 0);
-    lv_obj_set_size(h, LV_MATH_MIN(grid_h, grid_w), LV_MATH_MIN(grid_h, grid_w));
-    lv_cont_set_layout(h, LV_LAYOUT_PRETTY_TOP);
+    if(disp_size > LV_DISP_SIZE_SMALL) {
+        lv_obj_set_click(h, false);
+        lv_obj_set_style_local_bg_opa(h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_TRANSP);
+        lv_obj_set_style_local_border_opa(h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_TRANSP);
+        lv_obj_set_style_local_pad_left(h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 0);
+        lv_obj_set_style_local_pad_right(h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 0);
+        lv_obj_set_style_local_pad_top(h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 0);
+        lv_obj_set_size(h, LV_MATH_MIN(grid_h, grid_w), LV_MATH_MIN(grid_h, grid_w));
+        lv_cont_set_layout(h, LV_LAYOUT_PRETTY_TOP);
+    } else {
+        lv_cont_set_fit2(h, LV_FIT_NONE, LV_FIT_TIGHT);
+        lv_obj_set_width(h, lv_page_get_width_fit(parent));
+        lv_obj_set_drag_parent(h, true);
+        lv_cont_set_layout(h, LV_LAYOUT_COLUMN_MID);
+    }
 
 
     lv_obj_t * roller = lv_roller_create(h, NULL);
@@ -405,24 +427,21 @@ static void selectors_create(lv_obj_t * parent)
     lv_obj_set_style_local_value_str(roller, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, "Roller");
     lv_roller_set_auto_fit(roller, false);
     lv_roller_set_align(roller, LV_LABEL_ALIGN_CENTER);
-    lv_obj_set_width(roller, lv_obj_get_width_grid(h, 2, 1));
-
+    lv_obj_set_width(roller, lv_obj_get_width_grid(h, disp_size <= LV_DISP_SIZE_SMALL ? 1 : 2, 1));
 
     lv_obj_t * dd = lv_dropdown_create(h, NULL);
     lv_obj_add_style(dd, LV_CONT_PART_MAIN, &style_box);
-    lv_obj_set_style_local_value_str(dd, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, "Dropdown list");
-    lv_obj_set_width(dd, lv_obj_get_width_grid(h, 2, 1));
+    lv_obj_set_style_local_value_str(dd, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, "Dropdown");
+    lv_obj_set_width(dd, lv_obj_get_width_grid(h, disp_size <= LV_DISP_SIZE_SMALL ? 1 : 2, 1));
     lv_dropdown_set_options(dd, "Alpha\nBravo\nCharlie\nDelta\nEcho\nFoxtrot\nGolf\nHotel\nIndia\nJuliette\nKilo\nLima\nMike\nNovember\n"
             "Oscar\nPapa\nQuebec\nRomeo\nSierra\nTango\nUniform\nVictor\nWhiskey\nXray\nYankee\nZulu");
 
 
     lv_obj_t * spinbox_holder = lv_cont_create(h, NULL);
-//    lv_obj_reset_style_list(spinbox_holder, LV_CONT_PART_MAIN);
     lv_obj_set_style_local_bg_opa(spinbox_holder, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_TRANSP);
     lv_obj_set_style_local_border_opa(spinbox_holder, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_TRANSP);
     lv_obj_set_style_local_pad_top(spinbox_holder, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 0);
     lv_obj_set_style_local_pad_left(spinbox_holder, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 0);
-    lv_obj_set_style_local_pad_right(spinbox_holder, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 115 * LV_DPI / 200);
     lv_obj_add_style(spinbox_holder, LV_CONT_PART_MAIN, &style_box);
     lv_obj_set_style_local_value_str(spinbox_holder, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, "Spinbox");
     lv_cont_set_fit(spinbox_holder, LV_FIT_TIGHT);
@@ -430,7 +449,7 @@ static void selectors_create(lv_obj_t * parent)
     spinbox = lv_spinbox_create(spinbox_holder , NULL);
     lv_spinbox_set_range(spinbox, -999999, 999999);
     lv_spinbox_set_digit_format(spinbox, 6, 2);
-    lv_obj_set_style_local_text_font(spinbox, LV_SPINBOX_PART_BG, LV_STATE_DEFAULT, LV_THEME_DEFAULT_FONT_SUBTITLE);
+    lv_obj_set_style_local_text_font(spinbox, LV_SPINBOX_PART_BG, LV_STATE_DEFAULT, lv_theme_get_font_subtitle());
     lv_spinbox_step_prev(spinbox);
     lv_obj_set_width(spinbox, lv_obj_get_width(lv_textarea_get_label(spinbox)) + LV_DPI/8);
     lv_obj_align(spinbox, NULL, LV_ALIGN_CENTER, 0, 0);
@@ -474,15 +493,12 @@ static void selectors_create(lv_obj_t * parent)
     static lv_style_t style_cell4;
     lv_style_init(&style_cell4);
     lv_style_set_bg_opa(&style_cell4, LV_STATE_DEFAULT, LV_OPA_50);
-    lv_style_set_bg_color(&style_cell4, LV_STATE_DEFAULT, lv_color_hex3(0xaaa));
+    lv_style_set_bg_color(&style_cell4, LV_STATE_DEFAULT, LV_COLOR_GRAY);
 
     lv_obj_t * page = lv_page_create(parent ,NULL);
     lv_obj_set_size(page, grid_w, grid_h);
     lv_coord_t table_w_max = lv_page_get_width_fit(page);
-
     lv_page_set_scroll_propagation(page, true);
-    lv_cont_set_fit2(page, LV_FIT_TIGHT, LV_FIT_NONE);
-    lv_page_set_scrl_fit(page, LV_FIT_TIGHT);
 
     lv_obj_t * table1 = lv_table_create(page, NULL);
     lv_obj_add_style(table1, LV_TABLE_PART_CELL4, &style_cell4);
@@ -490,49 +506,41 @@ static void selectors_create(lv_obj_t * parent)
     lv_obj_clean_style_list(table1, LV_TABLE_PART_BG);
     lv_obj_set_drag_parent(table1, true);
     lv_obj_set_event_cb(table1, table_event_cb);
-    lv_table_set_col_cnt(table1, 3);
-    lv_table_set_col_width(table1, 0, LV_MATH_MAX(40, 1 * table_w_max  / 5));
-    lv_table_set_col_width(table1, 1, LV_MATH_MAX(120, 2 * table_w_max / 5));
-    lv_table_set_col_width(table1, 2, LV_MATH_MAX(120, 2 * table_w_max / 5));
+    lv_table_set_col_cnt(table1, disp_size > LV_DISP_SIZE_SMALL ? 3 : 2);
+    if(disp_size > LV_DISP_SIZE_SMALL) {
+        lv_table_set_col_width(table1, 0, LV_MATH_MAX(30, 1 * table_w_max  / 5));
+        lv_table_set_col_width(table1, 1, LV_MATH_MAX(60, 2 * table_w_max / 5));
+        lv_table_set_col_width(table1, 2, LV_MATH_MAX(60, 2 * table_w_max / 5));
+    } else {
+        lv_table_set_col_width(table1, 0, LV_MATH_MAX(30, 1 * table_w_max  / 4 - 1));
+        lv_table_set_col_width(table1, 1, LV_MATH_MAX(60, 3 * table_w_max / 4 - 1));
+    }
 
     lv_table_set_cell_value(table1, 0, 0, "#");
-    lv_table_set_cell_value(table1, 0, 1, "NAME");
-    lv_table_set_cell_value(table1, 0, 2, "CITY");
-
     lv_table_set_cell_value(table1, 1, 0, "1");
-    lv_table_set_cell_value(table1, 1, 1, "Mark");
-    lv_table_set_cell_value(table1, 1, 2, "Moscow");
-
     lv_table_set_cell_value(table1, 2, 0, "2");
-    lv_table_set_cell_value(table1, 2, 1, "Jacob");
-    lv_table_set_cell_value(table1, 2, 2, "New York");
-
     lv_table_set_cell_value(table1, 3, 0, "3");
-    lv_table_set_cell_value(table1, 3, 1, "John");
-    lv_table_set_cell_value(table1, 3, 2, "Oslo");
-
     lv_table_set_cell_value(table1, 4, 0, "4");
-    lv_table_set_cell_value(table1, 4, 1, "Emily");
-    lv_table_set_cell_value(table1, 4, 2, "London");
-
     lv_table_set_cell_value(table1, 5, 0, "5");
-    lv_table_set_cell_value(table1, 5, 1, "Samantha");
-    lv_table_set_cell_value(table1, 5, 2, "Texas");
-
     lv_table_set_cell_value(table1, 6, 0, "6");
+
+    lv_table_set_cell_value(table1, 0, 1, "NAME");
+    lv_table_set_cell_value(table1, 1, 1, "Mark");
+    lv_table_set_cell_value(table1, 2, 1, "Jacob");
+    lv_table_set_cell_value(table1, 3, 1, "John");
+    lv_table_set_cell_value(table1, 4, 1, "Emily");
+    lv_table_set_cell_value(table1, 5, 1, "Samantha");
     lv_table_set_cell_value(table1, 6, 1, "George");
-    lv_table_set_cell_value(table1, 6, 2, "Athen");
 
-
-
-
-
-
-
-
-
-
-
+    if(disp_size > LV_DISP_SIZE_SMALL) {
+        lv_table_set_cell_value(table1, 0, 2, "CITY");
+        lv_table_set_cell_value(table1, 1, 2, "Moscow");
+        lv_table_set_cell_value(table1, 2, 2, "New York");
+        lv_table_set_cell_value(table1, 3, 2, "Oslo");
+        lv_table_set_cell_value(table1, 4, 2, "London");
+        lv_table_set_cell_value(table1, 5, 2, "Texas");
+        lv_table_set_cell_value(table1, 6, 2, "Athen");
+    }
 
 }
 
@@ -669,9 +677,9 @@ static void color_chg_event_cb(lv_obj_t * sw, lv_event_t e)
         uint32_t flag = LV_THEME_MATERIAL_FLAG_LIGHT;
         if(lv_switch_get_state(sw)) flag = LV_THEME_MATERIAL_FLAG_DARK;
 
-        LV_THEME_DEFAULT_INIT(LV_THEME_DEFAULT_COLOR_PRIMARY, LV_THEME_DEFAULT_COLOR_SECONDARY,
+        LV_THEME_DEFAULT_INIT(lv_theme_get_color_primary(), lv_theme_get_color_primary(),
                 flag,
-                LV_THEME_DEFAULT_FONT_SMALL, LV_THEME_DEFAULT_FONT_NORMAL, LV_THEME_DEFAULT_FONT_SUBTITLE, LV_THEME_DEFAULT_FONT_TITLE);
+                lv_theme_get_font_small(), lv_theme_get_font_normal(), lv_theme_get_font_subtitle(), lv_theme_get_font_title());
     }
 }
 

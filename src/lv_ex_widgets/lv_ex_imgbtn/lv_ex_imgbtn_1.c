@@ -9,8 +9,9 @@ void lv_ex_imgbtn_1(void)
     /*Darken the button when pressed*/
     static lv_style_t style;
     lv_style_init(&style);
-    lv_style_set_image_recolor_opa(&style, LV_STATE_DEFAULT, LV_OPA_30);
-    lv_style_set_image_recolor(&style, LV_STATE_DEFAULT, LV_COLOR_BLACK);
+    lv_style_set_image_recolor_opa(&style, LV_STATE_PRESSED, LV_OPA_30);
+    lv_style_set_image_recolor(&style, LV_STATE_PRESSED, LV_COLOR_BLACK);
+    lv_style_set_text_color(&style, LV_STATE_DEFAULT, LV_COLOR_WHITE);
 
     /*Create an Image button*/
     lv_obj_t * imgbtn1 = lv_imgbtn_create(lv_scr_act(), NULL);

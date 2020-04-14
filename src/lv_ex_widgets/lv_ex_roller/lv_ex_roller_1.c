@@ -33,8 +33,6 @@ void lv_ex_roller_1(void)
     lv_roller_set_visible_row_count(roller1, 4);
     lv_obj_align(roller1, NULL, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_event_cb(roller1, event_handler);
-    lv_roller_set_anim_time(roller1, 8000);
-    lv_roller_set_selected(roller1, 14, LV_ANIM_ON);
 }
 
 #endif
