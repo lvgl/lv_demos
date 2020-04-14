@@ -6,7 +6,7 @@ void lv_ex_label_2(void)
     /* Create a style for the shadow*/
     static lv_style_t label_shadow_style;
     lv_style_init(&label_shadow_style);
-    lv_style_set_text_opa(&label_shadow_style, LV_STATE_DEFAULT, LV_OPA_70);
+    lv_style_set_text_opa(&label_shadow_style, LV_STATE_DEFAULT, LV_OPA_50);
     lv_style_set_text_color(&label_shadow_style, LV_STATE_DEFAULT, LV_COLOR_RED);
 
     /*Create a label for the shadow first (it's in the background) */
@@ -27,7 +27,7 @@ void lv_ex_label_2(void)
     lv_obj_align(main_label, NULL, LV_ALIGN_CENTER, 0, 0);
     
     /* Shift the second label down and to the right by 2 pixel */
-    lv_obj_align(shadow_label, main_label, LV_ALIGN_IN_TOP_LEFT, 2, 2);
+    lv_obj_align(shadow_label, main_label, LV_ALIGN_IN_TOP_LEFT, 1, 1);
 }
 
 #endif

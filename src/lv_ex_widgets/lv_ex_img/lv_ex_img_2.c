@@ -50,7 +50,7 @@ static void create_sliders(void)
     lv_obj_set_style_local_bg_color(blue_slider, LV_SLIDER_PART_INDIC, LV_STATE_DEFAULT, LV_COLOR_BLUE);
 
     intense_slider = lv_slider_create(lv_scr_act(), red_slider);
-    lv_obj_set_style_local_bg_color(intense_slider, LV_SLIDER_PART_INDIC, LV_STATE_DEFAULT, LV_COLOR_SILVER);
+    lv_obj_set_style_local_bg_color(intense_slider, LV_SLIDER_PART_INDIC, LV_STATE_DEFAULT, LV_COLOR_GRAY);
     lv_slider_set_value(intense_slider, 255, LV_ANIM_OFF);
 
     lv_obj_align(red_slider, NULL, LV_ALIGN_IN_LEFT_MID, 20, 0);

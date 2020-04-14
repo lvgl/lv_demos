@@ -738,7 +738,7 @@ static void scene_next_task_cb(lv_task_t * task)
         subtitle = lv_label_create(page, NULL);
         lv_label_set_text_fmt(subtitle, "Opa. speed: %d%%", opa_speed_pct);
 
-        lv_coord_t w = lv_page_get_fit_width(page) - 10;
+        lv_coord_t w = lv_page_get_width_fit(page) - 10;
         lv_obj_t * table = lv_table_create(page, NULL);
         lv_obj_set_click(table, false);
         lv_table_set_col_cnt(table, 2);
