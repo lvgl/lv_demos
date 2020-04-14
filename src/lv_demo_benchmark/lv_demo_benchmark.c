@@ -14,7 +14,7 @@
  *      DEFINES
  *********************/
 #define RND_NUM         64
-#define SCENE_TIME      1000      /*ms*/
+#define SCENE_TIME      2000      /*ms*/
 #define ANIM_TIME_MIN   ((2 * SCENE_TIME) / 10)
 #define ANIM_TIME_MAX   (SCENE_TIME)
 #define OBJ_NUM         8
@@ -310,31 +310,6 @@ static void img_index_recolor_cb(void)
 
 }
 
-static void img_rgb_tile_cb(void)
-{
-
-}
-
-static void img_argb_tile_cb(void)
-{
-
-}
-
-static void img_ckey_tile_cb(void)
-{
-
-}
-
-static void img_index_tile_cb(void)
-{
-
-}
-
-static void img_alpha_tile_cb(void)
-{
-
-}
-
 static void img_rgb_rot_cb(void)
 {
     lv_style_reset(&style_common);
@@ -478,113 +453,147 @@ static void arc_thick_cb(void)
 }
 
 
-static void poly_cb(void)
+static void sub_rectangle_cb(void)
 {
+    lv_style_reset(&style_common);
+    lv_style_set_radius(&style_common, LV_STATE_DEFAULT, RADIUS);
+    lv_style_set_bg_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
+    lv_style_set_bg_blend_mode(&style_common, LV_STATE_DEFAULT, LV_BLEND_MODE_SUBTRACTIVE);
+    rect_create(&style_common);
+}
+
+static void sub_border_cb(void)
+{
+    lv_style_reset(&style_common);
+    lv_style_set_radius(&style_common, LV_STATE_DEFAULT, RADIUS);
+    lv_style_set_border_width(&style_common, LV_STATE_DEFAULT, BORDER_WIDTH);
+    lv_style_set_border_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
+    lv_style_set_border_blend_mode(&style_common, LV_STATE_DEFAULT, LV_BLEND_MODE_SUBTRACTIVE);
+    rect_create(&style_common);
 
 }
 
-
-static void add_rectangle_cb(void)
+static void sub_shadow_cb(void)
 {
+    lv_style_reset(&style_common);
+    lv_style_set_radius(&style_common, LV_STATE_DEFAULT, RADIUS);
+    lv_style_set_bg_opa(&style_common, LV_STATE_DEFAULT, LV_OPA_COVER);
+    lv_style_set_shadow_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_80 : LV_OPA_COVER);
+    lv_style_set_shadow_width(&style_common, LV_STATE_DEFAULT, 3 * SHADOW_WIDTH_SMALL);
+    lv_style_set_shadow_spread(&style_common, LV_STATE_DEFAULT, 3 * SHADOW_WIDTH_SMALL);
+    lv_style_set_shadow_blend_mode(&style_common, LV_STATE_DEFAULT, LV_BLEND_MODE_SUBTRACTIVE);
+    rect_create(&style_common);
 
 }
 
-static void add_border_cb(void)
+static void sub_img_cb(void)
 {
+    lv_style_reset(&style_common);
+    lv_style_set_image_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
+    lv_style_set_image_blend_mode(&style_common, LV_STATE_DEFAULT, LV_BLEND_MODE_SUBTRACTIVE);
+    img_create(&style_common, &img_cogwheel_argb, false, false, false);
+
+}
+static void sub_line_cb(void)
+{
+    lv_style_reset(&style_common);
+    lv_style_set_line_width(&style_common, LV_STATE_DEFAULT, 3* LINE_WIDTH);
+    lv_style_set_line_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
+    lv_style_set_line_blend_mode(&style_common, LV_STATE_DEFAULT, LV_BLEND_MODE_SUBTRACTIVE);
+    line_create(&style_common);
 
 }
 
-static void add_shadow_cb(void)
+static void sub_arc_cb(void)
 {
+    lv_style_reset(&style_common);
+    lv_style_set_line_width(&style_common, LV_STATE_DEFAULT, ARC_WIDTH_THICK);
+    lv_style_set_line_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
+    lv_style_set_line_blend_mode(&style_common, LV_STATE_DEFAULT, LV_BLEND_MODE_SUBTRACTIVE);
+    arc_create(&style_common);
 
 }
 
-static void add_line_cb(void)
+static void sub_text_cb(void)
 {
-
+    lv_style_reset(&style_common);
+    lv_style_set_text_font(&style_common, LV_STATE_DEFAULT, LV_THEME_DEFAULT_FONT_NORMAL);
+    lv_style_set_text_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
+    lv_style_set_text_blend_mode(&style_common, LV_STATE_DEFAULT, LV_BLEND_MODE_SUBTRACTIVE);
+    txt_create(&style_common);
 }
 
-static void add_arc_cb(void)
-{
-
-}
-
-static void add_text_cb(void)
-{
-
-}
 
 
 /**********************
  *  STATIC VARIABLES
  **********************/
 static scene_dsc_t scenes[] = {
-        {.name = "Rectangle",                    .weight = 30, .create_cb = rectangle_cb},
-        {.name = "Rectangle rounded",            .weight = 20, .create_cb = rectangle_rounded_cb},
-        {.name = "Circle",                       .weight = 10, .create_cb = rectangle_circle_cb},
-        {.name = "Border",                       .weight = 20, .create_cb = border_cb},
-        {.name = "Border rounded",               .weight = 30, .create_cb = border_rounded_cb},
-        {.name = "Circle border",                .weight = 10, .create_cb = border_circle_cb},
-        {.name = "Border top",                   .weight = 3, .create_cb = border_top_cb},
-        {.name = "Border left",                  .weight = 3, .create_cb = border_left_cb},
-        {.name = "Border top + left",            .weight = 3, .create_cb = border_top_left_cb},
-        {.name = "Border left + right",          .weight = 3, .create_cb = border_left_right_cb},
-        {.name = "Border top + bottom",          .weight = 3, .create_cb = border_top_bottom_cb},
-
-        {.name = "Shadow small",                 .weight = 3, .create_cb = shadow_small_cb},
-        {.name = "Shadow small offset",        .weight = 5, .create_cb = shadow_small_ofs_cb},
-        {.name = "Shadow large",                 .weight = 5, .create_cb = shadow_large_cb},
-        {.name = "Shadow large offset",        .weight = 3, .create_cb = shadow_large_ofs_cb},
-
-        {.name = "Image RGB",                    .weight = 20, .create_cb = img_rgb_cb},
-        {.name = "Image ARGB",                   .weight = 20, .create_cb = img_argb_cb},
-        {.name = "Image chorma keyed",           .weight = 5, .create_cb = img_ckey_cb},
-        {.name = "Image indexed",                .weight = 5, .create_cb = img_index_cb},
-        {.name = "Image alpha only",             .weight = 5, .create_cb = img_alpha_cb},
-
-        {.name = "Image RGB recolor",            .weight = 5, .create_cb = img_rgb_recolor_cb},
-        {.name = "Image ARGB recolor",           .weight = 20, .create_cb = img_argb_recolor_cb},
-        {.name = "Image chorma keyed recolor",   .weight = 3, .create_cb = img_ckey_recolor_cb},
-        {.name = "Image indexed recolor",        .weight = 3, .create_cb = img_index_recolor_cb},
-
-        {.name = "Image RGB rotate",             .weight = 3, .create_cb = img_rgb_rot_cb},
-        {.name = "Image RGB rotate anti aliased",  .weight = 3, .create_cb = img_rgb_rot_aa_cb},
-        {.name = "Image ARGB rotate",            .weight = 5, .create_cb = img_argb_rot_cb},
-        {.name = "Image ARGB rotate anti aliased", .weight = 5, .create_cb = img_argb_rot_aa_cb},
-        {.name = "Image RGB zoom",               .weight = 3, .create_cb = img_rgb_zoom_cb},
-        {.name = "Image RGB zoom anti aliased",    .weight = 3, .create_cb = img_rgb_zoom_aa_cb},
-        {.name = "Image ARGB zoom",              .weight = 5, .create_cb = img_argb_zoom_cb},
-        {.name = "Image ARGB zoom anti aliased",   .weight = 5, .create_cb = img_argb_zoom_aa_cb},
-
-        {.name = "Text small",                   .weight = 20, .create_cb = txt_small_cb},
-        {.name = "Text medium",                  .weight = 30, .create_cb = txt_medium_cb},
-        {.name = "Text large",                   .weight = 20, .create_cb = txt_large_cb},
-
-        {.name = "Text small compressed",       .weight = 3, .create_cb = txt_small_compr_cb},
-        {.name = "Text medium compressed",      .weight = 5, .create_cb = txt_medium_compr_cb},
-        {.name = "Text large compressed",       .weight = 10, .create_cb = txt_large_compr_cb},
-
-        {.name = "Text small",                   .weight = 20, .create_cb = txt_small_cb},
-        {.name = "Text medium",                  .weight = 30, .create_cb = txt_medium_cb},
-        {.name = "Text large",                   .weight = 20, .create_cb = txt_large_cb},
+//        {.name = "Rectangle",                    .weight = 30, .create_cb = rectangle_cb},
+//        {.name = "Rectangle rounded",            .weight = 20, .create_cb = rectangle_rounded_cb},
+//        {.name = "Circle",                       .weight = 10, .create_cb = rectangle_circle_cb},
+//        {.name = "Border",                       .weight = 20, .create_cb = border_cb},
+//        {.name = "Border rounded",               .weight = 30, .create_cb = border_rounded_cb},
+//        {.name = "Circle border",                .weight = 10, .create_cb = border_circle_cb},
+//        {.name = "Border top",                   .weight = 3, .create_cb = border_top_cb},
+//        {.name = "Border left",                  .weight = 3, .create_cb = border_left_cb},
+//        {.name = "Border top + left",            .weight = 3, .create_cb = border_top_left_cb},
+//        {.name = "Border left + right",          .weight = 3, .create_cb = border_left_right_cb},
+//        {.name = "Border top + bottom",          .weight = 3, .create_cb = border_top_bottom_cb},
 //
-        {.name = "Text small compressed",       .weight = 3, .create_cb = txt_small_compr_cb},
-        {.name = "Text medium compressed",      .weight = 5, .create_cb = txt_medium_compr_cb},
-        {.name = "Text large compressed",       .weight = 10, .create_cb = txt_large_compr_cb},
+//        {.name = "Shadow small",                 .weight = 3, .create_cb = shadow_small_cb},
+//        {.name = "Shadow small offset",        .weight = 5, .create_cb = shadow_small_ofs_cb},
+//        {.name = "Shadow large",                 .weight = 5, .create_cb = shadow_large_cb},
+//        {.name = "Shadow large offset",        .weight = 3, .create_cb = shadow_large_ofs_cb},
 //
-        {.name = "Line",                        .weight = 10, .create_cb = line_cb},
+//        {.name = "Image RGB",                    .weight = 20, .create_cb = img_rgb_cb},
+//        {.name = "Image ARGB",                   .weight = 20, .create_cb = img_argb_cb},
+//        {.name = "Image chorma keyed",           .weight = 5, .create_cb = img_ckey_cb},
+//        {.name = "Image indexed",                .weight = 5, .create_cb = img_index_cb},
+//        {.name = "Image alpha only",             .weight = 5, .create_cb = img_alpha_cb},
+//
+//        {.name = "Image RGB recolor",            .weight = 5, .create_cb = img_rgb_recolor_cb},
+//        {.name = "Image ARGB recolor",           .weight = 20, .create_cb = img_argb_recolor_cb},
+//        {.name = "Image chorma keyed recolor",   .weight = 3, .create_cb = img_ckey_recolor_cb},
+//        {.name = "Image indexed recolor",        .weight = 3, .create_cb = img_index_recolor_cb},
+//
+//        {.name = "Image RGB rotate",             .weight = 3, .create_cb = img_rgb_rot_cb},
+//        {.name = "Image RGB rotate anti aliased",  .weight = 3, .create_cb = img_rgb_rot_aa_cb},
+//        {.name = "Image ARGB rotate",            .weight = 5, .create_cb = img_argb_rot_cb},
+//        {.name = "Image ARGB rotate anti aliased", .weight = 5, .create_cb = img_argb_rot_aa_cb},
+//        {.name = "Image RGB zoom",               .weight = 3, .create_cb = img_rgb_zoom_cb},
+//        {.name = "Image RGB zoom anti aliased",    .weight = 3, .create_cb = img_rgb_zoom_aa_cb},
+//        {.name = "Image ARGB zoom",              .weight = 5, .create_cb = img_argb_zoom_cb},
+//        {.name = "Image ARGB zoom anti aliased",   .weight = 5, .create_cb = img_argb_zoom_aa_cb},
+//
+//        {.name = "Text small",                   .weight = 20, .create_cb = txt_small_cb},
+//        {.name = "Text medium",                  .weight = 30, .create_cb = txt_medium_cb},
+//        {.name = "Text large",                   .weight = 20, .create_cb = txt_large_cb},
+//
+//        {.name = "Text small compressed",       .weight = 3, .create_cb = txt_small_compr_cb},
+//        {.name = "Text medium compressed",      .weight = 5, .create_cb = txt_medium_compr_cb},
+//        {.name = "Text large compressed",       .weight = 10, .create_cb = txt_large_compr_cb},
+//
+//        {.name = "Text small",                   .weight = 20, .create_cb = txt_small_cb},
+//        {.name = "Text medium",                  .weight = 30, .create_cb = txt_medium_cb},
+//        {.name = "Text large",                   .weight = 20, .create_cb = txt_large_cb},
+//
+//        {.name = "Text small compressed",       .weight = 3, .create_cb = txt_small_compr_cb},
+//        {.name = "Text medium compressed",      .weight = 5, .create_cb = txt_medium_compr_cb},
+//        {.name = "Text large compressed",       .weight = 10, .create_cb = txt_large_compr_cb},
+//
+//        {.name = "Line",                        .weight = 10, .create_cb = line_cb},
+//
+//        {.name = "Arc think",                   .weight = 10, .create_cb = arc_think_cb},
+//        {.name = "Arc thick",                   .weight = 10, .create_cb = arc_thick_cb},
 
-        {.name = "Arc think",                   .weight = 10, .create_cb = arc_think_cb},
-        {.name = "Arc thick",                   .weight = 10, .create_cb = arc_thick_cb},
-
-//        {.name = "Polygon",                     .weight = 10, .create_cb = poly_cb},
-
-//        {.name = "Additive rectangle",          .weight = 10, .create_cb = add_rectangle_cb},
-//        {.name = "Additive border",             .weight = 10, .create_cb = add_border_cb},
-//        {.name = "Additive shadow",             .weight = 10, .create_cb = add_shadow_cb},
-//        {.name = "Additive line",               .weight = 10, .create_cb = add_line_cb},
-//        {.name = "Additive arc",                .weight = 10, .create_cb = add_arc_cb},
-//        {.name = "Additive text",               .weight = 10, .create_cb = add_text_cb},
+//        {.name = "Substr. rectangle",          .weight = 10, .create_cb = sub_rectangle_cb},
+//        {.name = "Substr. border",             .weight = 10, .create_cb = sub_border_cb},
+//        {.name = "Substr. shadow",             .weight = 10, .create_cb = sub_shadow_cb},
+        {.name = "Substr. image",             .weight = 10, .create_cb = sub_img_cb},
+//        {.name = "Substr. line",               .weight = 10, .create_cb = sub_line_cb},
+//        {.name = "Substr. arc",                .weight = 10, .create_cb = sub_arc_cb},
+//        {.name = "Substr. text",               .weight = 10, .create_cb = sub_text_cb},
 
         {.name = "", .create_cb = NULL}
 };
@@ -686,7 +695,7 @@ static void scene_next_task_cb(lv_task_t * task)
     }
 
     if(scenes[scene_act].create_cb) {
-        lv_label_set_text_fmt(title, "%d/%d: %s%s", scene_act * 2 + (opa_mode ? 1 : 0), sizeof(scenes) / sizeof(scene_dsc_t) * 2,  scenes[scene_act].name, opa_mode ? " + opa" : "");
+        lv_label_set_text_fmt(title, "%d/%d: %s%s", scene_act * 2 + (opa_mode ? 1 : 0), (sizeof(scenes) / sizeof(scene_dsc_t) * 2) - 2,  scenes[scene_act].name, opa_mode ? " + opa" : "");
         if(opa_mode) {
             lv_label_set_text_fmt(subtitle, "Result of \"%s\": %d FPS", scenes[scene_act].name, scenes[scene_act].fps_normal);
         } else {
@@ -746,6 +755,7 @@ static void scene_next_task_cb(lv_task_t * task)
 
         lv_coord_t w = lv_page_get_width_fit(page) - 10;
         lv_obj_t * table = lv_table_create(page, NULL);
+        lv_obj_clean_style_list(table, LV_TABLE_PART_BG);
         lv_obj_set_click(table, false);
         lv_table_set_col_cnt(table, 2);
 
