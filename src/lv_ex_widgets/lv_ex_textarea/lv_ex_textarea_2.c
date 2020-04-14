@@ -35,9 +35,8 @@ void lv_ex_textarea_2(void)
 
     /* Create a keyboard and make it fill the width of the above text areas */
     kb = lv_keyboard_create(lv_scr_act(), NULL);
-    lv_obj_set_pos(kb, 5, 90);
     lv_obj_set_event_cb(kb, kb_event_cb); /* Setting a custom event handler stops the keyboard from closing automatically */
-    lv_obj_set_size(kb,  LV_HOR_RES - 10, 140);
+    lv_obj_set_size(kb,  LV_HOR_RES, LV_VER_RES / 2);
 
     lv_keyboard_set_textarea(kb, pwd_ta); /* Focus it on one of the text areas to start */
     lv_keyboard_set_cursor_manage(kb, true); /* Automatically show/hide cursors on text areas */

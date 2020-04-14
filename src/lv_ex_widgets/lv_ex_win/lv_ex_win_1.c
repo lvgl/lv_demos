@@ -18,8 +18,9 @@ void lv_ex_win_1(void)
     lv_label_set_text(txt, "This is the content of the window\n\n"
                            "You can add control buttons to\n"
                            "the window header\n\n"
-                           "The content area becomes automatically\n"
-                           "scrollable is it's large enough.\n\n"
+                           "The content area becomes\n"
+                           "automatically scrollable is it's \n"
+                           "large enough.\n\n"
                            " You can scroll the content\n"
                            "See the scroll bar on the right!");
 }
