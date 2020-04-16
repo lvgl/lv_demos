@@ -267,8 +267,8 @@ static void win_btn_event_handler(lv_obj_t * btn, lv_event_t event)
 
     uint32_t key = 0;
 
-    lv_obj_t * label = lv_obj_get_child(btn, NULL);
-    const char * txt = lv_label_get_text(label);
+    lv_obj_t * img = lv_obj_get_child(btn, NULL);
+    const char * txt = lv_img_get_src(img);
 
     if(strcmp(txt, LV_SYMBOL_PREV) == 0) key = LV_KEY_PREV;
     else if(strcmp(txt, LV_SYMBOL_NEXT) == 0) key = LV_KEY_NEXT;

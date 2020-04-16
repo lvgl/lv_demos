@@ -135,6 +135,7 @@ static void write_create(lv_obj_t * parent)
     lv_page_set_style(parent, LV_PAGE_STYLE_BG, &lv_style_transp_fit);
     lv_page_set_style(parent, LV_PAGE_STYLE_SCRL, &lv_style_transp_fit);
 
+    lv_page_set_scrl_fit(parent, LV_FIT_NONE);
     lv_page_set_sb_mode(parent, LV_SB_MODE_OFF);
 
     static lv_style_t style_ta;
