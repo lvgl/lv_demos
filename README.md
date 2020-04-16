@@ -10,8 +10,8 @@ Website: https://littlevgl.com
 2. The `lv_examples` directory should be next to the `lvgl` directory in your project.
 
 Similary to `lv_conf.h` there is a configuration file for the examples too. It is called `lv_ex_conf.h`.
-1. Copy `lv_examples/lv_ex-conf_templ.h` next to `lv_examples` directory
-2. Rename is to `lv_ex_conf.h`
+1. Copy `lv_examples/lv_ex_conf_templ.h` next to `lv_examples` directory
+2. Rename it to `lv_ex_conf.h`
 3. Delete the first `#if` and  last `#endif` to enable the file's content
 4. Enable or Disable modules
 
