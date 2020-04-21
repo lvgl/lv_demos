@@ -48,6 +48,7 @@ void lv_ex_get_started_2(void)
     lv_obj_reset_style_list(btn2, LV_BTN_PART_MAIN);         /*Remove the styles coming from the theme*/
     lv_obj_add_style(btn2, LV_BTN_PART_MAIN, &style_btn);
     lv_obj_add_style(btn2, LV_BTN_PART_MAIN, &style_btn_red);   /*Add the red style on top of the current */
+    lv_obj_set_style_local_radius(btn2, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_RADIUS_CIRCLE); /*Add a local style*/
 
     label = lv_label_create(btn2, NULL);          /*Add a label to the button*/
     lv_label_set_text(label, "Button 2");                     /*Set the labels text*/
