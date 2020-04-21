@@ -1,7 +1,7 @@
 #include "lvgl/lvgl.h"
 
 /**
- * Using the scale style properties
+ * Using the transitions style properties
  */
 void lv_ex_style_10(void)
 {
@@ -13,24 +13,23 @@ void lv_ex_style_10(void)
     lv_style_set_bg_opa(&style, LV_STATE_DEFAULT, LV_OPA_COVER);
     lv_style_set_bg_color(&style, LV_STATE_DEFAULT, LV_COLOR_SILVER);
 
-    /*Set some paddings*/
-    lv_style_set_pad_inner(&style, LV_STATE_DEFAULT, 20);
-    lv_style_set_pad_top(&style, LV_STATE_DEFAULT, 20);
-    lv_style_set_pad_left(&style, LV_STATE_DEFAULT, 5);
-    lv_style_set_pad_right(&style, LV_STATE_DEFAULT, 5);
+    /*Set different background color in pressed state*/
+    lv_style_set_bg_color(&style, LV_STATE_PRESSED, LV_COLOR_GRAY);
 
-    lv_style_set_scale_end_color(&style, LV_STATE_DEFAULT, LV_COLOR_RED);
-    lv_style_set_line_color(&style, LV_STATE_DEFAULT, LV_COLOR_WHITE);
-    lv_style_set_scale_grad_color(&style, LV_STATE_DEFAULT, LV_COLOR_BLUE);
-    lv_style_set_line_width(&style, LV_STATE_DEFAULT, 2);
-    lv_style_set_scale_end_line_width(&style, LV_STATE_DEFAULT, 4);
-    lv_style_set_scale_end_border_width(&style, LV_STATE_DEFAULT, 4);
+    /*Set different transition time in default and pressed state
+     *fast press, slower revert to default*/
+    lv_style_set_transition_time(&style, LV_STATE_DEFAULT, 500);
+    lv_style_set_transition_time(&style, LV_STATE_PRESSED, 200);
 
-    /*Gauge has a needle but for simplicity its style is not initialized here*/
+    /*Small delay to make transition more visible*/
+    lv_style_set_transition_delay(&style, LV_STATE_DEFAULT, 100);
+
+    /*Add `bg_color` to transitioned properties*/
+    lv_style_set_transition_prop_1(&style, LV_STATE_DEFAULT, LV_STYLE_BG_COLOR);
 
     /*Create an object with the new style*/
-    lv_obj_t * obj = lv_gauge_create(lv_scr_act(), NULL);
-    lv_obj_add_style(obj, LV_GAUGE_PART_MAIN, &style);
+    lv_obj_t * obj = lv_obj_create(lv_scr_act(), NULL);
+    lv_obj_add_style(obj, LV_OBJ_PART_MAIN, &style);
     lv_obj_align(obj, NULL, LV_ALIGN_CENTER, 0, 0);
 }
 
