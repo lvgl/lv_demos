@@ -27,9 +27,13 @@ extern "C" {
 #include "../lv_ex_conf.h"
 #endif
 
-#include "src/lv_ex_widgets/lv_ex_widgets.h"
+#include "src/lv_ex_get_started/lv_ex_get_started.h"
 #include "src/lv_ex_style/lv_ex_style.h"
+#include "src/lv_ex_widgets/lv_ex_widgets.h"
 #include "src/lv_demo_widgets/lv_demo_widgets.h"
+#include "src/lv_demo_benchmark/lv_demo_benchmark.h"
+#include "src/lv_demo_stress/lv_demo_stress.h"
+#include "src/lv_demo_keypad_encoder/lv_demo_keypad_encoder.h"
 
 /*********************
  *      DEFINES

@@ -278,10 +278,13 @@ static void visuals_create(lv_obj_t * parent)
     else if(disp_size <= LV_DISP_SIZE_MEDIUM) grid_w_meter = lv_page_get_width_grid(parent, 2, 1);
     else grid_w_meter = lv_page_get_width_grid(parent, 3, 1);
 
+    lv_coord_t meter_h = lv_page_get_height_fit(parent);
+    lv_coord_t meter_size = LV_MATH_MIN(grid_w_meter, meter_h);
+
     lv_obj_t * lmeter = lv_linemeter_create(parent, NULL);
     lv_obj_set_drag_parent(lmeter, true);
     lv_linemeter_set_value(lmeter, 50);
-    lv_obj_set_size(lmeter, grid_w_meter, grid_w_meter);
+    lv_obj_set_size(lmeter, meter_size, meter_size);
     lv_obj_add_style(lmeter, LV_LINEMETER_PART_MAIN, &style_box);
     lv_obj_set_style_local_value_str(lmeter, LV_LINEMETER_PART_MAIN, LV_STATE_DEFAULT, "Line meter");
 
@@ -302,7 +305,7 @@ static void visuals_create(lv_obj_t * parent)
 
     lv_obj_t * gauge = lv_gauge_create(parent, NULL);
     lv_obj_set_drag_parent(gauge, true);
-    lv_obj_set_size(gauge, grid_w_meter, grid_w_meter);
+    lv_obj_set_size(gauge, meter_size, meter_size);
     lv_obj_add_style(gauge, LV_GAUGE_PART_MAIN, &style_box);
     lv_obj_set_style_local_value_str(gauge, LV_GAUGE_PART_MAIN, LV_STATE_DEFAULT, "Gauge");
 
@@ -318,7 +321,7 @@ static void visuals_create(lv_obj_t * parent)
     lv_arc_set_bg_angles(arc, 0, 360);
     lv_arc_set_rotation(arc, 270);
     lv_arc_set_angles(arc, 0, 0);
-    lv_obj_set_size(arc,  grid_w_meter, grid_w_meter);
+    lv_obj_set_size(arc,  meter_size, meter_size);
     lv_obj_add_style(arc, LV_ARC_PART_BG, &style_box);
     lv_obj_set_style_local_value_str(arc, LV_ARC_PART_BG, LV_STATE_DEFAULT, "Arc");
 
@@ -373,7 +376,7 @@ static void visuals_create(lv_obj_t * parent)
 
     if(disp_size == LV_DISP_SIZE_MEDIUM) {
         lv_obj_add_protect(led_h, LV_PROTECT_POS);
-        lv_obj_align(led_h, bar_h, LV_ALIGN_OUT_BOTTOM_MID, 0, lv_obj_get_style_margin_top(led_h, LV_OBJ_PART_MAIN) + lv_obj_get_style_pad_inner(parent, LV_PAGE_PART_SCRL));
+        lv_obj_align(led_h, bar_h, LV_ALIGN_OUT_BOTTOM_MID, 0, lv_obj_get_style_margin_top(led_h, LV_OBJ_PART_MAIN) + lv_obj_get_style_pad_inner(parent, LV_PAGE_PART_SCROLLABLE));
     }
 
     lv_task_create(bar_anim, 100, LV_TASK_PRIO_LOW, bar);
