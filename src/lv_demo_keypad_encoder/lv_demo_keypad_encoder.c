@@ -9,7 +9,12 @@
 #include "../../lv_examples.h"
 #include "lvgl/lvgl.h"
 #include "lv_demo_keypad_encoder.h"
-//#include "lv_drivers/indev/keyboard.h"
+#if LV_EX_KEYBOARD
+#include "lv_drivers/indev/keyboard.h"
+#endif
+#if LV_EX_MOUSEWHEEL
+#include "lv_drivers/indev/mousewheel.h"
+#endif
 
 /*********************
  *      DEFINES
@@ -50,7 +55,6 @@ struct {
     lv_obj_t * dropdown;
     lv_obj_t * roller;
     lv_obj_t * list;
-    lv_obj_t * cpicker;
 }selector_objs;
 
 struct {
@@ -72,13 +76,22 @@ void lv_demo_keypad_encoder(void)
     g = lv_group_create();
     lv_group_set_focus_cb(g, focus_cb);
 
-#if USE_KEYBOARD
+#if LV_EX_KEYBOARD
     lv_indev_drv_t kb_drv;
     lv_indev_drv_init(&kb_drv);
     kb_drv.type = LV_INDEV_TYPE_KEYPAD;
     kb_drv.read_cb = keyboard_read;
     lv_indev_t * kb_indev = lv_indev_drv_register(&kb_drv);
     lv_indev_set_group(kb_indev, g);
+#endif
+
+#if LV_EX_MOUSEWHEEL
+    lv_indev_drv_t enc_drv;
+    lv_indev_drv_init(&enc_drv);
+    enc_drv.type = LV_INDEV_TYPE_ENCODER;
+    enc_drv.read_cb = mousewheel_read;
+    lv_indev_t * enc_indev = lv_indev_drv_register(&enc_drv);
+    lv_indev_set_group(enc_indev, g);
 #endif
 
     tv = lv_tabview_create(lv_scr_act(), NULL);
@@ -101,7 +114,7 @@ void lv_demo_keypad_encoder(void)
 
 static void selectors_create(lv_obj_t * parent)
 {
-    lv_page_set_scrl_layout(parent, LV_LAYOUT_PRETTY_TOP);
+    lv_page_set_scrl_layout(parent, LV_LAYOUT_COLUMN_MID);
 
    selector_objs.btn = lv_btn_create(parent, NULL);
 
@@ -132,8 +145,6 @@ static void selectors_create(lv_obj_t * parent)
    lv_list_add_btn(selector_objs.list, LV_SYMBOL_TRASH, "Delete");
    lv_list_add_btn(selector_objs.list, LV_SYMBOL_COPY, "Copy");
    lv_list_add_btn(selector_objs.list, LV_SYMBOL_PASTE, "Paste");
-
-   selector_objs.cpicker = lv_cpicker_create(parent, NULL);
 }
 
 static void text_input_create(lv_obj_t * parent)
@@ -157,6 +168,9 @@ static void msgbox_create(void)
     lv_obj_set_event_cb(mbox, msgbox_event_cb);
     lv_group_add_obj(g, mbox);
     lv_group_focus_obj(mbox);
+#if LV_EX_MOUSEWHEEL
+    lv_group_set_editing(g, true);
+#endif
     lv_group_focus_freeze(g, true);
 
     static const char * btns[] = {"Ok", "Cancel", ""};
@@ -239,7 +253,7 @@ static void ta_event_cb(lv_obj_t * ta, lv_event_t e)
 
     if(e == LV_EVENT_FOCUSED) {
         lv_textarea_set_cursor_hidden(ta, false);
-        if(indev_type == LV_INDEV_TYPE_ENCODER) {
+        if(lv_group_get_editing(g)) {
             if(textinput_objs.kb == NULL) {
                 textinput_objs.kb = lv_keyboard_create(lv_scr_act(), NULL);
                 lv_group_add_obj(g, textinput_objs.kb);
@@ -249,11 +263,18 @@ static void ta_event_cb(lv_obj_t * ta, lv_event_t e)
 
             lv_keyboard_set_textarea(textinput_objs.kb, ta);
             lv_group_focus_obj(textinput_objs.kb);
+            lv_group_set_editing(g, true);
             lv_page_focus(t2, lv_textarea_get_label(ta), LV_ANIM_ON);
         }
     }
     else if(e == LV_EVENT_DEFOCUSED) {
-        lv_textarea_set_cursor_hidden(ta, true);
+        if(indev_type == LV_INDEV_TYPE_ENCODER) {
+            if(textinput_objs.kb == NULL) {
+                lv_textarea_set_cursor_hidden(ta, true);
+            }
+        } else {
+            lv_textarea_set_cursor_hidden(ta, true);
+        }
     }
 }
 
