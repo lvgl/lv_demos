@@ -86,7 +86,7 @@ void lv_demo_widgets(void)
     visuals_create(t2);
     selectors_create(t3);
 
-//    lv_task_create(tab_changer_task_cb, 5000, LV_TASK_PRIO_LOW, NULL);
+    lv_task_create(tab_changer_task_cb, 5000, LV_TASK_PRIO_LOW, NULL);
 }
 
 /**********************
@@ -101,12 +101,12 @@ static void controls_create(lv_obj_t * parent)
     lv_disp_size_t disp_size = lv_disp_get_size_category(NULL);
     lv_coord_t grid_w = lv_page_get_width_grid(parent, disp_size <= LV_DISP_SIZE_SMALL ? 1 : 2, 1);
 
-    static const char * btns[] = {"Cancel", "Ok", ""};
-
-    lv_obj_t * m = lv_msgbox_create(lv_scr_act(), NULL);
-    lv_msgbox_add_btns(m, btns);
-    lv_obj_t * btnm = lv_msgbox_get_btnmatrix(m);
-    lv_btnmatrix_set_btn_ctrl(btnm, 1, LV_BTNMATRIX_CTRL_CHECK_STATE);
+//    static const char * btns[] = {"Cancel", "Ok", ""};
+//
+//    lv_obj_t * m = lv_msgbox_create(lv_scr_act(), NULL);
+//    lv_msgbox_add_btns(m, btns);
+//    lv_obj_t * btnm = lv_msgbox_get_btnmatrix(m);
+//    lv_btnmatrix_set_btn_ctrl(btnm, 1, LV_BTNMATRIX_CTRL_CHECK_STATE);
 
     lv_obj_t * h = lv_cont_create(parent, NULL);
     lv_cont_set_layout(h, LV_LAYOUT_PRETTY_MID);
@@ -315,6 +315,8 @@ static void visuals_create(lv_obj_t * parent)
     lv_anim_set_var(&a, gauge);
     lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)gauge_anim);
     lv_anim_start(&a);
+
+    lv_page_focus(parent, gauge, LV_ANIM_OFF);
 
     lv_obj_t * arc = lv_arc_create(parent, NULL);
     lv_obj_set_drag_parent(arc, true);
