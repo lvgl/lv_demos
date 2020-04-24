@@ -207,15 +207,17 @@ static void visuals_create(lv_obj_t * parent)
     lv_obj_set_height_margin(chart, grid_h_chart);
     lv_chart_set_div_line_count(chart, 3, 0);
     lv_chart_set_point_count(chart, 8);
-    lv_obj_set_style_local_pad_left(chart,  LV_CHART_PART_BG, LV_STATE_DEFAULT, 4 * (LV_DPI / 10));
-    lv_obj_set_style_local_pad_bottom(chart,  LV_CHART_PART_BG, LV_STATE_DEFAULT, 3 * (LV_DPI / 10));
-    lv_obj_set_style_local_pad_right(chart,  LV_CHART_PART_BG, LV_STATE_DEFAULT, 2 * (LV_DPI / 10));
-    lv_obj_set_style_local_pad_top(chart,  LV_CHART_PART_BG, LV_STATE_DEFAULT, 2 * (LV_DPI / 10));
-    lv_chart_set_y_tick_length(chart, 0, 0);
-    lv_chart_set_x_tick_length(chart, 0, 0);
-    lv_chart_set_y_tick_texts(chart, "600\n500\n400\n300\n200", 0, LV_CHART_AXIS_DRAW_LAST_TICK);
-    lv_chart_set_x_tick_texts(chart, "Jan\nFeb\nMar\nApr\nMay\nJun\nJul\nAug", 0, LV_CHART_AXIS_DRAW_LAST_TICK);
     lv_chart_set_type(chart, LV_CHART_TYPE_LINE);
+    if(disp_size > LV_DISP_SIZE_SMALL) {
+        lv_obj_set_style_local_pad_left(chart,  LV_CHART_PART_BG, LV_STATE_DEFAULT, 4 * (LV_DPI / 10));
+        lv_obj_set_style_local_pad_bottom(chart,  LV_CHART_PART_BG, LV_STATE_DEFAULT, 3 * (LV_DPI / 10));
+        lv_obj_set_style_local_pad_right(chart,  LV_CHART_PART_BG, LV_STATE_DEFAULT, 2 * (LV_DPI / 10));
+        lv_obj_set_style_local_pad_top(chart,  LV_CHART_PART_BG, LV_STATE_DEFAULT, 2 * (LV_DPI / 10));
+        lv_chart_set_y_tick_length(chart, 0, 0);
+        lv_chart_set_x_tick_length(chart, 0, 0);
+        lv_chart_set_y_tick_texts(chart, "600\n500\n400\n300\n200", 0, LV_CHART_AXIS_DRAW_LAST_TICK);
+        lv_chart_set_x_tick_texts(chart, "Jan\nFeb\nMar\nApr\nMay\nJun\nJul\nAug", 0, LV_CHART_AXIS_DRAW_LAST_TICK);
+    }
     lv_chart_series_t * s1 = lv_chart_add_series(chart, LV_THEME_DEFAULT_COLOR_PRIMARY);
     lv_chart_series_t * s2 = lv_chart_add_series(chart, LV_THEME_DEFAULT_COLOR_SECONDARY);
 
@@ -389,15 +391,20 @@ static void selectors_create(lv_obj_t * parent)
 
     lv_disp_size_t disp_size = lv_disp_get_size_category(NULL);
     lv_coord_t grid_h = lv_page_get_height_grid(parent, 1, 1);
-    lv_coord_t grid_w = lv_page_get_width_grid(parent, disp_size <= LV_DISP_SIZE_SMALL ? 1 : 2, 1);
+    lv_coord_t grid_w;
+    if(disp_size <= LV_DISP_SIZE_SMALL) grid_w = lv_page_get_width_grid(parent, 1, 1);
+    else if(disp_size <= LV_DISP_SIZE_MEDIUM)  grid_w = lv_page_get_width_grid(parent, 3, 2);
+    else grid_w = lv_page_get_width_grid(parent, 2, 1);
 
     lv_obj_t * cal = lv_calendar_create(parent, NULL);
     lv_obj_set_drag_parent(cal, true);
-    if(disp_size > LV_DISP_SIZE_SMALL) {
+    if(disp_size >= LV_DISP_SIZE_LARGE) {
         lv_obj_set_size(cal, LV_MATH_MIN(grid_h, grid_w), LV_MATH_MIN(grid_h, grid_w));
     } else {
         lv_obj_set_size(cal, grid_w, grid_w);
-        lv_obj_set_style_local_text_font(cal, LV_CALENDAR_PART_BG, LV_STATE_DEFAULT, &lv_font_montserrat_12);
+        if(disp_size <= LV_DISP_SIZE_SMALL) {
+            lv_obj_set_style_local_text_font(cal, LV_CALENDAR_PART_BG, LV_STATE_DEFAULT, lv_theme_get_font_small());
+        }
     }
 
     static lv_calendar_date_t hl[] = {
@@ -408,7 +415,16 @@ static void selectors_create(lv_obj_t * parent)
 
     lv_obj_t * btn;
     lv_obj_t * h = lv_cont_create(parent, NULL);
-    if(disp_size > LV_DISP_SIZE_SMALL) {
+    lv_obj_set_drag_parent(h, true);
+    if(disp_size <= LV_DISP_SIZE_SMALL) {
+        lv_cont_set_fit2(h, LV_FIT_NONE, LV_FIT_TIGHT);
+        lv_obj_set_width(h, lv_page_get_width_fit(parent));
+        lv_cont_set_layout(h, LV_LAYOUT_COLUMN_MID);
+    } else if(disp_size <= LV_DISP_SIZE_MEDIUM) {
+        lv_cont_set_fit2(h, LV_FIT_NONE, LV_FIT_TIGHT);
+        lv_obj_set_width(h, grid_w);
+        lv_cont_set_layout(h, LV_LAYOUT_PRETTY_TOP);
+    } else {
         lv_obj_set_click(h, false);
         lv_obj_set_style_local_bg_opa(h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_TRANSP);
         lv_obj_set_style_local_border_opa(h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_TRANSP);
@@ -417,11 +433,6 @@ static void selectors_create(lv_obj_t * parent)
         lv_obj_set_style_local_pad_top(h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 0);
         lv_obj_set_size(h, LV_MATH_MIN(grid_h, grid_w), LV_MATH_MIN(grid_h, grid_w));
         lv_cont_set_layout(h, LV_LAYOUT_PRETTY_TOP);
-    } else {
-        lv_cont_set_fit2(h, LV_FIT_NONE, LV_FIT_TIGHT);
-        lv_obj_set_width(h, lv_page_get_width_fit(parent));
-        lv_obj_set_drag_parent(h, true);
-        lv_cont_set_layout(h, LV_LAYOUT_COLUMN_MID);
     }
 
 
