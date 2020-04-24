@@ -450,8 +450,8 @@ static void selectors_create(lv_obj_t * parent)
     lv_cont_set_fit(spinbox_holder, LV_FIT_TIGHT);
 
     spinbox = lv_spinbox_create(spinbox_holder , NULL);
-    lv_spinbox_set_range(spinbox, -999999, 999999);
-    lv_spinbox_set_digit_format(spinbox, 6, 2);
+    lv_spinbox_set_range(spinbox, -9999, 9999);
+    lv_spinbox_set_digit_format(spinbox, 4, 1);
     lv_obj_set_style_local_text_font(spinbox, LV_SPINBOX_PART_BG, LV_STATE_DEFAULT, lv_theme_get_font_subtitle());
     lv_spinbox_step_prev(spinbox);
     lv_obj_set_width(spinbox, lv_obj_get_width(lv_textarea_get_label(spinbox)) + LV_DPI/8);
