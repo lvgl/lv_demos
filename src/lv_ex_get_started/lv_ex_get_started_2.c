@@ -11,17 +11,28 @@ void lv_ex_get_started_2(void)
 
     /*Create a simple button style*/
     lv_style_init(&style_btn);
-    lv_style_set_radius(&style_btn, LV_STATE_DEFAULT, 8);
-    lv_style_set_bg_opa(&style_btn, LV_STATE_DEFAULT, LV_OPA_COVER); /*Default value is transparent*/
+    lv_style_set_radius(&style_btn, LV_STATE_DEFAULT, 10);
+    lv_style_set_bg_opa(&style_btn, LV_STATE_DEFAULT, LV_OPA_COVER);
     lv_style_set_bg_color(&style_btn, LV_STATE_DEFAULT, LV_COLOR_SILVER);
     lv_style_set_bg_grad_color(&style_btn, LV_STATE_DEFAULT, LV_COLOR_GRAY);
     lv_style_set_bg_grad_dir(&style_btn, LV_STATE_DEFAULT, LV_GRAD_DIR_VER);
-    lv_style_set_border_color(&style_btn, LV_STATE_DEFAULT, LV_COLOR_BLACK);
-    lv_style_set_border_width(&style_btn, LV_STATE_DEFAULT, 2);
 
-    /*Just change the two color when pressed*/
+
+    /*Swap the colors in pressed state*/
     lv_style_set_bg_color(&style_btn, LV_STATE_PRESSED, LV_COLOR_GRAY);
     lv_style_set_bg_grad_color(&style_btn, LV_STATE_PRESSED, LV_COLOR_SILVER);
+
+    /*Add a border*/
+    lv_style_set_border_color(&style_btn, LV_STATE_DEFAULT, LV_COLOR_WHITE);
+    lv_style_set_border_opa(&style_btn, LV_STATE_DEFAULT, LV_OPA_70);
+    lv_style_set_border_width(&style_btn, LV_STATE_DEFAULT, 2);
+
+    /*Different border color in focused state*/
+    lv_style_set_border_color(&style_btn, LV_STATE_FOCUSED, LV_COLOR_BLUE);
+    lv_style_set_border_color(&style_btn, LV_STATE_FOCUSED | LV_STATE_PRESSED, LV_COLOR_NAVY);
+
+    /*Set the text style*/
+    lv_style_set_text_color(&style_btn, LV_STATE_DEFAULT, LV_COLOR_WHITE);
 
     /*Create a red style. Change only some colors.*/
     lv_style_init(&style_btn_red);
