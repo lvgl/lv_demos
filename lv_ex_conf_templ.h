@@ -23,8 +23,8 @@
  * DEMO USAGE
  *********************/
 
-/*Show some widgets in action*/
-#define LV_USE_DEMO_WIDGETS   1
+/*Widgets demo*/
+#define LV_DEMO_WIDGETS_SLIDESHOW  1
 
 #endif /*LV_EX_CONF_H*/
 

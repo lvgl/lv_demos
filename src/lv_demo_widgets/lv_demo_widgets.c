@@ -35,7 +35,10 @@ static void table_event_cb(lv_obj_t * table, lv_event_t e);
 static void spinbox_increment_event_cb(lv_obj_t * btn, lv_event_t e);
 static void spinbox_decrement_event_cb(lv_obj_t * btn, lv_event_t e);
 static void color_chg_event_cb(lv_obj_t * sw, lv_event_t e);
+#if LV_DEMO_WIDGETS_SLIDESHOW
+static void tab_content_anim_create(lv_obj_t * parent);
 static void tab_changer_task_cb(lv_task_t * task);
+#endif
 
 /**********************
  *  STATIC VARIABLES
@@ -86,7 +89,10 @@ void lv_demo_widgets(void)
     visuals_create(t2);
     selectors_create(t3);
 
-//    lv_task_create(tab_changer_task_cb, 5000, LV_TASK_PRIO_LOW, NULL);
+#if LV_DEMO_WIDGETS_SLIDESHOW
+    lv_task_create(tab_changer_task_cb, 8000, LV_TASK_PRIO_LOW, NULL);
+#endif
+
 }
 
 /**********************
@@ -101,12 +107,14 @@ static void controls_create(lv_obj_t * parent)
     lv_disp_size_t disp_size = lv_disp_get_size_category(NULL);
     lv_coord_t grid_w = lv_page_get_width_grid(parent, disp_size <= LV_DISP_SIZE_SMALL ? 1 : 2, 1);
 
+#if LV_DEMO_WIDGETS_SLIDESHOW == 0
     static const char * btns[] = {"Cancel", "Ok", ""};
 
     lv_obj_t * m = lv_msgbox_create(lv_scr_act(), NULL);
     lv_msgbox_add_btns(m, btns);
     lv_obj_t * btnm = lv_msgbox_get_btnmatrix(m);
     lv_btnmatrix_set_btn_ctrl(btnm, 1, LV_BTNMATRIX_CTRL_CHECK_STATE);
+#endif
 
     lv_obj_t * h = lv_cont_create(parent, NULL);
     lv_cont_set_layout(h, LV_LAYOUT_PRETTY_MID);
@@ -184,6 +192,10 @@ static void controls_create(lv_obj_t * parent)
     lv_textarea_set_cursor_hidden(ta, true);
     lv_obj_set_event_cb(ta, ta_event_cb);
     lv_cont_set_fit4(ta, LV_FIT_PARENT, LV_FIT_PARENT, LV_FIT_NONE, LV_FIT_PARENT);
+
+#if LV_DEMO_WIDGETS_SLIDESHOW
+    tab_content_anim_create(parent);
+#endif
 }
 
 static void visuals_create(lv_obj_t * parent)
@@ -555,7 +567,6 @@ static void selectors_create(lv_obj_t * parent)
         lv_table_set_cell_value(table1, 5, 2, "Texas");
         lv_table_set_cell_value(table1, 6, 2, "Athen");
     }
-
 }
 
 static void slider_event_cb(lv_obj_t * slider, lv_event_t e)
@@ -697,7 +708,27 @@ static void color_chg_event_cb(lv_obj_t * sw, lv_event_t e)
     }
 }
 
+#if LV_DEMO_WIDGETS_SLIDESHOW
 
+static void tab_content_anim_create(lv_obj_t * parent)
+{
+    lv_anim_t a;
+    lv_obj_t * scrl = lv_page_get_scrl(parent);
+    lv_coord_t scrl_y = lv_obj_get_y(scrl);
+    lv_coord_t anim_h = lv_obj_get_height(scrl) - lv_obj_get_height_fit(parent);
+    uint32_t anim_time = lv_anim_speed_to_time(LV_DPI, 0, anim_h);
+
+    lv_anim_init(&a);
+    lv_anim_set_var(&a, scrl);
+    lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_y);
+    lv_anim_set_values(&a, scrl_y, scrl_y - anim_h);
+    lv_anim_set_time(&a, anim_time);
+    lv_anim_set_playback_time(&a, anim_time);
+    lv_anim_set_playback_delay(&a, 200);
+    lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINITE);
+    lv_anim_set_repeat_delay(&a, 200);
+    lv_anim_start(&a);
+}
 static void tab_changer_task_cb(lv_task_t * task)
 {
     uint16_t act = lv_tabview_get_tab_act(tv);
@@ -705,4 +736,17 @@ static void tab_changer_task_cb(lv_task_t * task)
     if(act >= 3) act = 0;
 
     lv_tabview_set_tab_act(tv, act, LV_ANIM_ON);
+
+    switch(act) {
+    case 0:
+        tab_content_anim_create(t1);
+        break;
+    case 1:
+        tab_content_anim_create(t2);
+        break;
+    case 2:
+        tab_content_anim_create(t3);
+        break;
+    }
 }
+#endif
