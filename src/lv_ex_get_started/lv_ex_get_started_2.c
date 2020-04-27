@@ -17,7 +17,6 @@ void lv_ex_get_started_2(void)
     lv_style_set_bg_grad_color(&style_btn, LV_STATE_DEFAULT, LV_COLOR_GRAY);
     lv_style_set_bg_grad_dir(&style_btn, LV_STATE_DEFAULT, LV_GRAD_DIR_VER);
 
-
     /*Swap the colors in pressed state*/
     lv_style_set_bg_color(&style_btn, LV_STATE_PRESSED, LV_COLOR_GRAY);
     lv_style_set_bg_grad_color(&style_btn, LV_STATE_PRESSED, LV_COLOR_SILVER);
@@ -33,6 +32,21 @@ void lv_ex_get_started_2(void)
 
     /*Set the text style*/
     lv_style_set_text_color(&style_btn, LV_STATE_DEFAULT, LV_COLOR_WHITE);
+
+    /*Make the button smaller when pressed*/
+    lv_style_set_transform_height(&style_btn, LV_STATE_PRESSED, -5);
+    lv_style_set_transform_width(&style_btn, LV_STATE_PRESSED, -10);
+
+    /*Add a transition to the size change*/
+    static lv_anim_path_t path;
+    lv_anim_path_init(&path);
+    lv_anim_path_set_cb(&path, lv_anim_path_overshoot);
+
+    lv_style_set_transition_prop_1(&style_btn, LV_STATE_DEFAULT, LV_STYLE_TRANSFORM_HEIGHT);
+    lv_style_set_transition_prop_2(&style_btn, LV_STATE_DEFAULT, LV_STYLE_TRANSFORM_WIDTH);
+    lv_style_set_transition_time(&style_btn, LV_STATE_DEFAULT, 300);
+    lv_style_set_transition_path(&style_btn, LV_STATE_DEFAULT, &path);
+
 
     /*Create a red style. Change only some colors.*/
     lv_style_init(&style_btn_red);
