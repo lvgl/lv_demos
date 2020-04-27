@@ -35,6 +35,7 @@ void lv_ex_calendar_1(void);
 void lv_ex_canvas_1(void);
 void lv_ex_checkbox_1(void);
 void lv_ex_chart_1(void);
+void lv_ex_chart_2(void);
 void lv_ex_cont_1(void);
 void lv_ex_cpicker_1(void);
 void lv_ex_dropdown_1(void);

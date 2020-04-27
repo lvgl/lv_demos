@@ -301,7 +301,7 @@ static void visuals_create(lv_obj_t * parent)
     lv_anim_set_values(&a, 0, 100);
     lv_anim_set_time(&a, 4000);
     lv_anim_set_playback_time(&a, 1000);
-    lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINIT);
+    lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINITE);
     lv_anim_start(&a);
 
 
@@ -333,7 +333,7 @@ static void visuals_create(lv_obj_t * parent)
     lv_anim_set_var(&a, arc);
     lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)arc_anim);
     lv_anim_set_values(&a, 0, 360);
-    lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINIT);
+    lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINITE);
     lv_anim_start(&a);
 
     /*Create a bar and use the backgrounds value style property to display the current value*/

@@ -17,7 +17,7 @@ void lv_ex_img_3(void)
     lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_img_set_angle);
     lv_anim_set_values(&a, 0, 3600);
     lv_anim_set_time(&a, 5000);
-    lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINIT);
+    lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINITE);
     lv_anim_start(&a);
 
     lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_img_set_zoom);

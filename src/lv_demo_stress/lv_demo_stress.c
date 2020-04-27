@@ -129,7 +129,7 @@ static void obj_test_task_cb(lv_task_t * param)
             lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_width);
             lv_anim_set_values(&a, 100, 200);
             lv_anim_set_playback_time(&a, TIME_STEP * 2);
-            lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINIT);
+            lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINITE);
             lv_anim_start(&a);
 
             /*Delete the object a few sec later*/

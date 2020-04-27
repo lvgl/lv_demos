@@ -973,7 +973,7 @@ static void arc_create(lv_style_t * style)
         lv_anim_set_values(&a, 0, 359);
         lv_anim_set_time(&a, t);
         lv_anim_set_playback_time(&a, t);
-        lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINIT);
+        lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINITE);
         lv_anim_start(&a);
 
         fall_anim(obj);
@@ -994,7 +994,7 @@ static void fall_anim(lv_obj_t * obj)
     lv_anim_set_values(&a, 0, lv_obj_get_height(scene_bg) - lv_obj_get_height(obj));
     lv_anim_set_time(&a, t);
     lv_anim_set_playback_time(&a, t);
-    lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINIT);
+    lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINITE);
     a.act_time = a.time / 2;    /*To start fro mteh middle*/
     lv_anim_start(&a);
 
