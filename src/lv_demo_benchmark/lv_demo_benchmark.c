@@ -14,7 +14,7 @@
  *      DEFINES
  *********************/
 #define RND_NUM         64
-#define SCENE_TIME      2000      /*ms*/
+#define SCENE_TIME      1000      /*ms*/
 #define ANIM_TIME_MIN   ((2 * SCENE_TIME) / 10)
 #define ANIM_TIME_MAX   (SCENE_TIME)
 #define OBJ_NUM         8
@@ -479,8 +479,8 @@ static void sub_shadow_cb(void)
     lv_style_set_radius(&style_common, LV_STATE_DEFAULT, RADIUS);
     lv_style_set_bg_opa(&style_common, LV_STATE_DEFAULT, LV_OPA_COVER);
     lv_style_set_shadow_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_80 : LV_OPA_COVER);
-    lv_style_set_shadow_width(&style_common, LV_STATE_DEFAULT, 3 * SHADOW_WIDTH_SMALL);
-    lv_style_set_shadow_spread(&style_common, LV_STATE_DEFAULT, 3 * SHADOW_WIDTH_SMALL);
+    lv_style_set_shadow_width(&style_common, LV_STATE_DEFAULT, SHADOW_WIDTH_SMALL);
+    lv_style_set_shadow_spread(&style_common, LV_STATE_DEFAULT, SHADOW_WIDTH_SMALL);
     lv_style_set_shadow_blend_mode(&style_common, LV_STATE_DEFAULT, LV_BLEND_MODE_SUBTRACTIVE);
     rect_create(&style_common);
 
@@ -497,7 +497,7 @@ static void sub_img_cb(void)
 static void sub_line_cb(void)
 {
     lv_style_reset(&style_common);
-    lv_style_set_line_width(&style_common, LV_STATE_DEFAULT, 3* LINE_WIDTH);
+    lv_style_set_line_width(&style_common, LV_STATE_DEFAULT, LINE_WIDTH);
     lv_style_set_line_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
     lv_style_set_line_blend_mode(&style_common, LV_STATE_DEFAULT, LV_BLEND_MODE_SUBTRACTIVE);
     line_create(&style_common);
