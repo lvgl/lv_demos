@@ -1,4 +1,4 @@
-#include "lvgl/lvgl.h"
+#include "../../../lv_examples.h"
 #if LV_USE_CHART
 
 void lv_ex_chart_1(void)

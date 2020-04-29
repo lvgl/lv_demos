@@ -7,7 +7,6 @@
  *      INCLUDES
  *********************/
 #include "../../lv_examples.h"
-#include "lvgl/lvgl.h"
 #include "lv_demo_benchmark.h"
 
 /*********************

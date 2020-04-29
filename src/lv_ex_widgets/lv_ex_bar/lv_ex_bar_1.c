@@ -1,4 +1,4 @@
-#include "lvgl/lvgl.h"
+#include "../../../lv_examples.h"
 #if LV_USE_BAR
 
 void lv_ex_bar_1(void)

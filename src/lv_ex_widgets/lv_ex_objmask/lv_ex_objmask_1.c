@@ -1,4 +1,4 @@
-#include "lvgl/lvgl.h"
+#include "../../../lv_examples.h"
 #if LV_USE_OBJMASK
 
 void lv_ex_objmask_1(void)

@@ -1,4 +1,4 @@
-#include "lvgl/lvgl.h"
+#include "../../lv_examples.h"
 
 static lv_obj_t * label;
 

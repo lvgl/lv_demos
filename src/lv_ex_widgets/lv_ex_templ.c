@@ -7,7 +7,7 @@
  *      INCLUDES
  *********************/
 
-#include "lvgl/lvgl.h"
+#include "../../lv_examples.h"
 
 /*********************
  *      DEFINES

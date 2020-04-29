@@ -1,4 +1,4 @@
-#include "lvgl/lvgl.h"
+#include "../../../lv_examples.h"
 #if LV_USE_LINEMETER
 
 void lv_ex_linemeter_1(void)

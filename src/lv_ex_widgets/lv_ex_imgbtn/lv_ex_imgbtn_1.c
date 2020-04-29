@@ -1,4 +1,4 @@
-#include "lvgl/lvgl.h"
+#include "../../../lv_examples.h"
 #if LV_USE_IMGBTN
 
 void lv_ex_imgbtn_1(void)

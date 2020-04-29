@@ -1,4 +1,4 @@
-#include "lvgl/lvgl.h"
+#include "../../../lv_examples.h"
 #if LV_USE_IMG
 
 LV_IMG_DECLARE(img_cogwheel_argb);

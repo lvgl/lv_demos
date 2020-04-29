@@ -1,4 +1,4 @@
-#include "lvgl/lvgl.h"
+#include "../../../lv_examples.h"
 #if LV_USE_TABVIEW
 
 void lv_ex_tabview_1(void)

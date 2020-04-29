@@ -1,4 +1,4 @@
-#include "lvgl/lvgl.h"
+#include "../../../lv_examples.h"
 #if LV_USE_CPICKER
 
 void lv_ex_cpicker_2(void)

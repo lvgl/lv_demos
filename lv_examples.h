@@ -13,7 +13,11 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
+#if defined(LV_CONF_INCLUDE_SIMPLE)
+#include "lvgl.h"
+#else
 #include "../lvgl/lvgl.h"
+#endif
 
 #if defined(LV_EX_CONF_PATH)
 #define __LV_TO_STR_AUX(x) #x

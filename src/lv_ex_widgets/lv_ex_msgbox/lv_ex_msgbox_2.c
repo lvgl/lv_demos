@@ -1,4 +1,4 @@
-#include "lvgl/lvgl.h"
+#include "../../../lv_examples.h"
 #if LV_USE_MSGBOX
 
 static void mbox_event_cb(lv_obj_t *obj, lv_event_t evt);

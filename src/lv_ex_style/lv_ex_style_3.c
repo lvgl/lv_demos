@@ -1,5 +1,4 @@
-#include "lvgl/lvgl.h"
-
+#include "../../lv_examples.h"
 
 /**
  * Using the outline style properties

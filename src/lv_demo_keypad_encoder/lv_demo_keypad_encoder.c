@@ -7,7 +7,6 @@
  *      INCLUDES
  *********************/
 #include "../../lv_examples.h"
-#include "lvgl/lvgl.h"
 #include "lv_demo_keypad_encoder.h"
 #if LV_EX_KEYBOARD
 #include "lv_drivers/indev/keyboard.h"
