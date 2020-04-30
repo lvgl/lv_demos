@@ -713,14 +713,14 @@ static void tab_content_anim_create(lv_obj_t * parent)
 {
     lv_anim_t a;
     lv_obj_t * scrl = lv_page_get_scrl(parent);
-    lv_coord_t scrl_y = lv_obj_get_y(scrl);
+    lv_coord_t y_start = lv_obj_get_style_pad_top(parent, LV_PAGE_PART_BG);
     lv_coord_t anim_h = lv_obj_get_height(scrl) - lv_obj_get_height_fit(parent);
     uint32_t anim_time = lv_anim_speed_to_time(LV_DPI, 0, anim_h);
 
     lv_anim_init(&a);
     lv_anim_set_var(&a, scrl);
     lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_y);
-    lv_anim_set_values(&a, scrl_y, scrl_y - anim_h);
+    lv_anim_set_values(&a, y_start, y_start - anim_h);
     lv_anim_set_time(&a, anim_time);
     lv_anim_set_playback_time(&a, anim_time);
     lv_anim_set_playback_delay(&a, 200);
