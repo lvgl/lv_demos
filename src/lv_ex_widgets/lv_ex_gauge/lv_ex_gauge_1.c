@@ -10,8 +10,6 @@ void lv_ex_gauge_1(void)
     needle_colors[1] = LV_COLOR_ORANGE;
     needle_colors[2] = LV_COLOR_PURPLE;
 
-    LV_ASSERT_MEM_INTEGRITY();
-
     /*Create a gauge*/
     lv_obj_t * gauge1 = lv_gauge_create(lv_scr_act(), NULL);
     lv_gauge_set_needle_count(gauge1, 3, needle_colors);
