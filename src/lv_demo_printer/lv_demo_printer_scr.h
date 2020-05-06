@@ -37,6 +37,12 @@ extern "C" {
 #define LV_DEMO_PRINTER_ANIM_TIME  (200)
 #define LV_DEMO_PRINTER_ANIM_TIME_BG  (350)
 
+/*Fonts*/
+LV_FONT_DECLARE(lv_font_montserrat_20);
+LV_FONT_DECLARE(lv_font_montserrat_28);
+#define LV_DEMO_PRINTER_FONT_NORMAL &lv_font_montserrat_20
+#define LV_DEMO_PRINTER_FONT_BIG &lv_font_montserrat_28
+
 /**********************
  *      TYPEDEFS
  **********************/

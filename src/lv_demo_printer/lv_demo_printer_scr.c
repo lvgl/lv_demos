@@ -62,17 +62,19 @@ void lv_demo_printer_scr_init(void)
     lv_style_set_radius(&style_box, LV_STATE_DEFAULT, 10);
 
     lv_style_init(&style_title);
-    lv_style_set_bg_color(&style_title, LV_STATE_DEFAULT, LV_COLOR_WHITE);
+    lv_style_set_text_color(&style_title, LV_STATE_DEFAULT, LV_DEMO_PRINTER_WHITE);
+    lv_style_set_text_font(&style_title, LV_STATE_DEFAULT, LV_DEMO_PRINTER_FONT_BIG);
 
     lv_style_init(&style_icon);
     lv_style_set_value_align(&style_icon, LV_STATE_DEFAULT, LV_ALIGN_OUT_BOTTOM_MID);
     lv_style_set_value_ofs_y(&style_icon, LV_STATE_DEFAULT, LV_VER_RES / 30);
     lv_style_set_value_ofs_y(&style_icon, LV_STATE_PRESSED, LV_VER_RES / 20);
     lv_style_set_value_color(&style_icon, LV_STATE_DEFAULT, LV_DEMO_PRINTER_GRAY);
+    lv_style_set_value_font(&style_icon, LV_STATE_DEFAULT, LV_DEMO_PRINTER_FONT_NORMAL);
     lv_style_set_transform_zoom(&style_icon, LV_STATE_PRESSED, 350);
-    lv_style_set_transition_time(&style_icon, LV_STATE_DEFAULT, 300);
+    lv_style_set_transition_time(&style_icon, LV_STATE_DEFAULT, 250);
     lv_style_set_transition_delay(&style_icon, LV_STATE_PRESSED, 0);
-    lv_style_set_transition_delay(&style_icon, LV_STATE_DEFAULT, 300);
+    lv_style_set_transition_delay(&style_icon, LV_STATE_DEFAULT, 150);
     lv_style_set_transition_prop_1(&style_icon, LV_STATE_DEFAULT, LV_STYLE_TRANSFORM_ZOOM);
     lv_style_set_transition_prop_2(&style_icon, LV_STATE_DEFAULT, LV_STYLE_VALUE_OFS_Y);
 
@@ -110,7 +112,9 @@ lv_obj_t * lv_demo_printer_scr_add_box(void)
 lv_obj_t * lv_demo_printer_scr_add_title(const char * txt)
 {
     lv_obj_t * title = lv_label_create(lv_scr_act(), NULL);
+    lv_obj_add_style(title, LV_LABEL_PART_MAIN, &style_title);
     lv_label_set_text(title, txt);
+    lv_obj_align(title, NULL, LV_ALIGN_IN_TOP_MID, 0, LV_VER_RES / 20);
     return title;
 }
 
