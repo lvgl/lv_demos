@@ -181,7 +181,7 @@ LV_EVENT_CB_DECLARE(home_icon_event_cb)
 {
     if(e == LV_EVENT_CLICKED) {
        lv_demo_printer_anim_out_all(lv_scr_act(), 0);
-       print_open(300);
+       print_open(400);
 
     }
 }
@@ -254,14 +254,15 @@ static void usb_open(uint32_t delay)
             "File 1",  "File 1",  "File 1",  "File 10"
     };
 
+
     uint32_t i;
     for(i = 0; i < sizeof(dummy_file_list) / sizeof(dummy_file_list[0]); i++) {
-        lv_obj_t * btn = lv_list_add_btn(list, LV_SYMBOL_FILE, "File 1");
+        lv_obj_t * btn = lv_list_add_btn(list, LV_SYMBOL_FILE, dummy_file_list[i]);
         lv_btn_set_checkable(btn, true);
     }
 
     delay += LV_DEMO_PRINTER_ANIM_DELAY;
-    lv_demo_printer_anim_in_all(list, delay);
+    lv_demo_printer_anim_in(list, delay);
 
     lv_demo_printer_anim_bg(0, LV_DEMO_PRINTER_BLUE, LV_DEMO_PRINTER_BG_NORMAL);
 }
@@ -273,6 +274,7 @@ static lv_obj_t * add_icon(lv_obj_t * parent, const void * src, const char * txt
     lv_theme_apply(icon, LV_DEMO_PRINTER_THEME_ICON);
     lv_img_set_src(icon, src);
     lv_obj_set_click(icon, true);
+    lv_img_set_antialias(icon, false);
 
     lv_obj_set_style_local_value_str(icon, LV_IMG_PART_MAIN, LV_STATE_DEFAULT, txt);
 
@@ -346,14 +348,11 @@ static void lv_demo_printer_anim_out_all(lv_obj_t * obj, uint32_t delay)
 {
     lv_obj_t * child = lv_obj_get_child_back(obj, NULL);
     while(child) {
-        lv_demo_printer_anim_out_all(child, delay);
-        delay += LV_DEMO_PRINTER_ANIM_DELAY;
+        if(child != bg_top && child != bg_bottom && child != lv_scr_act()) {
+            lv_demo_printer_anim_out(child, delay);
+            delay += LV_DEMO_PRINTER_ANIM_DELAY;
+        }
         child = lv_obj_get_child_back(obj, child);
-    }
-
-    if(obj != bg_top && obj != bg_bottom && obj != lv_scr_act()) {
-        lv_demo_printer_anim_out(obj, delay);
-        delay += LV_DEMO_PRINTER_ANIM_DELAY;
     }
 
 }
