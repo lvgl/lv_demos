@@ -86,9 +86,9 @@ static void basic_init(void)
 
     lv_style_set_transform_width(&style_btn, LV_STATE_PRESSED, LV_HOR_RES / 100);
     lv_style_set_transform_height(&style_btn, LV_STATE_PRESSED, LV_HOR_RES / 150);
-    lv_style_set_transition_time(&style_btn, LV_STATE_DEFAULT, 200);
+    lv_style_set_transition_time(&style_btn, LV_STATE_DEFAULT, 100);
     lv_style_set_transition_delay(&style_btn, LV_STATE_PRESSED, 0);
-    lv_style_set_transition_delay(&style_btn, LV_STATE_DEFAULT, 150);
+    lv_style_set_transition_delay(&style_btn, LV_STATE_DEFAULT, 70);
     lv_style_set_transition_prop_1(&style_btn, LV_STATE_DEFAULT, LV_STYLE_TRANSFORM_WIDTH);
     lv_style_set_transition_prop_2(&style_btn, LV_STATE_DEFAULT, LV_STYLE_TRANSFORM_HEIGHT);
 
@@ -111,9 +111,9 @@ static void basic_init(void)
     lv_style_set_value_color(&style_icon, LV_STATE_DEFAULT, LV_DEMO_PRINTER_GRAY);
     lv_style_set_value_font(&style_icon, LV_STATE_DEFAULT, theme.font_normal);
     lv_style_set_transform_zoom(&style_icon, LV_STATE_PRESSED, 350);
-    lv_style_set_transition_time(&style_icon, LV_STATE_DEFAULT, 250);
+    lv_style_set_transition_time(&style_icon, LV_STATE_DEFAULT, 100);
     lv_style_set_transition_delay(&style_icon, LV_STATE_PRESSED, 0);
-    lv_style_set_transition_delay(&style_icon, LV_STATE_DEFAULT, 150);
+    lv_style_set_transition_delay(&style_icon, LV_STATE_DEFAULT, 70);
     lv_style_set_transition_prop_1(&style_icon, LV_STATE_DEFAULT, LV_STYLE_TRANSFORM_ZOOM);
     lv_style_set_transition_prop_2(&style_icon, LV_STATE_DEFAULT, LV_STYLE_VALUE_OFS_Y);
 
