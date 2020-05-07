@@ -141,8 +141,8 @@ static void basic_init(void)
     lv_style_set_bg_opa(&style_list_btn, LV_STATE_DEFAULT, LV_OPA_COVER);
     lv_style_set_bg_color(&style_list_btn, LV_STATE_DEFAULT, LV_DEMO_PRINTER_WHITE);
     lv_style_set_bg_color(&style_list_btn, LV_STATE_PRESSED, LV_DEMO_PRINTER_LIGHT_GRAY);
-    lv_style_set_bg_color(&style_list_btn, LV_STATE_CHECKED, LV_DEMO_PRINTER_GREEN);
-    lv_style_set_bg_color(&style_list_btn, LV_STATE_CHECKED | LV_STATE_PRESSED, lv_color_darken(LV_DEMO_PRINTER_GREEN, LV_OPA_20));
+    lv_style_set_bg_color(&style_list_btn, LV_STATE_CHECKED, LV_DEMO_PRINTER_GRAY);
+    lv_style_set_bg_color(&style_list_btn, LV_STATE_CHECKED | LV_STATE_PRESSED, lv_color_darken(LV_DEMO_PRINTER_GRAY, LV_OPA_20));
     lv_style_set_text_color(&style_list_btn, LV_STATE_DEFAULT, LV_DEMO_PRINTER_GRAY);
     lv_style_set_text_color(&style_list_btn, LV_STATE_PRESSED, lv_color_darken(LV_DEMO_PRINTER_GRAY, LV_OPA_20));
     lv_style_set_text_color(&style_list_btn, LV_STATE_CHECKED, LV_DEMO_PRINTER_WHITE);
