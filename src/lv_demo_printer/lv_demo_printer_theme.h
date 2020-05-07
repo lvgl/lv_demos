@@ -25,13 +25,18 @@ extern "C" {
 #define LV_DEMO_PRINTER_LIGHT_GRAY      lv_color_hex(0xc4c4c4)
 #define LV_DEMO_PRINTER_BLUE            lv_color_hex(0x006fb6)
 #define LV_DEMO_PRINTER_GREEN           lv_color_hex(0x4cb242)
+#define LV_DEMO_PRINTER_RED             lv_color_hex(0xd51732)
 
 /**********************
  *      TYPEDEFS
  **********************/
 typedef enum {
     LV_DEMO_PRINTER_THEME_TITLE = _LV_THEME_BUILTIN_LAST,
-    LV_DEMO_PRINTER_THEME_ICON
+    LV_DEMO_PRINTER_THEME_LABEL_WHITE,
+    LV_DEMO_PRINTER_THEME_ICON,
+    LV_DEMO_PRINTER_THEME_BTN_BORDER,
+    LV_DEMO_PRINTER_THEME_BTN_CIRCLE,
+    LV_DEMO_PRINTER_THEME_BOX_FRAME,
 }lv_demo_printer_theme_t;
 
 /**********************
