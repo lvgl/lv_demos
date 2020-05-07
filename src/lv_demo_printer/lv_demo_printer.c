@@ -23,9 +23,9 @@
 
 /*Animations*/
 #define LV_DEMO_PRINTER_ANIM_Y (LV_VER_RES / 20)
-#define LV_DEMO_PRINTER_ANIM_DELAY (50)
-#define LV_DEMO_PRINTER_ANIM_TIME  (200)
-#define LV_DEMO_PRINTER_ANIM_TIME_BG  (350)
+#define LV_DEMO_PRINTER_ANIM_DELAY (40)
+#define LV_DEMO_PRINTER_ANIM_TIME  (150)
+#define LV_DEMO_PRINTER_ANIM_TIME_BG  (200)
 
 /*Fonts*/
 LV_FONT_DECLARE(lv_font_montserrat_20);
@@ -47,7 +47,7 @@ static void usb_open(uint32_t delay);
 static void mobile_open(uint32_t delay);
 static void internet_open(uint32_t delay);
 
-LV_EVENT_CB_DECLARE(home_icon_event_cb);
+LV_EVENT_CB_DECLARE(copy_icon_event_cb);
 LV_EVENT_CB_DECLARE(usb_icon_event_cb);
 LV_EVENT_CB_DECLARE(mobile_icon_event_cb);
 LV_EVENT_CB_DECLARE(mobile_cancel_event_cb);
@@ -130,19 +130,19 @@ static void home_open(uint32_t delay) {
 
     icon = add_icon(box, &lv_demo_printer_img_scan, "COPY");
     lv_obj_align_origo(icon, NULL, LV_ALIGN_IN_LEFT_MID, 1 * box_w / 8, 0);
-    lv_obj_set_event_cb(icon, home_icon_event_cb);
+    lv_obj_set_event_cb(icon, copy_icon_event_cb);
 
     icon = add_icon(box, &lv_demo_printer_img_scan, "SCAN");
     lv_obj_align_origo(icon, NULL, LV_ALIGN_IN_LEFT_MID, 3 * box_w / 8, 0);
-    lv_obj_set_event_cb(icon, home_icon_event_cb);
+    lv_obj_set_event_cb(icon, copy_icon_event_cb);
 
     icon = add_icon(box, &lv_demo_printer_img_scan, "PRINT");
     lv_obj_align_origo(icon, NULL, LV_ALIGN_IN_LEFT_MID, 5 * box_w / 8, 0);
-    lv_obj_set_event_cb(icon, home_icon_event_cb);
+    lv_obj_set_event_cb(icon, copy_icon_event_cb);
 
     icon = add_icon(box, &lv_demo_printer_img_scan, "SETUP");
     lv_obj_align_origo(icon, NULL, LV_ALIGN_IN_LEFT_MID, 7 * box_w / 8, 0);
-    lv_obj_set_event_cb(icon, home_icon_event_cb);
+    lv_obj_set_event_cb(icon, copy_icon_event_cb);
 
     delay += LV_DEMO_PRINTER_ANIM_DELAY;
     lv_demo_printer_anim_in_all(box, delay);
@@ -197,11 +197,11 @@ static void home_open(uint32_t delay) {
     lv_demo_printer_anim_bg(0, LV_DEMO_PRINTER_BLUE, LV_DEMO_PRINTER_BG_NORMAL);
 }
 
-LV_EVENT_CB_DECLARE(home_icon_event_cb)
+LV_EVENT_CB_DECLARE(copy_icon_event_cb)
 {
     if(e == LV_EVENT_CLICKED) {
        lv_demo_printer_anim_out_all(lv_scr_act(), 0);
-       print_open(400);
+       print_open(200);
     }
 }
 
@@ -249,8 +249,7 @@ static void print_open(uint32_t delay) {
 LV_EVENT_CB_DECLARE(usb_icon_event_cb) {
     if (e == LV_EVENT_CLICKED) {
         lv_demo_printer_anim_out_all(lv_scr_act(), 0);
-        usb_open(300);
-
+        usb_open(200);
     }
 }
 
@@ -293,7 +292,7 @@ static void usb_open(uint32_t delay) {
 LV_EVENT_CB_DECLARE(mobile_icon_event_cb) {
     if (e == LV_EVENT_CLICKED) {
         lv_demo_printer_anim_out_all(lv_scr_act(), 0);
-        mobile_open(300);
+        mobile_open(200);
     }
 }
 
@@ -322,14 +321,14 @@ static void mobile_open(uint32_t delay) {
 LV_EVENT_CB_DECLARE(mobile_cancel_event_cb) {
     if (e == LV_EVENT_CLICKED) {
         lv_demo_printer_anim_out_all(lv_scr_act(), 0);
-        print_open(300);
+        print_open(200);
     }
 }
 
 LV_EVENT_CB_DECLARE(internet_icon_event_cb) {
     if (e == LV_EVENT_CLICKED) {
         lv_demo_printer_anim_out_all(lv_scr_act(), 0);
-        internet_open(300);
+        internet_open(200);
     }
 }
 
@@ -358,7 +357,7 @@ static void internet_open(uint32_t delay) {
 LV_EVENT_CB_DECLARE(internet_cancel_event_cb) {
     if (e == LV_EVENT_CLICKED) {
         lv_demo_printer_anim_out_all(lv_scr_act(), 0);
-        print_open(300);
+        print_open(200);
     }
 }
 
@@ -431,7 +430,7 @@ static void lv_demo_printer_anim_out(lv_obj_t * obj, uint32_t delay) {
     lv_anim_set_ready_cb(&a, lv_obj_del_anim_ready_cb);
     lv_anim_start(&a);
 
-    lv_obj_fade_out(obj, LV_DEMO_PRINTER_ANIM_TIME, delay);
+    lv_obj_fade_out(obj, LV_DEMO_PRINTER_ANIM_TIME - 50, delay + 50);
 }
 
 static void lv_demo_printer_anim_out_all(lv_obj_t * obj, uint32_t delay) {
