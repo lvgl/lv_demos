@@ -198,7 +198,9 @@ static void theme_apply(lv_obj_t * obj, lv_theme_style_t name)
 {
     lv_style_list_t * list;
 
-    switch(name) {
+    /*To avoid warnings*/
+    uint32_t name_int = (uint32_t) name;
+    switch(name_int) {
         case LV_THEME_NONE:
             break;
 
