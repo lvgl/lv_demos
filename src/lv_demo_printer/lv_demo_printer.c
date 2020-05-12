@@ -48,7 +48,11 @@ static void scan2_open(uint32_t delay);
 LV_EVENT_CB_DECLARE(copy_icon_event_cb);
 LV_EVENT_CB_DECLARE(scan_icon_event_cb);
 LV_EVENT_CB_DECLARE(scan_next_event_cb);
+LV_EVENT_CB_DECLARE(hue_slider_event_cb);
+LV_EVENT_CB_DECLARE(lightness_slider_event_cb);
+LV_EVENT_CB_DECLARE(intesity_slider_event_cb);
 LV_EVENT_CB_DECLARE(usb_icon_event_cb);
+LV_EVENT_CB_DECLARE(print_cnt_bnt_event_cb);
 LV_EVENT_CB_DECLARE(mobile_icon_event_cb);
 LV_EVENT_CB_DECLARE(mobile_cancel_event_cb);
 LV_EVENT_CB_DECLARE(internet_icon_event_cb);
@@ -57,6 +61,7 @@ LV_EVENT_CB_DECLARE(internet_cancel_event_cb);
 static lv_obj_t * add_icon(lv_obj_t * parent, const void * src,
         const char * txt);
 static lv_obj_t * add_title(const char * txt);
+static void scan_img_color_refr(void);
 
 static void lv_demo_printer_anim_bg(uint32_t delay, lv_color_t color,
         uint32_t y);
@@ -72,8 +77,12 @@ static void anim_bg_color_cb(lv_anim_t * a, lv_anim_value_t v);
 static lv_obj_t * bg_top;
 static lv_obj_t * bg_bottom;
 static lv_obj_t * scan_img;
+static lv_obj_t * print_cnt_label;
 static lv_color_t bg_color_prev;
 static lv_color_t bg_color_act;
+static uint16_t print_cnt;
+static uint16_t hue_act;
+static int16_t lightness_act;
 
 /**********************
  *      MACROS
@@ -214,7 +223,9 @@ LV_EVENT_CB_DECLARE(scan_icon_event_cb) {
     }
 }
 
-static void print_open(uint32_t delay) {
+static void print_open(uint32_t delay)
+{
+
     lv_obj_t * title = add_title("PRINT MENU");
     lv_demo_printer_anim_in_all(title, delay);
 
@@ -292,18 +303,19 @@ static void usb_open(uint32_t delay) {
     lv_obj_t * dropdown = lv_dropdown_create(dropdown_box, NULL);
     lv_obj_align(dropdown, NULL, LV_ALIGN_IN_LEFT_MID, LV_HOR_RES / 60, 0);
     lv_dropdown_set_max_height(dropdown, LV_VER_RES / 3);
-    lv_dropdown_set_options_static(dropdown, "High quality\nNormal quality\nDraft");
+    lv_dropdown_set_options_static(dropdown, "Best\nNormal\nDraft");
     lv_obj_set_width(dropdown, (box_w - 3 * LV_HOR_RES / 60) / 2);
 
     dropdown = lv_dropdown_create(dropdown_box, dropdown);
     lv_obj_align(dropdown, NULL, LV_ALIGN_IN_RIGHT_MID, - LV_HOR_RES / 60, 0);
     lv_dropdown_set_options_static(dropdown, "100 DPI\n200 DPI\n300 DPI\n400 DPI\n500 DPI\n1500 DPI");
 
-    box_w = (LV_HOR_RES * 4) / 10 - LV_HOR_RES / 20;
+    box_w = 320 - 40;
     lv_obj_t * settings_box = lv_obj_create(lv_scr_act(), NULL);
     lv_obj_set_size(settings_box, box_w, LV_VER_RES / 2);
     lv_obj_align(settings_box, list, LV_ALIGN_OUT_RIGHT_TOP, LV_HOR_RES / 20, 0);
 
+    print_cnt = 1;
     lv_obj_t * numbox = lv_cont_create(settings_box, NULL);
     lv_theme_apply(numbox, LV_DEMO_PRINTER_THEME_BOX_BORDER);
     lv_obj_set_size(numbox, LV_HOR_RES / 7, LV_HOR_RES / 13);
@@ -314,14 +326,15 @@ static void usb_open(uint32_t delay) {
     lv_obj_set_style_local_value_font(numbox, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, lv_theme_get_font_subtitle());
     lv_cont_set_layout(numbox, LV_LAYOUT_CENTER);
 
-    lv_obj_t * copytxt = lv_label_create(numbox, NULL);
-    lv_label_set_text(copytxt, "12");
-    lv_obj_set_style_local_text_font(copytxt, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_theme_get_font_title());
+    print_cnt_label = lv_label_create(numbox, NULL);
+    lv_label_set_text(print_cnt_label, "1");
+    lv_obj_set_style_local_text_font(print_cnt_label, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_theme_get_font_title());
 
     lv_obj_t * btn = lv_btn_create(settings_box, NULL);
     lv_obj_set_size(btn, LV_HOR_RES / 13, LV_HOR_RES / 13);
     lv_obj_align(btn, numbox, LV_ALIGN_OUT_LEFT_MID, - LV_VER_RES / 60, 0);
     lv_obj_set_style_local_value_str(btn, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_DOWN);
+    lv_obj_set_event_cb(btn, print_cnt_bnt_event_cb);
 
     lv_obj_t * sw = lv_switch_create(settings_box, NULL);
     lv_obj_set_size(sw, LV_HOR_RES / 10, LV_VER_RES / 12);
@@ -364,6 +377,21 @@ static void usb_open(uint32_t delay) {
 
 }
 
+
+LV_EVENT_CB_DECLARE(print_cnt_bnt_event_cb)
+{
+    if (e == LV_EVENT_CLICKED || e == LV_EVENT_LONG_PRESSED_REPEAT) {
+        const char * txt = lv_obj_get_style_value_str(obj, LV_BTN_PART_MAIN);
+        if(strcmp(txt, LV_SYMBOL_DOWN) == 0) {
+            if(print_cnt > 1) print_cnt--;
+        } else {
+            if(print_cnt < 1000) print_cnt ++;
+        }
+        lv_label_set_text_fmt(print_cnt_label, "%d", print_cnt);
+    }
+}
+
+
 LV_EVENT_CB_DECLARE(mobile_icon_event_cb)
 {
     if (e == LV_EVENT_CLICKED) {
@@ -371,6 +399,7 @@ LV_EVENT_CB_DECLARE(mobile_icon_event_cb)
         mobile_open(200);
     }
 }
+
 
 static void mobile_open(uint32_t delay)
 {
@@ -449,7 +478,6 @@ static void scan1_open(uint32_t delay)
     scan_img = lv_img_create(lv_scr_act(), NULL);
     lv_img_set_src(scan_img, &wp1);
     lv_obj_align(scan_img, NULL, LV_ALIGN_IN_TOP_LEFT, 40, 100);
-    lv_obj_set_style_local_image_recolor_opa(scan_img, LV_IMG_PART_MAIN, LV_STATE_DEFAULT, 170);
     lv_obj_set_style_local_radius(scan_img, LV_IMG_PART_MAIN, LV_STATE_DEFAULT, 10);
     lv_obj_set_style_local_clip_corner(scan_img, LV_IMG_PART_MAIN, LV_STATE_DEFAULT, true);
 
@@ -457,6 +485,27 @@ static void scan1_open(uint32_t delay)
     lv_obj_t * settings_box = lv_obj_create(lv_scr_act(), NULL);
     lv_obj_set_size(settings_box, box_w, 225);
     lv_obj_align(settings_box, scan_img, LV_ALIGN_OUT_RIGHT_TOP, 40, 0);
+
+
+    lightness_act = 0;
+    hue_act = 0;
+    lv_obj_t * slider = lv_slider_create(settings_box, NULL);
+    lv_obj_set_size(slider, 8, 160);
+    lv_obj_align(slider, NULL, LV_ALIGN_IN_TOP_MID, - 40, 40);
+    lv_obj_set_event_cb(slider, hue_slider_event_cb);
+    lv_slider_set_range(slider, 0, 359);
+
+    slider = lv_slider_create(settings_box, slider);
+    lv_obj_align(slider, NULL, LV_ALIGN_IN_TOP_MID, 0, 40);
+    lv_obj_set_event_cb(slider, lightness_slider_event_cb);
+    lv_slider_set_range(slider, -100, 100);
+
+    slider = lv_slider_create(settings_box, slider);
+    lv_obj_align(slider, NULL, LV_ALIGN_IN_TOP_MID, 40, 40);
+    lv_obj_set_event_cb(slider, intesity_slider_event_cb);
+    lv_slider_set_range(slider, 0, 100);
+
+    scan_img_color_refr();
 
     lv_obj_t * next_btn = lv_btn_create(lv_scr_act(), NULL);
     lv_theme_apply(next_btn, LV_DEMO_PRINTER_THEME_BTN_CIRCLE);
@@ -487,6 +536,33 @@ LV_EVENT_CB_DECLARE(scan_next_event_cb)
     }
 }
 
+LV_EVENT_CB_DECLARE(hue_slider_event_cb)
+{
+    if (e == LV_EVENT_VALUE_CHANGED) {
+        hue_act = lv_slider_get_value(obj);
+        scan_img_color_refr();
+    }
+}
+
+
+LV_EVENT_CB_DECLARE(lightness_slider_event_cb)
+{
+    if (e == LV_EVENT_VALUE_CHANGED) {
+        lightness_act = lv_slider_get_value(obj);
+        scan_img_color_refr();
+    }
+}
+
+LV_EVENT_CB_DECLARE(intesity_slider_event_cb)
+{
+    if (e == LV_EVENT_VALUE_CHANGED) {
+        uint16_t v = lv_slider_get_value(obj);
+        lv_obj_set_style_local_image_recolor_opa(scan_img, LV_IMG_PART_MAIN, LV_STATE_DEFAULT, v);
+    }
+}
+
+
+
 static void scan2_open(uint32_t delay)
 {
     lv_obj_t * title = add_title("SCANNING IMAGE");
@@ -512,14 +588,14 @@ static void scan2_open(uint32_t delay)
     lv_obj_t * dropdown = lv_dropdown_create(dropdown_box, NULL);
     lv_obj_align(dropdown, NULL, LV_ALIGN_IN_LEFT_MID, LV_HOR_RES / 60, 0);
     lv_dropdown_set_max_height(dropdown, LV_VER_RES / 3);
-    lv_dropdown_set_options_static(dropdown, "High quality\nNormal quality\nDraft");
+    lv_dropdown_set_options_static(dropdown, "Best\nNormal\nDraft");
     lv_obj_set_width(dropdown, (box_w - 3 * LV_HOR_RES / 60) / 2);
 
     dropdown = lv_dropdown_create(dropdown_box, dropdown);
     lv_obj_align(dropdown, NULL, LV_ALIGN_IN_RIGHT_MID, - LV_HOR_RES / 60, 0);
-    lv_dropdown_set_options_static(dropdown, "100 DPI\n200 DPI\n300 DPI\n400 DPI\n500 DPI\n1500 DPI");
+    lv_dropdown_set_options_static(dropdown, "72 DPI\n96 DPI\n150 DPI\n300 DPI\n600 DPI\n900 DPI\n1200 DPI");
 
-    box_w = (LV_HOR_RES * 4) / 10 - LV_HOR_RES / 20;
+    box_w = 320 - 40;
     lv_obj_t * settings_box = lv_obj_create(lv_scr_act(), NULL);
     lv_obj_set_size(settings_box, box_w, LV_VER_RES / 2);
     lv_obj_align(settings_box, NULL, LV_ALIGN_IN_TOP_RIGHT, -LV_HOR_RES / 20, LV_VER_RES / 5);
@@ -534,14 +610,16 @@ static void scan2_open(uint32_t delay)
     lv_obj_set_style_local_value_font(numbox, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, lv_theme_get_font_subtitle());
     lv_cont_set_layout(numbox, LV_LAYOUT_CENTER);
 
-    lv_obj_t * copytxt = lv_label_create(numbox, NULL);
-    lv_label_set_text(copytxt, "12");
-    lv_obj_set_style_local_text_font(copytxt, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_theme_get_font_title());
+    print_cnt = 1;
+    print_cnt_label = lv_label_create(numbox, NULL);
+    lv_label_set_text(print_cnt_label, "1");
+    lv_obj_set_style_local_text_font(print_cnt_label, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_theme_get_font_title());
 
     lv_obj_t * btn = lv_btn_create(settings_box, NULL);
     lv_obj_set_size(btn, LV_HOR_RES / 13, LV_HOR_RES / 13);
     lv_obj_align(btn, numbox, LV_ALIGN_OUT_LEFT_MID, - LV_VER_RES / 60, 0);
     lv_obj_set_style_local_value_str(btn, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_DOWN);
+    lv_obj_set_event_cb(btn, print_cnt_bnt_event_cb);
 
     lv_obj_t * sw = lv_switch_create(settings_box, NULL);
     lv_obj_set_size(sw, LV_HOR_RES / 10, LV_VER_RES / 12);
@@ -605,6 +683,17 @@ static lv_obj_t * add_title(const char * txt) {
     lv_obj_align(title, NULL, LV_ALIGN_IN_TOP_MID, 0,
             LV_DEMO_PRINTER_TITLE_PAD);
     return title;
+}
+
+static void scan_img_color_refr(void)
+{
+    if(scan_img) {
+        uint8_t s = lightness_act > 0 ? 100 - lightness_act : 100;
+        uint8_t v = lightness_act < 0 ? 100 + lightness_act : 100;
+        lv_color_t c = lv_color_hsv_to_rgb(hue_act, s, v);
+        lv_obj_set_style_local_image_recolor(scan_img, LV_IMG_PART_MAIN, LV_STATE_DEFAULT, c);
+
+    }
 }
 
 static void lv_demo_printer_anim_bg(uint32_t delay, lv_color_t color, uint32_t y)
