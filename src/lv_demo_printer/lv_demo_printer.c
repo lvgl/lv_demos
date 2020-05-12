@@ -483,7 +483,7 @@ LV_EVENT_CB_DECLARE(scan_next_event_cb)
 {
     if (e == LV_EVENT_CLICKED) {
         lv_demo_printer_anim_out_all(lv_scr_act(), 0);
-        scan2_open(200);
+        scan2_open(400);
     }
 }
 
@@ -500,7 +500,8 @@ static void scan2_open(uint32_t delay)
     lv_anim_set_var(&a, scan_img);
     lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_img_set_zoom);
     lv_anim_set_values(&a, LV_IMG_ZOOM_NONE, 190);
-    lv_anim_set_time(&a, 300);
+    lv_anim_set_time(&a, 200);
+    lv_anim_set_delay(&a, 200);
     lv_anim_start(&a);
     scan_img = NULL;    /*To allow anim out*/
 
@@ -606,8 +607,11 @@ static lv_obj_t * add_title(const char * txt) {
     return title;
 }
 
-static void lv_demo_printer_anim_bg(uint32_t delay, lv_color_t color,
-        uint32_t y) {
+static void lv_demo_printer_anim_bg(uint32_t delay, lv_color_t color, uint32_t y)
+{
+    lv_color_t act_color = lv_obj_get_style_bg_color(bg_top, LV_OBJ_PART_MAIN);
+    if(y == lv_obj_get_y(bg_top) && act_color.full == color.full) return;
+
     lv_anim_t a;
     lv_anim_init(&a);
     lv_anim_set_var(&a, bg_top);

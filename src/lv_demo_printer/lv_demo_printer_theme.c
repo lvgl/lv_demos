@@ -62,8 +62,8 @@ static void basic_init(void)
 {
 
     lv_style_init(&style_pad);
-    lv_style_set_pad_top(&style_pad, LV_STATE_DEFAULT, LV_VER_RES / 40);
-    lv_style_set_pad_bottom(&style_pad, LV_STATE_DEFAULT, LV_VER_RES / 40);
+    lv_style_set_pad_top(&style_pad, LV_STATE_DEFAULT, LV_VER_RES / 30);
+    lv_style_set_pad_bottom(&style_pad, LV_STATE_DEFAULT, LV_VER_RES / 30);
     lv_style_set_pad_left(&style_pad, LV_STATE_DEFAULT, LV_VER_RES / 40);
     lv_style_set_pad_right(&style_pad, LV_STATE_DEFAULT, LV_VER_RES / 40);
 
