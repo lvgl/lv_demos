@@ -448,8 +448,11 @@ static void scan1_open(uint32_t delay)
     lv_coord_t box_w = (LV_HOR_RES * 5) / 10;
     scan_img = lv_img_create(lv_scr_act(), NULL);
     lv_img_set_src(scan_img, &wp1);
-    lv_obj_align(scan_img, NULL, LV_ALIGN_IN_BOTTOM_LEFT, 40, - 40);
-    lv_obj_set_style_local_image_recolor_opa(scan_img, 0, 0, 170);
+    lv_obj_align(scan_img, NULL, LV_ALIGN_IN_TOP_LEFT, 40, 100);
+    lv_obj_set_style_local_image_recolor_opa(scan_img, LV_IMG_PART_MAIN, LV_STATE_DEFAULT, 170);
+    lv_obj_set_style_local_radius(scan_img, LV_IMG_PART_MAIN, LV_STATE_DEFAULT, 10);
+    lv_obj_set_style_local_clip_corner(scan_img, LV_IMG_PART_MAIN, LV_STATE_DEFAULT, true);
+
     box_w = (LV_HOR_RES * 2) / 10;
     lv_obj_t * settings_box = lv_obj_create(lv_scr_act(), NULL);
     lv_obj_set_size(settings_box, box_w, 225);
@@ -489,7 +492,7 @@ static void scan2_open(uint32_t delay)
     lv_obj_t * title = add_title("SCANNING IMAGE");
     lv_demo_printer_anim_in_all(title, delay);
 
-    lv_coord_t box_w = (LV_HOR_RES * 5) / 10;
+    lv_coord_t box_w = 400;
     lv_img_set_pivot(scan_img, 0, 0);
     lv_img_set_antialias(scan_img, false);
     lv_anim_t a;
