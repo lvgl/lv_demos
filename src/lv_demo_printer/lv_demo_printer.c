@@ -16,6 +16,7 @@
 #define LV_DEMO_PRINTER_BG_NONE (-LV_VER_RES)
 #define LV_DEMO_PRINTER_BG_FULL 0
 #define LV_DEMO_PRINTER_BG_NORMAL (-2 * (LV_VER_RES / 3))
+#define LV_DEMO_PRINTER_BG_SMALL (-5 * (LV_VER_RES / 6))
 
 /*Sizes*/
 #define LV_DEMO_PRINTER_BTN_H   (LV_VER_RES / 10)
@@ -25,10 +26,10 @@
 #define LV_DEMO_PRINTER_ANIM_Y (LV_VER_RES / 20)
 #define LV_DEMO_PRINTER_ANIM_DELAY (40)
 #define LV_DEMO_PRINTER_ANIM_TIME  (150)
-#define LV_DEMO_PRINTER_ANIM_TIME_BG  (200)
+#define LV_DEMO_PRINTER_ANIM_TIME_BG  (300)
 
 /*Padding*/
-#define LV_DEMO_PRINTER_TITLE_PAD (LV_VER_RES / 20)
+#define LV_DEMO_PRINTER_TITLE_PAD 50
 
 /**********************
  *      TYPEDEFS
@@ -63,8 +64,7 @@ static lv_obj_t * add_icon(lv_obj_t * parent, const void * src,
 static lv_obj_t * add_title(const char * txt);
 static void scan_img_color_refr(void);
 
-static void lv_demo_printer_anim_bg(uint32_t delay, lv_color_t color,
-        uint32_t y);
+static void lv_demo_printer_anim_bg(uint32_t delay, lv_color_t color, int32_t y_new);
 static void lv_demo_printer_anim_in(lv_obj_t * obj, uint32_t delay);
 static void lv_demo_printer_anim_out(lv_obj_t * obj, uint32_t delay);
 static void lv_demo_printer_anim_out_all(lv_obj_t * obj, uint32_t delay);
@@ -112,7 +112,7 @@ void lv_demo_printer(void) {
     lv_obj_set_style_local_bg_color(bg_top, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT,
             LV_DEMO_PRINTER_BLUE);
     lv_obj_set_size(bg_top, LV_HOR_RES, LV_VER_RES);
-    lv_obj_set_y(bg_top, LV_DEMO_PRINTER_BG_NONE);
+    lv_obj_set_y(bg_top, LV_DEMO_PRINTER_BG_NORMAL);
 
     home_open(0);
 }
@@ -598,7 +598,7 @@ static void scan2_open(uint32_t delay)
     box_w = 320 - 40;
     lv_obj_t * settings_box = lv_obj_create(lv_scr_act(), NULL);
     lv_obj_set_size(settings_box, box_w, LV_VER_RES / 2);
-    lv_obj_align(settings_box, NULL, LV_ALIGN_IN_TOP_RIGHT, -LV_HOR_RES / 20, LV_VER_RES / 5);
+    lv_obj_align(settings_box, NULL, LV_ALIGN_IN_TOP_RIGHT, -40, 100);
 
     lv_obj_t * numbox = lv_cont_create(settings_box, NULL);
     lv_theme_apply(numbox, LV_DEMO_PRINTER_THEME_BOX_BORDER);
@@ -696,25 +696,83 @@ static void scan_img_color_refr(void)
     }
 }
 
-static void lv_demo_printer_anim_bg(uint32_t delay, lv_color_t color, uint32_t y)
+
+/**
+ * Calculate the current value of an animation applying linear characteristic
+ * @param a pointer to an animation
+ * @return the current value to set
+ */
+lv_anim_value_t anim_path_triangle(const lv_anim_path_t * path, const lv_anim_t * a)
 {
+    /*Calculate the current step*/
+    uint32_t step;
+    if(a->time == a->act_time) {
+        return a->end;
+    }
+    else {
+        if(a->act_time < a->time / 2) {
+            step = ((int32_t)a->act_time * 1024) / (a->time / 2);
+            int32_t new_value;
+            new_value = (int32_t)step * (LV_DEMO_PRINTER_BG_SMALL - a->start);
+            new_value = new_value >> 10;
+            new_value += a->start;
+
+            return (lv_anim_value_t)new_value;
+        } else {
+            uint32_t t = a->act_time - a->time / 2;
+            step = ((int32_t)t * 1024) / (a->time / 2);
+            int32_t new_value;
+            new_value = (int32_t)step * (a->end - LV_DEMO_PRINTER_BG_SMALL);
+            new_value = new_value >> 10;
+            new_value += LV_DEMO_PRINTER_BG_SMALL;
+
+            return (lv_anim_value_t)new_value;
+        }
+    }
+
+    return 0;   /*Should be never reached*/
+}
+
+
+static void lv_demo_printer_anim_bg(uint32_t delay, lv_color_t color, int32_t y_new)
+{
+    lv_coord_t y_act = lv_obj_get_y(bg_top);
     lv_color_t act_color = lv_obj_get_style_bg_color(bg_top, LV_OBJ_PART_MAIN);
-    if(y == lv_obj_get_y(bg_top) && act_color.full == color.full) return;
+    if(y_new != LV_DEMO_PRINTER_BG_NORMAL && y_new == y_act && act_color.full == color.full) return;
+
 
     lv_anim_t a;
-    lv_anim_init(&a);
-    lv_anim_set_var(&a, bg_top);
-    lv_anim_set_time(&a, LV_DEMO_PRINTER_ANIM_TIME_BG);
-    lv_anim_set_delay(&a, delay);
-    lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_obj_set_y);
-    lv_anim_set_values(&a, lv_obj_get_y(bg_top), y);
-    lv_anim_start(&a);
+    if((y_new == LV_DEMO_PRINTER_BG_NORMAL && y_new == y_act) ||
+        (y_new == LV_DEMO_PRINTER_BG_NORMAL && y_act == LV_DEMO_PRINTER_BG_FULL)) {
+        lv_anim_path_t path;
+        lv_anim_path_init(&path);
+        lv_anim_path_set_cb(&path, anim_path_triangle);
+
+        lv_anim_init(&a);
+        lv_anim_set_var(&a, bg_top);
+        lv_anim_set_time(&a, LV_DEMO_PRINTER_ANIM_TIME_BG + 200);
+        lv_anim_set_delay(&a, delay);
+        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_obj_set_y);
+        lv_anim_set_values(&a, y_act, y_new);
+        lv_anim_set_path(&a, &path);
+        lv_anim_start(&a);
+    } else {
+        lv_anim_init(&a);
+        lv_anim_set_var(&a, bg_top);
+        lv_anim_set_time(&a, LV_DEMO_PRINTER_ANIM_TIME_BG);
+        lv_anim_set_delay(&a, delay);
+        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_obj_set_y);
+        lv_anim_set_values(&a, lv_obj_get_y(bg_top), y_new);
+        lv_anim_start(&a);
+    }
 
     bg_color_prev = bg_color_act;
     bg_color_act = color;
 
     lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) anim_bg_color_cb);
     lv_anim_set_values(&a, 0, 255);
+    lv_anim_set_time(&a, LV_DEMO_PRINTER_ANIM_TIME_BG);
+    lv_anim_set_path(&a, &lv_anim_path_def);
     lv_anim_start(&a);
 
 }
@@ -730,7 +788,7 @@ static void lv_demo_printer_anim_in(lv_obj_t * obj, uint32_t delay) {
             lv_obj_get_y(obj));
     lv_anim_start(&a);
 
-    lv_obj_fade_in(obj, LV_DEMO_PRINTER_ANIM_TIME, delay);
+    lv_obj_fade_in(obj, LV_DEMO_PRINTER_ANIM_TIME - 50, delay);
 }
 
 static void lv_demo_printer_anim_out(lv_obj_t * obj, uint32_t delay) {
@@ -745,7 +803,7 @@ static void lv_demo_printer_anim_out(lv_obj_t * obj, uint32_t delay) {
     lv_anim_set_ready_cb(&a, lv_obj_del_anim_ready_cb);
     lv_anim_start(&a);
 
-    lv_obj_fade_out(obj, LV_DEMO_PRINTER_ANIM_TIME - 50, delay + 50);
+//    lv_obj_fade_out(obj, LV_DEMO_PRINTER_ANIM_TIME - 100, delay + 100);
 }
 
 static void lv_demo_printer_anim_out_all(lv_obj_t * obj, uint32_t delay) {
@@ -759,23 +817,15 @@ static void lv_demo_printer_anim_out_all(lv_obj_t * obj, uint32_t delay) {
     }
 }
 
-static void lv_demo_printer_anim_in_all(lv_obj_t * obj, uint32_t delay) {
+static void lv_demo_printer_anim_in_all(lv_obj_t * obj, uint32_t delay)
+{
     if (obj != bg_top && obj != bg_bottom && obj != lv_scr_act()) {
         lv_demo_printer_anim_in(obj, delay);
-        delay += LV_DEMO_PRINTER_ANIM_DELAY;
     }
-
-    lv_obj_t * child = lv_obj_get_child_back(obj, NULL);
-
-    while (child) {
-        delay += LV_DEMO_PRINTER_ANIM_DELAY;
-        lv_demo_printer_anim_in_all(child, delay);
-        child = lv_obj_get_child_back(obj, child);
-    }
-
 }
 
-static void anim_bg_color_cb(lv_anim_t * a, lv_anim_value_t v) {
+static void anim_bg_color_cb(lv_anim_t * a, lv_anim_value_t v)
+{
     lv_color_t c = lv_color_mix(bg_color_act, bg_color_prev, v);
     lv_obj_set_style_local_bg_color(bg_top, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, c);
 }
