@@ -343,6 +343,7 @@ static void usb_open(uint32_t delay) {
     lv_dropdown_set_max_height(dropdown, LV_VER_RES / 3);
     lv_dropdown_set_options_static(dropdown, "Best\nNormal\nDraft");
     lv_obj_set_width(dropdown, (box_w - 3 * LV_HOR_RES / 60) / 2);
+    lv_obj_set_ext_click_area(dropdown, 5, 5, 5, 5);
 
     dropdown = lv_dropdown_create(dropdown_box, dropdown);
     lv_obj_align(dropdown, NULL, LV_ALIGN_IN_RIGHT_MID, - LV_HOR_RES / 60, 0);
@@ -373,6 +374,7 @@ static void usb_open(uint32_t delay) {
     lv_obj_align(btn, numbox, LV_ALIGN_OUT_LEFT_MID, - LV_VER_RES / 60, 0);
     lv_obj_set_style_local_value_str(btn, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_DOWN);
     lv_obj_set_event_cb(btn, print_cnt_bnt_event_cb);
+    lv_obj_set_ext_click_area(btn, 10, 10, 10, 10);
 
     lv_obj_t * sw = lv_switch_create(settings_box, NULL);
     lv_obj_set_size(sw, LV_HOR_RES / 10, LV_VER_RES / 12);
@@ -676,6 +678,7 @@ static void scan2_open(uint32_t delay)
     lv_obj_align(btn, numbox, LV_ALIGN_OUT_LEFT_MID, - LV_VER_RES / 60, 0);
     lv_obj_set_style_local_value_str(btn, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_DOWN);
     lv_obj_set_event_cb(btn, print_cnt_bnt_event_cb);
+    lv_obj_set_ext_click_area(btn, 10, 10, 10, 10);
 
     lv_obj_t * sw = lv_switch_create(settings_box, NULL);
     lv_obj_set_size(sw, LV_HOR_RES / 10, LV_VER_RES / 12);
