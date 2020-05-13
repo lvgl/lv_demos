@@ -130,24 +130,29 @@ static void home_open(uint32_t delay) {
 
 
     lv_obj_t * icon;
-    icon = lv_img_create(lv_scr_act(), NULL);
+    lv_obj_t * cont = lv_cont_create(lv_scr_act(), NULL);
+    lv_obj_set_size(cont, 350, 80);
+    lv_obj_clean_style_list(cont, LV_CONT_PART_MAIN);
+    lv_obj_align(cont, NULL, LV_ALIGN_IN_TOP_LEFT, 60, 0);
+
+    icon = lv_img_create(cont, NULL);
     lv_img_set_src(icon, &lv_demo_printer_icon_wifi);
-    lv_obj_align_origo(icon, NULL, LV_ALIGN_IN_TOP_LEFT, 90, 50);
+    lv_obj_align_origo(icon, NULL, LV_ALIGN_IN_TOP_LEFT, 20, 50);
     lv_demo_printer_anim_in(icon, delay);
 
-    icon = lv_img_create(lv_scr_act(), NULL);
+    icon = lv_img_create(cont, NULL);
     lv_img_set_src(icon, &lv_demo_printer_icon_tel);
-    lv_obj_align_origo(icon, NULL, LV_ALIGN_IN_TOP_LEFT, 180, 50);
+    lv_obj_align_origo(icon, NULL, LV_ALIGN_IN_TOP_LEFT, 110, 50);
     lv_demo_printer_anim_in(icon, delay);
 
-    icon = lv_img_create(lv_scr_act(), NULL);
+    icon = lv_img_create(cont, NULL);
     lv_img_set_src(icon, &lv_demo_printer_icon_eco);
-    lv_obj_align_origo(icon, NULL, LV_ALIGN_IN_TOP_LEFT, 270, 50);
+    lv_obj_align_origo(icon, NULL, LV_ALIGN_IN_TOP_LEFT, 200, 50);
     lv_demo_printer_anim_in(icon, delay);
 
-    icon = lv_img_create(lv_scr_act(), NULL);
+    icon = lv_img_create(cont, NULL);
     lv_img_set_src(icon, &lv_demo_printer_icon_pc);
-    lv_obj_align_origo(icon, NULL, LV_ALIGN_IN_TOP_LEFT, 360, 50);
+    lv_obj_align_origo(icon, NULL, LV_ALIGN_IN_TOP_LEFT, 290, 50);
     lv_demo_printer_anim_in(icon, delay);
 
     lv_obj_t * title = add_title("22 April 2020 15:36");
@@ -828,8 +833,13 @@ static void lv_demo_printer_anim_out(lv_obj_t * obj, uint32_t delay) {
     lv_anim_set_time(&a, LV_DEMO_PRINTER_ANIM_TIME);
     lv_anim_set_delay(&a, delay);
     lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_obj_set_y);
-    lv_anim_set_values(&a, lv_obj_get_y(obj),
-            lv_obj_get_y(obj) + LV_DEMO_PRINTER_ANIM_Y);
+    if(lv_obj_get_y(obj) < 100) {
+        lv_anim_set_values(&a, lv_obj_get_y(obj),
+                lv_obj_get_y(obj) - LV_DEMO_PRINTER_ANIM_Y);
+    } else {
+        lv_anim_set_values(&a, lv_obj_get_y(obj),
+                lv_obj_get_y(obj) + LV_DEMO_PRINTER_ANIM_Y);
+    }
     lv_anim_set_ready_cb(&a, lv_obj_del_anim_ready_cb);
     lv_anim_start(&a);
 
