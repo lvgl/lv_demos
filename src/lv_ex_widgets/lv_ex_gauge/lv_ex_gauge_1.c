@@ -18,12 +18,8 @@ void lv_ex_gauge_1(void)
 
     /*Set the values*/
     lv_gauge_set_value(gauge1, 0, 10);
-    LV_ASSERT_MEM_INTEGRITY();
     lv_gauge_set_value(gauge1, 1, 20);
-    LV_ASSERT_MEM_INTEGRITY();
     lv_gauge_set_value(gauge1, 2, 30);
-
-    LV_ASSERT_MEM_INTEGRITY();
 }
 
 #endif

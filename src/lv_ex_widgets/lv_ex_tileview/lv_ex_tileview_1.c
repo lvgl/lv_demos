@@ -23,7 +23,7 @@ void lv_ex_tileview_1(void)
     lv_obj_set_size(list, LV_HOR_RES, LV_VER_RES);
     lv_obj_set_pos(list, 0, LV_VER_RES);
     lv_list_set_scroll_propagation(list, true);
-    lv_list_set_sb_mode(list, LV_SCRLBAR_MODE_OFF);
+    lv_list_set_scrollbar_mode(list, LV_SCROLLBAR_MODE_OFF);
 
     lv_list_add_btn(list, NULL, "One");
     lv_list_add_btn(list, NULL, "Two");

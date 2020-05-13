@@ -70,7 +70,7 @@ static void obj_test_task_cb(lv_task_t * param)
         case -1:
         {
             lv_res_t res = lv_mem_test();
-            LV_DEBUG_ASSERT(res == LV_RES_OK, "Memory integrity error", LV_RES_OK);
+            if(res != LV_RES_OK) LV_LOG_ERROR("Memory integrity error");
 
             lv_mem_monitor_t mon;
             lv_mem_monitor(&mon);
