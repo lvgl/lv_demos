@@ -92,7 +92,7 @@ static void basic_init(void)
 
     lv_style_init(&style_title);
     lv_style_set_text_color(&style_title, LV_STATE_DEFAULT, LV_DEMO_PRINTER_WHITE);
-    lv_style_set_text_font(&style_title, LV_STATE_DEFAULT, theme.font_title);
+    lv_style_set_text_font(&style_title, LV_STATE_DEFAULT, theme.font_subtitle);
 
     lv_style_init(&style_label_white);
     lv_style_set_text_color(&style_label_white, LV_STATE_DEFAULT, LV_DEMO_PRINTER_WHITE);
@@ -128,9 +128,8 @@ static void basic_init(void)
     lv_style_set_transition_prop_3(&style_btn_border, LV_STATE_DEFAULT, LV_STYLE_BG_OPA);
 
     lv_style_init(&style_icon);
-    lv_style_set_value_align(&style_icon, LV_STATE_DEFAULT, LV_ALIGN_OUT_BOTTOM_MID);
-    lv_style_set_value_ofs_y(&style_icon, LV_STATE_DEFAULT, LV_VER_RES / 30);
-    lv_style_set_value_ofs_y(&style_icon, LV_STATE_PRESSED, LV_VER_RES / 20);
+    lv_style_set_value_ofs_y(&style_icon, LV_STATE_DEFAULT, 80);
+    lv_style_set_value_ofs_y(&style_icon, LV_STATE_PRESSED, 90);
     lv_style_set_value_color(&style_icon, LV_STATE_DEFAULT, LV_DEMO_PRINTER_GRAY);
     lv_style_set_value_font(&style_icon, LV_STATE_DEFAULT, theme.font_normal);
     lv_style_set_transform_zoom(&style_icon, LV_STATE_PRESSED, 350);
