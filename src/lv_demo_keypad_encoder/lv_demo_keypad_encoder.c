@@ -153,6 +153,8 @@ static void text_input_create(lv_obj_t * parent)
     lv_obj_align(textinput_objs.ta1, NULL, LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 20);
     lv_textarea_set_one_line(textinput_objs.ta1, true);
     lv_textarea_set_cursor_hidden(textinput_objs.ta1, true);
+    lv_textarea_set_placeholder_text(textinput_objs.ta1, "Type something");
+    lv_textarea_set_text(textinput_objs.ta1, "");
 
     textinput_objs.ta2 = lv_textarea_create(parent, textinput_objs.ta1);
     lv_obj_align(textinput_objs.ta2, textinput_objs.ta1, LV_ALIGN_OUT_BOTTOM_MID, 0, LV_DPI / 20);

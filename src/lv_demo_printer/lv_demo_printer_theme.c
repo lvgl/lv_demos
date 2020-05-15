@@ -141,6 +141,12 @@ static void basic_init(void)
     lv_style_set_transition_prop_1(&style_icon, LV_STATE_DEFAULT, LV_STYLE_TRANSFORM_ZOOM);
     lv_style_set_transition_prop_2(&style_icon, LV_STATE_DEFAULT, LV_STYLE_VALUE_OFS_Y);
 
+    lv_style_init(&style_back);
+    lv_style_set_value_color(&style_back, LV_STATE_DEFAULT, LV_DEMO_PRINTER_WHITE);
+    lv_style_set_value_color(&style_back, LV_STATE_PRESSED, LV_DEMO_PRINTER_LIGHT_GRAY);
+    lv_style_set_value_str(&style_back, LV_STATE_DEFAULT, LV_SYMBOL_LEFT);
+    lv_style_set_value_font(&style_back, LV_STATE_DEFAULT, theme.font_subtitle);
+
     lv_style_init(&style_bar_bg);
     lv_style_set_radius(&style_bar_bg, LV_STATE_DEFAULT, 10);
     lv_style_set_border_color(&style_bar_bg, LV_STATE_DEFAULT, LV_DEMO_PRINTER_LIGHT_GRAY);
@@ -329,6 +335,12 @@ static void theme_apply(lv_obj_t * obj, lv_theme_style_t name)
             _lv_style_list_add_style(list, &style_btn_border);
             break;
 
+        case LV_DEMO_PRINTER_THEME_BTN_BACK:
+            lv_obj_clean_style_list(obj, LV_BTN_PART_MAIN);
+            list = lv_obj_get_style_list(obj, LV_BTN_PART_MAIN);
+            _lv_style_list_add_style(list, &style_back);
+            break;
+
         case LV_THEME_BTN:
             lv_obj_clean_style_list(obj, LV_BTN_PART_MAIN);
             list = lv_obj_get_style_list(obj, LV_BTN_PART_MAIN);
@@ -373,20 +385,6 @@ static void theme_apply(lv_obj_t * obj, lv_theme_style_t name)
             list = lv_obj_get_style_list(obj, LV_LABEL_PART_MAIN);
             _lv_style_list_add_style(list, &style_label_white);
             break;
-
-//        case LV_THEME_ARC:
-//            lv_obj_clean_style_list(obj, LV_ARC_PART_BG);
-//            list = lv_obj_get_style_list(obj, LV_ARC_PART_BG);
-//            lv_style_list_add_style(list, &style_bg);
-//            lv_style_list_add_style(list, &style_tick_line);
-//            lv_style_list_add_style(list, &style_round);
-//
-//            lv_obj_clean_style_list(obj, LV_ARC_PART_INDIC);
-//            list = lv_obj_get_style_list(obj, LV_ARC_PART_INDIC);
-//            lv_style_list_add_style(list, &style_bg);
-//            lv_style_list_add_style(list, &style_color);
-//            lv_style_list_add_style(list, &style_tick_line);
-//            break;
 
         case LV_THEME_SLIDER:
             lv_obj_clean_style_list(obj, LV_SLIDER_PART_BG);

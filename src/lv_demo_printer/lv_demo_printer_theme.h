@@ -37,6 +37,7 @@ typedef enum {
     LV_DEMO_PRINTER_THEME_BTN_BORDER,
     LV_DEMO_PRINTER_THEME_BTN_CIRCLE,
     LV_DEMO_PRINTER_THEME_BOX_BORDER,
+    LV_DEMO_PRINTER_THEME_BTN_BACK
 }lv_demo_printer_theme_t;
 
 /**********************
