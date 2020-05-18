@@ -23,7 +23,7 @@ extern "C" {
 #define LV_DEMO_PRINTER_LIGHT           lv_color_hex(0xf3f8fe)
 #define LV_DEMO_PRINTER_GRAY            lv_color_hex(0x8a8a8a)
 #define LV_DEMO_PRINTER_LIGHT_GRAY      lv_color_hex(0xc4c4c4)
-#define LV_DEMO_PRINTER_BLUE            lv_color_hex(0x006fb6)
+#define LV_DEMO_PRINTER_BLUE            lv_color_hex(0x2f3243) //006fb6
 #define LV_DEMO_PRINTER_GREEN           lv_color_hex(0x4cb242)
 #define LV_DEMO_PRINTER_RED             lv_color_hex(0xd51732)
 

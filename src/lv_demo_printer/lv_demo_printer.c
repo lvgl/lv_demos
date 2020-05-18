@@ -478,14 +478,14 @@ LV_EVENT_CB_DECLARE(usb_icon_event_cb)
 
          lv_obj_t * print_btn = lv_btn_create(lv_scr_act(), NULL);
          lv_theme_apply(print_btn, LV_DEMO_PRINTER_THEME_BTN_CIRCLE);
-         lv_obj_set_width(print_btn, box_w);
+         lv_obj_set_size(print_btn, box_w, 60);
 
          lv_coord_t btn_ofs_y = (lv_obj_get_height(dropdown_box) - lv_obj_get_height(print_btn)) / 2;
          lv_obj_align(print_btn, settings_box, LV_ALIGN_OUT_BOTTOM_MID, 0, LV_HOR_RES / 30 + btn_ofs_y);
          lv_obj_set_style_local_value_str(print_btn, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, "PRINT");
          lv_obj_set_style_local_value_font(print_btn, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, lv_theme_get_font_subtitle());
          lv_obj_set_style_local_bg_color(print_btn, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_DEMO_PRINTER_GREEN);
-         lv_obj_set_style_local_bg_color(print_btn, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, lv_color_darken(LV_DEMO_PRINTER_GREEN, LV_OPA_20));
+         lv_obj_set_style_local_bg_color(print_btn, LV_OBJ_PART_MAIN, LV_STATE_PRESSED, lv_color_darken(LV_DEMO_PRINTER_GREEN, LV_OPA_20));
          lv_obj_set_event_cb(print_btn, print_start_event_cb);
 
          delay += LV_DEMO_PRINTER_ANIM_DELAY;
@@ -771,7 +771,7 @@ LV_EVENT_CB_DECLARE(scan_next_event_cb)
 
         lv_obj_t * print_btn = lv_btn_create(lv_scr_act(), NULL);
         lv_theme_apply(print_btn, LV_DEMO_PRINTER_THEME_BTN_CIRCLE);
-        lv_obj_set_width(print_btn, box_w);
+        lv_obj_set_size(print_btn, box_w, 60);
         lv_obj_set_event_cb(print_btn, print_start_event_cb);
         lv_coord_t btn_ofs_y = (lv_obj_get_height(dropdown_box) - lv_obj_get_height(print_btn)) / 2;
         lv_obj_align(print_btn, settings_box, LV_ALIGN_OUT_BOTTOM_MID, 0, LV_HOR_RES / 30 + btn_ofs_y);

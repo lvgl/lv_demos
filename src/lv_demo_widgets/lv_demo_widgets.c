@@ -31,8 +31,6 @@ static void arc_anim(lv_obj_t * arc, lv_anim_value_t value);
 static void linemeter_anim(lv_obj_t * linemeter, lv_anim_value_t value);
 static void gauge_anim(lv_obj_t * gauge, lv_anim_value_t value);;
 static void table_event_cb(lv_obj_t * table, lv_event_t e);
-static void spinbox_increment_event_cb(lv_obj_t * btn, lv_event_t e);
-static void spinbox_decrement_event_cb(lv_obj_t * btn, lv_event_t e);
 #if LV_USE_THEME_MATERIAL
 static void color_chg_event_cb(lv_obj_t * sw, lv_event_t e);
 #endif
@@ -49,7 +47,6 @@ static lv_obj_t * t1;
 static lv_obj_t * t2;
 static lv_obj_t * t3;
 static lv_obj_t * kb;
-static lv_obj_t * spinbox;
 
 static lv_style_t style_box;
 
@@ -175,7 +172,6 @@ static void controls_create(lv_obj_t * parent)
     h = lv_cont_create(parent, h);
     lv_cont_set_fit(h, LV_FIT_NONE);
     lv_obj_set_style_local_value_str(h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, "Text input");
-    lv_obj_set_style_local_pad_inner(h, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_DPI / 10);
 
     lv_obj_t * ta = lv_textarea_create(h, NULL);
     lv_cont_set_fit2(ta, LV_FIT_PARENT, LV_FIT_NONE);
@@ -409,12 +405,11 @@ static void selectors_create(lv_obj_t * parent)
     lv_coord_t grid_h = lv_page_get_height_grid(parent, 1, 1);
     lv_coord_t grid_w;
     if(disp_size <= LV_DISP_SIZE_SMALL) grid_w = lv_page_get_width_grid(parent, 1, 1);
-    else if(disp_size <= LV_DISP_SIZE_MEDIUM)  grid_w = lv_page_get_width_grid(parent, 3, 2);
     else grid_w = lv_page_get_width_grid(parent, 2, 1);
 
     lv_obj_t * cal = lv_calendar_create(parent, NULL);
     lv_obj_set_drag_parent(cal, true);
-    if(disp_size >= LV_DISP_SIZE_LARGE) {
+    if(disp_size >= LV_DISP_SIZE_MEDIUM) {
         lv_obj_set_size(cal, LV_MATH_MIN(grid_h, grid_w), LV_MATH_MIN(grid_h, grid_w));
     } else {
         lv_obj_set_size(cal, grid_w, grid_w);
@@ -437,8 +432,7 @@ static void selectors_create(lv_obj_t * parent)
         lv_obj_set_width(h, lv_page_get_width_fit(parent));
         lv_cont_set_layout(h, LV_LAYOUT_COLUMN_MID);
     } else if(disp_size <= LV_DISP_SIZE_MEDIUM) {
-        lv_cont_set_fit2(h, LV_FIT_NONE, LV_FIT_TIGHT);
-        lv_obj_set_width(h, grid_w);
+        lv_obj_set_size(h, lv_obj_get_width(cal), lv_obj_get_height(cal));
         lv_cont_set_layout(h, LV_LAYOUT_PRETTY_TOP);
     } else {
         lv_obj_set_click(h, false);
@@ -457,6 +451,7 @@ static void selectors_create(lv_obj_t * parent)
     lv_obj_set_style_local_value_str(roller, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, "Roller");
     lv_roller_set_auto_fit(roller, false);
     lv_roller_set_align(roller, LV_LABEL_ALIGN_CENTER);
+    lv_roller_set_visible_row_count(roller, 4);
     lv_obj_set_width(roller, lv_obj_get_width_grid(h, disp_size <= LV_DISP_SIZE_SMALL ? 1 : 2, 1));
 
     lv_obj_t * dd = lv_dropdown_create(h, NULL);
@@ -465,37 +460,6 @@ static void selectors_create(lv_obj_t * parent)
     lv_obj_set_width(dd, lv_obj_get_width_grid(h, disp_size <= LV_DISP_SIZE_SMALL ? 1 : 2, 1));
     lv_dropdown_set_options(dd, "Alpha\nBravo\nCharlie\nDelta\nEcho\nFoxtrot\nGolf\nHotel\nIndia\nJuliette\nKilo\nLima\nMike\nNovember\n"
             "Oscar\nPapa\nQuebec\nRomeo\nSierra\nTango\nUniform\nVictor\nWhiskey\nXray\nYankee\nZulu");
-
-
-    lv_obj_t * spinbox_holder = lv_cont_create(h, NULL);
-    lv_obj_set_style_local_bg_opa(spinbox_holder, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_TRANSP);
-    lv_obj_set_style_local_border_opa(spinbox_holder, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_TRANSP);
-    lv_obj_set_style_local_pad_top(spinbox_holder, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 0);
-    lv_obj_set_style_local_pad_left(spinbox_holder, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 0);
-    lv_obj_add_style(spinbox_holder, LV_CONT_PART_MAIN, &style_box);
-    lv_obj_set_style_local_value_str(spinbox_holder, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, "Spinbox");
-    lv_cont_set_fit(spinbox_holder, LV_FIT_TIGHT);
-
-    spinbox = lv_spinbox_create(spinbox_holder , NULL);
-    lv_spinbox_set_range(spinbox, -9999, 9999);
-    lv_spinbox_set_digit_format(spinbox, 4, 1);
-    lv_obj_set_style_local_text_font(spinbox, LV_SPINBOX_PART_BG, LV_STATE_DEFAULT, lv_theme_get_font_subtitle());
-    lv_spinbox_step_prev(spinbox);
-    lv_obj_set_width(spinbox, lv_obj_get_width(lv_textarea_get_label(spinbox)) + LV_DPI/8);
-    lv_obj_align(spinbox, NULL, LV_ALIGN_CENTER, 0, 0);
-
-    lv_coord_t spinbox_height = lv_obj_get_height(spinbox);
-    btn = lv_btn_create(spinbox_holder, NULL);
-    lv_obj_set_size(btn, spinbox_height, spinbox_height);
-    lv_obj_align(btn, spinbox, LV_ALIGN_OUT_RIGHT_MID, 5, 0);
-    lv_theme_apply(btn, LV_THEME_SPINBOX_BTN);
-    lv_obj_set_style_local_value_str(btn, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_PLUS);
-    lv_obj_set_event_cb(btn, spinbox_increment_event_cb);
-    btn = lv_btn_create(spinbox_holder, btn);
-    lv_obj_align(btn, spinbox, LV_ALIGN_OUT_LEFT_MID, -5, 0);
-    lv_obj_set_event_cb(btn, spinbox_decrement_event_cb);
-    lv_obj_set_style_local_value_str(btn, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_MINUS);
-
 
     lv_obj_t * list = lv_list_create(parent, NULL);
     lv_list_set_scroll_propagation(list, true);
@@ -559,7 +523,7 @@ static void selectors_create(lv_obj_t * parent)
     lv_table_set_cell_value(table1, 2, 1, "Jacob");
     lv_table_set_cell_value(table1, 3, 1, "John");
     lv_table_set_cell_value(table1, 4, 1, "Emily");
-    lv_table_set_cell_value(table1, 5, 1, "Samantha");
+    lv_table_set_cell_value(table1, 5, 1, "Ivan");
     lv_table_set_cell_value(table1, 6, 1, "George");
 
     if(disp_size > LV_DISP_SIZE_SMALL) {
@@ -682,20 +646,6 @@ static void table_event_cb(lv_obj_t * table, lv_event_t e)
                 lv_table_set_cell_type(table, row, col, 1);
             }
         }
-    }
-}
-
-static void spinbox_increment_event_cb(lv_obj_t * btn, lv_event_t e)
-{
-    if(e == LV_EVENT_SHORT_CLICKED || e == LV_EVENT_LONG_PRESSED_REPEAT) {
-        lv_spinbox_increment(spinbox);
-    }
-}
-
-static void spinbox_decrement_event_cb(lv_obj_t * btn, lv_event_t e)
-{
-    if(e == LV_EVENT_SHORT_CLICKED || e == LV_EVENT_LONG_PRESSED_REPEAT) {
-        lv_spinbox_decrement(spinbox);
     }
 }
 
