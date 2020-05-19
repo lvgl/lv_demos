@@ -9,6 +9,8 @@
 #include "../../lv_examples.h"
 #include "lv_demo_benchmark.h"
 
+#if LV_USE_DEMO_BENCHMARK
+
 /*********************
  *      DEFINES
  *********************/
@@ -1013,3 +1015,5 @@ static int32_t rnd_next(int32_t min, int32_t max)
     return r;
 
 }
+
+#endif

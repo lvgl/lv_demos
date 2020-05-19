@@ -9,6 +9,7 @@
 #include "lv_demo_printer.h"
 #include "lv_demo_printer_theme.h"
 
+#if LV_USE_DEMO_PRINTER
 /*********************
  *      DEFINES
  *********************/
@@ -466,3 +467,5 @@ static void theme_apply(lv_obj_t * obj, lv_theme_style_t name)
 /**********************
  *   STATIC FUNCTIONS
  **********************/
+
+#endif /*LV_USE_DEMO_PRINTER*/

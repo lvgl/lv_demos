@@ -9,6 +9,8 @@
 #include "../../lv_examples.h"
 #include "lv_demo_widgets.h"
 
+#if LV_USE_DEMO_WIDGETS
+
 /*********************
  *      DEFINES
  *********************/
@@ -705,4 +707,6 @@ static void tab_changer_task_cb(lv_task_t * task)
         break;
     }
 }
+#endif
+
 #endif
