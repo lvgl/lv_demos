@@ -15,6 +15,8 @@
 #include "lv_drivers/indev/mousewheel.h"
 #endif
 
+#if LV_USE_DEMO_KEYPAD_AND_ENCODER
+
 /*********************
  *      DEFINES
  *********************/
@@ -290,3 +292,5 @@ static void kb_event_cb(lv_obj_t * kb, lv_event_t e)
         lv_obj_set_height(tv, LV_VER_RES);
     }
 }
+
+#endif

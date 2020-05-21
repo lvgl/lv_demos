@@ -8,6 +8,7 @@
  *********************/
 #include "lv_demo_printer_scr.h"
 #include "lv_demo_printer_theme.h"
+#if LV_USE_DEMO_PRINTER
 
 /*********************
  *      DEFINES
@@ -1163,4 +1164,6 @@ static void anim_bg_color_cb(lv_anim_t * a, lv_anim_value_t v)
     lv_color_t c = lv_color_mix(bg_color_act, bg_color_prev, v);
     lv_obj_set_style_local_bg_color(bg_top, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, c);
 }
+
+#endif /*LV_USE_DEMO_PRINTER*/
 

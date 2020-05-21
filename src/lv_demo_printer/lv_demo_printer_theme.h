@@ -15,6 +15,7 @@ extern "C" {
  *********************/
 #include "lv_demo_printer.h"
 
+#if LV_USE_DEMO_PRINTER
 /*********************
  *      DEFINES
  *********************/
@@ -62,6 +63,8 @@ lv_theme_t * lv_demo_printer_theme_init(lv_color_t color_primary, lv_color_t col
 /**********************
  *      MACROS
  **********************/
+
+#endif /*LV_USE_DEMO_PRINTER*/
 
 #endif
 
