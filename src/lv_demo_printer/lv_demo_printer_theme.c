@@ -129,16 +129,25 @@ static void basic_init(void)
     lv_style_set_transition_prop_3(&style_btn_border, LV_STATE_DEFAULT, LV_STYLE_BG_OPA);
 
     lv_style_init(&style_icon);
-    lv_style_set_value_ofs_y(&style_icon, LV_STATE_DEFAULT, 80);
-    lv_style_set_value_ofs_y(&style_icon, LV_STATE_PRESSED, 90);
-    lv_style_set_value_color(&style_icon, LV_STATE_DEFAULT, LV_DEMO_PRINTER_BLUE);
-    lv_style_set_value_font(&style_icon, LV_STATE_DEFAULT, theme.font_normal);
-    lv_style_set_transform_zoom(&style_icon, LV_STATE_PRESSED, 350);
+    lv_style_set_radius(&style_icon, LV_STATE_DEFAULT, 21);
+    lv_style_set_image_recolor_opa(&style_icon, LV_STATE_DEFAULT, LV_OPA_90);
+    lv_style_set_image_recolor_opa(&style_icon, LV_STATE_PRESSED, LV_OPA_90 + 10);
+    lv_style_set_transform_zoom(&style_icon, LV_STATE_PRESSED, 245);
+    lv_style_set_shadow_width(&style_icon, LV_STATE_DEFAULT, 25);
+    lv_style_set_shadow_opa(&style_icon, LV_STATE_PRESSED, 0);
+    lv_style_set_shadow_ofs_x(&style_icon, LV_STATE_DEFAULT, -7);
+    lv_style_set_shadow_ofs_y(&style_icon, LV_STATE_DEFAULT, 7);
+//    lv_style_set_shadow_ofs_x(&style_icon, LV_STATE_PRESSED, 0);
+//    lv_style_set_shadow_ofs_y(&style_icon, LV_STATE_PRESSED, 0);
+    lv_style_set_text_color(&style_icon, LV_STATE_DEFAULT, LV_DEMO_PRINTER_WHITE);
     lv_style_set_transition_time(&style_icon, LV_STATE_DEFAULT, 100);
     lv_style_set_transition_delay(&style_icon, LV_STATE_PRESSED, 0);
     lv_style_set_transition_delay(&style_icon, LV_STATE_DEFAULT, 70);
-    lv_style_set_transition_prop_1(&style_icon, LV_STATE_DEFAULT, LV_STYLE_TRANSFORM_ZOOM);
-    lv_style_set_transition_prop_2(&style_icon, LV_STATE_DEFAULT, LV_STYLE_VALUE_OFS_Y);
+//    lv_style_set_transition_prop_1(&style_icon, LV_STATE_DEFAULT, LV_STYLE_SHADOW_OFS_X);
+//    lv_style_set_transition_prop_2(&style_icon, LV_STATE_DEFAULT, LV_STYLE_SHADOW_OFS_Y);
+    lv_style_set_transition_prop_3(&style_icon, LV_STATE_DEFAULT, LV_STYLE_SHADOW_OPA);
+    lv_style_set_transition_prop_4(&style_icon, LV_STATE_DEFAULT, LV_STYLE_IMAGE_RECOLOR_OPA);
+    lv_style_set_transition_prop_5(&style_icon, LV_STATE_DEFAULT, LV_STYLE_TRANSFORM_ZOOM);
 
     lv_style_init(&style_back);
     lv_style_set_value_color(&style_back, LV_STATE_DEFAULT, LV_DEMO_PRINTER_WHITE);
