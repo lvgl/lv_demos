@@ -6,7 +6,6 @@
 /*********************
  *      INCLUDES
  *********************/
-#include "lv_demo_printer_scr.h"
 #include "lv_demo_printer_theme.h"
 #if LV_USE_DEMO_PRINTER
 
