@@ -299,8 +299,9 @@ static void obj_test_task_cb(lv_task_t * param)
 
         case 17:
         {
-
-            static lv_color_t needle_colors[] = {LV_COLOR_RED, LV_COLOR_BLUE};
+            static lv_color_t needle_colors[2];
+            needle_colors[0] = LV_COLOR_RED;
+            needle_colors[1] = LV_COLOR_BLUE;
             obj = lv_gauge_create(main_page, NULL);
             lv_gauge_set_needle_count(obj, 2, needle_colors);
             lv_gauge_set_value(obj, 0, 30);
