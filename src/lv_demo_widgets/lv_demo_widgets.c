@@ -69,6 +69,8 @@ void lv_demo_widgets(void)
         if(disp_size >= LV_DISP_SIZE_MEDIUM) {
             lv_obj_set_style_local_pad_left(tv, LV_TABVIEW_PART_TAB_BG, LV_STATE_DEFAULT, LV_HOR_RES / 2);
             lv_obj_t * sw = lv_switch_create(lv_scr_act(), NULL);
+            if(lv_theme_get_flags() & LV_THEME_MATERIAL_FLAG_DARK)
+                lv_switch_on(sw, LV_ANIM_OFF);
             lv_obj_set_event_cb(sw, color_chg_event_cb);
             lv_obj_set_pos(sw, LV_DPX(10), LV_DPX(10));
             lv_obj_set_style_local_value_str(sw, LV_SWITCH_PART_BG, LV_STATE_DEFAULT, "Dark");
@@ -659,7 +661,7 @@ static void color_chg_event_cb(lv_obj_t * sw, lv_event_t e)
         uint32_t flag = LV_THEME_MATERIAL_FLAG_LIGHT;
         if(lv_switch_get_state(sw)) flag = LV_THEME_MATERIAL_FLAG_DARK;
 
-        LV_THEME_DEFAULT_INIT(lv_theme_get_color_primary(), lv_theme_get_color_primary(),
+        LV_THEME_DEFAULT_INIT(lv_theme_get_color_primary(), lv_theme_get_color_secondary(),
                 flag,
                 lv_theme_get_font_small(), lv_theme_get_font_normal(), lv_theme_get_font_subtitle(), lv_theme_get_font_title());
     }
