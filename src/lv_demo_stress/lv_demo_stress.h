@@ -3,8 +3,8 @@
  *
  */
 
-#ifndef LV_DEMO_WIDGETS_H
-#define LV_DEMO_WIDGETS_H
+#ifndef LV_DEMO_STRESS_H
+#define LV_DEMO_STRESS_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -35,4 +35,4 @@ void lv_demo_stress(void);
 } /* extern "C" */
 #endif
 
-#endif /*LV_DEMO_WIDGETS_H*/
+#endif /*LV_DEMO_STRESS_H*/

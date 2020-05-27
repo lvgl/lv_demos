@@ -120,7 +120,7 @@ static void controls_create(lv_obj_t * parent)
 #endif
 
     lv_obj_t * h = lv_cont_create(parent, NULL);
-    lv_cont_set_layout(h, LV_LAYOUT_PRETTY_MID);
+    lv_cont_set_layout(h, LV_LAYOUT_ROW_MID);
     lv_obj_add_style(h, LV_CONT_PART_MAIN, &style_box);
     lv_obj_set_drag_parent(h, true);
 

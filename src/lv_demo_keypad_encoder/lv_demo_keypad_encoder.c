@@ -80,13 +80,13 @@ void lv_demo_keypad_encoder(void)
 #if LV_EX_KEYBOARD
     lv_indev_drv_t kb_drv;
     lv_indev_drv_init(&kb_drv);
-    kb_drv.type = LV_INDEV_TYPE_KEYPAD;
+    kb_drv.type = LV_INDEV_TYPE_ENCODER;
     kb_drv.read_cb = keyboard_read;
     lv_indev_t * kb_indev = lv_indev_drv_register(&kb_drv);
     lv_indev_set_group(kb_indev, g);
 #endif
 
-#if LV_EX_MOUSEWHEEL
+#if LV_EX_MOUSEWHEEL == 0
     lv_indev_drv_t enc_drv;
     lv_indev_drv_init(&enc_drv);
     enc_drv.type = LV_INDEV_TYPE_ENCODER;
@@ -199,9 +199,9 @@ static void msgbox_event_cb(lv_obj_t * msgbox, lv_event_t e)
     }
 }
 
-static void focus_cb(lv_group_t * g)
+static void focus_cb(lv_group_t * group)
 {
-    lv_obj_t * obj = lv_group_get_focused(g);
+    lv_obj_t * obj = lv_group_get_focused(group);
     if(obj != tv) {
         uint16_t tab = lv_tabview_get_tab_act(tv);
         switch(tab) {

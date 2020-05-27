@@ -2,7 +2,7 @@
 
 static lv_obj_t * label;
 
-void slider_event_cb(lv_obj_t * slider, lv_event_t event)
+static void slider_event_cb(lv_obj_t * slider, lv_event_t event)
 {
     if(event == LV_EVENT_VALUE_CHANGED) {
         /*Refresh the text*/

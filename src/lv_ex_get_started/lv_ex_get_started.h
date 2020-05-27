@@ -25,9 +25,9 @@ extern "C" {
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
-void lv_ex_sget_started_1(void);
-void lv_ex_sget_started_2(void);
-void lv_ex_sget_started_3(void);
+void lv_ex_get_started_1(void);
+void lv_ex_get_started_2(void);
+void lv_ex_get_started_3(void);
 
 /**********************
  *      MACROS

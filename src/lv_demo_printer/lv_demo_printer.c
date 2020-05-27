@@ -70,6 +70,7 @@ static void loader_anim_cb(void * arc, lv_anim_value_t v);
 static void scan_img_color_refr(void);
 
 LV_EVENT_CB_DECLARE(icon_generic_event_cb);
+static lv_anim_value_t anim_path_triangle(const lv_anim_path_t * path, const lv_anim_t * a);
 static void lv_demo_printer_anim_bg(uint32_t delay, lv_color_t color, int32_t y_new);
 static void lv_demo_printer_anim_out_all(lv_obj_t * obj, uint32_t delay);
 static void lv_demo_printer_anim_in(lv_obj_t * obj, uint32_t delay);
@@ -171,6 +172,8 @@ static void home_open(uint32_t delay) {
     lv_obj_t * box = lv_obj_create(lv_scr_act(), NULL);
     lv_obj_set_size(box, box_w, 260);
     lv_obj_align(box, NULL, LV_ALIGN_IN_TOP_MID, 0, 100);
+    delay += LV_DEMO_PRINTER_ANIM_DELAY;
+    lv_demo_printer_anim_in(box, delay);
 
     LV_IMG_DECLARE(lv_demo_printer_img_copy);
     LV_IMG_DECLARE(lv_demo_printer_img_scan);
@@ -180,21 +183,22 @@ static void home_open(uint32_t delay) {
     icon = add_icon(box, &lv_demo_printer_img_copy, "COPY", lv_color_hex(0xbf3ebf));
     lv_obj_align_origo(icon, NULL, LV_ALIGN_IN_LEFT_MID, 1 * (box_w - 20) / 8 + 10, -15);
     lv_obj_set_event_cb(icon, copy_open_icon_event_cb);
+    lv_demo_printer_anim_in(icon, delay + LV_DEMO_PRINTER_ANIM_TIME);
 
     icon = add_icon(box, &lv_demo_printer_img_scan, "SCAN", lv_color_hex(0x4b55c4));
     lv_obj_align_origo(icon, NULL, LV_ALIGN_IN_LEFT_MID, 3 * (box_w - 20) / 8 + 10, -15);
     lv_obj_set_event_cb(icon, scan_open_icon_event_cb);
+    lv_demo_printer_anim_in(icon, delay + LV_DEMO_PRINTER_ANIM_TIME + LV_DEMO_PRINTER_ANIM_DELAY);
 
     icon = add_icon(box, &lv_demo_printer_img_print, "PRINT", lv_color_hex(0x46b147));
     lv_obj_align_origo(icon, NULL, LV_ALIGN_IN_LEFT_MID, 5 * (box_w - 20) / 8 + 10, -15);
     lv_obj_set_event_cb(icon, print_open_event_cb);
+    lv_demo_printer_anim_in(icon, delay + LV_DEMO_PRINTER_ANIM_TIME + 2 * LV_DEMO_PRINTER_ANIM_DELAY);
 
     icon = add_icon(box, &lv_demo_printer_img_setup, "SETUP", lv_color_hex(0xe22e2f));
     lv_obj_align_origo(icon, NULL, LV_ALIGN_IN_LEFT_MID, 7 * (box_w - 20) / 8 + 10, -15);
     lv_obj_set_event_cb(icon, setup_icon_event_cb);
-
-    delay += LV_DEMO_PRINTER_ANIM_DELAY;
-    lv_demo_printer_anim_in(box, delay);
+    lv_demo_printer_anim_in(icon, delay + LV_DEMO_PRINTER_ANIM_TIME + 3 * LV_DEMO_PRINTER_ANIM_DELAY);
 
     box = lv_obj_create(lv_scr_act(), NULL);
     lv_obj_set_size(box, 480, 80);
@@ -977,7 +981,7 @@ static void scan_img_color_refr(void)
  * @param a pointer to an animation
  * @return the current value to set
  */
-lv_anim_value_t anim_path_triangle(const lv_anim_path_t * path, const lv_anim_t * a)
+static lv_anim_value_t anim_path_triangle(const lv_anim_path_t * path, const lv_anim_t * a)
 {
     /*Calculate the current step*/
     uint32_t step;

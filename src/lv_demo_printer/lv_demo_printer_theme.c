@@ -131,10 +131,13 @@ static void basic_init(void)
 
     lv_style_init(&style_icon);
     lv_style_set_radius(&style_icon, LV_STATE_DEFAULT, 21);
-    lv_style_set_image_recolor_opa(&style_icon, LV_STATE_DEFAULT, LV_OPA_90);
-    lv_style_set_image_recolor_opa(&style_icon, LV_STATE_PRESSED, LV_OPA_90 + 10);
+//    lv_style_set_image_recolor_opa(&style_icon, LV_STATE_DEFAULT, LV_OPA_90);
+//    lv_style_set_image_recolor_opa(&style_icon, LV_STATE_PRESSED, LV_OPA_90 + 10);
+//    lv_style_set_image_opa(&style_icon, LV_STATE_DEFAULT, LV_OPA_20);
+//    lv_style_set_bg_opa(&style_icon, LV_STATE_DEFAULT, LV_OPA_COVER);
+//    lv_style_set_bg_color(&style_icon, LV_STATE_DEFAULT, LV_COLOR_RED);
     lv_style_set_transform_zoom(&style_icon, LV_STATE_PRESSED, 245);
-    lv_style_set_shadow_width(&style_icon, LV_STATE_DEFAULT, 25);
+    lv_style_set_shadow_width(&style_icon, LV_STATE_DEFAULT, 5);
     lv_style_set_shadow_opa(&style_icon, LV_STATE_PRESSED, 0);
     lv_style_set_shadow_ofs_x(&style_icon, LV_STATE_DEFAULT, -7);
     lv_style_set_shadow_ofs_y(&style_icon, LV_STATE_DEFAULT, 7);
