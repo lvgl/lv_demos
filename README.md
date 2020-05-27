@@ -21,32 +21,7 @@ Similary to `lv_conf.h` there is a configuration file for the examples too. It i
 3. Delete the first `#if` and  last `#endif` to enable the file's content
 4. Enable or Disable modules
 
-## Tutorial
-A step-by-step guide to teach the most important parts of the Graphics Library.
-* Hello world
-* Objects (graphical components)
-* Styles
-* Themes
-* Anti-aliasing
-* Images
-* Fonts
-* Animations
-* Responsive
-* Keyboard
-
-## Applications
-Real life GUI examples which can be adapted in your own project. The applications are designed to adapt to your screen's resolution.
-* Demo
-* Benchmark
-* System performance monitor
-* Touchpad calibrator
-* Terminal
-
-## Tests
-Test cases to validate the features of LittelvGL. You can also use them as examples. The most important and useful tests are:
-* Theme test: `lv_test_theme_1()`
-* Keyboard interface test: `lv_test_group_1()`
-* Tests of object types: `lv_test_..._1/2/3()` e.g. (lv_test_slider_1())
+To find out more about each example, look at its specific README file.
 
 ## Contributing
 For contribution and coding style guidelines, please refer to the file docs/CONTRIBUTNG.md in the main LittlevGL repo:
