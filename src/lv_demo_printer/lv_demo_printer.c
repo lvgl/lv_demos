@@ -183,22 +183,18 @@ static void home_open(uint32_t delay) {
     icon = add_icon(box, &lv_demo_printer_img_copy, "COPY", lv_color_hex(0xbf3ebf));
     lv_obj_align_origo(icon, NULL, LV_ALIGN_IN_LEFT_MID, 1 * (box_w - 20) / 8 + 10, -15);
     lv_obj_set_event_cb(icon, copy_open_icon_event_cb);
-    lv_demo_printer_anim_in(icon, delay + LV_DEMO_PRINTER_ANIM_TIME);
 
     icon = add_icon(box, &lv_demo_printer_img_scan, "SCAN", lv_color_hex(0x4b55c4));
     lv_obj_align_origo(icon, NULL, LV_ALIGN_IN_LEFT_MID, 3 * (box_w - 20) / 8 + 10, -15);
     lv_obj_set_event_cb(icon, scan_open_icon_event_cb);
-    lv_demo_printer_anim_in(icon, delay + LV_DEMO_PRINTER_ANIM_TIME + LV_DEMO_PRINTER_ANIM_DELAY);
 
     icon = add_icon(box, &lv_demo_printer_img_print, "PRINT", lv_color_hex(0x46b147));
     lv_obj_align_origo(icon, NULL, LV_ALIGN_IN_LEFT_MID, 5 * (box_w - 20) / 8 + 10, -15);
     lv_obj_set_event_cb(icon, print_open_event_cb);
-    lv_demo_printer_anim_in(icon, delay + LV_DEMO_PRINTER_ANIM_TIME + 2 * LV_DEMO_PRINTER_ANIM_DELAY);
 
     icon = add_icon(box, &lv_demo_printer_img_setup, "SETUP", lv_color_hex(0xe22e2f));
     lv_obj_align_origo(icon, NULL, LV_ALIGN_IN_LEFT_MID, 7 * (box_w - 20) / 8 + 10, -15);
     lv_obj_set_event_cb(icon, setup_icon_event_cb);
-    lv_demo_printer_anim_in(icon, delay + LV_DEMO_PRINTER_ANIM_TIME + 3 * LV_DEMO_PRINTER_ANIM_DELAY);
 
     box = lv_obj_create(lv_scr_act(), NULL);
     lv_obj_set_size(box, 480, 80);
@@ -897,18 +893,17 @@ static lv_obj_t * add_icon(lv_obj_t * parent, const void * src, const char * txt
     lv_obj_set_click(bg, true);
     lv_theme_apply(bg, LV_DEMO_PRINTER_THEME_ICON);
     lv_img_set_src(bg, &lv_demo_printer_img_btn_bg);
-    lv_obj_set_style_local_image_recolor(bg, LV_IMG_PART_MAIN, LV_STATE_DEFAULT, color);
-    lv_obj_set_style_local_shadow_color(bg, LV_IMG_PART_MAIN, LV_STATE_DEFAULT, lv_color_lighten(color, LV_OPA_40));
+    lv_obj_set_style_local_bg_color(bg, LV_IMG_PART_MAIN, LV_STATE_DEFAULT, color);
+    lv_obj_set_style_local_bg_color(bg, LV_IMG_PART_MAIN, LV_STATE_PRESSED, lv_color_darken(color, LV_OPA_20));
 
     lv_obj_t * icon = lv_img_create(bg, NULL);
     lv_img_set_src(icon, src);
-    lv_img_set_antialias(icon, false);
     lv_obj_set_style_local_image_recolor_opa(icon, LV_IMG_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_0);
-    lv_obj_align(icon, NULL, LV_ALIGN_IN_TOP_RIGHT, -20, 20);
+    lv_obj_align(icon, NULL, LV_ALIGN_IN_TOP_RIGHT, -30, 30);
 
     lv_obj_t * label = lv_label_create(bg, NULL);
     lv_label_set_text(label, txt);
-    lv_obj_align(label, NULL, LV_ALIGN_IN_BOTTOM_LEFT, 20, -20);
+    lv_obj_align(label, NULL, LV_ALIGN_IN_BOTTOM_LEFT, 30, -30);
 
 
     return bg;
@@ -1015,61 +1010,61 @@ static lv_anim_value_t anim_path_triangle(const lv_anim_path_t * path, const lv_
 
 LV_EVENT_CB_DECLARE(icon_generic_event_cb)
 {
-    if (e == LV_EVENT_PRESSED) {
-        lv_obj_t * img = lv_obj_get_child_back(obj, NULL);
-        lv_obj_t * txt = lv_obj_get_child(obj, NULL);
-
-        lv_anim_t a;
-        lv_anim_init(&a);
-        lv_anim_set_time(&a, 100);
-
-
-        lv_anim_set_var(&a, img);
-        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_x);
-        lv_anim_set_values(&a, lv_obj_get_x(img), lv_obj_get_width(obj) - lv_obj_get_width(img) - 23);
-        lv_anim_start(&a);
-
-        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_y);
-        lv_anim_set_values(&a, lv_obj_get_y(img), 23);
-        lv_anim_start(&a);
-
-        lv_anim_set_var(&a, txt);
-        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_x);
-        lv_anim_set_values(&a, lv_obj_get_x(txt), 23);
-        lv_anim_start(&a);
-
-        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_y);
-        lv_anim_set_values(&a, lv_obj_get_y(txt), lv_obj_get_height(obj) - lv_obj_get_height(txt) - 23);
-        lv_anim_start(&a);
-
-
-
-    }
-    else if(e == LV_EVENT_PRESS_LOST || e == LV_EVENT_RELEASED) {
-        lv_obj_t * img = lv_obj_get_child_back(obj, NULL);
-        lv_obj_t * txt = lv_obj_get_child(obj, NULL);
-        lv_anim_t a;
-        lv_anim_init(&a);
-        lv_anim_set_time(&a, 100);
-        lv_anim_set_var(&a, img);
-
-        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_x);
-        lv_anim_set_values(&a, lv_obj_get_x(img), lv_obj_get_width(obj) - lv_obj_get_width(img) - 20);
-        lv_anim_start(&a);
-
-        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_y);
-        lv_anim_set_values(&a, lv_obj_get_y(img), 20);
-        lv_anim_start(&a);
-
-        lv_anim_set_var(&a, txt);
-        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_x);
-        lv_anim_set_values(&a, lv_obj_get_x(txt), 20);
-        lv_anim_start(&a);
-
-        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_y);
-        lv_anim_set_values(&a, lv_obj_get_y(txt), lv_obj_get_height(obj) - lv_obj_get_height(txt) - 20);
-        lv_anim_start(&a);
-    }
+//    if (e == LV_EVENT_PRESSED) {
+//        lv_obj_t * img = lv_obj_get_child_back(obj, NULL);
+//        lv_obj_t * txt = lv_obj_get_child(obj, NULL);
+//
+//        lv_anim_t a;
+//        lv_anim_init(&a);
+//        lv_anim_set_time(&a, 100);
+//
+//
+//        lv_anim_set_var(&a, img);
+//        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_x);
+//        lv_anim_set_values(&a, lv_obj_get_x(img), (lv_obj_get_width(obj) - lv_obj_get_width(img)) / 2);
+//        lv_anim_start(&a);
+//
+//        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_y);
+//        lv_anim_set_values(&a, lv_obj_get_y(img), 35);
+////        lv_anim_start(&a);
+//
+//        lv_anim_set_var(&a, txt);
+//        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_x);
+//        lv_anim_set_values(&a, lv_obj_get_x(txt), 35);
+//        lv_anim_start(&a);
+//
+//        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_y);
+//        lv_anim_set_values(&a, lv_obj_get_y(txt), (lv_obj_get_height(obj) - lv_obj_get_height(txt)) / 2);
+////        lv_anim_start(&a);
+//
+//
+//
+//    }
+//    else if(e == LV_EVENT_PRESS_LOST || e == LV_EVENT_RELEASED) {
+//        lv_obj_t * img = lv_obj_get_child_back(obj, NULL);
+//        lv_obj_t * txt = lv_obj_get_child(obj, NULL);
+//        lv_anim_t a;
+//        lv_anim_init(&a);
+//        lv_anim_set_time(&a, 100);
+//        lv_anim_set_var(&a, img);
+//
+//        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_x);
+//        lv_anim_set_values(&a, lv_obj_get_x(img), lv_obj_get_width(obj) - lv_obj_get_width(img) - 30);
+//        lv_anim_start(&a);
+//
+//        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_y);
+//        lv_anim_set_values(&a, lv_obj_get_y(img), 30);
+////        lv_anim_start(&a);
+//
+//        lv_anim_set_var(&a, txt);
+//        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_x);
+//        lv_anim_set_values(&a, lv_obj_get_x(txt), 30);
+//        lv_anim_start(&a);
+//
+//        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_y);
+//        lv_anim_set_values(&a, lv_obj_get_y(txt), lv_obj_get_height(obj) - lv_obj_get_height(txt) - 30);
+////        lv_anim_start(&a);
+//    }
 }
 
 
