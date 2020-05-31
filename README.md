@@ -59,6 +59,7 @@ See in [lv_demo_stress](https://github.com/lvgl/lv_examples/tree/master/src/lv_d
 #### Widgets
 Shows how the widgets look like out of the bof using the built-in material theme.  
 See in [lv_demo_widgets](https://github.com/lvgl/lv_examples/tree/master/src/lv_demo_widgets) folder.
+
 <img src="https://github.com/lvgl/lv_examples/blob/master/src/lv_demo_widgets/screenshot1.gif?raw=true" width=600px alt="Basic demo to show the widgets of LVGL">
 
 ## Contributing
