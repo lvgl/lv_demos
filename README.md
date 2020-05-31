@@ -38,17 +38,28 @@ The documentation of the widgets can be found [here](https://docs.lvgl.io/v7/en/
 
 #### Benchmark
 A demo to measure the performance of LVGL or to compare different settings. 
-<img src="https://github.com/lvgl/lv_examples/blob/master/src/lv_demo_benchmark/screenshot1.png?raw=true" width=600px alt="Benchmark demo with LVGL">
+See in [lv_demo_benchmark](https://github.com/lvgl/lv_examples/tree/master/src/lv_demo_benchmark) folder.
+<img src="https://github.com/lvgl/lv_examples/blob/master/src/lv_demo_benchmark/screenshot1.png?raw=true" width=600px alt="Benchmark demo with LVGL embedded GUI library">
 
 #### Keypad and encoder
 LVGL allows you to control the widgets with keypad and/or encoder without touchpad.
-<img src="https://github.com/lvgl/lv_examples/blob/master/src/lv_demo_keypad_encoder/screenshot1.png?raw=true" width=600px alt="Benchmark demo with LVGL">
+See in [lv_demo_keypad_encoder](https://github.com/lvgl/lv_examples/tree/master/src/lv_demo_keypad_encoder) folder.
+<img src="https://github.com/lvgl/lv_examples/blob/master/src/lv_demo_keypad_encoder/screenshot1.gif?raw=true" width=600px alt="Keypad and encoder navigation in LVGL embedded GUI library">
 
 #### Printer
+An printer example created with LVGL. This demo is optmized for 800x480 resoltion and among many others it demonstrates custom theme creation, style transitions and animations. 
+See in [lv_demo_printer](https://github.com/lvgl/lv_examples/tree/master/src/lv_demo_printer) folder.
+<img src="https://github.com/lvgl/lv_examples/blob/master/src/lv_demo_printer/screenshot1.gif?raw=true" width=600px alt="Printer demo with LVGL embedded GUI library">
 
 #### Stress
+A stress test for LVGL. It contains a lot of object creation, deletion, animations, styles usage and so on. It can be used if there is any memory curroption during heavy usage or any memory leaks. 
+See in [lv_demo_stress](https://github.com/lvgl/lv_examples/tree/master/src/lv_demo_stress) folder.
+<img src="https://github.com/lvgl/lv_examples/blob/master/src/lv_demo_stress/screenshot1.gif?raw=true" width=600px alt="Stress tes tfor LVGL">
 
 #### Widgets
+Shows how the widgets look like out of the bof using the built-in material theme.  
+See in [lv_demo_widgets](https://github.com/lvgl/lv_examples/tree/master/src/lv_demo_widgets) folder.
+<img src="https://github.com/lvgl/lv_examples/blob/master/src/lv_demo_widgets/screenshot1.gif?raw=true" width=600px alt="Basic demo to show the widgets of LVGL">
 
 ## Contributing
 For contribution and coding style guidelines, please refer to the file docs/CONTRIBUTNG.md in the main LVGL repo:
