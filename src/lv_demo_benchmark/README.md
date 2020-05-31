@@ -10,6 +10,10 @@ The size an position of the objects during testing are set with a pseudo random 
 
 On to top of the screen the title of the current test step, and the result of the previous step is displayed.
 
+## Run the benchmark
+- In `lv_ex_conf.h` set `LV_USE_DEMO_BENCHMARK 1`
+- After `lv_init()` and initializing the drivers call `lv_demo_benchmark()`
+
 ## Interpret the result
 
 The FPS is measured like this:
@@ -22,6 +26,9 @@ Note that it can result in very high FPS results for simple cases.
 E.g. if some simple rectangles are drawn in 5 ms, the benchmark will tell it's 200 FPS. 
 So it ignores `LV_DISP_REFR_PERIOD` which tells LVGL how often it should refresh the screen. 
 In other words, the benchmark shows the FPS from the pure rendering time.
+
+![LVGL benchmark running](https://github.com/lvgl/lv_examples/blob/master/src/lv_demo_benchmark/screenshot1.png?raw=true)
+
 
 ## Result summary 
 In the end, a table is created to display measured FPS values.
@@ -36,3 +43,5 @@ In the first section of the table, "Slow but common cases", those cases are disp
 
 Below this in the "All cases section" all the results are shown. The < 10 FPS results are shown with red, the >= 10 but < 20 FPS values are displayed with orange.
 
+
+![LVGL benchmark result summary](https://github.com/lvgl/lv_examples/blob/master/src/lv_demo_benchmark/screenshot2.png?raw=true)
