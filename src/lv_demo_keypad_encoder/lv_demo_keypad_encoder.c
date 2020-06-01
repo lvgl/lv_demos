@@ -80,7 +80,7 @@ void lv_demo_keypad_encoder(void)
 #if LV_EX_KEYBOARD
     lv_indev_drv_t kb_drv;
     lv_indev_drv_init(&kb_drv);
-    kb_drv.type = LV_INDEV_TYPE_ENCODER;
+    kb_drv.type = LV_INDEV_TYPE_KEYPAD;
     kb_drv.read_cb = keyboard_read;
     lv_indev_t * kb_indev = lv_indev_drv_register(&kb_drv);
     lv_indev_set_group(kb_indev, g);
