@@ -18,7 +18,7 @@ On to top of the screen the title of the current test step, and the result of th
 
 The FPS is measured like this:
 - load the next step
-- in the display driver's `monitor_cb` accumulate the time-to-render and the number of cycles
+- in the display driver's `monitor_cb` accumulate the time-to-render and the number of cycles 
 - measure for 1 second
 - calculate `FPS = time_sum / render_cnt`
 
@@ -26,6 +26,8 @@ Note that it can result in very high FPS results for simple cases.
 E.g. if some simple rectangles are drawn in 5 ms, the benchmark will tell it's 200 FPS. 
 So it ignores `LV_DISP_REFR_PERIOD` which tells LVGL how often it should refresh the screen. 
 In other words, the benchmark shows the FPS from the pure rendering time.
+
+By default, only the changed areas are refreshed. It means if only a few pixels are changed in 1 ms the benchmark will show 1000 FPS. To measure the performance with full screen refresh uncomment `lv_obj_invalidate(lv_scr_act())` in `monitor_cb()` in `lv_demo_benchmark.c`.
 
 ![LVGL benchmark running](https://github.com/lvgl/lv_examples/blob/master/src/lv_demo_benchmark/screenshot1.png?raw=true)
 
