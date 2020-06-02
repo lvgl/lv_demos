@@ -413,7 +413,7 @@ static void selectors_create(lv_obj_t * parent)
 
     lv_obj_t * cal = lv_calendar_create(parent, NULL);
     lv_obj_set_drag_parent(cal, true);
-    if(disp_size >= LV_DISP_SIZE_MEDIUM) {
+    if(disp_size > LV_DISP_SIZE_MEDIUM) {
         lv_obj_set_size(cal, LV_MATH_MIN(grid_h, grid_w), LV_MATH_MIN(grid_h, grid_w));
     } else {
         lv_obj_set_size(cal, grid_w, grid_w);
