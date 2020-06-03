@@ -79,7 +79,6 @@ static void basic_init(void)
     lv_style_set_text_font(&style_bg, LV_STATE_DEFAULT, theme.font_normal);
 
     lv_style_init(&style_box);
-    lv_style_set_clip_corner(&style_box, LV_STATE_DEFAULT, true);
     lv_style_set_bg_opa(&style_box, LV_STATE_DEFAULT, LV_OPA_COVER);
     lv_style_set_radius(&style_box, LV_STATE_DEFAULT, 10);
     lv_style_set_value_color(&style_box, LV_STATE_DEFAULT, LV_DEMO_PRINTER_BLUE);
