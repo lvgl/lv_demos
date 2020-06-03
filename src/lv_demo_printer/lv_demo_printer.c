@@ -206,7 +206,7 @@ static void home_open(uint32_t delay) {
     lv_obj_fade_in(icon, LV_DEMO_PRINTER_ANIM_TIME, delay + LV_DEMO_PRINTER_ANIM_TIME + LV_DEMO_PRINTER_ANIM_DELAY * 3 - 50);
 
     box = lv_obj_create(lv_scr_act(), NULL);
-    lv_obj_set_size(box, 480, 80);
+    lv_obj_set_size(box, 500, 80);
     lv_obj_align(box, NULL, LV_ALIGN_IN_BOTTOM_LEFT, LV_HOR_RES / 20,
             - LV_HOR_RES / 40);
     lv_obj_set_style_local_value_str(box, LV_CONT_PART_MAIN, LV_STATE_DEFAULT,
@@ -216,37 +216,37 @@ static void home_open(uint32_t delay) {
     lv_demo_printer_anim_in(box, delay);
 
     box = lv_obj_create(lv_scr_act(), NULL);
-    box_w = 220;
+    box_w = 200;
     lv_obj_set_size(box, box_w, 80);
     lv_obj_align(box, NULL, LV_ALIGN_IN_BOTTOM_RIGHT, - LV_HOR_RES / 20,
             - LV_HOR_RES / 40);
 
     lv_obj_t * bar = lv_bar_create(box, NULL);
     lv_obj_set_style_local_bg_color(bar, LV_BAR_PART_INDIC, LV_STATE_DEFAULT,
-            lv_color_hex(0x00ffff));
-    lv_obj_set_size(bar, 27, 50);
-    lv_obj_align_origo(bar, NULL, LV_ALIGN_IN_LEFT_MID, 1 * box_w / 8, 0);
+            lv_color_hex(0x01d3d4));
+    lv_obj_set_size(bar, 25, 50);
+    lv_obj_align_origo(bar, NULL, LV_ALIGN_IN_LEFT_MID, 1 * (box_w - 20) / 8 + 10, 0);
     lv_bar_set_value(bar, 60, LV_ANIM_ON);
 
     bar = lv_bar_create(box, NULL);
     lv_obj_set_style_local_bg_color(bar, LV_BAR_PART_INDIC, LV_STATE_DEFAULT,
-            lv_color_hex(0xff00ff));
-    lv_obj_set_size(bar, 27, 50);
-    lv_obj_align_origo(bar, NULL, LV_ALIGN_IN_LEFT_MID, 3 * box_w / 8, 0);
+            lv_color_hex(0xe600e6));
+    lv_obj_set_size(bar, 25, 50);
+    lv_obj_align_origo(bar, NULL, LV_ALIGN_IN_LEFT_MID, 3 * (box_w - 20) / 8 + 10, 0);
     lv_bar_set_value(bar, 30, LV_ANIM_ON);
 
     bar = lv_bar_create(box, NULL);
     lv_obj_set_style_local_bg_color(bar, LV_BAR_PART_INDIC, LV_STATE_DEFAULT,
-            lv_color_hex(0xffff00));
-    lv_obj_set_size(bar, 27, 50);
-    lv_obj_align_origo(bar, NULL, LV_ALIGN_IN_LEFT_MID, 5 * box_w / 8, 0);
+            lv_color_hex(0xefef01));
+    lv_obj_set_size(bar, 25, 50);
+    lv_obj_align_origo(bar, NULL, LV_ALIGN_IN_LEFT_MID, 5 * (box_w - 20) / 8 + 10, 0);
     lv_bar_set_value(bar, 80, LV_ANIM_ON);
 
     bar = lv_bar_create(box, NULL);
     lv_obj_set_style_local_bg_color(bar, LV_BAR_PART_INDIC, LV_STATE_DEFAULT,
-            LV_COLOR_BLACK);
-    lv_obj_set_size(bar, 27, 50);
-    lv_obj_align_origo(bar, NULL, LV_ALIGN_IN_LEFT_MID, 7 * box_w / 8, 0);
+            lv_color_hex(0x1d1d25));
+    lv_obj_set_size(bar, 25, 50);
+    lv_obj_align_origo(bar, NULL, LV_ALIGN_IN_LEFT_MID, 7 * (box_w - 20) / 8 + 10, 0);
     lv_bar_set_value(bar, 20, LV_ANIM_ON);
 
     delay += LV_DEMO_PRINTER_ANIM_DELAY;
@@ -937,8 +937,8 @@ static lv_obj_t * add_back(lv_event_cb_t event_cb)
 {
     lv_obj_t * btn = lv_btn_create(lv_scr_act(), NULL);
     lv_theme_apply(btn, LV_DEMO_PRINTER_THEME_BTN_BACK);
-    lv_obj_set_size(btn, 60, 60);
-    lv_obj_set_pos(btn, 40, 20);
+    lv_obj_set_size(btn, 80, 80);
+    lv_obj_set_pos(btn, 30, 10);
     lv_obj_set_event_cb(btn, event_cb);
 
     return btn;
