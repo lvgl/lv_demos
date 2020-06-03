@@ -1,4 +1,5 @@
-#include "lvgl/lvgl.h"
+#include "../../../lv_examples.h"
+#if LV_USE_DEMO_PRINTER
 
 #ifndef LV_ATTRIBUTE_MEM_ALIGN
 #define LV_ATTRIBUTE_MEM_ALIGN
@@ -891,4 +892,8 @@ const lv_img_dsc_t lv_demo_printer_img_btn_bg_1 = {
   .header.cf = LV_IMG_CF_TRUE_COLOR,
   .data = lv_demo_printer_img_btn_bg_1_map,
 };
+
+
+#endif /*LV_USE_DEMO_PRINTER*/
+
 
