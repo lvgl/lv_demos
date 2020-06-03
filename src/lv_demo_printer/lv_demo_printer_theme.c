@@ -130,12 +130,12 @@ static void basic_init(void)
     lv_style_set_transition_prop_3(&style_btn_border, LV_STATE_DEFAULT, LV_STYLE_BG_OPA);
 
     lv_style_init(&style_icon);
-    lv_style_set_bg_opa(&style_icon, LV_STATE_DEFAULT, LV_OPA_COVER);
     lv_style_set_text_color(&style_icon, LV_STATE_DEFAULT, LV_DEMO_PRINTER_WHITE);
+    lv_style_set_transform_zoom(&style_icon, LV_STATE_PRESSED, 245);
     lv_style_set_transition_time(&style_icon, LV_STATE_DEFAULT, 100);
     lv_style_set_transition_delay(&style_icon, LV_STATE_PRESSED, 0);
     lv_style_set_transition_delay(&style_icon, LV_STATE_DEFAULT, 70);
-    lv_style_set_transition_prop_1(&style_icon, LV_STATE_DEFAULT, LV_STYLE_BG_COLOR);
+    lv_style_set_transition_prop_1(&style_icon, LV_STATE_DEFAULT, LV_STYLE_TRANSFORM_ZOOM);
 
     lv_style_init(&style_back);
     lv_style_set_value_color(&style_back, LV_STATE_DEFAULT, LV_DEMO_PRINTER_WHITE);
