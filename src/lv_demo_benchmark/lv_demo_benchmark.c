@@ -702,7 +702,7 @@ static void scene_next_task_cb(lv_task_t * task)
         rnd_reset();
         scenes[scene_act].create_cb();
         lv_task_t * t = lv_task_create(scene_next_task_cb, SCENE_TIME, LV_TASK_PRIO_HIGHEST, NULL);
-        lv_task_once(t);
+        lv_task_set_repeat_count(t, 1);
 
     }
     /*Ready*/
