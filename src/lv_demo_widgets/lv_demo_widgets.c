@@ -560,7 +560,7 @@ static void slider_event_cb(lv_obj_t * slider, lv_event_t e)
 
 static void ta_event_cb(lv_obj_t * ta, lv_event_t e)
 {
-    if(e == LV_EVENT_FOCUSED) {
+    if(e == LV_EVENT_RELEASED) {
         if(kb == NULL) {
             lv_obj_set_height(tv, LV_VER_RES / 2);
             kb = lv_keyboard_create(lv_scr_act(), NULL);
