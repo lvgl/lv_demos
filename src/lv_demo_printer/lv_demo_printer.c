@@ -316,7 +316,7 @@ static void scan1_open(const char * btn_txt)
     scan_img_color_refr();
 
     lv_obj_t * next_btn = lv_btn_create(lv_scr_act(), NULL);
-    lv_theme_apply(next_btn, LV_DEMO_PRINTER_THEME_BTN_CIRCLE);
+    lv_theme_apply(next_btn, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_BTN_CIRCLE);
     lv_obj_set_size(next_btn, box_w, 60);
     lv_obj_align(next_btn, scan_img, LV_ALIGN_OUT_RIGHT_BOTTOM, 40, 0);
     if(strcmp(btn_txt, "NEXT") == 0) {
@@ -462,7 +462,7 @@ LV_EVENT_CB_DECLARE(usb_icon_event_cb)
 
          print_cnt = 1;
          lv_obj_t * numbox = lv_cont_create(settings_box, NULL);
-         lv_theme_apply(numbox, LV_DEMO_PRINTER_THEME_BOX_BORDER);
+         lv_theme_apply(numbox, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_BOX_BORDER);
          lv_obj_set_size(numbox, LV_HOR_RES / 7, LV_HOR_RES / 13);
          lv_obj_align(numbox, settings_box, LV_ALIGN_IN_TOP_MID, 0, LV_VER_RES / 10);
          lv_obj_set_style_local_value_str(numbox, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, "Copies");
@@ -499,7 +499,7 @@ LV_EVENT_CB_DECLARE(usb_icon_event_cb)
          lv_obj_set_style_local_value_str(sw, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, "Vertical");
 
          lv_obj_t * print_btn = lv_btn_create(lv_scr_act(), NULL);
-         lv_theme_apply(print_btn, LV_DEMO_PRINTER_THEME_BTN_CIRCLE);
+         lv_theme_apply(print_btn, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_BTN_CIRCLE);
          lv_obj_set_size(print_btn, box_w, 60);
 
          lv_coord_t btn_ofs_y = (lv_obj_get_height(dropdown_box) - lv_obj_get_height(print_btn)) / 2;
@@ -555,7 +555,7 @@ LV_EVENT_CB_DECLARE(print_start_event_cb)
 
         lv_obj_t * txt = lv_label_create(lv_scr_act(), NULL);
         lv_label_set_text(txt, "Printing, please wait...");
-        lv_theme_apply(txt, LV_DEMO_PRINTER_THEME_LABEL_WHITE);
+        lv_theme_apply(txt, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_LABEL_WHITE);
         lv_obj_align(txt, arc, LV_ALIGN_OUT_BOTTOM_MID, 0, 60);
 
         lv_demo_printer_anim_in(arc, delay);
@@ -718,11 +718,11 @@ static void info_bottom_create(const char * dsc, const char * btn_txt, lv_event_
 
     lv_obj_t * txt = lv_label_create(lv_scr_act(), NULL);
     lv_label_set_text(txt, dsc);
-    lv_theme_apply(txt, LV_DEMO_PRINTER_THEME_LABEL_WHITE);
+    lv_theme_apply(txt, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_LABEL_WHITE);
     lv_obj_align(txt, NULL, LV_ALIGN_CENTER, 0, 100);
 
     lv_obj_t * btn = lv_btn_create(lv_scr_act(), NULL);
-    lv_theme_apply(btn, LV_DEMO_PRINTER_THEME_BTN_BORDER);
+    lv_theme_apply(btn, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_BTN_BORDER);
     lv_obj_set_size(btn, LV_DEMO_PRINTER_BTN_W, LV_DEMO_PRINTER_BTN_H);
     lv_obj_align(btn, txt, LV_ALIGN_OUT_BOTTOM_MID, 0, 60);
     lv_obj_set_style_local_value_str(btn, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, btn_txt);
@@ -801,7 +801,7 @@ LV_EVENT_CB_DECLARE(scan_next_event_cb)
         lv_obj_align(settings_box, NULL, LV_ALIGN_IN_TOP_RIGHT, -40, 100);
 
         lv_obj_t * numbox = lv_cont_create(settings_box, NULL);
-        lv_theme_apply(numbox, LV_DEMO_PRINTER_THEME_BOX_BORDER);
+        lv_theme_apply(numbox, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_BOX_BORDER);
         lv_obj_set_size(numbox, LV_HOR_RES / 7, LV_HOR_RES / 13);
         lv_obj_align(numbox, settings_box, LV_ALIGN_IN_TOP_MID, 0, LV_VER_RES / 10);
         lv_obj_set_style_local_value_str(numbox, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, "Copies");
@@ -839,7 +839,7 @@ LV_EVENT_CB_DECLARE(scan_next_event_cb)
         lv_obj_set_style_local_value_str(sw, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, "Vertical");
 
         lv_obj_t * print_btn = lv_btn_create(lv_scr_act(), NULL);
-        lv_theme_apply(print_btn, LV_DEMO_PRINTER_THEME_BTN_CIRCLE);
+        lv_theme_apply(print_btn, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_BTN_CIRCLE);
         lv_obj_set_size(print_btn, box_w, 60);
         lv_obj_set_event_cb(print_btn, print_start_event_cb);
         lv_coord_t btn_ofs_y = (lv_obj_get_height(dropdown_box) - lv_obj_get_height(print_btn)) / 2;
@@ -906,7 +906,7 @@ static lv_obj_t * add_icon(lv_obj_t * parent, const void * src_bg, const void * 
 
     lv_obj_t * bg = lv_img_create(parent, NULL);
     lv_obj_set_click(bg, true);
-    lv_theme_apply(bg, LV_DEMO_PRINTER_THEME_ICON);
+    lv_theme_apply(bg, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_ICON);
     lv_img_set_src(bg, src_bg);
     lv_img_set_antialias(bg, false);
 
@@ -926,7 +926,7 @@ static lv_obj_t * add_icon(lv_obj_t * parent, const void * src_bg, const void * 
 static lv_obj_t * add_title(const char * txt)
 {
     lv_obj_t * title = lv_label_create(lv_scr_act(), NULL);
-    lv_theme_apply(title, LV_DEMO_PRINTER_THEME_TITLE);
+    lv_theme_apply(title, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_TITLE);
     lv_label_set_text(title, txt);
     lv_obj_align(title, NULL, LV_ALIGN_IN_TOP_MID, 0,
             LV_DEMO_PRINTER_TITLE_PAD);
@@ -936,7 +936,7 @@ static lv_obj_t * add_title(const char * txt)
 static lv_obj_t * add_back(lv_event_cb_t event_cb)
 {
     lv_obj_t * btn = lv_btn_create(lv_scr_act(), NULL);
-    lv_theme_apply(btn, LV_DEMO_PRINTER_THEME_BTN_BACK);
+    lv_theme_apply(btn, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_BTN_BACK);
     lv_obj_set_size(btn, 80, 80);
     lv_obj_set_pos(btn, 30, 10);
     lv_obj_set_event_cb(btn, event_cb);
@@ -994,8 +994,9 @@ static lv_anim_value_t anim_path_triangle(const lv_anim_path_t * path, const lv_
 {
     /*Calculate the current step*/
     uint32_t step;
+    lv_anim_value_t ret = 0;
     if(a->time == a->act_time) {
-        return a->end;
+        ret = (lv_anim_value_t)a->end;
     }
     else {
         if(a->act_time < a->time / 2) {
@@ -1005,7 +1006,7 @@ static lv_anim_value_t anim_path_triangle(const lv_anim_path_t * path, const lv_
             new_value = new_value >> 10;
             new_value += a->start;
 
-            return (lv_anim_value_t)new_value;
+            ret = (lv_anim_value_t)new_value;
         } else {
             uint32_t t = a->act_time - a->time / 2;
             step = ((int32_t)t * 1024) / (a->time / 2);
@@ -1014,11 +1015,11 @@ static lv_anim_value_t anim_path_triangle(const lv_anim_path_t * path, const lv_
             new_value = new_value >> 10;
             new_value += LV_DEMO_PRINTER_BG_SMALL;
 
-            return (lv_anim_value_t)new_value;
+            ret = (lv_anim_value_t)new_value;
         }
     }
 
-    return 0;   /*Should be never reached*/
+    return ret;
 }
 
 
