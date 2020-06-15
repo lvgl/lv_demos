@@ -23,7 +23,7 @@ void lv_ex_calendar_1(void)
     /*Make the date number smaller to be sure they fit into their area*/
     lv_obj_set_style_local_text_font(calendar, LV_CALENDAR_PART_DATE, LV_STATE_DEFAULT, lv_theme_get_font_small());
 
-    /*Set the today*/
+    /*Set today's date*/
     lv_calendar_date_t today;
     today.year = 2018;
     today.month = 10;
@@ -32,21 +32,21 @@ void lv_ex_calendar_1(void)
     lv_calendar_set_today_date(calendar, &today);
     lv_calendar_set_showed_date(calendar, &today);
 
-    /*Highlight some days*/
-    static lv_calendar_date_t highlihted_days[3];       /*Only it's pointer will be saved so should be static*/
-    highlihted_days[0].year = 2018;
-    highlihted_days[0].month = 10;
-    highlihted_days[0].day = 6;
+    /*Highlight a few days*/
+    static lv_calendar_date_t highlighted_days[3];       /*Only its pointer will be saved so should be static*/
+    highlighted_days[0].year = 2018;
+    highlighted_days[0].month = 10;
+    highlighted_days[0].day = 6;
 
-    highlihted_days[1].year = 2018;
-    highlihted_days[1].month = 10;
-    highlihted_days[1].day = 11;
+    highlighted_days[1].year = 2018;
+    highlighted_days[1].month = 10;
+    highlighted_days[1].day = 11;
 
-    highlihted_days[2].year = 2018;
-    highlihted_days[2].month = 11;
-    highlihted_days[2].day = 22;
+    highlighted_days[2].year = 2018;
+    highlighted_days[2].month = 11;
+    highlighted_days[2].day = 22;
 
-    lv_calendar_set_highlighted_dates(calendar, highlihted_days, 3);
+    lv_calendar_set_highlighted_dates(calendar, highlighted_days, 3);
 }
 
 #endif

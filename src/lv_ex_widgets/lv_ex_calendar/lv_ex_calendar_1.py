@@ -9,7 +9,7 @@ calendar.set_size(230, 230)
 calendar.align(None, lv.ALIGN.CENTER, 0, 0)
 calendar.set_event_cb(event_handler)
 
-# Set the today
+# Set today's date
 today = lv.calendar_date_t()
 today.year = 2018
 today.month = 10
