@@ -5,7 +5,7 @@ Simple Text area
 """""""""""""""""""""""
 
 .. image:: /lv_examples/src/lv_ex_widgets/lv_ex_textarea/lv_ex_textarea_1.*
-  :alt: Text area example in LittlevGL
+  :alt: Text area example in LVGL
 
 .. container:: toggle
 
@@ -17,11 +17,11 @@ Simple Text area
       :language: c
       
       
-Text are with password field 
+Text area with password field 
 """""""""""""""""""""""""""""
 
 .. image:: /lv_examples/src/lv_ex_widgets/lv_ex_textarea/lv_ex_textarea_2.*
-  :alt: Form with password field in LittlevGL
+  :alt: Form with password field in LVGL
 
 .. container:: toggle
 
@@ -30,6 +30,21 @@ Text are with password field
       code
 
     .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_textarea/lv_ex_textarea_2.c
+      :language: c
+      
+Text auto-formatting
+"""""""""""""""""""""""""""""
+
+.. image:: /lv_examples/src/lv_ex_widgets/lv_ex_textarea/lv_ex_textarea_3.*
+  :alt: Automatically format the text a Text area with LVGL
+
+.. container:: toggle
+
+    .. container:: header
+    
+      code
+
+    .. literalinclude:: /lv_examples/src/lv_ex_widgets/lv_ex_textarea/lv_ex_textarea_3.c
       :language: c
 
 MicroPython
