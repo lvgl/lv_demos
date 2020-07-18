@@ -36,7 +36,7 @@ void lv_ex_get_started_2(void)
     /*Make the button smaller when pressed*/
     lv_style_set_transform_height(&style_btn, LV_STATE_PRESSED, -5);
     lv_style_set_transform_width(&style_btn, LV_STATE_PRESSED, -10);
-
+#if LV_USE_ANIMATION
     /*Add a transition to the size change*/
     static lv_anim_path_t path;
     lv_anim_path_init(&path);
@@ -46,7 +46,7 @@ void lv_ex_get_started_2(void)
     lv_style_set_transition_prop_2(&style_btn, LV_STATE_DEFAULT, LV_STYLE_TRANSFORM_WIDTH);
     lv_style_set_transition_time(&style_btn, LV_STATE_DEFAULT, 300);
     lv_style_set_transition_path(&style_btn, LV_STATE_DEFAULT, &path);
-
+#endif
 
     /*Create a red style. Change only some colors.*/
     lv_style_init(&style_btn_red);
@@ -55,7 +55,7 @@ void lv_ex_get_started_2(void)
     lv_style_set_bg_color(&style_btn_red, LV_STATE_PRESSED, LV_COLOR_MAROON);
     lv_style_set_bg_grad_color(&style_btn_red, LV_STATE_PRESSED, LV_COLOR_RED);
     lv_style_set_text_color(&style_btn_red, LV_STATE_DEFAULT, LV_COLOR_WHITE);
-
+#if LV_USE_BTN
     /*Create buttons and use the new styles*/
     lv_obj_t * btn = lv_btn_create(lv_scr_act(), NULL);     /*Add a button the current screen*/
     lv_obj_set_pos(btn, 10, 10);                            /*Set its position*/
@@ -77,6 +77,7 @@ void lv_ex_get_started_2(void)
 
     label = lv_label_create(btn2, NULL);          /*Add a label to the button*/
     lv_label_set_text(label, "Button 2");                     /*Set the labels text*/
+#endif
 }
 
 
