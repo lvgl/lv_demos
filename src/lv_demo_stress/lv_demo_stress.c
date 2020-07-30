@@ -8,6 +8,7 @@
  *********************/
 #include "../../lv_examples.h"
 
+#if LV_USE_DEMO_STRESS
 /*********************
  *      DEFINES
  *********************/
@@ -473,3 +474,4 @@ static void auto_del(lv_obj_t * obj, uint32_t delay)
 
 }
 
+#endif /* LV_USE_DEMO_STRESS */
