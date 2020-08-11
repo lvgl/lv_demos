@@ -31,7 +31,7 @@ static void kb_event_cb(lv_obj_t * ta, lv_event_t e);
 static void bar_anim(lv_task_t * t);
 static void arc_anim(lv_obj_t * arc, lv_anim_value_t value);
 static void linemeter_anim(lv_obj_t * linemeter, lv_anim_value_t value);
-static void gauge_anim(lv_obj_t * gauge, lv_anim_value_t value);;
+static void gauge_anim(lv_obj_t * gauge, lv_anim_value_t value);
 static void table_event_cb(lv_obj_t * table, lv_event_t e);
 #if LV_USE_THEME_MATERIAL
 static void color_chg_event_cb(lv_obj_t * sw, lv_event_t e);
@@ -263,6 +263,7 @@ static void visuals_create(lv_obj_t * parent)
 
     lv_obj_t * chart2 = lv_chart_create(parent, chart);
     lv_chart_set_type(chart2, LV_CHART_TYPE_COLUMN);
+    lv_obj_set_style_local_value_str(chart2, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, "Column chart");
 
     s1 = lv_chart_add_series(chart2, LV_THEME_DEFAULT_COLOR_PRIMARY);
     s2 = lv_chart_add_series(chart2, LV_THEME_DEFAULT_COLOR_SECONDARY);
