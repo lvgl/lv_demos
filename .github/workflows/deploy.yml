@@ -23,6 +23,8 @@ jobs:
         with:
           version: ${{env.EM_VERSION}}
           actions-cache-folder: ${{env.EM_CACHE_FOLDER}}
+      - name: Generate examples list
+        run: scripts/genexamplestxt.sh > scripts/examples.txt
       - name: Build demo
         run: scripts/build_all_examples.sh ${{ env.GITHUB_SHA }}
       - name: Remove builder folder
