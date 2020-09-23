@@ -23,11 +23,13 @@ void lv_ex_style_9(void)
     lv_style_set_image_recolor(&style, LV_STATE_DEFAULT, LV_COLOR_BLUE);
     lv_style_set_image_recolor_opa(&style, LV_STATE_DEFAULT, LV_OPA_50);
 
+#if LV_USE_IMG
     /*Create an object with the new style*/
     lv_obj_t * obj = lv_img_create(lv_scr_act(), NULL);
     lv_obj_add_style(obj, LV_IMG_PART_MAIN, &style);
     LV_IMG_DECLARE(img_cogwheel_argb);
     lv_img_set_src(obj, &img_cogwheel_argb);
     lv_obj_align(obj, NULL, LV_ALIGN_CENTER, 0, 0);
+#endif
 }
 

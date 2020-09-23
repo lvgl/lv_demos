@@ -75,7 +75,7 @@ struct {
 LV_EVENT_CB_DECLARE(dd_enc)
 {
     if(e == LV_EVENT_VALUE_CHANGED) {
-        printf("chg\n");
+        /*printf("chg\n");*/
     }
 }
 

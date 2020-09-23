@@ -1,7 +1,7 @@
 # Printer demo
 
 ## Overview
-An printer example created with LVGL. This demo is optmized for 800x480 resoltion and among many others it demonstrates custom theme creation, style transitions and animations. 
+A printer example created with LVGL. This demo is optmized for 800x480 resolution and among many others it demonstrates custom theme creation, style transitions and animations. 
 
 The demo uses some images with 32 bit color depth they require ~1.6 MB flash. With 16 bit color depth ~900KB is required for the images.
 
