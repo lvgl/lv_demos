@@ -9,7 +9,7 @@ Here you can find examples and demos for LVGL embedded GUI library.
 
 Similarly to `lv_conf.h` there is a configuration file for the examples too. It is called `lv_ex_conf.h`.
 1. Copy `lv_examples/lv_ex_conf_templ.h` next to `lv_examples` directory
-2. Rename is to `lv_ex_conf.h`
+2. Rename it to `lv_ex_conf.h`
 3. Change the first `#if 0` to `#if 1` to enable the file's content
 4. Enable or Disable modules
 
