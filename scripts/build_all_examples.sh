@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 mkdir -p objs
 cd objs
 echo "-- Updating builder ..."
