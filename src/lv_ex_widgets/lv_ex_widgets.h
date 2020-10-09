@@ -43,6 +43,7 @@ void lv_ex_cpicker_2(void);
 void lv_ex_dropdown_1(void);
 void lv_ex_dropdown_2(void);
 void lv_ex_gauge_1(void);
+void lv_ex_gauge_2(void);  
 void lv_ex_img_1(void);
 void lv_ex_img_2(void);
 void lv_ex_img_3(void);
