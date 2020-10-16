@@ -29,7 +29,6 @@ void lv_ex_label_3(void)
     /* Create a label in the bottom.
      * Enable auto realign. */
     labels[2] = lv_label_create(lv_scr_act(), NULL);
-    lv_obj_set_auto_realign(labels[2], true);
     lv_obj_align(labels[2], NULL, LV_ALIGN_IN_BOTTOM_MID, 0, -5);
     lv_label_set_align(labels[2], LV_LABEL_ALIGN_CENTER);
 
@@ -46,8 +45,9 @@ static void text_changer(lv_task_t * t)
     lv_label_set_text(labels[1], texts[i]);
     lv_label_set_text(labels[2], texts[i]);
 
-    /*Manually realaign `labels[1]`*/
+    /*Manually realaign `labels`*/
     lv_obj_align(labels[1], NULL, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_align(labels[2], NULL, LV_ALIGN_IN_BOTTOM_MID, 0, -5);
 
     i++;
     if(texts[i] == NULL) i = 0;

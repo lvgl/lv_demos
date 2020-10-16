@@ -14,7 +14,6 @@ void lv_ex_style_11(void)
     lv_style_set_bg_color(&style, LV_STATE_DEFAULT, LV_COLOR_SILVER);
 
     /*Set some paddings*/
-    lv_style_set_pad_inner(&style, LV_STATE_DEFAULT, 20);
     lv_style_set_pad_top(&style, LV_STATE_DEFAULT, 20);
     lv_style_set_pad_left(&style, LV_STATE_DEFAULT, 5);
     lv_style_set_pad_right(&style, LV_STATE_DEFAULT, 5);
