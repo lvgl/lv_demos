@@ -37,9 +37,6 @@ void lv_ex_canvas_2(void);
 void lv_ex_checkbox_1(void);
 void lv_ex_chart_1(void);
 void lv_ex_chart_2(void);
-void lv_ex_cont_1(void);
-void lv_ex_cpicker_1(void);
-void lv_ex_cpicker_2(void);
 void lv_ex_dropdown_1(void);
 void lv_ex_dropdown_2(void);
 void lv_ex_gauge_1(void);
@@ -58,12 +55,10 @@ void lv_ex_linemeter_1(void);
 void lv_ex_msgbox_1(void);
 void lv_ex_msgbox_2(void);
 void lv_ex_obj_1(void);
-void lv_ex_page_1(void);
 void lv_ex_spinner_1(void);
 void lv_ex_roller_1(void);
 void lv_ex_slider_1(void);
 void lv_ex_slider_2(void);
-void lv_ex_spinbox_1(void);
 void lv_ex_switch_1(void);
 void lv_ex_textarea_1(void);
 void lv_ex_textarea_2(void);
@@ -71,9 +66,6 @@ void lv_ex_textarea_3(void);
 void lv_ex_objmask_1(void);
 void lv_ex_objmask_2(void);
 void lv_ex_table_1(void);
-void lv_ex_tabview_1(void);
-void lv_ex_tileview_1(void);
-void lv_ex_win_1(void);
 
 /**********************
  *      MACROS

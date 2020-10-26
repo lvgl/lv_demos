@@ -31,6 +31,10 @@ extern "C" {
 #include "../lv_ex_conf.h"
 #endif
 
+#if LV_USE_COMPONENT_EXAMPLES
+#include "../lv_components/lv_components.h"
+#endif
+
 #include "src/lv_ex_get_started/lv_ex_get_started.h"
 #include "src/lv_ex_style/lv_ex_style.h"
 #include "src/lv_ex_widgets/lv_ex_widgets.h"
@@ -40,11 +44,12 @@ extern "C" {
 #include "src/lv_demo_keypad_encoder/lv_demo_keypad_encoder.h"
 #include "src/lv_demo_printer/lv_demo_printer.h"
 
+
 /*********************
  *      DEFINES
  *********************/
 /*Test  lvgl version*/
-#if LV_VERSION_CHECK(7, 3, 1) == 0
+#if LV_VERSION_CHECK(8, 0, 0) == 0
 #error "lv_examples: Wrong lvgl version"
 #endif
 
