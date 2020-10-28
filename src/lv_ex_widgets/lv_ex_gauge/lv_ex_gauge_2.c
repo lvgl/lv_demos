@@ -18,6 +18,8 @@ void lv_ex_gauge_2(void)
     lv_obj_set_size(gauge1, 200, 200);
     lv_obj_align(gauge1, NULL, LV_ALIGN_CENTER, 0, 0);
     lv_gauge_set_needle_img(gauge1, &img_hand, 4, 4);
+    /*Allow recoloring of the images according to the needles' color*/
+    lv_obj_set_style_local_image_recolor_opa(gauge1, LV_GAUGE_PART_NEEDLE, LV_STATE_DEFAULT, LV_OPA_COVER);
 
     /*Set the values*/
     lv_gauge_set_value(gauge1, 0, 10);
