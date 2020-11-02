@@ -15,7 +15,7 @@ void lv_ex_list_1(void)
     lv_obj_t * list1 = lv_list_create(lv_scr_act());
     lv_obj_set_size(list1, 160, 200);
     lv_obj_align(list1, NULL, LV_ALIGN_CENTER, 0, 0);
-    lv_obj_set_flex_cont(list1, LV_FLEX_DIR_NONE, LV_FLEX_START);
+    lv_obj_set_flex_dir(list1, LV_FLEX_DIR_NONE);
 
 
     printf("start\n");
@@ -29,7 +29,7 @@ void lv_ex_list_1(void)
 
     }
 
-    lv_obj_set_flex_cont(list1, LV_FLEX_DIR_COLUMN, LV_FLEX_START);
+    lv_obj_set_flex_dir(list1, LV_FLEX_DIR_COLUMN);
     printf("time: %d\n", lv_tick_elaps(t));
 
 
