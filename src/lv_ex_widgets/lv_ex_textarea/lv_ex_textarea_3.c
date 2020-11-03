@@ -20,10 +20,29 @@ void lv_ex_textarea_3(void)
     lv_textarea_set_one_line(ta, true);
     lv_textarea_set_text(ta, "");
 
+
+    /*Create a custom map for the keyboard*/
+
+    static const char * kb_map[] = {
+              "1","2", "3", " ","\n",
+              "4", "5", "6", " ", "\n",
+              "7", "8", "9", LV_SYMBOL_BACKSPACE ,"\n",
+              "0",LV_SYMBOL_LEFT,LV_SYMBOL_RIGHT," ",""
+    };
+
+    static const lv_btnmatrix_ctrl_t kb_ctrl[] = {
+           LV_BTNMATRIX_CTRL_NO_REPEAT, LV_BTNMATRIX_CTRL_NO_REPEAT, LV_BTNMATRIX_CTRL_NO_REPEAT, LV_BTNMATRIX_CTRL_HIDDEN,
+           LV_BTNMATRIX_CTRL_NO_REPEAT, LV_BTNMATRIX_CTRL_NO_REPEAT, LV_BTNMATRIX_CTRL_NO_REPEAT, LV_BTNMATRIX_CTRL_HIDDEN,
+           LV_BTNMATRIX_CTRL_NO_REPEAT, LV_BTNMATRIX_CTRL_NO_REPEAT, LV_BTNMATRIX_CTRL_NO_REPEAT, LV_BTNMATRIX_CTRL_NO_REPEAT,
+           LV_BTNMATRIX_CTRL_NO_REPEAT, LV_BTNMATRIX_CTRL_NO_REPEAT, LV_BTNMATRIX_CTRL_NO_REPEAT, LV_BTNMATRIX_CTRL_HIDDEN,
+    };
+
     /* Create a keyboard*/
     kb = lv_keyboard_create(lv_scr_act(), NULL);
     lv_obj_set_size(kb,  LV_HOR_RES, LV_VER_RES / 2);
     lv_keyboard_set_mode(kb, LV_KEYBOARD_MODE_NUM);
+    lv_keyboard_set_map(kb, LV_KEYBOARD_MODE_NUM, kb_map);
+    lv_keyboard_set_ctrl_map(kb, LV_KEYBOARD_MODE_NUM,kb_ctrl);
     lv_keyboard_set_textarea(kb, ta);
 }
 
@@ -31,7 +50,10 @@ static void ta_event_cb(lv_obj_t * ta, lv_event_t event)
 {
     if(event == LV_EVENT_VALUE_CHANGED) {
         const char * txt = lv_textarea_get_text(ta);
-        if(txt[0] >= '0' && txt[0] <= '9' &&
+        if(txt[3] == ':') {
+            lv_textarea_del_char(ta);
+        }
+        else if(txt[0] >= '0' && txt[0] <= '9' &&
             txt[1] >= '0' && txt[1] <= '9' &&
             txt[2] != ':')
         {
