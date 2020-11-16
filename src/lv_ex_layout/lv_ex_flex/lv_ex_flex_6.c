@@ -9,7 +9,7 @@ void lv_ex_flex_6(void)
     lv_obj_set_base_dir(cont, LV_BIDI_DIR_RTL);
     lv_obj_set_size(cont, 300, 220);
     lv_obj_align(cont, NULL, LV_ALIGN_CENTER, 0, 0);
-    lv_obj_set_flex_dir(cont, LV_FLEX_DIR_COLUMN | LV_FLEX_WRAP);
+    lv_obj_set_flex_dir(cont, LV_FLEX_DIR_COLUMN_WRAP);
 
     uint32_t i;
     for(i = 0; i < 20; i++) {

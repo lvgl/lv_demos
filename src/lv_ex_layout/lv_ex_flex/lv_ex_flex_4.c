@@ -8,7 +8,7 @@ void lv_ex_flex_4(void)
     lv_obj_t * cont = lv_obj_create(lv_scr_act(), NULL);
     lv_obj_set_size(cont, 300, 220);
     lv_obj_align(cont, NULL, LV_ALIGN_CENTER, 0, 0);
-    lv_obj_set_flex_dir(cont, LV_FLEX_DIR_COLUMN | LV_FLEX_REVERSE | LV_FLEX_WRAP);
+    lv_obj_set_flex_dir(cont, LV_FLEX_DIR_COLUMN_WRAP_REVERSE);
     lv_obj_set_flex_gap(cont, 10);
 
     uint32_t i;
