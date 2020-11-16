@@ -13,6 +13,7 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
+#include "../../lv_examples.h"
 
 /*********************
  *      DEFINES
@@ -25,6 +26,7 @@ extern "C" {
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
+lv_obj_t * lv_demo_music_list_create(lv_obj_t * parent);
 
 /**********************
  *      MACROS
