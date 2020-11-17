@@ -2,7 +2,6 @@ name: Build and Deploy
 env:
   EM_VERSION: 1.39.18
   EM_CACHE_FOLDER: 'emsdk-cache'
-  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 on:
   push:
     branches: [ master ]
@@ -21,7 +20,7 @@ jobs:
         with:
           path: ${{env.EM_CACHE_FOLDER}}
           key: ${{env.EM_VERSION}}-${{ runner.os }}
-      - uses: mymindstorm/setup-emsdk@v6
+      - uses: mymindstorm/setup-emsdk@v7
         with:
           version: ${{env.EM_VERSION}}
           actions-cache-folder: ${{env.EM_CACHE_FOLDER}}
@@ -32,7 +31,7 @@ jobs:
       - name: Remove builder folder
         run: rm -rf objs/builder
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@3.6.1
+        uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMMIT_MESSAGE: ${{ env.GITHUB_SHA }}
