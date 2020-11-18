@@ -17,9 +17,8 @@ void lv_ex_objmask_1(void)
     lv_label_set_text(label, "This label will be masked out. See how it works.");
     lv_obj_align(label, NULL, LV_ALIGN_IN_TOP_MID, 0, 20);
 
-    lv_obj_t * cont = lv_cont_create(om, NULL);
+    lv_obj_t * cont = lv_obj_create(om, NULL);
     lv_obj_set_size(cont, 180, 100);
-    lv_obj_set_drag(cont, true);
     lv_obj_align(cont, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, -10);
 
     lv_obj_t * btn = lv_btn_create(cont, NULL);

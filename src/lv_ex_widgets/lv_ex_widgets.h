@@ -61,8 +61,6 @@ void lv_ex_slider_1(void);
 void lv_ex_slider_2(void);
 void lv_ex_switch_1(void);
 void lv_ex_textarea_1(void);
-void lv_ex_textarea_2(void);
-void lv_ex_textarea_3(void);  
 void lv_ex_objmask_1(void);
 void lv_ex_objmask_2(void);
 void lv_ex_table_1(void);
