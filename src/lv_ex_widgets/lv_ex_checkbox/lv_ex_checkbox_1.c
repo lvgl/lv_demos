@@ -5,7 +5,7 @@
 static void event_handler(lv_obj_t * obj, lv_event_t event)
 {
     if(event == LV_EVENT_VALUE_CHANGED) {
-        printf("State: %s\n", lv_checkbox_is_checked(obj) ? "Checked" : "Unchecked");
+        printf("State: %s\n", lv_obj_get_state(obj) & LV_STATE_CHECKED ? "Checked" : "Unchecked");
     }
 }
 
