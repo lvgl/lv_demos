@@ -7,7 +7,7 @@
  *      INCLUDES
  *********************/
 #include "lv_demo_music_main.h"
-#include "spectrum.h"
+#include "assets/spectrum.h"
 
 /*********************
  *      DEFINES
@@ -53,69 +53,6 @@ static lv_font_t * font_medium;
 static lv_font_t * font_large;
 static uint32_t track_id;
 static bool playing;
-static const char * title_list[] = {
-    "Waiting for true love",
-    "Title 2",
-    "Title 3",
-    "Title 4",
-    "Title 5",
-    "Title 6",
-    "Title 7",
-    "Title 8",
-    "Title 9",
-    "Title 10",
-    "Title 11",
-    "Title 12",
-    "Title 13",
-};
-
-static const char * artist_list[] = {
-    "John Smith",
-    "Artist 2",
-    "Artist 3",
-    "Artist 4",
-    "Artist 5",
-    "Artist 6",
-    "Artist 7",
-    "Artist 8",
-    "Artist 9",
-    "Artist 10",
-    "Artist 11",
-    "Artist 12",
-    "Artist 13",
-};
-
-static const char * genre_list[] = {
-    "Pop • 2015",
-    "Metal • 2015",
-    "Metal • 2015",
-    "Metal • 2015",
-    "Metal • 2015",
-    "Metal • 2015",
-    "Metal • 2015",
-    "Metal • 2015",
-    "Metal • 2015",
-    "Metal • 2015",
-    "Metal • 2015",
-    "Metal • 2015",
-    "Metal • 2015",
-};
-
-static const uint32_t time_list[] = {
-    2*60 + 34,
-    2*60 + 34,
-    2*60 + 34,
-    2*60 + 34,
-    2*60 + 34,
-    2*60 + 34,
-    2*60 + 34,
-    2*60 + 34,
-    2*60 + 34,
-    2*60 + 34,
-    2*60 + 34,
-    2*60 + 34,
-    2*60 + 34,
-};
 
 /**********************
  *      MACROS
@@ -159,26 +96,32 @@ lv_obj_t * lv_demo_music_main_create(lv_obj_t * parent)
     /*Create the titles*/
     lv_obj_t * title_box = lv_cont_create(main_cont, NULL);
     lv_obj_clean_style_list(title_box, LV_CONT_PART_MAIN);
-    lv_cont_set_fit2(title_box, LV_FIT_PARENT, LV_FIT_TIGHT);
     lv_cont_set_layout(title_box, LV_LAYOUT_COLUMN_MID);
+    lv_cont_set_fit2(title_box, LV_FIT_NONE, LV_FIT_TIGHT);
+#if LV_DEMO_MUSIC_LANDSCAPE
+    lv_obj_set_width(title_box, LV_HOR_RES / 2);
+    lv_obj_align(title_box, NULL, LV_ALIGN_IN_TOP_LEFT, 0, 15);
+#else
+    lv_obj_set_width(title_box, LV_HOR_RES - 20);
     lv_obj_align(title_box, NULL, LV_ALIGN_IN_TOP_MID, 0, 15);
+#endif
 
     title_obj = lv_label_create(title_box, NULL);
     lv_obj_set_style_local_text_font(title_obj, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, font_large);
     lv_obj_set_style_local_text_color(title_obj, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x504d6d));
     lv_obj_set_style_local_margin_top(title_obj, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, 10);
-    lv_label_set_text(title_obj, title_list[track_id]);
+    lv_label_set_text(title_obj, _lv_demo_music_get_title(track_id));
 
     artist_obj = lv_label_create(title_box, NULL);
     lv_obj_set_style_local_text_font(artist_obj, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, font_small);
     lv_obj_set_style_local_text_color(artist_obj, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x504d6d));
     lv_obj_set_style_local_margin_top(artist_obj, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, 5);
-    lv_label_set_text(artist_obj, artist_list[track_id]);
+    lv_label_set_text(artist_obj, _lv_demo_music_get_artist(track_id));
 
     genre_obj = lv_label_create(title_box, NULL);
     lv_obj_set_style_local_text_font(genre_obj, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, font_small);
     lv_obj_set_style_local_text_color(genre_obj, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x8a86b8));
-    lv_label_set_text(genre_obj, genre_list[track_id]);
+    lv_label_set_text(genre_obj, _lv_demo_music_get_genre(track_id));
 
     /*Create the icons*/
     lv_obj_t * icon_box = lv_cont_create(main_cont, NULL);
@@ -201,27 +144,46 @@ lv_obj_t * lv_demo_music_main_create(lv_obj_t * parent)
     icon = lv_img_create(icon_box, NULL);
     lv_img_set_src(icon, &img_lv_demo_music_icon_4);
 
+#if LV_DEMO_MUSIC_LANDSCAPE
+    lv_obj_align(icon_box, title_box, LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
+#else
     lv_obj_align(icon_box, NULL, LV_ALIGN_IN_TOP_MID, 0, 100);
+#endif
 
     /*Create the spectrum visualizer*/
     spectrum_obj = lv_obj_create(main_cont, NULL);
-    lv_obj_set_size(spectrum_obj, lv_obj_get_width(lv_scr_act()), 300);
     lv_obj_set_design_cb(spectrum_obj, spectrum_design_cb);
+    lv_obj_set_click(spectrum_obj, false);
+#if LV_DEMO_MUSIC_LANDSCAPE
+    lv_obj_set_size(spectrum_obj, LV_HOR_RES / 2, LV_VER_RES);
+    lv_obj_align(spectrum_obj, NULL, LV_ALIGN_IN_RIGHT_MID, 0, -10);
+#else
+    lv_obj_set_size(spectrum_obj, lv_obj_get_width(lv_scr_act()), 300);
     lv_obj_align(spectrum_obj, NULL, LV_ALIGN_CENTER, 0, -10);
+#endif
 
     LV_IMG_DECLARE(img_lv_demo_music_cover_bg);
     lv_obj_t * cover_bg = lv_img_create(spectrum_obj, NULL);
     lv_img_set_src(cover_bg, &img_lv_demo_music_cover_bg);
+#if LV_DEMO_MUSIC_LANDSCAPE
     lv_obj_align(cover_bg, NULL, LV_ALIGN_CENTER, 0, 0);
+#else
+    lv_obj_align(cover_bg, NULL, LV_ALIGN_CENTER, 0, 0);
+#endif
 
     album_img_obj = album_img_create(spectrum_obj);
 
     /*Create the control box*/
     lv_obj_t * ctrl_box = lv_cont_create(main_cont, NULL);
-    lv_obj_set_size(ctrl_box, LV_HOR_RES - 10, 140);
-    lv_obj_align(ctrl_box, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, -15);
     lv_obj_clean_style_list(ctrl_box, LV_CONT_PART_MAIN);
     lv_obj_set_click(ctrl_box, false);
+#if LV_DEMO_MUSIC_LANDSCAPE
+    lv_obj_set_size(ctrl_box, (LV_HOR_RES / 2) - 20, 140);
+    lv_obj_align(ctrl_box, NULL, LV_ALIGN_IN_BOTTOM_LEFT, 10, -15);
+#else
+    lv_obj_set_size(ctrl_box, LV_HOR_RES - 10, 140);
+    lv_obj_align(ctrl_box, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, -15);
+#endif
 
     LV_IMG_DECLARE(img_lv_demo_music_btn_loop);
     LV_IMG_DECLARE(img_lv_demo_music_btn_rnd);
@@ -256,8 +218,14 @@ lv_obj_t * lv_demo_music_main_create(lv_obj_t * parent)
     LV_IMG_DECLARE(img_lv_demo_music_slider_knob);
     slider_obj = lv_slider_create(ctrl_box, NULL);
     lv_slider_set_anim_time(slider_obj, 1000);
+
+#if LV_DEMO_MUSIC_LANDSCAPE
+    lv_obj_set_size(slider_obj, lv_obj_get_width(ctrl_box) - 50, 3);
+    lv_obj_align(slider_obj, NULL, LV_ALIGN_IN_TOP_LEFT, 10, 75);
+#else
     lv_obj_set_size(slider_obj, 210, 3);
     lv_obj_align(slider_obj, NULL, LV_ALIGN_IN_TOP_MID, -10, 75);
+#endif
     lv_obj_set_style_local_pattern_image(slider_obj, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, &img_lv_demo_music_slider_knob);
     lv_obj_set_style_local_bg_opa(slider_obj, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, LV_OPA_TRANSP);
     lv_obj_set_style_local_pad_all(slider_obj, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, 20);
@@ -272,15 +240,16 @@ lv_obj_t * lv_demo_music_main_create(lv_obj_t * parent)
     lv_label_set_text(time_obj, "0:00");
     lv_obj_align(time_obj, NULL, LV_ALIGN_IN_TOP_RIGHT, -1, 67);
 
-    lv_obj_t * label = lv_label_create(ctrl_box, NULL);
+    /*A handle to scroll to the track list*/
+    lv_obj_t * label = lv_label_create(main_cont, NULL);
     lv_label_set_text(label, "ALL TRACKS");
     lv_obj_set_style_local_text_font(label, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, font_small);
     lv_obj_set_style_local_text_color(label, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x8a86b8));
-    lv_obj_align(label, NULL, LV_ALIGN_IN_TOP_MID, 0, 110);
+    lv_obj_align(label, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, -35);
 
-    lv_obj_t * handle = lv_obj_create(ctrl_box, NULL);
+    lv_obj_t * handle = lv_obj_create(main_cont, NULL);
     lv_obj_set_size(handle, 20, 2);
-    lv_obj_align(handle, NULL, LV_ALIGN_IN_TOP_MID, 0, 130);
+    lv_obj_align(handle, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, -30);
     lv_obj_set_style_local_bg_color(handle, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x8a86b8));
     lv_obj_set_style_local_border_width(handle, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 0);
 
@@ -333,7 +302,7 @@ void lv_demo_music_resume(void)
     lv_anim_start(&a);
 
     lv_task_set_prio(time_task, LV_TASK_PRIO_MID);
-    lv_slider_set_range(slider_obj, 0, time_list[track_id]);
+    lv_slider_set_range(slider_obj, 0, _lv_demo_music_get_track_length(track_id));
 }
 
 void lv_demo_music_pause(void)
@@ -363,9 +332,9 @@ static void track_load(uint32_t id)
 
     lv_demo_music_list_btn_check(id, true);
 
-    lv_label_set_text(title_obj, title_list[track_id]);
-    lv_label_set_text(artist_obj, artist_list[track_id]);
-    lv_label_set_text(genre_obj, genre_list[track_id]);
+    lv_label_set_text(title_obj, _lv_demo_music_get_title(track_id));
+    lv_label_set_text(artist_obj, _lv_demo_music_get_artist(track_id));
+    lv_label_set_text(genre_obj, _lv_demo_music_get_genre(track_id));
 
     spectrum_i = 0;
     time = 0;
@@ -385,11 +354,19 @@ static void track_load(uint32_t id)
     lv_anim_set_var(&a, album_img_obj);
     lv_anim_set_time(&a, 500);
     lv_anim_set_path(&a, &path);
+#if LV_DEMO_MUSIC_LANDSCAPE
+    if(next) {
+        lv_anim_set_values(&a, lv_obj_get_x(album_img_obj), lv_obj_get_x(album_img_obj) - LV_HOR_RES / 7);
+    } else {
+        lv_anim_set_values(&a, lv_obj_get_x(album_img_obj), lv_obj_get_x(album_img_obj) + LV_HOR_RES / 7);
+    }
+#else
     if(next) {
         lv_anim_set_values(&a, lv_obj_get_x(album_img_obj), lv_obj_get_x(album_img_obj) - LV_HOR_RES / 2);
     } else {
         lv_anim_set_values(&a, lv_obj_get_x(album_img_obj), lv_obj_get_x(album_img_obj) + LV_HOR_RES / 2);
     }
+#endif
     lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_obj_set_x);
     lv_anim_set_ready_cb(&a, lv_obj_del_anim_ready_cb);
     lv_anim_start(&a);

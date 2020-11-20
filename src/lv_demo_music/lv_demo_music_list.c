@@ -6,6 +6,7 @@
 /*********************
  *      INCLUDES
  *********************/
+#include "lv_demo_music.h"
 #include "lv_demo_music_list.h"
 
 /*********************
@@ -19,7 +20,7 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static lv_obj_t * add_list_btn(lv_obj_t * list, const char * artist, const char * title, const char * time);
+static lv_obj_t * add_list_btn(lv_obj_t * page, uint32_t track_id);
 static void btn_event_cb(lv_obj_t * btn, lv_event_t event);
 
 /**********************
@@ -60,6 +61,8 @@ lv_obj_t * lv_demo_music_list_create(lv_obj_t * parent)
     lv_style_set_bg_opa(&style_btn, LV_STATE_CHECKED, LV_OPA_COVER);
     lv_style_set_bg_color(&style_btn, LV_STATE_PRESSED, lv_color_hex(0x4c4965));
     lv_style_set_bg_color(&style_btn, LV_STATE_CHECKED, lv_color_hex(0x4c4965));
+    lv_style_set_text_opa(&style_btn, LV_STATE_DISABLED, LV_OPA_40);
+    lv_style_set_image_opa(&style_btn, LV_STATE_DISABLED, LV_OPA_40);
 
     lv_style_init(&style_title);
     lv_style_set_text_font(&style_title, LV_STATE_DEFAULT, &lv_font_montserrat_12);
@@ -82,22 +85,10 @@ lv_obj_t * lv_demo_music_list_create(lv_obj_t * parent)
     lv_obj_add_style(list, LV_PAGE_PART_SCROLLBAR, &style_scrollbar);
     lv_page_set_scrl_layout(list, LV_LAYOUT_COLUMN_MID);
 
-    add_list_btn(list, "Title 1", "Artist", "1:32");
-    add_list_btn(list, "Title 2", "Artist", "1:32");
-    add_list_btn(list, "Title 3", "Artist", "1:32");
-    add_list_btn(list, "Title 4", "Artist", "1:32");
-    add_list_btn(list, "Title 5", "Artist", "1:32");
-    add_list_btn(list, "Title 6", "Artist", "1:32");
-    add_list_btn(list, "Title", "Artist", "1:32");
-    add_list_btn(list, "Title", "Artist", "1:32");
-    add_list_btn(list, "Title", "Artist", "1:32");
-    add_list_btn(list, "Title", "Artist", "1:32");
-    add_list_btn(list, "Title", "Artist", "1:32");
-    add_list_btn(list, "Title", "Artist", "1:32");
-    add_list_btn(list, "Title", "Artist", "1:32");
-    add_list_btn(list, "Title", "Artist", "1:32");
-    add_list_btn(list, "Title", "Artist", "1:32");
-    add_list_btn(list, "Title", "Artist", "1:32");
+    uint32_t track_id;
+    for(track_id = 0; _lv_demo_music_get_title(track_id); track_id++) {
+        add_list_btn(list,  track_id);
+    }
 
     return list;
 }
@@ -128,8 +119,15 @@ void lv_demo_music_list_btn_check(uint32_t track_id, bool state)
  *   STATIC FUNCTIONS
  **********************/
 
-static lv_obj_t * add_list_btn(lv_obj_t * page, const char * title,  const char * artist, const char * time)
+static lv_obj_t * add_list_btn(lv_obj_t * page, uint32_t track_id)
 {
+
+    uint32_t t = _lv_demo_music_get_track_length(track_id);
+    char time[32];
+    lv_snprintf(time, sizeof(time), "%d:%02d", t / 60, t % 60);
+    const char * title = _lv_demo_music_get_title(track_id);
+    const char * artist = _lv_demo_music_get_artist(track_id);
+
     lv_obj_t * btn = lv_obj_create(page, NULL);
     lv_obj_set_size(btn, lv_page_get_width_fit(page), 60);
     lv_obj_clean_style_list(btn, LV_BTN_PART_MAIN);
@@ -137,6 +135,10 @@ static lv_obj_t * add_list_btn(lv_obj_t * page, const char * title,  const char 
     lv_obj_add_protect(btn, LV_PROTECT_PRESS_LOST);
     lv_obj_set_event_cb(btn, btn_event_cb);
     lv_page_glue_obj(btn, true);
+
+    if(track_id >= 5) {
+        lv_obj_add_state(btn, LV_STATE_DISABLED);
+    }
 
     LV_IMG_DECLARE(img_lv_demo_music_btn_list_play);
     LV_IMG_DECLARE(img_lv_demo_music_btn_list_pause);

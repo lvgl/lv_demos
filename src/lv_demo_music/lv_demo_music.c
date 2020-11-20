@@ -26,6 +26,59 @@ static lv_res_t main_page_signal_cb(lv_obj_t * scrl, lv_signal_t signal, void * 
  *  STATIC VARIABLES
  **********************/
 static lv_signal_cb_t ancestor_signal_cb;
+
+static const char * title_list[] = {
+    "Waiting for true love",
+    "Title 2",
+    "Title 3",
+    "Title 4",
+    "Title 5",
+    "Title 6",
+    "Title 7",
+    "Title 8",
+    "Title 9",
+    "Title 10",
+};
+
+static const char * artist_list[] = {
+    "John Smith",
+    "Artist 2",
+    "Artist 3",
+    "Artist 4",
+    "Artist 5",
+    "Artist 6",
+    "Artist 7",
+    "Artist 8",
+    "Artist 9",
+    "Artist 10",
+};
+
+static const char * genre_list[] = {
+    "Pop • 2015",
+    "Metal • 2015",
+    "Metal • 2015",
+    "Metal • 2015",
+    "Metal • 2015",
+    "Metal • 2015",
+    "Metal • 2015",
+    "Metal • 2015",
+    "Metal • 2015",
+    "Metal • 2015",
+};
+
+static const uint32_t time_list[] = {
+    2*60 + 34,
+    2*60 + 34,
+    2*60 + 34,
+    2*60 + 34,
+    2*60 + 34,
+    2*60 + 34,
+    2*60 + 34,
+    2*60 + 34,
+    2*60 + 34,
+    2*60 + 34,
+};
+
 /**********************
  *      MACROS
  **********************/
@@ -52,6 +105,29 @@ void lv_demo_music(void)
     lv_obj_set_y(ctrl, -15);
 }
 
+const char * _lv_demo_music_get_title(uint32_t track_id)
+{
+    if(track_id >= sizeof(title_list) / sizeof(title_list[0])) return NULL;
+    return title_list[track_id];
+}
+
+const char * _lv_demo_music_get_artist(uint32_t track_id)
+{
+    if(track_id >= sizeof(artist_list) / sizeof(artist_list[0])) return NULL;
+    return artist_list[track_id];
+}
+
+const char * _lv_demo_music_get_genre(uint32_t track_id)
+{
+    if(track_id >= sizeof(genre_list) / sizeof(genre_list[0])) return NULL;
+    return genre_list[track_id];
+}
+
+uint32_t _lv_demo_music_get_track_length(uint32_t track_id)
+{
+    if(track_id >= sizeof(time_list) / sizeof(time_list[0])) return 0;
+    return time_list[track_id];
+}
 
 /**********************
  *   STATIC FUNCTIONS
