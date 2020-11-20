@@ -41,6 +41,11 @@
 /*Stress test for LVGL*/
 #define LV_USE_DEMO_STRESS      0
 
+/*********************
+ * COMPONENT USAGE
+ *********************/
+#define LV_USE_COMPONENT_EXAMPLES   1
+
 #endif /*LV_EX_CONF_H*/
 
 #endif /*End of "Content enable"*/
