@@ -8,6 +8,7 @@
  *********************/
 #include "lv_demo_music.h"
 #include "lv_demo_music_list.h"
+#include "lv_demo_music_main.h"
 
 /*********************
  *      DEFINES

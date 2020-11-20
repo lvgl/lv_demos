@@ -7,6 +7,7 @@
  *      INCLUDES
  *********************/
 #include "lv_demo_music_main.h"
+#include "lv_demo_music_list.h"
 #include "assets/spectrum.h"
 
 /*********************
@@ -217,7 +218,7 @@ lv_obj_t * lv_demo_music_main_create(lv_obj_t * parent)
 
     LV_IMG_DECLARE(img_lv_demo_music_slider_knob);
     slider_obj = lv_slider_create(ctrl_box, NULL);
-    lv_slider_set_anim_time(slider_obj, 1000);
+    lv_slider_set_anim_time(slider_obj, 100);
 
 #if LV_DEMO_MUSIC_LANDSCAPE
     lv_obj_set_size(slider_obj, lv_obj_get_width(ctrl_box) - 50, 3);
@@ -394,6 +395,23 @@ static void track_load(uint32_t id)
     lv_anim_start(&a);
 }
 
+int32_t get_cos(int32_t deg, int32_t a)
+{
+    int32_t r = (_lv_trigo_sin(deg + 90) * a);
+
+    r += LV_TRIGO_SIN_MAX / 2;
+    return r >> LV_TRIGO_SHIFT;
+}
+
+int32_t get_sin(int32_t deg, int32_t a)
+{
+    int32_t r = _lv_trigo_sin(deg) * a;
+
+    r += LV_TRIGO_SIN_MAX / 2;
+    return r >> LV_TRIGO_SHIFT;
+
+}
+
 static lv_design_res_t spectrum_design_cb(lv_obj_t * obj, const lv_area_t * mask, lv_design_mode_t mode)
 {
     if(mode == LV_DESIGN_COVER_CHK) {
@@ -436,12 +454,13 @@ static lv_design_res_t spectrum_design_cb(lv_obj_t * obj, const lv_area_t * mask
             for(f = 0; f < sublane_cnt; f++) {
                 uint32_t amain = spectrum[spectrum_i][s];
 
-                float amod = (2 - (cos(((float)f / (float)sublane_cnt) * 2 * 3.1415f) + 1)) / 2;
+//                float amod = (2 - (cos(((float)f / (float)sublane_cnt) * 2 * 3.1415f) + 1)) / 2;
+                uint32_t amod = get_cos(f * 180 / sublane_cnt, 128);
                 uint32_t l = (all_lane_cnt / sector_cnt);
                 int32_t t = l * s - sublane_cnt / 2 + f;
                 if(t < 0) t = all_lane_cnt + t;
                 if(t >= all_lane_cnt) t = t - all_lane_cnt;
-                r[t] += amain * amod * 0.5;
+                r[t] += (amain * amod) >> 8;
 
             }
         }
@@ -460,7 +479,6 @@ static lv_design_res_t spectrum_design_cb(lv_obj_t * obj, const lv_area_t * mask
             uint32_t k = (i + spectrum_lane_rot + rnd[(spectrum_lane_ofs + 1) % 10]) % all_lane_cnt;
 
             uint32_t v = (r[k] * animv + r[j] * (amax - animv)) / amax;
-            float d;
 
             lv_color_t c1 = lv_color_hex(0xb15ff0);
             lv_color_t c2 = lv_color_hex(0x48a3f9);
@@ -471,23 +489,22 @@ static lv_design_res_t spectrum_design_cb(lv_obj_t * obj, const lv_area_t * mask
             else draw_dsc.bg_color = lv_color_mix(c2, c1, ((v - min) * 255) / (max-min));
 
             uint32_t di = deg + deg_space / 2;
-            d = (float)(di)/(float)180.0 * 3.1415f;
-            int32_t x1 = (cos(d) * v);
+
+            int32_t x1 = get_cos(di, v);
             tri[1].x = tri[0].x + x1;
-            tri[1].y = tri[0].y + (sin(d) * v);
+            tri[1].y = tri[0].y + get_sin(di, v);
 
             di += deg_step - deg_space;
 
-            d = (float)(di)/(float)180.0 * 3.1415f;
-            int32_t x2 = (cos(d) * v);
+            int32_t x2 = get_cos(di, v);
             tri[2].x = tri[0].x + x2;
-            tri[2].y = tri[0].y + (sin(d) * v);
+            tri[2].y = tri[0].y + get_sin(di, v);
 
 
             lv_point_t mask_in;
-            int32_t mx = (cos(d) * 90);
+            int32_t mx = ((_lv_trigo_sin(di + 90) * 90)) >> LV_TRIGO_SHIFT;
             mask_in.x = tri[0].x + mx;
-            mask_in.y = tri[0].y + (sin(d) * 90);
+            mask_in.y = tri[0].y + ((_lv_trigo_sin(di * 90)) >> LV_TRIGO_SHIFT);
 
             lv_area_t mask2;
             mask2.x1 = LV_MATH_MIN3(tri[1].x, tri[2].x, mask_in.x) - 5;
@@ -546,12 +563,11 @@ static lv_obj_t * album_img_create(lv_obj_t * parent)
     LV_IMG_DECLARE(img_lv_demo_music_cover_1);
     LV_IMG_DECLARE(img_lv_demo_music_cover_2);
     LV_IMG_DECLARE(img_lv_demo_music_cover_3);
-    LV_IMG_DECLARE(img_lv_demo_music_cover_4);
-    LV_IMG_DECLARE(img_lv_demo_music_cover_5);
+//    LV_IMG_DECLARE(img_lv_demo_music_cover_4);
+//    LV_IMG_DECLARE(img_lv_demo_music_cover_5);
 
     lv_obj_t * img;
     img = lv_img_create(parent, NULL);
-    LV_IMG_DECLARE(conver_1);
 
     switch(track_id) {
     case 0:
@@ -564,13 +580,14 @@ static lv_obj_t * album_img_create(lv_obj_t * parent)
         lv_img_set_src(img, &img_lv_demo_music_cover_3);
         break;
     case 3:
-        lv_img_set_src(img, &img_lv_demo_music_cover_4);
+        lv_img_set_src(img, &img_lv_demo_music_cover_2);
         break;
     case 4:
-        lv_img_set_src(img, &img_lv_demo_music_cover_5);
+        lv_img_set_src(img, &img_lv_demo_music_cover_1);
         break;
     }
     lv_img_set_pivot(img, 100, 100);
+    lv_img_set_antialias(img, false);
     lv_obj_align(img, NULL, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_event_cb(img, album_event_cb);
     lv_obj_set_gesture_parent(img, false);
@@ -643,7 +660,7 @@ static void wave_create(bool bottom, bool rev, lv_coord_t x)
 
     lv_anim_t a;
     lv_anim_init(&a);
-    lv_anim_set_exec_cb(&a, lv_obj_set_x);
+    lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_x);
     lv_anim_set_ready_cb(&a, wave_anim_ready_cb);
 
     if(rev == false) lv_anim_set_values(&a, x - lv_obj_get_width(wave), LV_HOR_RES);
@@ -654,7 +671,7 @@ static void wave_create(bool bottom, bool rev, lv_coord_t x)
     lv_anim_start(&a);
 
     if(bottom) {
-        lv_anim_set_exec_cb(&a, lv_obj_set_y);
+        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_y);
         lv_anim_set_values(&a, lv_obj_get_y(wave), (lv_obj_get_y(wave) + 3 + (rnd % 15)));
         lv_anim_set_time(&a, 3000 + rnd % 3000);
         lv_anim_set_playback_time(&a, 3000 + (rnd % 3000));

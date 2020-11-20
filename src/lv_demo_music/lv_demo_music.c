@@ -86,6 +86,7 @@ static const uint32_t time_list[] = {
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
+
 void lv_demo_music(void)
 {
     lv_obj_t * page = lv_page_create(lv_scr_act(), NULL);
