@@ -1,3 +1,4 @@
+from lv_colors import lv_colors
 style = lv.style_t()
 style.init()
 
