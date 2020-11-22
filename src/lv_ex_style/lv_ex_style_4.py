@@ -3,11 +3,11 @@ style.init()
 # Set a background color and a radius
 style.set_radius(lv.STATE.DEFAULT, 5)
 style.set_bg_opa(lv.STATE.DEFAULT, lv.OPA.COVER)
-style.set_bg_color(lv.STATE.DEFAULT, LV_COLOR_SILVER)
+style.set_bg_color(lv.STATE.DEFAULT, lv_colors.SILVER)
 
 # Add a shadow
 style.set_shadow_width(lv.STATE.DEFAULT, 8)
-style.set_shadow_color(lv.STATE.DEFAULT, LV_COLOR_BLUE)
+style.set_shadow_color(lv.STATE.DEFAULT, lv_colors.BLUE)
 style.set_shadow_ofs_x(lv.STATE.DEFAULT, 10)
 style.set_shadow_ofs_y(lv.STATE.DEFAULT, 20)
 

@@ -3,7 +3,7 @@ LV_USE_LINE=1
 style = lv.style_t()
 style.init()
 
-style.set_line_color(lv.STATE.DEFAULT, LV_COLOR_GRAY)
+style.set_line_color(lv.STATE.DEFAULT,lv_colors.GRAY)
 style.set_line_width(lv.STATE.DEFAULT, 6)
 style.set_line_rounded(lv.STATE.DEFAULT, True)
     

@@ -4,10 +4,10 @@ style.init()
 # Set a background color and a radius
 style.set_radius(lv.STATE.DEFAULT, 5)
 style.set_bg_opa(lv.STATE.DEFAULT, lv.OPA.COVER)
-style.set_bg_color(lv.STATE.DEFAULT, LV_COLOR_SILVER)
+style.set_bg_color(lv.STATE.DEFAULT, lv_colors.SILVER)
 
 # Set different background color in pressed state
-style.set_bg_color(lv.STATE.PRESSED, LV_COLOR_GRAY)
+style.set_bg_color(lv.STATE.PRESSED, lv_colors.GRAY)
 
 # Set different transition time in default and pressed state
 # fast press, slower revert to default

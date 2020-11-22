@@ -1,3 +1,4 @@
+from lv_colors import lv_colors
 #
 # Using the background style properties
 #
@@ -9,8 +10,8 @@ style.set_radius(lv.STATE.DEFAULT, 5)
 
 # Make a gradient
 style.set_bg_opa(lv.STATE.DEFAULT, lv.OPA.COVER)
-style.set_bg_color(lv.STATE.DEFAULT, LV_COLOR_SILVER)
-style.set_bg_grad_color(lv.STATE.DEFAULT, LV_COLOR_BLUE)
+style.set_bg_color(lv.STATE.DEFAULT, lv_colors.SILVER)
+style.set_bg_grad_color(lv.STATE.DEFAULT, lv_colors.BLUE)
 style.set_bg_grad_dir(lv.STATE.DEFAULT, lv.GRAD_DIR.VER)
 
 # Shift the gradient to the bottom
