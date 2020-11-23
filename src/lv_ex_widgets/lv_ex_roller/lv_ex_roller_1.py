@@ -1,24 +1,24 @@
-def event_handler(obj, event):
-    if event == lv.EVENT.VALUE_CHANGED:
-        option = " "*10
-        obj.get_selected_str(option, len(option))
-        print("Selected month: %s" % option.strip())
+def event_handler(source,evt):
+    if evt == lv.EVENT.VALUE_CHANGED:
+        month=" "*10
+        roller.get_selected_str(month,len(month))
+        print("Selected month: ",month)
 
-roller1 = lv.roller(lv.scr_act())
-roller1.set_options("\n".join([
-                    "January",
-                    "February",
-                    "March",
-                    "April",
-                    "May",
-                    "June",
-                    "July",
-                    "August",
-                    "September",
-                    "October",
-                    "November",
-                    "December"]), lv.roller.MODE.INIFINITE)
+roller = lv.roller(lv.scr_act(),None)
+roller.set_options("January\n"
+                   "February\n"
+                   "March\n"
+                   "April\n"
+                   "May\n"
+                   "June\n"
+                   "July\n"
+                   "August\n"
+                   "September\n"
+                   "October\n"
+                   "November\n"
+                   "December",
+                   lv.roller.MODE.INIFINITE)
+roller.set_visible_row_count(4)
+roller.align(None,lv.ALIGN.CENTER,0,0)              
+roller.set_event_cb(event_handler)              
 
-roller1.set_visible_row_count(4)
-roller1.align(None, lv.ALIGN.CENTER, 0, 0)
-roller1.set_event_cb(event_handler)
