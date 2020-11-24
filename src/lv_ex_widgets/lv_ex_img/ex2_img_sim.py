@@ -2,7 +2,7 @@ from lv_colors import lv_colors
 
 SLIDER_WIDTH=15
 
-with open('../../assets/img_cogwheel_argb.bin','rb') as f:
+with open('../../../assets/img_cogwheel_argb.bin','rb') as f:
     cogwheel_img_data = f.read()
     
 # create the cogwheel image data
