@@ -1,7 +1,7 @@
 #include "../../../lv_examples.h"
 #if LV_USE_LABEL
 
-static void text_changer(lv_task_t * t);
+static void text_changer(lv_tmr_t * t);
 
 lv_obj_t * labels[3];
 
@@ -32,11 +32,11 @@ void lv_ex_label_3(void)
     lv_obj_align(labels[2], NULL, LV_ALIGN_IN_BOTTOM_MID, 0, -5);
     lv_label_set_align(labels[2], LV_LABEL_ALIGN_CENTER);
 
-    lv_task_t * t = lv_task_create(text_changer, 1000, LV_TASK_PRIO_MID, NULL);
-    lv_task_ready(t);
+    lv_tmr_t * t = lv_tmr_create(text_changer, 1000, NULL);
+    lv_tmr_ready(t);
 }
 
-static void text_changer(lv_task_t * t)
+static void text_changer(lv_tmr_t * t)
 {
     const char * texts[] = {"Text", "A very long text", "A text with\nmultiple\nlines", NULL};
     static uint8_t i = 0;
