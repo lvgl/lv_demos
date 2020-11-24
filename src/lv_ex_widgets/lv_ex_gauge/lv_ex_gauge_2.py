@@ -31,6 +31,3 @@ gauge1.set_value(0, 10)
 gauge1.set_value(1, 20)
 gauge1.set_value(2, 30)
 
-while True:
-    lv.task_handler()
-    time.sleep(5)
