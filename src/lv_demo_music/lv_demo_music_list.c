@@ -79,7 +79,8 @@ lv_obj_t * lv_demo_music_list_create(lv_obj_t * parent)
 
     /*Create an empty white main container*/
     list = lv_page_create(parent, NULL);
-    lv_obj_set_size(list, LV_HOR_RES, LV_VER_RES - 50);
+    lv_obj_set_size(list, LV_HOR_RES, LV_VER_RES - LV_DEMO_LIST_CTRL_OVERLAP);
+    lv_obj_set_y(list, LV_DEMO_LIST_CTRL_OVERLAP);
     lv_obj_clean_style_list(list, LV_PAGE_PART_BG);
     lv_obj_clean_style_list(list, LV_PAGE_PART_SCROLLABLE);
     lv_obj_clean_style_list(list, LV_PAGE_PART_SCROLLBAR);
@@ -137,7 +138,7 @@ static lv_obj_t * add_list_btn(lv_obj_t * page, uint32_t track_id)
     lv_obj_set_event_cb(btn, btn_event_cb);
     lv_page_glue_obj(btn, true);
 
-    if(track_id >= 5) {
+    if(track_id >= 3) {
         lv_obj_add_state(btn, LV_STATE_DISABLED);
     }
 

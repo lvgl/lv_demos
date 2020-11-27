@@ -19,6 +19,7 @@ extern "C" {
  *      DEFINES
  *********************/
 #define LV_DEMO_MUSIC_LANDSCAPE       1
+#define LV_DEMO_LIST_CTRL_OVERLAP  60
 
 /**********************
  *      TYPEDEFS
