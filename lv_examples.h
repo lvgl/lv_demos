@@ -32,8 +32,12 @@ extern "C" {
 #endif
 
 #if LV_USE_COMPONENT_EXAMPLES
+#if defined(LV_COMP_CONF_INCLUDE_SIMPLE)
+#include "lv_components.h"
+#else
 #include "../lv_components/lv_components.h"
 #endif
+#endif /* LV_USE_COMPONENT_EXAMPLES */
 
 #include "src/lv_ex_get_started/lv_ex_get_started.h"
 #include "src/lv_ex_style/lv_ex_style.h"
