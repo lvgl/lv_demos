@@ -30,34 +30,34 @@ static lv_obj_t * list;
 
 static const char * title_list[] = {
     "Waiting for true love",
-    "Title 2",
-    "Title 3",
-    "Title 4",
-    "Title 5",
-    "Title 6",
-    "Title 7",
-    "Title 8",
-    "Title 9",
-    "Title 10",
+    "Need a Better Future",
+    "Vibrations",
+    "Why now?",
+    "Never Look Back",
+    "It happened Yesterday",
+    "Feeling so High",
+    "Go Deeper",
+    "Find You There",
+    "Until the End",
 };
 
 static const char * artist_list[] = {
+    "The John Smith Band",
+    "My True Name",
+    "Robotics",
     "John Smith",
-    "Artist 2",
-    "Artist 3",
-    "Artist 4",
-    "Artist 5",
-    "Artist 6",
-    "Artist 7",
-    "Artist 8",
-    "Artist 9",
-    "Artist 10",
+    "My True Name",
+    "Robotics",
+    "Robotics",
+    "Unknown artist",
+    "Unknown artist",
+    "Unknown artist",
 };
 
 static const char * genre_list[] = {
-    "Pop • 2015",
-    "Metal • 2015",
-    "Metal • 2015",
+    "Rock • 1997",
+    "Drum'n bass • 2016",
+    "Psy trance • 2020",
     "Metal • 2015",
     "Metal • 2015",
     "Metal • 2015",
@@ -95,7 +95,7 @@ void lv_demo_music(void)
     list = lv_demo_music_list_create(lv_scr_act());
     ctrl = lv_demo_music_main_create(lv_scr_act());
 
-//    lv_task_create(auto_step_cb, 1000, LV_TASK_PRIO_MID, NULL);
+    lv_task_create(auto_step_cb, 1000, LV_TASK_PRIO_MID, NULL);
 }
 
 const char * _lv_demo_music_get_title(uint32_t track_id)
@@ -136,6 +136,7 @@ static void auto_step_cb(lv_task_t * task)
     case 5:
         lv_demo_music_album_next(true);
         break;
+
     case 6:
         lv_demo_music_album_next(true);
         break;
@@ -146,7 +147,7 @@ static void auto_step_cb(lv_task_t * task)
     case 8:
         lv_demo_music_play(0);
         break;
-    case 9:
+    case 14:
         lv_anim_init(&a);
         lv_anim_set_var(&a, ctrl);
         lv_anim_set_values(&a, lv_obj_get_y(ctrl), -lv_obj_get_height(ctrl) + LV_DEMO_LIST_CTRL_OVERLAP);
@@ -154,7 +155,7 @@ static void auto_step_cb(lv_task_t * task)
         lv_anim_set_time(&a, 500);
         lv_anim_start(&a);
         break;
-    case 10:
+    case 15:
         obj = lv_page_get_scrl(list);
         lv_anim_init(&a);
         lv_anim_set_var(&a, obj);
@@ -165,16 +166,41 @@ static void auto_step_cb(lv_task_t * task)
         lv_anim_set_playback_delay(&a, 200);
         lv_anim_start(&a);
         break;
-    case 13:
+    case 18:
         lv_demo_music_play(1);
         break;
-    case 14:
+    case 19:
         lv_anim_init(&a);
         lv_anim_set_var(&a, ctrl);
         lv_anim_set_values(&a, lv_obj_get_y(ctrl), -15);
         lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_obj_set_y);
         lv_anim_set_time(&a, 500);
         lv_anim_start(&a);
+        break;
+    case 30:
+        lv_demo_music_play(2);
+        break;
+    case 40:
+          obj = lv_layer_top();
+          lv_obj_set_style_local_bg_color(obj, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT,  lv_color_hex(0x6f8af6));
+          lv_obj_set_style_local_text_color(obj, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT,  LV_COLOR_WHITE);
+          lv_obj_set_style_local_bg_opa(obj, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_COVER);
+          lv_obj_fade_in(obj, 400, 0);
+          lv_obj_t * dsc = lv_label_create(obj, NULL);
+          lv_obj_set_style_local_text_font(obj, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, lv_theme_get_font_normal());
+          lv_label_set_text(dsc, "The average FPS is");
+          lv_obj_align(dsc, obj, LV_ALIGN_IN_TOP_MID, 0, 90);
+
+          lv_obj_t * num = lv_label_create(obj, NULL);
+          lv_obj_set_style_local_text_font(num, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, &lv_font_montserrat_40);
+          char buf[32];
+          lv_snprintf(buf, 32, "%d", lv_refr_get_fps_avg());
+          lv_label_set_text(num, buf);
+          lv_obj_align(num, obj, LV_ALIGN_IN_TOP_MID, 0, 120);
+          break;
+
+    case 41:
+        lv_demo_music_pause();
         break;
     }
 

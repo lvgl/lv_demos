@@ -8,7 +8,9 @@
  *********************/
 #include "lv_demo_music_main.h"
 #include "lv_demo_music_list.h"
-#include "assets/spectrum.h"
+#include "assets/spectrum_1.h"
+#include "assets/spectrum_2.h"
+#include "assets/spectrum_3.h"
 
 /*********************
  *      DEFINES
@@ -60,6 +62,8 @@ static bool start_anim;
 static uint16_t start_anim_values[40];
 static lv_signal_cb_t ancestor_signal_cb;
 static lv_obj_t * play_obj;
+static const uint16_t (* spectrum)[4];
+static uint32_t spectrum_len;
 
 /**********************
  *      MACROS
@@ -119,7 +123,7 @@ lv_obj_t * lv_demo_music_main_create(lv_obj_t * parent)
     lv_cont_set_fit2(title_box, LV_FIT_NONE, LV_FIT_TIGHT);
 #if LV_DEMO_MUSIC_LANDSCAPE
     lv_obj_set_width(title_box, LV_HOR_RES / 2);
-    lv_obj_align(title_box, NULL, LV_ALIGN_IN_TOP_LEFT, 0, 15);
+    lv_obj_align(title_box, NULL, LV_ALIGN_IN_TOP_LEFT, 0, 23);
 #else
     lv_obj_set_width(title_box, LV_HOR_RES - 20);
     lv_obj_align(title_box, NULL, LV_ALIGN_IN_TOP_MID, 0, 15);
@@ -164,7 +168,7 @@ lv_obj_t * lv_demo_music_main_create(lv_obj_t * parent)
     lv_img_set_src(icon, &img_lv_demo_music_icon_4);
 
 #if LV_DEMO_MUSIC_LANDSCAPE
-    lv_obj_align(icon_box, title_box, LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
+    lv_obj_align(icon_box, title_box, LV_ALIGN_OUT_BOTTOM_MID, 0, 22);
 #else
     lv_obj_align(icon_box, NULL, LV_ALIGN_IN_TOP_MID, 0, 100);
 #endif
@@ -232,10 +236,10 @@ lv_obj_t * lv_demo_music_main_create(lv_obj_t * parent)
 
 #if LV_DEMO_MUSIC_LANDSCAPE
     lv_obj_set_size(slider_obj, lv_obj_get_width(ctrl_box) - 50, 3);
-    lv_obj_align(slider_obj, NULL, LV_ALIGN_IN_TOP_LEFT, 10, 75);
+    lv_obj_align(slider_obj, NULL, LV_ALIGN_IN_TOP_LEFT, 10, 82);
 #else
     lv_obj_set_size(slider_obj, 210, 3);
-    lv_obj_align(slider_obj, NULL, LV_ALIGN_IN_TOP_MID, -10, 75);
+    lv_obj_align(slider_obj, NULL, LV_ALIGN_IN_TOP_MID, -10, 82);
 #endif
     lv_obj_set_style_local_pattern_image(slider_obj, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, &img_lv_demo_music_slider_knob);
     lv_obj_set_style_local_bg_opa(slider_obj, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, LV_OPA_TRANSP);
@@ -249,7 +253,7 @@ lv_obj_t * lv_demo_music_main_create(lv_obj_t * parent)
     lv_obj_set_style_local_text_font(time_obj, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, font_small);
     lv_obj_set_style_local_text_color(time_obj, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x8a86b8));
     lv_label_set_text(time_obj, "0:00");
-    lv_obj_align(time_obj, NULL, LV_ALIGN_IN_TOP_RIGHT, -1, 67);
+    lv_obj_align(time_obj, NULL, LV_ALIGN_IN_TOP_RIGHT, -1, 75);
 
     /*A handle to scroll to the track list*/
     lv_obj_t * handle_label = lv_label_create(main_cont, NULL);
@@ -318,10 +322,11 @@ lv_obj_t * lv_demo_music_main_create(lv_obj_t * parent)
     lv_obj_move_foreground(logo);
 
     lv_obj_t * title = lv_label_create(lv_scr_act(), NULL);
-    lv_label_set_text(title, "Music player Demo\n\nSTM32F746-Discovery");
+    lv_label_set_text(title, "LVGL Demo\nMusic player");
     lv_label_set_align(title, LV_LABEL_ALIGN_CENTER);
-    lv_obj_set_style_local_text_font(title, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_theme_get_font_title());
-    lv_obj_align(title, NULL, LV_ALIGN_IN_LEFT_MID, 20, 0);
+    lv_obj_set_style_local_text_font(title, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &lv_font_montserrat_30);
+    lv_obj_set_style_local_text_line_space(title, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, 8);
+    lv_obj_align(title, NULL, LV_ALIGN_IN_LEFT_MID, 50, -10);
     lv_obj_fade_out(title, 300, INTRO_TIME);
 
     lv_anim_path_set_cb(&path, lv_anim_path_ease_in);
@@ -332,8 +337,6 @@ lv_obj_t * lv_demo_music_main_create(lv_obj_t * parent)
     lv_anim_set_values(&a, LV_IMG_ZOOM_NONE, 10);
     lv_anim_set_ready_cb(&a, lv_obj_del_anim_ready_cb);
     lv_anim_start(&a);
-
-//    lv_obj_fade_out(logo, 300, INTRO_TIME + 900);
 
     return main_cont;
 }
@@ -371,13 +374,12 @@ void lv_demo_music_resume(void)
 {
     playing = true;
     spectrum_i = spectrum_i_pause;
-    uint32_t record_cnt = sizeof(spectrum) / sizeof(spectrum[0]);
     lv_anim_t a;
     lv_anim_init(&a);
-    lv_anim_set_values(&a, spectrum_i, sizeof(spectrum) / sizeof(spectrum[0]) - 1);
+    lv_anim_set_values(&a, spectrum_i, spectrum_len - 1);
     lv_anim_set_exec_cb(&a, spectrum_anim_cb);
     lv_anim_set_var(&a, spectrum_obj);
-    lv_anim_set_time(&a, ((record_cnt - spectrum_i) * 1000) / 30);
+    lv_anim_set_time(&a, ((spectrum_len - spectrum_i) * 1000) / 30);
     lv_anim_set_playback_time(&a, 0);
     lv_anim_start(&a);
 
@@ -410,6 +412,7 @@ static void track_load(uint32_t id)
     time = 0;
     spectrum_i_pause = 0;
     lv_slider_set_value(slider_obj, 0, LV_ANIM_OFF);
+    lv_label_set_text(time_obj, "0:00");
 
     if(id == track_id) return;
     bool next = false;
@@ -463,13 +466,13 @@ static void track_load(uint32_t id)
     lv_anim_start(&a);
 
     album_img_obj = album_img_create(spectrum_obj);
-
-    lv_obj_fade_in(album_img_obj, 500, 0);
+    lv_obj_fade_in(album_img_obj, 500, 100);
 
     lv_anim_path_set_cb(&path, lv_anim_path_overshoot);
     lv_anim_set_path(&a, &path);
     lv_anim_set_var(&a, album_img_obj);
     lv_anim_set_time(&a, 500);
+    lv_anim_set_delay(&a, 100);
     lv_anim_set_values(&a, LV_IMG_ZOOM_NONE / 4, LV_IMG_ZOOM_NONE);
     lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_img_set_zoom);
     lv_anim_set_ready_cb(&a, NULL);
@@ -664,14 +667,20 @@ static lv_obj_t * album_img_create(lv_obj_t * parent)
     img = lv_img_create(parent, NULL);
 
     switch(track_id) {
-    case 0:
-        lv_img_set_src(img, &img_lv_demo_music_cover_1);
+    case 2:
+        lv_img_set_src(img, &img_lv_demo_music_cover_3);
+        spectrum = spectrum_3;
+        spectrum_len = sizeof(spectrum_1) / sizeof(spectrum_1[0]);
         break;
     case 1:
         lv_img_set_src(img, &img_lv_demo_music_cover_2);
+        spectrum = spectrum_2;
+        spectrum_len = sizeof(spectrum_2) / sizeof(spectrum_2[0]);
         break;
-    case 2:
-        lv_img_set_src(img, &img_lv_demo_music_cover_3);
+    case 0:
+        lv_img_set_src(img, &img_lv_demo_music_cover_1);
+        spectrum = spectrum_1;
+        spectrum_len = sizeof(spectrum_3) / sizeof(spectrum_3[0]);
         break;
     }
     lv_img_set_pivot(img, lv_obj_get_width(img) / 2, lv_obj_get_height(img) / 2);

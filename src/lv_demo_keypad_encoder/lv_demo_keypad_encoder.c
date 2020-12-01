@@ -133,6 +133,7 @@ static void selectors_create(lv_obj_t * parent)
 
    selector_objs.slider = lv_slider_create(parent, NULL);
    lv_slider_set_range(selector_objs.slider, 0, 10);
+   lv_slider_set_type(selector_objs.slider, LV_SLIDER_TYPE_RANGE);
 
    selector_objs.sw = lv_switch_create(parent, NULL);
 
@@ -147,13 +148,22 @@ static void selectors_create(lv_obj_t * parent)
    if(lv_obj_get_height(selector_objs.list) > lv_page_get_height_fit(parent)) {
        lv_obj_set_height(selector_objs.list, lv_page_get_height_fit(parent));
    }
-   lv_list_add_btn(selector_objs.list, LV_SYMBOL_OK, "Apply");
-   lv_list_add_btn(selector_objs.list, LV_SYMBOL_CLOSE, "Close");
-   lv_list_add_btn(selector_objs.list, LV_SYMBOL_EYE_OPEN, "Show");
-   lv_list_add_btn(selector_objs.list, LV_SYMBOL_EYE_CLOSE, "Hide");
-   lv_list_add_btn(selector_objs.list, LV_SYMBOL_TRASH, "Delete");
-   lv_list_add_btn(selector_objs.list, LV_SYMBOL_COPY, "Copy");
-   lv_list_add_btn(selector_objs.list, LV_SYMBOL_PASTE, "Paste");
+   lv_obj_t * bt;
+
+  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_OK, "1");lv_group_add_obj(g,bt);
+  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_CLOSE, "2");lv_group_add_obj(g,bt);
+  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_EYE_CLOSE, "3");lv_group_add_obj(g,bt);
+  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_TRASH, "4");lv_group_add_obj(g,bt);
+  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_COPY, "5");lv_group_add_obj(g,bt);
+  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_COPY, "6");lv_group_add_obj(g,bt);
+  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_OK, "7");lv_group_add_obj(g,bt);
+  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_CLOSE, "8");lv_group_add_obj(g,bt);
+  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_EYE_CLOSE, "9");lv_group_add_obj(g,bt);
+  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_TRASH, "10");lv_group_add_obj(g,bt);
+  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_COPY, "11");lv_group_add_obj(g,bt);
+  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_COPY, "12");lv_group_add_obj(g,bt);
+
+
 }
 
 static void text_input_create(lv_obj_t * parent)
