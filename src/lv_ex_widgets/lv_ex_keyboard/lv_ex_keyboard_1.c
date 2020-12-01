@@ -24,7 +24,7 @@ static void kb_create(void)
 
 }
 
-static void ta_event_cb(lv_obj_t * ta, lv_event_t e)
+static void ta_event_cb(lv_obj_t * ta_local, lv_event_t e)
 {
     if(e == LV_EVENT_CLICKED && kb == NULL) {
         kb_create();
