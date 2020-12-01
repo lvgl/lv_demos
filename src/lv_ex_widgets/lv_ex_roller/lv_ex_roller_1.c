@@ -28,7 +28,7 @@ void lv_ex_roller_1(void)
                         "October\n"
                         "November\n"
                         "December",
-                        LV_ROLLER_MODE_INIFINITE);
+                        LV_ROLLER_MODE_INFINITE);
 
     lv_roller_set_visible_row_count(roller1, 4);
     lv_obj_align(roller1, NULL, LV_ALIGN_CENTER, 0, 0);
