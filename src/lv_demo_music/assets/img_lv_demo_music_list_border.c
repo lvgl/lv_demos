@@ -1,4 +1,6 @@
 #include "lvgl/lvgl.h"
+#include "../lv_demo_music.h"
+#if LV_USE_DEMO_MUSIC
 
 #ifndef LV_ATTRIBUTE_MEM_ALIGN
 #define LV_ATTRIBUTE_MEM_ALIGN
@@ -42,3 +44,7 @@ lv_img_dsc_t img_lv_demo_music_list_border = {
   .header.cf = LV_IMG_CF_TRUE_COLOR_ALPHA,
   .data = img_lv_demo_music_list_border_map,
 };
+
+#endif /*LV_USE_DEMO_MUSIC*/
+
+

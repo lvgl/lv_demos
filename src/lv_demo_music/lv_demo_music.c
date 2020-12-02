@@ -6,6 +6,10 @@
 /*********************
  *      INCLUDES
  *********************/
+#include "lv_demo_music.h"
+
+#if LV_USE_DEMO_MUSIC
+
 #include "lv_demo_music_main.h"
 #include "lv_demo_music_list.h"
 
@@ -20,7 +24,9 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
+#if LV_DEMO_MUSIC_AUTO_PLAY
 static void auto_step_cb(lv_task_t * task);
+#endif
 
 /**********************
  *  STATIC VARIABLES
@@ -68,16 +74,16 @@ static const char * genre_list[] = {
 };
 
 static const uint32_t time_list[] = {
-    2*60 + 34,
-    2*60 + 34,
-    2*60 + 34,
-    2*60 + 34,
-    2*60 + 34,
-    2*60 + 34,
-    2*60 + 34,
-    2*60 + 34,
-    2*60 + 34,
-    2*60 + 34,
+    1*60 + 14,
+    2*60 + 26,
+    1*60 + 54,
+    2*60 + 24,
+    2*60 + 37,
+    3*60 + 33,
+    1*60 + 56,
+    3*60 + 31,
+    2*60 + 20,
+    2*60 + 19,
 };
 
 /**********************
@@ -95,7 +101,9 @@ void lv_demo_music(void)
     list = lv_demo_music_list_create(lv_scr_act());
     ctrl = lv_demo_music_main_create(lv_scr_act());
 
-    lv_task_create(auto_step_cb, 1000, LV_TASK_PRIO_MID, NULL);
+#if LV_DEMO_MUSIC_AUTO_PLAY
+//    lv_task_create(auto_step_cb, 1000, LV_TASK_PRIO_MID, NULL);
+#endif
 }
 
 const char * _lv_demo_music_get_title(uint32_t track_id)
@@ -126,6 +134,7 @@ uint32_t _lv_demo_music_get_track_length(uint32_t track_id)
  *   STATIC FUNCTIONS
  **********************/
 
+#if LV_DEMO_MUSIC_AUTO_PLAY
 static void auto_step_cb(lv_task_t * task)
 {
     static uint32_t state = 0;
@@ -180,31 +189,34 @@ static void auto_step_cb(lv_task_t * task)
     case 30:
         lv_demo_music_play(2);
         break;
-    case 40:
-          obj = lv_layer_top();
-          lv_obj_set_style_local_bg_color(obj, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT,  lv_color_hex(0x6f8af6));
-          lv_obj_set_style_local_text_color(obj, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT,  LV_COLOR_WHITE);
-          lv_obj_set_style_local_bg_opa(obj, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_COVER);
-          lv_obj_fade_in(obj, 400, 0);
-          lv_obj_t * dsc = lv_label_create(obj, NULL);
-          lv_obj_set_style_local_text_font(obj, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, lv_theme_get_font_normal());
+    case 40: {
+          lv_obj_t * bg = lv_layer_top();
+          lv_obj_set_style_local_bg_color(bg, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT,  lv_color_hex(0x6f8af6));
+          lv_obj_set_style_local_text_color(bg, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT,  LV_COLOR_WHITE);
+          lv_obj_set_style_local_bg_opa(bg, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_COVER);
+          lv_obj_fade_in(bg, 400, 0);
+          lv_obj_t * dsc = lv_label_create(bg, NULL);
+          lv_obj_set_style_local_text_font(bg, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, lv_theme_get_font_normal());
           lv_label_set_text(dsc, "The average FPS is");
-          lv_obj_align(dsc, obj, LV_ALIGN_IN_TOP_MID, 0, 90);
+          lv_obj_align(dsc, bg, LV_ALIGN_IN_TOP_MID, 0, 90);
 
-          lv_obj_t * num = lv_label_create(obj, NULL);
+          lv_obj_t * num = lv_label_create(bg, NULL);
           lv_obj_set_style_local_text_font(num, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, &lv_font_montserrat_40);
           char buf[32];
-          lv_snprintf(buf, 32, "%d", lv_refr_get_fps_avg());
+          lv_snprintf(buf, 32, "%d", 0);
           lv_label_set_text(num, buf);
-          lv_obj_align(num, obj, LV_ALIGN_IN_TOP_MID, 0, 120);
+          lv_obj_align(num, bg, LV_ALIGN_IN_TOP_MID, 0, 120);
           break;
+    }
 
     case 41:
         lv_demo_music_pause();
         break;
     }
-
-
     state++;
 
 }
+
+#endif /*LV_DEMO_MUSIC_AUTO_PLAY*/
+
+#endif /*LV_USE_DEMO_MUSIC*/

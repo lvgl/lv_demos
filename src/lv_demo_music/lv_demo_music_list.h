@@ -13,7 +13,8 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-#include "../../lv_examples.h"
+#include "lv_demo_music.h"
+#if LV_USE_DEMO_MUSIC
 
 /*********************
  *      DEFINES
@@ -32,6 +33,8 @@ void lv_demo_music_list_btn_check(uint32_t track_id, bool state);
 /**********************
  *      MACROS
  **********************/
+
+#endif /*LV_USE_DEMO_MUSIC*/
 
 #ifdef __cplusplus
 } /* extern "C" */

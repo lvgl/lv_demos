@@ -6,8 +6,9 @@
 /*********************
  *      INCLUDES
  *********************/
-#include "lv_demo_music.h"
 #include "lv_demo_music_list.h"
+#if LV_USE_DEMO_MUSIC
+
 #include "lv_demo_music_main.h"
 
 /*********************
@@ -189,3 +190,5 @@ static void btn_event_cb(lv_obj_t * btn, lv_event_t event)
 
     lv_demo_music_play(i);
 }
+#endif /*LV_USE_DEMO_MUSIC*/
+

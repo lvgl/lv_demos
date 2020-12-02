@@ -1,4 +1,6 @@
 #include "lvgl/lvgl.h"
+#include "../lv_demo_music.h"
+#if LV_USE_DEMO_MUSIC
 
 /*******************************************************************************
  * Size: 16 px
@@ -1420,4 +1422,6 @@ lv_font_t lv_demo_music_font_16_bold = {
 
 
 #endif /*#if LV_DEMO_MUSIC_FONT_16_BOLD*/
+
+#endif /*LV_USE_DEMO_MUSIC*/
 

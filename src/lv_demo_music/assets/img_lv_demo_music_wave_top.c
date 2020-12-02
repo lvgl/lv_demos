@@ -1,4 +1,6 @@
 #include "lvgl/lvgl.h"
+#include "../lv_demo_music.h"
+#if LV_USE_DEMO_MUSIC
 
 #ifndef LV_ATTRIBUTE_MEM_ALIGN
 #define LV_ATTRIBUTE_MEM_ALIGN
@@ -195,3 +197,7 @@ lv_img_dsc_t img_lv_demo_music_wave_top = {
   .header.cf = LV_IMG_CF_TRUE_COLOR,
   .data = img_lv_demo_music_wave_top_map,
 };
+
+#endif /*LV_USE_DEMO_MUSIC*/
+
+
