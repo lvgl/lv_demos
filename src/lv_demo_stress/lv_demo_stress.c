@@ -229,7 +229,7 @@ static void obj_test_task_cb(lv_task_t * param)
 
         case 12:
             obj = lv_roller_create(main_page, NULL);
-            lv_roller_set_options(obj, "Zero\nOne\nTwo\nThree\nFour\nFive\nSix\nSeven\nEight", LV_ROLLER_MODE_INIFINITE);
+            lv_roller_set_options(obj, "Zero\nOne\nTwo\nThree\nFour\nFive\nSix\nSeven\nEight", LV_ROLLER_MODE_INFINITE);
             lv_roller_set_anim_time(obj, TIME_STEP);
             lv_roller_set_selected(obj, 2, LV_ANIM_ON);
             auto_del(obj, TIME_STEP * 20 + 22);
