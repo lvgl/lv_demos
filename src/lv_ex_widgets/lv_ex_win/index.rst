@@ -1,10 +1,10 @@
 C
 ^
 
-Simple table 
+Simple window 
 """""""""""""""""""""""
 
-.. lv_example:: lv_ex_widgets/lv_ex_table/lv_ex_table_1
+.. lv_example:: lv_ex_widgets/lv_ex_win/lv_ex_win_1
   :language: c
 
 MicroPython

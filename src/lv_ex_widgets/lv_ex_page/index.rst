@@ -1,10 +1,10 @@
 C
 ^
 
-Simple Image button 
+Page with scrollbar 
 """""""""""""""""""
 
-.. lv_example:: lv_ex_widgets/lv_ex_imgbtn/lv_ex_imgbtn_1
+.. lv_example:: lv_ex_widgets/lv_ex_page/lv_ex_page_1
   :language: c
 
 MicroPython

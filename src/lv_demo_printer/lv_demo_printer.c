@@ -371,7 +371,7 @@ LV_EVENT_CB_DECLARE(copy_open_icon_event_cb) {
 
         lv_obj_t * txt = lv_label_create(lv_scr_act(), NULL);
         lv_label_set_text(txt, "Scanning, please wait...");
-        lv_theme_apply(txt, LV_DEMO_PRINTER_THEME_LABEL_WHITE);
+        lv_theme_apply(txt, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_LABEL_WHITE);
         lv_obj_align(txt, arc, LV_ALIGN_OUT_BOTTOM_MID, 0, 60);
 
         lv_demo_printer_anim_in(arc, delay);
@@ -397,7 +397,7 @@ LV_EVENT_CB_DECLARE(scan_open_icon_event_cb)
 
         lv_obj_t * txt = lv_label_create(lv_scr_act(), NULL);
         lv_label_set_text(txt, "Scanning, please wait...");
-        lv_theme_apply(txt, LV_DEMO_PRINTER_THEME_LABEL_WHITE);
+        lv_theme_apply(txt, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_LABEL_WHITE);
         lv_obj_align(txt, arc, LV_ALIGN_OUT_BOTTOM_MID, 0, 60);
 
         lv_demo_printer_anim_in(arc, delay);

@@ -1,19 +1,33 @@
 #include "../../../lv_examples.h"
 #if LV_USE_KEYBOARD
 
-void lv_ex_keyboard_1(void)
+static lv_obj_t * kb;
+static lv_obj_t * ta;
+
+
+static void kb_event_cb(lv_obj_t * keyboard, lv_event_t e)
+{
+    lv_keyboard_def_event_cb(kb, e);
+    if(e == LV_EVENT_CANCEL) {
+        lv_keyboard_set_textarea(kb, NULL);
+        lv_obj_del(kb);
+        kb = NULL;
+    }
+}
+
+static void kb_create(void)
 {
     /*Create a keyboard and apply the styles*/
     lv_obj_t *kb = lv_keyboard_create(lv_scr_act());
 
     /*Create a text area. The keyboard will write here*/
-    lv_obj_t *ta = lv_textarea_create(lv_scr_act(), NULL);
+    ta  = lv_textarea_create(lv_scr_act(), NULL);
     lv_obj_align(ta, NULL, LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 16);
+    lv_obj_set_event_cb(ta, ta_event_cb);
     lv_textarea_set_text(ta, "");
     lv_coord_t max_h = LV_VER_RES / 2 - LV_DPI / 8;
     if(lv_obj_get_height(ta) > max_h) lv_obj_set_height(ta, max_h);
 
-    /*Assign the text area to the keyboard*/
-    lv_keyboard_set_textarea(kb, ta);
+    kb_create();
 }
 #endif
