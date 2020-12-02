@@ -19,11 +19,11 @@ static void kb_create(void)
 {
     /*Create a keyboard and apply the styles*/
     lv_obj_t *kb = lv_keyboard_create(lv_scr_act());
+    lv_obj_set_event_cb(kb, kb_event_cb);
 
     /*Create a text area. The keyboard will write here*/
     ta  = lv_textarea_create(lv_scr_act(), NULL);
     lv_obj_align(ta, NULL, LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 16);
-    lv_obj_set_event_cb(ta, ta_event_cb);
     lv_textarea_set_text(ta, "");
     lv_coord_t max_h = LV_VER_RES / 2 - LV_DPI / 8;
     if(lv_obj_get_height(ta) > max_h) lv_obj_set_height(ta, max_h);

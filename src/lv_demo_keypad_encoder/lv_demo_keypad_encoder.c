@@ -269,7 +269,7 @@ static void ta_event_cb(lv_obj_t * ta, lv_event_t e)
             lv_keyboard_set_textarea(textinput_objs.kb, ta);
             lv_group_focus_obj(textinput_objs.kb);
             lv_group_set_editing(g, true);
-            lv_obj_scroll_to_obj(t2, ta, LV_ANIM_ON);
+            lv_obj_scroll_to_child(t2, ta, LV_ANIM_ON);
         }
     }
     else if(e == LV_EVENT_DEFOCUSED) {
