@@ -42,6 +42,12 @@
 /*Stress test for LVGL*/
 #define LV_USE_DEMO_STRESS      0
 
+/*Music player for LVGL*/
+#define LV_USE_DEMO_MUSIC      0
+#if LV_USE_DEMO_MUSIC
+#define LV_DEMO_MUSIC_AUTO_PLAY 0
+#endif
+
 #endif /*LV_EX_CONF_H*/
 
 #endif /*End of "Content enable"*/
