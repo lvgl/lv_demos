@@ -44,7 +44,7 @@ The music player demo shows what kind of modern, smartphone-like user interfaces
 
 See in [lv_demo_music](https://github.com/lvgl/lv_examples/tree/master/src/lv_demo_music) folder.
 
-<img src="https://github.com/lvgl/lv_examples/blob/master/src/lv_demo_widgets/screenshot1.gif?raw=true" width=600px alt="Music player demo with LVGL">
+<img src="https://github.com/lvgl/lv_examples/blob/master/src/lv_demo_music/screenshot1.gif?raw=true" width=600px alt="Music player demo with LVGL">
 
 ### Printer
 A printer example created with LVGL. This demo is optimized for 800x480 resolution and among many others, it demonstrates custom theme creation, style transitions, and animations. 
