@@ -188,7 +188,7 @@ static void btn_event_cb(lv_obj_t * btn, lv_event_t event)
         child = lv_obj_get_child_back(lv_page_get_scrl(list), child);
     }
 
-    lv_demo_music_play(i);
+    _lv_demo_music_play(i);
 }
 #endif /*LV_USE_DEMO_MUSIC*/
 

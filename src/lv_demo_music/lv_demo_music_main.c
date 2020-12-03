@@ -381,7 +381,7 @@ void _lv_demo_music_album_next(bool next)
     }
 
     if(playing) {
-        lv_demo_music_play(id);
+        _lv_demo_music_play(id);
     } else {
         track_load(id);
     }
@@ -391,7 +391,7 @@ void _lv_demo_music_play(uint32_t id)
 {
     track_load(id);
 
-    lv_demo_music_resume();
+    _lv_demo_music_resume();
 }
 
 void _lv_demo_music_resume(void)
@@ -442,11 +442,11 @@ static void track_load(uint32_t id)
     bool next = false;
     if((track_id+1) % ACTIVE_TRACK_CNT == id) next = true;
 
-    lv_demo_music_list_btn_check(track_id, false);
+    _lv_demo_music_list_btn_check(track_id, false);
 
     track_id = id;
 
-    lv_demo_music_list_btn_check(id, true);
+    _lv_demo_music_list_btn_check(id, true);
 
     lv_label_set_text(title_obj, _lv_demo_music_get_title(track_id));
     lv_label_set_text(artist_obj, _lv_demo_music_get_artist(track_id));
@@ -706,8 +706,8 @@ static void album_event_cb(lv_obj_t * img, lv_event_t event)
 {
     if(event == LV_EVENT_GESTURE) {
         lv_gesture_dir_t dir = lv_indev_get_gesture_dir(lv_indev_get_act());
-        if(dir == LV_GESTURE_DIR_LEFT) lv_demo_music_album_next(true);
-        if(dir == LV_GESTURE_DIR_RIGHT) lv_demo_music_album_next(false);
+        if(dir == LV_GESTURE_DIR_LEFT) _lv_demo_music_album_next(true);
+        if(dir == LV_GESTURE_DIR_RIGHT) _lv_demo_music_album_next(false);
     }
 }
 
@@ -715,9 +715,9 @@ static void play_event_cb(lv_obj_t * img, lv_event_t event)
 {
     if(event == LV_EVENT_CLICKED) {
         if(lv_imgbtn_get_state(img) == LV_BTN_STATE_RELEASED) {
-            lv_demo_music_pause();
+            _lv_demo_music_pause();
         } else {
-            lv_demo_music_resume();
+            _lv_demo_music_resume();
         }
     }
 }
@@ -725,14 +725,14 @@ static void play_event_cb(lv_obj_t * img, lv_event_t event)
 static void prev_event_cb(lv_obj_t * img, lv_event_t event)
 {
     if(event == LV_EVENT_CLICKED) {
-        lv_demo_music_album_next(false);
+        _lv_demo_music_album_next(false);
     }
 }
 
 static void next_event_cb(lv_obj_t * img, lv_event_t event)
 {
     if(event == LV_EVENT_CLICKED) {
-        lv_demo_music_album_next(true);
+        _lv_demo_music_album_next(true);
     }
 }
 

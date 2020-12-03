@@ -98,8 +98,8 @@ void lv_demo_music(void)
 {
     lv_obj_set_style_local_bg_color(lv_scr_act(), LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x343247));
 
-    list = lv_demo_music_list_create(lv_scr_act());
-    ctrl = lv_demo_music_main_create(lv_scr_act());
+    list = _lv_demo_music_list_create(lv_scr_act());
+    ctrl = _lv_demo_music_main_create(lv_scr_act());
 
 #if LV_DEMO_MUSIC_AUTO_PLAY
     lv_task_create(auto_step_cb, 1000, LV_TASK_PRIO_MID, NULL);
