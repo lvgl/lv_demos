@@ -1,6 +1,6 @@
 # Examples for LVGL
 
-Here you can find examples and demos for LVGL embedded GUI library.
+Here you can find examples and demos for the LVGL embedded GUI library.
 
 [Interact with live versions of all the examples in your browser!](https://lvgl.github.io/lv_examples/)
 
