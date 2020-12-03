@@ -1,4 +1,4 @@
-# Printer demo
+# Music player demo
 
 ## Overview
 The music player demo shows what kind of modern, smartphone-like user interfaces can be created on LVGL. It works the best with display with 480x272 or 272x480 resolution. 
