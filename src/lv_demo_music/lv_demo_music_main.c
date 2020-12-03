@@ -89,7 +89,7 @@ static const uint16_t rnd_array[30] = {994, 285, 553, 11, 792, 707, 966, 641, 85
  *   GLOBAL FUNCTIONS
  **********************/
 
-lv_obj_t * lv_demo_music_main_create(lv_obj_t * parent)
+lv_obj_t * _lv_demo_music_main_create(lv_obj_t * parent)
 {
     LV_FONT_DECLARE(lv_demo_music_font_16_bold);
     font_small = &lv_font_montserrat_12;
@@ -366,7 +366,7 @@ lv_obj_t * lv_demo_music_main_create(lv_obj_t * parent)
     return main_cont;
 }
 
-void lv_demo_music_album_next(bool next)
+void _lv_demo_music_album_next(bool next)
 {
     uint32_t id = track_id;
     if(next) {
@@ -387,14 +387,14 @@ void lv_demo_music_album_next(bool next)
     }
 }
 
-void lv_demo_music_play(uint32_t id)
+void _lv_demo_music_play(uint32_t id)
 {
     track_load(id);
 
     lv_demo_music_resume();
 }
 
-void lv_demo_music_resume(void)
+void _lv_demo_music_resume(void)
 {
     playing = true;
     spectrum_i = spectrum_i_pause;
@@ -414,7 +414,7 @@ void lv_demo_music_resume(void)
 
 }
 
-void lv_demo_music_pause(void)
+void _lv_demo_music_pause(void)
 {
     playing = false;
     spectrum_i_pause = spectrum_i;

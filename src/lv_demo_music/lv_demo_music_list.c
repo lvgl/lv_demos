@@ -45,7 +45,7 @@ static lv_style_t style_time;
  *   GLOBAL FUNCTIONS
  **********************/
 
-lv_obj_t * lv_demo_music_list_create(lv_obj_t * parent)
+lv_obj_t * _lv_demo_music_list_create(lv_obj_t * parent)
 {
     font_small = &lv_font_montserrat_10;
     font_medium = &lv_font_montserrat_12;
@@ -96,7 +96,7 @@ lv_obj_t * lv_demo_music_list_create(lv_obj_t * parent)
     return list;
 }
 
-void lv_demo_music_list_btn_check(uint32_t track_id, bool state)
+void _lv_demo_music_list_btn_check(uint32_t track_id, bool state)
 {
     lv_obj_t * btn = lv_obj_get_child_back(lv_page_get_scrl(list), NULL);
     uint32_t i = 0;
