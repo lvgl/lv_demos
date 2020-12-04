@@ -102,7 +102,7 @@ void lv_demo_music(void)
     ctrl = lv_demo_music_main_create(lv_scr_act());
 
 #if LV_DEMO_MUSIC_AUTO_PLAY
-    lv_task_create(auto_step_cb, 1000, LV_TASK_PRIO_MID, NULL);
+    //lv_task_create(auto_step_cb, 1000, LV_TASK_PRIO_MID, NULL);
 #endif
 }
 

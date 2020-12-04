@@ -49,6 +49,7 @@ static void timer_cb(lv_task_t * t);
 static void track_load(uint32_t id);
 static lv_res_t main_cont_signal_cb(lv_obj_t * obj, lv_signal_t signal, void * param);
 static void stop_start_anim(lv_task_t * task);
+static void spectrum_end_cb(lv_anim_t * a);
 
 /**********************
  *  STATIC VARIABLES
@@ -405,6 +406,7 @@ void lv_demo_music_resume(void)
     lv_anim_set_var(&a, spectrum_obj);
     lv_anim_set_time(&a, ((spectrum_len - spectrum_i) * 1000) / 30);
     lv_anim_set_playback_time(&a, 0);
+    lv_anim_set_ready_cb(&a, spectrum_end_cb);
     lv_anim_start(&a);
 
     lv_task_set_prio(time_task, LV_TASK_PRIO_MID);
@@ -784,6 +786,12 @@ static lv_res_t main_cont_signal_cb(lv_obj_t * obj, lv_signal_t signal, void * p
 
     return LV_RES_OK;
 }
+
+static void spectrum_end_cb(lv_anim_t * a)
+{
+    lv_demo_music_album_next(true);
+}
+
 
 static void stop_start_anim(lv_task_t * task)
 {
