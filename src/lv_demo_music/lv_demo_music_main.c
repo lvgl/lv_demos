@@ -789,7 +789,7 @@ static lv_res_t main_cont_signal_cb(lv_obj_t * obj, lv_signal_t signal, void * p
 
 static void spectrum_end_cb(lv_anim_t * a)
 {
-    lv_demo_music_album_next(true);
+    _lv_demo_music_album_next(true);
 }
 
 

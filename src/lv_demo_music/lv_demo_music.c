@@ -102,7 +102,7 @@ void lv_demo_music(void)
     ctrl = _lv_demo_music_main_create(lv_scr_act());
 
 #if LV_DEMO_MUSIC_AUTO_PLAY
-    //lv_task_create(auto_step_cb, 1000, LV_TASK_PRIO_MID, NULL);
+    lv_task_create(auto_step_cb, 1000, LV_TASK_PRIO_MID, NULL);
 #endif
 }
 
@@ -143,18 +143,17 @@ static void auto_step_cb(lv_task_t * task)
 
     switch(state) {
     case 5:
-        lv_demo_music_album_next(true);
+        _lv_demo_music_album_next(true);
         break;
 
     case 6:
-        lv_demo_music_album_next(true);
+        _lv_demo_music_album_next(true);
         break;
     case 7:
-        lv_demo_music_album_next(true);
-        break;
+        _lv_demo_music_album_next(true);
         break;
     case 8:
-        lv_demo_music_play(0);
+        _lv_demo_music_play(0);
         break;
     case 14:
         lv_anim_init(&a);
@@ -176,7 +175,7 @@ static void auto_step_cb(lv_task_t * task)
         lv_anim_start(&a);
         break;
     case 18:
-        lv_demo_music_play(1);
+        _lv_demo_music_play(1);
         break;
     case 19:
         lv_anim_init(&a);
@@ -187,7 +186,7 @@ static void auto_step_cb(lv_task_t * task)
         lv_anim_start(&a);
         break;
     case 30:
-        lv_demo_music_play(2);
+        _lv_demo_music_play(2);
         break;
     case 40: {
           lv_obj_t * bg = lv_layer_top();
@@ -196,21 +195,27 @@ static void auto_step_cb(lv_task_t * task)
           lv_obj_set_style_local_bg_opa(bg, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_COVER);
           lv_obj_fade_in(bg, 400, 0);
           lv_obj_t * dsc = lv_label_create(bg, NULL);
-          lv_obj_set_style_local_text_font(bg, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, lv_theme_get_font_normal());
+          lv_obj_set_style_local_text_font(dsc, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, &lv_font_montserrat_16);
           lv_label_set_text(dsc, "The average FPS is");
           lv_obj_align(dsc, bg, LV_ALIGN_IN_TOP_MID, 0, 90);
 
           lv_obj_t * num = lv_label_create(bg, NULL);
           lv_obj_set_style_local_text_font(num, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, &lv_font_montserrat_40);
-          char buf[32];
-          lv_snprintf(buf, 32, "%d", 0);
-          lv_label_set_text(num, buf);
+#if LV_USE_PERF_MONITOR
+          lv_label_set_text_fmt(num, "%d", lv_refr_get_fps_avg());
+#endif
+          lv_label_set_text(num, "?");
           lv_obj_align(num, bg, LV_ALIGN_IN_TOP_MID, 0, 120);
+
+          lv_obj_t * attr = lv_label_create(bg, NULL);
+          lv_obj_set_style_local_text_font(attr, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT,&lv_font_montserrat_12);
+          lv_label_set_text(attr, "Copyright 2020 LVGL Kft. | www.lvgl.io | lvgl@lvgl.io");
+          lv_obj_align(attr, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, -10);
           break;
     }
-
     case 41:
-        lv_demo_music_pause();
+        lv_scr_load(lv_obj_create(NULL, NULL));
+        _lv_demo_music_pause();
         break;
     }
     state++;
