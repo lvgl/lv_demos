@@ -90,7 +90,7 @@ static const uint16_t rnd_array[30] = {994, 285, 553, 11, 792, 707, 966, 641, 85
  *   GLOBAL FUNCTIONS
  **********************/
 
-lv_obj_t * lv_demo_music_main_create(lv_obj_t * parent)
+lv_obj_t * _lv_demo_music_main_create(lv_obj_t * parent)
 {
     LV_FONT_DECLARE(lv_demo_music_font_16_bold);
     font_small = &lv_font_montserrat_12;
@@ -367,7 +367,7 @@ lv_obj_t * lv_demo_music_main_create(lv_obj_t * parent)
     return main_cont;
 }
 
-void lv_demo_music_album_next(bool next)
+void _lv_demo_music_album_next(bool next)
 {
     uint32_t id = track_id;
     if(next) {
@@ -382,20 +382,20 @@ void lv_demo_music_album_next(bool next)
     }
 
     if(playing) {
-        lv_demo_music_play(id);
+        _lv_demo_music_play(id);
     } else {
         track_load(id);
     }
 }
 
-void lv_demo_music_play(uint32_t id)
+void _lv_demo_music_play(uint32_t id)
 {
     track_load(id);
 
-    lv_demo_music_resume();
+    _lv_demo_music_resume();
 }
 
-void lv_demo_music_resume(void)
+void _lv_demo_music_resume(void)
 {
     playing = true;
     spectrum_i = spectrum_i_pause;
@@ -416,7 +416,7 @@ void lv_demo_music_resume(void)
 
 }
 
-void lv_demo_music_pause(void)
+void _lv_demo_music_pause(void)
 {
     playing = false;
     spectrum_i_pause = spectrum_i;
@@ -444,11 +444,11 @@ static void track_load(uint32_t id)
     bool next = false;
     if((track_id+1) % ACTIVE_TRACK_CNT == id) next = true;
 
-    lv_demo_music_list_btn_check(track_id, false);
+    _lv_demo_music_list_btn_check(track_id, false);
 
     track_id = id;
 
-    lv_demo_music_list_btn_check(id, true);
+    _lv_demo_music_list_btn_check(id, true);
 
     lv_label_set_text(title_obj, _lv_demo_music_get_title(track_id));
     lv_label_set_text(artist_obj, _lv_demo_music_get_artist(track_id));
@@ -708,8 +708,8 @@ static void album_event_cb(lv_obj_t * img, lv_event_t event)
 {
     if(event == LV_EVENT_GESTURE) {
         lv_gesture_dir_t dir = lv_indev_get_gesture_dir(lv_indev_get_act());
-        if(dir == LV_GESTURE_DIR_LEFT) lv_demo_music_album_next(true);
-        if(dir == LV_GESTURE_DIR_RIGHT) lv_demo_music_album_next(false);
+        if(dir == LV_GESTURE_DIR_LEFT) _lv_demo_music_album_next(true);
+        if(dir == LV_GESTURE_DIR_RIGHT) _lv_demo_music_album_next(false);
     }
 }
 
@@ -717,9 +717,9 @@ static void play_event_cb(lv_obj_t * img, lv_event_t event)
 {
     if(event == LV_EVENT_CLICKED) {
         if(lv_imgbtn_get_state(img) == LV_BTN_STATE_RELEASED) {
-            lv_demo_music_pause();
+            _lv_demo_music_pause();
         } else {
-            lv_demo_music_resume();
+            _lv_demo_music_resume();
         }
     }
 }
@@ -727,14 +727,14 @@ static void play_event_cb(lv_obj_t * img, lv_event_t event)
 static void prev_event_cb(lv_obj_t * img, lv_event_t event)
 {
     if(event == LV_EVENT_CLICKED) {
-        lv_demo_music_album_next(false);
+        _lv_demo_music_album_next(false);
     }
 }
 
 static void next_event_cb(lv_obj_t * img, lv_event_t event)
 {
     if(event == LV_EVENT_CLICKED) {
-        lv_demo_music_album_next(true);
+        _lv_demo_music_album_next(true);
     }
 }
 

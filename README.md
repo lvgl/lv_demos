@@ -1,6 +1,6 @@
 # Examples for LVGL
 
-Here you can find examples and demos for LVGL embedded GUI library.
+Here you can find examples and demos for the LVGL embedded GUI library.
 
 [Interact with live versions of all the examples in your browser!](https://lvgl.github.io/lv_examples/)
 
@@ -17,7 +17,7 @@ Similarly to `lv_conf.h` there is a configuration file for the examples too. It 
 
 ## Examples
 
-### Get strated
+### Get started
 If you are new to LVGL check these examples first. They demonstrate the basic mechanisms of the library.
 See the [lv_ex_get_started](https://github.com/lvgl/lv_examples/tree/master/src/lv_ex_get_started) folder.
 You can also take a look at the [Quich overview](https://docs.lvgl.io/v7/en/html/get-started/quick-overview.html) of LVGL to learn the basics. 
