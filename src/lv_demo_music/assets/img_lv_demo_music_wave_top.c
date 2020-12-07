@@ -1,4 +1,3 @@
-#include "lvgl/lvgl.h"
 #include "../lv_demo_music.h"
 #if LV_USE_DEMO_MUSIC
 
