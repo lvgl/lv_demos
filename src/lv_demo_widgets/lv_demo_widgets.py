@@ -570,6 +570,3 @@ controls_create(t1)
 visuals_create(t2)                            
 selectors_create(t3)
 
-while True:
-    lv.task_handler()
-    time.sleep_ms(5)
