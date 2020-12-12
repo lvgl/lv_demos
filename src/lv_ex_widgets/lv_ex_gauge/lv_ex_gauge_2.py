@@ -1,20 +1,18 @@
 from lv_colors import lv_colors
-from imagetools import get_png_info, open_png
 
-# Register PNG image decoder
-decoder = lv.img.decoder_create()
-decoder.info_cb = get_png_info
-decoder.open_cb = open_png
+with open('../../../assets/img_hand.bin','rb') as f:
+    hand_img_data = f.read()
+    
+# create the hands image data
 
-# Create an image
+img_hand_dsc = lv.img_dsc_t(
+    {
+        "header": {"always_zero": 0, "w": 100, "h": 9, "cf": lv.img.CF.TRUE_COLOR_ALPHA},
+        "data": hand_img_data,
+        "data_size": len(hand_img_data),
+    }
+)
 
-with open('img_hand.png','rb') as f:
-  png_data = f.read()
-
-img_hand_dsc = lv.img_dsc_t({
-    'data_size': len(png_data),
-    'data': png_data 
-})
 # needle colors
 needle_colors=[lv_colors.BLUE,lv_colors.ORANGE,lv_colors.PURPLE]
 
@@ -30,4 +28,3 @@ gauge1.set_style_local_image_recolor_opa(lv.gauge.PART.NEEDLE, lv.STATE.DEFAULT,
 gauge1.set_value(0, 10)
 gauge1.set_value(1, 20)
 gauge1.set_value(2, 30)
-

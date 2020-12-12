@@ -1,17 +1,19 @@
 from lv_colors import lv_colors
+from imagetools import get_png_info, open_png
 
-with open('../../assets/img_cogwheel_argb.bin','rb') as f:
-    cogwheel_img_data = f.read()
-    
-# create the cogwheel image data
+# Register PNG image decoder
+decoder = lv.img.decoder_create()
+decoder.info_cb = get_png_info
+decoder.open_cb = open_png
 
-cogwheel_img_dsc = lv.img_dsc_t(
-    {
-        "header": {"always_zero": 0, "w": 100, "h": 100, "cf": lv.img.CF.TRUE_COLOR_ALPHA},
-        "data": cogwheel_img_data,
-        "data_size": len(cogwheel_img_data),
-    }
-)
+# Create a screen with a draggable image
+with open('../../assets/img_cogwheel_argb.png','rb') as f:
+  png_data = f.read()
+
+png_img_dsc = lv.img_dsc_t({
+    'data_size': len(png_data),
+    'data': png_data 
+})
 
 style = lv.style_t()
 style.init()
@@ -34,9 +36,5 @@ obj = lv.img(lv.scr_act(), None)
 lv.img.cache_set_size(2)
 
 obj.add_style(lv.img.PART.MAIN, style)
-obj.set_src(cogwheel_img_dsc)
+obj.set_src(png_img_dsc)
 obj.align(None, lv.ALIGN.CENTER, 0, 0)
-    
-while True:
-     lv.task_handler()
-     time.sleep_ms(10)
