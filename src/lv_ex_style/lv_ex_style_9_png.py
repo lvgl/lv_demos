@@ -1,3 +1,4 @@
+import sys
 from lv_colors import lv_colors
 from imagetools import get_png_info, open_png
 
@@ -7,12 +8,20 @@ decoder.info_cb = get_png_info
 decoder.open_cb = open_png
 
 # Create a screen with a draggable image
-with open('../../assets/img_cogwheel_argb.png','rb') as f:
-  png_data = f.read()
+try:
+    with open('../assets/img_cogwheel_argb.png','rb') as f:
+        png_data = f.read()
+except:
+    try:
+        with open('images/img_cogwheel_argb.png','rb') as f:
+            png_data = f.read()
+    except:
+        print("Could not find img_cogwheel_argb.png")
+        sys.exit()
 
 png_img_dsc = lv.img_dsc_t({
-    'data_size': len(png_data),
-    'data': png_data 
+  'data_size': len(png_data),
+  'data': png_data 
 })
 
 style = lv.style_t()

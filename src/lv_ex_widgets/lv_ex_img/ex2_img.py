@@ -1,9 +1,17 @@
+import usys as sys
 from lv_colors import lv_colors
 
 SLIDER_WIDTH=15
 
-with open('../../../assets/img_cogwheel_argb.bin','rb') as f:
+try:
+  with open('../../../assets/img_cogwheel_argb.bin','rb') as f:
     cogwheel_img_data = f.read()
+except:
+  try:
+    with open('images/img_cogwheel_rgb565.bin','rb') as f:
+      cogwheel_img_data = f.read()
+  except:
+    print("Could not find binary img_cogwheel file")
     
 # create the cogwheel image data
 

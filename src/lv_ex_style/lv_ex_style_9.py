@@ -1,7 +1,17 @@
+import sys
 from lv_colors import lv_colors
 
-with open('../../assets/img_cogwheel_argb.bin','rb') as f:
-    cogwheel_img_data = f.read()
+# create the cogwheel image data
+try:
+    with open('../../assets/img_cogwheel_argb.bin','rb') as f:
+        cogwheel_img_data = f.read()
+except:
+    try:
+        with open('images/img_cogwheel_rgb565.bin','rb') as f:
+            cogwheel_img_data = f.read()
+    except:
+        print("Could not find img_cogwheel binary image file")
+        sys.exit()
     
 # create the cogwheel image data
 

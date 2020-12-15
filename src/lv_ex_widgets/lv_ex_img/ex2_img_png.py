@@ -1,3 +1,4 @@
+import usys as sys
 from lv_colors import lv_colors
 from imagetools import get_png_info, open_png
 
@@ -8,9 +9,17 @@ decoder = lv.img.decoder_create()
 decoder.info_cb = get_png_info
 decoder.open_cb = open_png
 
-with open('../../../assets/img_cogwheel_argb.png','rb') as f:
-  png_data = f.read()
-
+try:
+  with open('../../../assets/img_cogwheel_argb.png','rb') as f:
+    png_data = f.read()
+except:
+  try:
+    with open('images/img_cogwheel_argb.png','rb') as f:
+      png_data = f.read()
+  except:
+    print("Could not find img_cogwheel .png file")
+    sys.exit()
+    
 png_img_dsc = lv.img_dsc_t({
     'data_size': len(png_data),
     'data': png_data 
@@ -55,3 +64,4 @@ img1 = lv.img(lv.scr_act(),None)
 lv.img.cache_set_size(2)
 img1.align(lv.scr_act(), lv.ALIGN.CENTER, 50, -30)
 img1.set_src(png_img_dsc)
+

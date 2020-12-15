@@ -1,6 +1,4 @@
-#!/opt/bin/lv_micropython -1
+#!/opt/bin/lv_micropython -i
 import lvgl as lv
-import init_gui
+import display_driver
 import time
-
-
