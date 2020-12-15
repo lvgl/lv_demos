@@ -1,11 +1,30 @@
-with open('imgbtn_green_map.bin','rb') as f:
-    green_img_data = f.read()
-    
-with open('imgbtn_blue_map.bin','rb') as f:
-    blue_img_data = f.read()
-    
-# create the green image data
+import usys as sys
+from lv_colors import lv_colors
 
+# create the green image data
+try:
+    with open('../../../assets/imgbtn_green_argb.bin','rb') as f:
+        green_img_data = f.read()
+except:
+    try:
+        with open('images/imgbtn_green_rgb565.bin','rb') as f:
+            green_img_data = f.read()
+    except:
+        print("Cannot open green buttom image file")
+        sys.exit()
+          
+# create the blue image data
+try:
+    with open('../../../assets/imgbtn_blue_argb.bin','rb') as f:
+        blue_img_data = f.read()
+except:
+    try:
+        with open('images/imgbtn_blue_rgb565.bin','rb') as f:
+            blue_img_data = f.read()
+    except:
+        print("Cannot open green buttom image file")
+        sys.exit()
+        
 imgbtn_green_dsc = lv.img_dsc_t(
     {
         "header": {"always_zero": 0, "w": 125, "h": 40, "cf": lv.img.CF.TRUE_COLOR_ALPHA},
@@ -43,4 +62,3 @@ imgbtn1.align(None, lv.ALIGN.CENTER, 0, -40)
 # Create a label on the Image button
 label = lv.label(imgbtn1, None)
 label.set_text("Button")
-
