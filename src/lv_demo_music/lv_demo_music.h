@@ -15,7 +15,7 @@ extern "C" {
  *********************/
 #include "../../lv_examples.h"
 
-#if LV_USE_DEMO_MUSIC
+#if defined(LV_USE_DEMO_MUSIC)
 
 /*********************
  *      DEFINES
@@ -40,7 +40,8 @@ uint32_t _lv_demo_music_get_track_length(uint32_t track_id);
 /**********************
  *      MACROS
  **********************/
-
+#else
+#define LV_USE_DEMO_MUSIC 0
 #endif /*LV_USE_DEMO_MUSIC*/
 
 #ifdef __cplusplus
