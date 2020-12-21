@@ -1,26 +1,22 @@
-# Create styles for the keyboard
-rel_style = lv.style_t()
-pr_style  = lv.style_t()
+LV_DPI=130
+LV_VER_RES=240
 
-lv.style_copy(rel_style, lv.style_btn_rel)
-rel_style.body.radius = 0
-rel_style.body.border.width = 1
+def event_handler(source,evt):
+    if  evt == lv.EVENT.VALUE_CHANGED:
+        print("Value:",textarea.get_text())
+            
+# create a keyboard and apply the styles
+keyb = lv.keyboard(lv.scr_act(),None)
+keyb.set_cursor_manage(True)
 
-lv.style_copy(pr_style, lv.style_btn_pr)
-pr_style.body.radius = 0
-pr_style.body.border.width = 1
-
-# Create a keyboard and apply the styles
-kb = lv.kb(lv.scr_act())
-kb.set_cursor_manage(True)
-kb.set_style(lv.kb.STYLE.BG, lv.style_transp_tight)
-kb.set_style(lv.kb.STYLE.BTN_REL, rel_style)
-kb.set_style(lv.kb.STYLE.BTN_PR, pr_style)
-
-# Create a text area. The keyboard will write here
-ta = lv.ta(lv.scr_act())
-ta.align(None, lv.ALIGN.IN_TOP_MID, 0, 10)
+#Create a text area. The keyboard will write here
+ta=lv.textarea(lv.scr_act(),None)
+ta.align(None,lv.ALIGN.IN_TOP_MID,0,LV_DPI//16)
 ta.set_text("")
+max_h = LV_VER_RES // 2 - LV_DPI // 8
+if ta.get_height() > max_h:
+    ta.set_height(max_h)
 
-# Assign the text area to the keyboard
-kb.set_ta(ta)
+# Assign the text area to the keyboard*/
+keyb.set_textarea(ta)    
+

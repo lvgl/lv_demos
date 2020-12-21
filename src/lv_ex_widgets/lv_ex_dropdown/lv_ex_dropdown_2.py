@@ -1,7 +1,5 @@
-# Create a drop UP list by applying auto realign
-
 # Create a drop down list
-ddlist = lv.ddlist(lv.scr_act())
+ddlist = lv.dropdown(lv.scr_act())
 ddlist.set_options("\n".join([
                     "Apple",
                     "Banana",
@@ -10,14 +8,14 @@ ddlist.set_options("\n".join([
                     "Grape",
                     "Raspberry"]))
 
-
-ddlist.set_fix_width(150)
-ddlist.set_fix_height(150)
-ddlist.set_draw_arrow(True)
-
-# Enable auto-realign when the size changes.
-# It will keep the bottom of the ddlist fixed
-ddlist.set_auto_realign(True)
-
+ddlist.set_dir(lv.dropdown.DIR.LEFT);
+ddlist.set_symbol(None)
+ddlist.set_show_selected(False)
+ddlist.set_text("Fruits")
 # It will be called automatically when the size changes
-ddlist.align(None, lv.ALIGN.IN_BOTTOM_MID, 0, -20)
+ddlist.align(None, lv.ALIGN.IN_TOP_RIGHT, 0, 20)
+
+# Copy the drop LEFT list
+ddlist = lv.dropdown(lv.scr_act(), ddlist)
+ddlist.align(None, lv.ALIGN.IN_TOP_RIGHT, 0, 100)
+

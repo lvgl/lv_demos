@@ -1,6 +1,7 @@
 def event_handler(obj, event):
+    list_btn = lv.list.__cast__(obj)
     if event == lv.EVENT.CLICKED:
-        print("Clicked: %s" % lv.list.get_btn_text(obj))
+        print("Clicked: %s" % list_btn.get_btn_text())
 
 # Create a list
 list1 = lv.list(lv.scr_act())
@@ -23,3 +24,10 @@ list_btn.set_event_cb(event_handler)
 
 list_btn = list1.add_btn(lv.SYMBOL.SAVE, "Save")
 list_btn.set_event_cb(event_handler)
+
+list_btn = list1.add_btn(lv.SYMBOL.BELL, "Notify")
+list_btn.set_event_cb(event_handler)
+
+list_btn = list1.add_btn(lv.SYMBOL.BATTERY_FULL, "Battery")
+list_btn.set_event_cb(event_handler)
+
