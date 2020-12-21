@@ -1,7 +1,7 @@
 # Create three labels to demonstrate the alignments.
 labels = []
 
-# `lv_label_set_align` is not required to align the object itslef.
+# `label.set_align` is not required to align the object itslef.
 # It's used only when the text has multiple lines
 
 # Create a label on the top.
@@ -12,7 +12,7 @@ label.set_align(lv.label.ALIGN.CENTER)
 labels.append(label)
 
 # Create a label in the middle.
-# `lv_obj_align` will be called every time the text changes
+# `obj.align` will be called every time the text changes
 # to keep the middle position
 label = lv.label(lv.scr_act())
 label.align(None, lv.ALIGN.CENTER, 0, 0)
@@ -52,3 +52,4 @@ class TextChanger:
 
 text_changer = TextChanger(labels)
 text_changer.start()
+
