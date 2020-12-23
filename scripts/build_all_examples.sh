@@ -26,3 +26,4 @@ cat $OBJS_DIR/../scripts/examples.txt | while read -r example_name; do
   echo "<li><a href=\"$example_name/index.html\">$example_name</a></li>" >> $OBJS_DIR/index.html
 done
 echo "</ul></body></html>" >> $OBJS_DIR/index.html
+echo $GITHUB_SHA > $OBJS_DIR/git.sha
