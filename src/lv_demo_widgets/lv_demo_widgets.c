@@ -9,6 +9,8 @@
 #include "../../lv_examples.h"
 #include "lv_demo_widgets.h"
 
+#include LV_THEME_DEFAULT_INCLUDE
+
 #if LV_USE_DEMO_WIDGETS
 
 /*********************
