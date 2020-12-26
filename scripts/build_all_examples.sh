@@ -23,6 +23,8 @@ cat $OBJS_DIR/../scripts/examples.txt | while read -r example_name; do
   cp -a build $OBJS_DIR/$example_name
   ex_py_name=$(find ../../src -name ${example_name}.py)
   if [ "x$ex_py_name" != "x" ]; then cp $ex_py_name $OBJS_DIR/$example_name/; fi
+  ex_png_name=$(find ../../src -name ${example_name}.png)
+  if [ "x$ex_png_name" != "x" ]; then cp $ex_png_name $OBJS_DIR/$example_name/; fi
   echo "<li><a href=\"$example_name/index.html\">$example_name</a></li>" >> $OBJS_DIR/index.html
 done
 echo "</ul></body></html>" >> $OBJS_DIR/index.html
