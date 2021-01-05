@@ -1,3 +1,6 @@
+from lv_colors import lv_colors
+import time
+
 # Create an array for the points of the line
 line_points = [ {"x":5, "y":5}, 
                 {"x":70, "y":70}, 
@@ -7,13 +10,17 @@ line_points = [ {"x":5, "y":5},
 
 # Create new style (thick dark blue)
 style_line = lv.style_t()
-lv.style_copy(style_line, lv.style_plain)
-style_line.line.color = lv.color_make(0x00, 0x3b, 0x75)
-style_line.line.width = 3
-style_line.line.rounded = 1
+style_line.init()
+style_line.set_line_width(lv.STATE.DEFAULT, 8)
+style_line.set_line_color(lv.STATE.DEFAULT, lv_colors.BLUE)
+style_line.set_line_rounded(lv.STATE.DEFAULT, True)
 
 # Copy the previous line and apply the new style
 line1 = lv.line(lv.scr_act())
 line1.set_points(line_points, len(line_points))      # Set the points
-line1.set_style(lv.line.STYLE.MAIN, style_line)
+line1.add_style(lv.line.PART.MAIN, style_line)
 line1.align(None, lv.ALIGN.CENTER, 0, 0)
+
+while True:
+    lv.task_handler()
+    time.sleep_ms(5)

@@ -21,6 +21,11 @@ cat $OBJS_DIR/../scripts/examples.txt | while read -r example_name; do
   make -j4 CHOSEN_DEMO=$example_name NO_GIT_HASH=1 || exit 1
   rm -rf $OBJS_DIR/$example_name
   cp -a build $OBJS_DIR/$example_name
+  ex_py_name=$(find ../../src -name ${example_name}.py)
+  if [ "x$ex_py_name" != "x" ]; then cp $ex_py_name $OBJS_DIR/$example_name/; fi
+  ex_png_name=$(find ../../src -name ${example_name}.png)
+  if [ "x$ex_png_name" != "x" ]; then cp $ex_png_name $OBJS_DIR/$example_name/; fi
   echo "<li><a href=\"$example_name/index.html\">$example_name</a></li>" >> $OBJS_DIR/index.html
 done
 echo "</ul></body></html>" >> $OBJS_DIR/index.html
+echo $GITHUB_SHA > $OBJS_DIR/git.sha
