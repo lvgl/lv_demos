@@ -99,7 +99,11 @@ lv_obj_t * _lv_demo_music_main_create(lv_obj_t * parent)
 
     /*Create an empty white main container*/
     main_cont = lv_obj_create(parent, NULL);
+#if LV_DEMO_MUSIC_SQUARE
+    lv_obj_set_size(main_cont, LV_HOR_RES, LV_VER_RES * 2 + 30);
+#else
     lv_obj_set_size(main_cont, LV_HOR_RES, LV_VER_RES + 30);
+#endif
     lv_obj_set_style_local_bg_color(main_cont, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_WHITE);
     lv_obj_set_style_local_radius(main_cont, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 15);
     lv_obj_set_style_local_border_width(main_cont, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 0);
@@ -138,7 +142,10 @@ lv_obj_t * _lv_demo_music_main_create(lv_obj_t * parent)
     lv_obj_clean_style_list(title_box, LV_CONT_PART_MAIN);
     lv_cont_set_layout(title_box, LV_LAYOUT_COLUMN_MID);
     lv_cont_set_fit2(title_box, LV_FIT_NONE, LV_FIT_TIGHT);
-#if LV_DEMO_MUSIC_LANDSCAPE
+#if LV_DEMO_MUSIC_SQUARE
+    lv_obj_set_width(title_box, LV_HOR_RES);
+    lv_obj_align(title_box, NULL, LV_ALIGN_IN_TOP_MID, 0, LV_VER_RES + 5);
+#elif LV_DEMO_MUSIC_LANDSCAPE
     lv_obj_set_width(title_box, LV_HOR_RES / 2);
     lv_obj_align(title_box, NULL, LV_ALIGN_IN_TOP_LEFT, 0, 23);
 #else
@@ -183,8 +190,9 @@ lv_obj_t * _lv_demo_music_main_create(lv_obj_t * parent)
     lv_img_set_src(icon, &img_lv_demo_music_icon_3);
     icon = lv_img_create(icon_box, NULL);
     lv_img_set_src(icon, &img_lv_demo_music_icon_4);
-
-#if LV_DEMO_MUSIC_LANDSCAPE
+#if LV_DEMO_MUSIC_SQUARE
+    lv_obj_align(icon_box, title_box, LV_ALIGN_OUT_BOTTOM_MID, 0, 15);
+#elif LV_DEMO_MUSIC_LANDSCAPE
     lv_obj_align(icon_box, title_box, LV_ALIGN_OUT_BOTTOM_MID, 0, 22);
 #else
     lv_obj_align(icon_box, NULL, LV_ALIGN_IN_TOP_MID, 0, 100);
@@ -195,7 +203,10 @@ lv_obj_t * _lv_demo_music_main_create(lv_obj_t * parent)
     lv_obj_set_design_cb(spectrum_obj, spectrum_design_cb);
     spectrum_obj->ext_draw_pad = 400;
     lv_obj_set_click(spectrum_obj, false);
-#if LV_DEMO_MUSIC_LANDSCAPE
+#if LV_DEMO_MUSIC_SQUARE
+    lv_obj_set_size(spectrum_obj, LV_HOR_RES, LV_VER_RES);
+    lv_obj_align(spectrum_obj, NULL, LV_ALIGN_IN_TOP_MID, 0, 10);
+#elif LV_DEMO_MUSIC_LANDSCAPE
     lv_obj_set_size(spectrum_obj, LV_HOR_RES / 2, LV_VER_RES);
     lv_obj_align(spectrum_obj, NULL, LV_ALIGN_IN_RIGHT_MID, 0, -10);
 #else
@@ -256,7 +267,10 @@ lv_obj_t * _lv_demo_music_main_create(lv_obj_t * parent)
     lv_slider_set_anim_time(slider_obj, 100);
     lv_obj_set_click(slider_obj, false);        /*No input from the slider*/
 
-#if LV_DEMO_MUSIC_LANDSCAPE
+#if LV_DEMO_MUSIC_SQUARE
+    lv_obj_set_size(slider_obj, lv_obj_get_width(ctrl_box) - 50, 3);
+    lv_obj_align(slider_obj, NULL, LV_ALIGN_IN_TOP_LEFT, 10, 82);
+#elif LV_DEMO_MUSIC_LANDSCAPE
     lv_obj_set_size(slider_obj, lv_obj_get_width(ctrl_box) - 50, 3);
     lv_obj_align(slider_obj, NULL, LV_ALIGN_IN_TOP_LEFT, 10, 82);
 #else
@@ -347,6 +361,7 @@ lv_obj_t * _lv_demo_music_main_create(lv_obj_t * parent)
     lv_obj_align(logo, spectrum_obj, LV_ALIGN_CENTER, 0, 0);
     lv_obj_move_foreground(logo);
 
+#if LV_DEMO_MUSIC_SQUARE == 0
     lv_obj_t * title = lv_label_create(lv_scr_act(), NULL);
     lv_label_set_text(title, "LVGL Demo\nMusic player");
     lv_label_set_align(title, LV_LABEL_ALIGN_CENTER);
@@ -354,7 +369,7 @@ lv_obj_t * _lv_demo_music_main_create(lv_obj_t * parent)
     lv_obj_set_style_local_text_line_space(title, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, 8);
     lv_obj_align(title, NULL, LV_ALIGN_IN_LEFT_MID, 50, -10);
     lv_obj_fade_out(title, 300, INTRO_TIME);
-
+#endif
     lv_anim_path_set_cb(&path, lv_anim_path_ease_in);
     lv_anim_set_path(&a, &path);
     lv_anim_set_var(&a, logo);
@@ -693,7 +708,6 @@ static lv_obj_t * album_img_create(lv_obj_t * parent)
         spectrum_len = sizeof(spectrum_3) / sizeof(spectrum_3[0]);
         break;
     }
-    lv_img_set_pivot(img, lv_obj_get_width(img) / 2, lv_obj_get_height(img) / 2);
     lv_img_set_antialias(img, false);
     lv_obj_align(img, NULL, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_event_cb(img, album_event_cb);
@@ -710,6 +724,18 @@ static void album_event_cb(lv_obj_t * img, lv_event_t event)
         lv_gesture_dir_t dir = lv_indev_get_gesture_dir(lv_indev_get_act());
         if(dir == LV_GESTURE_DIR_LEFT) _lv_demo_music_album_next(true);
         if(dir == LV_GESTURE_DIR_RIGHT) _lv_demo_music_album_next(false);
+#if LV_DEMO_MUSIC_SQUARE
+        if(dir == LV_GESTURE_DIR_TOP) {
+            lv_anim_t a;
+            lv_anim_init(&a);
+            lv_anim_set_var(&a, main_cont);
+            lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_obj_set_y);
+            lv_anim_set_time(&a, 200);
+            lv_indev_finish_drag(lv_indev_get_act());
+            lv_anim_set_values(&a, lv_obj_get_y(main_cont), -LV_VER_RES - 7);
+            lv_anim_start(&a);
+        }
+#endif
     }
 }
 
@@ -770,11 +796,28 @@ static lv_res_t main_cont_signal_cb(lv_obj_t * obj, lv_signal_t signal, void * p
         lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_obj_set_y);
         lv_anim_set_time(&a, 200);
         lv_indev_finish_drag(lv_indev_get_act());
+
+#if LV_DEMO_MUSIC_SQUARE
+        if(y_predict < -LV_VER_RES / 3) y_predict = -LV_VER_RES / 3;
+        if(y_predict > LV_VER_RES / 3) y_predict = LV_VER_RES / 3;
+        int page = (y + y_predict - LV_VER_RES / 2) / LV_VER_RES;
+        if(page > 0) page = 0;
+        if(page < -2) page = -2;
+        if(page == 0) {
+            lv_anim_set_values(&a, y, -15);
+        }
+        else if(page == -1) {
+            lv_anim_set_values(&a, y, -LV_VER_RES - 7);
+        } else {
+            lv_anim_set_values(&a, y, -lv_obj_get_height(obj) + LV_DEMO_LIST_CTRL_OVERLAP);
+        }
+#else
         if(y + y_predict > -LV_VER_RES / 2) {
             lv_anim_set_values(&a, y, -15);
         } else {
             lv_anim_set_values(&a, y, -lv_obj_get_height(obj) + LV_DEMO_LIST_CTRL_OVERLAP);
         }
+#endif
         lv_anim_start(&a);
     }
     else if(signal == LV_SIGNAL_COORD_CHG) {

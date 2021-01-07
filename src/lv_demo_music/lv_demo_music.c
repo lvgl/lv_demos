@@ -21,6 +21,7 @@
  *      TYPEDEFS
  **********************/
 
+#define LV_DEMO_MUSIC_AUTO_PLAY 1
 /**********************
  *  STATIC PROTOTYPES
  **********************/
@@ -155,6 +156,14 @@ static void auto_step_cb(lv_task_t * task)
     case 8:
         _lv_demo_music_play(0);
         break;
+    case 12:
+        lv_anim_init(&a);
+        lv_anim_set_var(&a, ctrl);
+        lv_anim_set_values(&a, lv_obj_get_y(ctrl), -LV_VER_RES - 7);
+        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_obj_set_y);
+        lv_anim_set_time(&a, 500);
+        lv_anim_start(&a);
+        break;
     case 14:
         lv_anim_init(&a);
         lv_anim_set_var(&a, ctrl);
@@ -208,8 +217,13 @@ static void auto_step_cb(lv_task_t * task)
           lv_obj_align(num, bg, LV_ALIGN_IN_TOP_MID, 0, 120);
 
           lv_obj_t * attr = lv_label_create(bg, NULL);
+          lv_label_set_align(attr, LV_LABEL_ALIGN_CENTER);
           lv_obj_set_style_local_text_font(attr, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT,&lv_font_montserrat_12);
+#if LV_DEMO_MUSIC_SQUARE
+          lv_label_set_text(attr, "Copyright 2020 LVGL Kft.\nwww.lvgl.io | lvgl@lvgl.io");
+#else
           lv_label_set_text(attr, "Copyright 2020 LVGL Kft. | www.lvgl.io | lvgl@lvgl.io");
+#endif
           lv_obj_align(attr, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, -10);
           break;
     }
