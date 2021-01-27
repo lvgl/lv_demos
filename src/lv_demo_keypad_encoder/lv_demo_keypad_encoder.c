@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @file lv_demo_keypad_encoder.c
  *
  */
@@ -8,12 +8,6 @@
  *********************/
 #include "../../lv_examples.h"
 #include "lv_demo_keypad_encoder.h"
-#if LV_EX_KEYBOARD
-#include "lv_drivers/indev/keyboard.h"
-#endif
-#if LV_EX_MOUSEWHEEL
-#include "lv_drivers/indev/mousewheel.h"
-#endif
 
 #if LV_USE_DEMO_KEYPAD_AND_ENCODER
 
@@ -84,23 +78,25 @@ void lv_demo_keypad_encoder(void)
     g = lv_group_create();
     lv_group_set_focus_cb(g, focus_cb);
 
+    lv_indev_t* cur_drv = NULL;
+    for (;;) {
+        cur_drv = lv_indev_get_next(cur_drv);
+        if (!cur_drv) {
+            break;
+        }
+
 #if LV_EX_KEYBOARD
-    lv_indev_drv_t kb_drv;
-    lv_indev_drv_init(&kb_drv);
-    kb_drv.type = LV_INDEV_TYPE_KEYPAD;
-    kb_drv.read_cb = keyboard_read;
-    lv_indev_t * kb_indev = lv_indev_drv_register(&kb_drv);
-    lv_indev_set_group(kb_indev, g);
+        if (cur_drv->driver.type == LV_INDEV_TYPE_KEYPAD) {
+            lv_indev_set_group(cur_drv, g);
+        }
 #endif
 
 #if LV_EX_MOUSEWHEEL
-    lv_indev_drv_t enc_drv;
-    lv_indev_drv_init(&enc_drv);
-    enc_drv.type = LV_INDEV_TYPE_ENCODER;
-    enc_drv.read_cb = mousewheel_read;
-    lv_indev_t * enc_indev = lv_indev_drv_register(&enc_drv);
-    lv_indev_set_group(enc_indev, g);
+        if (cur_drv->driver.type == LV_INDEV_TYPE_ENCODER) {
+            lv_indev_set_group(cur_drv, g);
+        }
 #endif
+    }
 
     tv = lv_tabview_create(lv_scr_act(), NULL);
     lv_obj_set_event_cb(tv, tv_event_cb);
