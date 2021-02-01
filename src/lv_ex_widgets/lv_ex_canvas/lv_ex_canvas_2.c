@@ -28,8 +28,8 @@ void lv_ex_canvas_2(void)
     c0.full = 0;
     c1.full = 1;
 
-    /*Transparent background*/
-    lv_canvas_fill_bg(canvas, c1, LV_OPA_TRANSP);
+    /*Red background (There is no dedicated alpha channel in indexed images so LV_OPA_COVER is ignored)*/
+    lv_canvas_fill_bg(canvas, c1, LV_OPA_COVER);
 
     /*Create hole on the canvas*/
     uint32_t x;

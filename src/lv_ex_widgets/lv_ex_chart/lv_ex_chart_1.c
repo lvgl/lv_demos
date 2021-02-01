@@ -11,20 +11,20 @@ void lv_ex_chart_1(void)
     lv_chart_set_type(chart, LV_CHART_TYPE_LINE);   /*Show lines and points too*/
 
     /*Add two data series*/
-    lv_chart_series_t * ser1 = lv_chart_add_series(chart, LV_COLOR_RED);
-    lv_chart_series_t * ser2 = lv_chart_add_series(chart, LV_COLOR_GREEN);
+    lv_chart_series_t * ser1 = lv_chart_add_series(chart, LV_COLOR_RED, LV_CHART_AXIS_PRIMARY_Y);
+    lv_chart_series_t * ser2 = lv_chart_add_series(chart, LV_COLOR_GREEN, LV_CHART_AXIS_SECONDARY_Y);
 
     /*Set the next points on 'ser1'*/
-    lv_chart_set_next(chart, ser1, 10);
-    lv_chart_set_next(chart, ser1, 10);
-    lv_chart_set_next(chart, ser1, 10);
-    lv_chart_set_next(chart, ser1, 10);
-    lv_chart_set_next(chart, ser1, 10);
-    lv_chart_set_next(chart, ser1, 10);
-    lv_chart_set_next(chart, ser1, 10);
-    lv_chart_set_next(chart, ser1, 30);
-    lv_chart_set_next(chart, ser1, 70);
-    lv_chart_set_next(chart, ser1, 90);
+    lv_chart_set_next_value(chart, ser1, 10);
+    lv_chart_set_next_value(chart, ser1, 10);
+    lv_chart_set_next_value(chart, ser1, 10);
+    lv_chart_set_next_value(chart, ser1, 10);
+    lv_chart_set_next_value(chart, ser1, 10);
+    lv_chart_set_next_value(chart, ser1, 10);
+    lv_chart_set_next_value(chart, ser1, 10);
+    lv_chart_set_next_value(chart, ser1, 30);
+    lv_chart_set_next_value(chart, ser1, 70);
+    lv_chart_set_next_value(chart, ser1, 90);
 
     /*Directly set points on 'ser2'*/
     ser2->points[0] = 90;

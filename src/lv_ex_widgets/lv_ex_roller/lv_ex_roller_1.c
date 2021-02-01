@@ -11,7 +11,9 @@ static void event_handler(lv_obj_t * obj, lv_event_t event)
     }
 }
 
-
+/**
+ * An infinite roller with the name of the months
+ */
 void lv_ex_roller_1(void)
 {
     lv_obj_t *roller1 = lv_roller_create(lv_scr_act(), NULL);
@@ -32,7 +34,7 @@ void lv_ex_roller_1(void)
 
     lv_roller_set_visible_row_count(roller1, 4);
     lv_obj_align(roller1, NULL, LV_ALIGN_CENTER, 0, 0);
-    lv_obj_set_event_cb(roller1, event_handler);
+    lv_obj_add_event_cb(roller1, event_handler);
 }
 
 #endif

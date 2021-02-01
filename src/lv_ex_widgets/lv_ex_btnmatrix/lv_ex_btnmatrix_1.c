@@ -5,7 +5,8 @@
 static void event_handler(lv_obj_t * obj, lv_event_t event)
 {
     if(event == LV_EVENT_VALUE_CHANGED) {
-        const char * txt = lv_btnmatrix_get_active_btn_text(obj);
+        uint32_t id = lv_btnmatrix_get_active_btn(obj);
+        const char * txt = lv_btnmatrix_get_btn_text(obj, id);
 
         printf("%s was pressed\n", txt);
     }
@@ -24,7 +25,7 @@ void lv_ex_btnmatrix_1(void)
     lv_btnmatrix_set_btn_ctrl(btnm1, 10, LV_BTNMATRIX_CTRL_CHECKABLE);
     lv_btnmatrix_set_btn_ctrl(btnm1, 11, LV_BTNMATRIX_CTRL_CHECKED);
     lv_obj_align(btnm1, NULL, LV_ALIGN_CENTER, 0, 0);
-    lv_obj_set_event_cb(btnm1, event_handler);
+    lv_obj_add_event_cb(btnm1, event_handler);
 }
 
 #endif

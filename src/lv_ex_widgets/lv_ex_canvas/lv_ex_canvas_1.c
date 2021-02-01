@@ -34,7 +34,7 @@ void lv_ex_canvas_1(void)
 
     lv_canvas_draw_rect(canvas, 70, 60, 100, 70, &rect_dsc);
 
-    lv_canvas_draw_text(canvas, 40, 20, 100, &label_dsc, "Some text on text canvas", LV_LABEL_ALIGN_LEFT);
+    lv_canvas_draw_text(canvas, 40, 20, 100, &label_dsc, "Some text on text canvas");
 
     /* Test the rotation. It requires an other buffer where the orignal image is stored.
      * So copy the current image to buffer and rotate it to the canvas */

@@ -4,8 +4,6 @@
 
 lv_obj_t * ta1;
 lv_obj_t * ta2;
-lv_obj_t * label1;
-lv_obj_t * label2;
 
 static void event_handler(lv_obj_t * obj, lv_event_t event)
 {
@@ -26,17 +24,9 @@ static void event_handler(lv_obj_t * obj, lv_event_t event)
 void lv_ex_textarea_1(void)
 {
     ta1 = lv_textarea_create(lv_scr_act(), NULL);
-    lv_obj_set_size(ta1, 200, 100);
     lv_obj_align(ta1, NULL, LV_ALIGN_IN_TOP_LEFT, 0, 0);
     lv_textarea_set_text(ta1, "A text in a Text Area");    /*Set an initial text*/
-    lv_obj_set_event_cb(ta1, event_handler);
-    label1 = lv_textarea_get_label(ta1);
-
-    ta2 = lv_textarea_create(lv_scr_act(), ta1);
-    lv_obj_align(ta2, NULL, LV_ALIGN_IN_TOP_LEFT, 0, 200);
-    lv_textarea_set_text(ta2, "2A text in a Text Area");    /*Set an initial text*/
-    label2 = lv_textarea_get_label(ta2);
-    label2 = lv_textarea_get_label(ta2);
+    lv_obj_add_event_cb(ta1, event_handler);
 }
 
 #endif

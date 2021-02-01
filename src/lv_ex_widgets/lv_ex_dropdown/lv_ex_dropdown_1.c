@@ -16,16 +16,20 @@ void lv_ex_dropdown_1(void)
 {
 
     /*Create a normal drop down list*/
-    lv_obj_t * ddlist = lv_dropdown_create(lv_scr_act(), NULL);
-    lv_dropdown_set_options(ddlist, "Apple\n"
-            "Banana\n"
-            "Orange\n"
-            "Melon\n"
-            "Grape\n"
-            "Raspberry");
+    lv_obj_t * dd = lv_dropdown_create(lv_scr_act(), NULL);
+    lv_dropdown_set_options(dd, "Apple\n"
+                                "Banana\n"
+                                "Orange\n"
+                                "Cherry\n"
+                                "Grape\n"
+                                "Raspberry\n"
+                                "Melon\n"
+                                "Orange\n"
+                                "Lemon\n"
+                                "Nuts");
 
-    lv_obj_align(ddlist, NULL, LV_ALIGN_IN_TOP_MID, 0, 20);
-    lv_obj_set_event_cb(ddlist, event_handler);
+    lv_obj_align(dd, NULL, LV_ALIGN_IN_TOP_MID, 0, 20);
+    lv_obj_add_event_cb(dd, event_handler);
 }
 
 #endif

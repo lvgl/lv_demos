@@ -3,6 +3,9 @@
 
 LV_IMG_DECLARE(img_cogwheel_argb);
 
+/**
+ * Show transformations (zoom and rotation) using a pivot point.
+ */
 void lv_ex_img_3(void)
 {
     /* Now create the actual image */

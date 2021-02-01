@@ -5,21 +5,36 @@
 static void event_handler(lv_obj_t * obj, lv_event_t event)
 {
     if(event == LV_EVENT_VALUE_CHANGED) {
-        printf("State: %s\n", lv_switch_get_state(obj) ? "On" : "Off");
+        printf("State: %s\n", lv_obj_has_state(obj, LV_STATE_CHECKED) ? "On" : "Off");
     }
 }
 
 void lv_ex_switch_1(void)
 {
-    /*Create a switch and apply the styles*/
-    lv_obj_t *sw1 = lv_switch_create(lv_scr_act(), NULL);
-    lv_obj_align(sw1, NULL, LV_ALIGN_CENTER, 0, -50);
-    lv_obj_set_event_cb(sw1, event_handler);
+    lv_obj_set_layout(lv_scr_act(), &lv_flex_center_column);
 
-    /*Copy the first switch and turn it ON*/
-    lv_obj_t *sw2 = lv_switch_create(lv_scr_act(), sw1);
-    lv_switch_on(sw2, LV_ANIM_ON);
-    lv_obj_align(sw2, NULL, LV_ALIGN_CENTER, 0, 50);
+    lv_obj_t * sw;
+
+    sw = lv_switch_create(lv_scr_act(), NULL);
+    lv_obj_align(sw, NULL, LV_ALIGN_CENTER, 0, -50);
+    lv_obj_add_event_cb(sw, event_handler);
+
+    sw = lv_switch_create(lv_scr_act(), NULL);
+    lv_obj_add_state(sw, LV_STATE_CHECKED);
+    lv_obj_align(sw, NULL, LV_ALIGN_CENTER, 0, 50);
+    lv_obj_add_event_cb(sw, event_handler);
+
+    sw = lv_switch_create(lv_scr_act(), NULL);
+    lv_obj_add_state(sw, LV_STATE_DISABLED);
+    lv_obj_align(sw, NULL, LV_ALIGN_CENTER, 0, 50);
+    lv_obj_add_event_cb(sw, event_handler);
+
+    sw = lv_switch_create(lv_scr_act(), NULL);
+    lv_obj_add_state(sw, LV_STATE_CHECKED | LV_STATE_DISABLED);
+    lv_obj_align(sw, NULL, LV_ALIGN_CENTER, 0, 50);
+    lv_obj_add_event_cb(sw, event_handler);
+
+
 }
 
 #endif

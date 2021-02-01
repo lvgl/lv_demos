@@ -4,27 +4,39 @@
 
 
 /**
- * Create a drop LEFT menu
+ * Create a drop down, up, left and right menus
  */
 void lv_ex_dropdown_2(void)
 {
-    /*Create a drop down list*/
-    lv_obj_t * ddlist = lv_dropdown_create(lv_scr_act(), NULL);
-    lv_dropdown_set_options(ddlist, "Apple\n"
-            "Banana\n"
-            "Orange\n"
-            "Melon\n"
-            "Grape\n"
-            "Raspberry");
+    static const char * opts = "Apple\n"
+                               "Banana\n"
+                               "Orange\n"
+                               "Melon\n"
+                               "Grape\n"
+                               "Raspberry";
 
-    lv_dropdown_set_dir(ddlist, LV_DIR_LEFT);
-    lv_dropdown_set_symbol(ddlist, NULL);
-    lv_dropdown_set_text(ddlist, "Fruits");
-    lv_obj_align(ddlist, NULL, LV_ALIGN_IN_TOP_RIGHT, 0, 20);
+    lv_obj_t * dd;
+    dd = lv_dropdown_create(lv_scr_act(), NULL);
+    lv_dropdown_set_options_static(dd, opts);
+    lv_obj_align(dd, NULL, LV_ALIGN_IN_TOP_MID, 0, 10);
 
-    /*Copy the drop LEFT list*/
-    ddlist = lv_dropdown_create(lv_scr_act(), ddlist);
-    lv_obj_align(ddlist, NULL, LV_ALIGN_IN_TOP_RIGHT, 0, 100);
+    dd = lv_dropdown_create(lv_scr_act(), NULL);
+    lv_dropdown_set_options_static(dd, opts);
+    lv_dropdown_set_dir(dd, LV_DIR_BOTTOM);
+    lv_dropdown_set_symbol(dd, LV_SYMBOL_UP);
+    lv_obj_align(dd, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, -10);
+
+    dd = lv_dropdown_create(lv_scr_act(), NULL);
+    lv_dropdown_set_options_static(dd, opts);
+    lv_dropdown_set_dir(dd, LV_DIR_RIGHT);
+    lv_dropdown_set_symbol(dd, LV_SYMBOL_RIGHT);
+    lv_obj_align(dd, NULL, LV_ALIGN_IN_LEFT_MID, 10, 0);
+
+    dd = lv_dropdown_create(lv_scr_act(), NULL);
+    lv_dropdown_set_options_static(dd, opts);
+    lv_dropdown_set_dir(dd, LV_DIR_LEFT);
+    lv_dropdown_set_symbol(dd, LV_SYMBOL_LEFT);
+    lv_obj_align(dd, NULL, LV_ALIGN_IN_RIGHT_MID, -10, 0);
 }
 
 #endif
