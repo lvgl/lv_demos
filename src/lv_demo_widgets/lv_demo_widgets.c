@@ -565,8 +565,11 @@ static void ta_event_cb(lv_obj_t * ta, lv_event_t e)
 {
     if(e == LV_EVENT_RELEASED) {
         if(kb == NULL) {
-            lv_obj_set_height(tv, LV_VER_RES / 2);
+            lv_coord_t kb_height = LV_MATH_MIN(LV_VER_RES / 2, LV_DPI * 4 / 3);
+            lv_obj_set_height(tv, LV_VER_RES - kb_height);
             kb = lv_keyboard_create(lv_scr_act(), NULL);
+            lv_obj_set_height(kb, kb_height);
+            lv_obj_align(kb, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, 0);
             lv_obj_set_event_cb(kb, kb_event_cb);
 
             lv_indev_wait_release(lv_indev_get_act());
