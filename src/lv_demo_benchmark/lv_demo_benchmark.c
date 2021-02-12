@@ -459,7 +459,9 @@ static void sub_rectangle_cb(void)
     lv_style_reset(&style_common);
     lv_style_set_radius(&style_common, LV_STATE_DEFAULT, RADIUS);
     lv_style_set_bg_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
+#if LV_USE_BLEND_MODES
     lv_style_set_bg_blend_mode(&style_common, LV_STATE_DEFAULT, LV_BLEND_MODE_SUBTRACTIVE);
+#endif
     rect_create(&style_common);
 }
 
@@ -469,7 +471,9 @@ static void sub_border_cb(void)
     lv_style_set_radius(&style_common, LV_STATE_DEFAULT, RADIUS);
     lv_style_set_border_width(&style_common, LV_STATE_DEFAULT, BORDER_WIDTH);
     lv_style_set_border_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
+#if LV_USE_BLEND_MODES
     lv_style_set_border_blend_mode(&style_common, LV_STATE_DEFAULT, LV_BLEND_MODE_SUBTRACTIVE);
+#endif
     rect_create(&style_common);
 
 }
@@ -482,7 +486,9 @@ static void sub_shadow_cb(void)
     lv_style_set_shadow_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_80 : LV_OPA_COVER);
     lv_style_set_shadow_width(&style_common, LV_STATE_DEFAULT, SHADOW_WIDTH_SMALL);
     lv_style_set_shadow_spread(&style_common, LV_STATE_DEFAULT, SHADOW_WIDTH_SMALL);
+#if LV_USE_BLEND_MODES
     lv_style_set_shadow_blend_mode(&style_common, LV_STATE_DEFAULT, LV_BLEND_MODE_SUBTRACTIVE);
+#endif
     rect_create(&style_common);
 
 }
@@ -491,7 +497,9 @@ static void sub_img_cb(void)
 {
     lv_style_reset(&style_common);
     lv_style_set_image_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
+#if LV_USE_BLEND_MODES
     lv_style_set_image_blend_mode(&style_common, LV_STATE_DEFAULT, LV_BLEND_MODE_SUBTRACTIVE);
+#endif
     img_create(&style_common, &img_cogwheel_argb, false, false, false);
 
 }
@@ -500,7 +508,9 @@ static void sub_line_cb(void)
     lv_style_reset(&style_common);
     lv_style_set_line_width(&style_common, LV_STATE_DEFAULT, LINE_WIDTH);
     lv_style_set_line_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
+#if LV_USE_BLEND_MODES
     lv_style_set_line_blend_mode(&style_common, LV_STATE_DEFAULT, LV_BLEND_MODE_SUBTRACTIVE);
+#endif
     line_create(&style_common);
 
 }
@@ -510,7 +520,9 @@ static void sub_arc_cb(void)
     lv_style_reset(&style_common);
     lv_style_set_line_width(&style_common, LV_STATE_DEFAULT, ARC_WIDTH_THICK);
     lv_style_set_line_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
+#if LV_USE_BLEND_MODES
     lv_style_set_line_blend_mode(&style_common, LV_STATE_DEFAULT, LV_BLEND_MODE_SUBTRACTIVE);
+#endif
     arc_create(&style_common);
 
 }
@@ -520,7 +532,9 @@ static void sub_text_cb(void)
     lv_style_reset(&style_common);
     lv_style_set_text_font(&style_common, LV_STATE_DEFAULT, LV_THEME_DEFAULT_FONT_NORMAL);
     lv_style_set_text_opa(&style_common, LV_STATE_DEFAULT, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
+#if LV_USE_BLEND_MODES
     lv_style_set_text_blend_mode(&style_common, LV_STATE_DEFAULT, LV_BLEND_MODE_SUBTRACTIVE);
+#endif
     txt_create(&style_common);
 }
 
