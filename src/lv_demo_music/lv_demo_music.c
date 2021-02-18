@@ -21,7 +21,6 @@
  *      TYPEDEFS
  **********************/
 
-#define LV_DEMO_MUSIC_AUTO_PLAY 1
 /**********************
  *  STATIC PROTOTYPES
  **********************/
@@ -213,7 +212,6 @@ static void auto_step_cb(lv_task_t * task)
 #if LV_USE_PERF_MONITOR
           lv_label_set_text_fmt(num, "%d", lv_refr_get_fps_avg());
 #endif
-          lv_label_set_text(num, "?");
           lv_obj_align(num, bg, LV_ALIGN_IN_TOP_MID, 0, 120);
 
           lv_obj_t * attr = lv_label_create(bg, NULL);
