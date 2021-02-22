@@ -33,9 +33,7 @@ static void text_input_create(lv_obj_t * parent);
 static void msgbox_create(void);
 
 static void msgbox_event_cb(lv_obj_t * msgbox, lv_event_t e);
-static void tv_event_cb(lv_obj_t * ta, lv_event_t e);
 static void ta_event_cb(lv_obj_t * ta, lv_event_t e);
-static void kb_event_cb(lv_obj_t * kb, lv_event_t e);
 
 /**********************
  *  STATIC VARIABLES
