@@ -71,15 +71,15 @@ static lv_obj_t * add_icon(lv_obj_t * parent, const void * src_bg, const void * 
 static lv_obj_t * add_title(const char * txt);
 static lv_obj_t * add_back(lv_event_cb_t event_cb);
 static lv_obj_t * add_loader(void (*end_cb)(lv_anim_t *));
-static void loader_anim_cb(void * arc, lv_anim_value_t v);
+static void loader_anim_cb(void * arc, int32_t v);
 static void scan_img_color_refr(void);
 
 LV_EVENT_CB_DECLARE(icon_generic_event_cb);
-static lv_anim_value_t anim_path_triangle(const lv_anim_path_t * path, const lv_anim_t * a);
+static int32_t anim_path_triangle(const lv_anim_path_t * path, const lv_anim_t * a);
 static void lv_demo_printer_anim_bg(uint32_t delay, lv_color_t color, int32_t y_new);
 static void lv_demo_printer_anim_out_all(lv_obj_t * obj, uint32_t delay);
 static void lv_demo_printer_anim_in(lv_obj_t * obj, uint32_t delay);
-static void anim_bg_color_cb(lv_anim_t * a, lv_anim_value_t v);
+static void anim_bg_color_cb(lv_anim_t * a, int32_t v);
 
 /**********************
  *  STATIC VARIABLES
@@ -1025,7 +1025,7 @@ static lv_obj_t * add_loader(void (*end_cb)(lv_anim_t *))
     return arc;
 }
 
-static void loader_anim_cb(void * arc, lv_anim_value_t v)
+static void loader_anim_cb(void * arc, int32_t v)
 {
     if(v > 100) v = 100;
     lv_arc_set_end_angle(arc, v * 360 / 100 + 270);
@@ -1052,13 +1052,13 @@ static void scan_img_color_refr(void)
  * @param a pointer to an animation
  * @return the current value to set
  */
-static lv_anim_value_t anim_path_triangle(const lv_anim_path_t * path, const lv_anim_t * a)
+static int32_t anim_path_triangle(const lv_anim_path_t * path, const lv_anim_t * a)
 {
     /*Calculate the current step*/
     uint32_t step;
-    lv_anim_value_t ret = 0;
+    int32_t ret = 0;
     if(a->time == a->act_time) {
-        ret = (lv_anim_value_t)a->end;
+        ret = (int32_t)a->end;
     }
     else {
         if(a->act_time < a->time / 2) {
@@ -1068,7 +1068,7 @@ static lv_anim_value_t anim_path_triangle(const lv_anim_path_t * path, const lv_
             new_value = new_value >> 10;
             new_value += a->start;
 
-            ret = (lv_anim_value_t)new_value;
+            ret = (int32_t)new_value;
         } else {
             uint32_t t = a->act_time - a->time / 2;
             step = ((int32_t)t * 1024) / (a->time / 2);
@@ -1077,7 +1077,7 @@ static lv_anim_value_t anim_path_triangle(const lv_anim_path_t * path, const lv_
             new_value = new_value >> 10;
             new_value += LV_DEMO_PRINTER_BG_SMALL;
 
-            ret = (lv_anim_value_t)new_value;
+            ret = (int32_t)new_value;
         }
     }
 
@@ -1234,7 +1234,7 @@ static void lv_demo_printer_anim_in(lv_obj_t * obj, uint32_t delay)
     }
 }
 
-static void anim_bg_color_cb(lv_anim_t * a, lv_anim_value_t v)
+static void anim_bg_color_cb(lv_anim_t * a, int32_t v)
 {
     lv_color_t c = lv_color_mix(bg_color_act, bg_color_prev, v);
     lv_obj_set_style_local_bg_color(bg_top, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, c);

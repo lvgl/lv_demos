@@ -29,9 +29,9 @@
 //static void ta_event_cb(lv_obj_t * ta, lv_event_t e);
 //static void kb_event_cb(lv_obj_t * ta, lv_event_t e);
 //static void bar_anim(lv_timer_t * tmr);
-//static void arc_anim(lv_obj_t * arc, lv_anim_value_t value);
-//static void linemeter_anim(lv_obj_t * linemeter, lv_anim_value_t value);
-//static void gauge_anim(lv_obj_t * gauge, lv_anim_value_t value);
+//static void arc_anim(lv_obj_t * arc, int32_t value);
+//static void linemeter_anim(lv_obj_t * linemeter, int32_t value);
+//static void gauge_anim(lv_obj_t * gauge, int32_t value);
 //static void table_event_cb(lv_obj_t * table, lv_event_t e);
 //#if LV_USE_THEME_MATERIAL
 //static void color_chg_event_cb(lv_obj_t * sw, lv_event_t e);
@@ -601,7 +601,7 @@
 ////    if(x > lv_bar_get_max_value(bar)) x = 0;
 //}
 //
-//static void arc_anim(lv_obj_t * arc, lv_anim_value_t value)
+//static void arc_anim(lv_obj_t * arc, int32_t value)
 //{
 //    lv_arc_set_end_angle(arc, value);
 //
@@ -613,7 +613,7 @@
 //
 //}
 //
-//static void linemeter_anim(lv_obj_t * linemeter, lv_anim_value_t value)
+//static void linemeter_anim(lv_obj_t * linemeter, int32_t value)
 //{
 ////    lv_linemeter_set_value(linemeter, value);
 ////
@@ -624,7 +624,7 @@
 ////    lv_obj_align(label, linemeter, LV_ALIGN_CENTER, 0, 0);
 //}
 //
-//static void gauge_anim(lv_obj_t * gauge, lv_anim_value_t value)
+//static void gauge_anim(lv_obj_t * gauge, int32_t value)
 //{
 ////    lv_gauge_set_value(gauge, 0, value);
 ////
