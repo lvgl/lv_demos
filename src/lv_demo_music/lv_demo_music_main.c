@@ -358,7 +358,6 @@ lv_obj_t * _lv_demo_music_main_create(lv_obj_t * parent)
     LV_IMG_DECLARE(img_lv_demo_music_logo);
     lv_obj_t * logo = lv_img_create(lv_scr_act(), NULL);
     lv_img_set_src(logo, &img_lv_demo_music_logo);
-    lv_obj_align(logo, spectrum_obj, LV_ALIGN_CENTER, 0, 0);
     lv_obj_move_foreground(logo);
 
 #if LV_DEMO_MUSIC_SQUARE == 0
@@ -367,8 +366,14 @@ lv_obj_t * _lv_demo_music_main_create(lv_obj_t * parent)
     lv_label_set_align(title, LV_LABEL_ALIGN_CENTER);
     lv_obj_set_style_local_text_font(title, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &lv_font_montserrat_30);
     lv_obj_set_style_local_text_line_space(title, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, 8);
-    lv_obj_align(title, NULL, LV_ALIGN_IN_LEFT_MID, 50, -10);
     lv_obj_fade_out(title, 300, INTRO_TIME);
+    lv_obj_align(logo, spectrum_obj, LV_ALIGN_CENTER, 0, 0);
+#if LV_DEMO_MUSIC_LANDSCAPE
+    lv_obj_align(title, NULL, LV_ALIGN_IN_LEFT_MID, 50, -10);
+#else
+    lv_obj_align(title, NULL, LV_ALIGN_IN_TOP_MID, 0, 30);
+#endif
+
 #endif
     lv_anim_path_set_cb(&path, lv_anim_path_ease_in);
     lv_anim_set_path(&a, &path);
