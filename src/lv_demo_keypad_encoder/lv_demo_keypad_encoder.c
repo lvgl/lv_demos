@@ -96,9 +96,23 @@ static void selectors_create(lv_obj_t * parent)
     lv_obj_set_layout(parent, &lv_flex_stacked);
 
     lv_obj_t * obj;
+
+    obj = lv_table_create(parent, NULL);
+    lv_table_set_cell_value(obj, 0, 0, "00");
+    lv_table_set_cell_value(obj, 0, 1, "01");
+    lv_table_set_cell_value(obj, 1, 0, "10");
+    lv_table_set_cell_value(obj, 1, 1, "11");
+    lv_table_set_cell_value(obj, 2, 0, "20");
+    lv_table_set_cell_value(obj, 2, 1, "21");
+    lv_table_set_cell_value(obj, 3, 0, "30");
+    lv_table_set_cell_value(obj, 3, 1, "31");
+    lv_group_add_obj(g, obj);
+
     obj = lv_calendar_create(parent);
     lv_group_add_obj(g, obj);
 
+    obj = lv_btnmatrix_create(parent, NULL);
+    lv_group_add_obj(g, obj);
 //    lv_obj_t * label = lv_label_create(obj, NULL);
 //    lv_label_set_text(label, "Button");
 //    lv_obj_align(label, NULL, LV_ALIGN_CENTER, 0, 0);
@@ -129,19 +143,18 @@ static void selectors_create(lv_obj_t * parent)
 
     obj = lv_list_add_btn(list, LV_SYMBOL_OK, "Apply", NULL);
     lv_group_add_obj(g, obj);
-
     obj = lv_list_add_btn(list, LV_SYMBOL_CLOSE, "Close", NULL);
     lv_group_add_obj(g, obj);
-//    obj = lv_list_add_btn(list, LV_SYMBOL_EYE_OPEN, "Show", NULL);
-//    lv_group_add_obj(g, obj);
-//    obj = lv_list_add_btn(list, LV_SYMBOL_EYE_CLOSE, "Hide", NULL);
-//    lv_group_add_obj(g, obj);
-//    obj= lv_list_add_btn(list, LV_SYMBOL_TRASH, "Delete", NULL);
-//    lv_group_add_obj(g, obj);
-//    obj = lv_list_add_btn(list, LV_SYMBOL_COPY, "Copy", NULL);
-//    lv_group_add_obj(g, obj);
-//    obj = lv_list_add_btn(list, LV_SYMBOL_PASTE, "Paste", NULL);
-//    lv_group_add_obj(g, obj);
+    obj = lv_list_add_btn(list, LV_SYMBOL_EYE_OPEN, "Show", NULL);
+    lv_group_add_obj(g, obj);
+    obj = lv_list_add_btn(list, LV_SYMBOL_EYE_CLOSE, "Hide", NULL);
+    lv_group_add_obj(g, obj);
+    obj= lv_list_add_btn(list, LV_SYMBOL_TRASH, "Delete", NULL);
+    lv_group_add_obj(g, obj);
+    obj = lv_list_add_btn(list, LV_SYMBOL_COPY, "Copy", NULL);
+    lv_group_add_obj(g, obj);
+    obj = lv_list_add_btn(list, LV_SYMBOL_PASTE, "Paste", NULL);
+    lv_group_add_obj(g, obj);
 }
 
 static void text_input_create(lv_obj_t * parent)
@@ -184,13 +197,13 @@ static void msgbox_create(void)
 
     lv_obj_t * bg = lv_obj_get_parent(mbox);
     lv_obj_set_style_bg_opa(bg, LV_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_70);
-    lv_obj_set_style_bg_color(bg, LV_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_GRAY);
+    lv_obj_set_style_bg_color(bg, LV_PART_MAIN, LV_STATE_DEFAULT, lv_color_grey());
 }
 
 
 static void msgbox_event_cb(lv_obj_t * msgbox, lv_event_t e)
 {
-    if(e == LV_EVENT_CLICKED) {
+    if(e == LV_EVENT_VALUE_CHANGED) {
         const char * txt = lv_msgbox_get_active_btn_text(msgbox);
         if(txt) {
             lv_msgbox_close(msgbox);

@@ -760,14 +760,14 @@ static void scene_next_task_cb(lv_timer_t * timer)
 //        static lv_style_t style_cell_title;
 //
 //        lv_style_init(&style_cell_title);
-//        lv_style_set_bg_color(&style_cell_title, LV_STATE_DEFAULT, LV_COLOR_GRAY);
+//        lv_style_set_bg_color(&style_cell_title, LV_STATE_DEFAULT, lv_color_grey());
 //        lv_style_set_bg_opa(&style_cell_title, LV_STATE_DEFAULT, LV_OPA_50);
 //
 //        lv_style_init(&style_cell_slow);
 //        lv_style_set_text_color(&style_cell_slow, LV_STATE_DEFAULT, LV_COLOR_ORANGE);
 //
 //        lv_style_init(&style_cell_very_slow);
-//        lv_style_set_text_color(&style_cell_very_slow, LV_STATE_DEFAULT, LV_COLOR_RED);
+//        lv_style_set_text_color(&style_cell_very_slow, LV_STATE_DEFAULT, lv_color_red());
 
 //        lv_obj_add_style(table, LV_TABLE_PART_CELL2, &style_cell_slow);
 //        lv_obj_add_style(table, LV_TABLE_PART_CELL3, &style_cell_very_slow);
@@ -775,7 +775,7 @@ static void scene_next_task_cb(lv_timer_t * timer)
 
 
         uint16_t row = 0;
-        lv_table_set_cell_merge_right(table, row, 0, true);
+        lv_table_add_cell_ctrl(table, row, 0, LV_TABLE_CELL_CTRL_MERGE_RIGHT);
         lv_table_set_cell_value(table, row, 0, "Slow but common cases");
 //        lv_table_set_cell_type(table, row, 0, 4);
         row++;
@@ -810,12 +810,12 @@ static void scene_next_task_cb(lv_timer_t * timer)
 
         /*No 'slow but common cases'*/
         if(row == 1) {
-            lv_table_set_cell_merge_right(table, row, 0, true);
+            lv_table_add_cell_ctrl(table, row, 0, LV_TABLE_CELL_CTRL_MERGE_RIGHT);
             lv_table_set_cell_value(table, row, 0, "All good");
             row++;
         }
 
-        lv_table_set_cell_merge_right(table, row, 0, true);
+        lv_table_add_cell_ctrl(table, row, 0, LV_TABLE_CELL_CTRL_MERGE_RIGHT);
         lv_table_set_cell_value(table, row, 0, "All cases");
 //        lv_table_set_cell_type(table, row, 0, 4);
         row++;

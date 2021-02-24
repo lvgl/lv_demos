@@ -23,6 +23,9 @@
  **********************/
 static void auto_del(lv_obj_t * obj, uint32_t delay);
 static void msgbox_del(lv_timer_t * tmr);
+static void set_y_anim(void * obj, int32_t v);
+static void set_width_anim(void * obj, int32_t v);
+static void arc_set_end_angle_anim(void * obj, int32_t v);
 static void obj_test_task_cb(lv_timer_t * tmr);
 
 /**********************
@@ -121,7 +124,7 @@ static void obj_test_task_cb(lv_timer_t * tmr)
             lv_anim_init(&a);
             lv_anim_set_var(&a, obj);
             lv_anim_set_time(&a, TIME_STEP * 2);
-            lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_width);
+            lv_anim_set_exec_cb(&a, set_width_anim);
             lv_anim_set_values(&a, 100, 200);
             lv_anim_set_playback_time(&a, TIME_STEP * 2);
             lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINITE);
@@ -205,7 +208,7 @@ static void obj_test_task_cb(lv_timer_t * tmr)
             lv_anim_set_var(&a, obj);
             lv_anim_set_values(&a, LV_VER_RES, LV_VER_RES - lv_obj_get_height(obj));
             lv_anim_set_time(&a, TIME_STEP + 3);
-            lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_y);
+            lv_anim_set_exec_cb(&a, set_y_anim);
             lv_anim_start(&a);
 
             auto_del(obj, TIME_STEP * 2 + 18);
@@ -235,14 +238,14 @@ static void obj_test_task_cb(lv_timer_t * tmr)
             lv_anim_set_delay(&a, TIME_STEP + 25);
             lv_anim_set_playback_time(&a, TIME_STEP * 5);
             lv_anim_set_repeat_count(&a, 3);
-            lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_arc_set_end_angle);
+            lv_anim_set_exec_cb(&a, arc_set_end_angle_anim);
             lv_anim_start(&a);
             break;
 
             obj = lv_meter_create(main_page, NULL);
             lv_obj_scroll_to_view(obj, LV_ANIM_ON);
             lv_meter_scale_t * scale = lv_meter_add_scale(obj);
-            lv_meter_add_needle_line(obj, scale, 3, LV_COLOR_RED, -10);
+            lv_meter_add_needle_line(obj, scale, 3, lv_color_red(), -10);
 
             auto_del(obj, TIME_STEP * 6 + 30);
             break;
@@ -358,7 +361,7 @@ static void obj_test_task_cb(lv_timer_t * tmr)
         case 23:
             obj = lv_chart_create(main_page, NULL);
             {
-                lv_chart_series_t * s1 = lv_chart_add_series(obj, LV_COLOR_RED, LV_CHART_AXIS_PRIMARY_Y);
+                lv_chart_series_t * s1 = lv_chart_add_series(obj, lv_color_red(), LV_CHART_AXIS_PRIMARY_Y);
                 lv_chart_set_next_value(obj, s1, 36);
                 lv_chart_set_next_value(obj, s1, -29);
                 lv_chart_set_next_value(obj, s1, 51);
@@ -438,6 +441,21 @@ static void auto_del(lv_obj_t * obj, uint32_t delay)
 static void msgbox_del(lv_timer_t * tmr)
 {
     lv_msgbox_close(tmr->user_data);
+}
+
+static void set_y_anim(void * obj, int32_t v)
+{
+    lv_obj_set_y(obj, v);
+}
+
+static void set_width_anim(void * obj, int32_t v)
+{
+    lv_obj_set_width(obj, v);
+}
+
+static void arc_set_end_angle_anim(void * obj, int32_t v)
+{
+    lv_arc_set_bg_end_angle(obj, v);
 }
 
 #endif /* LV_USE_DEMO_STRESS */

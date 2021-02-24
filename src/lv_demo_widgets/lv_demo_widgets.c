@@ -487,7 +487,7 @@
 ////    static lv_style_t style_cell4;
 ////    lv_style_init(&style_cell4);
 ////    lv_style_set_bg_opa(&style_cell4, LV_STATE_DEFAULT, LV_OPA_50);
-////    lv_style_set_bg_color(&style_cell4, LV_STATE_DEFAULT, LV_COLOR_GRAY);
+////    lv_style_set_bg_color(&style_cell4, LV_STATE_DEFAULT, lv_color_grey());
 ////
 ////    lv_obj_t * page = lv_page_create(parent ,NULL);
 ////    lv_obj_set_size(page, grid_w, grid_h);

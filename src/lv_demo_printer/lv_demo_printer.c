@@ -109,7 +109,7 @@ void lv_demo_printer(void)
     bg_color_prev = LV_DEMO_PRINTER_BLUE;
     bg_color_act = LV_DEMO_PRINTER_BLUE;
 
-    lv_theme_t * th = lv_demo_printer_theme_init(LV_COLOR_BLACK, LV_COLOR_BLACK,
+    lv_theme_t * th = lv_demo_printer_theme_init(lv_color_black(), lv_color_black(),
             0, &lv_font_montserrat_14, &lv_font_montserrat_22,
             &lv_font_montserrat_28, &lv_font_montserrat_32);
     lv_theme_set_act(th);
