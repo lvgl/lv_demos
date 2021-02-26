@@ -6,7 +6,7 @@
 /*********************
  *      INCLUDES
  *********************/
-#include <lv_examples/src/lv_demo.h>
+#include "../../lv_demo.h"
 #include "lv_demo_benchmark.h"
 
 #if LV_USE_DEMO_BENCHMARK
@@ -374,7 +374,7 @@ static void img_argb_zoom_aa_cb(void)
 static void txt_small_cb(void)
 {
     lv_style_reset(&style_common);
-    lv_style_set_text_font(&style_common, LV_THEME_FONT_SMALL);
+    lv_style_set_text_font(&style_common, lv_theme_get_font_small(NULL));
     lv_style_set_text_opa(&style_common, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
     txt_create(&style_common);
 
@@ -383,7 +383,7 @@ static void txt_small_cb(void)
 static void txt_medium_cb(void)
 {
     lv_style_reset(&style_common);
-    lv_style_set_text_font(&style_common, LV_THEME_FONT_NORMAL);
+    lv_style_set_text_font(&style_common, lv_theme_get_font_normal(NULL));
     lv_style_set_text_opa(&style_common, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
     txt_create(&style_common);
 
@@ -392,7 +392,7 @@ static void txt_medium_cb(void)
 static void txt_large_cb(void)
 {
     lv_style_reset(&style_common);
-    lv_style_set_text_font(&style_common, LV_THEME_FONT_EXTRA_LARGE);
+    lv_style_set_text_font(&style_common, lv_theme_get_font_large(NULL));
     lv_style_set_text_opa(&style_common, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
     txt_create(&style_common);
 
@@ -512,13 +512,12 @@ static void sub_arc_cb(void)
     lv_style_set_arc_opa(&style_common, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
     lv_style_set_blend_mode(&style_common, LV_BLEND_MODE_SUBTRACTIVE);
     arc_create(&style_common);
-
 }
 
 static void sub_text_cb(void)
 {
     lv_style_reset(&style_common);
-    lv_style_set_text_font(&style_common, LV_THEME_FONT_NORMAL);
+    lv_style_set_text_font(&style_common, lv_theme_get_font_normal(NULL));
     lv_style_set_text_opa(&style_common, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
     lv_style_set_blend_mode(&style_common, LV_BLEND_MODE_SUBTRACTIVE);
     txt_create(&style_common);
