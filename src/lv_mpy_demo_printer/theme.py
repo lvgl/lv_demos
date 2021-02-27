@@ -1,7 +1,10 @@
 import lvgl as lv
 from display_driver_utils import driver,ORIENT_LANDSCAPE
 from lv_colors import lv_colors
-import ulogging as logging
+try:
+    import logging
+except:
+    import ulogging as logging
 
 LV_THEME_DEFAULT_COLOR_PRIMARY=lv.color_hex(0x01a2b1)
 LV_THEME_DEFAULT_COLOR_SECONDARY=lv.color_hex(0x44d1b6)

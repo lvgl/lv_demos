@@ -8,7 +8,10 @@ from theme import LV_DEMO_PRINTER_THEME_BTN_BORDER,LV_DEMO_PRINTER_THEME_BTN_BAC
 from theme import LV_DEMO_PRINTER_THEME_BTN_CIRCLE,LV_DEMO_PRINTER_THEME_BOX_BORDER
 import utime as time
 
-import ulogging as logging
+try:
+    import logging
+except:
+    import ulogging as logging
 
 
 class DemoPrinter(object):
@@ -1024,6 +1027,7 @@ class DemoPrinter(object):
 
     def print_start_event_cb(self,obj,evt):
         if evt == lv.EVENT.CLICKED:
+            self.scan_img = None
             self.anim_out_all(lv.scr_act(), 0)
             delay = 200
             self.anim_bg(150, LV_DEMO_PRINTER_BLUE, self.LV_DEMO_PRINTER_BG_FULL)
