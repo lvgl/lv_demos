@@ -19,11 +19,11 @@ MicroPython
 Simple Arc 
 """"""""""""""""
 
-.. lv_example:: lv_ex_arc_1
+.. lv_example:: lv_ex_widgets/lv_ex_arc/lv_ex_arc_1
   :language: py
 
 Loader with Arc 
 """"""""""""""""
 
-.. lv_example:: lv_ex_arc_2
+.. lv_example:: lv_ex_widgets/lv_ex_arc/lv_ex_arc_2
   :language: py
