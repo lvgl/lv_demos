@@ -154,7 +154,7 @@ static void controls_create(lv_obj_t * parent)
     lv_obj_set_event_cb(slider, slider_event_cb);
     lv_obj_set_width_margin(slider, fit_w);
 
-    /*Use the knobs style value the display the current value in focused state*/
+    /*Use the knobs style value to display the current value in focused state*/
     lv_obj_set_style_local_margin_top(slider, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, LV_DPX(25));
     lv_obj_set_style_local_value_font(slider, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, lv_theme_get_font_small());
     lv_obj_set_style_local_value_ofs_y(slider, LV_SLIDER_PART_KNOB, LV_STATE_FOCUSED, - LV_DPX(25));
