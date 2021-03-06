@@ -154,7 +154,7 @@ static void controls_create(lv_obj_t * parent)
     lv_obj_set_event_cb(slider, slider_event_cb);
     lv_obj_set_width_margin(slider, fit_w);
 
-    /*Use the knobs style value to display the current value in focused state*/
+    /*Use the knob's style value to display the current value in focused state*/
     lv_obj_set_style_local_margin_top(slider, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, LV_DPX(25));
     lv_obj_set_style_local_value_font(slider, LV_SLIDER_PART_KNOB, LV_STATE_DEFAULT, lv_theme_get_font_small());
     lv_obj_set_style_local_value_ofs_y(slider, LV_SLIDER_PART_KNOB, LV_STATE_FOCUSED, - LV_DPX(25));
@@ -355,7 +355,7 @@ static void visuals_create(lv_obj_t * parent)
     lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINITE);
     lv_anim_start(&a);
 
-    /*Create a bar and use the backgrounds value style property to display the current value*/
+    /*Create a bar and use the background's value style property to display the current value*/
     lv_obj_t * bar_h = lv_cont_create(parent, NULL);
     lv_cont_set_fit2(bar_h, LV_FIT_NONE, LV_FIT_TIGHT);
     lv_obj_add_style(bar_h, LV_CONT_PART_MAIN, &style_box);
