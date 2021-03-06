@@ -16,4 +16,14 @@ Loader with Arc
 MicroPython
 ^^^^^^^^^^^
 
-No examples yet.
+Simple Arc 
+""""""""""""""""
+
+.. lv_example:: lv_ex_arc_1
+  :language: py
+
+Loader with Arc 
+""""""""""""""""
+
+.. lv_example:: lv_ex_arc_2
+  :language: py
