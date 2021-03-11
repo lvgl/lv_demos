@@ -627,7 +627,7 @@ static uint32_t rnd_map[] = {
 void lv_demo_benchmark(void)
 {
     lv_disp_t * disp = lv_disp_get_next(NULL);
-    disp->driver.monitor_cb = monitor_cb;
+    disp->driver->monitor_cb = monitor_cb;
 
     lv_obj_t * scr = lv_scr_act();
     lv_obj_remove_style(scr, LV_PART_MAIN, LV_STATE_ANY, NULL);

@@ -93,7 +93,7 @@ void lv_demo_keypad_encoder(void)
 
 static void selectors_create(lv_obj_t * parent)
 {
-    lv_obj_set_layout(parent, &lv_flex_stacked);
+    lv_obj_set_layout(parent, &lv_flex_vertical_list);
 
     lv_obj_t * obj;
 
@@ -107,34 +107,40 @@ static void selectors_create(lv_obj_t * parent)
     lv_table_set_cell_value(obj, 3, 0, "30");
     lv_table_set_cell_value(obj, 3, 1, "31");
     lv_group_add_obj(g, obj);
+    lv_obj_add_flag(obj, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
 
     obj = lv_calendar_create(parent);
     lv_group_add_obj(g, obj);
+    lv_obj_add_flag(obj, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
 
     obj = lv_btnmatrix_create(parent, NULL);
     lv_group_add_obj(g, obj);
-//    lv_obj_t * label = lv_label_create(obj, NULL);
-//    lv_label_set_text(label, "Button");
-//    lv_obj_align(label, NULL, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_add_flag(obj, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
 
     obj = lv_checkbox_create(parent, NULL);
     lv_group_add_obj(g, obj);
+    lv_obj_add_flag(obj, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
 
     obj = lv_slider_create(parent, NULL);
     lv_slider_set_range(obj, 0, 10);
     lv_group_add_obj(g, obj);
+    lv_obj_add_flag(obj, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
 
     obj = lv_switch_create(parent, NULL);
     lv_group_add_obj(g, obj);
+    lv_obj_add_flag(obj, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
 
     obj = lv_spinbox_create(parent);
     lv_group_add_obj(g, obj);
+    lv_obj_add_flag(obj, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
 
     obj = lv_dropdown_create(parent, NULL);
     lv_group_add_obj(g, obj);
+    lv_obj_add_flag(obj, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
 
     obj = lv_roller_create(parent, NULL);
     lv_group_add_obj(g, obj);
+    lv_obj_add_flag(obj, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
 
     lv_obj_t * list = lv_list_create(parent);
     if(lv_obj_get_height(list) > lv_obj_get_height_fit(parent)) {
@@ -159,7 +165,7 @@ static void selectors_create(lv_obj_t * parent)
 
 static void text_input_create(lv_obj_t * parent)
 {
-    lv_obj_set_layout(parent, &lv_flex_stacked);
+    lv_obj_set_layout(parent, &lv_flex_vertical_list);
 
     lv_obj_t * ta1 = lv_textarea_create(parent, NULL);
     lv_obj_set_width(ta1, LV_SIZE_PCT(100));

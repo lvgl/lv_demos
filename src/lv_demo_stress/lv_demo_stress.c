@@ -46,10 +46,6 @@ static uint32_t mem_free_start = 0;
 void lv_demo_stress(void)
 {
     lv_timer_create(obj_test_task_cb, TIME_STEP, NULL);
-
-    lv_mem_monitor_t mon;
-    lv_mem_monitor(&mon);
-    mem_free_start = mon.free_size;
 }
 
 /**********************
@@ -74,9 +70,11 @@ static void obj_test_task_cb(lv_timer_t * tmr)
                 LV_LOG_ERROR("Memory integrity error");
             }
 
-            lv_mem_defrag();
             lv_mem_monitor_t mon;
             lv_mem_monitor(&mon);
+
+            if(mem_free_start == 0)  mem_free_start = mon.free_size;
+
             LV_LOG_USER("mem leak since start: %d, frag: %3d %%",  mem_free_start - mon.free_size, mon.frag_pct);
         }
             break;
@@ -84,7 +82,7 @@ static void obj_test_task_cb(lv_timer_t * tmr)
             /* Holder for all object types */
             main_page = lv_obj_create(lv_scr_act(), NULL);
             lv_obj_set_size(main_page, LV_HOR_RES / 2 , LV_VER_RES);
-            lv_obj_set_layout(main_page, &lv_flex_stacked);
+            lv_obj_set_layout(main_page, &lv_flex_column_nowrap);
 
 
             obj = lv_btn_create(main_page, NULL);
@@ -135,7 +133,6 @@ static void obj_test_task_cb(lv_timer_t * tmr)
 
             obj = lv_label_create(obj, NULL);
             lv_label_set_text_fmt(obj, "Formatted:\n%d %s", 12, "Volt");
-            lv_obj_scroll_to_view(obj, LV_ANIM_ON);
             break;
 
         case 3:
@@ -163,7 +160,7 @@ static void obj_test_task_cb(lv_timer_t * tmr)
             lv_textarea_set_one_line(ta, true);
             break;
         case 6:
-            lv_obj_set_layout(main_page, &lv_flex_center_column);
+            lv_obj_set_layout(main_page, &lv_flex_column_center);
             break;
 
         case 7:
@@ -310,7 +307,7 @@ static void obj_test_task_cb(lv_timer_t * tmr)
             break;
 
         case 20:
-            lv_obj_set_layout(main_page, &lv_flex_inline);
+            lv_obj_set_layout(main_page, &lv_flex_row_wrap);
             break;
 
         case 21:
@@ -455,7 +452,7 @@ static void set_width_anim(void * obj, int32_t v)
 
 static void arc_set_end_angle_anim(void * obj, int32_t v)
 {
-    lv_arc_set_bg_end_angle(obj, v);
+    lv_arc_set_end_angle(obj, v);
 }
 
 #endif /* LV_USE_DEMO_STRESS */
