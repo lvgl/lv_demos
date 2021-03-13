@@ -9,12 +9,12 @@ mask_map = bytearray (MASK_WIDTH * MASK_HEIGHT *4)
 # Create a "8 bit alpha" canvas and clear it
 canvas = lv.canvas(lv.scr_act(), None)
 canvas.set_buffer(mask_map, MASK_WIDTH, MASK_HEIGHT, lv.img.CF.ALPHA_8BIT)
-canvas.fill_bg(LV_COLOR_BLACK, lv.OPA.TRANSP)
+canvas.fill_bg(lv_colors.BLACK, lv.OPA.TRANSP)
 
 # Draw a label to the canvas. The result "image" will be used as mask
 label_dsc = lv.draw_label_dsc_t()
 label_dsc.init()
-label_dsc.color = LV_COLOR_WHITE
+label_dsc.color = lv_colors.WHITE
 canvas.draw_text(5, 5, MASK_WIDTH, label_dsc, "Text with gradient", lv.label.ALIGN.CENTER)
 
 # The mask is read, the canvas is not required anymore

@@ -1,8 +1,8 @@
 def event_handler(source,evt):
     if evt == lv.EVENT.VALUE_CHANGED:
         print("Toggled")
-    txt = source.get_active_btn_text()
-    print("%s was pressed"%txt)
+        txt = source.get_active_btn_text()
+        print("%s was pressed"%txt)
 
 # Create a screen and load it
 scr = lv.obj()
