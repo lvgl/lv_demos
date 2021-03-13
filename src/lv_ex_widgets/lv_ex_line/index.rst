@@ -10,4 +10,8 @@ Simple Line
 MicroPython
 ^^^^^^^^^^^
 
-No examples yet.
+Simple Line 
+""""""""""""""""
+
+.. lv_example:: lv_ex_widgets/lv_ex_line/lv_ex_line_1
+  :language: py

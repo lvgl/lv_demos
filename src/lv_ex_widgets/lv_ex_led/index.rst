@@ -10,4 +10,8 @@ LED with custom style
 MicroPython
 ^^^^^^^^^^^
 
-No examples yet.
+LED with custom style
+"""""""""""""""""""""
+
+.. lv_example:: lv_ex_widgets/lv_ex_led/lv_ex_led_1
+  :language: py

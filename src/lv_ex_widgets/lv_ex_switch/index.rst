@@ -10,4 +10,8 @@ Simple Switch
 MicroPython
 ^^^^^^^^^^^
 
-No examples yet.
+Simple Switch 
+"""""""""""""""""""""""
+
+.. lv_example:: lv_ex_widgets/lv_ex_switch/lv_ex_switch_1
+  :language: py

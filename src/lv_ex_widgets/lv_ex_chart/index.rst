@@ -14,4 +14,8 @@ Line Chart
 MicroPython
 ^^^^^^^^^^^
 
-No examples yet.
+.. lv_example:: lv_ex_widgets/lv_ex_chart/lv_ex_chart_1
+  :language: py
+
+.. lv_example:: lv_ex_widgets/lv_ex_chart/lv_ex_chart_2
+  :language: py
