@@ -1,10 +1,3 @@
-def event_handler(source,evt):
-    if  evt == lv.EVENT.VALUE_CHANGED:
-        if source.is_checked():
-            print("State: checked")
-        else:
-            print("State: unchecked")
-
 # create a container
 cont = lv.cont(lv.scr_act(),None)
 cont.set_auto_realign(True)                 # Auto realign when the size changes

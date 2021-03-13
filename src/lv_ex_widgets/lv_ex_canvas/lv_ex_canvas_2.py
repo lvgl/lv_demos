@@ -1,3 +1,4 @@
+from lv_colors import lv_colors
 def LV_IMG_BUF_SIZE_ALPHA_1BIT(w, h):
     return int(((w / 8) + 1) * h)
 
@@ -19,8 +20,8 @@ cbuf= bytearray(LV_CANVAS_BUF_SIZE_INDEXED_1BIT(CANVAS_WIDTH, CANVAS_HEIGHT))
 # Create a canvas and initialize its the palette
 canvas = lv.canvas(lv.scr_act(), None)
 canvas.set_buffer(cbuf, CANVAS_WIDTH, CANVAS_HEIGHT, lv.img.CF.INDEXED_1BIT)
-canvas.set_palette(0, LV_COLOR_LIME)
-canvas.set_palette(1, LV_COLOR_RED)
+canvas.set_palette(0, lv_colors.LIME)
+canvas.set_palette(1, lv_colors.RED)
 
 # Create colors with the indices of the palette
 c0 = lv.color_t()

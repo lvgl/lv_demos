@@ -9,11 +9,11 @@ rect_dsc.init()
 rect_dsc.radius = 10
 rect_dsc.bg_opa = lv.OPA.COVER
 rect_dsc.bg_grad_dir = lv.GRAD_DIR.HOR
-rect_dsc.bg_color = LV_COLOR_RED;
-rect_dsc.bg_grad_color = LV_COLOR_BLUE
+rect_dsc.bg_color = lv_colors.RED
+rect_dsc.bg_grad_color = lv_colors.BLUE
 rect_dsc.border_width = 2
 rect_dsc.border_opa = lv.OPA._90
-rect_dsc.border_color = LV_COLOR_WHITE
+rect_dsc.border_color = lv_colors.WHITE
 rect_dsc.shadow_width = 5
 rect_dsc.shadow_ofs_x = 5
 rect_dsc.shadow_ofs_y = 5

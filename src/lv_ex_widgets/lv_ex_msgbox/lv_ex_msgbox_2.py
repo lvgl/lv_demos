@@ -74,6 +74,3 @@ info.set_long_mode(lv.label.LONG.BREAK)       # Make sure text will wrap
 info.set_width(LV_HOR_RES - 10)
 info.align(None, lv.ALIGN.IN_BOTTOM_LEFT, 5, -15)
 
-while True:
-    lv.task_handler()
-    time.sleep_ms(5)

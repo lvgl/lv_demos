@@ -1,5 +1,4 @@
 from lv_colors import lv_colors
-import time
 
 # Create an array for the points of the line
 line_points = [ {"x":5, "y":5}, 
@@ -21,6 +20,3 @@ line1.set_points(line_points, len(line_points))      # Set the points
 line1.add_style(lv.line.PART.MAIN, style_line)
 line1.align(None, lv.ALIGN.CENTER, 0, 0)
 
-while True:
-    lv.task_handler()
-    time.sleep_ms(5)
