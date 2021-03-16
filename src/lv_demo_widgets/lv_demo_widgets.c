@@ -44,6 +44,7 @@ static void meter1_indic1_anim_cb(void * var, int32_t v);
 static void meter1_indic2_anim_cb(void * var, int32_t v);
 static void meter1_indic3_anim_cb(void * var, int32_t v);
 static void meter2_timer_cb(lv_timer_t * timer);
+static void meter3_anim_cb(void * var, int32_t v);
 
 /**********************
  *  STATIC VARIABLES
@@ -685,7 +686,7 @@ static void analytics_create(lv_obj_t * parent)
     lv_anim_set_playback_time(&a, 800);
     lv_anim_start(&a);
 
-    meter2 = create_meter_box(parent, "Sessions", "Desktop: 3892", "Tablet: 2398", "Mobile: 4299");
+    meter2 = create_meter_box(parent, "Sessions", "Desktop: ", "Tablet: ", "Mobile: ");
     if(disp_size < DISP_LARGE) lv_obj_add_flag(lv_obj_get_parent(meter2), LV_OBJ_FLAG_FLEX_IN_NEW_TRACK);
     scale = lv_meter_add_scale(meter2);
     lv_meter_set_scale_range(meter2, scale, 0, 100, 360, 90);
@@ -696,11 +697,11 @@ static void analytics_create(lv_obj_t * parent)
     lv_meter_set_indicator_start_value(meter2, meter2_indic[0], 0);
     lv_meter_set_indicator_end_value(meter2, meter2_indic[0], 39);
 
-    meter2_indic[1] = lv_meter_add_arc(meter2, scale, 30, lv_color_green(), 0);
+    meter2_indic[1] = lv_meter_add_arc(meter2, scale, 30, lv_color_blue(), 0);
     lv_meter_set_indicator_start_value(meter2, meter2_indic[1], 40);
     lv_meter_set_indicator_end_value(meter2, meter2_indic[1], 69);
 
-    meter2_indic[2] = lv_meter_add_arc(meter2, scale, 10, lv_color_blue(), -20);
+    meter2_indic[2] = lv_meter_add_arc(meter2, scale, 10, lv_color_green(), -20);
     lv_meter_set_indicator_start_value(meter2, meter2_indic[2], 70);
     lv_meter_set_indicator_end_value(meter2, meter2_indic[2], 99);
 
@@ -747,15 +748,23 @@ static void analytics_create(lv_obj_t * parent)
     lv_meter_set_indicator_end_value(meter3, indic, 60);
 
     indic = lv_meter_add_needle_line(meter3, scale, 4, lv_color_grey_darken_4(), -25);
-    lv_meter_set_indicator_value(meter3, indic, 47);
 
     lv_obj_t * mbps_label = lv_label_create(meter3, NULL);
-    lv_label_set_text(mbps_label, "47");
+    lv_label_set_text(mbps_label, "-");
     lv_obj_add_style(mbps_label, LV_PART_MAIN, LV_STATE_DEFAULT, &style_title);
     lv_obj_set_style_content_text(mbps_label, LV_PART_MAIN, LV_STATE_DEFAULT, "Mbps");
     lv_obj_set_style_content_font(mbps_label, LV_PART_MAIN, LV_STATE_DEFAULT, font_normal);
     lv_obj_set_style_content_align(mbps_label, LV_PART_MAIN, LV_STATE_DEFAULT, LV_ALIGN_OUT_RIGHT_BOTTOM);
     lv_obj_set_style_content_ofs_x(mbps_label, LV_PART_MAIN, LV_STATE_DEFAULT, 5);
+
+    lv_anim_init(&a);
+    lv_anim_set_values(&a, 10, 60);
+    lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINITE);
+    lv_anim_set_exec_cb(&a, meter3_anim_cb);
+    lv_anim_set_var(&a, indic);
+    lv_anim_set_time(&a, 4100);
+    lv_anim_set_playback_time(&a, 800);
+    lv_anim_start(&a);
 
     lv_obj_update_layout(parent);
     if(disp_size == DISP_MEDIUM) {
@@ -769,7 +778,7 @@ static void analytics_create(lv_obj_t * parent)
         lv_obj_set_height(meter3, meter_w);
     }
 
-    lv_obj_align(mbps_label, NULL, LV_ALIGN_CENTER, 10, lv_obj_get_height(meter3) / 6);
+    lv_obj_align(mbps_label, NULL, LV_ALIGN_IN_TOP_MID, 10, 4 * lv_obj_get_height(meter3) / 8 + 10);
 }
 void shop_create(lv_obj_t * parent)
 {
@@ -1513,7 +1522,7 @@ static void meter2_timer_cb(lv_timer_t * timer)
     lv_obj_t * card = lv_obj_get_parent(meter2);
     lv_obj_t * bullet;
 
-    bullet = lv_obj_get_child(card, -1);
+    bullet = lv_obj_get_child(card, -3);
 
     static char buf1[32];
     lv_snprintf(buf1, sizeof(buf1), "Desktop: %d", session_desktop);
@@ -1525,7 +1534,7 @@ static void meter2_timer_cb(lv_timer_t * timer)
     lv_snprintf(buf2, sizeof(buf2), "Tablet: %d", session_tablet);
     lv_obj_set_style_content_text(bullet, LV_PART_MAIN, LV_STATE_DEFAULT, buf2);
 
-    bullet = lv_obj_get_child(card, -3);
+    bullet = lv_obj_get_child(card, -1);
 
     static char buf3[32];
     lv_snprintf(buf3, sizeof(buf3), "Mobile: %d", session_mobile);
@@ -1534,7 +1543,10 @@ static void meter2_timer_cb(lv_timer_t * timer)
 
 }
 
-static void meter3_anim(lv_timer_t * timer)
+static void meter3_anim_cb(void * var, int32_t v)
 {
+    lv_meter_set_indicator_value(meter3, var, v);
 
+    lv_obj_t * label = lv_obj_get_child(meter3, 0);
+    lv_label_set_text_fmt(label, "%d", v);
 }
