@@ -124,15 +124,6 @@ void lv_demo_widgets(void)
         font_small     = &lv_font_montserrat_10;
     }
 
-    tv = lv_tabview_create(lv_scr_act(), LV_DIR_TOP, tab_h);
-
-    lv_obj_set_style_text_font(lv_scr_act(), LV_PART_MAIN, LV_STATE_DEFAULT, font_normal);
-    lv_obj_set_style_content_font(lv_scr_act(), LV_PART_MAIN, LV_STATE_DEFAULT, font_normal);
-
-    if(disp_size == DISP_LARGE) {
-        lv_obj_set_style_pad_left(lv_tabview_get_tab_btns(tv), LV_PART_MAIN, LV_STATE_DEFAULT, LV_HOR_RES / 2);
-    }
-
     lv_style_init(&style_text_muted);
     lv_style_set_text_opa(&style_text_muted, LV_OPA_50);
 
@@ -165,6 +156,31 @@ void lv_demo_widgets(void)
     lv_flex_set_flow(&flex_column_wrap, LV_FLEX_FLOW_COLUMN_WRAP);
     lv_flex_set_place(&flex_column_wrap, LV_FLEX_PLACE_CENTER, LV_FLEX_PLACE_START, LV_FLEX_PLACE_START);
 
+
+    tv = lv_tabview_create(lv_scr_act(), LV_DIR_TOP, tab_h);
+
+    lv_obj_set_style_text_font(lv_scr_act(), LV_PART_MAIN, LV_STATE_DEFAULT, font_normal);
+    lv_obj_set_style_content_font(lv_scr_act(), LV_PART_MAIN, LV_STATE_DEFAULT, font_normal);
+
+    if(disp_size == DISP_LARGE) {
+        lv_obj_t * tab_btns = lv_tabview_get_tab_btns(tv);
+        lv_obj_set_style_pad_left(tab_btns, LV_PART_MAIN, LV_STATE_DEFAULT, LV_HOR_RES / 2);
+        lv_obj_t * logo = lv_img_create(tab_btns, NULL);
+        LV_IMG_DECLARE(img_lvgl_logo);
+        lv_img_set_src(logo, &img_lvgl_logo);
+        lv_obj_align(logo, NULL, LV_ALIGN_IN_LEFT_MID, -LV_HOR_RES / 2 + 25, 0);
+
+        lv_obj_t * label = lv_label_create(tab_btns, NULL);
+        lv_obj_add_style(label, LV_PART_MAIN, LV_STATE_DEFAULT, &style_subtitle);
+        lv_label_set_text(label, "LVGL v8");
+        lv_obj_align(label, logo, LV_ALIGN_OUT_RIGHT_TOP, 10, 0);
+
+        label = lv_label_create(tab_btns, NULL);
+        lv_label_set_text(label, "Widgets demo");
+        lv_obj_add_style(label, LV_PART_MAIN, LV_STATE_DEFAULT, &style_text_muted);
+        lv_obj_align(label, logo, LV_ALIGN_OUT_RIGHT_BOTTOM, 10, 0);
+
+    }
 
     lv_obj_t * t1 = lv_tabview_add_tab(tv, "Profile");
     lv_obj_t * t2 = lv_tabview_add_tab(tv, "Analytics");
