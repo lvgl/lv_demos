@@ -89,50 +89,6 @@ void lv_demo_keypad_encoder(void)
 
 static void selectors_create(lv_obj_t * parent)
 {
-<<<<<<< HEAD
-    lv_page_set_scrl_layout(parent, LV_LAYOUT_COLUMN_MID);
-
-   selector_objs.btn = lv_btn_create(parent, NULL);
-
-   lv_obj_t * label = lv_label_create(selector_objs.btn, NULL);
-   lv_label_set_text(label, "Button");
-
-   selector_objs.cb = lv_checkbox_create(parent, NULL);
-
-   selector_objs.slider = lv_slider_create(parent, NULL);
-   lv_slider_set_range(selector_objs.slider, 0, 10);
-   lv_slider_set_type(selector_objs.slider, LV_SLIDER_TYPE_RANGE);
-
-   selector_objs.sw = lv_switch_create(parent, NULL);
-
-   selector_objs.spinbox = lv_spinbox_create(parent, NULL);
-
-   selector_objs.dropdown = lv_dropdown_create(parent, NULL);
-   lv_obj_set_event_cb(selector_objs.dropdown, dd_enc);
-
-   selector_objs.roller = lv_roller_create(parent, NULL);
-
-   selector_objs.list = lv_list_create(parent, NULL);
-   if(lv_obj_get_height(selector_objs.list) > lv_page_get_height_fit(parent)) {
-       lv_obj_set_height(selector_objs.list, lv_page_get_height_fit(parent));
-   }
-   lv_obj_t * bt;
-
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_OK, "1");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_CLOSE, "2");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_EYE_CLOSE, "3");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_TRASH, "4");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_COPY, "5");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_COPY, "6");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_OK, "7");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_CLOSE, "8");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_EYE_CLOSE, "9");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_TRASH, "10");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_COPY, "11");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_COPY, "12");lv_group_add_obj(g,bt);
-
-
-=======
     lv_obj_set_layout(parent, &lv_flex_vertical_list);
 
     lv_obj_t * obj;
@@ -201,7 +157,6 @@ static void selectors_create(lv_obj_t * parent)
     lv_group_add_obj(g, obj);
     obj = lv_list_add_btn(list, LV_SYMBOL_PASTE, "Paste", NULL);
     lv_group_add_obj(g, obj);
->>>>>>> dev
 }
 
 static void text_input_create(lv_obj_t * parent)
