@@ -3,8 +3,8 @@
  * This file exists only to be compatible with Arduino's library structure
  */
 
-#ifndef LV_EXAMPLES_SRC_H
-#define LV_EXAMPLES_SRC_H
+#ifndef LV_DEMO_SRC_H
+#define LV_DEMO_SRC_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -38,4 +38,4 @@ extern "C" {
 } /* extern "C" */
 #endif
 
-#endif /*LV_EXAMPLES_SRC_H*/
+#endif /*LV_DEMO_SRC_H*/

@@ -89,7 +89,6 @@ void lv_demo_keypad_encoder(void)
 
 static void selectors_create(lv_obj_t * parent)
 {
-
     lv_obj_set_layout(parent, &lv_flex_column_nowrap);
 
     lv_obj_t * obj;

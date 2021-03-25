@@ -3,8 +3,8 @@
  *
  */
 
-#ifndef LV_EXAMPLES_H
-#define LV_EXAMPLES_H
+#ifndef LV_DEMO_H
+#define LV_DEMO_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -65,4 +65,4 @@ extern "C" {
 } /* extern "C" */
 #endif
 
-#endif /*LV_EXAMPLES_H*/
+#endif /*LV_DEMO_H*/
