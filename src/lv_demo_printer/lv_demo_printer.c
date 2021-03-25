@@ -117,7 +117,7 @@ void lv_demo_printer(void)
     lv_obj_t * scr = lv_obj_create(NULL, NULL);
     lv_scr_load(scr);
 
-    bg_top = lv_obj_create(lv_scr_act(), NULL);
+    bg_top = lv_obj_create(lv_scr_act());
     lv_obj_reset_style_list(bg_top, LV_OBJ_PART_MAIN);
     lv_obj_set_style_local_bg_opa(bg_top, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT,
             LV_OPA_COVER);
@@ -142,29 +142,29 @@ static void home_open(uint32_t delay) {
 
 
     lv_obj_t * icon;
-    lv_obj_t * cont = lv_obj_create(lv_scr_act(), NULL);
+    lv_obj_t * cont = lv_obj_create(lv_scr_act());
     lv_obj_set_size(cont, 350, 80);
     lv_obj_reset_style_list(cont, LV_OBJ_PART_MAIN);
     lv_obj_set_flex_dir(cont, LV_FLEX_DIR_ROW);
     lv_obj_set_flex_place(cont, LV_FLEX_PLACE_SPACE_BETWEEN, LV_FLEX_PLACE_CENTER);
     lv_obj_align(cont, NULL, LV_ALIGN_IN_TOP_LEFT, 60, 10);
 
-    icon = lv_img_create(cont, NULL);
+    icon = lv_img_create(cont);
     lv_img_set_src(icon, &lv_demo_printer_icon_wifi);
     lv_obj_set_flex_item(icon, true);
     lv_demo_printer_anim_in(icon, delay);
 
-    icon = lv_img_create(cont, NULL);
+    icon = lv_img_create(cont);
     lv_img_set_src(icon, &lv_demo_printer_icon_tel);
     lv_obj_set_flex_item(icon, true);
     lv_demo_printer_anim_in(icon, delay);
 
-    icon = lv_img_create(cont, NULL);
+    icon = lv_img_create(cont);
     lv_img_set_src(icon, &lv_demo_printer_icon_eco);
     lv_obj_set_flex_item(icon, true);
     lv_demo_printer_anim_in(icon, delay);
 
-    icon = lv_img_create(cont, NULL);
+    icon = lv_img_create(cont);
     lv_img_set_src(icon, &lv_demo_printer_icon_pc);
     lv_obj_set_flex_item(icon, true);
     lv_demo_printer_anim_in(icon, delay);
@@ -177,7 +177,7 @@ static void home_open(uint32_t delay) {
 
 
     lv_coord_t box_w = 720;
-    lv_obj_t * box = lv_obj_create(lv_scr_act(), NULL);
+    lv_obj_t * box = lv_obj_create(lv_scr_act());
     lv_obj_set_size(box, box_w, 260);
     lv_obj_align(box, NULL, LV_ALIGN_IN_TOP_MID, 0, 100);
     lv_obj_set_flex_dir(box, LV_FLEX_DIR_ROW);
@@ -219,7 +219,7 @@ static void home_open(uint32_t delay) {
     lv_obj_set_event_cb(icon, setup_icon_event_cb);
     lv_obj_set_flex_item(icon, true);
 
-    box = lv_obj_create(lv_scr_act(), NULL);
+    box = lv_obj_create(lv_scr_act());
     lv_obj_set_size(box, 500, 80);
     lv_obj_align(box, NULL, LV_ALIGN_IN_BOTTOM_LEFT, LV_HOR_RES / 20,
             - LV_HOR_RES / 40);
@@ -229,7 +229,7 @@ static void home_open(uint32_t delay) {
     delay += LV_DEMO_PRINTER_ANIM_DELAY;
     lv_demo_printer_anim_in(box, delay);
 
-    box = lv_obj_create(lv_scr_act(), NULL);
+    box = lv_obj_create(lv_scr_act());
     box_w = 200;
     lv_obj_set_size(box, box_w, 80);
     lv_obj_set_flex_dir(box, LV_FLEX_DIR_ROW);
@@ -289,7 +289,7 @@ static void scan1_open(const char * btn_txt)
     delay += LV_DEMO_PRINTER_ANIM_DELAY;
 
     LV_IMG_DECLARE(lv_demo_printer_img_scan_example);
-    scan_img = lv_img_create(lv_scr_act(), NULL);
+    scan_img = lv_img_create(lv_scr_act());
     lv_img_set_src(scan_img, &lv_demo_printer_img_scan_example);
     lv_obj_align(scan_img, NULL, LV_ALIGN_IN_TOP_LEFT, 40, 100);
     lv_obj_set_style_local_radius(scan_img, LV_IMG_PART_MAIN, LV_STATE_DEFAULT, 10);
@@ -297,7 +297,7 @@ static void scan1_open(const char * btn_txt)
     lv_obj_set_style_local_image_recolor_opa(scan_img, LV_IMG_PART_MAIN, LV_STATE_DEFAULT, 80);
 
     lv_coord_t box_w = 160;
-    lv_obj_t * settings_box = lv_obj_create(lv_scr_act(), NULL);
+    lv_obj_t * settings_box = lv_obj_create(lv_scr_act());
     lv_obj_set_size(settings_box, box_w, 245);
     lv_obj_align(settings_box, scan_img, LV_ALIGN_OUT_RIGHT_TOP, 40, 0);
 
@@ -330,7 +330,7 @@ static void scan1_open(const char * btn_txt)
 
     scan_img_color_refr();
 
-    lv_obj_t * next_btn = lv_btn_create(lv_scr_act(), NULL);
+    lv_obj_t * next_btn = lv_btn_create(lv_scr_act());
     lv_theme_apply(next_btn, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_BTN_CIRCLE);
     lv_obj_set_size(next_btn, box_w, 60);
     lv_obj_align(next_btn, scan_img, LV_ALIGN_OUT_RIGHT_BOTTOM, 40, 0);
@@ -369,7 +369,7 @@ LV_EVENT_CB_DECLARE(copy_open_icon_event_cb) {
         lv_obj_t * arc = add_loader(scan_anim_ready);
         lv_obj_align(arc, NULL, LV_ALIGN_CENTER, 0, -40);
 
-        lv_obj_t * txt = lv_label_create(lv_scr_act(), NULL);
+        lv_obj_t * txt = lv_label_create(lv_scr_act());
         lv_label_set_text(txt, "Scanning, please wait...");
         lv_theme_apply(txt, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_LABEL_WHITE);
         lv_obj_align(txt, arc, LV_ALIGN_OUT_BOTTOM_MID, 0, 60);
@@ -395,7 +395,7 @@ LV_EVENT_CB_DECLARE(scan_open_icon_event_cb)
         lv_obj_t * arc = add_loader(scan_anim_ready);
         lv_obj_align(arc, NULL, LV_ALIGN_CENTER, 0, -40);
 
-        lv_obj_t * txt = lv_label_create(lv_scr_act(), NULL);
+        lv_obj_t * txt = lv_label_create(lv_scr_act());
         lv_label_set_text(txt, "Scanning, please wait...");
         lv_theme_apply(txt, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_LABEL_WHITE);
         lv_obj_align(txt, arc, LV_ALIGN_OUT_BOTTOM_MID, 0, 60);
@@ -424,7 +424,7 @@ LV_EVENT_CB_DECLARE(scan_save_event_cb)
         uint32_t delay = 200;
 
         LV_IMG_DECLARE(lv_demo_printer_img_ready);
-        lv_obj_t * img = lv_img_create(lv_scr_act(), NULL);
+        lv_obj_t * img = lv_img_create(lv_scr_act());
         lv_img_set_src(img, &lv_demo_printer_img_ready);
         lv_obj_align(img, NULL, LV_ALIGN_CENTER, 0, -40);
 
@@ -445,7 +445,7 @@ static void print_open(uint32_t delay)
     lv_demo_printer_anim_in(title, delay);
 
     lv_coord_t box_w = 720;
-    lv_obj_t * box = lv_obj_create(lv_scr_act(), NULL);
+    lv_obj_t * box = lv_obj_create(lv_scr_act());
     lv_obj_set_size(box, box_w, 260);
     lv_obj_align(box, NULL, LV_ALIGN_IN_TOP_MID, 0, 100);
     lv_obj_set_flex_dir(box, LV_FLEX_DIR_ROW);
@@ -477,7 +477,7 @@ static void print_open(uint32_t delay)
     lv_obj_fade_in(icon, LV_DEMO_PRINTER_ANIM_TIME * 2, delay + LV_DEMO_PRINTER_ANIM_TIME + 50);
     lv_obj_set_flex_item(icon, true);
 
-    box = lv_obj_create(lv_scr_act(), NULL);
+    box = lv_obj_create(lv_scr_act());
     lv_obj_set_size(box, box_w, 80);
     lv_obj_align(box, NULL, LV_ALIGN_IN_BOTTOM_LEFT, LV_HOR_RES / 20,
             - LV_HOR_RES / 40);
@@ -522,7 +522,7 @@ LV_EVENT_CB_DECLARE(usb_icon_event_cb)
             lv_obj_add_flag(btn, LV_OBJ_FLAG_CHECKABLE);
         }
 
-        lv_obj_t * dropdown_box = lv_obj_create(lv_scr_act(), NULL);
+        lv_obj_t * dropdown_box = lv_obj_create(lv_scr_act());
         lv_obj_set_size(dropdown_box, box_w, LV_VER_RES / 5);
         lv_obj_align(dropdown_box, list, LV_ALIGN_OUT_BOTTOM_MID, 0, LV_HOR_RES / 30);
 
@@ -538,7 +538,7 @@ LV_EVENT_CB_DECLARE(usb_icon_event_cb)
         lv_dropdown_set_options_static(dropdown, "100 DPI\n200 DPI\n300 DPI\n400 DPI\n500 DPI\n1500 DPI");
 
         box_w = 320 - 40;
-        lv_obj_t * settings_box = lv_obj_create(lv_scr_act(), NULL);
+        lv_obj_t * settings_box = lv_obj_create(lv_scr_act());
         lv_obj_set_size(settings_box, box_w, LV_VER_RES / 2);
         lv_obj_align(settings_box, list, LV_ALIGN_OUT_RIGHT_TOP, LV_HOR_RES / 20, 0);
 
@@ -581,7 +581,7 @@ LV_EVENT_CB_DECLARE(usb_icon_event_cb)
         lv_obj_align(sw, btn, LV_ALIGN_OUT_BOTTOM_RIGHT, - LV_HOR_RES / 50, LV_VER_RES / 7);
         lv_obj_set_style_local_value_str(sw, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, "Vertical");
 
-        lv_obj_t * print_btn = lv_btn_create(lv_scr_act(), NULL);
+        lv_obj_t * print_btn = lv_btn_create(lv_scr_act());
         lv_theme_apply(print_btn, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_BTN_CIRCLE);
         lv_obj_set_size(print_btn, box_w, 60);
 
@@ -636,7 +636,7 @@ LV_EVENT_CB_DECLARE(print_start_event_cb)
         lv_obj_t * arc = add_loader(print_start_ready);
         lv_obj_align(arc, NULL, LV_ALIGN_CENTER, 0, -40);
 
-        lv_obj_t * txt = lv_label_create(lv_scr_act(), NULL);
+        lv_obj_t * txt = lv_label_create(lv_scr_act());
         lv_label_set_text(txt, "Printing, please wait...");
         lv_theme_apply(txt, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_LABEL_WHITE);
         lv_obj_align(txt, arc, LV_ALIGN_OUT_BOTTOM_MID, 0, 60);
@@ -653,7 +653,7 @@ static void print_start_ready(lv_anim_t * a)
     lv_demo_printer_anim_out_all(lv_scr_act(), 0);
 
     LV_IMG_DECLARE(lv_demo_printer_img_ready);
-    lv_obj_t * img = lv_img_create(lv_scr_act(), NULL);
+    lv_obj_t * img = lv_img_create(lv_scr_act());
     lv_img_set_src(img, &lv_demo_printer_img_ready);
     lv_obj_align(img, NULL, LV_ALIGN_CENTER, 0, -40);
 
@@ -685,7 +685,7 @@ LV_EVENT_CB_DECLARE(mobile_icon_event_cb)
 
         LV_IMG_DECLARE(lv_demo_printer_img_printer2);
 
-        lv_obj_t * img = lv_img_create(lv_scr_act(), NULL);
+        lv_obj_t * img = lv_img_create(lv_scr_act());
         lv_img_set_src(img, &lv_demo_printer_img_printer2);
         lv_obj_align(img, NULL, LV_ALIGN_CENTER, -90, 0);
 
@@ -693,7 +693,7 @@ LV_EVENT_CB_DECLARE(mobile_icon_event_cb)
         delay += LV_DEMO_PRINTER_ANIM_DELAY;
 
         LV_IMG_DECLARE(lv_demo_printer_img_wave);
-        img = lv_img_create(lv_scr_act(), NULL);
+        img = lv_img_create(lv_scr_act());
         lv_img_set_src(img, &lv_demo_printer_img_wave);
         lv_obj_align(img, NULL, LV_ALIGN_CENTER, 0, 0);
 
@@ -701,7 +701,7 @@ LV_EVENT_CB_DECLARE(mobile_icon_event_cb)
         delay += LV_DEMO_PRINTER_ANIM_DELAY;
 
         LV_IMG_DECLARE(lv_demo_printer_img_phone);
-        img = lv_img_create(lv_scr_act(), NULL);
+        img = lv_img_create(lv_scr_act());
         lv_img_set_src(img, &lv_demo_printer_img_phone);
         lv_obj_align(img, NULL, LV_ALIGN_CENTER, 80, 0);
 
@@ -726,7 +726,7 @@ LV_EVENT_CB_DECLARE(internet_icon_event_cb)
 
         LV_IMG_DECLARE(lv_demo_printer_img_printer2);
 
-        lv_obj_t * img = lv_img_create(lv_scr_act(), NULL);
+        lv_obj_t * img = lv_img_create(lv_scr_act());
         lv_img_set_src(img, &lv_demo_printer_img_printer2);
         lv_obj_align(img, NULL, LV_ALIGN_CENTER, -90, 0);
 
@@ -734,7 +734,7 @@ LV_EVENT_CB_DECLARE(internet_icon_event_cb)
         delay += LV_DEMO_PRINTER_ANIM_DELAY;
 
         LV_IMG_DECLARE(lv_demo_printer_img_no_internet);
-        img = lv_img_create(lv_scr_act(), NULL);
+        img = lv_img_create(lv_scr_act());
         lv_img_set_src(img, &lv_demo_printer_img_no_internet);
         lv_obj_align(img, NULL, LV_ALIGN_CENTER, 0, -40);
 
@@ -742,7 +742,7 @@ LV_EVENT_CB_DECLARE(internet_icon_event_cb)
         delay += LV_DEMO_PRINTER_ANIM_DELAY;
 
         LV_IMG_DECLARE(lv_demo_printer_img_cloud);
-        img = lv_img_create(lv_scr_act(), NULL);
+        img = lv_img_create(lv_scr_act());
         lv_img_set_src(img, &lv_demo_printer_img_cloud);
         lv_obj_align(img, NULL, LV_ALIGN_CENTER, 80, -80);
 
@@ -767,7 +767,7 @@ LV_EVENT_CB_DECLARE(setup_icon_event_cb)
 
         LV_IMG_DECLARE(lv_demo_printer_img_printer2);
 
-        lv_obj_t * img = lv_img_create(lv_scr_act(), NULL);
+        lv_obj_t * img = lv_img_create(lv_scr_act());
         lv_img_set_src(img, &lv_demo_printer_img_printer2);
         lv_obj_align(img, NULL, LV_ALIGN_CENTER, -90, 0);
 
@@ -775,7 +775,7 @@ LV_EVENT_CB_DECLARE(setup_icon_event_cb)
         delay += LV_DEMO_PRINTER_ANIM_DELAY;
 
         LV_IMG_DECLARE(lv_demo_printer_img_no_internet);
-        img = lv_img_create(lv_scr_act(), NULL);
+        img = lv_img_create(lv_scr_act());
         lv_img_set_src(img, &lv_demo_printer_img_no_internet);
         lv_obj_align(img, NULL, LV_ALIGN_CENTER, 0, -40);
 
@@ -783,7 +783,7 @@ LV_EVENT_CB_DECLARE(setup_icon_event_cb)
         delay += LV_DEMO_PRINTER_ANIM_DELAY;
 
         LV_IMG_DECLARE(lv_demo_printer_img_cloud);
-        img = lv_img_create(lv_scr_act(), NULL);
+        img = lv_img_create(lv_scr_act());
         lv_img_set_src(img, &lv_demo_printer_img_cloud);
         lv_obj_align(img, NULL, LV_ALIGN_CENTER, 80, -80);
 
@@ -799,12 +799,12 @@ LV_EVENT_CB_DECLARE(setup_icon_event_cb)
 static void info_bottom_create(const char * dsc, const char * btn_txt, lv_event_cb_t btn_event_cb, uint32_t delay)
 {
 
-    lv_obj_t * txt = lv_label_create(lv_scr_act(), NULL);
+    lv_obj_t * txt = lv_label_create(lv_scr_act());
     lv_label_set_text(txt, dsc);
     lv_theme_apply(txt, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_LABEL_WHITE);
     lv_obj_align(txt, NULL, LV_ALIGN_CENTER, 0, 100);
 
-    lv_obj_t * btn = lv_btn_create(lv_scr_act(), NULL);
+    lv_obj_t * btn = lv_btn_create(lv_scr_act());
     lv_theme_apply(btn, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_BTN_BORDER);
     lv_obj_set_size(btn, LV_DEMO_PRINTER_BTN_W, LV_DEMO_PRINTER_BTN_H);
     lv_obj_align(btn, txt, LV_ALIGN_OUT_BOTTOM_MID, 0, 60);
@@ -864,7 +864,7 @@ LV_EVENT_CB_DECLARE(scan_next_event_cb)
         lv_anim_start(&a);
         scan_img = NULL;    /*To allow anim out*/
 
-        lv_obj_t * dropdown_box = lv_obj_create(lv_scr_act(), NULL);
+        lv_obj_t * dropdown_box = lv_obj_create(lv_scr_act());
         lv_obj_set_size(dropdown_box, box_w, LV_VER_RES / 5);
         lv_obj_align(dropdown_box, NULL, LV_ALIGN_IN_BOTTOM_LEFT, 40, -20);
 
@@ -879,7 +879,7 @@ LV_EVENT_CB_DECLARE(scan_next_event_cb)
         lv_dropdown_set_options_static(dropdown, "72 DPI\n96 DPI\n150 DPI\n300 DPI\n600 DPI\n900 DPI\n1200 DPI");
 
         box_w = 320 - 40;
-        lv_obj_t * settings_box = lv_obj_create(lv_scr_act(), NULL);
+        lv_obj_t * settings_box = lv_obj_create(lv_scr_act());
         lv_obj_set_size(settings_box, box_w, LV_VER_RES / 2);
         lv_obj_align(settings_box, NULL, LV_ALIGN_IN_TOP_RIGHT, -40, 100);
 
@@ -921,7 +921,7 @@ LV_EVENT_CB_DECLARE(scan_next_event_cb)
         lv_obj_align(sw, btn, LV_ALIGN_OUT_BOTTOM_RIGHT, - LV_HOR_RES / 50, LV_VER_RES / 7);
         lv_obj_set_style_local_value_str(sw, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, "Vertical");
 
-        lv_obj_t * print_btn = lv_btn_create(lv_scr_act(), NULL);
+        lv_obj_t * print_btn = lv_btn_create(lv_scr_act());
         lv_theme_apply(print_btn, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_BTN_CIRCLE);
         lv_obj_set_size(print_btn, box_w, 60);
         lv_obj_set_event_cb(print_btn, print_start_event_cb);
@@ -966,7 +966,7 @@ LV_EVENT_CB_DECLARE(lightness_slider_event_cb)
 static lv_obj_t * add_icon(lv_obj_t * parent, const void * src_bg, const void * src_icon, const char * txt)
 {
 
-    lv_obj_t * bg = lv_img_create(parent, NULL);
+    lv_obj_t * bg = lv_img_create(parent);
     lv_obj_add_flag(bg, LV_OBJ_FLAG_CLICKABLE);
     lv_theme_apply(bg, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_ICON);
     lv_img_set_src(bg, src_bg);
@@ -987,7 +987,7 @@ static lv_obj_t * add_icon(lv_obj_t * parent, const void * src_bg, const void * 
 
 static lv_obj_t * add_title(const char * txt)
 {
-    lv_obj_t * title = lv_label_create(lv_scr_act(), NULL);
+    lv_obj_t * title = lv_label_create(lv_scr_act());
     lv_theme_apply(title, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_TITLE);
     lv_label_set_text(title, txt);
     lv_obj_align(title, NULL, LV_ALIGN_IN_TOP_MID, 0,
@@ -997,7 +997,7 @@ static lv_obj_t * add_title(const char * txt)
 
 static lv_obj_t * add_back(lv_event_cb_t event_cb)
 {
-    lv_obj_t * btn = lv_btn_create(lv_scr_act(), NULL);
+    lv_obj_t * btn = lv_btn_create(lv_scr_act());
     lv_theme_apply(btn, (lv_theme_style_t)LV_DEMO_PRINTER_THEME_BTN_BACK);
     lv_obj_set_size(btn, 80, 80);
     lv_obj_set_pos(btn, 30, 10);
@@ -1008,7 +1008,7 @@ static lv_obj_t * add_back(lv_event_cb_t event_cb)
 
 static lv_obj_t * add_loader(void (*end_cb)(lv_anim_t *))
 {
-    lv_obj_t * arc = lv_arc_create(lv_scr_act(), NULL);
+    lv_obj_t * arc = lv_arc_create(lv_scr_act());
     lv_arc_set_bg_angles(arc, 0, 0);
     lv_arc_set_start_angle(arc, 270);
     lv_obj_set_size(arc, 180, 180);

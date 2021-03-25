@@ -799,14 +799,14 @@ static void scene_next_task_cb(lv_timer_t * timer)
 
 
 
-        title = lv_label_create(lv_scr_act(), NULL);
+        title = lv_label_create(lv_scr_act());
         lv_label_set_text_fmt(title, "Weighted FPS: %d", fps_weighted);
 
-        subtitle = lv_label_create(lv_scr_act(), NULL);
+        subtitle = lv_label_create(lv_scr_act());
         lv_label_set_text_fmt(subtitle, "Opa. speed: %d%%", opa_speed_pct);
 
         lv_coord_t w = lv_obj_get_width_fit(lv_scr_act()) - 10;
-        lv_obj_t * table = lv_table_create(lv_scr_act(), NULL);
+        lv_obj_t * table = lv_table_create(lv_scr_act());
 //        lv_obj_clean_style_list(table, LV_PART_MAIN);
         lv_table_set_col_cnt(table, 2);
 

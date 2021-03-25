@@ -57,13 +57,13 @@ void lv_demo_keypad_encoder(void)
         }
 
 #if LV_EX_KEYBOARD
-        if (cur_drv->driver.type == LV_INDEV_TYPE_KEYPAD) {
+        if (cur_drv->driver->type == LV_INDEV_TYPE_KEYPAD) {
             lv_indev_set_group(cur_drv, g);
         }
 #endif
 
 #if LV_EX_MOUSEWHEEL
-        if (cur_drv->driver.type == LV_INDEV_TYPE_ENCODER) {
+        if (cur_drv->driver->type == LV_INDEV_TYPE_ENCODER) {
             lv_indev_set_group(cur_drv, g);
         }
 #endif
@@ -89,55 +89,12 @@ void lv_demo_keypad_encoder(void)
 
 static void selectors_create(lv_obj_t * parent)
 {
-<<<<<<< HEAD
-    lv_page_set_scrl_layout(parent, LV_LAYOUT_COLUMN_MID);
 
-   selector_objs.btn = lv_btn_create(parent, NULL);
-
-   lv_obj_t * label = lv_label_create(selector_objs.btn, NULL);
-   lv_label_set_text(label, "Button");
-
-   selector_objs.cb = lv_checkbox_create(parent, NULL);
-
-   selector_objs.slider = lv_slider_create(parent, NULL);
-   lv_slider_set_range(selector_objs.slider, 0, 10);
-   lv_slider_set_type(selector_objs.slider, LV_SLIDER_TYPE_RANGE);
-
-   selector_objs.sw = lv_switch_create(parent, NULL);
-
-   selector_objs.spinbox = lv_spinbox_create(parent, NULL);
-
-   selector_objs.dropdown = lv_dropdown_create(parent, NULL);
-   lv_obj_set_event_cb(selector_objs.dropdown, dd_enc);
-
-   selector_objs.roller = lv_roller_create(parent, NULL);
-
-   selector_objs.list = lv_list_create(parent, NULL);
-   if(lv_obj_get_height(selector_objs.list) > lv_page_get_height_fit(parent)) {
-       lv_obj_set_height(selector_objs.list, lv_page_get_height_fit(parent));
-   }
-   lv_obj_t * bt;
-
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_OK, "1");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_CLOSE, "2");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_EYE_CLOSE, "3");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_TRASH, "4");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_COPY, "5");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_COPY, "6");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_OK, "7");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_CLOSE, "8");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_EYE_CLOSE, "9");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_TRASH, "10");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_COPY, "11");lv_group_add_obj(g,bt);
-  bt=lv_list_add_btn(selector_objs.list, LV_SYMBOL_COPY, "12");lv_group_add_obj(g,bt);
-
-
-=======
-    lv_obj_set_layout(parent, &lv_flex_vertical_list);
+    lv_obj_set_layout(parent, &lv_flex_column_nowrap);
 
     lv_obj_t * obj;
 
-    obj = lv_table_create(parent, NULL);
+    obj = lv_table_create(parent);
     lv_table_set_cell_value(obj, 0, 0, "00");
     lv_table_set_cell_value(obj, 0, 1, "01");
     lv_table_set_cell_value(obj, 1, 0, "10");
@@ -153,20 +110,20 @@ static void selectors_create(lv_obj_t * parent)
     lv_group_add_obj(g, obj);
     lv_obj_add_flag(obj, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
 
-    obj = lv_btnmatrix_create(parent, NULL);
+    obj = lv_btnmatrix_create(parent);
     lv_group_add_obj(g, obj);
     lv_obj_add_flag(obj, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
 
-    obj = lv_checkbox_create(parent, NULL);
+    obj = lv_checkbox_create(parent);
     lv_group_add_obj(g, obj);
     lv_obj_add_flag(obj, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
 
-    obj = lv_slider_create(parent, NULL);
+    obj = lv_slider_create(parent);
     lv_slider_set_range(obj, 0, 10);
     lv_group_add_obj(g, obj);
     lv_obj_add_flag(obj, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
 
-    obj = lv_switch_create(parent, NULL);
+    obj = lv_switch_create(parent);
     lv_group_add_obj(g, obj);
     lv_obj_add_flag(obj, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
 
@@ -174,15 +131,16 @@ static void selectors_create(lv_obj_t * parent)
     lv_group_add_obj(g, obj);
     lv_obj_add_flag(obj, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
 
-    obj = lv_dropdown_create(parent, NULL);
+    obj = lv_dropdown_create(parent);
     lv_group_add_obj(g, obj);
     lv_obj_add_flag(obj, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
 
-    obj = lv_roller_create(parent, NULL);
+    obj = lv_roller_create(parent);
     lv_group_add_obj(g, obj);
     lv_obj_add_flag(obj, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
 
     lv_obj_t * list = lv_list_create(parent);
+    lv_obj_update_layout(list);
     if(lv_obj_get_height(list) > lv_obj_get_height_fit(parent)) {
         lv_obj_set_height(list, lv_obj_get_height_fit(parent));
     }
@@ -201,20 +159,19 @@ static void selectors_create(lv_obj_t * parent)
     lv_group_add_obj(g, obj);
     obj = lv_list_add_btn(list, LV_SYMBOL_PASTE, "Paste", NULL);
     lv_group_add_obj(g, obj);
->>>>>>> dev
 }
 
 static void text_input_create(lv_obj_t * parent)
 {
-    lv_obj_set_layout(parent, &lv_flex_vertical_list);
+    lv_obj_set_layout(parent, &lv_flex_column_nowrap);
 
-    lv_obj_t * ta1 = lv_textarea_create(parent, NULL);
+    lv_obj_t * ta1 = lv_textarea_create(parent);
     lv_obj_set_width(ta1, LV_SIZE_PCT(100));
     lv_textarea_set_one_line(ta1, true);
     lv_textarea_set_placeholder_text(ta1, "Click with an encoder to show a keyboard");
     lv_group_add_obj(g, ta1);
 
-    lv_obj_t * ta2 = lv_textarea_create(parent, NULL);
+    lv_obj_t * ta2 = lv_textarea_create(parent);
     lv_obj_set_width(ta2, LV_SIZE_PCT(100));
     lv_textarea_set_one_line(ta2, true);
     lv_textarea_set_placeholder_text(ta2, "Type something");
@@ -269,15 +226,16 @@ static void ta_event_cb(lv_obj_t * ta, lv_event_t e)
     lv_indev_type_t indev_type = lv_indev_get_type(indev);
 
     lv_obj_t * kb = lv_event_get_user_data();
-    lv_obj_align(kb, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, 0);
     if(e == LV_EVENT_CLICKED && indev_type == LV_INDEV_TYPE_ENCODER) {
         lv_keyboard_set_textarea(kb, ta);
         lv_obj_clear_flag(kb, LV_OBJ_FLAG_HIDDEN);
         lv_group_focus_obj(kb);
+        lv_group_set_editing(lv_obj_get_group(kb), kb);
         lv_obj_set_height(tv, LV_VER_RES / 2);
+        lv_obj_align(kb, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, 0);
     }
 
-    if(e == LV_EVENT_READY) {
+    if(e == LV_EVENT_READY || e == LV_EVENT_CANCEL) {
         lv_obj_add_flag(kb, LV_OBJ_FLAG_HIDDEN);
         lv_obj_set_height(tv, LV_VER_RES);
     }

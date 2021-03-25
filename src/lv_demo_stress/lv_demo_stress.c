@@ -80,14 +80,14 @@ static void obj_test_task_cb(lv_timer_t * tmr)
             break;
         case 0:
             /* Holder for all object types */
-            main_page = lv_obj_create(lv_scr_act(), NULL);
+            main_page = lv_obj_create(lv_scr_act());
             lv_obj_set_size(main_page, LV_HOR_RES / 2 , LV_VER_RES);
             lv_obj_set_layout(main_page, &lv_flex_column_nowrap);
 
 
             obj = lv_btn_create(main_page, NULL);
             lv_obj_set_size(obj, 100, 70);
-            obj = lv_label_create(obj, NULL);
+            obj = lv_label_create(obj);
             lv_label_set_text(obj, "Multi line\n"LV_SYMBOL_OK LV_SYMBOL_CLOSE LV_SYMBOL_WIFI);
             break;
 
@@ -131,12 +131,12 @@ static void obj_test_task_cb(lv_timer_t * tmr)
             /*Delete the object a few sec later*/
             auto_del(obj, TIME_STEP * 10);
 
-            obj = lv_label_create(obj, NULL);
+            obj = lv_label_create(obj);
             lv_label_set_text_fmt(obj, "Formatted:\n%d %s", 12, "Volt");
             break;
 
         case 3:
-            ta = lv_textarea_create(lv_scr_act(), NULL);
+            ta = lv_textarea_create(lv_scr_act());
             lv_obj_align(ta, main_page, LV_ALIGN_OUT_RIGHT_TOP, 10, 10);
             lv_obj_set_size(ta, LV_HOR_RES / 3, LV_VER_RES / 4);
             lv_textarea_set_placeholder_text(ta, "The placeholder");
@@ -266,15 +266,15 @@ static void obj_test_task_cb(lv_timer_t * tmr)
               auto_del(tv, TIME_STEP * 4 + 5);
 
               obj = lv_tileview_add_tile(tv, 0, 0, LV_DIR_ALL);
-              obj = lv_label_create(obj, NULL);
+              obj = lv_label_create(obj);
               lv_label_set_text(obj, "Tile: 0;0");
 
               obj = lv_tileview_add_tile(tv, 0, 1, LV_DIR_ALL);
-              obj = lv_label_create(obj, NULL);
+              obj = lv_label_create(obj);
               lv_label_set_text(obj, "Tile: 0;1");
 
               obj = lv_tileview_add_tile(tv, 1, 1, LV_DIR_ALL);
-              obj = lv_label_create(obj, NULL);
+              obj = lv_label_create(obj);
               lv_label_set_text(obj, "Tile: 1;1");
 
               lv_obj_set_tile_id(tv, 1, 1, LV_ANIM_ON);
