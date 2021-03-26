@@ -633,16 +633,16 @@ void lv_demo_benchmark(void)
     lv_obj_remove_style(scr, LV_PART_MAIN, LV_STATE_ANY, NULL);
     lv_obj_set_style_bg_opa(scr, LV_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_COVER);
 
-    title = lv_label_create(scr, NULL);
+    title = lv_label_create(scr);
     lv_obj_set_pos(title, LV_DPI_DEF / 30, LV_DPI_DEF / 30);
 
-    subtitle = lv_label_create(scr, NULL);
-    lv_obj_align(subtitle, title, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 0);
+    subtitle = lv_label_create(scr);
+    lv_obj_align_to(subtitle, title, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 0);
 
-    scene_bg = lv_obj_create(scr, NULL);
+    scene_bg = lv_obj_create(scr);
     lv_obj_remove_style(scene_bg, LV_PART_MAIN, LV_STATE_DEFAULT, NULL);
     lv_obj_set_size(scene_bg, lv_obj_get_width(scr), lv_obj_get_height(scr) - subtitle->coords.y2 - LV_DPI_DEF / 30);
-    lv_obj_align(scene_bg, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, 0);
+    lv_obj_align(scene_bg, LV_ALIGN_BOTTOM_MID, 0, 0);
 
     lv_style_init(&style_common);
 
@@ -865,7 +865,7 @@ static void rect_create(lv_style_t * style)
 {
     uint32_t i;
     for(i = 0; i < OBJ_NUM; i++) {
-        lv_obj_t * obj = lv_obj_create(scene_bg, NULL);
+        lv_obj_t * obj = lv_obj_create(scene_bg);
         lv_obj_remove_style(obj, LV_PART_MAIN, LV_STATE_ANY, NULL);
         lv_obj_add_style(obj, LV_PART_MAIN,LV_STATE_DEFAULT, style);
         lv_obj_set_style_bg_color(obj, LV_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(rnd_next(0, 0xFFFFF0)));
@@ -883,7 +883,7 @@ static void img_create(lv_style_t * style, const void * src, bool rotate, bool z
 {
     uint32_t i;
     for(i = 0; i < (uint32_t)IMG_NUM; i++) {
-        lv_obj_t * obj = lv_img_create(scene_bg, NULL);
+        lv_obj_t * obj = lv_img_create(scene_bg);
         lv_obj_remove_style(obj, LV_PART_MAIN, LV_STATE_ANY, NULL);
         lv_obj_add_style(obj, LV_PART_MAIN, LV_STATE_DEFAULT, style);
         lv_img_set_src(obj, src);
@@ -902,7 +902,7 @@ static void txt_create(lv_style_t * style)
 {
     uint32_t i;
     for(i = 0; i < OBJ_NUM; i++) {
-        lv_obj_t * obj = lv_label_create(scene_bg, NULL);
+        lv_obj_t * obj = lv_label_create(scene_bg);
         lv_obj_remove_style(obj, LV_PART_MAIN, LV_STATE_ANY, NULL);
         lv_obj_add_style(obj, LV_PART_MAIN, LV_STATE_DEFAULT, style);
         lv_obj_set_style_text_color(obj, LV_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(rnd_next(0, 0xFFFFF0)));
@@ -929,7 +929,7 @@ static void line_create(lv_style_t * style)
         }
 
 
-        lv_obj_t * obj = lv_line_create(scene_bg, NULL);
+        lv_obj_t * obj = lv_line_create(scene_bg);
         lv_obj_remove_style(obj, LV_PART_MAIN, LV_STATE_ANY, NULL);
         lv_obj_add_style(obj, LV_PART_MAIN, LV_STATE_DEFAULT, style);
         lv_obj_set_style_line_color(obj, LV_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(rnd_next(0, 0xFFFFF0)));
@@ -946,7 +946,7 @@ static void arc_create(lv_style_t * style)
 {
     uint32_t i;
     for(i = 0; i < OBJ_NUM; i++) {
-        lv_obj_t * obj = lv_arc_create(scene_bg, NULL);
+        lv_obj_t * obj = lv_arc_create(scene_bg);
         lv_obj_remove_style(obj, LV_PART_ANY, LV_STATE_ANY, NULL);
         lv_obj_set_size(obj, rnd_next(OBJ_SIZE_MIN, OBJ_SIZE_MAX), rnd_next(OBJ_SIZE_MIN, OBJ_SIZE_MAX));
         lv_obj_add_style(obj, LV_PART_INDICATOR, LV_STATE_DEFAULT, style);

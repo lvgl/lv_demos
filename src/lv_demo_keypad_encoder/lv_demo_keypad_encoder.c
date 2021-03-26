@@ -89,7 +89,7 @@ void lv_demo_keypad_encoder(void)
 
 static void selectors_create(lv_obj_t * parent)
 {
-    lv_obj_set_layout(parent, &lv_flex_column_nowrap);
+    lv_obj_set_flex_flow(parent, LV_FLEX_FLOW_COLUMN);
 
     lv_obj_t * obj;
 
@@ -162,7 +162,7 @@ static void selectors_create(lv_obj_t * parent)
 
 static void text_input_create(lv_obj_t * parent)
 {
-    lv_obj_set_layout(parent, &lv_flex_column_nowrap);
+    lv_obj_set_flex_flow(parent, LV_FLEX_FLOW_COLUMN);
 
     lv_obj_t * ta1 = lv_textarea_create(parent);
     lv_obj_set_width(ta1, LV_SIZE_PCT(100));
@@ -196,7 +196,7 @@ static void msgbox_create(void)
 #endif
     lv_group_focus_freeze(g, true);
 
-    lv_obj_align(mbox, NULL, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_align(mbox, LV_ALIGN_CENTER, 0, 0);
 
     lv_obj_t * bg = lv_obj_get_parent(mbox);
     lv_obj_set_style_bg_opa(bg, LV_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_70);
@@ -231,7 +231,7 @@ static void ta_event_cb(lv_obj_t * ta, lv_event_t e)
         lv_group_focus_obj(kb);
         lv_group_set_editing(lv_obj_get_group(kb), kb);
         lv_obj_set_height(tv, LV_VER_RES / 2);
-        lv_obj_align(kb, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, 0);
+        lv_obj_align(kb, LV_ALIGN_BOTTOM_MID, 0, 0);
     }
 
     if(e == LV_EVENT_READY || e == LV_EVENT_CANCEL) {

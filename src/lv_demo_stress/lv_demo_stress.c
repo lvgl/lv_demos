@@ -82,10 +82,10 @@ static void obj_test_task_cb(lv_timer_t * tmr)
             /* Holder for all object types */
             main_page = lv_obj_create(lv_scr_act());
             lv_obj_set_size(main_page, LV_HOR_RES / 2 , LV_VER_RES);
-            lv_obj_set_layout(main_page, &lv_flex_column_nowrap);
+            lv_obj_set_flex_flow(main_page, LV_FLEX_FLOW_COLUMN);
 
 
-            obj = lv_btn_create(main_page, NULL);
+            obj = lv_btn_create(main_page);
             lv_obj_set_size(obj, 100, 70);
             obj = lv_label_create(obj);
             lv_label_set_text(obj, "Multi line\n"LV_SYMBOL_OK LV_SYMBOL_CLOSE LV_SYMBOL_WIFI);
@@ -95,7 +95,7 @@ static void obj_test_task_cb(lv_timer_t * tmr)
               {
                   obj = lv_tabview_create(lv_scr_act(), LV_DIR_TOP, 50);
                   lv_obj_set_size(obj, LV_HOR_RES / 2, LV_VER_RES / 2);
-                  lv_obj_align(obj, NULL, LV_ALIGN_IN_BOTTOM_RIGHT, 0, 0);
+                  lv_obj_align(obj, LV_ALIGN_BOTTOM_RIGHT, 0, 0);
                   lv_obj_t * t = lv_tabview_add_tab(obj, "First");
 
                   t = lv_tabview_add_tab(obj, "Second");
@@ -112,7 +112,7 @@ static void obj_test_task_cb(lv_timer_t * tmr)
               break;
 
         case 2:
-            obj = lv_btn_create(main_page, NULL);
+            obj = lv_btn_create(main_page);
             lv_obj_set_size(obj, 200, 70);
 
             /*Move to disabled state very slowly*/
@@ -137,18 +137,18 @@ static void obj_test_task_cb(lv_timer_t * tmr)
 
         case 3:
             ta = lv_textarea_create(lv_scr_act());
-            lv_obj_align(ta, main_page, LV_ALIGN_OUT_RIGHT_TOP, 10, 10);
+            lv_obj_align_to(ta, main_page, LV_ALIGN_OUT_RIGHT_TOP, 10, 10);
             lv_obj_set_size(ta, LV_HOR_RES / 3, LV_VER_RES / 4);
             lv_textarea_set_placeholder_text(ta, "The placeholder");
             break;
 
         case 4:
-            obj = lv_btn_create(main_page, NULL);
+            obj = lv_btn_create(main_page);
             lv_obj_set_size(obj, 100, 70);
-            lv_obj_set_style_content_text(obj, LV_PART_MAIN, LV_STATE_DEFAULT, "Text from\nstyle");
+            lv_obj_set_style_bg_img_src(obj, LV_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_DUMMY"Text from\nstyle");
             lv_obj_del_async(obj);  /*Delete on next call of `lv_task_handler` (so not now)*/
 
-//            obj = lv_btn_create(main_page, NULL);
+//            obj = lv_btn_create(main_page);
 //            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
 //            lv_obj_set_style_bg_img_src(obj, LV_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_LEFT);
 //            lv_obj_set_style_bg_img_opa(obj, LV_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_50);
@@ -160,25 +160,25 @@ static void obj_test_task_cb(lv_timer_t * tmr)
             lv_textarea_set_one_line(ta, true);
             break;
         case 6:
-            lv_obj_set_layout(main_page, &lv_flex_column_center);
+            lv_obj_set_flex_flow(main_page, LV_FLEX_FLOW_COLUMN_WRAP);
             break;
 
         case 7:
-            obj = lv_bar_create(main_page, NULL);
+            obj = lv_bar_create(main_page);
             lv_bar_set_range(obj, -1000, 2000);
             lv_bar_set_value(obj, 1800, LV_ANIM_ON);
             lv_bar_set_start_value(obj, -500, LV_ANIM_ON);
 
             auto_del(obj, TIME_STEP * 2 + 70);
 
-            obj = lv_slider_create(main_page, NULL);
+            obj = lv_slider_create(main_page);
             lv_obj_set_style_anim_time(obj, LV_PART_MAIN, LV_STATE_DEFAULT, TIME_STEP * 8);
             lv_slider_set_value(obj, 5000, LV_ANIM_ON);    /*Animate to out of range value*/
             auto_del(obj, TIME_STEP * 5 + 22);
 
-            obj = lv_switch_create(main_page, NULL);
+            obj = lv_switch_create(main_page);
 
-            obj = lv_switch_create(main_page, NULL);
+            obj = lv_switch_create(main_page);
             lv_obj_add_state(obj, LV_STATE_CHECKED);
             auto_del(obj, 730);
             break;
@@ -186,7 +186,7 @@ static void obj_test_task_cb(lv_timer_t * tmr)
         case 8:
               obj = lv_win_create(lv_scr_act(), 50);
               lv_obj_set_size(obj, LV_HOR_RES / 2, LV_VER_RES / 2);
-              lv_obj_align(obj, NULL, LV_ALIGN_IN_BOTTOM_RIGHT, 0, 0);
+              lv_obj_align(obj, LV_ALIGN_BOTTOM_RIGHT, 0, 0);
               lv_win_add_title(obj, "Window title");
               lv_win_add_btn(obj, LV_SYMBOL_CLOSE, 40, NULL);
               lv_win_add_btn(obj, LV_SYMBOL_DOWN, 40, NULL);
@@ -212,7 +212,7 @@ static void obj_test_task_cb(lv_timer_t * tmr)
             break;
 
         case 11:
-            obj = lv_dropdown_create(main_page, NULL);
+            obj = lv_dropdown_create(main_page);
             lv_dropdown_set_options(obj, "Zero\nOne\nTwo\nThree\nFour\nFive\nSix\nSeven\nEight");
             lv_dropdown_open(obj);
             lv_dropdown_set_selected(obj, 2);
@@ -220,14 +220,14 @@ static void obj_test_task_cb(lv_timer_t * tmr)
             break;
 
         case 12:
-            obj = lv_roller_create(main_page, NULL);
+            obj = lv_roller_create(main_page);
             lv_roller_set_options(obj, "Zero\nOne\nTwo\nThree\nFour\nFive\nSix\nSeven\nEight", LV_ROLLER_MODE_INFINITE);
             lv_roller_set_selected(obj, 2, LV_ANIM_ON);
             auto_del(obj, TIME_STEP * 20 + 22);
             break;
 
         case 13:
-            obj = lv_arc_create(main_page, NULL);
+            obj = lv_arc_create(main_page);
             lv_anim_init(&a);
             lv_anim_set_var(&a, obj);
             lv_anim_set_values(&a, 180, 400);
@@ -239,7 +239,7 @@ static void obj_test_task_cb(lv_timer_t * tmr)
             lv_anim_start(&a);
             break;
 
-            obj = lv_meter_create(main_page, NULL);
+            obj = lv_meter_create(main_page);
             lv_obj_scroll_to_view(obj, LV_ANIM_ON);
             lv_meter_scale_t * scale = lv_meter_add_scale(obj);
             lv_meter_add_needle_line(obj, scale, 3, lv_color_red(), -10);
@@ -252,7 +252,7 @@ static void obj_test_task_cb(lv_timer_t * tmr)
 
             lv_timer_t * tmr = lv_timer_create(msgbox_del, TIME_STEP * 5 + 30, obj);
             lv_timer_set_repeat_count(tmr, 1);
-            lv_obj_align(obj, NULL, LV_ALIGN_IN_RIGHT_MID, -10, 0);
+            lv_obj_align(obj, LV_ALIGN_RIGHT_MID, -10, 0);
             break;
 
         case 15:
@@ -307,7 +307,7 @@ static void obj_test_task_cb(lv_timer_t * tmr)
             break;
 
         case 20:
-            lv_obj_set_layout(main_page, &lv_flex_row_wrap);
+            lv_obj_set_flex_flow(main_page, LV_FLEX_FLOW_ROW_WRAP);
             break;
 
         case 21:
@@ -356,7 +356,7 @@ static void obj_test_task_cb(lv_timer_t * tmr)
             break;
 
         case 23:
-            obj = lv_chart_create(main_page, NULL);
+            obj = lv_chart_create(main_page);
             {
                 lv_chart_series_t * s1 = lv_chart_add_series(obj, lv_color_red(), LV_CHART_AXIS_PRIMARY_Y);
                 lv_chart_set_next_value(obj, s1, 36);
@@ -377,14 +377,14 @@ static void obj_test_task_cb(lv_timer_t * tmr)
             break;
 
         case 24:
-            obj = lv_checkbox_create(main_page, NULL);
+            obj = lv_checkbox_create(main_page);
             lv_checkbox_set_text(obj, "An option to select");
             auto_del(obj, TIME_STEP * 2 + 20);
 
-            obj = lv_checkbox_create(main_page, NULL);
+            obj = lv_checkbox_create(main_page);
             lv_obj_add_state(obj, LV_STATE_CHECKED);
 
-            obj = lv_checkbox_create(main_page, NULL);
+            obj = lv_checkbox_create(main_page);
             lv_obj_add_state(obj, LV_STATE_CHECKED | LV_STATE_DISABLED);
             auto_del(obj, TIME_STEP * 1 + 60);
 
