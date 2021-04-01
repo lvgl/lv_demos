@@ -142,24 +142,24 @@ void lv_demo_widgets(void)
 
     tv = lv_tabview_create(lv_scr_act(), LV_DIR_TOP, tab_h);
 
-    lv_obj_set_style_text_font(lv_scr_act(), LV_PART_MAIN, LV_STATE_DEFAULT, font_normal);
+    lv_obj_set_style_text_font(lv_scr_act(), font_normal, 0);
 
     if(disp_size == DISP_LARGE) {
         lv_obj_t * tab_btns = lv_tabview_get_tab_btns(tv);
-        lv_obj_set_style_pad_left(tab_btns, LV_PART_MAIN, LV_STATE_DEFAULT, LV_HOR_RES / 2);
+        lv_obj_set_style_pad_left(tab_btns, LV_HOR_RES / 2, 0);
         lv_obj_t * logo = lv_img_create(tab_btns);
         LV_IMG_DECLARE(img_lvgl_logo);
         lv_img_set_src(logo, &img_lvgl_logo);
         lv_obj_align(logo, LV_ALIGN_LEFT_MID, -LV_HOR_RES / 2 + 25, 0);
 
         lv_obj_t * label = lv_label_create(tab_btns);
-        lv_obj_add_style(label, LV_PART_MAIN, LV_STATE_DEFAULT, &style_subtitle);
+        lv_obj_add_style(label, &style_subtitle, 0);
         lv_label_set_text(label, "LVGL v8");
         lv_obj_align_to(label, logo, LV_ALIGN_OUT_RIGHT_TOP, 10, 0);
 
         label = lv_label_create(tab_btns);
         lv_label_set_text(label, "Widgets demo");
-        lv_obj_add_style(label, LV_PART_MAIN, LV_STATE_DEFAULT, &style_text_muted);
+        lv_obj_add_style(label, &style_text_muted, 0);
         lv_obj_align_to(label, logo, LV_ALIGN_OUT_RIGHT_BOTTOM, 10, 0);
     }
 
@@ -188,22 +188,22 @@ static void profile_create(lv_obj_t * parent)
 
     lv_obj_t * name = lv_label_create(panel1);
     lv_label_set_text(name, "Elena Smith");
-    lv_obj_add_style(name, LV_PART_MAIN, LV_STATE_DEFAULT, &style_title);
+    lv_obj_add_style(name, &style_title, 0);
 
     lv_obj_t * dsc = lv_label_create(panel1);
-    lv_obj_add_style(dsc, LV_PART_MAIN, LV_STATE_DEFAULT, &style_text_muted);
+    lv_obj_add_style(dsc, &style_text_muted, 0);
     lv_label_set_text(dsc, "This is a short description of me. Take a look at my profile!" );
     lv_label_set_long_mode(dsc, LV_LABEL_LONG_WRAP);
 
     lv_obj_t * email_icn = lv_label_create(panel1);
-    lv_obj_add_style(email_icn, LV_PART_MAIN, LV_STATE_DEFAULT, &style_icon);
+    lv_obj_add_style(email_icn, &style_icon, 0);
     lv_label_set_text(email_icn, LV_SYMBOL_ENVELOPE);
 
     lv_obj_t * email_label = lv_label_create(panel1);
     lv_label_set_text(email_label, "elena@smith.com");
 
     lv_obj_t * call_icn = lv_label_create(panel1);
-    lv_obj_add_style(call_icn, LV_PART_MAIN, LV_STATE_DEFAULT, &style_icon);
+    lv_obj_add_style(call_icn, &style_icon, 0);
     lv_label_set_text(call_icn, LV_SYMBOL_CALL);
 
     lv_obj_t * call_label = lv_label_create(panel1);
@@ -214,6 +214,7 @@ static void profile_create(lv_obj_t * parent)
 
     lv_obj_t * label = lv_label_create(log_out_btn);
     lv_label_set_text(label, "Log out");
+    lv_obj_center(label);
 
     lv_obj_t * invite_btn = lv_btn_create(panel1);
     lv_obj_add_state(invite_btn, LV_STATE_DISABLED);
@@ -221,6 +222,7 @@ static void profile_create(lv_obj_t * parent)
 
     label = lv_label_create(invite_btn);
     lv_label_set_text(label, "Invite");
+    lv_obj_center(label);
 
     /*Create a keyboard*/
     lv_obj_t * kb = lv_keyboard_create(lv_scr_act());
@@ -232,11 +234,11 @@ static void profile_create(lv_obj_t * parent)
 
     lv_obj_t * panel2_title = lv_label_create(panel2);
     lv_label_set_text(panel2_title, "Your profile");
-    lv_obj_add_style(panel2_title, LV_PART_MAIN, LV_STATE_DEFAULT, &style_subtitle);
+    lv_obj_add_style(panel2_title, &style_subtitle, 0);
 
     lv_obj_t * user_name_label = lv_label_create(panel2);
     lv_label_set_text(user_name_label, "User name");
-    lv_obj_add_style(user_name_label, LV_PART_MAIN, LV_STATE_DEFAULT, &style_text_muted);
+    lv_obj_add_style(user_name_label, &style_text_muted, 0);
 
     lv_obj_t * user_name = lv_textarea_create(panel2);
     lv_textarea_set_one_line(user_name, true);
@@ -245,7 +247,7 @@ static void profile_create(lv_obj_t * parent)
 
     lv_obj_t * password_label = lv_label_create(panel2);
     lv_label_set_text(password_label, "Password");
-    lv_obj_add_style(password_label, LV_PART_MAIN, LV_STATE_DEFAULT, &style_text_muted);
+    lv_obj_add_style(password_label, &style_text_muted, 0);
 
     lv_obj_t * password = lv_textarea_create(panel2);
     lv_textarea_set_one_line(password, true);
@@ -255,14 +257,14 @@ static void profile_create(lv_obj_t * parent)
 
     lv_obj_t * gender_label = lv_label_create(panel2);
     lv_label_set_text(gender_label, "Gender");
-    lv_obj_add_style(gender_label, LV_PART_MAIN, LV_STATE_DEFAULT, &style_text_muted);
+    lv_obj_add_style(gender_label, &style_text_muted, 0);
 
     lv_obj_t * gender = lv_dropdown_create(panel2);
     lv_dropdown_set_options_static(gender, "Male\nFemale\nOther");
 
     lv_obj_t * birthday_label = lv_label_create(panel2);
     lv_label_set_text(birthday_label, "Birthday");
-    lv_obj_add_style(birthday_label, LV_PART_MAIN, LV_STATE_DEFAULT, &style_text_muted);
+    lv_obj_add_style(birthday_label, &style_text_muted, 0);
 
     lv_obj_t * birthdate = lv_textarea_create(panel2);
     lv_textarea_set_one_line(birthdate, true);
@@ -272,11 +274,11 @@ static void profile_create(lv_obj_t * parent)
     panel3 = lv_obj_create(parent);
     lv_obj_t * panel3_title = lv_label_create(panel3);
     lv_label_set_text(panel3_title, "Your skills");
-    lv_obj_add_style(panel3_title, LV_PART_MAIN, LV_STATE_DEFAULT, &style_subtitle);
+    lv_obj_add_style(panel3_title, &style_subtitle, 0);
 
     lv_obj_t * experience_label = lv_label_create(panel3);
     lv_label_set_text(experience_label, "Experience");
-    lv_obj_add_style(experience_label, LV_PART_MAIN, LV_STATE_DEFAULT, &style_text_muted);
+    lv_obj_add_style(experience_label, &style_text_muted, 0);
 
     lv_obj_t * slider1 = lv_slider_create(panel3);
     lv_obj_set_width(slider1, LV_SIZE_PCT(95));
@@ -285,13 +287,13 @@ static void profile_create(lv_obj_t * parent)
 
     lv_obj_t * team_player_label = lv_label_create(panel3);
     lv_label_set_text(team_player_label, "Team player");
-    lv_obj_add_style(team_player_label, LV_PART_MAIN, LV_STATE_DEFAULT, &style_text_muted);
+    lv_obj_add_style(team_player_label, &style_text_muted, 0);
 
     lv_obj_t * sw1 = lv_switch_create(panel3);
 
     lv_obj_t * hard_working_label = lv_label_create(panel3);
     lv_label_set_text(hard_working_label, "Hard-working");
-    lv_obj_add_style(hard_working_label, LV_PART_MAIN, LV_STATE_DEFAULT, &style_text_muted);
+    lv_obj_add_style(hard_working_label, &style_text_muted, 0);
 
     lv_obj_t * sw2 = lv_switch_create(panel3);
 
@@ -464,7 +466,7 @@ static void profile_create(lv_obj_t * parent)
 
         lv_obj_set_grid_cell(panel1, LV_GRID_STRETCH, 0, 1, LV_GRID_CENTER, 0, 1);
 
-        lv_obj_set_style_text_align(dsc, LV_PART_MAIN, LV_STATE_DEFAULT, LV_TEXT_ALIGN_CENTER);
+        lv_obj_set_style_text_align(dsc, LV_TEXT_ALIGN_CENTER, 0);
 
         lv_obj_set_grid_cell(avatar, LV_GRID_CENTER, 0, 2, LV_GRID_CENTER, 0, 1);
         lv_obj_set_grid_cell(name, LV_GRID_CENTER, 0, 2, LV_GRID_CENTER, 1, 1);
@@ -519,7 +521,7 @@ static void analytics_create(lv_obj_t * parent)
 
     lv_obj_t * title = lv_label_create(chart1_cont);
     lv_label_set_text(title, "Unique visitors");
-    lv_obj_add_style(title, LV_PART_MAIN, LV_STATE_DEFAULT, &style_subtitle);
+    lv_obj_add_style(title, &style_subtitle, 0);
     lv_obj_set_grid_cell(title, LV_GRID_START, 0, 2, LV_GRID_START, 0, 1);
 
     chart1 = lv_chart_create(chart1_cont);
@@ -532,8 +534,8 @@ static void analytics_create(lv_obj_t * parent)
     if(disp_size == DISP_SMALL) lv_chart_set_zoom_x(chart1, 256 * 3);
     else if(disp_size == DISP_MEDIUM) lv_chart_set_zoom_x(chart1, 256 * 2);
 
-    lv_obj_set_style_border_side(chart1, LV_PART_MAIN, LV_STATE_DEFAULT, LV_BORDER_SIDE_LEFT | LV_BORDER_SIDE_BOTTOM);
-    lv_obj_set_style_radius(chart1, LV_PART_MAIN, LV_STATE_DEFAULT, 0);
+    lv_obj_set_style_border_side(chart1, LV_BORDER_SIDE_LEFT | LV_BORDER_SIDE_BOTTOM, 0);
+    lv_obj_set_style_radius(chart1, 0, 0);
 
     ser1 = lv_chart_add_series(chart1, lv_theme_get_color_primary(chart1), LV_CHART_AXIS_PRIMARY_Y);
     lv_chart_set_next_value(chart1, ser1, lv_rand(10, 80));
@@ -564,7 +566,7 @@ static void analytics_create(lv_obj_t * parent)
 
     title = lv_label_create(chart2_cont);
     lv_label_set_text(title, "Monthly revenue");
-    lv_obj_add_style(title, LV_PART_MAIN, LV_STATE_DEFAULT, &style_subtitle);
+    lv_obj_add_style(title, &style_subtitle, 0);
     lv_obj_set_grid_cell(title, LV_GRID_START, 0, 2, LV_GRID_START, 0, 1);
 
     chart2 = lv_chart_create(chart2_cont);
@@ -577,15 +579,15 @@ static void analytics_create(lv_obj_t * parent)
     lv_chart_set_point_count(chart2, 12);
     lv_obj_add_event_cb(chart2, chart_event_cb, NULL);
     lv_chart_set_zoom_x(chart2, 256 * 2);
-    lv_obj_set_style_border_side(chart2, LV_PART_MAIN, LV_STATE_DEFAULT, LV_BORDER_SIDE_LEFT | LV_BORDER_SIDE_BOTTOM);
-    lv_obj_set_style_radius(chart2, LV_PART_MAIN, LV_STATE_DEFAULT, 0);
+    lv_obj_set_style_border_side(chart2, LV_BORDER_SIDE_LEFT | LV_BORDER_SIDE_BOTTOM, 0);
+    lv_obj_set_style_radius(chart2, 0, 0);
 
     if(disp_size == DISP_SMALL) {
-        lv_obj_set_style_pad_gap(chart2, LV_PART_ITEMS, LV_STATE_DEFAULT, 0);
-        lv_obj_set_style_pad_gap(chart2, LV_PART_MAIN, LV_STATE_DEFAULT, 2);
+        lv_obj_set_style_pad_gap(chart2, 0, LV_PART_ITEMS);
+        lv_obj_set_style_pad_gap(chart2, 2, LV_PART_MAIN);
     }
     else if(disp_size == DISP_LARGE) {
-        lv_obj_set_style_pad_gap(chart2, LV_PART_MAIN, LV_STATE_DEFAULT, 16);
+        lv_obj_set_style_pad_gap(chart2, 16, 0);
     }
 
     ser2 = lv_chart_add_series(chart2, lv_color_grey_lighten_1(), LV_CHART_AXIS_PRIMARY_Y);
@@ -676,14 +678,16 @@ static void analytics_create(lv_obj_t * parent)
 
     meter3 = create_meter_box(parent, "Network Speed", "Low speed", "Normal Speed", "High Speed");
     if(disp_size < DISP_LARGE) lv_obj_add_flag(lv_obj_get_parent(meter3), LV_OBJ_FLAG_FLEX_IN_NEW_TRACK);
-    lv_obj_set_style_pad_hor(meter3, LV_PART_MAIN, LV_STATE_DEFAULT, 10);
-    lv_obj_set_style_size(meter3, LV_PART_INDICATOR, LV_STATE_DEFAULT, 10);
-    lv_obj_set_style_radius(meter3, LV_PART_INDICATOR, LV_STATE_DEFAULT, LV_RADIUS_CIRCLE);
-    lv_obj_set_style_bg_opa(meter3, LV_PART_INDICATOR, LV_STATE_DEFAULT, LV_OPA_COVER);
-    lv_obj_set_style_bg_color(meter3, LV_PART_INDICATOR, LV_STATE_DEFAULT, lv_color_grey_darken_4());
-    lv_obj_set_style_outline_color(meter3, LV_PART_INDICATOR, LV_STATE_DEFAULT, lv_color_white());
-    lv_obj_set_style_outline_width(meter3, LV_PART_INDICATOR, LV_STATE_DEFAULT, 3);
-    lv_obj_set_style_text_color(meter3, LV_PART_TICKS, LV_STATE_DEFAULT, lv_color_grey_darken_1());
+
+    /*Add a special circle to the needle's pivot*/
+    lv_obj_set_style_pad_hor(meter3, 10, 0);
+    lv_obj_set_style_size(meter3, 10, LV_PART_INDICATOR);
+    lv_obj_set_style_radius(meter3, LV_RADIUS_CIRCLE, LV_PART_INDICATOR);
+    lv_obj_set_style_bg_opa(meter3, LV_OPA_COVER, LV_PART_INDICATOR);
+    lv_obj_set_style_bg_color(meter3, lv_color_grey_darken_4(), LV_PART_INDICATOR);
+    lv_obj_set_style_outline_color(meter3, lv_color_white(), LV_PART_INDICATOR);
+    lv_obj_set_style_outline_width(meter3, 3, LV_PART_INDICATOR);
+    lv_obj_set_style_text_color(meter3, lv_color_grey_darken_1(), LV_PART_TICKS);
 
     scale = lv_meter_add_scale(meter3);
     lv_meter_set_scale_range(meter3, scale, 10, 60, 220, 360 - 220);
@@ -718,7 +722,7 @@ static void analytics_create(lv_obj_t * parent)
 
     lv_obj_t * mbps_label = lv_label_create(meter3);
     lv_label_set_text(mbps_label, "-");
-    lv_obj_add_style(mbps_label, LV_PART_MAIN, LV_STATE_DEFAULT, &style_title);
+    lv_obj_add_style(mbps_label, &style_title, 0);
 
     lv_obj_t * mbps_unit_label = lv_label_create(meter3);
     lv_label_set_text(mbps_unit_label, "Mbps");
@@ -754,23 +758,23 @@ void shop_create(lv_obj_t * parent)
 
     lv_obj_t * panel1 = lv_obj_create(parent);
     lv_obj_set_size(panel1, LV_SIZE_PCT(100), LV_SIZE_CONTENT);
-    lv_obj_set_style_pad_bottom(panel1, LV_PART_MAIN, LV_STATE_DEFAULT, 30);
+    lv_obj_set_style_pad_bottom(panel1, 30, 0);
 
     lv_obj_t * title = lv_label_create(panel1);
     lv_label_set_text(title, "Monthly Summary");
-    lv_obj_add_style(title, LV_PART_MAIN, LV_STATE_DEFAULT, &style_subtitle);
+    lv_obj_add_style(title, &style_subtitle, 0);
 
     lv_obj_t * date = lv_label_create(panel1);
     lv_label_set_text(date, "8-15 July, 2021");
-    lv_obj_add_style(date, LV_PART_MAIN, LV_STATE_DEFAULT, &style_text_muted);
+    lv_obj_add_style(date, &style_text_muted, 0);
 
     lv_obj_t * amount = lv_label_create(panel1);
     lv_label_set_text(amount, "$27,123.25");
-    lv_obj_add_style(amount, LV_PART_MAIN, LV_STATE_DEFAULT, &style_title);
+    lv_obj_add_style(amount, &style_title, 0);
 
     lv_obj_t * hint = lv_label_create(panel1);
     lv_label_set_text(hint, LV_SYMBOL_UP" 17% growth this week");
-    lv_obj_set_style_text_color(hint, LV_PART_MAIN, LV_STATE_DEFAULT, lv_color_green());
+    lv_obj_set_style_text_color(hint, lv_color_green(), 0);
 
     chart3 = lv_chart_create(panel1);
     lv_chart_set_axis_tick(chart3, LV_CHART_AXIS_PRIMARY_Y, 0, 0, 6, 1, true, 80);
@@ -806,7 +810,7 @@ void shop_create(lv_obj_t * parent)
         };
 
         lv_obj_set_size(chart3, LV_SIZE_PCT(100), LV_SIZE_PCT(100));
-        lv_obj_set_style_pad_column(chart3, LV_PART_MAIN, LV_STATE_DEFAULT, LV_DPX(30));
+        lv_obj_set_style_pad_column(chart3, LV_DPX(30), 0);
 
 
         lv_obj_set_grid_template(panel1, grid1_col_dsc, grid1_row_dsc);
@@ -825,7 +829,7 @@ void shop_create(lv_obj_t * parent)
         };
 
         lv_obj_set_width(chart3, lv_obj_get_width_fit(panel1) - 20);
-        lv_obj_set_style_pad_column(chart3, LV_PART_MAIN, LV_STATE_DEFAULT, LV_DPX(30));
+        lv_obj_set_style_pad_column(chart3, LV_DPX(30), 0);
 
         lv_obj_set_grid_template(panel1, grid1_col_dsc, grid1_row_dsc);
         lv_obj_set_grid_cell(title, LV_GRID_START, 0, 1, LV_GRID_CENTER, 0, 1);
@@ -874,7 +878,7 @@ void shop_create(lv_obj_t * parent)
 
     title = lv_label_create(list);
     lv_label_set_text(title, "Top products");
-    lv_obj_add_style(title, LV_PART_MAIN, LV_STATE_DEFAULT, &style_subtitle);
+    lv_obj_add_style(title, &style_subtitle, 0);
 
     LV_IMG_DECLARE(img_clothes);
     create_shop_item(list, &img_clothes, "Blue jeans", "Clothes", "$722");
@@ -899,7 +903,7 @@ void shop_create(lv_obj_t * parent)
 
     title = lv_label_create(notifications);
     lv_label_set_text(title, "Notification");
-    lv_obj_add_style(title, LV_PART_MAIN, LV_STATE_DEFAULT, &style_subtitle);
+    lv_obj_add_style(title, &style_subtitle, 0);
 
     lv_obj_t * cb;
     cb = lv_checkbox_create(notifications);
@@ -939,10 +943,10 @@ static void color_changer_create(lv_obj_t * parent)
     lv_obj_set_flex_place(color_cont, LV_FLEX_PLACE_SPACE_EVENLY, LV_FLEX_PLACE_CENTER, LV_FLEX_PLACE_CENTER);
     lv_obj_add_flag(color_cont, LV_OBJ_FLAG_FLOATING);
 
-    lv_obj_set_style_bg_color(color_cont, LV_PART_MAIN, LV_STATE_DEFAULT, lv_color_white());
-    lv_obj_set_style_pad_right(color_cont, LV_PART_MAIN, LV_STATE_DEFAULT, disp_size == DISP_SMALL ? LV_DPX(47) : LV_DPX(55));
-    lv_obj_set_style_bg_opa(color_cont, LV_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_COVER);
-    lv_obj_set_style_radius(color_cont, LV_PART_MAIN, LV_STATE_DEFAULT, LV_RADIUS_CIRCLE);
+    lv_obj_set_style_bg_color(color_cont, lv_color_white(), 0);
+    lv_obj_set_style_pad_right(color_cont, disp_size == DISP_SMALL ? LV_DPX(47) : LV_DPX(55), 0);
+    lv_obj_set_style_bg_opa(color_cont, LV_OPA_COVER, 0);
+    lv_obj_set_style_radius(color_cont, LV_RADIUS_CIRCLE, 0);
 
     if(disp_size == DISP_SMALL) lv_obj_set_size(color_cont, LV_DPX(52), LV_DPX(52));
     else lv_obj_set_size(color_cont, LV_DPX(60), LV_DPX(60));
@@ -952,9 +956,9 @@ static void color_changer_create(lv_obj_t * parent)
     uint32_t i;
     for(i = 0; palette[i] != _LV_COLOR_PALETTE_LAST; i++) {
         lv_obj_t * c = lv_btn_create(color_cont);
-        lv_obj_set_style_bg_color(c, LV_PART_MAIN, LV_STATE_DEFAULT, lv_color_get_palette_main(palette[i]));
-        lv_obj_set_style_radius(c, LV_PART_MAIN, LV_STATE_DEFAULT, LV_RADIUS_CIRCLE);
-        lv_obj_set_style_opa(c, LV_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_TRANSP);
+        lv_obj_set_style_bg_color(c, lv_color_get_palette_main(palette[i]), 0);
+        lv_obj_set_style_radius(c, LV_RADIUS_CIRCLE, 0);
+        lv_obj_set_style_opa(c, LV_OPA_TRANSP, 0);
         lv_obj_set_size(c, 20, 20);
         lv_obj_add_event_cb(c, color_event_cb, &palette[i]);
     }
@@ -963,13 +967,13 @@ static void color_changer_create(lv_obj_t * parent)
 
 
     lv_obj_add_flag(btn, LV_OBJ_FLAG_FLOATING | LV_OBJ_FLAG_CLICKABLE);
-    lv_obj_set_style_bg_color(btn, LV_PART_MAIN, LV_STATE_CHECKED, lv_color_white());
-    lv_obj_set_style_pad_all(btn, LV_PART_MAIN, LV_STATE_DEFAULT, 10);
-    lv_obj_set_style_radius(btn, LV_PART_MAIN, LV_STATE_DEFAULT, LV_RADIUS_CIRCLE);
+    lv_obj_set_style_bg_color(btn, lv_color_white(), LV_STATE_CHECKED);
+    lv_obj_set_style_pad_all(btn, 10, 0);
+    lv_obj_set_style_radius(btn, LV_RADIUS_CIRCLE, 0);
     lv_obj_add_event_cb(btn, color_changer_event_cb, color_cont);
-    lv_obj_set_style_shadow_width(btn, LV_PART_MAIN, LV_STATE_DEFAULT, 0);
-    lv_obj_set_style_bg_img_src(btn, LV_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_TINT);
-//    lv_obj_set_style_content_font(btn, LV_PART_MAIN, LV_STATE_DEFAULT, font_title);
+    lv_obj_set_style_shadow_width(btn, 0, 0);
+    lv_obj_set_style_bg_img_src(btn, LV_SYMBOL_TINT, 0);
+//    lv_obj_set_style_content_font(btn, font_title);
 
     if(disp_size == DISP_SMALL) {
          lv_obj_set_size(btn, LV_DPX(42), LV_DPX(42));
@@ -1000,7 +1004,7 @@ static void color_changer_anim_cb(void * var, int32_t v)
 
     uint32_t i;
     for(i = 0; i < lv_obj_get_child_cnt(obj); i++) {
-        lv_obj_set_style_opa(lv_obj_get_child(obj, i), LV_PART_MAIN, LV_STATE_DEFAULT, v);
+        lv_obj_set_style_opa(lv_obj_get_child(obj, i), v, 0);
     }
 
 }
@@ -1053,34 +1057,34 @@ static lv_obj_t * create_meter_box(lv_obj_t * parent, const char * title, const 
 
     lv_obj_t * title_label = lv_label_create(cont);
     lv_label_set_text(title_label, title);
-    lv_obj_add_style(title_label, LV_PART_MAIN, LV_STATE_DEFAULT, &style_subtitle);
+    lv_obj_add_style(title_label, &style_subtitle, 0);
 
     lv_obj_t * meter = lv_meter_create(cont);
-    lv_obj_remove_style(meter, LV_PART_MAIN, LV_STATE_ANY, NULL);
-    lv_obj_remove_style(meter, LV_PART_INDICATOR, LV_STATE_ANY, NULL);
+    lv_obj_remove_style(meter, NULL, LV_PART_MAIN);
+    lv_obj_remove_style(meter, NULL, LV_PART_INDICATOR);
     lv_obj_set_width(meter, LV_SIZE_PCT(100));
 
     lv_obj_t * bullet1 = lv_obj_create(cont);
     lv_obj_set_size(bullet1, 13, 13);
-    lv_obj_remove_style(bullet1, LV_PART_SCROLLBAR, LV_STATE_ANY, NULL);
-    lv_obj_add_style(bullet1, LV_PART_MAIN, LV_STATE_DEFAULT, &style_bullet);
-    lv_obj_set_style_bg_color(bullet1, LV_PART_MAIN, LV_STATE_DEFAULT, lv_color_red());
+    lv_obj_remove_style(bullet1, NULL, LV_PART_SCROLLBAR);
+    lv_obj_add_style(bullet1, &style_bullet, 0);
+    lv_obj_set_style_bg_color(bullet1, lv_color_red(), 0);
     lv_obj_t * label1 = lv_label_create(cont);
     lv_label_set_text(label1, text1);
 
     lv_obj_t * bullet2 = lv_obj_create(cont);
     lv_obj_set_size(bullet2, 13, 13);
-    lv_obj_remove_style(bullet2, LV_PART_SCROLLBAR, LV_STATE_ANY, NULL);
-    lv_obj_add_style(bullet2, LV_PART_MAIN, LV_STATE_DEFAULT, &style_bullet);
-    lv_obj_set_style_bg_color(bullet2, LV_PART_MAIN, LV_STATE_DEFAULT, lv_color_blue());
+    lv_obj_remove_style(bullet2, NULL, LV_PART_SCROLLBAR);
+    lv_obj_add_style(bullet2, &style_bullet, 0);
+    lv_obj_set_style_bg_color(bullet2, lv_color_blue(), 0);
     lv_obj_t * label2 = lv_label_create(cont);
     lv_label_set_text(label2, text2);
 
     lv_obj_t * bullet3 = lv_obj_create(cont);
     lv_obj_set_size(bullet3, 13, 13);
-    lv_obj_remove_style(bullet3, LV_PART_SCROLLBAR, LV_STATE_ANY, NULL);
-    lv_obj_add_style(bullet3, LV_PART_MAIN, LV_STATE_DEFAULT, &style_bullet);
-    lv_obj_set_style_bg_color(bullet3, LV_PART_MAIN, LV_STATE_DEFAULT, lv_color_green());
+    lv_obj_remove_style(bullet3,  NULL, LV_PART_SCROLLBAR);
+    lv_obj_add_style(bullet3, &style_bullet, 0);
+    lv_obj_set_style_bg_color(bullet3, lv_color_green(), 0);
     lv_obj_t * label3 = lv_label_create(cont);
     lv_label_set_text(label3, text3);
 
@@ -1138,7 +1142,7 @@ static lv_obj_t * create_shop_item(lv_obj_t * parent, const void * img_src, cons
 
     label = lv_label_create(cont);
     lv_label_set_text(label, category);
-    lv_obj_add_style(label, LV_PART_MAIN, LV_STATE_DEFAULT, &style_text_muted);
+    lv_obj_add_style(label, &style_text_muted, 0);
     lv_obj_set_grid_cell(label, LV_GRID_START, 2, 1, LV_GRID_START, 1, 1);
 
     label = lv_label_create(cont);
@@ -1176,8 +1180,8 @@ static void birthday_event_cb(lv_obj_t * ta, lv_event_t e)
         if(calendar == NULL) {
             lv_obj_add_flag(lv_layer_top(), LV_OBJ_FLAG_CLICKABLE);
             calendar = lv_calendar_create(lv_layer_top());
-            lv_obj_set_style_bg_opa(lv_layer_top(), LV_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_50);
-            lv_obj_set_style_bg_color(lv_layer_top(), LV_PART_MAIN, LV_STATE_DEFAULT, lv_color_grey());
+            lv_obj_set_style_bg_opa(lv_layer_top(), LV_OPA_50, 0);
+            lv_obj_set_style_bg_color(lv_layer_top(), lv_color_grey(), 0);
             if(disp_size == DISP_SMALL) lv_obj_set_size(calendar, 180, 180);
             else if(disp_size == DISP_MEDIUM) lv_obj_set_size(calendar, 200, 200);
             else  lv_obj_set_size(calendar, 300, 300);
@@ -1205,7 +1209,7 @@ static void calendar_event_cb(lv_obj_t * obj, lv_event_t e)
         calendar = NULL;
         calendar_header = NULL;
         lv_obj_clear_flag(lv_layer_top(), LV_OBJ_FLAG_CLICKABLE);
-        lv_obj_set_style_bg_opa(lv_layer_top(), LV_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_TRANSP);
+        lv_obj_set_style_bg_opa(lv_layer_top(), LV_OPA_TRANSP, 0);
     }
 }
 

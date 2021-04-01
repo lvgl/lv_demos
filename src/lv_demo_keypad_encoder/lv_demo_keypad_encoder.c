@@ -199,8 +199,8 @@ static void msgbox_create(void)
     lv_obj_align(mbox, LV_ALIGN_CENTER, 0, 0);
 
     lv_obj_t * bg = lv_obj_get_parent(mbox);
-    lv_obj_set_style_bg_opa(bg, LV_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_70);
-    lv_obj_set_style_bg_color(bg, LV_PART_MAIN, LV_STATE_DEFAULT, lv_color_grey());
+    lv_obj_set_style_bg_opa(bg, LV_OPA_70, 0);
+    lv_obj_set_style_bg_color(bg, lv_color_grey(), 0);
 }
 
 

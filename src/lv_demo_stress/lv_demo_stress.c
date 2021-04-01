@@ -145,14 +145,14 @@ static void obj_test_task_cb(lv_timer_t * tmr)
         case 4:
             obj = lv_btn_create(main_page);
             lv_obj_set_size(obj, 100, 70);
-            lv_obj_set_style_bg_img_src(obj, LV_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_DUMMY"Text from\nstyle");
+            lv_obj_set_style_bg_img_src(obj, LV_SYMBOL_DUMMY"Text from\nstyle", 0);
             lv_obj_del_async(obj);  /*Delete on next call of `lv_task_handler` (so not now)*/
 
 //            obj = lv_btn_create(main_page);
 //            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-//            lv_obj_set_style_bg_img_src(obj, LV_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_LEFT);
-//            lv_obj_set_style_bg_img_opa(obj, LV_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_50);
-//            lv_obj_set_style_bg_img_tiled(obj, LV_PART_MAIN, LV_STATE_DEFAULT, true);
+//            lv_obj_set_style_bg_img_src(obj, LV_SYMBOL_LEFT);
+//            lv_obj_set_style_bg_img_opa(obj, LV_OPA_50);
+//            lv_obj_set_style_bg_img_tiled(obj, true);
 //            lv_obj_scroll_to_view(obj, LV_ANIM_ON);
             break;
 
@@ -172,7 +172,7 @@ static void obj_test_task_cb(lv_timer_t * tmr)
             auto_del(obj, TIME_STEP * 2 + 70);
 
             obj = lv_slider_create(main_page);
-            lv_obj_set_style_anim_time(obj, LV_PART_MAIN, LV_STATE_DEFAULT, TIME_STEP * 8);
+            lv_obj_set_style_anim_time(obj, TIME_STEP * 8, 0);
             lv_slider_set_value(obj, 5000, LV_ANIM_ON);    /*Animate to out of range value*/
             auto_del(obj, TIME_STEP * 5 + 22);
 
