@@ -725,7 +725,7 @@
 //
 //static void album_event_cb(lv_obj_t * img, lv_event_t event)
 //{
-//    if(event == LV_EVENT_GESTURE) {
+//    if(code == LV_EVENT_GESTURE) {
 //        lv_gesture_dir_t dir = lv_indev_get_gesture_dir(lv_indev_get_act());
 //        if(dir == LV_GESTURE_DIR_LEFT) _lv_demo_music_album_next(true);
 //        if(dir == LV_GESTURE_DIR_RIGHT) _lv_demo_music_album_next(false);
@@ -746,7 +746,7 @@
 //
 //static void play_event_cb(lv_obj_t * img, lv_event_t event)
 //{
-//    if(event == LV_EVENT_CLICKED) {
+//    if(code == LV_EVENT_CLICKED) {
 //        if(lv_imgbtn_get_state(img) == LV_BTN_STATE_RELEASED) {
 //            _lv_demo_music_pause();
 //        } else {
@@ -757,14 +757,14 @@
 //
 //static void prev_event_cb(lv_obj_t * img, lv_event_t event)
 //{
-//    if(event == LV_EVENT_CLICKED) {
+//    if(code == LV_EVENT_CLICKED) {
 //        _lv_demo_music_album_next(false);
 //    }
 //}
 //
 //static void next_event_cb(lv_obj_t * img, lv_event_t event)
 //{
-//    if(event == LV_EVENT_CLICKED) {
+//    if(code == LV_EVENT_CLICKED) {
 //        _lv_demo_music_album_next(true);
 //    }
 //}
