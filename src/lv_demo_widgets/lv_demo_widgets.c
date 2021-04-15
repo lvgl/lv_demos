@@ -318,11 +318,11 @@ static void profile_create(lv_obj_t * parent)
         };
 
 
-        lv_obj_set_grid_template(parent, grid_main_col_dsc, grid_main_row_dsc);
+        lv_obj_set_grid_dsc_array(parent, grid_main_col_dsc, grid_main_row_dsc);
 
         lv_obj_set_grid_cell(panel1, LV_GRID_STRETCH, 0, 2, LV_GRID_CENTER, 0, 1);
 
-        lv_obj_set_grid_template(panel1, grid_1_col_dsc, grid_1_row_dsc);
+        lv_obj_set_grid_dsc_array(panel1, grid_1_col_dsc, grid_1_row_dsc);
         lv_obj_set_grid_cell(avatar, LV_GRID_CENTER, 0, 1, LV_GRID_CENTER, 0, 5);
         lv_obj_set_grid_cell(name, LV_GRID_START, 2, 2, LV_GRID_CENTER, 0, 1);
         lv_obj_set_grid_cell(dsc, LV_GRID_STRETCH, 2, 4, LV_GRID_START, 1, 1);
@@ -334,7 +334,7 @@ static void profile_create(lv_obj_t * parent)
         lv_obj_set_grid_cell(invite_btn, LV_GRID_STRETCH, 5, 1, LV_GRID_CENTER, 3, 2);
 
         lv_obj_set_grid_cell(panel2, LV_GRID_STRETCH, 0, 1, LV_GRID_START, 1, 1);
-        lv_obj_set_grid_template(panel2, grid_2_col_dsc, grid_2_row_dsc);
+        lv_obj_set_grid_dsc_array(panel2, grid_2_col_dsc, grid_2_row_dsc);
         lv_obj_set_grid_cell(panel2_title, LV_GRID_START, 0, 2, LV_GRID_CENTER, 0, 1);
         lv_obj_set_grid_cell(user_name, LV_GRID_STRETCH, 0, 1, LV_GRID_CENTER, 3, 1);
         lv_obj_set_grid_cell(user_name_label, LV_GRID_START, 0, 1, LV_GRID_START, 2, 1);
@@ -347,7 +347,7 @@ static void profile_create(lv_obj_t * parent)
 
 
         lv_obj_set_grid_cell(panel3, LV_GRID_STRETCH, 1, 1, LV_GRID_STRETCH, 1, 1);
-        lv_obj_set_grid_template(panel3, grid_2_col_dsc, grid_2_row_dsc);
+        lv_obj_set_grid_dsc_array(panel3, grid_2_col_dsc, grid_2_row_dsc);
         lv_obj_set_grid_cell(panel3_title, LV_GRID_START, 0, 2, LV_GRID_CENTER, 0, 1);
         lv_obj_set_grid_cell(slider1, LV_GRID_CENTER, 0, 2, LV_GRID_CENTER, 3, 1);
         lv_obj_set_grid_cell(experience_label, LV_GRID_START, 0, 1, LV_GRID_START, 2, 1);
@@ -388,13 +388,13 @@ static void profile_create(lv_obj_t * parent)
         };
 
 
-        lv_obj_set_grid_template(parent, grid_main_col_dsc, grid_main_row_dsc);
+        lv_obj_set_grid_dsc_array(parent, grid_main_col_dsc, grid_main_row_dsc);
         lv_obj_set_grid_cell(panel1, LV_GRID_STRETCH, 0, 2, LV_GRID_CENTER, 0, 1);
 
         lv_obj_set_width(log_out_btn, 120);
         lv_obj_set_width(invite_btn, 120);
 
-        lv_obj_set_grid_template(panel1, grid_1_col_dsc, grid_1_row_dsc);
+        lv_obj_set_grid_dsc_array(panel1, grid_1_col_dsc, grid_1_row_dsc);
         lv_obj_set_grid_cell(avatar, LV_GRID_CENTER, 0, 1, LV_GRID_START, 0, 4);
         lv_obj_set_grid_cell(name, LV_GRID_START, 2, 2, LV_GRID_CENTER, 0, 1);
         lv_obj_set_grid_cell(dsc, LV_GRID_STRETCH, 2, 2, LV_GRID_START, 1, 1);
@@ -406,7 +406,7 @@ static void profile_create(lv_obj_t * parent)
         lv_obj_set_grid_cell(invite_btn, LV_GRID_END, 3, 1, LV_GRID_CENTER, 5, 1);
 
         lv_obj_set_grid_cell(panel2, LV_GRID_STRETCH, 0, 1, LV_GRID_START, 1, 1);
-        lv_obj_set_grid_template(panel2, grid_2_col_dsc, grid_2_row_dsc);
+        lv_obj_set_grid_dsc_array(panel2, grid_2_col_dsc, grid_2_row_dsc);
         lv_obj_set_grid_cell(panel2_title, LV_GRID_START, 0, 2, LV_GRID_CENTER, 0, 1);
         lv_obj_set_grid_cell(user_name_label, LV_GRID_START, 0, 2, LV_GRID_START, 2, 1);
         lv_obj_set_grid_cell(user_name, LV_GRID_STRETCH, 0, 2, LV_GRID_START, 3, 1);
@@ -418,7 +418,7 @@ static void profile_create(lv_obj_t * parent)
         lv_obj_set_grid_cell(gender, LV_GRID_STRETCH, 0, 2, LV_GRID_START, 9, 1);
 
         lv_obj_set_grid_cell(panel3, LV_GRID_STRETCH, 1, 1, LV_GRID_STRETCH, 1, 1);
-        lv_obj_set_grid_template(panel3, grid_2_col_dsc, grid_2_row_dsc);
+        lv_obj_set_grid_dsc_array(panel3, grid_2_col_dsc, grid_2_row_dsc);
         lv_obj_set_grid_cell(panel3_title, LV_GRID_START, 0, 2, LV_GRID_CENTER, 0, 1);
         lv_obj_set_grid_cell(slider1, LV_GRID_CENTER, 0, 2, LV_GRID_CENTER, 3, 1);
         lv_obj_set_grid_cell(experience_label, LV_GRID_START, 0, 1, LV_GRID_START, 2, 1);
@@ -430,7 +430,7 @@ static void profile_create(lv_obj_t * parent)
     else if(disp_size == DISP_SMALL) {
         static lv_coord_t grid_main_col_dsc[] = {LV_GRID_FR(1), LV_GRID_TEMPLATE_LAST};
         static lv_coord_t grid_main_row_dsc[] = {LV_GRID_CONTENT, LV_GRID_CONTENT, LV_GRID_CONTENT, LV_GRID_TEMPLATE_LAST};
-        lv_obj_set_grid_template(parent, grid_main_col_dsc, grid_main_row_dsc);
+        lv_obj_set_grid_dsc_array(parent, grid_main_col_dsc, grid_main_row_dsc);
 
 
         /*Create the top panel*/
@@ -444,7 +444,7 @@ static void profile_create(lv_obj_t * parent)
                                                LV_GRID_CONTENT, /*Button2*/
                                                LV_GRID_TEMPLATE_LAST};
 
-        lv_obj_set_grid_template(panel1, grid_1_col_dsc, grid_1_row_dsc);
+        lv_obj_set_grid_dsc_array(panel1, grid_1_col_dsc, grid_1_row_dsc);
 
 
         static lv_coord_t grid_2_col_dsc[] = {LV_GRID_FR(1), LV_GRID_FR(1), LV_GRID_TEMPLATE_LAST};
@@ -461,8 +461,8 @@ static void profile_create(lv_obj_t * parent)
                 40, LV_GRID_TEMPLATE_LAST               /*Box*/
         };
 
-        lv_obj_set_grid_template(panel2, grid_2_col_dsc, grid_2_row_dsc);
-        lv_obj_set_grid_template(panel3, grid_2_col_dsc, grid_2_row_dsc);
+        lv_obj_set_grid_dsc_array(panel2, grid_2_col_dsc, grid_2_row_dsc);
+        lv_obj_set_grid_dsc_array(panel3, grid_2_col_dsc, grid_2_row_dsc);
 
         lv_obj_set_grid_cell(panel1, LV_GRID_STRETCH, 0, 1, LV_GRID_CENTER, 0, 1);
 
@@ -511,7 +511,7 @@ static void analytics_create(lv_obj_t * parent)
 
     lv_obj_t * chart1_cont = lv_obj_create(parent);
     lv_obj_set_flex_grow(chart1_cont, 1);
-    lv_obj_set_grid_template(chart1_cont, grid_chart_col_dsc, grid_chart_row_dsc);
+    lv_obj_set_grid_dsc_array(chart1_cont, grid_chart_col_dsc, grid_chart_row_dsc);
 
     if(disp_size <= DISP_MEDIUM) {
         lv_coord_t h = lv_obj_get_height_visible(chart1_cont);
@@ -562,7 +562,7 @@ static void analytics_create(lv_obj_t * parent)
     }
     else lv_obj_set_height(chart2_cont, 300);
 
-    lv_obj_set_grid_template(chart2_cont, grid_chart_col_dsc, grid_chart_row_dsc);
+    lv_obj_set_grid_dsc_array(chart2_cont, grid_chart_col_dsc, grid_chart_row_dsc);
 
     title = lv_label_create(chart2_cont);
     lv_label_set_text(title, "Monthly revenue");
@@ -813,7 +813,7 @@ void shop_create(lv_obj_t * parent)
         lv_obj_set_style_pad_column(chart3, LV_DPX(30), 0);
 
 
-        lv_obj_set_grid_template(panel1, grid1_col_dsc, grid1_row_dsc);
+        lv_obj_set_grid_dsc_array(panel1, grid1_col_dsc, grid1_row_dsc);
         lv_obj_set_grid_cell(title, LV_GRID_START, 0, 1, LV_GRID_START, 0, 1);
         lv_obj_set_grid_cell(date, LV_GRID_START, 0, 1, LV_GRID_START, 1, 1);
         lv_obj_set_grid_cell(amount, LV_GRID_START, 0, 1, LV_GRID_START, 3, 1);
@@ -831,7 +831,7 @@ void shop_create(lv_obj_t * parent)
         lv_obj_set_width(chart3, lv_obj_get_width_fit(panel1) - 20);
         lv_obj_set_style_pad_column(chart3, LV_DPX(30), 0);
 
-        lv_obj_set_grid_template(panel1, grid1_col_dsc, grid1_row_dsc);
+        lv_obj_set_grid_dsc_array(panel1, grid1_col_dsc, grid1_row_dsc);
         lv_obj_set_grid_cell(title, LV_GRID_START, 0, 1, LV_GRID_CENTER, 0, 1);
         lv_obj_set_grid_cell(date, LV_GRID_START, 1, 1, LV_GRID_CENTER, 0, 1);
         lv_obj_set_grid_cell(amount, LV_GRID_START, 0, 1, LV_GRID_CENTER, 1, 1);
@@ -852,7 +852,7 @@ void shop_create(lv_obj_t * parent)
         lv_obj_set_height(chart3, lv_obj_get_height_visible(chart3) - 20);
         lv_chart_set_zoom_x(chart3, 512);
 
-        lv_obj_set_grid_template(panel1, grid1_col_dsc, grid1_row_dsc);
+        lv_obj_set_grid_dsc_array(panel1, grid1_col_dsc, grid1_row_dsc);
         lv_obj_set_grid_cell(title, LV_GRID_START, 0, 1, LV_GRID_START, 0, 1);
         lv_obj_set_grid_cell(date, LV_GRID_START, 0, 1, LV_GRID_START, 1, 1);
         lv_obj_set_grid_cell(amount, LV_GRID_START, 0, 1, LV_GRID_START, 2, 1);
@@ -1092,7 +1092,7 @@ static lv_obj_t * create_meter_box(lv_obj_t * parent, const char * title, const 
         static lv_coord_t grid_col_dsc[] = {LV_GRID_CONTENT, LV_GRID_FR(1), LV_GRID_CONTENT,LV_GRID_FR(8), LV_GRID_TEMPLATE_LAST};
         static lv_coord_t grid_row_dsc[] = {LV_GRID_CONTENT, LV_GRID_FR(1), LV_GRID_CONTENT, LV_GRID_CONTENT, LV_GRID_CONTENT, LV_GRID_FR(1), LV_GRID_TEMPLATE_LAST};
 
-        lv_obj_set_grid_template(cont, grid_col_dsc, grid_row_dsc);
+        lv_obj_set_grid_dsc_array(cont, grid_col_dsc, grid_row_dsc);
         lv_obj_set_grid_cell(title_label, LV_GRID_START, 0, 4, LV_GRID_START, 0, 1);
         lv_obj_set_grid_cell(meter, LV_GRID_START, 0, 1, LV_GRID_START, 1, 3);
         lv_obj_set_grid_cell(bullet1, LV_GRID_START, 2, 1, LV_GRID_START, 2, 1);
@@ -1105,7 +1105,7 @@ static lv_obj_t * create_meter_box(lv_obj_t * parent, const char * title, const 
     else {
         static lv_coord_t grid_col_dsc[] = {LV_GRID_CONTENT, LV_GRID_FR(1), LV_GRID_TEMPLATE_LAST};
         static lv_coord_t grid_row_dsc[] = {LV_GRID_CONTENT, LV_GRID_CONTENT, LV_GRID_CONTENT, LV_GRID_CONTENT, LV_GRID_CONTENT, LV_GRID_TEMPLATE_LAST};
-        lv_obj_set_grid_template(cont, grid_col_dsc, grid_row_dsc);
+        lv_obj_set_grid_dsc_array(cont, grid_col_dsc, grid_row_dsc);
         lv_obj_set_grid_cell(title_label, LV_GRID_START, 0, 2, LV_GRID_START, 0, 1);
         lv_obj_set_grid_cell(meter, LV_GRID_START, 0, 2, LV_GRID_START, 1, 1);
         lv_obj_set_grid_cell(bullet1, LV_GRID_START, 0, 1, LV_GRID_START, 2, 1);
@@ -1129,7 +1129,7 @@ static lv_obj_t * create_shop_item(lv_obj_t * parent, const void * img_src, cons
     lv_obj_t * cont = lv_obj_create(parent);
     lv_obj_remove_style_all(cont);
     lv_obj_set_size(cont, LV_SIZE_PCT(100), LV_SIZE_CONTENT);
-    lv_obj_set_grid_template(cont, grid_col_dsc, grid_row_dsc);
+    lv_obj_set_grid_dsc_array(cont, grid_col_dsc, grid_row_dsc);
 
     lv_obj_t * img = lv_img_create(cont);
     lv_img_set_src(img, img_src);
