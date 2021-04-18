@@ -281,7 +281,7 @@ static void profile_create(lv_obj_t * parent)
     lv_obj_add_style(experience_label, &style_text_muted, 0);
 
     lv_obj_t * slider1 = lv_slider_create(panel3);
-    lv_obj_set_width(slider1, LV_SIZE_PCT(95));
+    lv_obj_set_width(slider1, LV_PCT(95));
     lv_obj_add_event_cb(slider1, slider_event_cb, NULL);
     lv_obj_refresh_ext_draw_size(slider1);
 
@@ -578,7 +578,7 @@ static void analytics_create(lv_obj_t * parent)
     lv_obj_set_grid_cell(chart2, LV_GRID_STRETCH, 1, 1, LV_GRID_STRETCH, 1, 1);
     lv_chart_set_axis_tick(chart2, LV_CHART_AXIS_PRIMARY_Y, 0, 0, 5, 1, true, 80);
     lv_chart_set_axis_tick(chart2, LV_CHART_AXIS_X, 0, 0, 12, 1, true, 50);
-    lv_obj_set_size(chart2, LV_SIZE_PCT(100), LV_SIZE_PCT(100));
+    lv_obj_set_size(chart2, LV_PCT(100), LV_PCT(100));
     lv_chart_set_type(chart2, LV_CHART_TYPE_BAR);
     lv_chart_set_div_line_count(chart2, 6, 0);
     lv_chart_set_point_count(chart2, 12);
@@ -762,7 +762,7 @@ void shop_create(lv_obj_t * parent)
     lv_obj_set_flex_flow(parent, LV_FLEX_FLOW_ROW_WRAP);
 
     lv_obj_t * panel1 = lv_obj_create(parent);
-    lv_obj_set_size(panel1, LV_SIZE_PCT(100), LV_SIZE_CONTENT);
+    lv_obj_set_size(panel1, LV_PCT(100), LV_SIZE_CONTENT);
     lv_obj_set_style_pad_bottom(panel1, 30, 0);
 
     lv_obj_t * title = lv_label_create(panel1);
@@ -814,7 +814,7 @@ void shop_create(lv_obj_t * parent)
             LV_GRID_TEMPLATE_LAST
         };
 
-        lv_obj_set_size(chart3, LV_SIZE_PCT(100), LV_SIZE_PCT(100));
+        lv_obj_set_size(chart3, LV_PCT(100), LV_PCT(100));
         lv_obj_set_style_pad_column(chart3, LV_DPX(30), 0);
 
 
@@ -1076,7 +1076,7 @@ static lv_obj_t * create_meter_box(lv_obj_t * parent, const char * title, const 
     lv_obj_t * meter = lv_meter_create(cont);
     lv_obj_remove_style(meter, NULL, LV_PART_MAIN);
     lv_obj_remove_style(meter, NULL, LV_PART_INDICATOR);
-    lv_obj_set_width(meter, LV_SIZE_PCT(100));
+    lv_obj_set_width(meter, LV_PCT(100));
 
     lv_obj_t * bullet1 = lv_obj_create(cont);
     lv_obj_set_size(bullet1, 13, 13);
@@ -1142,7 +1142,7 @@ static lv_obj_t * create_shop_item(lv_obj_t * parent, const void * img_src, cons
 
     lv_obj_t * cont = lv_obj_create(parent);
     lv_obj_remove_style_all(cont);
-    lv_obj_set_size(cont, LV_SIZE_PCT(100), LV_SIZE_CONTENT);
+    lv_obj_set_size(cont, LV_PCT(100), LV_SIZE_CONTENT);
     lv_obj_set_grid_dsc_array(cont, grid_col_dsc, grid_row_dsc);
 
     lv_obj_t * img = lv_img_create(cont);
