@@ -6,7 +6,11 @@
 /*********************
  *      INCLUDES
  *********************/
-#include <lv_examples/lv_demo.h>
+#ifdef ARDUINO
+   #include <lv_demo.h>
+#else
+   #include <lv_examples/lv_demo.h>
+#endif
 #include "lv_demo_keypad_encoder.h"
 
 #if LV_USE_DEMO_KEYPAD_AND_ENCODER
@@ -206,7 +210,7 @@ static void msgbox_create(void)
 
 static void msgbox_event_cb(lv_obj_t * msgbox, lv_event_t e)
 {
-    if(e == LV_EVENT_VALUE_CHANGED) {
+    if(e->code == LV_EVENT_VALUE_CHANGED) {
         const char * txt = lv_msgbox_get_active_btn_text(msgbox);
         if(txt) {
             lv_msgbox_close(msgbox);
@@ -218,14 +222,14 @@ static void msgbox_event_cb(lv_obj_t * msgbox, lv_event_t e)
     }
 }
 
-static void ta_event_cb(lv_obj_t * ta, lv_event_t e)
+static void ta_event_cb(lv_obj_t * ta, lv_event_t *e)
 {
     lv_indev_t * indev = lv_indev_get_act();
     if(indev == NULL) return;
     lv_indev_type_t indev_type = lv_indev_get_type(indev);
 
-    lv_obj_t * kb = lv_event_get_user_data();
-    if(e == LV_EVENT_CLICKED && indev_type == LV_INDEV_TYPE_ENCODER) {
+    lv_obj_t * kb = lv_event_get_user_data(e);
+    if(e->code == LV_EVENT_CLICKED && indev_type == LV_INDEV_TYPE_ENCODER) {
         lv_keyboard_set_textarea(kb, ta);
         lv_obj_clear_flag(kb, LV_OBJ_FLAG_HIDDEN);
         lv_group_focus_obj(kb);
@@ -234,7 +238,7 @@ static void ta_event_cb(lv_obj_t * ta, lv_event_t e)
         lv_obj_align(kb, LV_ALIGN_BOTTOM_MID, 0, 0);
     }
 
-    if(e == LV_EVENT_READY || e == LV_EVENT_CANCEL) {
+    if(e->code == LV_EVENT_READY || e->code == LV_EVENT_CANCEL) {
         lv_obj_add_flag(kb, LV_OBJ_FLAG_HIDDEN);
         lv_obj_set_height(tv, LV_VER_RES);
     }

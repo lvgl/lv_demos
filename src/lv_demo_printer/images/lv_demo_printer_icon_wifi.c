@@ -1,4 +1,8 @@
-#include <lv_examples/lv_demo.h>
+#ifdef ARDUINO
+   #include <lv_demo.h>
+#else
+   #include <lv_examples/lv_demo.h>
+#endif
 
 
 #if LV_USE_DEMO_PRINTER
