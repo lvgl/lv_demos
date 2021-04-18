@@ -34,14 +34,14 @@ static void color_changer_create(lv_obj_t * parent);
 static lv_obj_t * create_meter_box(lv_obj_t * parent, const char * title, const char * text1, const char * text2, const char * text3);
 static lv_obj_t * create_shop_item(lv_obj_t * parent, const void * img_src, const char * name, const char * category, const char * price);
 
-static void color_changer_event_cb(lv_obj_t * obj, lv_event_t e);
-static void color_event_cb(lv_obj_t * obj, lv_event_t e);
-static void ta_event_cb(lv_obj_t * ta, lv_event_t e);
-static void birthday_event_cb(lv_obj_t * ta, lv_event_t e);
-static void calendar_event_cb(lv_obj_t * obj, lv_event_t e);
-static void slider_event_cb(lv_obj_t * obj, lv_event_t e);
-static void chart_event_cb(lv_obj_t * obj, lv_event_t e);
-static void shop_chart_event_cb(lv_obj_t * obj, lv_event_t e);
+static void color_changer_event_cb(lv_event_t *e);
+static void color_event_cb(lv_event_t *e);
+static void ta_event_cb(lv_event_t *e);
+static void birthday_event_cb(lv_event_t *e);
+static void calendar_event_cb(lv_event_t *e);
+static void slider_event_cb(lv_event_t *e);
+static void chart_event_cb(lv_event_t *e);
+static void shop_chart_event_cb(lv_event_t *e);
 static void meter1_indic1_anim_cb(void * var, int32_t v);
 static void meter1_indic2_anim_cb(void * var, int32_t v);
 static void meter1_indic3_anim_cb(void * var, int32_t v);
@@ -114,7 +114,7 @@ void lv_demo_widgets(void)
         font_subtitle  =  &lv_font_montserrat_18;
         font_normal    =  &lv_font_montserrat_14;
         font_small     = &lv_font_montserrat_10;
-    } else if(disp_size == DISP_SMALL) {
+    } else { /* disp_size == DISP_SMALL */
         tab_h = 50;
         font_title     =  &lv_font_montserrat_22;
         font_icon      =  &lv_font_montserrat_16;
@@ -1009,12 +1009,10 @@ static void color_changer_anim_cb(void * var, int32_t v)
 
 }
 
-static void color_changer_event_cb(lv_obj_t * obj, lv_event_t e)
+static void color_changer_event_cb(lv_event_t *e)
 {
-    LV_UNUSED(obj);
-
-    if(e == LV_EVENT_CLICKED) {
-        lv_obj_t * color_cont = lv_event_get_user_data();
+    if(e->code == LV_EVENT_CLICKED) {
+        lv_obj_t * color_cont = e->user_data;
         if(lv_obj_get_width(color_cont) < LV_HOR_RES / 2) {
             lv_anim_t a;
             lv_anim_init(&a);
@@ -1034,12 +1032,10 @@ static void color_changer_event_cb(lv_obj_t * obj, lv_event_t e)
         }
     }
 }
-static void color_event_cb(lv_obj_t * obj, lv_event_t e)
+static void color_event_cb(lv_event_t *e)
 {
-    LV_UNUSED(obj);
-
-    if(e == LV_EVENT_CLICKED) {
-        lv_color_palette_t * palette = lv_event_get_user_data();
+    if(e->code == LV_EVENT_CLICKED) {
+        lv_color_palette_t * palette = e->user_data;
         lv_theme_default_init(NULL, *palette, *palette, font_small, font_normal, font_subtitle);
 
         lv_color_t color = lv_color_get_palette_main(*palette);
@@ -1152,31 +1148,31 @@ static lv_obj_t * create_shop_item(lv_obj_t * parent, const void * img_src, cons
     return cont;
 }
 
-static void ta_event_cb(lv_obj_t * ta, lv_event_t e)
+static void ta_event_cb(lv_event_t *e)
 {
-    lv_obj_t * kb = lv_event_get_user_data();
-    if(e == LV_EVENT_FOCUSED) {
-        lv_keyboard_set_textarea(kb, ta);
+    lv_obj_t * kb = e->user_data;
+    if(e->code == LV_EVENT_FOCUSED) {
+        lv_keyboard_set_textarea(kb, e->target);
         lv_obj_set_height(tv, LV_VER_RES / 2);
         lv_obj_clear_flag(kb, LV_OBJ_FLAG_HIDDEN);
-        lv_obj_scroll_to_view_recursive(ta, LV_ANIM_OFF);
+        lv_obj_scroll_to_view_recursive(e->target, LV_ANIM_OFF);
     }
-    else if(e == LV_EVENT_DEFOCUSED) {
+    else if(e->code == LV_EVENT_DEFOCUSED) {
         lv_keyboard_set_textarea(kb, NULL);
         lv_obj_set_height(tv, LV_VER_RES);
         lv_obj_add_flag(kb, LV_OBJ_FLAG_HIDDEN);
     }
-    else if(e == LV_EVENT_READY || e == LV_EVENT_CANCEL) {
+    else if(e->code == LV_EVENT_READY || e->code == LV_EVENT_CANCEL) {
         lv_obj_set_height(tv, LV_VER_RES);
         lv_obj_add_flag(kb, LV_OBJ_FLAG_HIDDEN);
-        lv_obj_clear_state(ta, LV_STATE_FOCUSED);
-        lv_indev_reset(NULL, ta);   /*To forget the last clicked object to make it focusable again*/
+        lv_obj_clear_state(e->target, LV_STATE_FOCUSED);
+        lv_indev_reset(NULL, e->target);   /*To forget the last clicked object to make it focusable again*/
     }
 }
 
-static void birthday_event_cb(lv_obj_t * ta, lv_event_t e)
+static void birthday_event_cb(lv_event_t *e)
 {
-    if(e == LV_EVENT_FOCUSED) {
+    if(e->code == LV_EVENT_FOCUSED) {
         if(calendar == NULL) {
             lv_obj_add_flag(lv_layer_top(), LV_OBJ_FLAG_CLICKABLE);
             calendar = lv_calendar_create(lv_layer_top());
@@ -1187,19 +1183,19 @@ static void birthday_event_cb(lv_obj_t * ta, lv_event_t e)
             else  lv_obj_set_size(calendar, 300, 300);
             lv_calendar_set_showed_date(calendar, 1990, 01);
             lv_obj_align(calendar, LV_ALIGN_CENTER, 0, 30);
-            lv_obj_add_event_cb(calendar, calendar_event_cb, ta);
+            lv_obj_add_event_cb(calendar, calendar_event_cb, e->target);
 
             calendar_header = lv_calendar_header_dropdown_create(lv_layer_top(), calendar);
         }
     }
 }
 
-static void calendar_event_cb(lv_obj_t * obj, lv_event_t e)
+static void calendar_event_cb(lv_event_t *e)
 {
-    lv_obj_t * ta = lv_event_get_user_data();
-    if(e == LV_EVENT_VALUE_CHANGED) {
+    lv_obj_t * ta = e->user_data;
+    if(e->code == LV_EVENT_VALUE_CHANGED) {
         lv_calendar_date_t d;
-        lv_calendar_get_pressed_date(obj, &d);
+        lv_calendar_get_pressed_date(e->target, &d);
         char buf[32];
         lv_snprintf(buf, sizeof(buf), "%02d.%02d.%d", d.day, d.month, d.year);
         lv_textarea_set_text(ta, buf);
@@ -1213,16 +1209,16 @@ static void calendar_event_cb(lv_obj_t * obj, lv_event_t e)
     }
 }
 
-static void slider_event_cb(lv_obj_t * obj, lv_event_t e)
+static void slider_event_cb(lv_event_t *e)
 {
-    if(e == LV_EVENT_REFR_EXT_DRAW_SIZE) {
-        lv_coord_t *s = lv_event_get_param();
+    if(e->code == LV_EVENT_REFR_EXT_DRAW_SIZE) {
+        lv_coord_t *s = e->param;
         *s = LV_MAX(*s, 60);
-    } else if(e == LV_EVENT_DRAW_PART_END) {
-        lv_obj_draw_dsc_t * dsc = lv_event_get_param();
-        if(dsc->part == LV_PART_KNOB && lv_obj_has_state(obj, LV_STATE_PRESSED)) {
+    } else if(e->code == LV_EVENT_DRAW_PART_END) {
+        lv_obj_draw_dsc_t * dsc = e->param;
+        if(dsc->part == LV_PART_KNOB && lv_obj_has_state(e->target, LV_STATE_PRESSED)) {
             char buf[8];
-            lv_snprintf(buf, sizeof(buf), "%d", lv_slider_get_value(obj));
+            lv_snprintf(buf, sizeof(buf), "%d", lv_slider_get_value(e->target));
 
             lv_point_t text_size;
             lv_txt_get_size(&text_size, buf, font_normal, 0, 0, LV_COORD_MAX, LV_TEXT_FLAG_NONE);
@@ -1254,16 +1250,16 @@ static void slider_event_cb(lv_obj_t * obj, lv_event_t e)
     }
 }
 
-static void chart_event_cb(lv_obj_t * obj, lv_event_t e)
+static void chart_event_cb(lv_event_t *e)
 {
-    if(e == LV_EVENT_PRESSED || e == LV_EVENT_RELEASED) {
-        lv_obj_invalidate(obj); /*To make the value boxes visible*/
+    if(e->code == LV_EVENT_PRESSED || e->code == LV_EVENT_RELEASED) {
+        lv_obj_invalidate(e->target); /*To make the value boxes visible*/
     }
-    else if(e == LV_EVENT_DRAW_PART_BEGIN) {
-        lv_obj_draw_dsc_t * dsc = lv_event_get_param();
+    else if(e->code == LV_EVENT_DRAW_PART_BEGIN) {
+        lv_obj_draw_dsc_t * dsc = e->param;
         /*Set the markers' text*/
         if(dsc->part == LV_PART_TICKS && dsc->id == LV_CHART_AXIS_X) {
-            if(lv_chart_get_type(obj) == LV_CHART_TYPE_BAR) {
+            if(lv_chart_get_type(e->target) == LV_CHART_TYPE_BAR) {
                 const char * month[] = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"};
                 lv_snprintf(dsc->text, sizeof(dsc->text), "%s", month[dsc->value]);
             } else {
@@ -1281,9 +1277,9 @@ static void chart_event_cb(lv_obj_t * obj, lv_event_t e)
                 int16_t line_mask_id = lv_draw_mask_add(&line_mask_param, NULL);
 
                 /*Add a fade effect: transparent bottom covering top*/
-                lv_coord_t h = lv_obj_get_height(obj);
+                lv_coord_t h = lv_obj_get_height(e->target);
                 lv_draw_mask_fade_param_t fade_mask_param;
-                lv_draw_mask_fade_init(&fade_mask_param, &obj->coords, LV_OPA_COVER, obj->coords.y1 + h / 8, LV_OPA_TRANSP,obj->coords.y2);
+                lv_draw_mask_fade_init(&fade_mask_param, &e->target->coords, LV_OPA_COVER, e->target->coords.y1 + h / 8, LV_OPA_TRANSP,e->target->coords.y2);
                 int16_t fade_mask_id = lv_draw_mask_add(&fade_mask_param, NULL);
 
                 /*Draw a rectangle that will be affected by the mask*/
@@ -1293,13 +1289,13 @@ static void chart_event_cb(lv_obj_t * obj, lv_event_t e)
                 draw_rect_dsc.bg_color = dsc->line_dsc->color;
 
                 lv_area_t obj_clip_area;
-                _lv_area_intersect(&obj_clip_area, dsc->clip_area, &obj->coords);
+                _lv_area_intersect(&obj_clip_area, dsc->clip_area, &e->target->coords);
 
                 lv_area_t a;
                 a.x1 = dsc->p1->x;
                 a.x2 = dsc->p2->x - 1;
                 a.y1 = LV_MIN(dsc->p1->y, dsc->p2->y);
-                a.y2 = obj->coords.y2;
+                a.y2 = e->target->coords.y2;
                 lv_draw_rect(&a, &obj_clip_area, &draw_rect_dsc);
 
                 /*Remove the masks*/
@@ -1309,8 +1305,8 @@ static void chart_event_cb(lv_obj_t * obj, lv_event_t e)
 
             const lv_chart_series_t * ser = dsc->sub_part_ptr;
 
-            if(lv_chart_get_pressed_point(obj) == dsc->id) {
-                if(lv_chart_get_type(obj) == LV_CHART_TYPE_LINE) {
+            if(lv_chart_get_pressed_point(e->target) == dsc->id) {
+                if(lv_chart_get_type(e->target) == LV_CHART_TYPE_LINE) {
                     dsc->rect_dsc->outline_color = lv_color_white();
                     dsc->rect_dsc->outline_width = 2;
                 } else {
@@ -1326,10 +1322,10 @@ static void chart_event_cb(lv_obj_t * obj, lv_event_t e)
                 lv_txt_get_size(&text_size, buf, font_normal, 0, 0, LV_COORD_MAX, LV_TEXT_FLAG_NONE);
 
                 lv_area_t txt_area;
-                if(lv_chart_get_type(obj) == LV_CHART_TYPE_BAR) {
+                if(lv_chart_get_type(e->target) == LV_CHART_TYPE_BAR) {
                     txt_area.y2 = dsc->draw_area->y1 - LV_DPX(15);
                     txt_area.y1 = txt_area.y2 - text_size.y;
-                    if(ser == lv_chart_get_series_next(obj, NULL)) {
+                    if(ser == lv_chart_get_series_next(e->target, NULL)) {
                         txt_area.x1 = dsc->draw_area->x1 + lv_area_get_width(dsc->draw_area) / 2;
                         txt_area.x2 = txt_area.x1 + text_size.x;
                     } else {
@@ -1369,12 +1365,10 @@ static void chart_event_cb(lv_obj_t * obj, lv_event_t e)
 }
 
 
-static void shop_chart_event_cb(lv_obj_t * obj, lv_event_t e)
+static void shop_chart_event_cb(lv_event_t *e)
 {
-    LV_UNUSED(obj);
-
-    if(e == LV_EVENT_DRAW_PART_BEGIN) {
-        lv_obj_draw_dsc_t * dsc = lv_event_get_param();
+    if(e->code == LV_EVENT_DRAW_PART_BEGIN) {
+        lv_obj_draw_dsc_t * dsc = e->param;
         /*Set the markers' text*/
         if(dsc->part == LV_PART_TICKS && dsc->id == LV_CHART_AXIS_X) {
             const char * month[] = {"Jan", "Febr", "March", "Apr", "May", "Jun", "July", "Aug", "Sept", "Oct", "Nov", "Dec"};
@@ -1384,8 +1378,8 @@ static void shop_chart_event_cb(lv_obj_t * obj, lv_event_t e)
             dsc->rect_dsc->bg_opa = LV_OPA_TRANSP; /*We will draw it later*/
         }
     }
-    if(e == LV_EVENT_DRAW_PART_END) {
-        lv_obj_draw_dsc_t * dsc = lv_event_get_param();
+    if(e->code == LV_EVENT_DRAW_PART_END) {
+        lv_obj_draw_dsc_t * dsc = e->param;
         /*Add the faded area before the lines are drawn */
         if(dsc->part == LV_PART_ITEMS) {
             static const uint32_t devices[10] = {32, 43, 21, 56, 29, 36, 19, 25, 62, 35};
