@@ -6,11 +6,7 @@
 /*********************
  *      INCLUDES
  *********************/
-#ifdef ARDUINO
-   #include <lv_demo.h>
-#else
-   #include <lv_examples/lv_demo.h>
-#endif
+#include "../lv_demo.h"
 #include "lv_demo_keypad_encoder.h"
 
 #if LV_USE_DEMO_KEYPAD_AND_ENCODER
@@ -30,8 +26,8 @@ static void selectors_create(lv_obj_t * parent);
 static void text_input_create(lv_obj_t * parent);
 static void msgbox_create(void);
 
-static void msgbox_event_cb(lv_obj_t * msgbox, lv_event_t e);
-static void ta_event_cb(lv_obj_t * ta, lv_event_t e);
+static void msgbox_event_cb( lv_event_t * e );
+static void ta_event_cb( lv_event_t * e );
 
 /**********************
  *  STATIC VARIABLES
@@ -169,13 +165,13 @@ static void text_input_create(lv_obj_t * parent)
     lv_obj_set_flex_flow(parent, LV_FLEX_FLOW_COLUMN);
 
     lv_obj_t * ta1 = lv_textarea_create(parent);
-    lv_obj_set_width(ta1, LV_SIZE_PCT(100));
+    lv_obj_set_width(ta1, LV_PCT(100));
     lv_textarea_set_one_line(ta1, true);
     lv_textarea_set_placeholder_text(ta1, "Click with an encoder to show a keyboard");
     lv_group_add_obj(g, ta1);
 
     lv_obj_t * ta2 = lv_textarea_create(parent);
-    lv_obj_set_width(ta2, LV_SIZE_PCT(100));
+    lv_obj_set_width(ta2, LV_PCT(100));
     lv_textarea_set_one_line(ta2, true);
     lv_textarea_set_placeholder_text(ta2, "Type something");
     lv_group_add_obj(g, ta2);
@@ -184,15 +180,15 @@ static void text_input_create(lv_obj_t * parent)
     lv_group_add_obj(g, kb);
     lv_obj_add_flag(kb, LV_OBJ_FLAG_HIDDEN);
 
-    lv_obj_add_event_cb(ta1, ta_event_cb, kb);
-    lv_obj_add_event_cb(ta2, ta_event_cb, kb);
+    lv_obj_add_event_cb(ta1, ta_event_cb, LV_EVENT_ALL, kb);
+    lv_obj_add_event_cb(ta2, ta_event_cb, LV_EVENT_ALL, kb);
 }
 
 static void msgbox_create(void)
 {
     static const char * btns[] = {"Ok", "Cancel", ""};
     lv_obj_t * mbox = lv_msgbox_create("Hi", "Welcome to the keyboard and encoder demo", btns, false);
-    lv_obj_add_event_cb(mbox, msgbox_event_cb, NULL);
+    lv_obj_add_event_cb(mbox, msgbox_event_cb, LV_EVENT_ALL, NULL);
     lv_group_add_obj(g, lv_msgbox_get_btns(mbox));
     lv_group_focus_obj(lv_msgbox_get_btns(mbox));
 #if LV_EX_MOUSEWHEEL
@@ -208,9 +204,12 @@ static void msgbox_create(void)
 }
 
 
-static void msgbox_event_cb(lv_obj_t * msgbox, lv_event_t e)
+static void msgbox_event_cb( lv_event_t * e )
 {
-    if(e->code == LV_EVENT_VALUE_CHANGED) {
+    lv_event_code_t code = lv_event_get_code( e );
+    lv_obj_t * msgbox = lv_event_get_target( e );
+
+    if(code == LV_EVENT_VALUE_CHANGED) {
         const char * txt = lv_msgbox_get_active_btn_text(msgbox);
         if(txt) {
             lv_msgbox_close(msgbox);
@@ -222,14 +221,16 @@ static void msgbox_event_cb(lv_obj_t * msgbox, lv_event_t e)
     }
 }
 
-static void ta_event_cb(lv_obj_t * ta, lv_event_t *e)
+static void ta_event_cb(lv_event_t *e)
 {
     lv_indev_t * indev = lv_indev_get_act();
     if(indev == NULL) return;
     lv_indev_type_t indev_type = lv_indev_get_type(indev);
 
-    lv_obj_t * kb = lv_event_get_user_data(e);
-    if(e->code == LV_EVENT_CLICKED && indev_type == LV_INDEV_TYPE_ENCODER) {
+    lv_event_code_t code = lv_event_get_code( e );
+    lv_obj_t * ta = lv_event_get_target( e );
+    lv_obj_t * kb = lv_event_get_user_data( e );
+    if(code == LV_EVENT_CLICKED && indev_type == LV_INDEV_TYPE_ENCODER) {
         lv_keyboard_set_textarea(kb, ta);
         lv_obj_clear_flag(kb, LV_OBJ_FLAG_HIDDEN);
         lv_group_focus_obj(kb);
@@ -238,7 +239,7 @@ static void ta_event_cb(lv_obj_t * ta, lv_event_t *e)
         lv_obj_align(kb, LV_ALIGN_BOTTOM_MID, 0, 0);
     }
 
-    if(e->code == LV_EVENT_READY || e->code == LV_EVENT_CANCEL) {
+    if(code == LV_EVENT_READY || code == LV_EVENT_CANCEL) {
         lv_obj_add_flag(kb, LV_OBJ_FLAG_HIDDEN);
         lv_obj_set_height(tv, LV_VER_RES);
     }

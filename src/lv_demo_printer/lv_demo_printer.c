@@ -359,7 +359,8 @@ static void scan1_open(const char * btn_txt)
 }
 
 LV_EVENT_CB_DECLARE(copy_open_icon_event_cb) {
-    if (e->code == LV_EVENT_CLICKED) {
+     lv_event_code_t code = lv_event_get_code( e );
+    if( code == LV_EVENT_CLICKED) {
 
         scan_btn_txt = "NEXT";
         lv_demo_printer_anim_out_all(lv_scr_act(), 0);
@@ -386,7 +387,8 @@ LV_EVENT_CB_DECLARE(copy_open_icon_event_cb) {
 
 LV_EVENT_CB_DECLARE(scan_open_icon_event_cb)
 {
-    if (e->code == LV_EVENT_CLICKED) {
+    lv_event_code_t code = lv_event_get_code( e );
+    if( code == LV_EVENT_CLICKED) {
         scan_btn_txt = "SAVE";
         lv_demo_printer_anim_out_all(lv_scr_act(), 0);
         uint32_t delay = 200;
@@ -415,7 +417,8 @@ static void scan_anim_ready(lv_anim_t * a)
 
 LV_EVENT_CB_DECLARE(scan_save_event_cb)
 {
-    if (e->code == LV_EVENT_CLICKED) {
+    lv_event_code_t code = lv_event_get_code( e );
+    if(code == LV_EVENT_CLICKED) {
         scan_img = NULL;
 
         lv_demo_printer_anim_out_all(lv_scr_act(), 0);
@@ -492,7 +495,8 @@ static void print_open(uint32_t delay)
 
 LV_EVENT_CB_DECLARE(usb_icon_event_cb)
 {
-    if (e->code == LV_EVENT_CLICKED) {
+    lv_event_code_t code = lv_event_get_code( e );
+    if (code == LV_EVENT_CLICKED) {
         lv_demo_printer_anim_out_all(lv_scr_act(), 0);
 
         uint32_t delay = 200;
@@ -613,7 +617,8 @@ LV_EVENT_CB_DECLARE(usb_icon_event_cb)
 
 LV_EVENT_CB_DECLARE(print_cnt_bnt_event_cb)
 {
-    if (e->code == LV_EVENT_CLICKED || e->code == LV_EVENT_LONG_PRESSED_REPEAT) {
+    lv_event_code_t code = lv_event_get_code( e );
+    if (code == LV_EVENT_CLICKED || code == LV_EVENT_LONG_PRESSED_REPEAT) {
         const char * txt = lv_obj_get_style_value_str(obj, LV_BTN_PART_MAIN);
         if(strcmp(txt, LV_SYMBOL_DOWN) == 0) {
             if(print_cnt > 1) print_cnt--;
@@ -628,7 +633,8 @@ LV_EVENT_CB_DECLARE(print_cnt_bnt_event_cb)
 
 LV_EVENT_CB_DECLARE(print_start_event_cb)
 {
-    if (e->code == LV_EVENT_CLICKED) {
+    lv_event_code_t code = lv_event_get_code( e );
+    if (code == LV_EVENT_CLICKED) {
         lv_demo_printer_anim_out_all(lv_scr_act(), 0);
         uint32_t delay = 200;
         lv_demo_printer_anim_bg(150, LV_DEMO_PRINTER_BLUE, LV_DEMO_PRINTER_BG_FULL);
@@ -667,7 +673,8 @@ static void print_start_ready(lv_anim_t * a)
 
 LV_EVENT_CB_DECLARE(back_to_print_event_cb)
 {
-    if (e->code == LV_EVENT_CLICKED) {
+   lv_event_code_t code = lv_event_get_code( e );
+    if (code == LV_EVENT_CLICKED) {
         lv_demo_printer_anim_out_all(lv_scr_act(), 0);
         print_open(150);
     }
@@ -676,7 +683,8 @@ LV_EVENT_CB_DECLARE(back_to_print_event_cb)
 
 LV_EVENT_CB_DECLARE(mobile_icon_event_cb)
 {
-    if (e->code == LV_EVENT_CLICKED) {
+   lv_event_code_t code = lv_event_get_code( e );
+    if (code == LV_EVENT_CLICKED) {
         lv_demo_printer_anim_out_all(lv_scr_act(), 0);
 
         lv_demo_printer_anim_bg(0, LV_DEMO_PRINTER_BLUE, LV_DEMO_PRINTER_BG_FULL);
@@ -717,7 +725,8 @@ LV_EVENT_CB_DECLARE(mobile_icon_event_cb)
 
 LV_EVENT_CB_DECLARE(internet_icon_event_cb)
 {
-    if (e->code == LV_EVENT_CLICKED) {
+    lv_event_code_t code = lv_event_get_code( e );
+    if (code == LV_EVENT_CLICKED) {
         lv_demo_printer_anim_out_all(lv_scr_act(), 0);
 
         lv_demo_printer_anim_bg(0, LV_DEMO_PRINTER_RED, LV_DEMO_PRINTER_BG_FULL);
@@ -758,7 +767,8 @@ LV_EVENT_CB_DECLARE(internet_icon_event_cb)
 
 LV_EVENT_CB_DECLARE(setup_icon_event_cb)
 {
-    if (e->code == LV_EVENT_CLICKED) {
+   lv_event_code_t code = lv_event_get_code( e );
+    if (code == LV_EVENT_CLICKED) {
         lv_demo_printer_anim_out_all(lv_scr_act(), 0);
 
         lv_demo_printer_anim_bg(0, LV_DEMO_PRINTER_RED, LV_DEMO_PRINTER_BG_FULL);
@@ -822,7 +832,8 @@ static void info_bottom_create(const char * dsc, const char * btn_txt, lv_event_
 
 LV_EVENT_CB_DECLARE(print_open_event_cb)
 {
-    if (e->code == LV_EVENT_CLICKED) {
+    lv_event_code_t code = lv_event_get_code( e );
+    if (code == LV_EVENT_CLICKED) {
         lv_demo_printer_anim_out_all(lv_scr_act(), 0);
         print_open(200);
     }
@@ -831,7 +842,8 @@ LV_EVENT_CB_DECLARE(print_open_event_cb)
 
 LV_EVENT_CB_DECLARE(back_to_home_event_cb)
 {
-    if (e->code == LV_EVENT_CLICKED) {
+    lv_event_code_t code = lv_event_get_code( e );
+    if (code == LV_EVENT_CLICKED) {
         scan_img = NULL;
         lv_demo_printer_anim_out_all(lv_scr_act(), 0);
         home_open(200);
@@ -840,7 +852,8 @@ LV_EVENT_CB_DECLARE(back_to_home_event_cb)
 
 LV_EVENT_CB_DECLARE(scan_next_event_cb)
 {
-    if (e->code == LV_EVENT_CLICKED) {
+    lv_event_code_t code = lv_event_get_code( e );
+    if (code == LV_EVENT_CLICKED) {
         lv_demo_printer_anim_out_all(lv_scr_act(), 0);
 
         uint32_t delay = 400;
@@ -948,7 +961,8 @@ LV_EVENT_CB_DECLARE(scan_next_event_cb)
 
 LV_EVENT_CB_DECLARE(hue_slider_event_cb)
 {
-    if (e->code == LV_EVENT_VALUE_CHANGED) {
+    lv_event_code_t code = lv_event_get_code( e );
+    if (code == LV_EVENT_VALUE_CHANGED) {
         hue_act = lv_slider_get_value(obj);
         scan_img_color_refr();
     }
@@ -957,7 +971,8 @@ LV_EVENT_CB_DECLARE(hue_slider_event_cb)
 
 LV_EVENT_CB_DECLARE(lightness_slider_event_cb)
 {
-    if (e->code == LV_EVENT_VALUE_CHANGED) {
+    lv_event_code_t code = lv_event_get_code( e );
+    if (code == LV_EVENT_VALUE_CHANGED) {
         lightness_act = lv_slider_get_value(obj);
         scan_img_color_refr();
     }
@@ -1087,7 +1102,8 @@ static int32_t anim_path_triangle(const lv_anim_path_t * path, const lv_anim_t *
 
 LV_EVENT_CB_DECLARE(icon_generic_event_cb)
 {
-    if (e->code == LV_EVENT_PRESSED) {
+    lv_event_code_t code = lv_event_get_code( e );
+    if (code == LV_EVENT_PRESSED) {
         lv_obj_t * img = lv_obj_get_child_back(obj, NULL);
         lv_obj_t * txt = lv_obj_get_child(obj, NULL);
 
@@ -1117,7 +1133,7 @@ LV_EVENT_CB_DECLARE(icon_generic_event_cb)
 
 
     }
-    else if(e->code == LV_EVENT_PRESS_LOST || e->code == LV_EVENT_RELEASED) {
+    else if(code == LV_EVENT_PRESS_LOST || code == LV_EVENT_RELEASED) {
         lv_obj_t * img = lv_obj_get_child_back(obj, NULL);
         lv_obj_t * txt = lv_obj_get_child(obj, NULL);
         lv_anim_t a;

@@ -6,11 +6,7 @@
 /*********************
  *      INCLUDES
  *********************/
-#ifdef ARDUINO
-   #include <lv_demo.h>
-#else
-   #include <lv_examples/lv_demo.h>
-#endif
+#include "../lv_demo.h"
 
 #if LV_USE_DEMO_STRESS
 /*********************

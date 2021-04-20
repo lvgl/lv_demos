@@ -1,8 +1,4 @@
-#ifdef ARDUINO
-   #include <lv_demo.h>
-#else
-   #include <lv_examples/lv_demo.h>
-#endif
+#include "../lv_demo.h"
 
 /*******************************************************************************
  * Size: 28 px
