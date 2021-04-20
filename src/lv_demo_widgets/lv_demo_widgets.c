@@ -243,7 +243,7 @@ static void profile_create(lv_obj_t * parent)
     lv_obj_t * user_name = lv_textarea_create(panel2);
     lv_textarea_set_one_line(user_name, true);
     lv_textarea_set_placeholder_text(user_name, "Your name");
-    lv_obj_add_event_cb(user_name, ta_event_cb, kb);
+    lv_obj_add_event_cb(user_name, ta_event_cb, LV_EVENT_ALL, kb);
 
     lv_obj_t * password_label = lv_label_create(panel2);
     lv_label_set_text(password_label, "Password");
@@ -253,7 +253,7 @@ static void profile_create(lv_obj_t * parent)
     lv_textarea_set_one_line(password, true);
     lv_textarea_set_password_mode(password, true);
     lv_textarea_set_placeholder_text(password, "Min. 8 chars.");
-    lv_obj_add_event_cb(password, ta_event_cb, kb);
+    lv_obj_add_event_cb(password, ta_event_cb, LV_EVENT_ALL, kb);
 
     lv_obj_t * gender_label = lv_label_create(panel2);
     lv_label_set_text(gender_label, "Gender");
@@ -268,7 +268,7 @@ static void profile_create(lv_obj_t * parent)
 
     lv_obj_t * birthdate = lv_textarea_create(panel2);
     lv_textarea_set_one_line(birthdate, true);
-    lv_obj_add_event_cb(birthdate, birthday_event_cb, NULL);
+    lv_obj_add_event_cb(birthdate, birthday_event_cb, LV_EVENT_ALL, NULL);
 
     /*Create the third panel*/
     panel3 = lv_obj_create(parent);
@@ -282,7 +282,7 @@ static void profile_create(lv_obj_t * parent)
 
     lv_obj_t * slider1 = lv_slider_create(panel3);
     lv_obj_set_width(slider1, LV_PCT(95));
-    lv_obj_add_event_cb(slider1, slider_event_cb, NULL);
+    lv_obj_add_event_cb(slider1, slider_event_cb, LV_EVENT_ALL, NULL);
     lv_obj_refresh_ext_draw_size(slider1);
 
     lv_obj_t * team_player_label = lv_label_create(panel3);
@@ -513,11 +513,8 @@ static void analytics_create(lv_obj_t * parent)
     lv_obj_set_flex_grow(chart1_cont, 1);
     lv_obj_set_grid_dsc_array(chart1_cont, grid_chart_col_dsc, grid_chart_row_dsc);
 
-    if(disp_size <= DISP_MEDIUM) {
-        lv_coord_t h = lv_obj_get_height_visible(chart1_cont);
-        lv_obj_set_height(chart1_cont, LV_MIN(h, 300));
-    }
-    else lv_obj_set_height(chart1_cont, 300);
+    lv_obj_set_height(chart1_cont, LV_PCT(100));
+    lv_obj_set_style_max_height(chart1_cont, 300, 0);
 
     lv_obj_t * title = lv_label_create(chart1_cont);
     lv_label_set_text(title, "Unique visitors");
@@ -532,7 +529,7 @@ static void analytics_create(lv_obj_t * parent)
     lv_chart_set_axis_tick(chart1, LV_CHART_AXIS_X, 0, 0, 12, 1, true, 50);
     lv_chart_set_div_line_count(chart1, 0, 12);
     lv_chart_set_point_count(chart1, 12);
-    lv_obj_add_event_cb(chart1, chart_event_cb, NULL);
+    lv_obj_add_event_cb(chart1, chart_event_cb, LV_EVENT_ALL, NULL);
     if(disp_size == DISP_SMALL) lv_chart_set_zoom_x(chart1, 256 * 3);
     else if(disp_size == DISP_MEDIUM) lv_chart_set_zoom_x(chart1, 256 * 2);
 
@@ -558,11 +555,8 @@ static void analytics_create(lv_obj_t * parent)
     lv_obj_add_flag(chart2_cont, LV_OBJ_FLAG_FLEX_IN_NEW_TRACK);
     lv_obj_set_flex_grow(chart2_cont, 1);
 
-    if(disp_size <= DISP_MEDIUM) {
-        lv_coord_t h = lv_obj_get_height_visible(chart1_cont);
-        lv_obj_set_height(chart2_cont, LV_MIN(h, 300));
-    }
-    else lv_obj_set_height(chart2_cont, 300);
+    lv_obj_set_height(chart2_cont, LV_PCT(100));
+    lv_obj_set_style_max_height(chart2_cont, 300, 0);
 
     lv_obj_set_grid_dsc_array(chart2_cont, grid_chart_col_dsc, grid_chart_row_dsc);
 
@@ -582,7 +576,7 @@ static void analytics_create(lv_obj_t * parent)
     lv_chart_set_type(chart2, LV_CHART_TYPE_BAR);
     lv_chart_set_div_line_count(chart2, 6, 0);
     lv_chart_set_point_count(chart2, 12);
-    lv_obj_add_event_cb(chart2, chart_event_cb, NULL);
+    lv_obj_add_event_cb(chart2, chart_event_cb, LV_EVENT_ALL, NULL);
     lv_chart_set_zoom_x(chart2, 256 * 2);
     lv_obj_set_style_border_side(chart2, LV_BORDER_SIDE_LEFT | LV_BORDER_SIDE_BOTTOM, 0);
     lv_obj_set_style_radius(chart2, 0, 0);
@@ -787,7 +781,7 @@ void shop_create(lv_obj_t * parent)
     lv_chart_set_type(chart3, LV_CHART_TYPE_BAR);
     lv_chart_set_div_line_count(chart3, 6, 0);
     lv_chart_set_point_count(chart3, 7);
-    lv_obj_add_event_cb(chart3, shop_chart_event_cb, NULL);
+    lv_obj_add_event_cb(chart3, shop_chart_event_cb, LV_EVENT_ALL, NULL);
 
     ser4 = lv_chart_add_series(chart3, lv_theme_get_color_primary(chart3), LV_CHART_AXIS_PRIMARY_Y);
     lv_chart_set_next_value(chart3, ser4, lv_rand(60, 90));
@@ -853,8 +847,8 @@ void shop_create(lv_obj_t * parent)
                 LV_GRID_TEMPLATE_LAST
         };
 
-        lv_obj_set_width(chart3, lv_obj_get_width_fit(panel1) - 20);
-        lv_obj_set_height(chart3, lv_obj_get_height_visible(chart3) - 20);
+        lv_obj_set_width(chart3, LV_PCT(95));
+        lv_obj_set_height(chart3, LV_PCT(95));
         lv_chart_set_zoom_x(chart3, 512);
 
         lv_obj_set_grid_dsc_array(panel1, grid1_col_dsc, grid1_row_dsc);
@@ -869,12 +863,10 @@ void shop_create(lv_obj_t * parent)
     lv_obj_t * list = lv_obj_create(parent);
     if(disp_size == DISP_SMALL) {
         lv_obj_add_flag(list, LV_OBJ_FLAG_FLEX_IN_NEW_TRACK);
-        lv_obj_set_height(list, lv_obj_get_height_visible(panel1));
-    } else if(disp_size == DISP_MEDIUM) {
-        lv_coord_t h = lv_obj_get_height_visible(panel1);
-        lv_obj_set_height(list, LV_MIN(h, 300));
+        lv_obj_set_height(list, LV_PCT(100));
     } else {
-        lv_obj_set_height(list, 300);
+        lv_obj_set_height(list, LV_PCT(100));
+        lv_obj_set_style_max_height(list, 300, 0);
     }
 
     lv_obj_set_flex_flow(list, LV_FLEX_FLOW_COLUMN);
@@ -895,12 +887,10 @@ void shop_create(lv_obj_t * parent)
     lv_obj_t * notifications = lv_obj_create(parent);
     if(disp_size == DISP_SMALL) {
         lv_obj_add_flag(notifications, LV_OBJ_FLAG_FLEX_IN_NEW_TRACK);
-        lv_obj_set_height(notifications, lv_obj_get_height_visible(panel1));
-    } else if(disp_size == DISP_MEDIUM) {
-        lv_coord_t h = lv_obj_get_height_visible(panel1);
-        lv_obj_set_height(notifications, LV_MIN(h, 300));
-    } else {
-        lv_obj_set_height(notifications, 300);
+        lv_obj_set_height(notifications, LV_PCT(100));
+    } else  {
+        lv_obj_set_height(notifications, LV_PCT(100));
+        lv_obj_set_style_max_height(notifications, 300, 0);
     }
 
     lv_obj_set_flex_flow(notifications, LV_FLEX_FLOW_COLUMN);
@@ -964,7 +954,7 @@ static void color_changer_create(lv_obj_t * parent)
         lv_obj_set_style_radius(c, LV_RADIUS_CIRCLE, 0);
         lv_obj_set_style_opa(c, LV_OPA_TRANSP, 0);
         lv_obj_set_size(c, 20, 20);
-        lv_obj_add_event_cb(c, color_event_cb, &palette[i]);
+        lv_obj_add_event_cb(c, color_event_cb, LV_EVENT_ALL, &palette[i]);
         lv_obj_clear_flag(c, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
     }
 
@@ -973,7 +963,7 @@ static void color_changer_create(lv_obj_t * parent)
     lv_obj_set_style_bg_color(btn, lv_color_white(), LV_STATE_CHECKED);
     lv_obj_set_style_pad_all(btn, 10, 0);
     lv_obj_set_style_radius(btn, LV_RADIUS_CIRCLE, 0);
-    lv_obj_add_event_cb(btn, color_changer_event_cb, color_cont);
+    lv_obj_add_event_cb(btn, color_changer_event_cb, LV_EVENT_ALL, color_cont);
     lv_obj_set_style_shadow_width(btn, 0, 0);
     lv_obj_set_style_bg_img_src(btn, LV_SYMBOL_TINT, 0);
 
@@ -1052,10 +1042,13 @@ static void color_event_cb(lv_event_t * e)
         }
     }
     else if(code == LV_EVENT_CLICKED) {
-        lv_color_palette_t * palette = lv_event_get_user_data(e);
-        lv_theme_default_init(NULL, *palette, *palette, font_small, font_normal, font_subtitle);
+        lv_color_palette_t * palette_primary = lv_event_get_user_data(e);
+        lv_color_palette_t palette_secondary = (*palette_primary) + 3; /*Use an other palette as secondary*/
+        if(palette_secondary >= _LV_COLOR_PALETTE_LAST) palette_secondary = 0;
 
-        lv_color_t color = lv_color_get_palette_main(*palette);
+        lv_theme_default_init(NULL, *palette_primary, palette_secondary, font_small, font_normal, font_subtitle);
+
+        lv_color_t color = lv_color_get_palette_main(*palette_primary);
         lv_style_set_text_color(&style_icon, color);
         lv_chart_set_series_color(chart1, ser1, color);
         lv_chart_set_series_color(chart2, ser3, color);
@@ -1208,7 +1201,7 @@ static void birthday_event_cb(lv_event_t * e)
                 else  lv_obj_set_size(calendar, 300, 300);
                 lv_calendar_set_showed_date(calendar, 1990, 01);
                 lv_obj_align(calendar, LV_ALIGN_CENTER, 0, 30);
-                lv_obj_add_event_cb(calendar, calendar_event_cb, ta);
+                lv_obj_add_event_cb(calendar, calendar_event_cb, LV_EVENT_ALL, ta);
 
                 calendar_header = lv_calendar_header_dropdown_create(lv_layer_top(), calendar);
             }
@@ -1219,7 +1212,6 @@ static void birthday_event_cb(lv_event_t * e)
 static void calendar_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
-    lv_obj_t * obj = lv_event_get_target(e);
     lv_obj_t * ta = lv_event_get_user_data(e);
     if(code == LV_EVENT_VALUE_CHANGED) {
         lv_calendar_date_t d;
