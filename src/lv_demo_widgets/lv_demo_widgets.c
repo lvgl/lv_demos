@@ -827,7 +827,7 @@ void shop_create(lv_obj_t * parent)
                 LV_GRID_TEMPLATE_LAST
         };
 
-        lv_obj_set_width(chart3, lv_obj_get_width_fit(panel1) - 20);
+        lv_obj_set_width(chart3, lv_obj_get_content_width(panel1) - 20);
         lv_obj_set_style_pad_column(chart3, LV_DPX(30), 0);
 
         lv_obj_set_grid_dsc_array(panel1, grid1_col_dsc, grid1_row_dsc);
@@ -1046,7 +1046,7 @@ static void color_event_cb(lv_event_t * e)
         lv_color_palette_t palette_secondary = (*palette_primary) + 3; /*Use an other palette as secondary*/
         if(palette_secondary >= _LV_COLOR_PALETTE_LAST) palette_secondary = 0;
 
-        lv_theme_default_init(NULL, *palette_primary, palette_secondary, font_small, font_normal, font_subtitle);
+        lv_theme_default_init(NULL, *palette_primary, palette_secondary, false, font_small, font_normal, font_subtitle);
 
         lv_color_t color = lv_color_get_palette_main(*palette_primary);
         lv_style_set_text_color(&style_icon, color);

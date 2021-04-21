@@ -130,8 +130,8 @@ static void selectors_create(lv_obj_t * parent)
 
     lv_obj_t * list = lv_list_create(parent);
     lv_obj_update_layout(list);
-    if(lv_obj_get_height(list) > lv_obj_get_height_fit(parent)) {
-        lv_obj_set_height(list, lv_obj_get_height_fit(parent));
+    if(lv_obj_get_height(list) > lv_obj_get_content_height(parent)) {
+        lv_obj_set_height(list, lv_obj_get_content_height(parent));
     }
 
     obj = lv_list_add_btn(list, LV_SYMBOL_OK, "Apply", NULL);
