@@ -6,7 +6,7 @@
 /*********************
  *      INCLUDES
  *********************/
-#include <lv_examples/lv_demo.h>
+#include "../lv_demo.h"
 
 #if LV_USE_DEMO_STRESS
 /*********************

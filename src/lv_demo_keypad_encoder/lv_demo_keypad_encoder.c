@@ -6,7 +6,7 @@
 /*********************
  *      INCLUDES
  *********************/
-#include <lv_examples/lv_demo.h>
+#include "../lv_demo.h"
 #include "lv_demo_keypad_encoder.h"
 
 #if LV_USE_DEMO_KEYPAD_AND_ENCODER

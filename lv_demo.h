@@ -35,7 +35,6 @@ extern "C" {
 #include "src/lv_demo_benchmark/lv_demo_benchmark.h"
 #include "src/lv_demo_stress/lv_demo_stress.h"
 #include "src/lv_demo_keypad_encoder/lv_demo_keypad_encoder.h"
-#include "src/lv_demo_printer/lv_demo_printer.h"
 #include "src/lv_demo_music/lv_demo_music.h"
 
 
