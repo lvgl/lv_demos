@@ -88,7 +88,7 @@ void lv_demo_keypad_encoder(void)
 static void selectors_create(lv_obj_t * parent)
 {
     lv_obj_set_flex_flow(parent, LV_FLEX_FLOW_COLUMN);
-    lv_obj_set_flex_place(parent, LV_FLEX_PLACE_START, LV_FLEX_PLACE_CENTER, LV_FLEX_PLACE_CENTER);
+    lv_obj_set_flex_align(parent, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
 
     lv_obj_t * obj;
 
@@ -179,7 +179,7 @@ static void msgbox_create(void)
 
     lv_obj_t * bg = lv_obj_get_parent(mbox);
     lv_obj_set_style_bg_opa(bg, LV_OPA_70, 0);
-    lv_obj_set_style_bg_color(bg, lv_color_grey(), 0);
+    lv_obj_set_style_bg_color(bg, lv_palette_main(LV_PALETTE_GREY), 0);
 }
 
 

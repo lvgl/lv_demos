@@ -242,7 +242,7 @@ static void obj_test_task_cb(lv_timer_t * tmr)
             obj = lv_meter_create(main_page);
             lv_obj_scroll_to_view(obj, LV_ANIM_ON);
             lv_meter_scale_t * scale = lv_meter_add_scale(obj);
-            lv_meter_add_needle_line(obj, scale, 3, lv_color_red(), -10);
+            lv_meter_add_needle_line(obj, scale, 3, lv_palette_main(LV_PALETTE_RED), -10);
 
             auto_del(obj, TIME_STEP * 6 + 30);
             break;
@@ -358,7 +358,7 @@ static void obj_test_task_cb(lv_timer_t * tmr)
         case 23:
             obj = lv_chart_create(main_page);
             {
-                lv_chart_series_t * s1 = lv_chart_add_series(obj, lv_color_red(), LV_CHART_AXIS_PRIMARY_Y);
+                lv_chart_series_t * s1 = lv_chart_add_series(obj, lv_palette_main(LV_PALETTE_RED), LV_CHART_AXIS_PRIMARY_Y);
                 lv_chart_set_next_value(obj, s1, 36);
                 lv_chart_set_next_value(obj, s1, -29);
                 lv_chart_set_next_value(obj, s1, 51);

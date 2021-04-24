@@ -320,41 +320,41 @@ static void profile_create(lv_obj_t * parent)
 
         lv_obj_set_grid_dsc_array(parent, grid_main_col_dsc, grid_main_row_dsc);
 
-        lv_obj_set_grid_cell(panel1, LV_GRID_STRETCH, 0, 2, LV_GRID_CENTER, 0, 1);
+        lv_obj_set_grid_cell(panel1, LV_GRID_ALIGN_STRETCH, 0, 2, LV_GRID_ALIGN_CENTER, 0, 1);
 
         lv_obj_set_grid_dsc_array(panel1, grid_1_col_dsc, grid_1_row_dsc);
-        lv_obj_set_grid_cell(avatar, LV_GRID_CENTER, 0, 1, LV_GRID_CENTER, 0, 5);
-        lv_obj_set_grid_cell(name, LV_GRID_START, 2, 2, LV_GRID_CENTER, 0, 1);
-        lv_obj_set_grid_cell(dsc, LV_GRID_STRETCH, 2, 4, LV_GRID_START, 1, 1);
-        lv_obj_set_grid_cell(email_icn, LV_GRID_CENTER, 2, 1, LV_GRID_CENTER, 3, 1);
-        lv_obj_set_grid_cell(email_label, LV_GRID_START, 3, 1, LV_GRID_CENTER, 3, 1);
-        lv_obj_set_grid_cell(call_icn, LV_GRID_CENTER, 2, 1, LV_GRID_CENTER, 4, 1);
-        lv_obj_set_grid_cell(call_label, LV_GRID_START, 3, 1, LV_GRID_CENTER, 4, 1);
-        lv_obj_set_grid_cell(log_out_btn, LV_GRID_STRETCH, 4, 1, LV_GRID_CENTER, 3, 2);
-        lv_obj_set_grid_cell(invite_btn, LV_GRID_STRETCH, 5, 1, LV_GRID_CENTER, 3, 2);
+        lv_obj_set_grid_cell(avatar, LV_GRID_ALIGN_CENTER, 0, 1, LV_GRID_ALIGN_CENTER, 0, 5);
+        lv_obj_set_grid_cell(name, LV_GRID_ALIGN_START, 2, 2, LV_GRID_ALIGN_CENTER, 0, 1);
+        lv_obj_set_grid_cell(dsc, LV_GRID_ALIGN_STRETCH, 2, 4, LV_GRID_ALIGN_START, 1, 1);
+        lv_obj_set_grid_cell(email_icn, LV_GRID_ALIGN_CENTER, 2, 1, LV_GRID_ALIGN_CENTER, 3, 1);
+        lv_obj_set_grid_cell(email_label, LV_GRID_ALIGN_START, 3, 1, LV_GRID_ALIGN_CENTER, 3, 1);
+        lv_obj_set_grid_cell(call_icn, LV_GRID_ALIGN_CENTER, 2, 1, LV_GRID_ALIGN_CENTER, 4, 1);
+        lv_obj_set_grid_cell(call_label, LV_GRID_ALIGN_START, 3, 1, LV_GRID_ALIGN_CENTER, 4, 1);
+        lv_obj_set_grid_cell(log_out_btn, LV_GRID_ALIGN_STRETCH, 4, 1, LV_GRID_ALIGN_CENTER, 3, 2);
+        lv_obj_set_grid_cell(invite_btn, LV_GRID_ALIGN_STRETCH, 5, 1, LV_GRID_ALIGN_CENTER, 3, 2);
 
-        lv_obj_set_grid_cell(panel2, LV_GRID_STRETCH, 0, 1, LV_GRID_START, 1, 1);
+        lv_obj_set_grid_cell(panel2, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_START, 1, 1);
         lv_obj_set_grid_dsc_array(panel2, grid_2_col_dsc, grid_2_row_dsc);
-        lv_obj_set_grid_cell(panel2_title, LV_GRID_START, 0, 2, LV_GRID_CENTER, 0, 1);
-        lv_obj_set_grid_cell(user_name, LV_GRID_STRETCH, 0, 1, LV_GRID_CENTER, 3, 1);
-        lv_obj_set_grid_cell(user_name_label, LV_GRID_START, 0, 1, LV_GRID_START, 2, 1);
-        lv_obj_set_grid_cell(password, LV_GRID_STRETCH, 1, 1, LV_GRID_CENTER, 3, 1);
-        lv_obj_set_grid_cell(password_label, LV_GRID_START, 1, 1, LV_GRID_START, 2, 1);
-        lv_obj_set_grid_cell(birthdate, LV_GRID_STRETCH, 1, 1, LV_GRID_CENTER, 6, 1);
-        lv_obj_set_grid_cell(birthday_label, LV_GRID_START, 1, 1, LV_GRID_START, 5, 1);
-        lv_obj_set_grid_cell(gender, LV_GRID_STRETCH, 0, 1, LV_GRID_CENTER, 6, 1);
-        lv_obj_set_grid_cell(gender_label, LV_GRID_START, 0, 1, LV_GRID_START, 5, 1);
+        lv_obj_set_grid_cell(panel2_title, LV_GRID_ALIGN_START, 0, 2, LV_GRID_ALIGN_CENTER, 0, 1);
+        lv_obj_set_grid_cell(user_name, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_CENTER, 3, 1);
+        lv_obj_set_grid_cell(user_name_label, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 2, 1);
+        lv_obj_set_grid_cell(password, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_CENTER, 3, 1);
+        lv_obj_set_grid_cell(password_label, LV_GRID_ALIGN_START, 1, 1, LV_GRID_ALIGN_START, 2, 1);
+        lv_obj_set_grid_cell(birthdate, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_CENTER, 6, 1);
+        lv_obj_set_grid_cell(birthday_label, LV_GRID_ALIGN_START, 1, 1, LV_GRID_ALIGN_START, 5, 1);
+        lv_obj_set_grid_cell(gender, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_CENTER, 6, 1);
+        lv_obj_set_grid_cell(gender_label, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 5, 1);
 
 
-        lv_obj_set_grid_cell(panel3, LV_GRID_STRETCH, 1, 1, LV_GRID_STRETCH, 1, 1);
+        lv_obj_set_grid_cell(panel3, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
         lv_obj_set_grid_dsc_array(panel3, grid_2_col_dsc, grid_2_row_dsc);
-        lv_obj_set_grid_cell(panel3_title, LV_GRID_START, 0, 2, LV_GRID_CENTER, 0, 1);
-        lv_obj_set_grid_cell(slider1, LV_GRID_CENTER, 0, 2, LV_GRID_CENTER, 3, 1);
-        lv_obj_set_grid_cell(experience_label, LV_GRID_START, 0, 1, LV_GRID_START, 2, 1);
-        lv_obj_set_grid_cell(sw2, LV_GRID_START, 1, 1, LV_GRID_CENTER, 6, 1);
-        lv_obj_set_grid_cell(hard_working_label, LV_GRID_START, 0, 1, LV_GRID_START, 5, 1);
-        lv_obj_set_grid_cell(sw1, LV_GRID_START, 0, 1, LV_GRID_CENTER, 6, 1);
-        lv_obj_set_grid_cell(team_player_label, LV_GRID_START, 1, 1, LV_GRID_START, 5, 1);
+        lv_obj_set_grid_cell(panel3_title, LV_GRID_ALIGN_START, 0, 2, LV_GRID_ALIGN_CENTER, 0, 1);
+        lv_obj_set_grid_cell(slider1, LV_GRID_ALIGN_CENTER, 0, 2, LV_GRID_ALIGN_CENTER, 3, 1);
+        lv_obj_set_grid_cell(experience_label, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 2, 1);
+        lv_obj_set_grid_cell(sw2, LV_GRID_ALIGN_START, 1, 1, LV_GRID_ALIGN_CENTER, 6, 1);
+        lv_obj_set_grid_cell(hard_working_label, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 5, 1);
+        lv_obj_set_grid_cell(sw1, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_CENTER, 6, 1);
+        lv_obj_set_grid_cell(team_player_label, LV_GRID_ALIGN_START, 1, 1, LV_GRID_ALIGN_START, 5, 1);
     }
     else if(disp_size == DISP_MEDIUM) {
         static lv_coord_t grid_main_col_dsc[] = {LV_GRID_FR(1), LV_GRID_FR(1), LV_GRID_TEMPLATE_LAST};
@@ -389,43 +389,43 @@ static void profile_create(lv_obj_t * parent)
 
 
         lv_obj_set_grid_dsc_array(parent, grid_main_col_dsc, grid_main_row_dsc);
-        lv_obj_set_grid_cell(panel1, LV_GRID_STRETCH, 0, 2, LV_GRID_CENTER, 0, 1);
+        lv_obj_set_grid_cell(panel1, LV_GRID_ALIGN_STRETCH, 0, 2, LV_GRID_ALIGN_CENTER, 0, 1);
 
         lv_obj_set_width(log_out_btn, 120);
         lv_obj_set_width(invite_btn, 120);
 
         lv_obj_set_grid_dsc_array(panel1, grid_1_col_dsc, grid_1_row_dsc);
-        lv_obj_set_grid_cell(avatar, LV_GRID_CENTER, 0, 1, LV_GRID_START, 0, 4);
-        lv_obj_set_grid_cell(name, LV_GRID_START, 2, 2, LV_GRID_CENTER, 0, 1);
-        lv_obj_set_grid_cell(dsc, LV_GRID_STRETCH, 2, 2, LV_GRID_START, 1, 1);
-        lv_obj_set_grid_cell(email_label, LV_GRID_START, 3, 1, LV_GRID_CENTER, 2, 1);
-        lv_obj_set_grid_cell(email_icn, LV_GRID_CENTER, 2, 1, LV_GRID_CENTER, 2, 1);
-        lv_obj_set_grid_cell(call_icn, LV_GRID_CENTER, 2, 1, LV_GRID_CENTER, 4, 1);
-        lv_obj_set_grid_cell(call_label, LV_GRID_START, 3, 1, LV_GRID_CENTER, 4, 1);
-        lv_obj_set_grid_cell(log_out_btn, LV_GRID_START, 1, 1, LV_GRID_CENTER, 5, 1);
-        lv_obj_set_grid_cell(invite_btn, LV_GRID_END, 3, 1, LV_GRID_CENTER, 5, 1);
+        lv_obj_set_grid_cell(avatar, LV_GRID_ALIGN_CENTER, 0, 1, LV_GRID_ALIGN_START, 0, 4);
+        lv_obj_set_grid_cell(name, LV_GRID_ALIGN_START, 2, 2, LV_GRID_ALIGN_CENTER, 0, 1);
+        lv_obj_set_grid_cell(dsc, LV_GRID_ALIGN_STRETCH, 2, 2, LV_GRID_ALIGN_START, 1, 1);
+        lv_obj_set_grid_cell(email_label, LV_GRID_ALIGN_START, 3, 1, LV_GRID_ALIGN_CENTER, 2, 1);
+        lv_obj_set_grid_cell(email_icn, LV_GRID_ALIGN_CENTER, 2, 1, LV_GRID_ALIGN_CENTER, 2, 1);
+        lv_obj_set_grid_cell(call_icn, LV_GRID_ALIGN_CENTER, 2, 1, LV_GRID_ALIGN_CENTER, 4, 1);
+        lv_obj_set_grid_cell(call_label, LV_GRID_ALIGN_START, 3, 1, LV_GRID_ALIGN_CENTER, 4, 1);
+        lv_obj_set_grid_cell(log_out_btn, LV_GRID_ALIGN_START, 1, 1, LV_GRID_ALIGN_CENTER, 5, 1);
+        lv_obj_set_grid_cell(invite_btn, LV_GRID_ALIGN_END, 3, 1, LV_GRID_ALIGN_CENTER, 5, 1);
 
-        lv_obj_set_grid_cell(panel2, LV_GRID_STRETCH, 0, 1, LV_GRID_START, 1, 1);
+        lv_obj_set_grid_cell(panel2, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_START, 1, 1);
         lv_obj_set_grid_dsc_array(panel2, grid_2_col_dsc, grid_2_row_dsc);
-        lv_obj_set_grid_cell(panel2_title, LV_GRID_START, 0, 2, LV_GRID_CENTER, 0, 1);
-        lv_obj_set_grid_cell(user_name_label, LV_GRID_START, 0, 2, LV_GRID_START, 2, 1);
-        lv_obj_set_grid_cell(user_name, LV_GRID_STRETCH, 0, 2, LV_GRID_START, 3, 1);
-        lv_obj_set_grid_cell(password_label, LV_GRID_START, 0, 2, LV_GRID_START, 4, 1);
-        lv_obj_set_grid_cell(password, LV_GRID_STRETCH, 0, 2, LV_GRID_START, 5, 1);
-        lv_obj_set_grid_cell(birthday_label, LV_GRID_START, 0, 2, LV_GRID_START, 6, 1);
-        lv_obj_set_grid_cell(birthdate, LV_GRID_STRETCH, 0, 2, LV_GRID_START, 7, 1);
-        lv_obj_set_grid_cell(gender_label, LV_GRID_START, 0, 2, LV_GRID_START, 8, 1);
-        lv_obj_set_grid_cell(gender, LV_GRID_STRETCH, 0, 2, LV_GRID_START, 9, 1);
+        lv_obj_set_grid_cell(panel2_title, LV_GRID_ALIGN_START, 0, 2, LV_GRID_ALIGN_CENTER, 0, 1);
+        lv_obj_set_grid_cell(user_name_label, LV_GRID_ALIGN_START, 0, 2, LV_GRID_ALIGN_START, 2, 1);
+        lv_obj_set_grid_cell(user_name, LV_GRID_ALIGN_STRETCH, 0, 2, LV_GRID_ALIGN_START, 3, 1);
+        lv_obj_set_grid_cell(password_label, LV_GRID_ALIGN_START, 0, 2, LV_GRID_ALIGN_START, 4, 1);
+        lv_obj_set_grid_cell(password, LV_GRID_ALIGN_STRETCH, 0, 2, LV_GRID_ALIGN_START, 5, 1);
+        lv_obj_set_grid_cell(birthday_label, LV_GRID_ALIGN_START, 0, 2, LV_GRID_ALIGN_START, 6, 1);
+        lv_obj_set_grid_cell(birthdate, LV_GRID_ALIGN_STRETCH, 0, 2, LV_GRID_ALIGN_START, 7, 1);
+        lv_obj_set_grid_cell(gender_label, LV_GRID_ALIGN_START, 0, 2, LV_GRID_ALIGN_START, 8, 1);
+        lv_obj_set_grid_cell(gender, LV_GRID_ALIGN_STRETCH, 0, 2, LV_GRID_ALIGN_START, 9, 1);
 
-        lv_obj_set_grid_cell(panel3, LV_GRID_STRETCH, 1, 1, LV_GRID_STRETCH, 1, 1);
+        lv_obj_set_grid_cell(panel3, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
         lv_obj_set_grid_dsc_array(panel3, grid_2_col_dsc, grid_2_row_dsc);
-        lv_obj_set_grid_cell(panel3_title, LV_GRID_START, 0, 2, LV_GRID_CENTER, 0, 1);
-        lv_obj_set_grid_cell(slider1, LV_GRID_CENTER, 0, 2, LV_GRID_CENTER, 3, 1);
-        lv_obj_set_grid_cell(experience_label, LV_GRID_START, 0, 1, LV_GRID_START, 2, 1);
-        lv_obj_set_grid_cell(hard_working_label, LV_GRID_START, 0, 1, LV_GRID_START, 4, 1);
-        lv_obj_set_grid_cell(sw2, LV_GRID_START, 0, 1, LV_GRID_START, 5, 1);
-        lv_obj_set_grid_cell(team_player_label, LV_GRID_START, 0, 1, LV_GRID_START, 6, 1);
-        lv_obj_set_grid_cell(sw1, LV_GRID_START, 0, 1, LV_GRID_START, 7, 1);
+        lv_obj_set_grid_cell(panel3_title, LV_GRID_ALIGN_START, 0, 2, LV_GRID_ALIGN_CENTER, 0, 1);
+        lv_obj_set_grid_cell(slider1, LV_GRID_ALIGN_CENTER, 0, 2, LV_GRID_ALIGN_CENTER, 3, 1);
+        lv_obj_set_grid_cell(experience_label, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 2, 1);
+        lv_obj_set_grid_cell(hard_working_label, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 4, 1);
+        lv_obj_set_grid_cell(sw2, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 5, 1);
+        lv_obj_set_grid_cell(team_player_label, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 6, 1);
+        lv_obj_set_grid_cell(sw1, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 7, 1);
     }
     else if(disp_size == DISP_SMALL) {
         static lv_coord_t grid_main_col_dsc[] = {LV_GRID_FR(1), LV_GRID_TEMPLATE_LAST};
@@ -464,40 +464,40 @@ static void profile_create(lv_obj_t * parent)
         lv_obj_set_grid_dsc_array(panel2, grid_2_col_dsc, grid_2_row_dsc);
         lv_obj_set_grid_dsc_array(panel3, grid_2_col_dsc, grid_2_row_dsc);
 
-        lv_obj_set_grid_cell(panel1, LV_GRID_STRETCH, 0, 1, LV_GRID_CENTER, 0, 1);
+        lv_obj_set_grid_cell(panel1, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_CENTER, 0, 1);
 
         lv_obj_set_style_text_align(dsc, LV_TEXT_ALIGN_CENTER, 0);
 
-        lv_obj_set_grid_cell(avatar, LV_GRID_CENTER, 0, 2, LV_GRID_CENTER, 0, 1);
-        lv_obj_set_grid_cell(name, LV_GRID_CENTER, 0, 2, LV_GRID_CENTER, 1, 1);
-        lv_obj_set_grid_cell(dsc, LV_GRID_STRETCH, 0, 2, LV_GRID_START, 2, 1);
-        lv_obj_set_grid_cell(email_icn, LV_GRID_CENTER, 0, 1, LV_GRID_CENTER, 3, 1);
-        lv_obj_set_grid_cell(email_label, LV_GRID_START, 1, 1, LV_GRID_CENTER, 3, 1);
-        lv_obj_set_grid_cell(call_icn, LV_GRID_CENTER, 0, 1, LV_GRID_CENTER, 4, 1);
-        lv_obj_set_grid_cell(call_label, LV_GRID_START, 1, 1, LV_GRID_CENTER, 4, 1);
-        lv_obj_set_grid_cell(log_out_btn, LV_GRID_STRETCH, 0, 2, LV_GRID_CENTER, 5, 1);
-        lv_obj_set_grid_cell(invite_btn, LV_GRID_STRETCH, 0, 2, LV_GRID_CENTER, 6, 1);
+        lv_obj_set_grid_cell(avatar, LV_GRID_ALIGN_CENTER, 0, 2, LV_GRID_ALIGN_CENTER, 0, 1);
+        lv_obj_set_grid_cell(name, LV_GRID_ALIGN_CENTER, 0, 2, LV_GRID_ALIGN_CENTER, 1, 1);
+        lv_obj_set_grid_cell(dsc, LV_GRID_ALIGN_STRETCH, 0, 2, LV_GRID_ALIGN_START, 2, 1);
+        lv_obj_set_grid_cell(email_icn, LV_GRID_ALIGN_CENTER, 0, 1, LV_GRID_ALIGN_CENTER, 3, 1);
+        lv_obj_set_grid_cell(email_label, LV_GRID_ALIGN_START, 1, 1, LV_GRID_ALIGN_CENTER, 3, 1);
+        lv_obj_set_grid_cell(call_icn, LV_GRID_ALIGN_CENTER, 0, 1, LV_GRID_ALIGN_CENTER, 4, 1);
+        lv_obj_set_grid_cell(call_label, LV_GRID_ALIGN_START, 1, 1, LV_GRID_ALIGN_CENTER, 4, 1);
+        lv_obj_set_grid_cell(log_out_btn, LV_GRID_ALIGN_STRETCH, 0, 2, LV_GRID_ALIGN_CENTER, 5, 1);
+        lv_obj_set_grid_cell(invite_btn, LV_GRID_ALIGN_STRETCH, 0, 2, LV_GRID_ALIGN_CENTER, 6, 1);
 
-        lv_obj_set_grid_cell(panel2, LV_GRID_STRETCH, 0, 1, LV_GRID_START, 1, 1);
-        lv_obj_set_grid_cell(panel2_title, LV_GRID_START, 0, 2, LV_GRID_CENTER, 0, 1);
-        lv_obj_set_grid_cell(user_name_label, LV_GRID_START, 0, 2, LV_GRID_START, 2, 1);
-        lv_obj_set_grid_cell(user_name, LV_GRID_STRETCH, 0, 2, LV_GRID_START, 3, 1);
-        lv_obj_set_grid_cell(password_label, LV_GRID_START, 0, 2, LV_GRID_START, 4, 1);
-        lv_obj_set_grid_cell(password, LV_GRID_STRETCH, 0, 2, LV_GRID_START, 5, 1);
-        lv_obj_set_grid_cell(birthday_label, LV_GRID_START, 0, 2, LV_GRID_START, 6, 1);
-        lv_obj_set_grid_cell(birthdate, LV_GRID_STRETCH, 0, 2, LV_GRID_START, 7, 1);
-        lv_obj_set_grid_cell(gender_label, LV_GRID_START, 0, 2, LV_GRID_START, 8, 1);
-        lv_obj_set_grid_cell(gender, LV_GRID_STRETCH, 0, 2, LV_GRID_START, 9, 1);
+        lv_obj_set_grid_cell(panel2, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_START, 1, 1);
+        lv_obj_set_grid_cell(panel2_title, LV_GRID_ALIGN_START, 0, 2, LV_GRID_ALIGN_CENTER, 0, 1);
+        lv_obj_set_grid_cell(user_name_label, LV_GRID_ALIGN_START, 0, 2, LV_GRID_ALIGN_START, 2, 1);
+        lv_obj_set_grid_cell(user_name, LV_GRID_ALIGN_STRETCH, 0, 2, LV_GRID_ALIGN_START, 3, 1);
+        lv_obj_set_grid_cell(password_label, LV_GRID_ALIGN_START, 0, 2, LV_GRID_ALIGN_START, 4, 1);
+        lv_obj_set_grid_cell(password, LV_GRID_ALIGN_STRETCH, 0, 2, LV_GRID_ALIGN_START, 5, 1);
+        lv_obj_set_grid_cell(birthday_label, LV_GRID_ALIGN_START, 0, 2, LV_GRID_ALIGN_START, 6, 1);
+        lv_obj_set_grid_cell(birthdate, LV_GRID_ALIGN_STRETCH, 0, 2, LV_GRID_ALIGN_START, 7, 1);
+        lv_obj_set_grid_cell(gender_label, LV_GRID_ALIGN_START, 0, 2, LV_GRID_ALIGN_START, 8, 1);
+        lv_obj_set_grid_cell(gender, LV_GRID_ALIGN_STRETCH, 0, 2, LV_GRID_ALIGN_START, 9, 1);
 
         lv_obj_set_height(panel3, LV_SIZE_CONTENT);
-        lv_obj_set_grid_cell(panel3, LV_GRID_STRETCH, 0, 1, LV_GRID_START, 2, 1);
-        lv_obj_set_grid_cell(panel3_title, LV_GRID_START, 0, 2, LV_GRID_CENTER, 0, 1);
-        lv_obj_set_grid_cell(experience_label, LV_GRID_START, 0, 1, LV_GRID_START, 2, 1);
-        lv_obj_set_grid_cell(slider1, LV_GRID_CENTER, 0, 2, LV_GRID_CENTER, 3, 1);
-        lv_obj_set_grid_cell(hard_working_label, LV_GRID_START, 0, 1, LV_GRID_START, 4, 1);
-        lv_obj_set_grid_cell(sw1, LV_GRID_START, 0, 1, LV_GRID_START, 5, 1);
-        lv_obj_set_grid_cell(team_player_label, LV_GRID_START, 1, 1, LV_GRID_START, 4, 1);
-        lv_obj_set_grid_cell(sw2, LV_GRID_START, 1, 1, LV_GRID_START, 5, 1);
+        lv_obj_set_grid_cell(panel3, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_START, 2, 1);
+        lv_obj_set_grid_cell(panel3_title, LV_GRID_ALIGN_START, 0, 2, LV_GRID_ALIGN_CENTER, 0, 1);
+        lv_obj_set_grid_cell(experience_label, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 2, 1);
+        lv_obj_set_grid_cell(slider1, LV_GRID_ALIGN_CENTER, 0, 2, LV_GRID_ALIGN_CENTER, 3, 1);
+        lv_obj_set_grid_cell(hard_working_label, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 4, 1);
+        lv_obj_set_grid_cell(sw1, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 5, 1);
+        lv_obj_set_grid_cell(team_player_label, LV_GRID_ALIGN_START, 1, 1, LV_GRID_ALIGN_START, 4, 1);
+        lv_obj_set_grid_cell(sw2, LV_GRID_ALIGN_START, 1, 1, LV_GRID_ALIGN_START, 5, 1);
     }
 }
 
@@ -519,12 +519,12 @@ static void analytics_create(lv_obj_t * parent)
     lv_obj_t * title = lv_label_create(chart1_cont);
     lv_label_set_text(title, "Unique visitors");
     lv_obj_add_style(title, &style_subtitle, 0);
-    lv_obj_set_grid_cell(title, LV_GRID_START, 0, 2, LV_GRID_START, 0, 1);
+    lv_obj_set_grid_cell(title, LV_GRID_ALIGN_START, 0, 2, LV_GRID_ALIGN_START, 0, 1);
 
     chart1 = lv_chart_create(chart1_cont);
     lv_group_add_obj(lv_group_get_default(), chart1);
     lv_obj_add_flag(chart1, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
-    lv_obj_set_grid_cell(chart1, LV_GRID_STRETCH, 1, 1, LV_GRID_STRETCH, 1, 1);
+    lv_obj_set_grid_cell(chart1, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
     lv_chart_set_axis_tick(chart1, LV_CHART_AXIS_PRIMARY_Y, 0, 0, 5, 1, true, 80);
     lv_chart_set_axis_tick(chart1, LV_CHART_AXIS_X, 0, 0, 12, 1, true, 50);
     lv_chart_set_div_line_count(chart1, 0, 12);
@@ -563,13 +563,13 @@ static void analytics_create(lv_obj_t * parent)
     title = lv_label_create(chart2_cont);
     lv_label_set_text(title, "Monthly revenue");
     lv_obj_add_style(title, &style_subtitle, 0);
-    lv_obj_set_grid_cell(title, LV_GRID_START, 0, 2, LV_GRID_START, 0, 1);
+    lv_obj_set_grid_cell(title, LV_GRID_ALIGN_START, 0, 2, LV_GRID_ALIGN_START, 0, 1);
 
     chart2 = lv_chart_create(chart2_cont);
     lv_group_add_obj(lv_group_get_default(), chart2);
     lv_obj_add_flag(chart2, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
 
-    lv_obj_set_grid_cell(chart2, LV_GRID_STRETCH, 1, 1, LV_GRID_STRETCH, 1, 1);
+    lv_obj_set_grid_cell(chart2, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
     lv_chart_set_axis_tick(chart2, LV_CHART_AXIS_PRIMARY_Y, 0, 0, 5, 1, true, 80);
     lv_chart_set_axis_tick(chart2, LV_CHART_AXIS_X, 0, 0, 12, 1, true, 50);
     lv_obj_set_size(chart2, LV_PCT(100), LV_PCT(100));
@@ -589,7 +589,7 @@ static void analytics_create(lv_obj_t * parent)
         lv_obj_set_style_pad_gap(chart2, 16, 0);
     }
 
-    ser2 = lv_chart_add_series(chart2, lv_color_grey_lighten_1(), LV_CHART_AXIS_PRIMARY_Y);
+    ser2 = lv_chart_add_series(chart2, lv_palette_lighten(LV_PALETTE_GREY, 1), LV_CHART_AXIS_PRIMARY_Y);
     lv_chart_set_next_value(chart2, ser2, lv_rand(10, 80));
     lv_chart_set_next_value(chart2, ser2, lv_rand(10, 80));
     lv_chart_set_next_value(chart2, ser2, lv_rand(10, 80));
@@ -632,14 +632,14 @@ static void analytics_create(lv_obj_t * parent)
     lv_anim_set_values(&a, 20, 100);
     lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINITE);
 
-    indic = lv_meter_add_arc(meter1, scale, 15, lv_color_blue(), 0);
+    indic = lv_meter_add_arc(meter1, scale, 15, lv_palette_main(LV_PALETTE_BLUE), 0);
     lv_anim_set_exec_cb(&a, meter1_indic1_anim_cb);
     lv_anim_set_var(&a, indic);
     lv_anim_set_time(&a, 4100);
     lv_anim_set_playback_time(&a, 2700);
     lv_anim_start(&a);
 
-    indic = lv_meter_add_arc(meter1, scale, 15, lv_color_red(), -20);
+    indic = lv_meter_add_arc(meter1, scale, 15, lv_palette_main(LV_PALETTE_RED), -20);
     lv_anim_set_exec_cb(&a, meter1_indic2_anim_cb);
     lv_anim_set_var(&a, indic);
     lv_anim_set_time(&a, 2600);
@@ -647,7 +647,7 @@ static void analytics_create(lv_obj_t * parent)
     a.user_data = indic;
     lv_anim_start(&a);
 
-    indic = lv_meter_add_arc(meter1, scale, 15, lv_color_green(), -40);
+    indic = lv_meter_add_arc(meter1, scale, 15, lv_palette_main(LV_PALETTE_GREEN), -40);
     lv_anim_set_exec_cb(&a, meter1_indic3_anim_cb);
     lv_anim_set_var(&a, indic);
     lv_anim_set_time(&a, 2800);
@@ -661,15 +661,15 @@ static void analytics_create(lv_obj_t * parent)
     lv_meter_set_scale_ticks(meter2, scale, 0, 0, 0, lv_color_black());
 
     static lv_meter_indicator_t * meter2_indic[3];
-    meter2_indic[0] = lv_meter_add_arc(meter2, scale, 20, lv_color_red(), -10);
+    meter2_indic[0] = lv_meter_add_arc(meter2, scale, 20, lv_palette_main(LV_PALETTE_RED), -10);
     lv_meter_set_indicator_start_value(meter2, meter2_indic[0], 0);
     lv_meter_set_indicator_end_value(meter2, meter2_indic[0], 39);
 
-    meter2_indic[1] = lv_meter_add_arc(meter2, scale, 30, lv_color_blue(), 0);
+    meter2_indic[1] = lv_meter_add_arc(meter2, scale, 30, lv_palette_main(LV_PALETTE_BLUE), 0);
     lv_meter_set_indicator_start_value(meter2, meter2_indic[1], 40);
     lv_meter_set_indicator_end_value(meter2, meter2_indic[1], 69);
 
-    meter2_indic[2] = lv_meter_add_arc(meter2, scale, 10, lv_color_green(), -20);
+    meter2_indic[2] = lv_meter_add_arc(meter2, scale, 10, lv_palette_main(LV_PALETTE_GREEN), -20);
     lv_meter_set_indicator_start_value(meter2, meter2_indic[2], 70);
     lv_meter_set_indicator_end_value(meter2, meter2_indic[2], 99);
 
@@ -683,41 +683,41 @@ static void analytics_create(lv_obj_t * parent)
     lv_obj_set_style_size(meter3, 10, LV_PART_INDICATOR);
     lv_obj_set_style_radius(meter3, LV_RADIUS_CIRCLE, LV_PART_INDICATOR);
     lv_obj_set_style_bg_opa(meter3, LV_OPA_COVER, LV_PART_INDICATOR);
-    lv_obj_set_style_bg_color(meter3, lv_color_grey_darken_4(), LV_PART_INDICATOR);
+    lv_obj_set_style_bg_color(meter3, lv_palette_darken(LV_PALETTE_GREY, 4), LV_PART_INDICATOR);
     lv_obj_set_style_outline_color(meter3, lv_color_white(), LV_PART_INDICATOR);
     lv_obj_set_style_outline_width(meter3, 3, LV_PART_INDICATOR);
-    lv_obj_set_style_text_color(meter3, lv_color_grey_darken_1(), LV_PART_TICKS);
+    lv_obj_set_style_text_color(meter3, lv_palette_darken(LV_PALETTE_GREY, 1), LV_PART_TICKS);
 
     scale = lv_meter_add_scale(meter3);
     lv_meter_set_scale_range(meter3, scale, 10, 60, 220, 360 - 220);
     lv_meter_set_scale_ticks(meter3, scale, 21, 3, 17, lv_color_white());
     lv_meter_set_scale_major_ticks(meter3, scale, 4, 4, 22, lv_color_white(), 15);
 
-    indic = lv_meter_add_arc(meter3, scale, 10, lv_color_red(), 0);
+    indic = lv_meter_add_arc(meter3, scale, 10, lv_palette_main(LV_PALETTE_RED), 0);
     lv_meter_set_indicator_start_value(meter3, indic, 0);
     lv_meter_set_indicator_end_value(meter3, indic, 20);
 
-    indic = lv_meter_add_scale_lines(meter3, scale, lv_color_red_darken_3(), lv_color_red_darken_3(), true, 0);
+    indic = lv_meter_add_scale_lines(meter3, scale, lv_palette_darken(LV_PALETTE_RED, 3), lv_palette_darken(LV_PALETTE_RED, 3), true, 0);
     lv_meter_set_indicator_start_value(meter3, indic, 0);
     lv_meter_set_indicator_end_value(meter3, indic, 20);
 
-    indic = lv_meter_add_arc(meter3, scale, 12, lv_color_blue(), 0);
+    indic = lv_meter_add_arc(meter3, scale, 12, lv_palette_main(LV_PALETTE_BLUE), 0);
     lv_meter_set_indicator_start_value(meter3, indic, 20);
     lv_meter_set_indicator_end_value(meter3, indic, 40);
 
-    indic = lv_meter_add_scale_lines(meter3, scale, lv_color_blue_darken_3(), lv_color_blue_darken_3(), true, 0);
+    indic = lv_meter_add_scale_lines(meter3, scale, lv_palette_darken(LV_PALETTE_BLUE, 3), lv_palette_darken(LV_PALETTE_BLUE, 3), true, 0);
     lv_meter_set_indicator_start_value(meter3, indic, 20);
     lv_meter_set_indicator_end_value(meter3, indic, 40);
 
-    indic = lv_meter_add_arc(meter3, scale, 10, lv_color_green(), 0);
+    indic = lv_meter_add_arc(meter3, scale, 10, lv_palette_main(LV_PALETTE_GREEN), 0);
     lv_meter_set_indicator_start_value(meter3, indic, 40);
     lv_meter_set_indicator_end_value(meter3, indic, 60);
 
-    indic = lv_meter_add_scale_lines(meter3, scale, lv_color_green_darken_3(), lv_color_green_darken_3(), true, 0);
+    indic = lv_meter_add_scale_lines(meter3, scale, lv_palette_darken(LV_PALETTE_GREEN, 3), lv_palette_darken(LV_PALETTE_GREEN, 3), true, 0);
     lv_meter_set_indicator_start_value(meter3, indic, 40);
     lv_meter_set_indicator_end_value(meter3, indic, 60);
 
-    indic = lv_meter_add_needle_line(meter3, scale, 4, lv_color_grey_darken_4(), -25);
+    indic = lv_meter_add_needle_line(meter3, scale, 4, lv_palette_darken(LV_PALETTE_GREY, 4), -25);
 
     lv_obj_t * mbps_label = lv_label_create(meter3);
     lv_label_set_text(mbps_label, "-");
@@ -773,7 +773,7 @@ void shop_create(lv_obj_t * parent)
 
     lv_obj_t * hint = lv_label_create(panel1);
     lv_label_set_text(hint, LV_SYMBOL_UP" 17% growth this week");
-    lv_obj_set_style_text_color(hint, lv_color_green(), 0);
+    lv_obj_set_style_text_color(hint, lv_palette_main(LV_PALETTE_GREEN), 0);
 
     chart3 = lv_chart_create(panel1);
     lv_chart_set_axis_tick(chart3, LV_CHART_AXIS_PRIMARY_Y, 0, 0, 6, 1, true, 80);
@@ -813,11 +813,11 @@ void shop_create(lv_obj_t * parent)
 
 
         lv_obj_set_grid_dsc_array(panel1, grid1_col_dsc, grid1_row_dsc);
-        lv_obj_set_grid_cell(title, LV_GRID_START, 0, 1, LV_GRID_START, 0, 1);
-        lv_obj_set_grid_cell(date, LV_GRID_START, 0, 1, LV_GRID_START, 1, 1);
-        lv_obj_set_grid_cell(amount, LV_GRID_START, 0, 1, LV_GRID_START, 3, 1);
-        lv_obj_set_grid_cell(hint, LV_GRID_START, 0, 1, LV_GRID_START, 4, 1);
-        lv_obj_set_grid_cell(chart3, LV_GRID_STRETCH, 1, 1, LV_GRID_STRETCH, 0, 5);
+        lv_obj_set_grid_cell(title, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 0, 1);
+        lv_obj_set_grid_cell(date, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 1, 1);
+        lv_obj_set_grid_cell(amount, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 3, 1);
+        lv_obj_set_grid_cell(hint, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 4, 1);
+        lv_obj_set_grid_cell(chart3, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 0, 5);
     } else if(disp_size == DISP_MEDIUM) {
         static lv_coord_t grid1_col_dsc[] = {LV_GRID_FR(1), LV_GRID_FR(1), LV_GRID_TEMPLATE_LAST};
         static lv_coord_t grid1_row_dsc[] = {
@@ -831,11 +831,11 @@ void shop_create(lv_obj_t * parent)
         lv_obj_set_style_pad_column(chart3, LV_DPX(30), 0);
 
         lv_obj_set_grid_dsc_array(panel1, grid1_col_dsc, grid1_row_dsc);
-        lv_obj_set_grid_cell(title, LV_GRID_START, 0, 1, LV_GRID_CENTER, 0, 1);
-        lv_obj_set_grid_cell(date, LV_GRID_START, 1, 1, LV_GRID_CENTER, 0, 1);
-        lv_obj_set_grid_cell(amount, LV_GRID_START, 0, 1, LV_GRID_CENTER, 1, 1);
-        lv_obj_set_grid_cell(hint, LV_GRID_START, 1, 1, LV_GRID_CENTER, 1, 1);
-        lv_obj_set_grid_cell(chart3, LV_GRID_END, 0, 2, LV_GRID_STRETCH, 2, 1);
+        lv_obj_set_grid_cell(title, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_CENTER, 0, 1);
+        lv_obj_set_grid_cell(date, LV_GRID_ALIGN_START, 1, 1, LV_GRID_ALIGN_CENTER, 0, 1);
+        lv_obj_set_grid_cell(amount, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_CENTER, 1, 1);
+        lv_obj_set_grid_cell(hint, LV_GRID_ALIGN_START, 1, 1, LV_GRID_ALIGN_CENTER, 1, 1);
+        lv_obj_set_grid_cell(chart3, LV_GRID_ALIGN_END, 0, 2, LV_GRID_ALIGN_STRETCH, 2, 1);
     } else if(disp_size == DISP_SMALL) {
         static lv_coord_t grid1_col_dsc[] = {LV_GRID_FR(1), LV_GRID_TEMPLATE_LAST};
         static lv_coord_t grid1_row_dsc[] = {
@@ -852,11 +852,11 @@ void shop_create(lv_obj_t * parent)
         lv_chart_set_zoom_x(chart3, 512);
 
         lv_obj_set_grid_dsc_array(panel1, grid1_col_dsc, grid1_row_dsc);
-        lv_obj_set_grid_cell(title, LV_GRID_START, 0, 1, LV_GRID_START, 0, 1);
-        lv_obj_set_grid_cell(date, LV_GRID_START, 0, 1, LV_GRID_START, 1, 1);
-        lv_obj_set_grid_cell(amount, LV_GRID_START, 0, 1, LV_GRID_START, 2, 1);
-        lv_obj_set_grid_cell(hint, LV_GRID_START, 0, 1, LV_GRID_START, 3, 1);
-        lv_obj_set_grid_cell(chart3, LV_GRID_END, 0, 1, LV_GRID_START, 4, 1);
+        lv_obj_set_grid_cell(title, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 0, 1);
+        lv_obj_set_grid_cell(date, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 1, 1);
+        lv_obj_set_grid_cell(amount, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 2, 1);
+        lv_obj_set_grid_cell(hint, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 3, 1);
+        lv_obj_set_grid_cell(chart3, LV_GRID_ALIGN_END, 0, 1, LV_GRID_ALIGN_START, 4, 1);
     }
 
 
@@ -927,14 +927,14 @@ void shop_create(lv_obj_t * parent)
 
 static void color_changer_create(lv_obj_t * parent)
 {
-    static lv_color_palette_t palette[] = {
-            LV_COLOR_PALETTE_BLUE, LV_COLOR_PALETTE_GREEN, LV_COLOR_PALETTE_BLUE_GREY,  LV_COLOR_PALETTE_ORANGE,
-            LV_COLOR_PALETTE_RED, LV_COLOR_PALETTE_PURPLE, LV_COLOR_PALETTE_TEAL, _LV_COLOR_PALETTE_LAST };
+    static lv_palette_t palette[] = {
+            LV_PALETTE_BLUE, LV_PALETTE_GREEN, LV_PALETTE_BLUE_GREY,  LV_PALETTE_ORANGE,
+            LV_PALETTE_RED, LV_PALETTE_PURPLE, LV_PALETTE_TEAL, _LV_PALETTE_LAST };
 
     lv_obj_t * color_cont = lv_obj_create(parent);
     lv_obj_remove_style_all(color_cont);
     lv_obj_set_flex_flow(color_cont, LV_FLEX_FLOW_ROW);
-    lv_obj_set_flex_place(color_cont, LV_FLEX_PLACE_SPACE_EVENLY, LV_FLEX_PLACE_CENTER, LV_FLEX_PLACE_CENTER);
+    lv_obj_set_flex_align(color_cont, LV_FLEX_ALIGN_SPACE_EVENLY, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
     lv_obj_add_flag(color_cont, LV_OBJ_FLAG_FLOATING);
 
     lv_obj_set_style_bg_color(color_cont, lv_color_white(), 0);
@@ -948,9 +948,9 @@ static void color_changer_create(lv_obj_t * parent)
     lv_obj_align(color_cont, LV_ALIGN_BOTTOM_RIGHT, - LV_DPX(10),  - LV_DPX(10));
 
     uint32_t i;
-    for(i = 0; palette[i] != _LV_COLOR_PALETTE_LAST; i++) {
+    for(i = 0; palette[i] != _LV_PALETTE_LAST; i++) {
         lv_obj_t * c = lv_btn_create(color_cont);
-        lv_obj_set_style_bg_color(c, lv_color_get_palette_main(palette[i]), 0);
+        lv_obj_set_style_bg_color(c, lv_palette_main(palette[i]), 0);
         lv_obj_set_style_radius(c, LV_RADIUS_CIRCLE, 0);
         lv_obj_set_style_opa(c, LV_OPA_TRANSP, 0);
         lv_obj_set_size(c, 20, 20);
@@ -1042,13 +1042,13 @@ static void color_event_cb(lv_event_t * e)
         }
     }
     else if(code == LV_EVENT_CLICKED) {
-        lv_color_palette_t * palette_primary = lv_event_get_user_data(e);
-        lv_color_palette_t palette_secondary = (*palette_primary) + 3; /*Use an other palette as secondary*/
-        if(palette_secondary >= _LV_COLOR_PALETTE_LAST) palette_secondary = 0;
+        lv_palette_t * palette_primary = lv_event_get_user_data(e);
+        lv_palette_t palette_secondary = (*palette_primary) + 3; /*Use an other palette as secondary*/
+        if(palette_secondary >= _LV_PALETTE_LAST) palette_secondary = 0;
 
         lv_theme_default_init(NULL, *palette_primary, palette_secondary, false, font_small, font_normal, font_subtitle);
 
-        lv_color_t color = lv_color_get_palette_main(*palette_primary);
+        lv_color_t color = lv_palette_main(*palette_primary);
         lv_style_set_text_color(&style_icon, color);
         lv_chart_set_series_color(chart1, ser1, color);
         lv_chart_set_series_color(chart2, ser3, color);
@@ -1074,7 +1074,7 @@ static lv_obj_t * create_meter_box(lv_obj_t * parent, const char * title, const 
     lv_obj_set_size(bullet1, 13, 13);
     lv_obj_remove_style(bullet1, NULL, LV_PART_SCROLLBAR);
     lv_obj_add_style(bullet1, &style_bullet, 0);
-    lv_obj_set_style_bg_color(bullet1, lv_color_red(), 0);
+    lv_obj_set_style_bg_color(bullet1, lv_palette_main(LV_PALETTE_RED), 0);
     lv_obj_t * label1 = lv_label_create(cont);
     lv_label_set_text(label1, text1);
 
@@ -1082,7 +1082,7 @@ static lv_obj_t * create_meter_box(lv_obj_t * parent, const char * title, const 
     lv_obj_set_size(bullet2, 13, 13);
     lv_obj_remove_style(bullet2, NULL, LV_PART_SCROLLBAR);
     lv_obj_add_style(bullet2, &style_bullet, 0);
-    lv_obj_set_style_bg_color(bullet2, lv_color_blue(), 0);
+    lv_obj_set_style_bg_color(bullet2, lv_palette_main(LV_PALETTE_BLUE), 0);
     lv_obj_t * label2 = lv_label_create(cont);
     lv_label_set_text(label2, text2);
 
@@ -1090,7 +1090,7 @@ static lv_obj_t * create_meter_box(lv_obj_t * parent, const char * title, const 
     lv_obj_set_size(bullet3, 13, 13);
     lv_obj_remove_style(bullet3,  NULL, LV_PART_SCROLLBAR);
     lv_obj_add_style(bullet3, &style_bullet, 0);
-    lv_obj_set_style_bg_color(bullet3, lv_color_green(), 0);
+    lv_obj_set_style_bg_color(bullet3, lv_palette_main(LV_PALETTE_GREEN), 0);
     lv_obj_t * label3 = lv_label_create(cont);
     lv_label_set_text(label3, text3);
 
@@ -1099,27 +1099,27 @@ static lv_obj_t * create_meter_box(lv_obj_t * parent, const char * title, const 
         static lv_coord_t grid_row_dsc[] = {LV_GRID_CONTENT, LV_GRID_FR(1), LV_GRID_CONTENT, LV_GRID_CONTENT, LV_GRID_CONTENT, LV_GRID_FR(1), LV_GRID_TEMPLATE_LAST};
 
         lv_obj_set_grid_dsc_array(cont, grid_col_dsc, grid_row_dsc);
-        lv_obj_set_grid_cell(title_label, LV_GRID_START, 0, 4, LV_GRID_START, 0, 1);
-        lv_obj_set_grid_cell(meter, LV_GRID_START, 0, 1, LV_GRID_START, 1, 3);
-        lv_obj_set_grid_cell(bullet1, LV_GRID_START, 2, 1, LV_GRID_START, 2, 1);
-        lv_obj_set_grid_cell(bullet2, LV_GRID_START, 2, 1, LV_GRID_START, 3, 1);
-        lv_obj_set_grid_cell(bullet3, LV_GRID_START, 2, 1, LV_GRID_START, 4, 1);
-        lv_obj_set_grid_cell(label1, LV_GRID_STRETCH, 3, 1, LV_GRID_START, 2, 1);
-        lv_obj_set_grid_cell(label2, LV_GRID_STRETCH, 3, 1, LV_GRID_START, 3, 1);
-        lv_obj_set_grid_cell(label3, LV_GRID_STRETCH, 3, 1, LV_GRID_START, 4, 1);
+        lv_obj_set_grid_cell(title_label, LV_GRID_ALIGN_START, 0, 4, LV_GRID_ALIGN_START, 0, 1);
+        lv_obj_set_grid_cell(meter, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 1, 3);
+        lv_obj_set_grid_cell(bullet1, LV_GRID_ALIGN_START, 2, 1, LV_GRID_ALIGN_START, 2, 1);
+        lv_obj_set_grid_cell(bullet2, LV_GRID_ALIGN_START, 2, 1, LV_GRID_ALIGN_START, 3, 1);
+        lv_obj_set_grid_cell(bullet3, LV_GRID_ALIGN_START, 2, 1, LV_GRID_ALIGN_START, 4, 1);
+        lv_obj_set_grid_cell(label1, LV_GRID_ALIGN_STRETCH, 3, 1, LV_GRID_ALIGN_START, 2, 1);
+        lv_obj_set_grid_cell(label2, LV_GRID_ALIGN_STRETCH, 3, 1, LV_GRID_ALIGN_START, 3, 1);
+        lv_obj_set_grid_cell(label3, LV_GRID_ALIGN_STRETCH, 3, 1, LV_GRID_ALIGN_START, 4, 1);
     }
     else {
         static lv_coord_t grid_col_dsc[] = {LV_GRID_CONTENT, LV_GRID_FR(1), LV_GRID_TEMPLATE_LAST};
         static lv_coord_t grid_row_dsc[] = {LV_GRID_CONTENT, LV_GRID_CONTENT, LV_GRID_CONTENT, LV_GRID_CONTENT, LV_GRID_CONTENT, LV_GRID_TEMPLATE_LAST};
         lv_obj_set_grid_dsc_array(cont, grid_col_dsc, grid_row_dsc);
-        lv_obj_set_grid_cell(title_label, LV_GRID_START, 0, 2, LV_GRID_START, 0, 1);
-        lv_obj_set_grid_cell(meter, LV_GRID_START, 0, 2, LV_GRID_START, 1, 1);
-        lv_obj_set_grid_cell(bullet1, LV_GRID_START, 0, 1, LV_GRID_START, 2, 1);
-        lv_obj_set_grid_cell(bullet2, LV_GRID_START, 0, 1, LV_GRID_START, 3, 1);
-        lv_obj_set_grid_cell(bullet3, LV_GRID_START, 0, 1, LV_GRID_START, 4, 1);
-        lv_obj_set_grid_cell(label1, LV_GRID_STRETCH, 1, 1, LV_GRID_START, 2, 1);
-        lv_obj_set_grid_cell(label2, LV_GRID_STRETCH, 1, 1, LV_GRID_START, 3, 1);
-        lv_obj_set_grid_cell(label3, LV_GRID_STRETCH, 1, 1, LV_GRID_START, 4, 1);
+        lv_obj_set_grid_cell(title_label, LV_GRID_ALIGN_START, 0, 2, LV_GRID_ALIGN_START, 0, 1);
+        lv_obj_set_grid_cell(meter, LV_GRID_ALIGN_START, 0, 2, LV_GRID_ALIGN_START, 1, 1);
+        lv_obj_set_grid_cell(bullet1, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 2, 1);
+        lv_obj_set_grid_cell(bullet2, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 3, 1);
+        lv_obj_set_grid_cell(bullet3, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 4, 1);
+        lv_obj_set_grid_cell(label1, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_START, 2, 1);
+        lv_obj_set_grid_cell(label2, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_START, 3, 1);
+        lv_obj_set_grid_cell(label3, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_START, 4, 1);
     }
 
 
@@ -1139,21 +1139,21 @@ static lv_obj_t * create_shop_item(lv_obj_t * parent, const void * img_src, cons
 
     lv_obj_t * img = lv_img_create(cont);
     lv_img_set_src(img, img_src);
-    lv_obj_set_grid_cell(img, LV_GRID_START, 0, 1, LV_GRID_START, 0, 2);
+    lv_obj_set_grid_cell(img, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 0, 2);
 
     lv_obj_t * label;
     label = lv_label_create(cont);
     lv_label_set_text(label, name);
-    lv_obj_set_grid_cell(label, LV_GRID_START, 2, 1, LV_GRID_END, 0, 1);
+    lv_obj_set_grid_cell(label, LV_GRID_ALIGN_START, 2, 1, LV_GRID_ALIGN_END, 0, 1);
 
     label = lv_label_create(cont);
     lv_label_set_text(label, category);
     lv_obj_add_style(label, &style_text_muted, 0);
-    lv_obj_set_grid_cell(label, LV_GRID_START, 2, 1, LV_GRID_START, 1, 1);
+    lv_obj_set_grid_cell(label, LV_GRID_ALIGN_START, 2, 1, LV_GRID_ALIGN_START, 1, 1);
 
     label = lv_label_create(cont);
     lv_label_set_text(label, price);
-    lv_obj_set_grid_cell(label, LV_GRID_END, 3, 1, LV_GRID_END, 0, 1);
+    lv_obj_set_grid_cell(label, LV_GRID_ALIGN_END, 3, 1, LV_GRID_ALIGN_END, 0, 1);
 
     return cont;
 }
@@ -1195,7 +1195,7 @@ static void birthday_event_cb(lv_event_t * e)
                 lv_obj_add_flag(lv_layer_top(), LV_OBJ_FLAG_CLICKABLE);
                 calendar = lv_calendar_create(lv_layer_top());
                 lv_obj_set_style_bg_opa(lv_layer_top(), LV_OPA_50, 0);
-                lv_obj_set_style_bg_color(lv_layer_top(), lv_color_grey(), 0);
+                lv_obj_set_style_bg_color(lv_layer_top(), lv_palette_main(LV_PALETTE_GREY), 0);
                 if(disp_size == DISP_SMALL) lv_obj_set_size(calendar, 180, 180);
                 else if(disp_size == DISP_MEDIUM) lv_obj_set_size(calendar, 200, 200);
                 else  lv_obj_set_size(calendar, 300, 300);
@@ -1260,7 +1260,7 @@ static void slider_event_cb(lv_event_t * e)
 
             lv_draw_rect_dsc_t rect_dsc;
             lv_draw_rect_dsc_init(&rect_dsc);
-            rect_dsc.bg_color = lv_color_grey_darken_3();
+            rect_dsc.bg_color = lv_palette_darken(LV_PALETTE_GREY, 3);
             rect_dsc.radius = LV_DPX(5);
             lv_draw_rect(&bg_area, dsc->clip_area, &rect_dsc);
 
@@ -1424,19 +1424,19 @@ static void shop_chart_event_cb(lv_event_t * e)
 
             a.y1 = dsc->draw_area->y1;
             a.y2 = a.y1 + 4 + (devices[dsc->id] * h) / 100; /*+4 to overlap the radius*/
-            draw_rect_dsc.bg_color = lv_color_red();
+            draw_rect_dsc.bg_color = lv_palette_main(LV_PALETTE_RED);
             draw_rect_dsc.radius = 4;
             lv_draw_rect(&a, dsc->clip_area, &draw_rect_dsc);
 
             a.y1 = a.y2 - 4;                                    /*-4 to overlap the radius*/
             a.y2 = a.y1 +  (clothes[dsc->id] * h) / 100;
-            draw_rect_dsc.bg_color = lv_color_blue();
+            draw_rect_dsc.bg_color = lv_palette_main(LV_PALETTE_BLUE);
             draw_rect_dsc.radius = 0;
             lv_draw_rect(&a, dsc->clip_area, &draw_rect_dsc);
 
             a.y1 = a.y2;
             a.y2 = a.y1 + (services[dsc->id] * h) / 100;
-            draw_rect_dsc.bg_color = lv_color_green();
+            draw_rect_dsc.bg_color = lv_palette_main(LV_PALETTE_GREEN);
             lv_draw_rect(&a, dsc->clip_area, &draw_rect_dsc);
         }
     }

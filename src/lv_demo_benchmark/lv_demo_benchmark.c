@@ -759,14 +759,14 @@ static void scene_next_task_cb(lv_timer_t * timer)
 //        static lv_style_t style_cell_title;
 //
 //        lv_style_init(&style_cell_title);
-//        lv_style_set_bg_color(&style_cell_title, LV_STATE_DEFAULT, lv_color_grey());
+//        lv_style_set_bg_color(&style_cell_title, LV_STATE_DEFAULT, lv_palette_main(LV_PALETTE_GREY));
 //        lv_style_set_bg_opa(&style_cell_title, LV_STATE_DEFAULT, LV_OPA_50);
 //
 //        lv_style_init(&style_cell_slow);
 //        lv_style_set_text_color(&style_cell_slow, LV_STATE_DEFAULT, LV_COLOR_ORANGE);
 //
 //        lv_style_init(&style_cell_very_slow);
-//        lv_style_set_text_color(&style_cell_very_slow, LV_STATE_DEFAULT, lv_color_red());
+//        lv_style_set_text_color(&style_cell_very_slow, LV_STATE_DEFAULT, lv_palette_main(LV_PALETTE_RED));
 
 //        lv_obj_add_style(table, LV_TABLE_PART_CELL2, &style_cell_slow);
 //        lv_obj_add_style(table, LV_TABLE_PART_CELL3, &style_cell_very_slow);
