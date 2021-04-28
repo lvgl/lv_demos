@@ -746,7 +746,7 @@ static void scene_next_task_cb(lv_timer_t * timer)
         subtitle = lv_label_create(lv_scr_act());
         lv_label_set_text_fmt(subtitle, "Opa. speed: %d%%", opa_speed_pct);
 
-        lv_coord_t w = lv_obj_get_width_fit(lv_scr_act()) - 10;
+        lv_coord_t w = lv_obj_get_content_width(lv_scr_act()) - 10;
         lv_obj_t * table = lv_table_create(lv_scr_act());
 //        lv_obj_clean_style_list(table, LV_PART_MAIN);
         lv_table_set_col_cnt(table, 2);
@@ -759,14 +759,14 @@ static void scene_next_task_cb(lv_timer_t * timer)
 //        static lv_style_t style_cell_title;
 //
 //        lv_style_init(&style_cell_title);
-//        lv_style_set_bg_color(&style_cell_title, LV_STATE_DEFAULT, lv_color_grey());
+//        lv_style_set_bg_color(&style_cell_title, LV_STATE_DEFAULT, lv_palette_main(LV_PALETTE_GREY));
 //        lv_style_set_bg_opa(&style_cell_title, LV_STATE_DEFAULT, LV_OPA_50);
 //
 //        lv_style_init(&style_cell_slow);
 //        lv_style_set_text_color(&style_cell_slow, LV_STATE_DEFAULT, LV_COLOR_ORANGE);
 //
 //        lv_style_init(&style_cell_very_slow);
-//        lv_style_set_text_color(&style_cell_very_slow, LV_STATE_DEFAULT, lv_color_red());
+//        lv_style_set_text_color(&style_cell_very_slow, LV_STATE_DEFAULT, lv_palette_main(LV_PALETTE_RED));
 
 //        lv_obj_add_style(table, LV_TABLE_PART_CELL2, &style_cell_slow);
 //        lv_obj_add_style(table, LV_TABLE_PART_CELL3, &style_cell_very_slow);
