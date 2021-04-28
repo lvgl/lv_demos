@@ -58,7 +58,6 @@ static lv_obj_t * calendar;
 static lv_obj_t * calendar_header;
 static lv_style_t style_text_muted;
 static lv_style_t style_title;
-static lv_style_t style_subtitle;
 static lv_style_t style_icon;
 static lv_style_t style_bullet;
 
@@ -75,11 +74,8 @@ static lv_chart_series_t * ser2;
 static lv_chart_series_t * ser3;
 static lv_chart_series_t * ser4;
 
-static const lv_font_t * font_title;
-static const lv_font_t * font_icon;
-static const lv_font_t * font_subtitle;
+static const lv_font_t * font_large;
 static const lv_font_t * font_normal;
-static const lv_font_t * font_small;
 
 static uint32_t session_desktop = 1000;
 static uint32_t session_tablet = 1000;
@@ -102,39 +98,31 @@ void lv_demo_widgets(void)
     lv_coord_t tab_h;
     if(disp_size == DISP_LARGE) {
         tab_h = 70;
-        font_title     =  &lv_font_montserrat_28;
-        font_icon      =  &lv_font_montserrat_24;
-        font_subtitle  =  &lv_font_montserrat_24;
+        font_large     =  &lv_font_montserrat_24;
         font_normal    =  &lv_font_montserrat_16;
-        font_small     = &lv_font_montserrat_12;
     } else if(disp_size == DISP_MEDIUM) {
-        tab_h = 60;
-        font_title     =  &lv_font_montserrat_22;
-        font_icon      =  &lv_font_montserrat_18;
-        font_subtitle  =  &lv_font_montserrat_18;
+        tab_h = 45;
+        font_large     =  &lv_font_montserrat_20;
         font_normal    =  &lv_font_montserrat_14;
-        font_small     = &lv_font_montserrat_10;
     } else { /* disp_size == DISP_SMALL */
-        tab_h = 50;
-        font_title     =  &lv_font_montserrat_22;
-        font_icon      =  &lv_font_montserrat_16;
-        font_subtitle  =  &lv_font_montserrat_16;
+        tab_h = 45;
+        font_large     =  &lv_font_montserrat_18;
         font_normal    =  &lv_font_montserrat_12;
-        font_small     = &lv_font_montserrat_10;
     }
+
+#if LV_USE_THEME_DEFAULT
+    lv_theme_default_init(NULL, lv_palette_main(LV_PALETTE_BLUE), lv_palette_main(LV_PALETTE_RED), LV_THEME_DEFAULT_DARK, font_normal);
+#endif
 
     lv_style_init(&style_text_muted);
     lv_style_set_text_opa(&style_text_muted, LV_OPA_50);
 
     lv_style_init(&style_title);
-    lv_style_set_text_font(&style_title, font_title);
-
-    lv_style_init(&style_subtitle);
-    lv_style_set_text_font(&style_subtitle, font_subtitle);
+    lv_style_set_text_font(&style_title, font_large);
 
     lv_style_init(&style_icon);
     lv_style_set_text_color(&style_icon, lv_theme_get_color_primary(NULL));
-    lv_style_set_text_font(&style_icon, font_icon);
+    lv_style_set_text_font(&style_icon, font_large);
 
     lv_style_init(&style_bullet);
     lv_style_set_border_width(&style_bullet, 0);
@@ -153,7 +141,7 @@ void lv_demo_widgets(void)
         lv_obj_align(logo, LV_ALIGN_LEFT_MID, -LV_HOR_RES / 2 + 25, 0);
 
         lv_obj_t * label = lv_label_create(tab_btns);
-        lv_obj_add_style(label, &style_subtitle, 0);
+        lv_obj_add_style(label, &style_title, 0);
         lv_label_set_text(label, "LVGL v8");
         lv_obj_align_to(label, logo, LV_ALIGN_OUT_RIGHT_TOP, 10, 0);
 
@@ -234,7 +222,7 @@ static void profile_create(lv_obj_t * parent)
 
     lv_obj_t * panel2_title = lv_label_create(panel2);
     lv_label_set_text(panel2_title, "Your profile");
-    lv_obj_add_style(panel2_title, &style_subtitle, 0);
+    lv_obj_add_style(panel2_title, &style_title, 0);
 
     lv_obj_t * user_name_label = lv_label_create(panel2);
     lv_label_set_text(user_name_label, "User name");
@@ -274,7 +262,7 @@ static void profile_create(lv_obj_t * parent)
     panel3 = lv_obj_create(parent);
     lv_obj_t * panel3_title = lv_label_create(panel3);
     lv_label_set_text(panel3_title, "Your skills");
-    lv_obj_add_style(panel3_title, &style_subtitle, 0);
+    lv_obj_add_style(panel3_title, &style_title, 0);
 
     lv_obj_t * experience_label = lv_label_create(panel3);
     lv_label_set_text(experience_label, "Experience");
@@ -518,7 +506,7 @@ static void analytics_create(lv_obj_t * parent)
 
     lv_obj_t * title = lv_label_create(chart1_cont);
     lv_label_set_text(title, "Unique visitors");
-    lv_obj_add_style(title, &style_subtitle, 0);
+    lv_obj_add_style(title, &style_title, 0);
     lv_obj_set_grid_cell(title, LV_GRID_ALIGN_START, 0, 2, LV_GRID_ALIGN_START, 0, 1);
 
     chart1 = lv_chart_create(chart1_cont);
@@ -562,7 +550,7 @@ static void analytics_create(lv_obj_t * parent)
 
     title = lv_label_create(chart2_cont);
     lv_label_set_text(title, "Monthly revenue");
-    lv_obj_add_style(title, &style_subtitle, 0);
+    lv_obj_add_style(title, &style_title, 0);
     lv_obj_set_grid_cell(title, LV_GRID_ALIGN_START, 0, 2, LV_GRID_ALIGN_START, 0, 1);
 
     chart2 = lv_chart_create(chart2_cont);
@@ -756,12 +744,12 @@ void shop_create(lv_obj_t * parent)
     lv_obj_set_flex_flow(parent, LV_FLEX_FLOW_ROW_WRAP);
 
     lv_obj_t * panel1 = lv_obj_create(parent);
-    lv_obj_set_size(panel1, LV_PCT(100), LV_SIZE_CONTENT);
+    lv_obj_set_size(panel1, lv_pct(100), LV_SIZE_CONTENT);
     lv_obj_set_style_pad_bottom(panel1, 30, 0);
 
     lv_obj_t * title = lv_label_create(panel1);
     lv_label_set_text(title, "Monthly Summary");
-    lv_obj_add_style(title, &style_subtitle, 0);
+    lv_obj_add_style(title, &style_title, 0);
 
     lv_obj_t * date = lv_label_create(panel1);
     lv_label_set_text(date, "8-15 July, 2021");
@@ -808,7 +796,7 @@ void shop_create(lv_obj_t * parent)
             LV_GRID_TEMPLATE_LAST
         };
 
-        lv_obj_set_size(chart3, LV_PCT(100), LV_PCT(100));
+        lv_obj_set_size(chart3, lv_pct(100), lv_pct(100));
         lv_obj_set_style_pad_column(chart3, LV_DPX(30), 0);
 
 
@@ -848,7 +836,8 @@ void shop_create(lv_obj_t * parent)
         };
 
         lv_obj_set_width(chart3, LV_PCT(95));
-        lv_obj_set_height(chart3, LV_PCT(95));
+        lv_obj_set_height(chart3, LV_VER_RES - 70);
+        lv_obj_set_style_max_height(chart3, 300, 0);
         lv_chart_set_zoom_x(chart3, 512);
 
         lv_obj_set_grid_dsc_array(panel1, grid1_col_dsc, grid1_row_dsc);
@@ -858,7 +847,6 @@ void shop_create(lv_obj_t * parent)
         lv_obj_set_grid_cell(hint, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 3, 1);
         lv_obj_set_grid_cell(chart3, LV_GRID_ALIGN_END, 0, 1, LV_GRID_ALIGN_START, 4, 1);
     }
-
 
     lv_obj_t * list = lv_obj_create(parent);
     if(disp_size == DISP_SMALL) {
@@ -875,7 +863,7 @@ void shop_create(lv_obj_t * parent)
 
     title = lv_label_create(list);
     lv_label_set_text(title, "Top products");
-    lv_obj_add_style(title, &style_subtitle, 0);
+    lv_obj_add_style(title, &style_title, 0);
 
     LV_IMG_DECLARE(img_clothes);
     create_shop_item(list, &img_clothes, "Blue jeans", "Clothes", "$722");
@@ -898,7 +886,7 @@ void shop_create(lv_obj_t * parent)
 
     title = lv_label_create(notifications);
     lv_label_set_text(title, "Notification");
-    lv_obj_add_style(title, &style_subtitle, 0);
+    lv_obj_add_style(title, &style_title, 0);
 
     lv_obj_t * cb;
     cb = lv_checkbox_create(notifications);
@@ -1046,7 +1034,7 @@ static void color_event_cb(lv_event_t * e)
         lv_palette_t palette_secondary = (*palette_primary) + 3; /*Use an other palette as secondary*/
         if(palette_secondary >= _LV_PALETTE_LAST) palette_secondary = 0;
 
-        lv_theme_default_init(NULL, *palette_primary, palette_secondary, false, font_small, font_normal, font_subtitle);
+        lv_theme_default_init(NULL, lv_palette_main(*palette_primary), lv_palette_main(palette_secondary), LV_THEME_DEFAULT_DARK, font_normal);
 
         lv_color_t color = lv_palette_main(*palette_primary);
         lv_style_set_text_color(&style_icon, color);
@@ -1063,7 +1051,7 @@ static lv_obj_t * create_meter_box(lv_obj_t * parent, const char * title, const 
 
     lv_obj_t * title_label = lv_label_create(cont);
     lv_label_set_text(title_label, title);
-    lv_obj_add_style(title_label, &style_subtitle, 0);
+    lv_obj_add_style(title_label, &style_title, 0);
 
     lv_obj_t * meter = lv_meter_create(cont);
     lv_obj_remove_style(meter, NULL, LV_PART_MAIN);
@@ -1166,7 +1154,9 @@ static void ta_event_cb(lv_event_t * e)
     if(code == LV_EVENT_FOCUSED) {
         if(lv_indev_get_type(lv_indev_get_act()) != LV_INDEV_TYPE_KEYPAD) {
             lv_keyboard_set_textarea(kb, ta);
-            lv_obj_set_height(tv, LV_VER_RES / 2);
+            lv_obj_set_style_max_height(kb, LV_HOR_RES * 2 / 3, 0);
+            lv_obj_update_layout(tv);   /*Be sure the sizes are recalculated*/
+            lv_obj_set_height(tv, LV_VER_RES - lv_obj_get_height(kb));
             lv_obj_clear_flag(kb, LV_OBJ_FLAG_HIDDEN);
             lv_obj_scroll_to_view_recursive(ta, LV_ANIM_OFF);
         }

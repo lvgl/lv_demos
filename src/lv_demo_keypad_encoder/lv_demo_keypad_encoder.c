@@ -167,7 +167,7 @@ static void text_input_create(lv_obj_t * parent)
 static void msgbox_create(void)
 {
     static const char * btns[] = {"Ok", "Cancel", ""};
-    lv_obj_t * mbox = lv_msgbox_create("Hi", "Welcome to the keyboard and encoder demo", btns, false);
+    lv_obj_t * mbox = lv_msgbox_create(NULL, "Hi", "Welcome to the keyboard and encoder demo", btns, false);
     lv_obj_add_event_cb(mbox, msgbox_event_cb, LV_EVENT_ALL, NULL);
     lv_group_focus_obj(lv_msgbox_get_btns(mbox));
 #if LV_EX_MOUSEWHEEL
