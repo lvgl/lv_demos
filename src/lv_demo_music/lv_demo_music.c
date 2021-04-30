@@ -96,9 +96,9 @@ static const uint32_t time_list[] = {
 
 void lv_demo_music(void)
 {
-    lv_obj_set_style_local_bg_color(lv_scr_act(), LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x343247));
+    lv_obj_set_style_bg_color(lv_scr_act(), lv_color_hex(0x343247), 0);
 
-    list = _lv_demo_music_list_create(lv_scr_act());
+//    list = _lv_demo_music_list_create(lv_scr_act());
     ctrl = _lv_demo_music_main_create(lv_scr_act());
 
 #if LV_DEMO_MUSIC_AUTO_PLAY
