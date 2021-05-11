@@ -187,11 +187,11 @@ void lv_demo_widgets(void)
 
     color_changer_create(tv);
 }
-lv_obj_t * panel3;
+
 /**********************
  *   STATIC FUNCTIONS
  **********************/
-//
+
 static void profile_create(lv_obj_t * parent)
 {
     lv_obj_t * panel1 = lv_obj_create(parent);
@@ -286,7 +286,7 @@ static void profile_create(lv_obj_t * parent)
     lv_obj_add_event_cb(birthdate, birthday_event_cb, LV_EVENT_ALL, NULL);
 
     /*Create the third panel*/
-    panel3 = lv_obj_create(parent);
+    lv_obj_t * panel3 = lv_obj_create(parent);
     lv_obj_t * panel3_title = lv_label_create(panel3);
     lv_label_set_text(panel3_title, "Your skills");
     lv_obj_add_style(panel3_title, &style_title, 0);
@@ -842,6 +842,7 @@ void shop_create(lv_obj_t * parent)
                 LV_GRID_TEMPLATE_LAST
         };
 
+        lv_obj_update_layout(panel1);
         lv_obj_set_width(chart3, lv_obj_get_content_width(panel1) - 20);
         lv_obj_set_style_pad_column(chart3, LV_DPX(30), 0);
 
@@ -1116,12 +1117,12 @@ static lv_obj_t * create_meter_box(lv_obj_t * parent, const char * title, const 
         lv_obj_set_grid_dsc_array(cont, grid_col_dsc, grid_row_dsc);
         lv_obj_set_grid_cell(title_label, LV_GRID_ALIGN_START, 0, 4, LV_GRID_ALIGN_START, 0, 1);
         lv_obj_set_grid_cell(meter, LV_GRID_ALIGN_START, 0, 1, LV_GRID_ALIGN_START, 1, 3);
-        lv_obj_set_grid_cell(bullet1, LV_GRID_ALIGN_START, 2, 1, LV_GRID_ALIGN_START, 2, 1);
-        lv_obj_set_grid_cell(bullet2, LV_GRID_ALIGN_START, 2, 1, LV_GRID_ALIGN_START, 3, 1);
-        lv_obj_set_grid_cell(bullet3, LV_GRID_ALIGN_START, 2, 1, LV_GRID_ALIGN_START, 4, 1);
-        lv_obj_set_grid_cell(label1, LV_GRID_ALIGN_STRETCH, 3, 1, LV_GRID_ALIGN_START, 2, 1);
-        lv_obj_set_grid_cell(label2, LV_GRID_ALIGN_STRETCH, 3, 1, LV_GRID_ALIGN_START, 3, 1);
-        lv_obj_set_grid_cell(label3, LV_GRID_ALIGN_STRETCH, 3, 1, LV_GRID_ALIGN_START, 4, 1);
+        lv_obj_set_grid_cell(bullet1, LV_GRID_ALIGN_START, 2, 1, LV_GRID_ALIGN_CENTER, 2, 1);
+        lv_obj_set_grid_cell(bullet2, LV_GRID_ALIGN_START, 2, 1, LV_GRID_ALIGN_CENTER, 3, 1);
+        lv_obj_set_grid_cell(bullet3, LV_GRID_ALIGN_START, 2, 1, LV_GRID_ALIGN_CENTER, 4, 1);
+        lv_obj_set_grid_cell(label1, LV_GRID_ALIGN_STRETCH, 3, 1, LV_GRID_ALIGN_CENTER, 2, 1);
+        lv_obj_set_grid_cell(label2, LV_GRID_ALIGN_STRETCH, 3, 1, LV_GRID_ALIGN_CENTER, 3, 1);
+        lv_obj_set_grid_cell(label3, LV_GRID_ALIGN_STRETCH, 3, 1, LV_GRID_ALIGN_CENTER, 4, 1);
     }
     else {
         static lv_coord_t grid_col_dsc[] = {LV_GRID_CONTENT, LV_GRID_FR(1), LV_GRID_TEMPLATE_LAST};
@@ -1313,6 +1314,7 @@ static void chart_event_cb(lv_event_t * e)
 
         /*Add the faded area before the lines are drawn */
         else if(dsc->part == LV_PART_ITEMS) {
+#if LV_DRAW_COMPLEX
             /*Add  a line mask that keeps the area below the line*/
             if(dsc->p1 && dsc->p2) {
                 lv_draw_mask_line_param_t line_mask_param;
@@ -1345,6 +1347,8 @@ static void chart_event_cb(lv_event_t * e)
                 lv_draw_mask_remove_id(line_mask_id);
                 lv_draw_mask_remove_id(fade_mask_id);
             }
+#endif
+
 
             const lv_chart_series_t * ser = dsc->sub_part_ptr;
 
@@ -1553,8 +1557,6 @@ static void meter3_anim_cb(void * var, int32_t v)
 
     lv_obj_t * label = lv_obj_get_child(meter3, 0);
     lv_label_set_text_fmt(label, "%d", v);
-    lv_obj_t * unit = lv_obj_get_child(meter3, 1);
-    lv_obj_align_to(unit, label, LV_ALIGN_OUT_RIGHT_BOTTOM, 10, 0);
 }
 
 #endif
