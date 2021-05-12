@@ -134,13 +134,13 @@ static void selectors_create(lv_obj_t * parent)
         lv_obj_set_height(list, lv_obj_get_content_height(parent));
     }
 
-    obj = lv_list_add_btn(list, LV_SYMBOL_OK, "Apply", NULL);
-    obj = lv_list_add_btn(list, LV_SYMBOL_CLOSE, "Close", NULL);
-    obj = lv_list_add_btn(list, LV_SYMBOL_EYE_OPEN, "Show", NULL);
-    obj = lv_list_add_btn(list, LV_SYMBOL_EYE_CLOSE, "Hide", NULL);
-    obj= lv_list_add_btn(list, LV_SYMBOL_TRASH, "Delete", NULL);
-    obj = lv_list_add_btn(list, LV_SYMBOL_COPY, "Copy", NULL);
-    obj = lv_list_add_btn(list, LV_SYMBOL_PASTE, "Paste", NULL);
+    lv_list_add_btn(list, LV_SYMBOL_OK, "Apply");
+    lv_list_add_btn(list, LV_SYMBOL_CLOSE, "Close");
+    lv_list_add_btn(list, LV_SYMBOL_EYE_OPEN, "Show");
+    lv_list_add_btn(list, LV_SYMBOL_EYE_CLOSE, "Hide");
+    lv_list_add_btn(list, LV_SYMBOL_TRASH, "Delete");
+    lv_list_add_btn(list, LV_SYMBOL_COPY, "Copy");
+    lv_list_add_btn(list, LV_SYMBOL_PASTE, "Paste");
 }
 
 static void text_input_create(lv_obj_t * parent)
