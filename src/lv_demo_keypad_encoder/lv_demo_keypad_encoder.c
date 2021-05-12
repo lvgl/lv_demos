@@ -170,6 +170,7 @@ static void msgbox_create(void)
     lv_obj_t * mbox = lv_msgbox_create(NULL, "Hi", "Welcome to the keyboard and encoder demo", btns, false);
     lv_obj_add_event_cb(mbox, msgbox_event_cb, LV_EVENT_ALL, NULL);
     lv_group_focus_obj(lv_msgbox_get_btns(mbox));
+    lv_obj_add_state(lv_msgbox_get_btns(mbox), LV_STATE_FOCUS_KEY);
 #if LV_EX_MOUSEWHEEL
     lv_group_set_editing(g, true);
 #endif
@@ -181,7 +182,6 @@ static void msgbox_create(void)
     lv_obj_set_style_bg_opa(bg, LV_OPA_70, 0);
     lv_obj_set_style_bg_color(bg, lv_palette_main(LV_PALETTE_GREY), 0);
 }
-
 
 static void msgbox_event_cb(lv_event_t * e)
 {
