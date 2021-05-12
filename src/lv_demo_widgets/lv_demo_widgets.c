@@ -1256,7 +1256,7 @@ static void slider_event_cb(lv_event_t * e)
         lv_coord_t *s = lv_event_get_param(e);
         *s = LV_MAX(*s, 60);
     } else if(code == LV_EVENT_DRAW_PART_END) {
-        lv_obj_draw_dsc_t * dsc = lv_event_get_param(e);
+        lv_obj_draw_part_dsc_t * dsc = lv_event_get_param(e);
         if(dsc->part == LV_PART_KNOB && lv_obj_has_state(obj, LV_STATE_PRESSED)) {
             char buf[8];
             lv_snprintf(buf, sizeof(buf), "%d", lv_slider_get_value(e->target));
@@ -1300,7 +1300,7 @@ static void chart_event_cb(lv_event_t * e)
         lv_obj_invalidate(obj); /*To make the value boxes visible*/
     }
     else if(code == LV_EVENT_DRAW_PART_BEGIN) {
-        lv_obj_draw_dsc_t * dsc = lv_event_get_param(e);
+        lv_obj_draw_part_dsc_t * dsc = lv_event_get_param(e);
         /*Set the markers' text*/
         if(dsc->part == LV_PART_TICKS && dsc->id == LV_CHART_AXIS_X) {
             if(lv_chart_get_type(e->target) == LV_CHART_TYPE_BAR) {
@@ -1416,7 +1416,7 @@ static void shop_chart_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
     if(code == LV_EVENT_DRAW_PART_BEGIN) {
-        lv_obj_draw_dsc_t * dsc = lv_event_get_param(e);
+        lv_obj_draw_part_dsc_t * dsc = lv_event_get_param(e);
         /*Set the markers' text*/
         if(dsc->part == LV_PART_TICKS && dsc->id == LV_CHART_AXIS_X) {
             const char * month[] = {"Jan", "Febr", "March", "Apr", "May", "Jun", "July", "Aug", "Sept", "Oct", "Nov", "Dec"};
@@ -1427,7 +1427,7 @@ static void shop_chart_event_cb(lv_event_t * e)
         }
     }
     if(code == LV_EVENT_DRAW_PART_END) {
-        lv_obj_draw_dsc_t * dsc = lv_event_get_param(e);
+        lv_obj_draw_part_dsc_t * dsc = lv_event_get_param(e);
         /*Add the faded area before the lines are drawn */
         if(dsc->part == LV_PART_ITEMS) {
             static const uint32_t devices[10] = {32, 43, 21, 56, 29, 36, 19, 25, 62, 35};
