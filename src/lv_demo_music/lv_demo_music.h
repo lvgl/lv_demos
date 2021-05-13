@@ -28,7 +28,7 @@ extern "C" {
 //#define LV_DEMO_MUSIC_LANDSCAPE    (LV_HOR_RES_MAX > LV_VER_RES_MAX ? 1 : 0)
 //#define LV_DEMO_MUSIC_PORTRAIT     (!LV_DEMO_MUSIC_LANDSCAPE)
 //#endif
-#define LV_DEMO_LIST_CTRL_OVERLAP  60
+#define LV_DEMO_MUSIC_HANDLE_SIZE  20
 
 /**********************
  *      TYPEDEFS

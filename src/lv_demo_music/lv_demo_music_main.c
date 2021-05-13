@@ -18,7 +18,7 @@
  *      DEFINES
  *********************/
 #define ACTIVE_TRACK_CNT       3
-#define INTRO_TIME      2000
+#define INTRO_TIME      100
 #define BAR_COLOR1      lv_color_hex(0xe9dbfc)
 #define BAR_COLOR2      lv_color_hex(0x6f8af6)
 #define BAR_COLOR3      lv_color_hex(0xffffff)
@@ -76,9 +76,9 @@ static uint32_t spectrum_lane_ofs_start = 0;
 static uint32_t bar_rot = 0;
 static uint32_t time;
 static lv_timer_t *  sec_counter_timer;
-static lv_font_t * font_small;
-static lv_font_t * font_medium;
-static lv_font_t * font_large;
+static const lv_font_t * font_small;
+static const lv_font_t * font_medium;
+static const lv_font_t * font_large;
 static uint32_t track_id;
 static bool playing;
 static bool start_anim;
@@ -96,7 +96,6 @@ static const uint16_t rnd_array[30] = {994, 285, 553, 11, 792, 707, 966, 641, 85
  *   GLOBAL FUNCTIONS
  **********************/
 
-#define HANDLE_SIZE     30
 lv_obj_t * _lv_demo_music_main_create(lv_obj_t * parent)
 {
     LV_FONT_DECLARE(lv_demo_music_font_16_bold);
@@ -115,7 +114,7 @@ lv_obj_t * _lv_demo_music_main_create(lv_obj_t * parent)
 
     /*Arrange the content into a grid*/
     static const lv_coord_t grid_cols[] = {LV_GRID_FR(1), LV_GRID_TEMPLATE_LAST};
-    static const lv_coord_t grid_rows[] = {HANDLE_SIZE,     /*Spacing*/
+    static const lv_coord_t grid_rows[] = {LV_DEMO_MUSIC_HANDLE_SIZE,     /*Spacing*/
                                            LV_GRID_CONTENT, /*Title box*/
                                            LV_GRID_FR(1),   /*Spacer*/
                                            LV_GRID_CONTENT, /*Icon box*/
@@ -124,7 +123,7 @@ lv_obj_t * _lv_demo_music_main_create(lv_obj_t * parent)
                                            LV_GRID_FR(1),   /*Spacer*/
                                            LV_GRID_CONTENT, /*Control box*/
                                            LV_GRID_CONTENT, /*Handle box*/
-                                           HANDLE_SIZE,     /*Spacing*/
+                                           LV_DEMO_MUSIC_HANDLE_SIZE,     /*Spacing*/
                                            LV_GRID_TEMPLATE_LAST};
 
     lv_obj_set_grid_dsc_array(cont, grid_cols, grid_rows);
@@ -137,8 +136,6 @@ lv_obj_t * _lv_demo_music_main_create(lv_obj_t * parent)
 
     sec_counter_timer = lv_timer_create(timer_cb, 1000, NULL);
     lv_timer_pause(sec_counter_timer);
-
-
 
     /*Animate in the content after the intro time*/
     lv_anim_t a;
@@ -153,7 +150,7 @@ lv_obj_t * _lv_demo_music_main_create(lv_obj_t * parent)
 
     uint32_t i;
     lv_anim_set_exec_cb(&a, start_anim_cb);
-    for(i = 0; i < 20; i++) {
+    for(i = 0; i < BAR_CNT; i++) {
         lv_anim_set_values(&a, LV_HOR_RES, 5);
         lv_anim_set_delay(&a, INTRO_TIME - 200 + rnd_array[i] % 200);
         lv_anim_set_time(&a, 2500 + rnd_array[i] % 500);
@@ -161,8 +158,6 @@ lv_obj_t * _lv_demo_music_main_create(lv_obj_t * parent)
         lv_anim_start(&a);
     }
 
-//    lv_obj_fade_in(wave_top, 1000, INTRO_TIME + 1000);
-//    lv_obj_fade_in(wave_bottom, 1000, INTRO_TIME + 1000);
     lv_obj_fade_in(title_box, 1000, INTRO_TIME + 1000);
     lv_obj_fade_in(icon_box, 1000, INTRO_TIME + 1000);
     lv_obj_fade_in(ctrl_box, 1000, INTRO_TIME + 1000);
@@ -184,12 +179,12 @@ lv_obj_t * _lv_demo_music_main_create(lv_obj_t * parent)
     lv_obj_t * logo = lv_img_create(lv_scr_act());
     lv_img_set_src(logo, &img_lv_demo_music_logo);
     lv_obj_move_foreground(logo);
-//
+
 #if LV_DEMO_MUSIC_SQUARE == 0
     lv_obj_t * title = lv_label_create(lv_scr_act());
     lv_label_set_text(title, "LVGL Demo\nMusic player");
     lv_obj_set_style_text_align(title, LV_TEXT_ALIGN_CENTER, 0);
-    lv_obj_set_style_text_font(title, &lv_font_montserrat_30, 0);
+    lv_obj_set_style_text_font(title, font_large, 0);
     lv_obj_set_style_text_line_space(title, 8, 0);
     lv_obj_fade_out(title, 300, INTRO_TIME);
     lv_obj_align_to(logo, spectrum_obj, LV_ALIGN_CENTER, 0, 0);
@@ -288,8 +283,8 @@ static lv_obj_t * create_cont(lv_obj_t * parent)
 
     /*Create a container for the player*/
     lv_obj_t * player = lv_obj_create(main_cont);
-    lv_obj_set_y(player, - HANDLE_SIZE);
-    lv_obj_set_size(player, LV_HOR_RES, LV_VER_RES + HANDLE_SIZE * 2);
+    lv_obj_set_y(player, - LV_DEMO_MUSIC_HANDLE_SIZE);
+    lv_obj_set_size(player, LV_HOR_RES, LV_VER_RES + LV_DEMO_MUSIC_HANDLE_SIZE * 2);
 
     lv_obj_set_style_bg_color(player, lv_color_hex(0xffffff), 0);
     lv_obj_set_style_border_width(player, 0, 0);
@@ -300,8 +295,8 @@ static lv_obj_t * create_cont(lv_obj_t * parent)
      * It is used only to snap it to center.*/
     lv_obj_t * placeholder = lv_obj_create(main_cont);
     lv_obj_remove_style_all(placeholder);
-    lv_obj_set_size(placeholder, lv_pct(100), LV_VER_RES -2 *  HANDLE_SIZE);
-    lv_obj_set_y(placeholder, LV_VER_RES + HANDLE_SIZE);
+    lv_obj_set_size(placeholder, lv_pct(100), LV_VER_RES -2 *  LV_DEMO_MUSIC_HANDLE_SIZE);
+    lv_obj_set_y(placeholder, LV_VER_RES + LV_DEMO_MUSIC_HANDLE_SIZE);
     lv_obj_clear_flag(placeholder, LV_OBJ_FLAG_CLICKABLE);
 
     return player;
@@ -512,11 +507,11 @@ static void track_load(uint32_t id)
     bool next = false;
     if((track_id+1) % ACTIVE_TRACK_CNT == id) next = true;
 
-//    _lv_demo_music_list_btn_check(track_id, false);
+    _lv_demo_music_list_btn_check(track_id, false);
 
     track_id = id;
 
-//    _lv_demo_music_list_btn_check(id, true);
+    _lv_demo_music_list_btn_check(id, true);
 
     lv_label_set_text(title_label, _lv_demo_music_get_title(track_id));
     lv_label_set_text(artist_label, _lv_demo_music_get_artist(track_id));
@@ -777,11 +772,11 @@ static lv_obj_t * album_img_create(lv_obj_t * parent)
 
 static void album_gesture_event_cb(lv_event_t * e)
 {
-    lv_gesture_dir_t dir = lv_indev_get_gesture_dir(lv_indev_get_act());
-    if(dir == LV_GESTURE_DIR_LEFT) _lv_demo_music_album_next(true);
-    if(dir == LV_GESTURE_DIR_RIGHT) _lv_demo_music_album_next(false);
+    lv_dir_t dir = lv_indev_get_gesture_dir(lv_indev_get_act());
+    if(dir == LV_DIR_LEFT) _lv_demo_music_album_next(true);
+    if(dir == LV_DIR_RIGHT) _lv_demo_music_album_next(false);
 #if LV_DEMO_MUSIC_SQUARE
-    if(dir == LV_GESTURE_DIR_TOP) {
+    if(dir == LV_DIR_TOP) {
         lv_anim_t a;
         lv_anim_init(&a);
         lv_anim_set_var(&a, main_cont);
