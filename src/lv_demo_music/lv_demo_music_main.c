@@ -591,7 +591,7 @@ static void spectrum_draw_event_cb(lv_event_t * e)
     }
     else if(code == LV_EVENT_COVER_CHECK) {
         lv_draw_res_t * res = lv_event_get_param(e);
-        *res = LV_DRAW_RES_NOT_COVER;
+        *res = LV_COVER_RES_NOT_COVER;
     }
     else if(code == LV_EVENT_DRAW_POST) {
         lv_obj_t * obj = lv_event_get_target(e);
