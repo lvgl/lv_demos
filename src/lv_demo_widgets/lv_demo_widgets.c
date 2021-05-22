@@ -541,7 +541,7 @@ static void analytics_create(lv_obj_t * parent)
     lv_obj_add_flag(chart1, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
     lv_obj_set_grid_cell(chart1, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
     lv_chart_set_axis_tick(chart1, LV_CHART_AXIS_PRIMARY_Y, 0, 0, 5, 1, true, 80);
-    lv_chart_set_axis_tick(chart1, LV_CHART_AXIS_PRIMARY_X, 0, 0, 12, 1, true, 50);
+    lv_chart_set_axis_tick(chart1, LV_CHART_AXIS_X, 0, 0, 12, 1, true, 50);
     lv_chart_set_div_line_count(chart1, 0, 12);
     lv_chart_set_point_count(chart1, 12);
     lv_obj_add_event_cb(chart1, chart_event_cb, LV_EVENT_ALL, NULL);
@@ -586,7 +586,7 @@ static void analytics_create(lv_obj_t * parent)
 
     lv_obj_set_grid_cell(chart2, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
     lv_chart_set_axis_tick(chart2, LV_CHART_AXIS_PRIMARY_Y, 0, 0, 5, 1, true, 80);
-    lv_chart_set_axis_tick(chart2, LV_CHART_AXIS_PRIMARY_X, 0, 0, 12, 1, true, 50);
+    lv_chart_set_axis_tick(chart2, LV_CHART_AXIS_X, 0, 0, 12, 1, true, 50);
     lv_obj_set_size(chart2, LV_PCT(100), LV_PCT(100));
     lv_chart_set_type(chart2, LV_CHART_TYPE_BAR);
     lv_chart_set_div_line_count(chart2, 6, 0);
@@ -792,7 +792,7 @@ void shop_create(lv_obj_t * parent)
 
     chart3 = lv_chart_create(panel1);
     lv_chart_set_axis_tick(chart3, LV_CHART_AXIS_PRIMARY_Y, 0, 0, 6, 1, true, 80);
-    lv_chart_set_axis_tick(chart3, LV_CHART_AXIS_PRIMARY_X, 0, 0, 7, 1, true, 50);
+    lv_chart_set_axis_tick(chart3, LV_CHART_AXIS_X, 0, 0, 7, 1, true, 50);
     lv_chart_set_type(chart3, LV_CHART_TYPE_BAR);
     lv_chart_set_div_line_count(chart3, 6, 0);
     lv_chart_set_point_count(chart3, 7);
@@ -1303,7 +1303,7 @@ static void chart_event_cb(lv_event_t * e)
     else if(code == LV_EVENT_DRAW_PART_BEGIN) {
         lv_obj_draw_part_dsc_t * dsc = lv_event_get_param(e);
         /*Set the markers' text*/
-        if(dsc->part == LV_PART_TICKS && dsc->id == LV_CHART_AXIS_PRIMARY_X) {
+        if(dsc->part == LV_PART_TICKS && dsc->id == LV_CHART_AXIS_X) {
             if(lv_chart_get_type(obj) == LV_CHART_TYPE_BAR) {
                 const char * month[] = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"};
                 lv_snprintf(dsc->text, sizeof(dsc->text), "%s", month[dsc->value]);
@@ -1419,7 +1419,7 @@ static void shop_chart_event_cb(lv_event_t * e)
     if(code == LV_EVENT_DRAW_PART_BEGIN) {
         lv_obj_draw_part_dsc_t * dsc = lv_event_get_param(e);
         /*Set the markers' text*/
-        if(dsc->part == LV_PART_TICKS && dsc->id == LV_CHART_AXIS_PRIMARY_X) {
+        if(dsc->part == LV_PART_TICKS && dsc->id == LV_CHART_AXIS_X) {
             const char * month[] = {"Jan", "Febr", "March", "Apr", "May", "Jun", "July", "Aug", "Sept", "Oct", "Nov", "Dec"};
             lv_snprintf(dsc->text, sizeof(dsc->text), "%s", month[dsc->value]);
         }
