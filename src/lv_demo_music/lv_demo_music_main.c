@@ -299,6 +299,8 @@ static lv_obj_t * create_cont(lv_obj_t * parent)
     lv_obj_set_y(placeholder, LV_VER_RES + LV_DEMO_MUSIC_HANDLE_SIZE);
     lv_obj_clear_flag(placeholder, LV_OBJ_FLAG_CLICKABLE);
 
+    lv_obj_update_layout(main_cont);
+
     return player;
 }
 
@@ -310,21 +312,25 @@ static void create_wave_images(lv_obj_t * parent)
     lv_img_set_src(wave_top,&img_lv_demo_music_wave_top);
     lv_obj_set_width(wave_top, LV_HOR_RES);
     lv_obj_align(wave_top, LV_ALIGN_TOP_MID, 0, 0);
+    lv_obj_add_flag(wave_top, LV_OBJ_FLAG_IGNORE_LAYOUT);
 
     lv_obj_t * wave_bottom = lv_img_create(parent);
     lv_img_set_src(wave_bottom,&img_lv_demo_music_wave_bottom);
     lv_obj_set_width(wave_bottom, LV_HOR_RES);
     lv_obj_align(wave_bottom, LV_ALIGN_BOTTOM_MID, 0, 0);
+    lv_obj_add_flag(wave_bottom, LV_OBJ_FLAG_IGNORE_LAYOUT);
 
     LV_IMG_DECLARE(img_lv_demo_music_corner_left);
     LV_IMG_DECLARE(img_lv_demo_music_corner_right);
     lv_obj_t * wave_corner = lv_img_create(parent);
     lv_img_set_src(wave_corner, &img_lv_demo_music_corner_left);
     lv_obj_align(wave_corner, LV_ALIGN_BOTTOM_LEFT, 0, 0);
+    lv_obj_add_flag(wave_corner, LV_OBJ_FLAG_IGNORE_LAYOUT);
 
     wave_corner = lv_img_create(parent);
     lv_img_set_src(wave_corner, &img_lv_demo_music_corner_right);
     lv_obj_align(wave_corner, LV_ALIGN_BOTTOM_RIGHT, 0, 0);
+    lv_obj_add_flag(wave_corner, LV_OBJ_FLAG_IGNORE_LAYOUT);
 
 
 }
@@ -583,15 +589,13 @@ int32_t get_sin(int32_t deg, int32_t a)
 static void spectrum_draw_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
-    lv_obj_t * obj = lv_event_get_target(e);
 
     if(code == LV_EVENT_REFR_EXT_DRAW_SIZE) {
         lv_coord_t * s = lv_event_get_param(e);
         *s = LV_MAX(*s, start_anim ? 400 : 0);
     }
     else if(code == LV_EVENT_COVER_CHECK) {
-        lv_draw_res_t * res = lv_event_get_param(e);
-        *res = LV_COVER_RES_NOT_COVER;
+        lv_event_set_cover_res(e, LV_COVER_RES_NOT_COVER);
     }
     else if(code == LV_EVENT_DRAW_POST) {
         lv_obj_t * obj = lv_event_get_target(e);
