@@ -16,7 +16,7 @@
 /*********************
  *      DEFINES
  *********************/
-#define LV_DEMO_MUSIC_AUTO_PLAY 1
+#define LV_DEMO_MUSIC_AUTO_PLAY 0
 
 /**********************
  *      TYPEDEFS
