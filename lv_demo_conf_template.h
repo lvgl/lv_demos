@@ -47,6 +47,7 @@
 #if LV_USE_DEMO_MUSIC
 # define LV_DEMO_MUSIC_LANDSCAPE 0
 # define LV_DEMO_MUSIC_LARGE     0
+#define LV_DEMO_MUSIC_AUTO_PLAY  0
 #endif
 
 #endif /*LV_EX_CONF_H*/
