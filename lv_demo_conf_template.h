@@ -45,9 +45,11 @@
 /*Music player demo*/
 #define LV_USE_DEMO_MUSIC      1
 #if LV_USE_DEMO_MUSIC
-# define LV_DEMO_MUSIC_LANDSCAPE 0
-# define LV_DEMO_MUSIC_LARGE     0
-#define LV_DEMO_MUSIC_AUTO_PLAY  0
+# define LV_DEMO_MUSIC_SQUARE       0
+# define LV_DEMO_MUSIC_LANDSCAPE    0
+# define LV_DEMO_MUSIC_ROUND        0
+# define LV_DEMO_MUSIC_LARGE        0
+# define LV_DEMO_MUSIC_AUTO_PLAY    0
 #endif
 
 #endif /*LV_DEMO_CONF_H*/
