@@ -64,7 +64,7 @@ typedef struct {
  **********************/
 
 static lv_style_t style_common;
-static bool opa_mode = true;
+static bool opa_mode = false;
 
 LV_IMG_DECLARE(img_benchmark_cogwheel_argb);
 LV_IMG_DECLARE(img_benchmark_cogwheel_rgb);
@@ -685,14 +685,16 @@ static void scene_next_task_cb(lv_timer_t * timer)
             scene_act ++;
         }
         opa_mode = false;
-    } else {
+    }
+    else {
         if(scenes[scene_act].time_sum_normal == 0) scenes[scene_act].time_sum_normal = 1;
         scenes[scene_act].fps_normal = (1000 * scenes[scene_act].refr_cnt_normal) / scenes[scene_act].time_sum_normal;
+        scene_act ++;
         opa_mode = true;
     }
 
     if(scenes[scene_act].create_cb) {
-        lv_label_set_text_fmt(title, "%d/%d: %s%s", scene_act * 2 + (opa_mode ? 1 : 0), (sizeof(scenes) / sizeof(scene_dsc_t) * 2) - 2,  scenes[scene_act].name, opa_mode ? " + opa" : "");
+        lv_label_set_text_fmt(title, "%d/%ld: %s%s", scene_act * 2 + (opa_mode ? 1 : 0), (sizeof(scenes) / sizeof(scene_dsc_t) * 2) - 2, scenes[scene_act].name, opa_mode ? " + opa" : "");
         if(opa_mode) {
             lv_label_set_text_fmt(subtitle, "Result of \"%s\": %d FPS", scenes[scene_act].name, scenes[scene_act].fps_normal);
         } else {
