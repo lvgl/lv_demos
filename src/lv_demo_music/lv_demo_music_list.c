@@ -80,9 +80,9 @@ lv_obj_t * _lv_demo_music_list_create(lv_obj_t * parent)
     lv_style_set_grid_row_align(&style_btn, LV_GRID_ALIGN_CENTER);
     lv_style_set_layout(&style_btn, LV_LAYOUT_GRID);
 #if LV_DEMO_MUSIC_LARGE
-    lv_style_set_pad_right(&style_btn, 20);
+    lv_style_set_pad_right(&style_btn, 30);
 #else
-    lv_style_set_pad_right(&style_btn, 10);
+    lv_style_set_pad_right(&style_btn, 20);
 #endif
     lv_style_init(&style_btn_pr);
     lv_style_set_bg_opa(&style_btn_pr, LV_OPA_COVER);

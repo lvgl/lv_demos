@@ -741,6 +741,7 @@ static void scene_next_task_cb(lv_timer_t * timer)
         scene_bg = NULL;
 
 
+        lv_obj_set_flex_flow(lv_scr_act(), LV_FLEX_FLOW_COLUMN);
 
         title = lv_label_create(lv_scr_act());
         lv_label_set_text_fmt(title, "Weighted FPS: %d", fps_weighted);
@@ -748,13 +749,14 @@ static void scene_next_task_cb(lv_timer_t * timer)
         subtitle = lv_label_create(lv_scr_act());
         lv_label_set_text_fmt(subtitle, "Opa. speed: %d%%", opa_speed_pct);
 
-        lv_coord_t w = lv_obj_get_content_width(lv_scr_act()) - 10;
+        lv_coord_t w = lv_obj_get_content_width(lv_scr_act());
         lv_obj_t * table = lv_table_create(lv_scr_act());
 //        lv_obj_clean_style_list(table, LV_PART_MAIN);
         lv_table_set_col_cnt(table, 2);
 
-        lv_table_set_col_width(table, 0, (w * 3) / 4);
-        lv_table_set_col_width(table, 1, w  / 4);
+        lv_table_set_col_width(table, 0, (w * 3) / 4 - 3);
+        lv_table_set_col_width(table, 1, w  / 4 - 3);
+        lv_obj_set_width(table, lv_pct(100));
 
 //        static lv_style_t style_cell_slow;
 //        static lv_style_t style_cell_very_slow;
