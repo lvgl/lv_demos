@@ -5,7 +5,7 @@
 2. The `lv_demos` directory should be next to the `lvgl` directory in your project.
 
 Similarly to `lv_conf.h` there is a configuration file for the examples too. It is called `lv_demo_conf.h`.
-1. Copy `lv_demos/lv_demo_conf_templ.h` next to `lv_demos` directory
+1. Copy `lv_demos/lv_demo_conf_template.h` next to `lv_demos` directory
 2. Rename it to `lv_demo_conf.h`
 3. Change the first `#if 0` to `#if 1` to enable the file's content
 4. Enable or Disable demos
