@@ -7,7 +7,7 @@ except ImportError:
 if sys.platform == 'javascript':
   import utime as time
   import imp
-  sys.path.append('https://raw.githubusercontent.com/littlevgl/lv_binding_micropython/master/lib')
+  sys.path.append('https://raw.githubusercontent.com/lvgl/lv_binding_micropython/release/v7/lib')
   import display_driver
 else:
   import display_driver
