@@ -1193,6 +1193,8 @@ static void ta_event_cb(lv_event_t * e)
         lv_keyboard_set_textarea(kb, NULL);
         lv_obj_set_height(tv, LV_VER_RES);
         lv_obj_add_flag(kb, LV_OBJ_FLAG_HIDDEN);
+        lv_indev_reset(NULL, ta);
+
     }
     else if(code == LV_EVENT_READY || code == LV_EVENT_CANCEL) {
         lv_obj_set_height(tv, LV_VER_RES);
