@@ -1308,10 +1308,10 @@ static void chart_event_cb(lv_event_t * e)
         if(dsc->part == LV_PART_TICKS && dsc->id == LV_CHART_AXIS_PRIMARY_X) {
             if(lv_chart_get_type(obj) == LV_CHART_TYPE_BAR) {
                 const char * month[] = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"};
-                lv_snprintf(dsc->text, sizeof(dsc->text), "%s", month[dsc->value]);
+                lv_snprintf(dsc->text, dsc->text_length, "%s", month[dsc->value]);
             } else {
                 const char * month[] = {"Jan", "Febr", "March", "Apr", "May", "Jun", "July", "Aug", "Sept", "Oct", "Nov", "Dec"};
-                lv_snprintf(dsc->text, sizeof(dsc->text), "%s", month[dsc->value]);
+                lv_snprintf(dsc->text, dsc->text_length, "%s", month[dsc->value]);
             }
         }
 
@@ -1423,7 +1423,7 @@ static void shop_chart_event_cb(lv_event_t * e)
         /*Set the markers' text*/
         if(dsc->part == LV_PART_TICKS && dsc->id == LV_CHART_AXIS_PRIMARY_X) {
             const char * month[] = {"Jan", "Febr", "March", "Apr", "May", "Jun", "July", "Aug", "Sept", "Oct", "Nov", "Dec"};
-            lv_snprintf(dsc->text, sizeof(dsc->text), "%s", month[dsc->value]);
+            lv_snprintf(dsc->text, dsc->text_length, "%s", month[dsc->value]);
         }
         if(dsc->part == LV_PART_ITEMS) {
             dsc->rect_dsc->bg_opa = LV_OPA_TRANSP; /*We will draw it later*/
