@@ -1306,10 +1306,10 @@ static void chart_event_cb(lv_event_t * e)
         if(dsc->part == LV_PART_TICKS && dsc->id == LV_CHART_AXIS_PRIMARY_X) {
             if(lv_chart_get_type(obj) == LV_CHART_TYPE_BAR) {
                 const char * month[] = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"};
-                lv_snprintf(dsc->text, dsc->text_length, "%s", month[dsc->value]);
+                lv_snprintf((char*) dsc->text, dsc->text_length, "%s", month[dsc->value]);
             } else {
                 const char * month[] = {"Jan", "Febr", "March", "Apr", "May", "Jun", "July", "Aug", "Sept", "Oct", "Nov", "Dec"};
-                lv_snprintf(dsc->text, dsc->text_length, "%s", month[dsc->value]);
+                lv_snprintf((char*)dsc->text, dsc->text_length, "%s", month[dsc->value]);
             }
         }
 
@@ -1421,7 +1421,7 @@ static void shop_chart_event_cb(lv_event_t * e)
         /*Set the markers' text*/
         if(dsc->part == LV_PART_TICKS && dsc->id == LV_CHART_AXIS_PRIMARY_X) {
             const char * month[] = {"Jan", "Febr", "March", "Apr", "May", "Jun", "July", "Aug", "Sept", "Oct", "Nov", "Dec"};
-            lv_snprintf(dsc->text, dsc->text_length, "%s", month[dsc->value]);
+            lv_snprintf((char*)dsc->text, dsc->text_length, "%s", month[dsc->value]);
         }
         if(dsc->part == LV_PART_ITEMS) {
             dsc->rect_dsc->bg_opa = LV_OPA_TRANSP; /*We will draw it later*/
@@ -1471,7 +1471,7 @@ static void meter1_indic1_anim_cb(void * var, int32_t v)
 
     lv_obj_t * card = lv_obj_get_parent(meter1);
     lv_obj_t * label = lv_obj_get_child(card, -5);
-    lv_label_set_text_fmt(label, "Revenue: %d %%", v);
+    lv_label_set_text_fmt(label, "Revenue: %ld %%", v);
 }
 
 static void meter1_indic2_anim_cb(void * var, int32_t v)
@@ -1480,7 +1480,7 @@ static void meter1_indic2_anim_cb(void * var, int32_t v)
 
     lv_obj_t * card = lv_obj_get_parent(meter1);
     lv_obj_t * label = lv_obj_get_child(card, -3);
-    lv_label_set_text_fmt(label, "Sales: %d %%", v);
+    lv_label_set_text_fmt(label, "Sales: %ld %%", v);
 
 }
 
@@ -1490,7 +1490,7 @@ static void meter1_indic3_anim_cb(void * var, int32_t v)
 
     lv_obj_t * card = lv_obj_get_parent(meter1);
     lv_obj_t * label = lv_obj_get_child(card, -1);
-    lv_label_set_text_fmt(label, "Costs: %d %%", v);
+    lv_label_set_text_fmt(label, "Costs: %ld %%", v);
 }
 
 static void meter2_timer_cb(lv_timer_t * timer)
@@ -1543,13 +1543,13 @@ static void meter2_timer_cb(lv_timer_t * timer)
     lv_obj_t * label;
 
     label = lv_obj_get_child(card, -5);
-    lv_label_set_text_fmt(label, "Desktop: %d", session_desktop);
+    lv_label_set_text_fmt(label, "Desktop: %ld", session_desktop);
 
     label = lv_obj_get_child(card, -3);
-    lv_label_set_text_fmt(label, "Tablet: %d", session_tablet);
+    lv_label_set_text_fmt(label, "Tablet: %ld", session_tablet);
 
     label = lv_obj_get_child(card, -1);
-    lv_label_set_text_fmt(label, "Mobile: %d", session_mobile);
+    lv_label_set_text_fmt(label, "Mobile: %ld", session_mobile);
 }
 
 static void meter3_anim_cb(void * var, int32_t v)
@@ -1557,7 +1557,7 @@ static void meter3_anim_cb(void * var, int32_t v)
     lv_meter_set_indicator_value(meter3, var, v);
 
     lv_obj_t * label = lv_obj_get_child(meter3, 0);
-    lv_label_set_text_fmt(label, "%d", v);
+    lv_label_set_text_fmt(label, "%ld", v);
 }
 
 #endif
