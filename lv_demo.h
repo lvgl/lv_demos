@@ -13,6 +13,24 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
+
+/*If "lv_conf.h" is available from here try to use it later.*/
+#ifdef __has_include
+#  if __has_include("lvgl.h")
+#    ifndef LV_LVGL_H_INCLUDE_SIMPLE
+#      define LV_LVGL_H_INCLUDE_SIMPLE
+#    endif
+#  endif
+#endif
+
+#ifdef __has_include
+#  if __has_include("lv_demo_conf.h")
+#    ifndef LV_DEMO_CONF_INCLUDE_SIMPLE
+#      define LV_DEMO_CONF_INCLUDE_SIMPLE
+#    endif
+#  endif
+#endif
+
 #if defined(LV_LVGL_H_INCLUDE_SIMPLE)
 #include "lvgl.h"
 #else
