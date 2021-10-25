@@ -55,7 +55,6 @@ static disp_size_t disp_size;
 
 static lv_obj_t * tv;
 static lv_obj_t * calendar;
-static lv_obj_t * calendar_header;
 static lv_style_t style_text_muted;
 static lv_style_t style_title;
 static lv_style_t style_icon;
@@ -1216,14 +1215,14 @@ static void birthday_event_cb(lv_event_t * e)
                 calendar = lv_calendar_create(lv_layer_top());
                 lv_obj_set_style_bg_opa(lv_layer_top(), LV_OPA_50, 0);
                 lv_obj_set_style_bg_color(lv_layer_top(), lv_palette_main(LV_PALETTE_GREY), 0);
-                if(disp_size == DISP_SMALL) lv_obj_set_size(calendar, 180, 180);
-                else if(disp_size == DISP_MEDIUM) lv_obj_set_size(calendar, 200, 200);
-                else  lv_obj_set_size(calendar, 300, 300);
+                if(disp_size == DISP_SMALL) lv_obj_set_size(calendar, 180, 200);
+                else if(disp_size == DISP_MEDIUM) lv_obj_set_size(calendar, 200, 220);
+                else  lv_obj_set_size(calendar, 300, 330);
                 lv_calendar_set_showed_date(calendar, 1990, 01);
                 lv_obj_align(calendar, LV_ALIGN_CENTER, 0, 30);
                 lv_obj_add_event_cb(calendar, calendar_event_cb, LV_EVENT_ALL, ta);
 
-                calendar_header = lv_calendar_header_dropdown_create(lv_layer_top(), calendar);
+                lv_calendar_header_dropdown_create(calendar);
             }
         }
     }
@@ -1233,7 +1232,7 @@ static void calendar_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
     lv_obj_t * ta = lv_event_get_user_data(e);
-    lv_obj_t * obj = lv_event_get_target(e);
+    lv_obj_t * obj = lv_event_get_current_target(e);
     if(code == LV_EVENT_VALUE_CHANGED) {
         lv_calendar_date_t d;
         lv_calendar_get_pressed_date(obj, &d);
@@ -1242,9 +1241,7 @@ static void calendar_event_cb(lv_event_t * e)
         lv_textarea_set_text(ta, buf);
 
         lv_obj_del(calendar);
-        lv_obj_del(calendar_header);
         calendar = NULL;
-        calendar_header = NULL;
         lv_obj_clear_flag(lv_layer_top(), LV_OBJ_FLAG_CLICKABLE);
         lv_obj_set_style_bg_opa(lv_layer_top(), LV_OPA_TRANSP, 0);
     }
