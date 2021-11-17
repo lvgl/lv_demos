@@ -72,9 +72,9 @@ LV_IMG_DECLARE(img_benchmark_cogwheel_chroma_keyed);
 LV_IMG_DECLARE(img_benchmark_cogwheel_indexed16);
 LV_IMG_DECLARE(img_benchmark_cogwheel_alpha16);
 
-LV_FONT_DECLARE(lv_font_montserrat_12_compr_az);
-LV_FONT_DECLARE(lv_font_montserrat_16_compr_az);
-LV_FONT_DECLARE(lv_font_montserrat_28_compr_az);
+LV_FONT_DECLARE(lv_font_benchmark_montserrat_12_compr_az);
+LV_FONT_DECLARE(lv_font_benchmark_montserrat_16_compr_az);
+LV_FONT_DECLARE(lv_font_benchmark_montserrat_28_compr_az);
 
 static void monitor_cb(lv_disp_drv_t * drv, uint32_t time, uint32_t px);
 static void scene_next_task_cb(lv_timer_t * timer);
@@ -401,7 +401,7 @@ static void txt_large_cb(void)
 static void txt_small_compr_cb(void)
 {
     lv_style_reset(&style_common);
-    lv_style_set_text_font(&style_common, &lv_font_montserrat_12_compr_az);
+    lv_style_set_text_font(&style_common, &lv_font_benchmark_montserrat_12_compr_az);
     lv_style_set_text_opa(&style_common, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
     txt_create(&style_common);
 
@@ -410,7 +410,7 @@ static void txt_small_compr_cb(void)
 static void txt_medium_compr_cb(void)
 {
     lv_style_reset(&style_common);
-    lv_style_set_text_font(&style_common, &lv_font_montserrat_16_compr_az);
+    lv_style_set_text_font(&style_common, &lv_font_benchmark_montserrat_16_compr_az);
     lv_style_set_text_opa(&style_common, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
     txt_create(&style_common);
 
@@ -419,7 +419,7 @@ static void txt_medium_compr_cb(void)
 static void txt_large_compr_cb(void)
 {
     lv_style_reset(&style_common);
-    lv_style_set_text_font(&style_common, &lv_font_montserrat_28_compr_az);
+    lv_style_set_text_font(&style_common, &lv_font_benchmark_montserrat_28_compr_az);
     lv_style_set_text_opa(&style_common, opa_mode ? LV_OPA_50 : LV_OPA_COVER);
     txt_create(&style_common);
 
