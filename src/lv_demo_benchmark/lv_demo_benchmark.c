@@ -1003,7 +1003,7 @@ static int32_t rnd_next(int32_t min, int32_t max)
 {
     if(min == max)
         return min;
-    
+
     if(min > max) {
         int32_t t = min;
         min = max;
