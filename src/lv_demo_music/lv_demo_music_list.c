@@ -29,8 +29,8 @@ static void btn_click_event_cb(lv_event_t * e);
  *  STATIC VARIABLES
  **********************/
 static lv_obj_t * list;
-static lv_font_t * font_small;
-static lv_font_t * font_medium;
+static const lv_font_t * font_small;
+static const lv_font_t * font_medium;
 static lv_style_t style_scrollbar;
 static lv_style_t style_btn;
 static lv_style_t style_btn_pr;
