@@ -102,6 +102,22 @@ static const uint16_t rnd_array[30] = {994, 285, 553, 11, 792, 707, 966, 641, 85
  *   GLOBAL FUNCTIONS
  **********************/
 
+/*
+ * Callback adapter function to convert parameter types to avoid compile-time
+ * warning.
+ */
+static void _img_set_zoom_anim_cb(void * obj, int32_t zoom) {
+  lv_img_set_zoom((lv_obj_t*)obj, (uint16_t)zoom);
+}
+
+/*
+ * Callback adapter function to convert parameter types to avoid compile-time
+ * warning.
+ */
+static void _obj_set_x_anim_cb(void * obj, int32_t x) {
+  lv_obj_set_x((lv_obj_t*)obj, (lv_coord_t)x);
+}
+
 lv_obj_t * _lv_demo_music_main_create(lv_obj_t * parent)
 {
 #if LV_DEMO_MUSIC_LARGE
@@ -238,7 +254,7 @@ lv_obj_t * _lv_demo_music_main_create(lv_obj_t * parent)
     lv_anim_set_time(&a, 1000);
     lv_anim_set_delay(&a, INTRO_TIME + 1000);
     lv_anim_set_values(&a, 1, LV_IMG_ZOOM_NONE);
-    lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_img_set_zoom);
+    lv_anim_set_exec_cb(&a, _img_set_zoom_anim_cb);
     lv_anim_set_ready_cb(&a, NULL);
     lv_anim_start(&a);
 
@@ -663,7 +679,7 @@ static void track_load(uint32_t id)
         lv_anim_set_values(&a, 0, LV_HOR_RES / 2);
     }
 #endif
-    lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_obj_set_x);
+    lv_anim_set_exec_cb(&a, _obj_set_x_anim_cb);
     lv_anim_set_ready_cb(&a, lv_obj_del_anim_ready_cb);
     lv_anim_start(&a);
 
@@ -671,7 +687,7 @@ static void track_load(uint32_t id)
     lv_anim_set_var(&a, album_img_obj);
     lv_anim_set_time(&a, 500);
     lv_anim_set_values(&a, LV_IMG_ZOOM_NONE, LV_IMG_ZOOM_NONE / 2);
-    lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_img_set_zoom);
+    lv_anim_set_exec_cb(&a, _img_set_zoom_anim_cb);
     lv_anim_set_ready_cb(&a, NULL);
     lv_anim_start(&a);
 
@@ -683,7 +699,7 @@ static void track_load(uint32_t id)
     lv_anim_set_time(&a, 500);
     lv_anim_set_delay(&a, 100);
     lv_anim_set_values(&a, LV_IMG_ZOOM_NONE / 4, LV_IMG_ZOOM_NONE);
-    lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_img_set_zoom);
+    lv_anim_set_exec_cb(&a, _img_set_zoom_anim_cb);
     lv_anim_set_ready_cb(&a, NULL);
     lv_anim_start(&a);
 }
