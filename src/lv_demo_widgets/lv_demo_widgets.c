@@ -81,6 +81,13 @@ static uint32_t session_desktop = 1000;
 static uint32_t session_tablet = 1000;
 static uint32_t session_mobile = 1000;
 
+static const char * month_name_short[] = {"Jan", "Febr", "March", "Apr", "May",
+                                          "Jun", "July", "Aug", "Sept", "Oct",
+                                          "Nov", "Dec"};
+
+static const char * month_num_roman[] = {"I", "II", "III", "IV", "V", "VI",
+                                         "VII", "VIII", "IX", "X", "XI", "XII"};
+
 /**********************
  *      MACROS
  **********************/
@@ -1305,11 +1312,9 @@ static void chart_event_cb(lv_event_t * e)
         /*Set the markers' text*/
         if(dsc->part == LV_PART_TICKS && dsc->id == LV_CHART_AXIS_PRIMARY_X) {
             if(lv_chart_get_type(obj) == LV_CHART_TYPE_BAR) {
-                const char * month[] = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"};
-                lv_snprintf(dsc->text, sizeof(dsc->text), "%s", month[dsc->value]);
+                dsc->text = month_num_roman[dsc->value];
             } else {
-                const char * month[] = {"Jan", "Febr", "March", "Apr", "May", "Jun", "July", "Aug", "Sept", "Oct", "Nov", "Dec"};
-                lv_snprintf(dsc->text, sizeof(dsc->text), "%s", month[dsc->value]);
+                dsc->text = month_name_short[dsc->value];
             }
         }
 
@@ -1420,8 +1425,7 @@ static void shop_chart_event_cb(lv_event_t * e)
         lv_obj_draw_part_dsc_t * dsc = lv_event_get_param(e);
         /*Set the markers' text*/
         if(dsc->part == LV_PART_TICKS && dsc->id == LV_CHART_AXIS_PRIMARY_X) {
-            const char * month[] = {"Jan", "Febr", "March", "Apr", "May", "Jun", "July", "Aug", "Sept", "Oct", "Nov", "Dec"};
-            lv_snprintf(dsc->text, sizeof(dsc->text), "%s", month[dsc->value]);
+            dsc->text = month_name_short[dsc->value];
         }
         if(dsc->part == LV_PART_ITEMS) {
             dsc->rect_dsc->bg_opa = LV_OPA_TRANSP; /*We will draw it later*/
