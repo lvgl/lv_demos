@@ -154,7 +154,7 @@ static lv_obj_t * add_list_btn(lv_obj_t * parent, uint32_t track_id)
 {
     uint32_t t = _lv_demo_music_get_track_length(track_id);
     char time[32];
-    lv_snprintf(time, sizeof(time), "%d:%02d", t / 60, t % 60);
+    lv_snprintf(time, sizeof(time), "%"PRIu32":%02"PRIu32, t / 60, t % 60);
     const char * title = _lv_demo_music_get_title(track_id);
     const char * artist = _lv_demo_music_get_artist(track_id);
 
