@@ -692,12 +692,12 @@ static void scene_next_task_cb(lv_timer_t * timer)
     }
 
     if(scenes[scene_act].create_cb) {
-        lv_label_set_text_fmt(title, "%d/%d: %s%s", scene_act * 2 + (opa_mode ? 1 : 0), (sizeof(scenes) / sizeof(scene_dsc_t) * 2) - 2,  scenes[scene_act].name, opa_mode ? " + opa" : "");
+        lv_label_set_text_fmt(title, "%lu/%d: %s%s", scene_act * 2 + (opa_mode ? 1 : 0), (sizeof(scenes) / sizeof(scene_dsc_t) * 2) - 2,  scenes[scene_act].name, opa_mode ? " + opa" : "");
         if(opa_mode) {
-            lv_label_set_text_fmt(subtitle, "Result of \"%s\": %d FPS", scenes[scene_act].name, scenes[scene_act].fps_normal);
+            lv_label_set_text_fmt(subtitle, "Result of \"%s\": %lu FPS", scenes[scene_act].name, scenes[scene_act].fps_normal);
         } else {
             if(scene_act > 0) {
-                lv_label_set_text_fmt(subtitle, "Result of \"%s + opa\": %d FPS", scenes[scene_act - 1].name, scenes[scene_act - 1].fps_opa);
+                lv_label_set_text_fmt(subtitle, "Result of \"%s + opa\": %lu FPS", scenes[scene_act - 1].name, scenes[scene_act - 1].fps_opa);
             } else {
                 lv_label_set_text(subtitle, "");
             }
@@ -744,10 +744,10 @@ static void scene_next_task_cb(lv_timer_t * timer)
         lv_obj_set_flex_flow(lv_scr_act(), LV_FLEX_FLOW_COLUMN);
 
         title = lv_label_create(lv_scr_act());
-        lv_label_set_text_fmt(title, "Weighted FPS: %d", fps_weighted);
+        lv_label_set_text_fmt(title, "Weighted FPS: %lu", fps_weighted);
 
         subtitle = lv_label_create(lv_scr_act());
-        lv_label_set_text_fmt(subtitle, "Opa. speed: %d%%", opa_speed_pct);
+        lv_label_set_text_fmt(subtitle, "Opa. speed: %lu%%", opa_speed_pct);
 
         lv_coord_t w = lv_obj_get_content_width(lv_scr_act());
         lv_obj_t * table = lv_table_create(lv_scr_act());
@@ -788,7 +788,7 @@ static void scene_next_task_cb(lv_timer_t * timer)
             if(scenes[i].fps_normal < 20 && scenes[i].weight >= 10) {
                 lv_table_set_cell_value(table, row, 0, scenes[i].name);
 
-                lv_snprintf(buf, sizeof(buf), "%d", scenes[i].fps_normal);
+                lv_snprintf(buf, sizeof(buf), "%lu", scenes[i].fps_normal);
                 lv_table_set_cell_value(table, row, 1, buf);
 
 //                lv_table_set_cell_type(table, row, 0, 2);
@@ -801,7 +801,7 @@ static void scene_next_task_cb(lv_timer_t * timer)
                 lv_snprintf(buf, sizeof(buf), "%s + opa", scenes[i].name);
                 lv_table_set_cell_value(table, row, 0, buf);
 
-                lv_snprintf(buf, sizeof(buf), "%d", scenes[i].fps_opa);
+                lv_snprintf(buf, sizeof(buf), "%lu", scenes[i].fps_opa);
                 lv_table_set_cell_value(table, row, 1, buf);
 
 //                lv_table_set_cell_type(table, row, 0, 2);
@@ -826,7 +826,7 @@ static void scene_next_task_cb(lv_timer_t * timer)
         for(i = 0; i < sizeof(scenes) / sizeof(scene_dsc_t) - 1; i++) {
             lv_table_set_cell_value(table, row, 0, scenes[i].name);
 
-            lv_snprintf(buf, sizeof(buf), "%d", scenes[i].fps_normal);
+            lv_snprintf(buf, sizeof(buf), "%lu", scenes[i].fps_normal);
             lv_table_set_cell_value(table, row, 1, buf);
 
             if(scenes[i].fps_normal < 10) {
@@ -843,7 +843,7 @@ static void scene_next_task_cb(lv_timer_t * timer)
             lv_snprintf(buf, sizeof(buf), "%s + opa", scenes[i].name);
             lv_table_set_cell_value(table, row, 0, buf);
 
-            lv_snprintf(buf, sizeof(buf), "%d", scenes[i].fps_opa);
+            lv_snprintf(buf, sizeof(buf), "%lu", scenes[i].fps_opa);
             lv_table_set_cell_value(table, row, 1, buf);
 
 
