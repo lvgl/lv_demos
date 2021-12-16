@@ -951,7 +951,7 @@ static void next_click_event_cb(lv_event_t * e)
 static void timer_cb(lv_timer_t * t)
 {
     time_act++;
-    lv_label_set_text_fmt(time_obj, "%d:%02d", time_act / 60, time_act % 60);
+    lv_label_set_text_fmt(time_obj, "%"LV_PRIu32":%02"LV_PRIu32, time_act / 60, time_act % 60);
     lv_slider_set_value(slider_obj, time_act, LV_ANIM_ON);
 }
 
