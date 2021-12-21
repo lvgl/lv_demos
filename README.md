@@ -1,3 +1,5 @@
+⚠️ This library is now obsolete. Please use https://github.com/lvgl/lvgl/tree/master/demos instead. ⚠️
+
 # Demos for LVGL
 
 ## Add the examples to your projects
