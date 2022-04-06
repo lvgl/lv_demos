@@ -14,6 +14,11 @@
 #include "assets/spectrum_2.h"
 #include "assets/spectrum_3.h"
 
+#ifdef __WIN64__
+#define __STDC_FORMAT_MACROS 1
+#include <inttypes.h>
+#endif
+
 /*********************
  *      DEFINES
  *********************/
@@ -951,7 +956,7 @@ static void next_click_event_cb(lv_event_t * e)
 static void timer_cb(lv_timer_t * t)
 {
     time_act++;
-    lv_label_set_text_fmt(time_obj, "%"LV_PRIu32":%02"LV_PRIu32, time_act / 60, time_act % 60);
+    lv_label_set_text_fmt(time_obj, "%" LV_PRIu32":%02"LV_PRIu32, time_act / 60, time_act % 60);
     lv_slider_set_value(slider_obj, time_act, LV_ANIM_ON);
 }
 
