@@ -1,1 +1,1 @@
-CSRCS += $(shell find -L lv_examples -name "*.c")
+CSRCS += $(shell find -L $(LVGL_DIR)/lv_demos -name "*.c")

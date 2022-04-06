@@ -155,16 +155,16 @@ uint32_t _lv_demo_music_get_track_length(uint32_t track_id)
 static void auto_step_cb(lv_timer_t * t)
 {
     LV_UNUSED(t);
-    LV_FONT_DECLARE(lv_demo_music_font_16_bold)
     static uint32_t state = 0;
 
 #if LV_DEMO_MUSIC_LARGE
-    lv_font_t * font_small = &lv_font_montserrat_22;
-    lv_font_t * font_large = &lv_font_montserrat_32;
+    const lv_font_t * font_small = &lv_font_montserrat_22;
+    const lv_font_t * font_large = &lv_font_montserrat_32;
 #else
     const lv_font_t * font_small = &lv_font_montserrat_12;
     const lv_font_t * font_large = &lv_font_montserrat_16;
 #endif
+
     switch(state) {
     case 5:
         _lv_demo_music_album_next(true);
@@ -179,26 +179,23 @@ static void auto_step_cb(lv_timer_t * t)
     case 8:
         _lv_demo_music_play(0);
         break;
+#if LV_DEMO_MUSIC_SQUARE || LV_DEMO_MUSIC_ROUND
+    case 11:
+        lv_obj_scroll_by(ctrl, 0, -LV_VER_RES, LV_ANIM_ON);
+        break;
+    case 13:
+        lv_obj_scroll_by(ctrl, 0, -LV_VER_RES, LV_ANIM_ON);
+        break;
+#else
     case 12:
         lv_obj_scroll_by(ctrl, 0, -LV_VER_RES, LV_ANIM_ON);
         break;
-    case 14:
-//        lv_obj_scroll_by(ctrl, 0, -LV_VER_RES, LV_ANIM_ON);
-        break;
+#endif
     case 15:
         lv_obj_scroll_by(list, 0, -300, LV_ANIM_ON);
         break;
     case 16:
         lv_obj_scroll_by(list, 0, 300, LV_ANIM_ON);
-        break;
-//        lv_anim_init(&a);
-//        lv_anim_set_var(&a, list);
-//        lv_anim_set_values(&a, lv_obj_get_y(list), -lv_obj_get_height(list) + LV_DEMO_MUSIC_HANDLE_SIZE);
-//        lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) lv_obj_set_y);
-//        lv_anim_set_time(&a, 1000);
-//        lv_anim_set_playback_time(&a, 1000);
-//        lv_anim_set_playback_delay(&a, 200);
-//        lv_anim_start(&a);
         break;
     case 18:
         _lv_demo_music_play(1);
@@ -206,6 +203,11 @@ static void auto_step_cb(lv_timer_t * t)
     case 19:
         lv_obj_scroll_by(ctrl, 0, LV_VER_RES, LV_ANIM_ON);
         break;
+#if LV_DEMO_MUSIC_SQUARE || LV_DEMO_MUSIC_ROUND
+    case 20:
+        lv_obj_scroll_by(ctrl, 0, LV_VER_RES, LV_ANIM_ON);
+        break;
+#endif
     case 30:
         _lv_demo_music_play(2);
         break;
@@ -230,7 +232,7 @@ static void auto_step_cb(lv_timer_t * t)
           lv_obj_t * attr = lv_label_create(bg);
           lv_obj_set_style_text_align(attr, LV_TEXT_ALIGN_CENTER, 0);
           lv_obj_set_style_text_font(attr, font_small, 0);
-#if LV_DEMO_MUSIC_SQUARE
+#if LV_DEMO_MUSIC_SQUARE || LV_DEMO_MUSIC_ROUND
           lv_label_set_text(attr, "Copyright 2020 LVGL Kft.\nwww.lvgl.io | lvgl@lvgl.io");
 #else
           lv_label_set_text(attr, "Copyright 2020 LVGL Kft. | www.lvgl.io | lvgl@lvgl.io");
@@ -244,7 +246,6 @@ static void auto_step_cb(lv_timer_t * t)
         break;
     }
     state++;
-
 }
 
 #endif /*LV_DEMO_MUSIC_AUTO_PLAY*/
