@@ -1,4 +1,4 @@
-⚠️ This library is now obsolete. Please use https://github.com/lvgl/lvgl/tree/master/demos instead. ⚠️
+⚠️ This library is now obsolete as demos have been merged into the lvgl repository. Please use https://github.com/lvgl/lvgl/tree/master/demos instead. ⚠️
 
 # Demos for LVGL
 
