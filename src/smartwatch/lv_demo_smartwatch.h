@@ -14,13 +14,13 @@ extern "C"
 /*********************
  *      INCLUDES
  *********************/
-#include "../../lvgl.h"
+#include "../lv_demos.h"
 
 
 #if LV_USE_DEMO_SMARTWATCH
 
 #if LV_USE_LOTTIE == 0
-#error "lv_demo_smartwatch requires LV_USE_LOTTIE"
+O
 #endif
 
 /*********************

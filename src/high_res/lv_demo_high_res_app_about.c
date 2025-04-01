@@ -10,9 +10,6 @@
 #include "lv_demo_high_res_private.h"
 #if LV_USE_DEMO_HIGH_RES
 
-#include "../../src/widgets/image/lv_image.h"
-#include "../../src/widgets/label/lv_label.h"
-
 /*********************
  *      DEFINES
  *********************/

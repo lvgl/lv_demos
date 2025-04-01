@@ -6,10 +6,13 @@
 /*********************
  *      INCLUDES
  *********************/
+
+#undef LV_USE_PRIVATE_API
+#define LV_USE_PRIVATE_API	 1 /*Include the *_private.h LVGL headers too*/
+
 #include "lv_demo_ebike.h"
 #if LV_USE_DEMO_EBIKE
 
-#include "../../lvgl_private.h"
 #include "translations/lv_i18n.h"
 #include "lv_demo_ebike_stats.h"
 #include "lv_demo_ebike_private.h"

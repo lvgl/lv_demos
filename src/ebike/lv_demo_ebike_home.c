@@ -12,7 +12,6 @@
 #include "lv_demo_ebike_private.h"
 #include "lv_demo_ebike_home.h"
 #include "translations/lv_i18n.h"
-#include "../../lvgl_private.h"
 
 /*********************
  *      DEFINES
@@ -117,7 +116,7 @@ static void roller_anim_timer_cb(lv_timer_t * t)
 static void speed_label_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 {
     lv_obj_t * label = lv_observer_get_target_obj(observer);
-    int32_t label_v = (int32_t)((lv_uintptr_t)observer->user_data);
+    int32_t label_v = (int32_t)((lv_uintptr_t)lv_observer_get_user_data(observer));
     int32_t speed = lv_subject_get_int(subject);
 
     label_v = LV_ABS(label_v - speed);

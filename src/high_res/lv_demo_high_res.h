@@ -14,10 +14,9 @@ extern "C" {
  *      INCLUDES
  *********************/
 
-#include "../../src/lv_conf_internal.h"
-#if LV_USE_DEMO_HIGH_RES
+#include "../lv_demos.h"
 
-#include "../../src/others/observer/lv_observer.h"
+#if LV_USE_DEMO_HIGH_RES
 
 /*********************
  *      DEFINES

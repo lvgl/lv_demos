@@ -10,13 +10,6 @@
 #include "lv_demo_high_res_private.h"
 #if LV_USE_DEMO_HIGH_RES
 
-#include "../../src/widgets/image/lv_image.h"
-#include "../../src/widgets/label/lv_label.h"
-#include "../../src/widgets/chart/lv_chart.h"
-#include "../../src/widgets/slider/lv_slider.h"
-#include "../../src/widgets/scale/lv_scale.h"
-#include "../../src/widgets/arc/lv_arc.h"
-
 /*********************
  *      DEFINES
  *********************/

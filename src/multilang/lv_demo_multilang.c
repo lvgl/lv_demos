@@ -6,10 +6,13 @@
 /*********************
  *      INCLUDES
  *********************/
+
+#undef LV_USE_PRIVATE_API
+#define LV_USE_PRIVATE_API	 1 /*Include the *_private.h LVGL headers too*/
+
 #include "lv_demo_multilang.h"
 
 #if LV_USE_DEMO_MULTILANG
-#include "../../lvgl_private.h"
 
 /*********************
  *      DEFINES

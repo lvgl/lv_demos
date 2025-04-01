@@ -4,7 +4,7 @@
  * Opts: --no-compress --no-prefilter --bpp 4 --size 22 --format lvgl --output font_multilang_large.c --font Montserrat-Bold.ttf -r 0x20-0x7F
  ******************************************************************************/
 
-#include "../../../../lvgl.h"
+#include "../../lv_demo_multilang.h"
 
 #ifndef FONT_MULTILANG_LARGE
     #define FONT_MULTILANG_LARGE 1

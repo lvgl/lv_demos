@@ -4,7 +4,7 @@
  * Opts: --bpp 8 --size 16 --no-compress --font Roboto-Medium.ttf --range 32-127,176 --format lvgl -o font_lv_demo_high_res_roboto_medium_16.c
  ******************************************************************************/
 
-#include "../../../lvgl.h"
+#include "../lv_demo_high_res.h"
 
 #if LV_USE_DEMO_HIGH_RES
 

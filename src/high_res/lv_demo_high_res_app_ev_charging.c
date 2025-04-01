@@ -7,14 +7,12 @@
  *      INCLUDES
  *********************/
 
+#undef LV_USE_PRIVATE_API
+#define LV_USE_PRIVATE_API	 1 /*Include the *_private.h LVGL headers too*/
+
 #include "lv_demo_high_res_private.h"
 #if LV_USE_DEMO_HIGH_RES
 
-#include "../../src/widgets/image/lv_image.h"
-#include "../../src/widgets/label/lv_label.h"
-#include "../../src/widgets/span/lv_span_private.h"
-#include "../../src/widgets/chart/lv_chart.h"
-#include "../../src/widgets/arc/lv_arc.h"
 
 /*********************
  *      DEFINES

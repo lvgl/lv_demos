@@ -13,7 +13,7 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-#include "../../lvgl.h"
+#include "../lv_demos.h"
 
 #if LV_USE_DEMO_EBIKE
 

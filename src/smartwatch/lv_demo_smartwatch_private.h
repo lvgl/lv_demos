@@ -14,7 +14,7 @@ extern "C"
 /*********************
  *      INCLUDES
  *********************/
-#include "../../lvgl.h"
+#include "lv_demo_smartwatch.h"
 
 
 #if LV_USE_DEMO_SMARTWATCH
