@@ -13,7 +13,6 @@
 #include "lv_demo_high_res_private.h"
 #if LV_USE_DEMO_HIGH_RES
 
-
 /*********************
  *      DEFINES
  *********************/
@@ -306,6 +305,8 @@ static void time_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 
     lv_snprintf(buf, sizeof(buf), ":%02"LV_PRId32, lv_subject_get_int(&c->api.subjects.minute));
     lv_span_set_text(lv_spangroup_get_child(spangroup, 1), buf);
+
+    lv_spangroup_refresh(spangroup);
 }
 
 static void date_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
@@ -321,6 +322,8 @@ static void date_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
     lv_snprintf(buf, sizeof(buf), "%"PRId32" %s", lv_subject_get_int(&c->api.subjects.month_day),
                 lv_subject_get_pointer(&c->api.subjects.month_name));
     lv_span_set_text(lv_spangroup_get_child(spangroup, 1), buf);
+
+    lv_spangroup_refresh(spangroup);
 }
 
 static void hi_lo_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
